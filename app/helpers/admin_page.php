@@ -13,14 +13,15 @@
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
             
                 <!-- Estilos -->
-                <link rel="stylesheet" href="../../resources/css/styles.css">
+                <link rel="stylesheet" href="../../resources/css/estilos.css">
             
                 <!-- Fuentes -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
                 <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
                 <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Quicksand&display=swap" rel="stylesheet">
                 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet"> 
-            
+                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet"> 
+
                 <title>'.$titulo.'</title>
               </head>
               <body>
@@ -48,7 +49,7 @@
                                 <div class="col-12" id="filaBotones">
                                     <div id="botones">
                                     <a href="#" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
-                                    <a href="#" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
+                                    <a href="index.php" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +83,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link categoriasFuente">
+                        <a href="menuUsuarios.php" class="nav-link categoriasFuente">
                         <i class="fas fa-users-cog mr-3 tamañoIconos"></i>
                         Usuarios
                         </a>
