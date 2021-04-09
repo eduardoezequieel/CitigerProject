@@ -19,7 +19,7 @@ admin_Page::sidebarTemplate('Usuarios | Citiger');
 
                 <div class="row">
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                        <a href="" class="btn botonMenu1">
+                        <a href="listado_empleados.php" class="btn botonMenu1">
                             <img src="../../resources/img/employee.png" alt="" class="img-fluid" width="50px">
                             <label class="textoBotonesMenu">Empleados</label>
                         </a>

@@ -48,25 +48,24 @@
 input[placeholder],
 [placeholder],
 *[placeholder] {
-  font-family: 'Manrope', sans-serif;
+  font-family: FontAwesome,'Manrope', sans-serif;
   font-size: 15px;
   padding-left: 15px;
 }
 
 ::-webkit-input-placeholder {
-  font-family: 'Manrope', sans-serif;
+  font-family: FontAwesome,'Manrope', sans-serif;
   font-size: 15px;
-
 }
 
 ::-moz-placeholder {
-  font-family: 'Manrope', sans-serif;
+  font-family: FontAwesome,'Manrope', sans-serif;
   font-size: 15px;
 
 }
 
 :-ms-input-placeholder {
-  font-family: 'Manrope', sans-serif;
+  font-family: FontAwesome,'Manrope', sans-serif;
   font-size: 15px;
 
 }
@@ -404,6 +403,54 @@ a:hover {
   font-weight: 700;
   color: #ffffff;
   margin-top: 10px;
+}
+
+.tituloPagina{
+  font-family: 'Quicksand','sans-serif';
+  font-size: 30px;
+  font-weight: 700;
+  color: #5494F5;
+  margin-top: 10px;
+}
+
+/*Controles de Formularios*/
+
+.botonesListado{
+  background-color: #5494F5;
+  color: #292E32;
+  font-family: 'Quicksand','sans-serif';
+  font-size: 15px;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.botonesListado:hover{
+  background-color: #3964a3;
+  color: white;
+}
+
+.tamañoIconosBotones{
+  font-size: 12px ;
+}
+
+.buscador {
+  background-color: transparent;
+  border: 0.01rem solid #6C757D;
+  color: white;
+  border-radius: 16px;
+  padding: 10px;
+  height: 45px;
+  width: 290px;
+  float: right;
+}
+
+.buscador:focus {
+  background-color: transparent;
+  border: 0.01rem solid #6C757D;
+  color: white;
 }
 
 /*Responsive*/
