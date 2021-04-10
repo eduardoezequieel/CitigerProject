@@ -19,7 +19,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
 
             <div class="row">
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
-                    <a href="#" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nuevo Administrador</a>
+                    <a href="#" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nuevo Residente</a>
                 </div>
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
                     <form>

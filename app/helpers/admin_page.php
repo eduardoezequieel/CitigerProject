@@ -14,6 +14,7 @@
             
                 <!-- Estilos -->
                 <link rel="stylesheet" href="../../resources/css/estilos.css">
+                <link rel="stylesheet" href="../../resources/css/estilos2.css">
             
                 <!-- Fuentes -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -65,7 +66,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link categoriasFuente">
+                        <a href="menu_aportaciones.php" class="nav-link categoriasFuente">
                         <i class="fas fa-coins mr-3 tamañoIconos"></i>
                         Aportaciones
                         </a>
@@ -83,13 +84,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="menuUsuarios.php" class="nav-link categoriasFuente">
+                        <a href="menu_usuarios.php" class="nav-link categoriasFuente">
                         <i class="fas fa-users-cog mr-3 tamañoIconos"></i>
                         Usuarios
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link categoriasFuente">
+                        <a href="listado_visitas.php" class="nav-link categoriasFuente">
                         <i class="fas fa-car mr-3 tamañoIconos"></i>
                         Visitas
                         </a>
