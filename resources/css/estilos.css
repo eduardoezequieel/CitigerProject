@@ -303,6 +303,10 @@ a:hover {
   border-radius: 10px;
 }
 
+.menuDiv{
+  height: 95vh;
+}
+
 #content.active {
   width: 100%;
   margin: 0;
@@ -594,6 +598,10 @@ textarea[placeholder],
 
   .marginPrimeraColumna{
     margin-top: 10px;
+  }
+
+  .menuDiv{
+    height: auto;
   }
 }
 

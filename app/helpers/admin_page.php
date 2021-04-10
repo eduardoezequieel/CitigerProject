@@ -84,7 +84,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link categoriasFuente">
+                        <a href="menu_materiales.php" class="nav-link categoriasFuente">
                         <i class="fas fa-boxes mr-3 tamañoIconos"></i>
                         Materiales
                         </a>
