@@ -637,3 +637,175 @@ textarea[placeholder],
   }
 }
 
+
+.subTituloPagina{
+  font-family: 'Quicksand','sans-serif';
+  font-size: 25px;
+  font-weight: 700;
+  color: white;
+  margin-top: 10px;
+}
+
+.table{
+  background: #202427;
+  border-radius: 16px;
+  
+}
+
+tbody{
+  color: white;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+}
+
+.table td, .table th{
+  border-top: none;
+  border-left: none;
+}
+
+.imagenTabla{
+  width:30px;
+  height: 30px;  
+}
+
+
+
+.tamañoIconosBotonesTabla{
+  font-size: 10px ;
+}
+
+
+.botonesListadoTabla{
+  background-color: #5494F5;
+  color: #292E32;
+  font-family: 'Quicksand','sans-serif';
+  font-size: 15px;
+  font-weight: 700;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height:34px;
+  
+}
+
+.botonesListadoTablaIcono:hover{
+  background-color: #3964a3;
+  color: white;
+}
+
+.botonesListadoTablaIcono{
+  display: none;
+
+}
+
+
+.botonesListadoTablaIcono{
+  background-color: #5494F5;
+  color: #292E32;
+  font-family: 'Quicksand','sans-serif';
+  font-size: 18px;
+  font-weight: 700;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height:100px;
+  
+}
+
+.botonesListadoTabla:hover{
+  background-color: #3964a3;
+  color: white;
+}
+
+
+.tituloTabla{
+  font-family: 'Quicksand','sans-serif';
+  font-size: 15px;
+  font-weight: 700;
+}
+
+td{
+  padding-top:27px !important;
+  padding-bottom: 20px !important;
+  padding-left: 30px !important;
+}
+
+th{
+  padding-top:20px !important;
+}
+
+
+.primer{
+  padding-top:40px !important;
+}
+
+.boto{
+  padding-top:35px !important;
+  padding-left:25px !important;
+}
+
+.icon{
+  padding-left:25px !important;
+}
+
+.boto1{
+  padding-top:30px !important;
+
+}
+
+#align{
+  padding-right:40px !important;
+}
+
+.ultimo{
+  padding-bottom: 35px !important;
+}
+
+
+/*Responsive*/
+@media screen and (max-width:1200px) {
+  .botonesListadoTablaIcono{
+    display: inline;
+  }
+
+  .botonesListadoTabla{
+    display: none;
+  }
+}
+
+@media screen and (max-width:1200px) {
+  .centrarBotones{
+    order: 2;
+ 
+  }
+  
+  .buscador {
+    order: 1;
+    float: none;
+    height: 45px;
+    width: 300px;
+
+  }
+
+  .search{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+  }
+
+  .inicio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+
+  }
+
+}
+
