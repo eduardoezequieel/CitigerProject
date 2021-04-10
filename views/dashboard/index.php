@@ -27,7 +27,7 @@
   </head>
   <body>
       <!-- Contenedor Principal -->
-    <div class="container">
+    <div id="containerr">
         <div id="contenedor">   
             <div class="row">
                 <!-- Imagen -->
