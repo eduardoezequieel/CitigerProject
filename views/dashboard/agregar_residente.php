@@ -2,9 +2,8 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/admin_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-admin_Page::sidebarTemplate('Empleados | Citiger');
+admin_Page::sidebarTemplate('Residentes | Citiger');
 ?>
-
 <!-- Contenedor de la Pagina -->
 <div class="page-content p-3" id="content">
     <div id="cuadroContenido">
@@ -15,7 +14,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
         <!-- Desde aqui comienza el contenido -->
         <div class="row justify-content-center mb-3">
             <div class="col-12 d-flex justify-content-center align-items-center">
-                <h1 class="tituloPagina text-center">Agregar Nuevo Empleado</h1>
+                <h1 class="tituloPagina text-center">Agregar Nuevo Residente</h1>
             </div>
         </div>
 
@@ -35,10 +34,23 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                     <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
                     <input type="text" class="form-control cajaTextoFormulario" id="txtDUI" placeholder="12345678-9">
 
-                    <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono:</label>
-                    <input type="text" class="form-control cajaTextoFormulario" id="txtTelefono"
-                        placeholder="0000-0000">
-                        
+                    <div class="row">
+
+                        <div class="col-6 ">
+                            <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono Fijo:</label>
+                            <input type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonofijo"
+                                placeholder="0000-0000">
+
+                        </div>
+
+                        <div class="col-6 ">
+
+                            <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono Movil:</label>
+                            <input type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonomovil"
+                                placeholder="0000-0000">
+                        </div>
+
+                    </div>
 
                     <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
                     <input type="text" class="form-control cajaTextoFormulario" id="txtCorreo"
@@ -80,9 +92,11 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                     </div>
 
                     <!-- Controles -->
-                    <label class="tituloCajaTextoFormulario" for="cbTipoEmpleado">Tipo de Empleado:</label>
-                    <input type="text" class="form-control cajaTextoFormulario" id="cbTipoEmpleado"
+                    <label class="tituloCajaTextoFormulario" for="cbTipoEmpleado">Casa:</label>
+                    <button class="btn btnCargarFoto"><span class="fas fa-question"></span></button>
+                    <input type="text" class="form-control cajaTextoFormulario" id="cbTipoEmpleado" 
                         placeholder="Seleccionar...">
+                        
 
                     <label class="tituloCajaTextoFormulario" for="txtFechaNacimiento">Fecha de Nacimiento:</label>
                     <input type="text" class="form-control cajaTextoFormulario" id="txtFechaNacimiento"

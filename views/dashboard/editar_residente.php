@@ -2,7 +2,7 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/admin_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-admin_Page::sidebarTemplate('Empleados | Citiger');
+admin_Page::sidebarTemplate('Residentes | Citiger');
 ?>
 
 <!-- Contenedor de la Pagina -->
@@ -15,7 +15,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
         <!-- Desde aqui comienza el contenido -->
         <div class="row justify-content-center mb-3">
             <div class="col-12 d-flex justify-content-center align-items-center">
-                <h1 class="tituloPagina text-center">Agregar Nuevo Empleado</h1>
+                <h1 class="tituloPagina text-center">Editar Datos de Residente</h1>
             </div>
         </div>
 
@@ -35,14 +35,33 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                     <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
                     <input type="text" class="form-control cajaTextoFormulario" id="txtDUI" placeholder="12345678-9">
 
-                    <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono:</label>
-                    <input type="text" class="form-control cajaTextoFormulario" id="txtTelefono"
-                        placeholder="0000-0000">
-                        
+
+                    <div class="row">
+
+                        <div class="col-6 ">
+                            <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono Fijo:</label>
+                            <input type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonofijo"
+                                placeholder="0000-0000">
+
+                        </div>
+
+                        <div class="col-6 ">
+
+                            <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono Movil:</label>
+                            <input type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonomovil"
+                                placeholder="0000-0000">
+                        </div>
+
+                    </div>
+
 
                     <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
                     <input type="text" class="form-control cajaTextoFormulario" id="txtCorreo"
                         placeholder="ejemplo@mail.com">
+
+                    <label class="tituloCajaTextoFormulario" for="txtCorreo">Nombre de usuario:</label>
+                    <input type="text" class="form-control cajaTextoFormulario" id="txtCorreo"
+                        placeholder="Escriba su nombre de usuario">
 
                     <!-- RadioButtonGroup Género -->
                     <h1 class="tituloCajaTextoFormulario mb-3">Género</h1>
@@ -80,7 +99,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                     </div>
 
                     <!-- Controles -->
-                    <label class="tituloCajaTextoFormulario" for="cbTipoEmpleado">Tipo de Empleado:</label>
+                    <label class="tituloCajaTextoFormulario" for="cbTipoEmpleado">Casa:</label>
+                    <button class="btn btnCargarFoto"><span class="fas fa-question"></span></button>
                     <input type="text" class="form-control cajaTextoFormulario" id="cbTipoEmpleado"
                         placeholder="Seleccionar...">
 
@@ -90,7 +110,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
 
                     <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
                     <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..."
-                        id="txtDireccion" rows="3"></textarea>
+                        id="txtDireccion" rows="5"></textarea>
                 </form>
             </div>
         </div>
@@ -98,8 +118,14 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
         <!-- Botones de Acción del Formulario -->
         <div class="row justify-content-center mt-4">
             <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                <a href="#" class="btn btnAgregarFormulario"><span
-                        class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                <a href="#" class="btn btnEditarFormulario"><span
+                        class="fas fa-edit mr-3 tamañoIconosBotones"></span>Editar</a>
+
+                <a href="#" class="btn btnEditarFormulario"><span
+                        class="fas fa-minus mr-3 tamañoIconosBotones"></span>Eliminar</a>
+
+                <a href="#" class="btn btnEditarFormulario"><span
+                        class="fas fa-exclamation mr-3 tamañoIconosBotones"></span>Suspender</a>
             </div>
         </div>
         <!-- Desde aqui finaliza el contenido -->
