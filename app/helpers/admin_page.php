@@ -15,6 +15,7 @@
                 <!-- Estilos -->
                 <link rel="stylesheet" href="../../resources/css/estilos.css">
                 <link rel="stylesheet" href="../../resources/css/estilos2.css">
+                <link rel="stylesheet" href="../../resources/css/estilosControles.css">
             
                 <!-- Fuentes -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -22,6 +23,11 @@
                 <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Quicksand&display=swap" rel="stylesheet">
                 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet"> 
                 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet"> 
+
+                <meta http-equiv="Expires" content="0">
+                <meta http-equiv="Last-Modified" content="0">
+                <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+                <meta http-equiv="Pragma" content="no-cache">
 
                 <title>'.$titulo.'</title>
               </head>

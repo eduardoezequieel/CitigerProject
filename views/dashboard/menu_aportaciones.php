@@ -37,7 +37,7 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
 
         <div class="row justify-content-center mt-4">
             <div class="col d-flex justify-content-center align-items-center">
-                <a href="" class="btn botonMenu3">
+                <a href="listado_casas.php" class="btn botonMenu3">
                     <img src="../../resources/img/home.png" alt="" class="img-fluid" width="76px">
                     <label class="textoBotonesMenu">Casas</label>
                 </a>

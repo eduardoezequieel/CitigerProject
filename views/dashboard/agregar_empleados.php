@@ -22,7 +22,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
         <!-- Inicio de Fila -->
         <div class="row">
             <!-- Primera columna de controles -->
-            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarColumnas">
+            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                 <form id="EmpleadosColumna1">
                     <label class="tituloCajaTextoFormulario" for="txtNombres">Nombres:</label>
                     <input type="text" class="form-control cajaTextoFormulario" id="txtNombres"

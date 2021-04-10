@@ -1,3 +1,8 @@
+<?php
+  header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+  header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
+?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -18,14 +23,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet"> 
 
-    
-
     <title>Iniciar Sesión | Citiger</title>
   </head>
   <body>
       <!-- Contenedor Principal -->
-    <div class="container">
-        <div id="contenedor">
+    <div id="containerr">
+        <div id="contenedor">   
             <div class="row">
                 <!-- Imagen -->
                 <div class="col-6 mt-5 pt-4">
