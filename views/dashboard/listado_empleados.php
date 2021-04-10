@@ -50,8 +50,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 <td class="primer" id="align">12345678-9</td>
                                 <td class="primer" id="align">1111-2222</td>
                                 <th scope="row" class="boto1">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
@@ -60,8 +60,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 <td>12345678-9</td>
                                 <td>1111-2222</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
@@ -70,8 +70,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 <td>12345678-9</td>
                                 <td>1111-2222</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
@@ -80,8 +80,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 <td>12345678-9</td>
                                 <td>1111-2222</td>
                                 <th scope="row" class="pb-5">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                         </tbody>
@@ -111,8 +111,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 <td class="primer" id="align">12345678-9</td>
                                 <td class="primer" id="align">1111-2222</td>
                                 <th scope="row" class="boto1">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
@@ -121,8 +121,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 <td>12345678-9</td>
                                 <td>1111-2222</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
@@ -131,8 +131,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 <td>12345678-9</td>
                                 <td>1111-2222</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
@@ -141,8 +141,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 <td>12345678-9</td>
                                 <td>1111-2222</td>
                                 <th scope="row" class="pb-5">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_empleados.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                         </tbody>
