@@ -21,14 +21,14 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
 
         <div class="row">
             <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                <a href="listado_empleados.php" class="btn botonMenu1">
+                <a href="casas_pendientes.php" class="btn botonMenu1">
                     <img src="../../resources/img/warning.png" alt="" class="img-fluid" width="50px">
                     <label class="textoBotonesMenu">Casas con pagos pendientes</label>
                 </a>
             </div>
 
             <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                <a href="" class="btn botonMenu2">
+                <a href="casas_solventes.php" class="btn botonMenu2">
                     <img src="../../resources/img/checked.png" alt="" class="img-fluid" width="66px">
                     <label class="textoBotonesMenu">Casas con pagos solventes</label>
                 </a>

@@ -13,15 +13,17 @@ admin_Page::sidebarTemplate('Casas | Citiger');
             <!-- Desde aqui comienza el contenido -->
             <div class="row justify-content-center mb-3">
                 <div class="col-12 d-flex justify-content-center align-items-center">
-                    <h1 class="tituloPagina">Casas</h1>
+                    <h1 class="tituloPagina">Casas con pagos pendientes</h1>
                 </div>
             </div>
 
             <div class="row">
-                
-                <div class="col-12 d-flex justify-content-center align-items-center search">
+                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
+                    <input type="text" class="form-control cajaTextoFormulario" id="cbTipoEmpleado"
+                        placeholder="Seleccionar mes ">                </div>
+                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12  search">
                     <form>
-                        <input type="email" class="form-control buscador " id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                               &#xf002;">
+                        <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                               &#xf002;">
                     </form>
                 </div>
             </div><br>
@@ -32,51 +34,51 @@ admin_Page::sidebarTemplate('Casas | Citiger');
                         <thead class="tituloTabla">
                             <tr>
                                 <th class="pl-5 pt-4"></th>
-                                <th class="pl-5 pt-4">Estado</th>
-                                <th class="pl-5 pt-4">Num. casa</th>
-                                <th class="pl-4 pt-4">Dirección</th>
+                                <th class="pl-5 pt-4">Casa</th>
+                                <th class="pl-5 pt-4">Monto</th>
+                                <th class="pl-4 pt-4">Fecha</th>
                                 <th class="pl-5 pt-4"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr >
                                 <th scope="row" class="d-flex justify-content-center boto"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td class="primer" >EN PROCESO DE VENTA</td>
-                                <td class="primer" id="align">#09</td>
-                                <td class="primer" id="align">#99, ETAPA 6, BLOCK 5</td>
+                                <td class="primer" >#99, ETAPA 6, BLOCK 5</td>
+                                <td class="primer" id="align">$66.72</td>
+                                <td class="primer" id="align">02/12/2021</td>
                                 <th scope="row" class="boto1">
-                                    <a href="editar_admin.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="editar_admin.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="editar_admin.php" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
+                                    <a href="editar_admin.php" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
                                 <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>EN REMODELACIÓN</td>
-                                <td>#67</td>
                                 <td>#99, ETAPA 6, BLOCK 5</td>
+                                <td>$66.72</td>
+                                <td>02/12/2021</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
+                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
                                 <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>HABILITADA</td>
-                                <td>#69</td>
-                                <td>#25, ETAPA 1, BLOCK 19</td>
+                                <td>#22, ETAPA 1, BLOCK 19</td>
+                                <td>$66.72</td>
+                                <td>02/12/2021</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
+                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
                                 <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>HABILITADA</td>
-                                <td>#41</td>
                                 <td>#25, ETAPA 1, BLOCK 8</td>
+                                <td>$66.72</td>
+                                <td>02/12/2021</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
+                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             
