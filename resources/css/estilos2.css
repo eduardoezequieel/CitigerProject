@@ -1,0 +1,16 @@
+.cajaTextoFormularioTelefono {
+    background-color: #202427;
+    border: 0.01rem solid #41464b;
+    color: white;
+    border-radius: 16px;
+    padding: 10px;
+    height: 40px;
+    width: 127px;
+    margin-bottom: 10px;
+  }
+
+  .cajaTextoFormularioTelefono:focus {
+    background-color: #202427;
+    border: 0.01rem solid #41464b;
+    color: white;
+  }

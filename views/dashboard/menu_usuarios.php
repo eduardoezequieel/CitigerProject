@@ -26,7 +26,7 @@ admin_Page::sidebarTemplate('Usuarios | Citiger');
                     </div>
 
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                        <a href="" class="btn botonMenu2">
+                        <a href=listado_admin.php class="btn botonMenu2">
                             <img src="../../resources/img/usuario.png" alt="" class="img-fluid" width="66px">
                             <label class="textoBotonesMenu">Administradores</label>
                         </a>
@@ -35,7 +35,7 @@ admin_Page::sidebarTemplate('Usuarios | Citiger');
 
                 <div class="row justify-content-center mt-4">
                     <div class="col d-flex justify-content-center align-items-center">
-                        <a href="" class="btn botonMenu3">
+                        <a href="listado_residentes.php" class="btn botonMenu3">
                             <img src="../../resources/img/resident.png" alt="" class="img-fluid" width="76px">
                             <label class="textoBotonesMenu">Residentes</label>
                         </a>
