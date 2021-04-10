@@ -412,6 +412,13 @@ a:hover {
   color: #5494F5;
   margin-top: 10px;
 }
+.titulo1{
+  font-family: 'Quicksand','sans-serif';
+  font-size: 25px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 10px;
+}
 
 /*Controles de Formularios*/
 
@@ -680,6 +687,10 @@ tbody{
 
 .tamañoIconosBotonesTabla{
   font-size: 10px ;
+}
+
+.tamañoIconosBotonesTabla1{
+  font-size: 15px ;
 }
 
 
