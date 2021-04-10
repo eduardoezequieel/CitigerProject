@@ -15,7 +15,7 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
         <!-- Desde aqui comienza el contenido -->
         <div class="row justify-content-center mb-3">
             <div class="col-12 d-flex justify-content-center align-items-center">
-                <h1 class="tituloPagina text-center">Agregar Nuevo Administrador</h1>
+                <h1 class="tituloPagina text-center">Editar datos</h1>
             </div>
         </div>
 
@@ -115,10 +115,16 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
         </div>
 
         <!-- Botones de Acción del Formulario -->
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-5">
             <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                <a href="#" class="btn btnAgregarFormulario"><span
-                        class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Administrador</a>
+                <a href="#" class="btn btnEditarFormulario"><span
+                        class="fas fa-edit mr-3 tamañoIconosBotones"></span>Editar</a>
+
+                <a href="#" class="btn btnEditarFormulario"><span
+                        class="fas fa-minus mr-3 tamañoIconosBotones"></span>Eliminar</a>
+
+                <a href="#" class="btn btnEditarFormulario"><span
+                        class="fas fa-exclamation mr-3 tamañoIconosBotones"></span>Suspender</a>
             </div>
         </div>
         <!-- Desde aqui finaliza el contenido -->

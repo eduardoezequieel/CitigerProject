@@ -2,7 +2,7 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/admin_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-admin_Page::sidebarTemplate('Administradores | Citiger');
+admin_Page::sidebarTemplate('Casas | Citiger');
 ?>    
     
     <!-- Contenedor de la Pagina -->
@@ -13,17 +13,15 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
             <!-- Desde aqui comienza el contenido -->
             <div class="row justify-content-center mb-3">
                 <div class="col-12 d-flex justify-content-center align-items-center">
-                    <h1 class="tituloPagina">Administradores</h1>
+                    <h1 class="tituloPagina">Casas</h1>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
-                    <a href="agregar_admin.php" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nuevo Administrador</a>
-                </div>
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
+                
+                <div class="col-12 d-flex justify-content-center align-items-center search">
                     <form>
-                        <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                               &#xf002;">
+                        <input type="email" class="form-control buscador " id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                               &#xf002;">
                     </form>
                 </div>
             </div><br>
