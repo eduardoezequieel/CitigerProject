@@ -28,7 +28,7 @@
   <body>
       <!-- Contenedor Principal -->
     <div class="container">
-        <div id="contenedor">
+        <div id="contenedor">   
             <div class="row">
                 <!-- Imagen -->
                 <div class="col-6 mt-5 pt-4">

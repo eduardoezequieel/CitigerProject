@@ -14,6 +14,8 @@
             
                 <!-- Estilos -->
                 <link rel="stylesheet" href="../../resources/css/estilos.css">
+                <link rel="stylesheet" href="../../resources/css/estilos2.css">
+                <link rel="stylesheet" href="../../resources/css/estilosControles.css">
             
                 <!-- Fuentes -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
