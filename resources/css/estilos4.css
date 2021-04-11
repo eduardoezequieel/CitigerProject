@@ -1,3 +1,10 @@
+.contenidoMarcas{
+  height: 250px;
+  width: 550px;
+  background-color: #202427;
+  border-radius: 25px;
+}
+
 .btnVerCasa{
   border: 1px solid #5494F5;
   background-color: transparent;
