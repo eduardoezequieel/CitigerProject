@@ -20,10 +20,10 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
             <!-- Controles del Inicio -->
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones" id="agregarMaterial">
-                    <a href="#" class="btn botonesListadoInventario ml-5"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nuevo Material</a>
+                    <a href="agregar_material.php" class="btn botonesListadoInventario ml-5"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nuevo Material</a>
                     <a href="#" class="btn botonesListadoInventario ml-3"><span class="fas fa-tag mr-3 tamañoIconosBotones"></span>Marcas</a>
 
-                    <a href="#" class="btn botonesListadoInventarioIcono"><span class="fas fa-plus tamañoIconosBotones"></span></a>
+                    <a href="agregar_material.php" class="btn botonesListadoInventarioIcono"><span class="fas fa-plus tamañoIconosBotones"></span></a>
                     <a href="#" class="btn botonesListadoInventarioIcono ml-3"><span class="fas fa-tag tamañoIconosBotones"></span></a>
                 </div>
 
@@ -55,7 +55,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                         <!-- Fila para Boton -->
                         <div class="row">
                             <div class="col-12">
-                                <a href="" class="btn botonesTarjeta"><span class="fas fa-edit mr-2"></span>Editar</a>
+                                <a href="editar_material.php" class="btn botonesTarjeta"><span class="fas fa-edit mr-2"></span>Editar</a>
                             </div>
                         </div>
                     <!-- Fin de Tarjeta -->
@@ -77,7 +77,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <a href="" class="btn botonesTarjeta"><span class="fas fa-edit mr-2"></span>Editar</a>
+                                <a href="editar_material.php" class="btn botonesTarjeta"><span class="fas fa-edit mr-2"></span>Editar</a>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <a href="" class="btn botonesTarjeta"><span class="fas fa-edit mr-2"></span>Editar</a>
+                                <a href="editar_material.php" class="btn botonesTarjeta"><span class="fas fa-edit mr-2"></span>Editar</a>
                             </div>
                         </div>
                     </div>
