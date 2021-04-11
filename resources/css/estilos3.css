@@ -48,6 +48,29 @@
   color: white;
 }
 
+.cargarFoto6{
+  width: 200px;
+  height: 165px;
+  border-radius: 5px;
+  border: 1px solid #5494F5
+}
+
+.cargarFoto7{
+  width: 60px;
+  height: 55px;
+  border-radius: 5px;
+  border: 1px solid #5494F5
+}
+
+.divFotografia4{
+  display: flex;
+  flex-direction: inline;
+  align-items: center;
+  justify-content: center;
+  width: min-content;
+}
+
+
 @media screen and (max-width:900px) {
 
 
@@ -55,8 +78,6 @@
     height: 40px;
     width: 200px;
   }
-
-
 }
 
 @media screen and (max-width:767px) {
