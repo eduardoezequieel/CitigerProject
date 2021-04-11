@@ -14,3 +14,74 @@
     height: 73%;
 }  
   
+.cajaTextoFormularioHora {
+  background-color: #202427;
+  border: 0.01rem solid #41464b;
+  color: white;
+  border-radius: 16px;
+  padding: 10px;
+  height: 40px;
+  width: 130px;
+  margin-bottom: 10px;
+}
+
+.cajaTextoFormularioHora:focus {
+  background-color: #202427;
+  border: 0.01rem solid #41464b;
+  color: white;
+}
+
+.cajaTextoFormularioPrecio {
+  background-color: #202427;
+  border: 0.01rem solid #41464b;
+  color: white;
+  border-radius: 16px;
+  padding: 10px;
+  height: 40px;
+  width: 95px;
+  margin-bottom: 10px;
+}
+
+.cajaTextoFormularioPrecio:focus {
+  background-color: #202427;
+  border: 0.01rem solid #41464b;
+  color: white;
+}
+
+@media screen and (max-width:900px) {
+
+
+  .cajaTextoFormulario {
+    height: 40px;
+    width: 200px;
+  }
+
+
+}
+
+@media screen and (max-width:767px) {
+  
+  .cajaTextoFormularioHora {
+    height: 40px;
+    width: 290px;
+  }
+
+  .cajaTextoFormulario {
+    height: 40px;
+    width: 290px;
+  }
+
+  .cajaTextoFormularioPrecio {
+    height: 40px;
+    width: 290px;
+  }
+
+  #cuadroContenido1{
+    padding: 50px;
+    background-color: #292E32;
+    border-radius: 10px;
+    height:800px;
+    
+  }
+}
+
