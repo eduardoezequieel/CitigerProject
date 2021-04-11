@@ -795,6 +795,73 @@ th{
   max-width: min-content;
 }
 
+.modal-content {
+  border-radius: 15px;
+  background-color: #202427;
+
+}
+
+.textoModal {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  color: #ffffff;
+  justify-content: start;
+}
+
+.modal-header {
+  border-bottom: 0 none;
+  text-align: center !important;
+}
+
+.modal-footer {
+  border-top: 0 none;
+}
+
+.tituloModal{
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #65717a;
+  justify-content: start;
+}
+
+.cuerpoModal{
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  color: #ffffff;
+  justify-content: start;
+}
+
+.iconoModal{
+  color: #65717a;
+  font-size: 18px;
+}
+
+.cajaTextoModal {
+  background-color: #191c1f;
+  border: 0.01rem solid transparent;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 10px;
+  height: 40px;
+  margin-bottom: 10px;
+  
+}
+
+.cajaTextoModal:focus {
+  background-color: #191c1f;
+  border: 0.01rem solid transparent;
+  color: #ffffff;
+}
+
+.cajaTextoModal::-webkit-input-placeholder { color: #65717A; } 
+
+.cajaTextoModal:-moz-placeholder { /* Firefox 18- */ color: #65717A; } 
+
+.cajaTextoModal::-moz-placeholder { /* Firefox 19+ */ color: #65717A; } 
+
+.cajaTextoModal:-ms-input-placeholder { color: #65717A; }
+
 /*Responsive*/
 
 @media screen and (max-width:1200px) {

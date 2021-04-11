@@ -21,10 +21,10 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones" id="agregarMaterial">
                     <a href="agregar_material.php" class="btn botonesListadoInventario ml-5"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nuevo Material</a>
-                    <a href="#" class="btn botonesListadoInventario ml-3"><span class="fas fa-tag mr-3 tamañoIconosBotones"></span>Marcas</a>
+                    <a href="listado_marcas.php" class="btn botonesListadoInventario ml-3"><span class="fas fa-tag mr-3 tamañoIconosBotones"></span>Marcas</a>
 
                     <a href="agregar_material.php" class="btn botonesListadoInventarioIcono"><span class="fas fa-plus tamañoIconosBotones"></span></a>
-                    <a href="#" class="btn botonesListadoInventarioIcono ml-3"><span class="fas fa-tag tamañoIconosBotones"></span></a>
+                    <a href="listado_marcas.php" class="btn botonesListadoInventarioIcono ml-3"><span class="fas fa-tag tamañoIconosBotones"></span></a>
                 </div>
 
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
