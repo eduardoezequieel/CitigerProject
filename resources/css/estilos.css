@@ -862,6 +862,30 @@ th{
 
 .cajaTextoModal:-ms-input-placeholder { color: #65717A; }
 
+.tablaMarcas{
+  width: 700px !important;
+}
+
+.tablaMarcas td, th{
+  text-align: center;
+  font-size: 15px;
+  padding-bottom: 30px !important;
+  padding-top: 30px !important;
+}
+
+.btnInicio{
+  background-color: transparent;
+  border-radius: 20px;
+  padding: 5%;
+  border-left: 3px solid transparent;
+  margin-left: 12px;
+}
+
+.btnInicio:hover{
+  background-color: #292E32;
+  border-left: 3px solid #5494F5;
+}
+
 /*Responsive*/
 
 @media screen and (max-width:1200px) {

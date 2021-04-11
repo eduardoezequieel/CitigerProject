@@ -36,8 +36,8 @@
                 <!-- Inicio del Sidebar -->
                 <div class="vertical-nav colorCitiger" id="sidebar">
                     <div class="py-3 px-3 colorCitiger">
-                    <div class="media d-flex align-items-center">
-                        <img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid pl-3 pt-1" width="140px">
+                    <div class="media d-flex">
+                        <a href="dashboard.php" class="btn btnInicio"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
                     </div>
                     </div>
                     
