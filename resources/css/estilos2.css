@@ -33,4 +33,9 @@
     color: white;
   }
 
-  
+  #cuadroContenido2 {
+    padding: 50px;
+    background-color: #292E32;
+    border-radius: 10px;
+    height: 720px;
+  }
