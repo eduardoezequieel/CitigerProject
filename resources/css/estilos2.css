@@ -60,4 +60,35 @@
     margin-top: 38px;
   }
 
+  input[type=text]:disabled {
+    background-color: #202427;
+    border: 0.01rem solid #41464b;
+    color: white;
+    border-radius: 16px;
+    padding: 10px;
+    height: 40px;
+    width: 290px;
+    margin-bottom: 10px;
+  }
+
   
+  input[readonly], input[readonly="readonly"] {
+    background-color: yellow;
+}
+
+.cajaTextoFormularioR {
+  background-color: #202427;
+  border: 0.01rem solid #41464b;
+  color: white;
+  border-radius: 16px;
+  padding: 10px;
+  height: 300px;
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+.cajaTextoFormularioR:focus {
+  background-color: #202427;
+  border: 0.01rem solid #41464b;
+  color: white;
+}

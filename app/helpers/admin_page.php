@@ -79,7 +79,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link categoriasFuente">
+                        <a href="listado_denuncias.php" class="nav-link categoriasFuente">
                         <i class="fas fa-exclamation-triangle mr-3 tamañoIconos"></i>
                         Denuncias
                         </a>
