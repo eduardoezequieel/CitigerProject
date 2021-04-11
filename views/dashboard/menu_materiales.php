@@ -26,7 +26,7 @@ admin_Page::sidebarTemplate('Materiales | Citiger');
                     </div>
 
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                        <a href=listado_admin.php class="btn botonMenu2">
+                        <a href="listado_inventario.php" class="btn botonMenu2">
                             <img src="../../resources/img/stock.png" alt="" class="img-fluid" width="66px">
                             <label class="textoBotonesMenu">Inventario</label>
                         </a>
