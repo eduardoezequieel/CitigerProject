@@ -32,25 +32,23 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
             <div class="modal fade" id="agregarMarcas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content justify-content-center px-3 py-2">
+                        <!-- Cabecera del Modal -->
                         <div class="modal-header">
-
+                            <!-- Titulo -->
                             <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Agregar Marca</h5>
+                            <!-- Boton para Cerrar -->
                             <button type="button" class="close text-light lead" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <br>
-                        <div class="textoModal px-3 pb-4">
+                        <!-- Contenido del Modal -->
+                        <div class="textoModal px-3 pb-4 mt-2">
                             <div class="row">
-                                <div class="col-12">
-                                <label class="tituloCajaTextoFormulario" for="txtTelefono">Nombre de la Marca:</label>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                                    
+                                <div class="col-12"> 
+                                    <label class="tituloCajaTextoFormulario" for="txtTelefono">Nombre de la Marca:</label>
                                     <input type="text" class="form-control cajaTextoModal" id="txtTelefonomovil"
-                                    placeholder="0000-0000">
+                                    placeholder="">
                                 </div>
                             </div>
                             <div class="row justify-content-center mt-3">
@@ -59,12 +57,12 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
                                             class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
                                 </div>
                             </div>
-                            
+                        <!-- Fin del Contenido del Modal -->
                         </div>
                     </div>
                 </div>
             </div>
-            
+            <!-- Fin del Modal -->
         </div>
 
     </div>
