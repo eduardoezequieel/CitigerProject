@@ -484,7 +484,24 @@ a:hover {
   margin-bottom: 10px;
 }
 
+.cajaTextoFormulario1 {
+  background-color: #202427;
+  border: 0.01rem solid #41464b;
+  color: white;
+  border-radius: 16px;
+  padding: 10px;
+  height: 40px;
+  width: 290px;
+  margin-bottom: 10px;
+}
+
 .cajaTextoFormulario:focus {
+  background-color: #202427;
+  border: 0.01rem solid #41464b;
+  color: white;
+}
+
+.cajaTextoFormulario1:focus {
   background-color: #202427;
   border: 0.01rem solid #41464b;
   color: white;

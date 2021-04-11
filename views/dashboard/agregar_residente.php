@@ -93,10 +93,14 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
 
                     <!-- Controles -->
                     <label class="tituloCajaTextoFormulario" for="cbTipoEmpleado">Casa:</label>
-                    <button class="btn btnCargarFoto"><span class="fas fa-question"></span></button>
-                    <input type="text" class="form-control cajaTextoFormulario" id="cbTipoEmpleado" 
-                        placeholder="Seleccionar...">
+                    <div id="imput" class="d-flex">
                         
+                        <input type="text" class="form-control cajaTextoFormulario1" id="cbTipoEmpleado"
+                            placeholder="Seleccionar...">
+
+                        <button class="btn btnVerCasa"><span class="fas fa-question"></span></button>
+                    </div>
+
 
                     <label class="tituloCajaTextoFormulario" for="txtFechaNacimiento">Fecha de Nacimiento:</label>
                     <input type="text" class="form-control cajaTextoFormulario" id="txtFechaNacimiento"

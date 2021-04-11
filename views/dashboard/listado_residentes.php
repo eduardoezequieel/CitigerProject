@@ -19,7 +19,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
 
             <div class="row">
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
-                    <a href="#" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nuevo Residente</a>
+                    <a href="agregar_residente.php" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nuevo Residente</a>
                 </div>
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
                     <form>
@@ -50,7 +50,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                 <td class="primer" id="align">12345678-9</td>
                                 <td class="primer" id="align">#310 SURESTE</td>
                                 <th scope="row" class="boto1">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_residente.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
                                     <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
@@ -60,7 +60,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                 <td>12345678-9</td>
                                 <td>#310 NOROESTE</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_residente.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
                                     <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
@@ -70,7 +70,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                 <td>12345678-9</td>
                                 <td>#310 SURESTE</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_residente.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
                                     <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
@@ -80,7 +80,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                 <td>12345678-9</td>
                                 <td>#310 NORESTE</td>
                                 <th scope="row" class="pb-5">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_residente.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
                                     <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>

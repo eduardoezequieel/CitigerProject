@@ -1,3 +1,40 @@
+.btnVerCasa{
+  border: 1px solid #5494F5;
+  background-color: transparent;
+  color: #5494F5;
+  margin-left: 10px;
+  height: 40px;
+  width: 40px;
+}
+
+.btnVerCasa:hover{
+  border: 1px solid transparent;
+  background-color: #5494F5;
+  color: #33373b;
+}
+
+.imput   {
+  display: flex;
+  width: min-content;
+  height: min-content;
+}
+
+.cajaTextoFormulario1 {
+  background-color: #202427;
+  border: 0.01rem solid #41464b;
+  color: white;
+  border-radius: 16px;
+  padding: 10px;
+  height: 40px;
+  width: 230px;
+  margin-bottom: 10px;
+}
+
+.cajaTextoFormulario:focus {
+  background-color: #202427;
+  border: 0.01rem solid #41464b;
+  color: white;
+}
 .modal-content
  {
      border-radius: 15px;
