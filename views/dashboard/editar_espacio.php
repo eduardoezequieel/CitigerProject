@@ -53,12 +53,13 @@ admin_Page::sidebarTemplate('Espacios | Citiger');
                         <!-- Final Cargar Fotografia -->
                     </div>
                     <!-- Cargar Fotografia -->
-                    <div class="row pl-2 my-4">
+                    <div class="row pl-1 my-4">
                         <div class="col-12">
                             <div class="divFotografia4">
-                                <div class="cargarFoto7"><img src="../../resources/img/piscina.JPG" alt="" class="img-fluid cargarFoto7"></div>
-                                <div class="cargarFoto7"><img src="../../resources/img/piscina.JPG" alt="" class="img-fluid cargarFoto7"></div>
-                                <div class="cargarFoto7"><img src="../../resources/img/piscina.JPG" alt="" class="img-fluid cargarFoto7"></div>
+                            <div class="cargarFoto7"><img src="../../resources/img/piscina.JPG" alt="" class="img-fluid cargarFoto7"></div>
+                                <div class="cargarFoto8"><img src="../../resources/img/piscina.JPG" alt="" class="img-fluid cargarFoto7"></div>
+                                <div class="cargarFoto8"><img src="../../resources/img/piscina.JPG" alt="" class="img-fluid cargarFoto7"></div>
+                                <button class="btn btnCargarFoto6"><i class="fas fa-arrow-down"></i></button>
                             </div>
                         </div>
                         <!-- Final Cargar Fotografia -->
