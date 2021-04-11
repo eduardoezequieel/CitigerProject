@@ -45,8 +45,8 @@ admin_Page::sidebarTemplate('Casas | Citiger');
                                 <td class="primer" id="align">#09</td>
                                 <td class="primer" id="align">#99, ETAPA 6, BLOCK 5</td>
                                 <th scope="row" class="boto1">
-                                    <a href="editar_admin.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="editar_admin.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="editar_casa.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_casa.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>

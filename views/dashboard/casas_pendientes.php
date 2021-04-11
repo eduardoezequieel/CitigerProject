@@ -47,8 +47,8 @@ admin_Page::sidebarTemplate('Casas | Citiger');
                                 <td class="primer" id="align">$66.72</td>
                                 <td class="primer" id="align">02/12/2021</td>
                                 <th scope="row" class="boto1">
-                                    <a href="editar_admin.php" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
-                                    <a href="editar_admin.php" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
+                                    <a href="ventana_pago.php" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
+                                    <a href="ventana_pago.php" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
