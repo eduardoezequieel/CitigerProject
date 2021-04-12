@@ -31,7 +31,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
 
                 <!-- Opción "espacios" de menú -->
                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                    <a href="aagregar_visita.php" class="btn botonMenu2">
+                    <a href="agregar_visita.php" class="btn botonMenu2">
                         <img src="../../resources/img/carro.png" alt="" class="img-fluid" width="100px">
                         <label class="textoBotonesMenu">Visitas</label>
                     </a>
