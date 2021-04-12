@@ -62,14 +62,123 @@
   border: 1px solid #5494F5
 }
 
+.cargarFoto8{
+  width: 60px;
+  height: 55px;
+  border-radius: 5px;
+  border: 1px solid #5494F5;
+  margin-left: 13px;
+}
+
 .divFotografia4{
   display: flex;
   flex-direction: inline;
-  align-items: center;
+  
   justify-content: center;
   width: min-content;
 }
 
+.btnCargarFoto6{
+  margin-top: 20px;
+  background-color: transparent;
+  color: #5494F5;
+}
+
+.btnCargarFoto6:hover{
+  border: 1px solid transparent;
+  background-color: #5494F5;
+  color: #33373b;
+}
+
+
+.contenedorDetalle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color:  #202427;
+  padding-left: 25px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  width: 340px;
+  border-radius:10px;
+}
+
+.contenedorDetalle6{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 25px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  width: 340px;
+  border-radius:10px;
+  border: 1px solid #5494F5;
+}
+
+.contenedorDetalle1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtituloPaginaV{
+  font-family: 'Quicksand','sans-serif';
+  font-size: 18px;
+  font-weight: 700;
+  color: #5494F5;
+  margin-top: 10px;
+  padding-right: 25px;
+}
+
+.botonVisita{
+  margin-right: 20px;
+}
+
+.btnAgregarFormularioV:hover{
+  background-color: #3964a3;
+  color: white;
+}
+
+.marginSegundaColumna{
+  margin-top: 10px;
+}
+
+.tablaVisitas th{
+  text-align: center;
+  font-size: 15px;
+  padding-right:45px;
+  
+}
+
+.contenedorDetalle4{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color:  #202427;;
+  padding-left: 25px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  border-radius:10px;
+}
+
+.marginSegundaColumna{
+  padding-top: 5px;
+}
+
+
+.botonVisi{
+  padding-left: 170px ;
+}
+
+.marginTerceraColumna{
+  margin-top: 7px;
+}
+
+.modVisi{
+  padding-left: 30px ;
+}
 
 @media screen and (max-width:900px) {
 
@@ -77,6 +186,18 @@
   .cajaTextoFormulario {
     height: 40px;
     width: 200px;
+  }
+
+  .botonVisi{
+    padding-left: 0px ;
+  }
+}
+
+@media screen and (max-width:1200px) {
+
+
+  .botonVisi{
+    padding-left: 0px ;
   }
 }
 

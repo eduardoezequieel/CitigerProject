@@ -42,18 +42,6 @@
   border: 0.01rem solid #41464b;
   color: white;
 }
-.modal-content
- {
-     border-radius: 15px;
-     background-color: #292E32;
-
- }
- .textoModal {
-    font-family: 'Manrope', sans-serif;
-    font-size: 13px;
-    color: #ffffff;
-    justify-content: start;
-  }
 
  #imagenPrincipal {
     width: 500px;

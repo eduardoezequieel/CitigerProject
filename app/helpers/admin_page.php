@@ -36,8 +36,8 @@
                 <!-- Inicio del Sidebar -->
                 <div class="vertical-nav colorCitiger" id="sidebar">
                     <div class="py-3 px-3 colorCitiger">
-                    <div class="media d-flex align-items-center">
-                        <img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid pl-3 pt-1" width="140px">
+                    <div class="media d-flex">
+                        <a href="dashboard.php" class="btn btnInicio"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
                     </div>
                     </div>
                     
@@ -56,7 +56,7 @@
                             <div class="row mt-2">
                                 <div class="col-12" id="filaBotones">
                                     <div id="botones">
-                                    <a href="#" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
+                                    <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
                                     <a href="index.php" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                     <!-- Botones de Navegación -->
                     <ul class="nav flex-column colorCitiger mt-4">
                     <li class="nav-item">
-                        <a href="#" class="nav-link categoriasFuente">
+                        <a href="menu_alquileres.php" class="nav-link categoriasFuente">
                         <i class="fas fa-home mr-3 tamañoIconos"></i>
                         Alquileres
                         </a>
@@ -79,7 +79,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link categoriasFuente">
+                        <a href="listado_denuncias.php" class="nav-link categoriasFuente">
                         <i class="fas fa-exclamation-triangle mr-3 tamañoIconos"></i>
                         Denuncias
                         </a>

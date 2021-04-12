@@ -1,34 +1,34 @@
 <?php
 //Se incluye la clase con las plantillas del documento
-include('../../app/helpers/admin_page.php');
+include('../../app/helpers/stand_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-admin_Page::sidebarTemplate('Materiales | Citiger');
+admin_Page::sidebarTemplate('Verificar | Citiger');
 ?>    
     
     <!-- Contenedor de la Pagina -->
     <div class="page-content p-3" id="content">
-        <div id="cuadroContenido" class="menuDiv">
+        <div id="cuadroContenido2" class="menuDiv">
             <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars categoriasFuente tamañoIconos"></i><small class="text-uppercase font-weight-bold"></small></button>
         
             <!-- Desde aqui comienza el contenido -->
-                <div class="row justify-content-center mb-4 mt-5 pt-4">
+                <div class="row justify-content-center mb-5 mt-5 pt-5">
                     <div class="col justify-content-center d-flex">
-                        <h1 class="tituloMenu">Seleccione una opción</h1>
+                        <h1 class="tituloMenu">¿Cómo desea verificar la visita?</h1>
                     </div>
                 </div>
 
                 <div class="row pb-5">
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                        <a href="listado_pedidos.php" class="btn botonMenu1">
-                            <img src="../../resources/img/lend.png" alt="" class="img-fluid" width="90px">
-                            <label class="textoBotonesMenu">Pedidos</label>
+                        <a href="verificar_dui.php" class="btn botonMenu1">
+                            <img src="../../resources/img/id-card.png" alt="" class="img-fluid" width="90px">
+                            <label class="textoBotonesMenu">DUI</label>
                         </a>
                     </div>
 
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                        <a href="listado_inventario.php" class="btn botonMenu2">
-                            <img src="../../resources/img/stock.png" alt="" class="img-fluid" width="66px">
-                            <label class="textoBotonesMenu">Inventario</label>
+                        <a href="verificar_placa.php" class="btn botonMenu2">
+                            <img src="../../resources/img/license-plate.png" alt="" class="img-fluid" width="100px">
+                            <label class="textoBotonesMenu">Placa</label>
                         </a>
                     </div>
                 </div>

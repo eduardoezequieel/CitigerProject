@@ -108,8 +108,8 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="subTituloPagina1" id="exampleModalLabel">Visita</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="subTituloPagina1" id="exampleModalLabel">Detalles de la visita</h5>
+                        <button type="button" class="close text-light lead" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -131,6 +131,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             </div>
         </div>
         <!-- Fin de modal -->
+
 
         <!-- Desde aqui finaliza el contenido -->
 

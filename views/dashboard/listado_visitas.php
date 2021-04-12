@@ -2,9 +2,9 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/admin_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-admin_Page::sidebarTemplate('Visitas | Citiger');
-?>    
-    
+admin_Page::sidebarTemplate('Marcas | Citiger');
+?>     
+<link rel="stylesheet" href="../../resources/css/estilos3.css">
     <!-- Contenedor de la Pagina -->
     <div class="page-content p-3" id="content">
         <div id="cuadroContenido">
@@ -19,7 +19,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
 
             <div class="row">
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
-                    <a href="#" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nueva Visita</a>
+                    <a href="agregar_visita.php" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nueva Visita</a>
                 </div>
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
                     <form>
@@ -30,14 +30,14 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             <!-- Desde aqui comienza la tabla -->
             <div class="row">
                 <div class="col">
-                    <table class="table table-dark table-hover table-responsive-lg">
-                        <thead class="tituloTabla">
+                    <table class="table table-dark table-hover table-responsive-lg tablaVisitas">
+                        <thead class="tituloTabla4">
                             <tr>
-                                <th class="pl-5 pt-4"></th>
-                                <th class="pl-5 pt-4">Nombre completo</th>
-                                <th class="pl-5 pt-4">Fecha</th>
-                                <th class="pl-5 pt-4">Placa</th>
-                                <th class="pl-5 pt-4"></th>
+                                <th class=" pt-4"></th>
+                                <th class="pt-4">Visitante</th>
+                                <th class="pt-4">Fecha</th>
+                                <th class=" pt-4">Placa</th>
+                                <th class="pt-4"></th>
                             </tr>
                         </thead>
                         <tbody>
