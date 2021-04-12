@@ -13,7 +13,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
              <!-- Desde aqui comienza el contenido -->
              <div class="row justify-content-center mb-3">
                 <div class="col-12 d-flex justify-content-center align-items-center">
-                    <h1 class="tituloPagina">Visitas</h1>
+                    <h1 class="tituloPagina">Visitantes</h1>
                 </div>
             </div>
 
@@ -92,7 +92,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         <!-- Cabecera del Modal -->
                         <div class="modal-header">
                             <!-- Titulo -->
-                            <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Editar Visita</h5>
+                            <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Editar Visitante</h5>
                             <!-- Boton para Cerrar -->
                             <button type="button" class="close text-light lead" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -103,26 +103,26 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         <div class="textoModal px-3 pb-4 mt-2">
                             <div class="row">
                                 <!-- Primera columna de controles -->
-                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12  centrarColumnas">
+                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginTerceraColumna centrarColumnas">
                                     <form id="EmpleadosColumna1">
-                                        <label class="tituloCajaTextoFormulario" for="cbResidente">Residente:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="cbResidente"
-                                            placeholder="Seleccionar...">
+                                        <label class="tituloCajaTextoFormulario" for="txtNombres">Nombres:</label>
+                                        <input type="text" class="form-control cajaTextoFormulario" id="txtNombres"
+                                            placeholder="Escriba sus nombres...">
 
-                                        <label class="tituloCajaTextoFormulario" for="txtFecha">Fecha:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="txtcbResidente" placeholder="AAAA-MM-DD">
+                                        <label class="tituloCajaTextoFormulario" for="txtApellidos">Apellidos:</label>
+                                        <input type="text" class="form-control cajaTextoFormulario" id="txtApellidos"
+                                            placeholder="Escriba sus apellidos...">
 
-
-                                        <!-- RadioButtonGroup Visita recurrente -->
-                                        <h1 class="tituloCajaTextoFormulario mb-3">Visita recurrente:</h1>
+                                        <!-- RadioButtonGroup Género -->
+                                        <h1 class="tituloCajaTextoFormulario mb-3">Género</h1>
                                         <div class="row justify-content-center">
                                             <div class="col d-flex justify-content-center align-items-center text-center">
                                                 <div class="generoRadioButtons">
-                                                    <label class="container pr-5">Si
+                                                    <label class="container">Masculino
                                                         <input type="radio" name="radio">
                                                         <span class="checkmark"></span>
                                                     </label>
-                                                    <label class="container pr-5">No
+                                                    <label class="container">Femenino
                                                         <input type="radio" name="radio">
                                                         <span class="checkmark"></span>
                                                     </label>
@@ -130,36 +130,23 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                                             </div>
                                         </div>
 
-                                        <label class="tituloCajaTextoFormulario" for="txtObservacion">Observación:</label>
-                                        <textarea class="form-control cajaTextoFormulario" placeholder="Escriba la observación..."
-                                            id="txtObservacion" rows="5"></textarea>
-
-                                        
                                     </form>
-                                
+
                                 </div>
+
                                 <!-- Segunda columna de controles -->
-                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12  centrarColumnas contenedorDetalle1">
-                                    <div>
-                                        <br>
-                                        <form class="contenedorDetalle6">
-                                            <h3 class="subtituloPaginaV text-center">Añadir detalle de visita</h3><br>
+                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginTerceraColumna centrarColumnas">
+                                    <form>
+                                        <!-- Controles -->
+                                        <label class="tituloCajaTextoFormulario" for="txtDui">DUI:</label>
+                                        <input type="text" class="form-control cajaTextoFormulario" id="txtDui"
+                                            placeholder="Escriba su DUI...">
 
-                                            <label class="tituloCajaTextoFormulario" for="cbVisitante">Visitante:</label>
-                                            <input type="text" class="form-control cajaTextoFormulario" id="cbVisitante"
-                                                placeholder="Seleccionar...">
-
-                                            <!-- Botones de Acción del Formulario -->
-                                            <div class="row justify-content-center mt-4 botonVisita">
-                                                <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                                                    <a href="#" class="btn btnEditarFormulario"><span
-                                                        class="fas fa-minus mr-3 tamañoIconosBotones"></span>Eliminar</a>
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    </div>
-                                </div> 
+                                        <label class="tituloCajaTextoFormulario" for="txtPlaca">Placa:</label>
+                                        <input type="text" class="form-control cajaTextoFormulario" id="txtPlaca"
+                                            placeholder="Escriba su placa...">
+                                    </form>
+                                </div>
                                 
                             </div>
                             <div class="row justify-content-center mt-3">

@@ -95,7 +95,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color:  #202427;;
+  background-color:  #202427;
   padding-left: 25px;
   padding-top: 15px;
   padding-bottom: 30px;
@@ -103,12 +103,23 @@
   border-radius:10px;
 }
 
+.contenedorDetalle6{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 25px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  width: 340px;
+  border-radius:10px;
+  border: 1px solid #5494F5;
+}
+
 .contenedorDetalle1{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
 
 .subtituloPaginaV{
@@ -140,6 +151,34 @@
   
 }
 
+.contenedorDetalle4{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color:  #202427;;
+  padding-left: 25px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  border-radius:10px;
+}
+
+.marginSegundaColumna{
+  padding-top: 5px;
+}
+
+
+.botonVisi{
+  padding-left: 170px ;
+}
+
+.marginTerceraColumna{
+  margin-top: 7px;
+}
+
+.modVisi{
+  padding-left: 30px ;
+}
 
 @media screen and (max-width:900px) {
 
@@ -147,6 +186,18 @@
   .cajaTextoFormulario {
     height: 40px;
     width: 200px;
+  }
+
+  .botonVisi{
+    padding-left: 0px ;
+  }
+}
+
+@media screen and (max-width:1200px) {
+
+
+  .botonVisi{
+    padding-left: 0px ;
   }
 }
 

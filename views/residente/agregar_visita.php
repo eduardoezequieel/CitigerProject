@@ -19,6 +19,11 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones botonVisi">
+                <a href="listado_visitas.php" class="btn botonesListado"><i class="fas fa-eye"></i>   Ver Visitas</a>
+            </div>
+        </div><br>
         <!-- Inicio de Fila -->
         <div class="row">
             <!-- Primera columna de controles -->
