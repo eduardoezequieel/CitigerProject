@@ -41,9 +41,10 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                         </div>
 
                         <!-- Sección para cambiar información personal -->
-                        <div class="row mt-4">
-                            <div class="col">
+                        <div class="row mt-3">
+                            <div class="col-12">
                                 <h1 class="tituloTarjetaAjustes">Información Personal</h1>
+                                
                             </div>
                         </div>
 
@@ -51,71 +52,64 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             <div class="col-12 d-flex justify-content-center align-items-center">
                                 <!-- Div especializado para cada sección -->
                                 <div class="informacionPersonal">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <!-- Titulo -->
-                                            <h1 class="tituloInformacion">Nombres</h1>
-                                            <!-- Información -->
-                                            <h2 class="informacion">Eduardo Ezequiel</h2>
+                                    <div class="row justify-content-center ml-4">
+                                        <div class="col-6 divColumnasAjustes">
+                                            <form>
+                                                <!-- Titulo -->
+                                                <h1 class="tituloInformacion">Nombres</h1>
+                                                <!-- Información -->
+                                                <h2 class="informacion">Eduardo Ezequiel</h2>
+                                            </form>
                                         </div>
-                                        <div class="col-6">
-                                            <button class="btn botonesAjustes">Editar</button>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-6">
-                                            <h1 class="tituloInformacion">Apellidos</h1>
-                                            <h2 class="informacion">López Rivera</h2>
-                                        </div>
-                                        <div class="col-6">
-                                            <button class="btn botonesAjustes">Editar</button>
+                                        <div class="col-6 divColumnasAjustes">
+                                            <form>
+                                                <h1 class="tituloInformacion">Apellidos</h1>
+                                                <h2 class="informacion">López Rivera</h2>
+                                            </form>
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="col-6">
-                                            <h1 class="tituloInformacion">DUI</h1>
-                                            <h2 class="informacion">12345678-9</h2>
+                                    <div class="row mt-2 justify-content-center ml-4">
+                                        <div class="col-6 divColumnasAjustes">
+                                            <form>
+                                                <h1 class="tituloInformacion">DUI</h1>
+                                                <h2 class="informacion">12345678-9</h2>
+                                            </form>
                                         </div>
-                                        <div class="col-6">
-                                            <button class="btn botonesAjustes">Editar</button>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-6">
-                                            <h1 class="tituloInformacion">Genéro</h1>
-                                            <h2 class="informacion">Masculino</h2>
-                                        </div>
-                                        <div class="col-6">
-                                            <button class="btn botonesAjustes">Editar</button>
+                                        <div class="col-6 divColumnasAjustes">
+                                            <form>
+                                                <h1 class="tituloInformacion">Genéro</h1>
+                                                <h2 class="informacion">Masculino</h2>
+                                            </form>
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="col-6">
-                                            <h1 class="tituloInformacion">Teléfono Fijo</h1>
-                                            <h2 class="informacion">0000-0000</h2>
+                                    <div class="row mt-2 justify-content-center ml-4">
+                                        <div class="col-6 divColumnasAjustes">
+                                            <form>
+                                                <h1 class="tituloInformacion">Teléfono Fijo</h1>
+                                                <h2 class="informacion">0000-0000</h2>
+                                            </form>
                                         </div>
-                                        <div class="col-6">
-                                            <button class="btn botonesAjustes">Editar</button>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-6">
-                                            <h1 class="tituloInformacion">Teléfono Celular</h1>
-                                            <h2 class="informacion">0000-0000</h2>
-                                        </div>
-                                        <div class="col-6">
-                                            <button class="btn botonesAjustes">Editar</button>
+                                        <div class="col-6 divColumnasAjustes">
+                                            <form>
+                                                <h1 class="tituloInformacion">Teléfono Celular</h1>
+                                                <h2 class="informacion">0000-0000</h2>
+                                            </form>
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="col-6">
-                                            <h1 class="tituloInformacion">Fecha de Nacimiento</h1>
-                                            <h2 class="informacion">24/04/2003</h2>
+                                    <div class="row mt-2 justify-content-center ml-4">
+                                        <div class="col-6 divColumnasAjustes">
+                                            <form>
+                                                <h1 class="tituloInformacion">Fecha de Nacimiento</h1>
+                                                <h2 class="informacion">24/04/2003</h2>
+                                            </form>
                                         </div>
-                                        <div class="col-6">
-                                            <button class="btn botonesAjustes">Editar</button>
+                                        <div class="col-6 divColumnasAjustes">
+                                            <form>
+                                                <button class="btn botonesAjustes" id="btnEditarAjustes">Editar</button>
+                                            </form>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

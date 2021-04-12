@@ -922,6 +922,10 @@ th{
   padding-left: 20px;
   padding-right: 20px;
   float: right;
+}
+
+#btnEditarAjustes{
+  float: left !important;
   margin-top: 5px;
 }
 
@@ -931,11 +935,48 @@ th{
 }
 
 .informacionPersonal{
-  width: 700px;
+  width: 500px;
   padding: 30px;
   border-radius: 20px;
   content: "";
   background-color: #202427;
+}
+
+.btnEditarFormulario{
+  background-color: #5494F5;
+  color: #292E32;
+  font-family: 'Quicksand','sans-serif';
+  font-size: 13px;
+  font-weight: 700;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 12px;
+}
+
+.btnEditarFormulario:hover{
+  background-color: #3964a3;
+  color: white;
+}
+
+.btnEditarFormularioIcono{
+  background-color: #5494F5;
+  color: #292E32;
+  font-family: 'Quicksand','sans-serif';
+  font-size: 13px;
+  font-weight: 700;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 12px;
+  display: none;
+}
+
+.btnEditarFormularioIcono:hover{
+  background-color: #3964a3;
+  color: white;
 }
 
 #tablaDashboard{
@@ -1144,6 +1185,14 @@ th{
 
   .botonesCarrito{
     margin: 0 !important;
+  }
+
+  .btnEditarFormulario{
+    display: none;
+  }
+
+  .btnEditarFormularioIcono{
+    display: block;
   }
 }
 
@@ -1386,5 +1435,9 @@ th{
 
 #btnCancelar{
   min-width: 150px !important;
+}
+
+.divColumnasAjustes{
+  max-width: 190px;
 }
 
