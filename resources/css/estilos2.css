@@ -200,3 +200,16 @@
   color: #ffffff;
   justify-content: start;
 }
+
+.btnInicio2{
+  background-color: transparent;
+  border-radius: 20px;
+  padding: 5%;
+  border-left: 3px solid transparent;
+  margin-left: 12px;
+}
+
+.btnInicio2:hover{
+  background-color: #292E32;
+  border-left: 3px solid #5494F5;
+}
