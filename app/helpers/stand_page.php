@@ -14,7 +14,7 @@
             
                 <!-- Estilos -->
                 <link rel="stylesheet" href="../../resources/css/estilos4.css">
-            
+                <link rel="stylesheet" href="../../resources/css/estilos2.css">                
                 <!-- Fuentes -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
                 <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
@@ -49,7 +49,7 @@
                                 <div class="col-12" id="filaBotones">
                                     <div id="botones">
                                     <a href="#" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
-                                    <a href="index.php" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
+                                    <a href="#" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
                                     </div>
                                 </div>
                             </div>
@@ -59,13 +59,13 @@
                     <!-- Botones de Navegación -->
                     <ul class="nav flex-column colorCitiger mt-4">
                     <li class="nav-item">
-                        <a href="#" class="nav-link categoriasFuente">
+                        <a href="visitas.php" class="nav-link categoriasFuente">
                         <i class="fas fa-car mr-3 tamañoIconos"></i>
                         Visitas
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link categoriasFuente">
+                        <a href="menu_verificar.php" class="nav-link categoriasFuente">
                         <i class="fas fa-user-check mr-3 tamañoIconos"></i>
                         Verificar
                         </a>
