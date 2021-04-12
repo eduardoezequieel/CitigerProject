@@ -1,9 +1,9 @@
 <?php
 //Se incluye la clase con las plantillas del documento
-include('../../app/helpers/admin_page.php');
+include('../../app/helpers/resident_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-admin_Page::sidebarTemplate('Marcas | Citiger');
-?>     
+admin_Page::sidebarTemplate('Visitas | Citiger');
+?>    
 <link rel="stylesheet" href="../../resources/css/estilos3.css">
     <!-- Contenedor de la Pagina -->
     <div class="page-content p-3" id="content">

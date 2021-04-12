@@ -91,6 +91,56 @@
 }
 
 
+.contenedorDetalle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color:  #202427;;
+  padding-left: 25px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  width: 340px;
+  border-radius:10px;
+}
+
+.contenedorDetalle1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.subtituloPaginaV{
+  font-family: 'Quicksand','sans-serif';
+  font-size: 18px;
+  font-weight: 700;
+  color: #5494F5;
+  margin-top: 10px;
+  padding-right: 25px;
+}
+
+.botonVisita{
+  margin-right: 20px;
+}
+
+.btnAgregarFormularioV:hover{
+  background-color: #3964a3;
+  color: white;
+}
+
+.marginSegundaColumna{
+  margin-top: 10px;
+}
+
+.tablaVisitas th{
+  text-align: center;
+  font-size: 15px;
+  padding-right:45px;
+  
+}
+
+
 @media screen and (max-width:900px) {
 
 
