@@ -18,7 +18,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             </div>
 
             <div class="row justify-content-end">
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 justify-content-end search">
+                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 justify-content-center search buscarAlquiler">
                     <form>
                         <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                               &#xf002;">
                     </form>
@@ -85,7 +85,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
              <!-- Desde aqui termina la tabla -->
             <!-- Desde aqui finaliza el contenido -->
 
-            <!-- Modal para Editar Marcas -->
+            <!-- Modal para Editar Visitas -->
             <div class="modal fade" id="editarMarcas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content justify-content-center px-3 py-2">
@@ -159,9 +159,9 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
 
                                         </form>
                                     </div>
-                                </div> 
-                                
+                                </div>     
                             </div>
+                            <!-- Botones de Acción del Formulario -->
                             <div class="row justify-content-center mt-3">
                                 <div class="col-12 d-flex justify-content-center align-items-center text-center">
                                     <a href="#" class="btn btnEditarFormulario"><span

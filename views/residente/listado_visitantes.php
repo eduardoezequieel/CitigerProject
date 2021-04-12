@@ -18,7 +18,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             </div>
 
             <div class="row justify-content-end">
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 justify-content-end search">
+                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 justify-content-center search buscarAlquiler">
                     <form>
                         <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                               &#xf002;">
                     </form>
@@ -146,9 +146,9 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                                     <input type="text" class="form-control cajaTextoFormulario" id="txtPlaca"
                                         placeholder="Escriba su placa...">
                                 </form>
+                            </div>   
                             </div>
-                                
-                            </div>
+                            <!-- Botones de Acción del Formulario -->
                             <div class="row justify-content-center mt-3">
                                 <div class="col-12 d-flex justify-content-center align-items-center text-center">
                                     <a href="#" class="btn btnEditarFormulario"><span
