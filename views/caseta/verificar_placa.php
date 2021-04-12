@@ -15,7 +15,7 @@ admin_Page::sidebarTemplate('Verificar | Citiger');
         <!-- Desde aqui comienza el contenido -->
         <div class="row justify-content-center mb-3">
             <div class="col-12 d-flex justify-content-center align-items-center">
-                <h1 class="tituloPagina text-center">Verificar de datos por placa</h1>
+                <h1 class="tituloPagina text-center">Verificar datos por placa</h1>
             </div>
         </div>
 
