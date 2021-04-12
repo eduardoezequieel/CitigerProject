@@ -173,11 +173,24 @@
 }
 
 .marginTerceraColumna{
-  margin-top: 7px;
+  margin-top: 7px; 
 }
 
 .modVisi{
   padding-left: 30px ;
+}
+
+.buscarAlquiler{
+  padding-right: 50px ;
+}
+
+.tarjeta4{
+  content: "";
+  background-color: #202427;
+  width: 280px;
+  height: 335px;
+  border-radius: 15px;
+  padding: 15px;
 }
 
 @media screen and (max-width:900px) {
@@ -225,5 +238,11 @@
     height:800px;
     
   }
+
+  .buscarAlquiler{
+    padding-right: 0px ;
+    justify-content: center;
+  }
+  
 }
 
