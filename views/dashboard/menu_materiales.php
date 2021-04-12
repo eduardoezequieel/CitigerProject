@@ -19,7 +19,7 @@ admin_Page::sidebarTemplate('Materiales | Citiger');
 
                 <div class="row pb-5">
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                        <a href="listado_empleados.php" class="btn botonMenu1">
+                        <a href="listado_pedidos.php" class="btn botonMenu1">
                             <img src="../../resources/img/lend.png" alt="" class="img-fluid" width="90px">
                             <label class="textoBotonesMenu">Pedidos</label>
                         </a>

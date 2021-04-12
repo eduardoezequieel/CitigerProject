@@ -814,8 +814,14 @@ th{
   color: white;
 }
 
+
+
 .margenTarjetas{
   max-width: min-content;
+}
+
+.modal-lg {
+  max-width: 50% !important;
 }
 
 .modal-content {
@@ -1117,6 +1123,24 @@ th{
   .informacionPersonal{
     width: 300px;
   }
+
+  .modal-lg {
+    margin: auto;
+    max-width: 60%;
+  }
+
+  #tablaCarrito{
+    width: auto;
+  }
+
+  .columnaBotones{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .botonesCarrito{
+    margin: 0 !important;
+  }
 }
 
 
@@ -1163,5 +1187,95 @@ th{
 
   }
 
+}
+
+/*Medidas Tabla Carrito*/
+
+#tablaCarrito{
+  background-color: #15181A;
+
+}
+
+.colorTabla{
+  background-color: #15181A;
+  padding-top: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 15px;
+}
+
+#tablaCarrito td{
+  padding: 0 !important;
+  margin: 0 !important;
+  padding: 15px !important;
+  font-family: 'Manrope',sans-serif;
+  font-size: 13px;
+}
+
+#tablaCarrito th{
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: 'Quicksand',sans-serif;
+  font-size: 13px;
+}
+
+.paddingTh{
+  padding-top: 15px !important;
+}
+
+.paddingBotones{
+  padding-top: 10px !important;
+}
+
+.botonesCarrito{
+  background-color: #5494F5;
+  color: #292E32;
+  font-family: 'Quicksand','sans-serif';
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.botonesCarrito:hover{
+  background-color: #3964a3;
+  color: white;
+}
+
+#columnaFotoCarrito {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+#columnaMaterialCarrito {
+  padding-left: 300px !important;
+  padding-right: 70px !important;
+}
+
+#columnaCantidadCarrito {
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+}
+
+#columnaSubtotalCarrito {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+#columnaEliminarCarrito {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.totalLabel{
+  font-family: 'Quicksand',sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+
+.totalNumeroLabel{
+  font-family: 'Quicksand',sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #5494F5;
 }
 
