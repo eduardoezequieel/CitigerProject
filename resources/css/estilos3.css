@@ -173,7 +173,7 @@
 }
 
 .marginTerceraColumna{
-  margin-top: 7px; 
+  margin-top: 7px;
 }
 
 .modVisi{
@@ -242,6 +242,21 @@
   .buscarAlquiler{
     padding-right: 0px ;
     justify-content: center;
+  }
+  
+  .centrarColumnas4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+@media screen and (max-width:500px) {
+
+
+  .botonVisi{
+    padding-left: 0px ;
   }
   
 }

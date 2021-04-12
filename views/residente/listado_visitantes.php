@@ -103,50 +103,50 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         <div class="textoModal px-3 pb-4 mt-2">
                             <div class="row">
                                 <!-- Primera columna de controles -->
-                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginTerceraColumna centrarColumnas">
-                                    <form id="EmpleadosColumna1">
-                                        <label class="tituloCajaTextoFormulario" for="txtNombres">Nombres:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="txtNombres"
-                                            placeholder="Escriba sus nombres...">
+                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginTerceraColumna centrarColumnas">
+                                <form id="EmpleadosColumna1">
+                                    <label class="tituloCajaTextoFormulario" for="txtNombres">Nombres:</label>
+                                    <input type="text" class="form-control cajaTextoFormulario" id="txtNombres"
+                                        placeholder="Escriba sus nombres...">
 
-                                        <label class="tituloCajaTextoFormulario" for="txtApellidos">Apellidos:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="txtApellidos"
-                                            placeholder="Escriba sus apellidos...">
+                                    <label class="tituloCajaTextoFormulario" for="txtApellidos">Apellidos:</label>
+                                    <input type="text" class="form-control cajaTextoFormulario" id="txtApellidos"
+                                        placeholder="Escriba sus apellidos...">
 
-                                        <!-- RadioButtonGroup Género -->
-                                        <h1 class="tituloCajaTextoFormulario mb-3">Género</h1>
-                                        <div class="row justify-content-center">
-                                            <div class="col d-flex justify-content-center align-items-center text-center">
-                                                <div class="generoRadioButtons">
-                                                    <label class="container">Masculino
-                                                        <input type="radio" name="radio">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="container">Femenino
-                                                        <input type="radio" name="radio">
-                                                        <span class="checkmark"></span>
-                                                    </label>
-                                                </div>
+                                    <!-- RadioButtonGroup Género -->
+                                    <h1 class="tituloCajaTextoFormulario mb-3">Género</h1>
+                                    <div class="row justify-content-center">
+                                        <div class="col d-flex justify-content-center align-items-center text-center">
+                                            <div class="generoRadioButtons">
+                                                <label class="container">Masculino
+                                                    <input type="radio" name="radio">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="container">Femenino
+                                                    <input type="radio" name="radio">
+                                                    <span class="checkmark"></span>
+                                                </label>
                                             </div>
                                         </div>
+                                    </div>
 
-                                    </form>
+                                </form>
 
-                                </div>
+                            </div>
 
-                                <!-- Segunda columna de controles -->
-                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginTerceraColumna centrarColumnas">
-                                    <form>
-                                        <!-- Controles -->
-                                        <label class="tituloCajaTextoFormulario" for="txtDui">DUI:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="txtDui"
-                                            placeholder="Escriba su DUI...">
+                            <!-- Segunda columna de controles -->
+                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginTerceraColumna centrarColumnas4">
+                                <form>
+                                    <!-- Controles -->
+                                    <label class="tituloCajaTextoFormulario" for="txtDui">DUI:</label>
+                                    <input type="text" class="form-control cajaTextoFormulario" id="txtDui"
+                                        placeholder="Escriba su DUI...">
 
-                                        <label class="tituloCajaTextoFormulario" for="txtPlaca">Placa:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="txtPlaca"
-                                            placeholder="Escriba su placa...">
-                                    </form>
-                                </div>
+                                    <label class="tituloCajaTextoFormulario" for="txtPlaca">Placa:</label>
+                                    <input type="text" class="form-control cajaTextoFormulario" id="txtPlaca"
+                                        placeholder="Escriba su placa...">
+                                </form>
+                            </div>
                                 
                             </div>
                             <div class="row justify-content-center mt-3">

@@ -66,7 +66,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                             </div>
 
                             <!-- Segunda columna de controles -->
-                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginTerceraColumna centrarColumnas">
+                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginTerceraColumna centrarColumnas4">
                                 <form>
                                     <!-- Controles -->
                                     <label class="tituloCajaTextoFormulario" for="txtDui">DUI:</label>
