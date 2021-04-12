@@ -40,6 +40,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
 
+                        <!-- Sección para cambiar información personal -->
                         <div class="row mt-4">
                             <div class="col">
                                 <h1 class="tituloTarjetaAjustes">Información Personal</h1>
@@ -48,10 +49,13 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
 
                         <div class="row justify-content-center">
                             <div class="col-12 d-flex justify-content-center align-items-center">
+                                <!-- Div especializado para cada sección -->
                                 <div class="informacionPersonal">
                                     <div class="row">
                                         <div class="col-6">
+                                            <!-- Titulo -->
                                             <h1 class="tituloInformacion">Nombres</h1>
+                                            <!-- Información -->
                                             <h2 class="informacion">Eduardo Ezequiel</h2>
                                         </div>
                                         <div class="col-6">
@@ -116,6 +120,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
 
+                        <!-- Sección para administrar ajustes de la cuenta (mismo formato de arriba) -->
                         <div class="row mt-4">
                             <div class="col">
                                 <h1 class="tituloTarjetaAjustes">Ajustes de la Cuenta</h1>
@@ -160,8 +165,6 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                     </div>
                 </div>
             </div>
-            
-            
             <!-- Desde aqui finaliza el contenido -->
         </div>
 
