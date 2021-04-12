@@ -18,10 +18,12 @@ admin_Page::sidebarTemplate('Casas | Citiger');
             </div>
 
             <div class="row">
-                
-                <div class="col-12 d-flex justify-content-center align-items-center search">
+                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
+                    <a href="agregar_casa.php" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nueva Casa</a>
+                </div>
+                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
                     <form>
-                        <input type="email" class="form-control buscador " id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                               &#xf002;">
+                        <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                               &#xf002;">
                     </form>
                 </div>
             </div><br>
