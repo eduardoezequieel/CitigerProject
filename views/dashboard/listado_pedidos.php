@@ -50,8 +50,8 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
                                 <td class="primer text-center" id="align">Programado</td>
                                 <td class="primer text-center" id="align">#123456</td>
                                 <th scope="row" class="boto1">
-                                    <a href="editar_residente.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <a href="editar_pedido.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_pedido.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                         </tbody>

@@ -190,7 +190,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
 
                         <div class="row justify-content-center mt-3">
                             <div class="col-12 d-flex justify-content-center align-items-center ">
-                                <a href="" class="btn botonesListadoInventario"><span class="fas fa-arrow-right mr-3"></span>Continuar</a>
+                                <a href="detalles_pedido.php" class="btn botonesListadoInventario"><span class="fas fa-arrow-right mr-3"></span>Continuar</a>
                             </div>
                         </div>
                         <!-- Fin del Contenido del Modal -->
