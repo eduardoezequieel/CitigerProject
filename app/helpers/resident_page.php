@@ -35,8 +35,8 @@
                 <!-- Inicio del Sidebar -->
                 <div class="vertical-nav colorCitiger" id="sidebar">
                     <div class="py-3 px-3 colorCitiger">
-                    <div class="media d-flex align-items-center">
-                        <img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid pl-3 pt-1" width="140px">
+                    <div class="media d-flex">
+                        <a href="index.php" class="btn btnInicio"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
                     </div>
                     </div>
                     
@@ -55,8 +55,8 @@
                             <div class="row mt-2">
                                 <div class="col-12" id="filaBotones">
                                     <div id="botones">
-                                    <a href="#" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
-                                    <a href="index.php" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
+                                    <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
+                                    <a href="../dashboard/index.php" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
                                     </div>
                                 </div>
                             </div>

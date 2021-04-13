@@ -49,8 +49,8 @@
                             <div class="row mt-2">
                                 <div class="col-12" id="filaBotones">
                                     <div id="botones">
-                                    <a href="#" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
-                                    <a href="#" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
+                                    <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
+                                    <a href="../dashboard/index.php" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
                                     </div>
                                 </div>
                             </div>

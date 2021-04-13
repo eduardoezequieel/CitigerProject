@@ -57,8 +57,8 @@ admin_Page::sidebarTemplate('Casas | Citiger');
                                 <td>$66.72</td>
                                 <td>02/12/2021</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
+                                    <a href="ventana_pago.php" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
+                                    <a href="ventana_pago.php" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
@@ -67,8 +67,8 @@ admin_Page::sidebarTemplate('Casas | Citiger');
                                 <td>$66.72</td>
                                 <td>02/12/2021</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
+                                    <a href="ventana_pago.php" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
+                                    <a href="ventana_pago.php" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             <tr>
@@ -77,8 +77,8 @@ admin_Page::sidebarTemplate('Casas | Citiger');
                                 <td>$66.72</td>
                                 <td>02/12/2021</td>
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
+                                    <a href="ventana_pago.php" class="btn botonesListadoTabla "><i class="fas fa-dollar-sign  mr-3 tamañoIconosBotonesTabla"></i>Realizar pago</a>
+                                    <a href="ventana_pago.php" class="btn botonesListadoTablaIcono "><i class="fas fa-dollar-sign tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>
                             
