@@ -13,7 +13,6 @@
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
             
                 <!-- Estilos -->
-                <link rel="stylesheet" href="../../resources/css/styles.css">
                 <link rel="stylesheet" href="../../resources/css/estilos.css">
                 <link rel="stylesheet" href="../../resources/css/estilos2.css">
                 <link rel="stylesheet" href="../../resources/css/estilosControles.css">
@@ -57,6 +56,7 @@
                                     <div id="botones">
                                     <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
                                     <a href="index.php" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
+                                    <a href="index.php" class="btn fas fa-adjust botonesPerfil" id="modo"></a>
                                     </div>
                                 </div>
                             </div>

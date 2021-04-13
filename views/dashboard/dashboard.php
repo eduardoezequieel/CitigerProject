@@ -6,7 +6,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
 ?>    
     
     <!-- Contenedor de la Pagina -->
-    <div class="page-content p-3" id="content">
+    <div class="page-content" id="content">
         <div id="cuadroContenido">
             <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars tamañoIconos"></i></button>
 
@@ -96,35 +96,91 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                 </div>
             </div>
             <!-- Tabla-->
-            <div class="row justify-content-center">
-                <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                    <table class="table table-sm table-borderless">
+            <div class="row justify-content-center table-responsive" id="tablaDashboard">
+                <div class="col-12 justify-content-center align-items-center text-center">
+                    <table class="table table-borderless citigerTable">
                         <thead>
+                            <!-- Columnas-->
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col"></th>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Hora</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Accion</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <!-- Fotografia-->
+                                <th scope="row">
+                                    <div class="row paddingTh">
+                                        <div class="col-12">
+                                            <img src="../../resources/img/ppEdenilson.png" alt="" class="img-fluid rounded-circle" width="30px">
+                                        </div>
+                                    </div>
+                                </th>
+                                <!-- Datos-->
+                                <td>Edenilson Ramírez</td>
+                                <td>7:30:49</td>
+                                <td>3/4/2021</td>
+                                <td>Actualizar</td>
+                                <!-- Boton-->
+                                <th scope="row">
+                                    <div class="row paddingBotones">
+                                        <div class="col-12">
+                                            <a href="" class="btn btnTabla"><i class="fas fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                </th>
                             </tr>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
+                                <!-- Fotografia-->
+                                <th scope="row">
+                                    <div class="row paddingTh">
+                                        <div class="col-12">
+                                            <img src="../../resources/img/ppEdenilson.png" alt="" class="img-fluid rounded-circle" width="30px">
+                                        </div>
+                                    </div>
+                                </th>
+                                <!-- Datos-->
+                                <td>Edenilson Ramírez</td>
+                                <td>7:30:49</td>
+                                <td>3/4/2021</td>
+                                <td>Actualizar</td>
+                                <!-- Boton-->
+                                <th scope="row">
+                                    <div class="row paddingBotones">
+                                        <div class="col-12">
+                                            <a href="" class="btn btnTabla"><i class="fas fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                </th>
                             </tr>
                             <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
+                                <!-- Fotografia-->
+                                <th scope="row">
+                                    <div class="row paddingTh">
+                                        <div class="col-12">
+                                            <img src="../../resources/img/ppEdenilson.png" alt="" class="img-fluid rounded-circle" width="30px">
+                                        </div>
+                                    </div>
+                                </th>
+                                <!-- Datos-->
+                                <td>Edenilson Ramírez</td>
+                                <td>7:30:49</td>
+                                <td>3/4/2021</td>
+                                <td>Actualizar</td>
+                                <!-- Boton-->
+                                <th scope="row">
+                                    <div class="row paddingBotones">
+                                        <div class="col-12">
+                                            <a href="" class="btn btnTabla"><i class="fas fa-eye"></i></a>
+                                        </div>
+                                    </div>
+                                </th>
                             </tr>
+                            
                         </tbody>
                     </table>
                 </div>
