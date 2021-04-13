@@ -1,3 +1,126 @@
+/*Variables de Color*/
+:root{
+  --color-fondo:#ffffff;
+  --color-tipografia-titulos:#333333;
+  --color-tipografia:#000000;
+  --bordes-inputs:#999999;
+  --color-citiger:#5494F5;
+  --color-citiger-hover:#4174c2;
+}
+
+/*Inicio del Login*/
+
+body {
+  background: var(--color-fondo);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.titulo {
+  font-family: 'Manrope', sans-serif;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--color-tipografia-titulos);
+}
+
+.tituloCajasLogin{
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding-left: 5px;
+  color: var(--color-tipografia-titulos);
+}
+
+.cajaTextoLogin {
+  background-color: transparent;
+  border: 0.01rem solid var(--bordes-inputs);
+  color: var(--color-tipografia);
+  border-radius: 16px;
+  padding: 10px;
+  height: 50px;
+}
+
+.cajaTextoLogin:focus {
+  background-color: transparent;
+  border: 0.01rem solid var(--bordes-inputs);
+  color: var(--color-tipografia);
+}
+
+.cajaTextoLogin input[placeholder],
+[placeholder],
+*[placeholder] {
+  font-family: FontAwesome,'Manrope', sans-serif;
+  font-size: 15px;
+  padding-left: 15px;
+}
+
+.cajaTextoLogin::-webkit-input-placeholder {
+  font-family: FontAwesome,'Manrope', sans-serif;
+  font-size: 15px;
+}
+
+.cajaTextoLogin::-moz-placeholder {
+  font-family: FontAwesome,'Manrope', sans-serif;
+  font-size: 15px;
+
+}
+
+.cajaTextoLogin:-ms-input-placeholder {
+  font-family: FontAwesome,'Manrope', sans-serif;
+  font-size: 15px;
+
+}
+
+.checkboxLabel {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  padding-left: 5px;
+  color: var(--color-tipografia);
+}
+
+.botonLogin {
+  font-size: 14px;
+  padding: 15px 0px;
+  width: 100%;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.2s;
+  background-color: var(--color-citiger);
+  color: var(--color-fondo);
+  border: 0;
+  border-radius: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+
+.botonLogin:hover {
+  background-color: var(--color-citiger-hover);
+  color: var(--color-fondo);
+}
+
+.botonLogin2 {
+  font-size: 14px;
+  padding: 15px 0px;
+  width: 100%;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.2s;
+  background-color: transparent;
+  border: 1px solid var(--color-citiger);
+  color: var(--color-citiger);
+  border-radius: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+}
+
+.botonLogin2:hover {
+  background-color: var(--color-citiger);
+  color: var(--color-fondo);
+}
+
+/*Final del Login*/
+
 #imagenPrincipal {
   width: 570px;
   margin-left: 90px;
@@ -22,71 +145,10 @@
   display: block;
 }
 
-.titulo {
-  font-family: 'Manrope', sans-serif;
-  text-align: center;
-  font-size: 30px;
-  color: rgb(255, 255, 255);
-}
-
-.tituloCajas {
-  font-family: 'Manrope', sans-serif;
-  font-size: 13px;
-  padding-left: 5px;
-  color: rgb(255, 255, 255);
-}
-
-.cajaTexto {
-  background-color: transparent;
-  border: 0.01rem solid #6C757D;
-  color: white;
-  border-radius: 16px;
-  padding: 10px;
-  height: 50px;
-}
-
-.cajaTexto:focus {
-  background-color: transparent;
-  border: 0.01rem solid #6C757D;
-  color: white;
-}
-
 #controlesInicio {
   width: 330px;
   margin: auto;
   display: block;
-}
-
-input[placeholder],
-[placeholder],
-*[placeholder] {
-  font-family: FontAwesome,'Manrope', sans-serif;
-  font-size: 13px;
-  padding-left: 15px;
-}
-
-::-webkit-input-placeholder {
-  font-family: FontAwesome,'Manrope', sans-serif;
-  font-size: 13px;
-}
-
-::-moz-placeholder {
-  font-family: FontAwesome,'Manrope', sans-serif;
-  font-size: 13px;
-
-}
-
-:-ms-input-placeholder {
-  font-family: FontAwesome,'Manrope', sans-serif;
-  font-size: 13px;
-
-}
-
-.checkboxLabel {
-  font-family: 'Manrope', sans-serif;
-  font-size: 13px;
-  padding-left: 5px;
-  color: rgb(255, 255, 255);
 }
 
 [type="checkbox"] {
@@ -122,47 +184,6 @@ input[placeholder],
   transform: rotate(360deg);
 }
 
-.boton {
-  font-size: 14px;
-  padding: 15px 0px;
-  width: 100%;
-  -webkit-transition-duration: 0.4s;
-  /* Safari */
-  transition-duration: 0.2s;
-  background-color: #5494F5;
-  color: #202427;
-  border: 0;
-  border-radius: 10px;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
-}
-
-.boton:hover {
-  background-color: #4174c2;
-  color: #ffffff;
-}
-
-.boton2 {
-  font-size: 14px;
-  padding: 15px 0px;
-  width: 100%;
-  -webkit-transition-duration: 0.4s;
-  /* Safari */
-  transition-duration: 0.2s;
-  background-color: transparent;
-  border: 1px solid #5494F5;
-  color: #5494F5;
-  border-radius: 10px;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: bold;
-
-}
-
-.boton2:hover {
-  background-color: #5494F5;
-  color: #202427;
-}
-
 .texto {
   font-family: 'Manrope', sans-serif;
   font-size: 13px;
@@ -179,11 +200,7 @@ hr {
 
 /*Dashboard*/
 
-body {
-  background: #ffffff;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+
 
 a {
   text-decoration: none;

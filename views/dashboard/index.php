@@ -18,7 +18,7 @@
 
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Quicksand&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet"> 
@@ -32,14 +32,14 @@
             <div class="row">
                 <!-- Imagen -->
                 <div class="col-6 mt-5 pt-4">
-                    <img id="imagenPrincipal" src="../../resources/img/fondologinresidencial5.png" class="img-fluid">
+                    <img id="imagenPrincipal" src="../../resources/img/Interaction Design-pana.png" class="img-fluid">
                 </div>
     
                 <!-- Contenido -->
                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="row mt-3">
                         <div class="col-12">
-                            <img id="CitigerLogo" src="../../resources/img/citigerDarkLogo.png" alt="" class="img-fluid">
+                            <img id="CitigerLogo" src="../../resources/img/citigerWhiteLogo.png" alt="" class="img-fluid">
                         </div>
                     </div>
                     <div class="row">
@@ -49,13 +49,13 @@
                                 <form>
                                     <!-- Input Correo -->
                                     <div class="form-group mb-4">
-                                        <h1 class="tituloCajas">Correo Electrónico:</h1>
-                                        <input type="email" class="form-control cajaTexto" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico...">
+                                        <h1 class="tituloCajasLogin">Correo Electrónico:</h1>
+                                        <input type="email" class="form-control cajaTextoLogin" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico...">
                                     </div>
                                     <!-- Input Contraseña -->
                                     <div class="form-group mb-1">
-                                        <h1 class="tituloCajas">Contraseña:</h1>
-                                        <input type="password" class="form-control cajaTexto  mb-1" id="exampleInputPassword1" placeholder="Ingrese su contraseña...">
+                                        <h1 class="tituloCajasLogin">Contraseña:</h1>
+                                        <input type="password" class="form-control cajaTextoLogin  mb-1" id="exampleInputPassword1" placeholder="Ingrese su contraseña...">
                                         
                                         <input id="mostrarContraseña" type="checkbox" class="checkboxCitiger">
                                         <label class="checkboxLabel checkboxCitiger mt-2" for="mostrarContraseña">      Mostrar Contraseña</label>
@@ -63,7 +63,7 @@
                                     <!-- Botones -->
                                     <div class="row justify-content-center">
                                         <div class="col-12 d-flex justify-content-center align-items-center">
-                                            <a href="dashboard.php" class="btn boton my-3">Iniciar Sesión →</a>
+                                            <a href="dashboard.php" class="btn botonLogin my-3">Iniciar Sesión →</a>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="row justify-content-center">
                                         <div class="col-12 d-flex justify-content-center align-items-center">
-                                            <a class="btn boton2 my-2">Olvide mi contraseña →</a>
+                                            <a class="btn botonLogin2 my-2">Olvide mi contraseña →</a>
                                         </div>
                                     </div>
                                 </form>
