@@ -92,7 +92,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
             <!-- Tabla de Actividad Reciente -->
             <div class="row my-4">
                 <div class="col-12">
-                    <h1 class="tituloDashboard">Aportaciones pendientes y mora</h1>
+                    <h1 class="tituloDashboard">Aportaciones en mora</h1>
                 </div>
             </div>
             <!-- Desde aqui comienza la tabla -->
