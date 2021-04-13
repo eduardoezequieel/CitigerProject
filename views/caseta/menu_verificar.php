@@ -25,8 +25,8 @@ admin_Page::sidebarTemplate('Verificar | Citiger');
                         </a>
                     </div>
 
-                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                        <a href="verificar_placa.php" class="btn botonMenu2">
+                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones pb-5">
+                        <a href="verificar_placa.php" id="btnMenuPlaca" class="btn botonMenu2">
                             <img src="../../resources/img/license-plate.png" alt="" class="img-fluid" width="100px">
                             <label class="textoBotonesMenu">Placa</label>
                         </a>

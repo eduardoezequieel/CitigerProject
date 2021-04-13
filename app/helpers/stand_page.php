@@ -13,6 +13,7 @@
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
             
                 <!-- Estilos -->
+                <link rel="stylesheet" href="../../resources/css/estilos.css">
                 <link rel="stylesheet" href="../../resources/css/estilos4.css">
                 <link rel="stylesheet" href="../../resources/css/estilos2.css">                
                 <!-- Fuentes -->
@@ -29,7 +30,7 @@
                 <div class="vertical-nav colorCitiger" id="sidebar">
                     <div class="py-3 px-3 colorCitiger">
                     <div class="media d-flex">
-                    <a href="indexcaseta.php" class="btn btnInicio2"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
+                    <a href="index.php" class="btn btnInicio2"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
                     </div>
                     </div>
                     
@@ -38,10 +39,10 @@
                         <div id="tarjetaPerfil" class="p-3">
                             <div class="row">
                                 <div class="col-3">
-                                   <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt="" class="redondearImg" width="60px">
+                                   <img src="../../resources/img/ppEdenilson.png" alt="" class="redondearImg" width="60px">
                                 </div>
                             <div class="col-9">
-                                <label for="ajustes" class="pl-4 pt-2" id="usuario">Eduardo Rivera</label>
+                                <label for="ajustes" class="pl-4 pt-2" id="usuario">Edenilson Ramírez</label>
                                 <label for="ajustes" class="pl-4" id="tipoUsuario">Caseta</label>
                             </div>
                             </div>
@@ -58,18 +59,7 @@
                 
                     <!-- Botones de Navegación -->
                     <ul class="nav flex-column colorCitiger mt-4">
-                    <li class="nav-item">
-                        <a href="visitas.php" class="nav-link categoriasFuente">
-                        <i class="fas fa-car mr-3 tamañoIconos"></i>
-                        Visitas
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="menu_verificar.php" class="nav-link categoriasFuente">
-                        <i class="fas fa-user-check mr-3 tamañoIconos"></i>
-                        Verificar
-                        </a>
-                    </li>
+                    
                     </ul>
                 </div>
                 <!-- Fin del sidebar -->
