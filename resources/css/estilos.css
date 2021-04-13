@@ -1,11 +1,13 @@
 /*Variables de Color*/
 :root{
   --color-fondo:#ffffff;
+  --color-fondo-opaco:#F1F4F9;
   --color-tipografia-titulos:#333333;
   --color-tipografia:#000000;
   --bordes-inputs:#999999;
   --color-citiger:#5494F5;
   --color-citiger-hover:#4174c2;
+  --color-citiger-claro:#c5dcff;
 }
 
 /*Inicio del Login*/
@@ -121,6 +123,93 @@ body {
 
 /*Final del Login*/
 
+/*Dashboard*/
+.colorCitiger {
+  background-color: var(--color-fondo) !important;
+}
+
+.btnInicio{
+  background-color: transparent;
+  border-radius: 20px;
+  padding: 5%;
+  border-left: 3px solid transparent;
+  margin-left: 12px;
+}
+
+.btnInicio:hover{
+  background-color: var(--color-fondo-opaco);
+  border-left: 3px solid var(--color-citiger);
+}
+
+#tarjeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#tarjetaPerfil {
+  background-color: var(--color-fondo-opaco) !important;
+  border-radius: 20px;
+  width: 85%;
+  margin-left: 15px;
+}
+
+#usuario {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-tipografia-titulos) !important;
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+#tipoUsuario {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  font-weight: 700 !important;
+  color: var(--color-citiger) !important;
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+.botonesPerfil {
+  color: var(--color-tipografia-titulos) !important;
+  background-color: transparent;
+  font-size: 20px;
+}
+
+.botonesPerfil:hover {
+  color: var(--color-citiger) !important;
+  background-color: var(--color-citiger-claro);
+  font-size: 20px;
+}
+
+.nav-link {
+  text-transform: capitalize;
+  margin-left: 60px;
+  margin-right: 40px;
+  padding: 15px;
+  border: 1px solid transparent;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  color: var(--color-tipografia-titulos) !important;
+  font-size: 14px;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.2s;
+  border-radius: 10px !important;
+}
+
+.nav-link:hover {
+  background: var(--color-citiger-claro) !important;
+  border: 1px solid dark;
+  color: var(--color-citiger) !important;
+  border-radius: 10px !important;
+}
+/*Fin del Dashboard*/
+
 #imagenPrincipal {
   width: 570px;
   margin-left: 90px;
@@ -212,54 +301,12 @@ a:hover {
 }
 
 
-.colorCitiger {
-  background-color: #202427;
-}
 
-#tarjeta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
+
 
 .redondearImg {
   border-radius: 50px;
-}
-
-#usuario {
-  font-family: 'Manrope', sans-serif;
-  font-size: 15px;
-  color: rgb(255, 255, 255);
-  padding: 0;
-  border: 0;
-  margin: 0;
-}
-
-#tipoUsuario {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: #5494F5;
-  padding: 0;
-  border: 0;
-  margin: 0;
-}
-
-#tarjetaPerfil {
-  background-color: #292E32;
-  border-radius: 20px;
-  width: 85%;
-  margin-left: 15px;
-}
-
-.botonesPerfil {
-  color: #ADACB0;
-  font-size: 20px;
-}
-
-.botonesPerfil:hover {
-  color: #5494F5;
-  font-size: 20px;
 }
 
 #filaBotones {
@@ -274,12 +321,7 @@ a:hover {
   display: inline-block;
 }
 
-.categoriasFuente {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 600;
-  color: #ADACB0;
-  font-size: 14px;
-}
+
 
 .tamañoIconos {
   font-size: 15px;
@@ -331,19 +373,7 @@ a:hover {
 }
 
 
-.nav-link {
-  text-transform: capitalize;
-  margin-left: 60px;
-  margin-right: 40px;
-  padding: 15px;
-  border: 1px solid transparent;
-}
 
-.nav-link:hover {
-  background: #292E32;
-  border: 1px solid dark;
-  border-radius: 50px;
-}
 
 .text-primary {
   color: #7579e7 !important;
@@ -1044,19 +1074,6 @@ th{
   font-size: 15px;
   padding-bottom: 30px !important;
   padding-top: 30px !important;
-}
-
-.btnInicio{
-  background-color: transparent;
-  border-radius: 20px;
-  padding: 5%;
-  border-left: 3px solid transparent;
-  margin-left: 12px;
-}
-
-.btnInicio:hover{
-  background-color: #292E32;
-  border-left: 3px solid #5494F5;
 }
 
 .tarjetaDashboard{
