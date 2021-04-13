@@ -47,7 +47,7 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
                                 <td class="primer" id="align">2021-04-20</td>
                                 <td class="primer" id="align">P360 048</td>
                                 <th scope="row" class="boto1">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
+                                    <a href="editar_visita.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
                                     <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
                                 </th>
                             </tr>

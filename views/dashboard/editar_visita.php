@@ -29,7 +29,8 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         placeholder="OLIVER PÉREZ">
 
                     <label class="tituloCajaTextoFormulario" for="txtFecha">Fecha:</label>
-                    <input type="text" class="form-control cajaTextoFormulario" id="txtcbResidente" placeholder="2021-08-12">
+                    <input type="text" class="form-control cajaTextoFormulario" id="txtcbResidente"
+                        placeholder="2021-08-12">
 
 
                     <!-- RadioButtonGroup Visita recurrente -->
@@ -50,8 +51,8 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                     </div>
 
                     <label class="tituloCajaTextoFormulario" for="txtObservacion">Observación:</label>
-                    <textarea class="form-control cajaTextoFormulario" placeholder="El visitante podría venir en otro carro"
-                        id="txtObservacion" rows="5"></textarea>
+                    <textarea class="form-control cajaTextoFormulario"
+                        placeholder="El visitante podría venir en otro carro" id="txtObservacion" rows="5"></textarea>
 
                     <!-- Botones de Acción del Formulario -->
                     <div class="row justify-content-center mt-4">
@@ -59,13 +60,19 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                             <a href="#" class="btn btnEditarFormulario"><span
                                     class="fas fa-edit mr-3 tamañoIconosBotones"></span>Editar</a>
 
+                            <a href="#" class="btn btnEditarFormularioIcono"><span
+                                    class="fas fa-edit tamañoIconosBotones"></span></a>
+
                             <a href="#" class="btn btnEditarFormulario"><span
                                     class="fas fa-minus mr-3 tamañoIconosBotones"></span>Eliminar</a>
+
+                            <a href="#" class="btn btnEditarFormularioIcono"><span
+                                    class="fas fa-minus tamañoIconosBotones"></span></a>
                         </div>
                     </div>
-                    
+
                 </form>
-            
+
             </div>
             <!-- Segunda columna de controles -->
             <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginSegundaColumna centrarColumnas contenedorDetalle1">
@@ -83,15 +90,23 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         <div class="row justify-content-center mt-4 botonVisita">
                             <div class="col-12 d-flex justify-content-center align-items-center text-center">
                                 <a href="#" class="btn btnEditarFormulario"><span
-                                    class="fas fa-edit mr-3 tamañoIconosBotones"></span>Editar</a>
+                                        class="fas fa-edit mr-3 tamañoIconosBotones"></span>Editar</a>
+
+                                <a href="#" class="btn btnEditarFormularioIcono"><span
+                                        class="fas fa-edit tamañoIconosBotones"></span></a>
+
                                 <a href="#" class="btn btnEditarFormulario"><span
-                                    class="fas fa-minus mr-3 tamañoIconosBotones"></span>Eliminar</a>
+                                        class="fas fa-minus mr-3 tamañoIconosBotones"></span>Eliminar</a>
+
+                                <a href="#" class="btn btnEditarFormularioIcono"><span
+                                        class="fas fa-minus tamañoIconosBotones"></span></a>
+
                             </div>
                         </div>
 
                     </form>
                 </div>
-            </div>   
+            </div>
         </div>
     </div>
 

@@ -70,9 +70,20 @@ admin_Page::sidebarTemplate('Espacios | Citiger');
 
         <!-- Botones de Acción del Formulario -->
         <div class="row justify-content-center mt-4">
-            <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                <a href="#" class="btn btnAgregarFormulario"><span
-                        class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Espacio</a>
+                <a href="#" class="btn btnEditarFormulario"><span
+                        class="fas fa-edit mr-3 tamañoIconosBotones"></span>Editar</a>
+                <a href="#" class="btn btnEditarFormularioIcono"><span
+                        class="fas fa-edit tamañoIconosBotones"></span></a>
+
+                <a href="#" class="btn btnEditarFormulario"><span
+                        class="fas fa-minus mr-3 tamañoIconosBotones"></span>Eliminar</a>
+                <a href="#" class="btn btnEditarFormularioIcono"><span
+                        class="fas fa-minus tamañoIconosBotones"></span></a>
+
+                <a href="#" class="btn btnEditarFormulario"><span
+                        class="fas fa-exclamation mr-3 tamañoIconosBotones"></span>Suspender</a>
+                <a href="#" class="btn btnEditarFormularioIcono"><span
+                        class="fas fa-exclamation tamañoIconosBotones"></span></a>
             </div>
         </div>
         <!-- Desde aqui finaliza el contenido -->

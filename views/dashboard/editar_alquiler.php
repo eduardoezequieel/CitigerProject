@@ -29,8 +29,7 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
                         placeholder="OLIVER PÉREZ">
 
                     <label class="tituloCajaTextoFormulario" for="cbEspacio">Espacio:</label>
-                    <input type="text" class="form-control cajaTextoFormulario" id="cbEspacio"
-                        placeholder="CANCHA">
+                    <input type="text" class="form-control cajaTextoFormulario" id="cbEspacio" placeholder="CANCHA">
 
                     <label class="tituloCajaTextoFormulario" for="txtFechaAlquiler">Fecha de Alquiler:</label>
                     <input type="text" class="form-control cajaTextoFormulario" id="txtFechaAlquiler"
@@ -50,8 +49,7 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
                         placeholder="15:30">
 
                     <label class="tituloCajaTextoFormulario" for="txtHorFin">Hora fin:</label>
-                    <input type="text" class="form-control cajaTextoFormularioHora" id="txtHorFin"
-                        placeholder="20:00">
+                    <input type="text" class="form-control cajaTextoFormularioHora" id="txtHorFin" placeholder="20:00">
 
                     <label class="tituloCajaTextoFormulario" for="txtPrecio">Precio:</label>
                     <input type="text" class="form-control cajaTextoFormularioPrecio" id="txtPrecio"
@@ -65,12 +63,18 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
             <div class="col-12 d-flex justify-content-center align-items-center text-center">
                 <a href="#" class="btn btnEditarFormulario"><span
                         class="fas fa-edit mr-3 tamañoIconosBotones"></span>Editar</a>
+                <a href="#" class="btn btnEditarFormularioIcono"><span
+                        class="fas fa-edit tamañoIconosBotones"></span></a>
 
                 <a href="#" class="btn btnEditarFormulario"><span
                         class="fas fa-minus mr-3 tamañoIconosBotones"></span>Eliminar</a>
+                <a href="#" class="btn btnEditarFormularioIcono"><span
+                        class="fas fa-minus tamañoIconosBotones"></span></a>
 
                 <a href="#" class="btn btnEditarFormulario"><span
                         class="fas fa-exclamation mr-3 tamañoIconosBotones"></span>Suspender</a>
+                <a href="#" class="btn btnEditarFormularioIcono"><span
+                        class="fas fa-exclamation tamañoIconosBotones"></span></a>
             </div>
         </div>
         <!-- Desde aqui finaliza el contenido -->
