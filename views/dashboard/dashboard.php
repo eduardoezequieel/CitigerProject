@@ -8,7 +8,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
     <!-- Contenedor de la Pagina -->
     <div class="page-content p-3" id="content">
         <div id="cuadroContenido">
-            <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars categoriasFuente tamañoIconos"></i><small class="text-uppercase font-weight-bold"></small></button>
+            <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars tamañoIconos"></i></button>
 
             <div class="row my-4">
                 <div class="col-12">
@@ -98,52 +98,32 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
             <!-- Tabla-->
             <div class="row justify-content-center">
                 <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                    <table class="table table-dark table-hover table-responsive-lg" id="tablaDashboard">
-                        <!-- Titulos de Columnas-->
-                        <thead class="tituloTabla">
+                    <table class="table table-sm table-borderless">
+                        <thead>
                             <tr>
-                                <th class="pl-5 pt-4"></th>
-                                <th class="pl-4 pt-4 text-center">Usuario</th>
-                                <th class="pl-4 pt-4 text-center">Hora</th>
-                                <th class="pl-4 pt-4 text-center">Fecha</th>
-                                <th class="pl-4 pt-4 text-center">Acción</th>
-                                <th class="pl-5 pt-4 text-center"></th>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
                             </tr>
                         </thead>
-                        <!-- Filas -->
                         <tbody>
-                            <tr >
-                                <th scope="row" class="d-flex justify-content-center boto"><img src="../../resources/img/PP.png" alt="userIcon" class="imagenTabla rounded-circle"></th>
-                                <td class="primer text-center">Edenilson Ramírez</td>
-                                <td class="primer text-center">6:56:00</td>
-                                <td class="primer text-center">11/4/2021</td>
-                                <td class="primer text-center">Actualizar</td>
-                                <th scope="row" class="boto1">
-                                    <a href="editar_empleados.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="editar_empleados.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
-                                </th>
-                            </tr>
-                            <tr >
-                                <th scope="row" class="d-flex justify-content-center boto"><img src="../../resources/img/PP.png" alt="userIcon" class="imagenTabla rounded-circle"></th>
-                                <td class="primer text-center">Edenilson Ramírez</td>
-                                <td class="primer text-center">6:56:00</td>
-                                <td class="primer text-center">11/4/2021</td>
-                                <td class="primer text-center">Actualizar</td>
-                                <th scope="row" class="boto1">
-                                    <a href="editar_empleados.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="editar_empleados.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
-                                </th>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
                             </tr>
                             <tr>
-                                <th scope="row" class="d-flex justify-content-center boto"><img src="../../resources/img/PP.png" alt="userIcon" class="imagenTabla rounded-circle"></th>
-                                <td class="primer text-center">Edenilson Ramírez</td>
-                                <td class="primer text-center">6:56:00</td>
-                                <td class="primer text-center">11/4/2021</td>
-                                <td class="primer text-center">Actualizar</td>
-                                <th scope="row" class="boto1 pb-4">
-                                    <a href="editar_empleados.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="editar_empleados.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
-                                </th>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
                             </tr>
                         </tbody>
                     </table>
