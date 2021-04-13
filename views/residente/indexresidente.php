@@ -115,8 +115,8 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 <td class="primer" id="align">$66.72</td>
                                 <td class="primer" id="align">2021-04-12</td>
                                 <th scope="row" class="boto1">
-                                    <a href="" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
-                                    <a href="" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
+                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
+                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
                                 </th>
                             </tr>
                             <tr>
@@ -125,8 +125,8 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 <td>$66.72</td>
                                 <td>2021-01-12</td>
                                 <th scope="row">
-                                    <a href="" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
-                                    <a href="" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
+                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
+                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
                                 </th>
                             </tr>
                             <tr>
@@ -135,8 +135,8 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 <td>$66.72</td>
                                 <td>2021-04-12</td>
                                 <th scope="row">
-                                    <a href="" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
-                                    <a href="" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
+                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
+                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
                                 </th>
                             </tr>
                             <tr>
@@ -145,8 +145,8 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 <td>$66.72</td>
                                 <td>2021-03-12</td>
                                 <th scope="row">
-                                <a href="" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
-                                    <a href="" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
+                                <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
+                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
                                 </th>
                             </tr>
                             
@@ -155,6 +155,79 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                 </div>
             </div><br>
             <!-- Desde aqui finaliza el contenido -->
+                    <!-- Modal para Editar Visitas -->
+        <div class="modal fade" id="verPago" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content justify-content-center px-3 py-2">
+                    <!-- Cabecera del Modal -->
+                    <div class="modal-header">
+                        <!-- Titulo -->
+                        <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+                                class="fas fa-info-circle mr-4 iconoModal"></span>Editar Pago</h5>
+                        <!-- Boton para Cerrar -->
+                        <button type="button" class="close text-light lead" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <br>
+                    <!-- Contenido del Modal -->
+                    <div class="textoModal px-3 pb-4 mt-2">
+                        <div class="row">
+                            <!-- Primera columna de controles -->
+                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12  centrarColumnas">
+                                <form id="EmpleadosColumna1">
+                                    <label class="tituloCajaTextoFormulario" for="cbResidente">Casa:</label>
+                                    <input type="text" class="form-control cajaTextoFormulario" id="cbResidente"
+                                        placeholder="#69, Etapa 3, Block 6">
+
+
+                                    <div class="row">
+
+                                        <div class="col-6 ">
+                                            <label class="tituloCajaTextoFormulario" for="txtTelefono">Estado:</label>
+                                            <input type="text" class="form-control cajaTextoFormularioTelefono"
+                                                id="txtTelefonofijo" placeholder="Completado">
+
+                                        </div>
+
+                                        <div class="col-6 ">
+
+                                            <label class="tituloCajaTextoFormulario" for="txtTelefono">Monto:</label>
+                                            <input type="text" class="form-control cajaTextoFormularioTelefono"
+                                                id="txtTelefonomovil" placeholder="$120">
+                                        </div>
+
+                                    </div>
+                                    <label class="tituloCajaTextoFormulario" for="cbResidente">Mes Pago:</label>
+                                    <input type="text" class="form-control cajaTextoFormulario" id="cbResidente"
+                                        placeholder="Febrero, 2021">
+                                    
+
+                                </form>
+
+                            </div>
+                            <!-- Segunda columna de controles -->
+                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12  centrarColumnas">
+                                <form id="EmpleadosColumna1">
+                                    
+                                    <label class="tituloCajaTextoFormulario" for="txtObservacion">Descripción:</label>
+                                    <textarea class="form-control cajaTextoFormulario"
+                                        placeholder="Pago dirigido a mantenimiento de la piscina y ornamentación..." id="txtObservacion" rows="5"></textarea>
+
+                                    <label class="tituloCajaTextoFormulario" for="cbResidente">Fecha Pago:</label>
+                                    <input type="text" class="form-control cajaTextoFormulario" id="cbResidente"
+                                        placeholder="2021-04-21">
+
+                                </form>
+
+                            </div>
+                        </div>
+                        <!-- Fin del Contenido del Modal -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin del Modal -->
             
         </div>
 
