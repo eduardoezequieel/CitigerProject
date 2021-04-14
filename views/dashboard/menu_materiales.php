@@ -18,16 +18,16 @@ admin_Page::sidebarTemplate('Materiales | Citiger');
                 </div>
 
                 <div class="row pb-5">
-                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
+                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
                         <a href="listado_pedidos.php" class="btn botonMenu1">
-                            <img src="../../resources/img/lend.png" alt="" class="img-fluid" width="90px">
+                            <i class="fas fa-file-invoice-dollar iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">Pedidos</label>
                         </a>
                     </div>
 
-                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
+                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
                         <a href="listado_inventario.php" class="btn botonMenu2">
-                            <img src="../../resources/img/stock.png" alt="" class="img-fluid" width="66px">
+                            <i class="fas fa-boxes iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">Inventario</label>
                         </a>
                     </div>

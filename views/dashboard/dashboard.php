@@ -20,11 +20,20 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
             <div class="row justify-content-center">
                 <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
                     <!-- Inicio de Tarjeta -->
-                    <div class="tarjetaDashboard">
+                    <div class="tarjetaDashboard animate__animated animate__backInDown">
                         <!-- Boton de opciones -->
                         <div class="row">
                             <div class="col-12">
-                                <a href="" class="btn btnTarjetaDashboard"><span class="fas fa-ellipsis-v"></span></a>
+                                <div class="dropdown">
+                                    <button class="btn btnTarjetaDashboard1" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+                                            class="fas fa-ellipsis-v"></span></button>
+                                    <div class="dropdown-menu animate__animated animate__bounceIn mt-5" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="listado_denuncias.php">Denuncias</a>
+                                        <a class="dropdown-item" href="#">Generar Reporte</a>
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- Icono -->
@@ -46,10 +55,19 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
 
                 <!-- Inicio de Tarjeta (Se repite el mismo formato) -->
                 <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
-                    <div class="tarjetaDashboard">
+                    <div class="tarjetaDashboard animate__animated animate__backInDown">
                         <div class="row">
                             <div class="col-12">
-                                <a href="" class="btn btnTarjetaDashboard2"><span class="fas fa-ellipsis-v"></span></a>
+                            <div class="dropdown">
+                                    <button class="btn btnTarjetaDashboard2" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+                                            class="fas fa-ellipsis-v"></span></button>
+                                    <div class="dropdown-menu animate__animated animate__bounceIn mt-5" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="listado_visitas.php">Visitas</a>
+                                        <a class="dropdown-item" href="#">Generar Reporte</a>
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row justify-content-center">
@@ -68,10 +86,19 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
 
                 <!-- Inicio de Tarjeta (Se repite el mismo formato) -->
                 <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
-                    <div class="tarjetaDashboard">
+                    <div class="tarjetaDashboard animate__animated animate__backInDown">
                         <div class="row">
                             <div class="col-12">
-                                <a href="" class="btn btnTarjetaDashboard3"><span class="fas fa-ellipsis-v"></span></a>
+                            <div class="dropdown">
+                                    <button class="btn btnTarjetaDashboard3" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+                                            class="fas fa-ellipsis-v"></span></button>
+                                    <div class="dropdown-menu animate__animated animate__bounceIn mt-5" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="listado_denuncias.php">Aportaciones</a>
+                                        <a class="dropdown-item" href="#">Generar Reporte</a>
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row justify-content-center">
@@ -96,7 +123,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                 </div>
             </div>
             <!-- Tabla-->
-            <div class="row justify-content-center table-responsive" id="tablaDashboard">
+            <div class="row justify-content-center table-responsive animate__animated animate__backInUp" id="tablaDashboard">
                 <div class="col-12 justify-content-center align-items-center text-center">
                     <table class="table table-borderless citigerTable">
                         <thead>

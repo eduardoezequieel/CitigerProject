@@ -6,13 +6,7 @@
     
   }
 
-#menuAlqui{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 73%;
-}  
+
   
 .cajaTextoFormularioHora {
   background-color: #202427;

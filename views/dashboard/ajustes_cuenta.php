@@ -20,7 +20,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
                         
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center animate__animated animate__zoomIn">
                             <div class="col-12 d-flex justify-content-center">
                                 <form>
                                     <!-- Cargar Fotografia -->
@@ -48,7 +48,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
 
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center animate__animated animate__zoomIn">
                             <div class="col-12 d-flex justify-content-center align-items-center">
                                 <!-- Div especializado para cada sección -->
                                 <div class="informacionPersonal">
@@ -121,7 +121,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
 
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center animate__animated animate__zoomIn">
                             <div class="col-12 d-flex justify-content-center align-items-center">
                                 <div class="informacionPersonal">
                                     <div class="row">

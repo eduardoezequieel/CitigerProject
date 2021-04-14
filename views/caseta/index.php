@@ -53,13 +53,13 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                         <div class="row">
                             <div class="col-12">
                                 <div class="dropdown">
-                                    <button class="btn btnTarjetaDashboard2" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+                                    <button class="btn btnTarjetaDashboard1" id="dropdownMenuButton" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"><span
                                             class="fas fa-ellipsis-v"></span></button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="visitas.php">Visitas</a>
                                         <a class="dropdown-item" href="#">Generar Reporte</a>
-                                        
+
                                     </div>
                                 </div>
                             </div>

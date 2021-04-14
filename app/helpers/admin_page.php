@@ -17,6 +17,7 @@
                 <link rel="stylesheet" href="../../resources/css/estilos2.css">
                 <link rel="stylesheet" href="../../resources/css/estilosControles.css">
                 <link rel="stylesheet" href="../../resources/css/estilos4.css">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
             
                 <!-- Fuentes -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">

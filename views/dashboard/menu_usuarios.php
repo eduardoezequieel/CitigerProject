@@ -18,25 +18,25 @@ admin_Page::sidebarTemplate('Usuarios | Citiger');
                 </div>
 
                 <div class="row">
-                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
+                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
                         <a href="listado_empleados.php" class="btn botonMenu1">
-                            <img src="../../resources/img/employee.png" alt="" class="img-fluid" width="50px">
+                            <i class="fas fa-user-tie iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">Empleados</label>
                         </a>
                     </div>
 
-                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
+                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
                         <a href=listado_admin.php class="btn botonMenu2">
-                            <img src="../../resources/img/usuario.png" alt="" class="img-fluid" width="66px">
+                            <i class="fas fa-user-shield iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">Administradores</label>
                         </a>
                     </div>
                 </div>
 
                 <div class="row justify-content-center mt-4">
-                    <div class="col d-flex justify-content-center align-items-center">
+                    <div class="col d-flex justify-content-center align-items-center animate__animated animate__bounceIn">
                         <a href="listado_residentes.php" class="btn botonMenu3">
-                            <img src="../../resources/img/resident.png" alt="" class="img-fluid" width="76px">
+                            <i class="fas fa-user iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">Residentes</label>
                         </a>
                     </div>
