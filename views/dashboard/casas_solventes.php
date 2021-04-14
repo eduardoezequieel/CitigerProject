@@ -17,58 +17,60 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row px-5 animate__animated animate__bounceIn">
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
-                    <input type="text" class="form-control cajaTextoFormulario" id="cbTipoEmpleado"
-                        placeholder="Seleccionar mes ">                </div>
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12  search">
                     <form>
-                        <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                               &#xf002;">
+                        <h1 class="tituloCajaTextoFormulario">Mes:</h1>
+                        <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                        deseado en el combobox  -->
+                        <div class="cbCitiger">
+                            <select class="custom-select">
+                                <option selected="">Seleccionar...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select> 
+                        </div>
+                    </form>              
+                </div>
+                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search" id="buscadorCasasPendientes">
+                    <form>
+                        <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
                     </form>
                 </div>
             </div><br>
             <!-- Desde aqui comienza la tabla -->
-            <div class="row">
-                <div class="col">
-                    <table class="table table-dark table-hover table-responsive-lg">
-                        <thead class="tituloTabla">
+            <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaAlquileres">
+                <div class="col-12 justify-content-center align-items-center text-center">
+                    <table class="table table-borderless citigerTable">
+                        <thead>
+                            <!-- Columnas-->
                             <tr>
-                                <th class="pl-5 pt-4"></th>
-                                <th class="pl-5 pt-4">Casa</th>
-                                <th class="pl-5 pt-4">Monto</th>
-                                <th class="pl-4 pt-4">Fecha</th>
-                             
+                                <th scope="col"></th>
+                                <th scope="col">Casa</th>
+                                <th scope="col">Pago</th>
+                                <th scope="col">Fecha Limite</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-                            <tr >
-                                <th scope="row" class="d-flex justify-content-center boto"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td class="primer" >#99, ETAPA 6, BLOCK 5</td>
-                                <td class="primer" id="align">$66.72</td>
-                                <td class="primer" id="align">02/12/2021</td>
-                               
-                            </tr>
                             <tr>
-                                <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>#99, ETAPA 6, BLOCK 5</td>
-                                <td>$66.72</td>
-                                <td>02/12/2021</td>
+                                <!-- Fotografia-->
+                                <th scope="row">
+                                    <div class="row paddingTh">
+                                        <div class="col-12">
+                                            <img src="../../resources/img/bluehouse.png" alt="" class="img-fluid" width="30px">
+                                        </div>
+                                    </div>
+                                </th>
+                                <!-- Datos-->
+                                <td>#69 ETAPA 3 BLOCK 6</td>
+                                <td>$20.99</td>
+                                <td>3/4/2021</td>
                                 
                             </tr>
-                            <tr>
-                                <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>#22, ETAPA 1, BLOCK 19</td>
-                                <td>$66.72</td>
-                                <td>02/12/2021</td>
-                                
-                            </tr>
-                            <tr>
-                                <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>#25, ETAPA 1, BLOCK 8</td>
-                                <td>$66.72</td>
-                                <td>02/12/2021</td>
-                                
-                            </tr>
+                            
                             
                         </tbody>
                     </table>

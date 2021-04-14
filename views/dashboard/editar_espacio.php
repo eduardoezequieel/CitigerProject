@@ -13,14 +13,14 @@ admin_Page::sidebarTemplate('Espacios | Citiger');
                 class="text-uppercase font-weight-bold"></small></button>
 
         <!-- Desde aqui comienza el contenido -->
-        <div class="row justify-content-center mb-3">
+        <div class="row justify-content-center mb-3 animate__animated animate__bounceIn">
             <div class="col-12 d-flex justify-content-center align-items-center">
                 <h1 class="tituloPagina text-center">Editar Datos de Espacio</h1>
             </div>
         </div>
 
         <!-- Inicio de Fila -->
-        <div class="row">
+        <div class="row animate__animated animate__bounceIn">
             <!-- Primera columna de controles -->
             <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                 <form id="EmpleadosColumna1">
@@ -69,7 +69,7 @@ admin_Page::sidebarTemplate('Espacios | Citiger');
         </div>
 
         <!-- Botones de Acción del Formulario -->
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-4 animate__animated animate__bounceIn">
                 <a href="#" class="btn btnEditarFormulario"><span
                         class="fas fa-edit mr-3 tamañoIconosBotones"></span>Editar</a>
                 <a href="#" class="btn btnEditarFormularioIcono"><span

@@ -8,39 +8,7 @@
 
 
   
-.cajaTextoFormularioHora {
-  background-color: #202427;
-  border: 0.01rem solid #41464b;
-  color: white;
-  border-radius: 16px;
-  padding: 10px;
-  height: 40px;
-  width: 130px;
-  margin-bottom: 10px;
-}
 
-.cajaTextoFormularioHora:focus {
-  background-color: #202427;
-  border: 0.01rem solid #41464b;
-  color: white;
-}
-
-.cajaTextoFormularioPrecio {
-  background-color: #202427;
-  border: 0.01rem solid #41464b;
-  color: white;
-  border-radius: 16px;
-  padding: 10px;
-  height: 40px;
-  width: 95px;
-  margin-bottom: 10px;
-}
-
-.cajaTextoFormularioPrecio:focus {
-  background-color: #202427;
-  border: 0.01rem solid #41464b;
-  color: white;
-}
 
 .cargarFoto6{
   width: 200px;
