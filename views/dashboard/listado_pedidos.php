@@ -27,33 +27,48 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
                     </form>
                 </div>
             </div><br>
-            <!-- Desde aqui comienza la tabla -->
+
             <div class="row">
                 <div class="col-12">
-                    <h2 class="subTituloPagina1 pl-4 pb-3">Información del Residente</h2>
+                    <h2 class="subTituloPagina1 pl-4 pb-3">Información del Pedido</h2> 
                 </div>
-                <div class="col">
-                    <table class="table table-dark table-hover table-responsive-lg">
-                        <thead class="tituloTabla">
+            </div>
+            <!-- Desde aqui comienza la tabla -->
+            <div class="row mt-1 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaPedidos">
+                <div class="col-12 justify-content-center align-items-center text-center">
+                    <table class="table table-borderless citigerTable">
+                        <thead>
+                            <!-- Columnas-->
                             <tr>
-                                <th class="pl-5 pt-4"></th>
-                                <th class="pl-4 pt-4">Empleado que solicito el pedido</th>
-                                <th class="text-center pt-4">Estado</th>
-                                <th class="text-center pt-4">Pedido</th>
-                                <th class="pt-4"></th>
+                                <th scope="col"></th>
+                                <th scope="col">Nombre de la Marca</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr >
-                                <th scope="row" class="d-flex justify-content-center boto"><img src="../../resources/img/userIcon.png" alt="userIcon" class="imagenTabla"></th>
-                                <td class="primer" >JUAN ERNESTO LEIVA</td>
-                                <td class="primer text-center" id="align">Programado</td>
-                                <td class="primer text-center" id="align">#123456</td>
-                                <th scope="row" class="boto1">
-                                    <a href="editar_pedido.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="editar_pedido.php" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                            <tr>
+                                <!-- Fotografia-->
+                                <th scope="row">
+                                    <div class="row paddingTh" id="imagenRegistroMarca">
+                                        <div class="col-12">
+                                            <img src="../../resources/img/brand.png" alt="" class="img-fluid mt-1" width="25px">
+                                        </div>
+                                    </div>
+                                </th>
+                                <!-- Datos-->
+                                <td>CEMEX</td>
+                                <!-- Boton-->
+                                <th scope="row">
+                                    <div class="row paddingBotones">
+                                        <div class="col-12">
+                                            <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+                                        </div>
+                                    </div>
                                 </th>
                             </tr>
+                            
+                            
+                            
                         </tbody>
                     </table>
                 </div>

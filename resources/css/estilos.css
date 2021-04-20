@@ -1498,7 +1498,7 @@ textarea[placeholder],
   font-family: 'Quicksand', 'sans-serif';
   font-size: 20px;
   font-weight: 700;
-  color: white;
+  color: var(--color-tipografia) !important;
   margin-top: 10px;
 }
 
