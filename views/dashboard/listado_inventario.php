@@ -11,14 +11,14 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
             <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars categoriasFuente tamañoIconos"></i><small class="text-uppercase font-weight-bold"></small></button>
         
             <!-- Desde aqui comienza el contenido -->
-            <div class="row justify-content-center mb-3">
+            <div class="row justify-content-center mb-3 animate__animated animate__bounceIn">
                 <div class="col-12 d-flex justify-content-center align-items-center">
                     <h1 class="tituloPagina">Inventario</h1>
                 </div>
             </div>
 
             <!-- Controles del Inicio -->
-            <div class="row justify-content-center">
+            <div class="row justify-content-center animate__animated animate__bounceIn">
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones" id="agregarMaterial">
                     <a href="agregar_material.php" class="btn botonesListadoInventario ml-5"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nuevo Material</a>
                     <a href="listado_marcas.php" class="btn botonesListadoInventario ml-3"><span class="fas fa-tag mr-3 tamañoIconosBotones"></span>Marcas</a>
@@ -29,13 +29,13 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
 
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
                     <form>
-                        <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                           &#xf002;">
+                        <input type="email" class="form-control buscador mr-5" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                           &#xf002;">
                     </form>
                 </div>
             </div><br>
 
             <!-- Fila de Tarjetas -->
-            <div class="row justify-content-center">
+            <div class="row justify-content-center animate__animated animate__backInUp">
                 <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 d-flex margenTarjetas justify-content-center align-items-center text-center">
                     <!-- Inicio de Tarjeta -->
                     <div class="tarjeta">

@@ -14,14 +14,14 @@ admin_Page::sidebarTemplate('Materiales | Citiger');
 
         <!-- Desde aqui comienza el contenido -->
 
-        <div class="row justify-content-center mb-3">
+        <div class="row justify-content-center mb-3 animate__animated animate__bounceIn">
             <div class="col-12 d-flex justify-content-center align-items-center">
                 <h1 class="tituloPagina text-center">Agregar Nuevo Material</h1>
             </div>
         </div>
 
         <!-- Inicio de Fila -->
-        <div class="row">
+        <div class="row animate__animated animate__bounceIn">
             <!-- Primera columna de controles -->
             <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                 <form id="EmpleadosColumna1">
@@ -31,7 +31,7 @@ admin_Page::sidebarTemplate('Materiales | Citiger');
                         <div class="col">
                             <div class="divFotografia2">
                                 <div class="cargarFoto2"></div>
-                                <button class="btn btnCargarFoto"><span class="fas fa-file-upload"></span></button>
+                                <button class="btn btnCargarFoto2 ml-1"><span class="fas fa-plus"></span></button>
                             </div>
                         </div>
                         <!-- Final Cargar Fotografia -->
@@ -79,7 +79,7 @@ admin_Page::sidebarTemplate('Materiales | Citiger');
         </div>
 
         <!-- Botones de Acción del Formulario -->
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-4 animate__animated animate__bounceIn">
             <div class="col-12 d-flex justify-content-center align-items-center text-center">
                 <a href="#" class="btn btnAgregarFormulario"><span
                         class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nuevo Material</a>

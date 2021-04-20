@@ -57,7 +57,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                                 <th scope="row">
                                     <div class="row paddingBotones">
                                         <div class="col-12">
-                                            <a href="ventana_pago.php" class="btn btnTabla"><i class="fas fa-cog"></i></a>
+                                            <a href="vista_denuncia.php" class="btn btnTabla"><i class="fas fa-cog"></i></a>
                                         </div>
                                     </div>
                                 </th>

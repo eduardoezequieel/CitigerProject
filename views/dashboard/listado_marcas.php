@@ -11,13 +11,13 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
             <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars categoriasFuente tamañoIconos"></i><small class="text-uppercase font-weight-bold"></small></button>
         
             <!-- Desde aqui comienza el contenido -->
-            <div class="row justify-content-center mb-3">
+            <div class="row justify-content-center mb-3 animate__animated animate__bounceIn">
                 <div class="col-12 d-flex justify-content-center align-items-center">
                     <h1 class="tituloPagina">Marcas</h1>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row animate__animated animate__bounceIn">
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
                     <a href="#" class="btn botonesListado" data-toggle="modal" data-target="#agregarMarcas" data><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Marca</a>
                 </div>
@@ -28,45 +28,48 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
                 </div>
             </div><br>
 
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <h2 class="subTituloPagina pl-4 pb-3">Marcas Registradas</h2>
-                </div>
-                <div class="col d-flex justify-content-center align-items-center">
-                    <table class="table table-dark table-hover table-responsive-lg tablaMarcas">
-                        <thead class="tituloTabla">
+            <!-- Desde aqui comienza la tabla -->
+            <div class="row mt-1 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaMarcas">
+                <div class="col-12 justify-content-center align-items-center text-center">
+                    <table class="table table-borderless citigerTable">
+                        <thead>
+                            <!-- Columnas-->
                             <tr>
-                                <th class="pl-4 pt-4">Nombre de la Marca</th>
-                                <th class="pl-5 pt-4"></th>
+                                <th scope="col"></th>
+                                <th scope="col">Nombre de la Marca</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr >
-                                <td class="primer" >CERAMICA PIEROLA</td>
-                                <th scope="row" class="boto1">
-                                    <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                            <tr>
+                                <!-- Fotografia-->
+                                <th scope="row">
+                                    <div class="row paddingTh" id="imagenRegistroMarca">
+                                        <div class="col-12">
+                                            <img src="../../resources/img/brand.png" alt="" class="img-fluid mt-1" width="25px">
+                                        </div>
+                                    </div>
+                                </th>
+                                <!-- Datos-->
+                                <td>CEMEX</td>
+                                <!-- Boton-->
+                                <th scope="row">
+                                    <div class="row paddingBotones">
+                                        <div class="col-12">
+                                            <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+                                        </div>
+                                    </div>
                                 </th>
                             </tr>
-                            <tr >
-                                <td class="primer" >TEXSA</td>
-                                <th scope="row" class="boto1">
-                                    <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
-                                </th>
-                            </tr>
-                            <tr >
-                                <td class="primer" >MAYDISA</td>
-                                <th scope="row" class="boto1">
-                                    <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
-                                </th>
-                            </tr>
+                            
+                            
                             
                         </tbody>
                     </table>
                 </div>
             </div><br>
+             <!-- Desde aqui termina la tabla -->
+                
             <!-- Desde aqui finaliza el contenido -->
             <!-- Modal para Agregar Marcas -->
             <div class="modal fade" id="agregarMarcas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
