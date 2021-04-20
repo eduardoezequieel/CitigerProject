@@ -41,7 +41,7 @@ admin_Page::sidebarTemplate('Casas | Citiger');
                 </div>
             </div><br>
             <!-- Desde aqui comienza la tabla -->
-            <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaAlquileres">
+            <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaCasasPendientes">
                 <div class="col-12 justify-content-center align-items-center text-center">
                     <table class="table table-borderless citigerTable">
                         <thead>
@@ -72,7 +72,7 @@ admin_Page::sidebarTemplate('Casas | Citiger');
                                 <th scope="row">
                                     <div class="row paddingBotones">
                                         <div class="col-12">
-                                            <a href="editar_alquiler.php" class="btn btnTabla"><i class="fas fa-comment-dollar"></i></a>
+                                            <a href="ventana_pago.php" class="btn btnTabla"><i class="fas fa-comment-dollar"></i></a>
                                         </div>
                                     </div>
                                 </th>
@@ -90,7 +90,6 @@ admin_Page::sidebarTemplate('Casas | Citiger');
 
     </div>
     <!-- Final del contenido -->
-
 <?php
 //Se imprimen los JS necesarios
 admin_Page::footerTemplate();

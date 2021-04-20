@@ -41,7 +41,7 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                 </div>
             </div><br>
             <!-- Desde aqui comienza la tabla -->
-            <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaAlquileres">
+            <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive px-5" id="tablaCasasSolventes">
                 <div class="col-12 justify-content-center align-items-center text-center">
                     <table class="table table-borderless citigerTable">
                         <thead>
@@ -50,7 +50,7 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                                 <th scope="col"></th>
                                 <th scope="col">Casa</th>
                                 <th scope="col">Pago</th>
-                                <th scope="col">Fecha Limite</th>
+                                <th scope="col">Fecha</th>
                                 
                             </tr>
                         </thead>
