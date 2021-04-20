@@ -1072,6 +1072,11 @@ textarea :-ms-input-placeholder {
   padding-left: 250px !important;
 }
 
+#tablaPedidos{
+  padding-right: 100px !important;
+  padding-left: 150px !important;
+}
+
 /*MODIFICACIONES DE TAMAÑO PARA LAS TABLAS*/
 
 .tituloMenu {

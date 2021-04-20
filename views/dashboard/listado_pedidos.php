@@ -41,7 +41,9 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
                             <!-- Columnas-->
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col">Nombre de la Marca</th>
+                                <th scope="col">Empleado que solicito el pedido</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Pedido</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -51,17 +53,19 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
                                 <th scope="row">
                                     <div class="row paddingTh" id="imagenRegistroMarca">
                                         <div class="col-12">
-                                            <img src="../../resources/img/brand.png" alt="" class="img-fluid mt-1" width="25px">
+                                            <img src="../../resources/img/67641302_948622395468919_4792483860753416192_n.jpg" alt="" class="img-fluid rounded-circle" width="30px">
                                         </div>
                                     </div>
                                 </th>
                                 <!-- Datos-->
-                                <td>CEMEX</td>
+                                <td>Samuel Magaña</td>
+                                <td>Programado</td>
+                                <td>#123456</td>
                                 <!-- Boton-->
                                 <th scope="row">
                                     <div class="row paddingBotones">
                                         <div class="col-12">
-                                            <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+                                            <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn btnTabla"><i class="fas fa-cog"></i></a>
                                         </div>
                                     </div>
                                 </th>
