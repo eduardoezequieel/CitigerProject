@@ -11,13 +11,13 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
             <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars categoriasFuente tamañoIconos"></i><small class="text-uppercase font-weight-bold"></small></button>
         
             <!-- Desde aqui comienza el contenido -->
-            <div class="row justify-content-center mb-3">
+            <div class="row justify-content-center mb-3 animate__animated animate__bounceIn">
                 <div class="col-12 d-flex justify-content-center align-items-center">
                     <h1 class="tituloPagina">Pedidos</h1>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row animate__animated animate__bounceIn">
                 <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
                     <a href="seleccion_materiales_pedido.php" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Crear Nuevo Pedido</a>
                 </div>
@@ -28,7 +28,7 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
                 </div>
             </div><br>
 
-            <div class="row">
+            <div class="row animate__animated animate__bounceIn">
                 <div class="col-12">
                     <h2 class="subTituloPagina1 pl-4 pb-3">Información del Pedido</h2> 
                 </div>
@@ -65,7 +65,7 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
                                 <th scope="row">
                                     <div class="row paddingBotones">
                                         <div class="col-12">
-                                            <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn btnTabla"><i class="fas fa-cog"></i></a>
+                                            <a href="editar_pedido.php" class="btn btnTabla"><i class="fas fa-cog"></i></a>
                                         </div>
                                     </div>
                                 </th>

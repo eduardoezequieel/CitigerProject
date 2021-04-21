@@ -474,14 +474,12 @@ body {
   font-size: 20px;
   font-weight: 700;
   color: var(--color-tipografia-titulos) !important;
-  justify-content: start;
 }
 
 .cuerpoModal {
   font-family: 'Manrope', sans-serif;
   font-size: 13px;
   color: var(--color-tipografia) !important;
-  justify-content: start;
 }
 
 .iconoModal {
