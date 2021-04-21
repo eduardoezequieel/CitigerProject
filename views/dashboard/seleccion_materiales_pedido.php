@@ -13,33 +13,35 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                 class="text-uppercase font-weight-bold"></small></button>
 
         <!-- Desde aqui comienza el contenido -->
-        <div class="row my-3">
+        <div class="row my-3 animate__animated animate__bounceIn">
             <div class="col-12">
-                <h1 class="tituloPagina text-white">Seleccione el material que se incluira en el pedido.</h1>
+                <h1 class="tituloPagina text-center">Seleccione el material que se incluira en el pedido.</h1>
             </div>
         </div>
 
         <!-- Controles del Inicio -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center animate__animated animate__bounceIn">
             <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones" id="agregarMaterial">
-                <a href="#" data-toggle="modal" data-target="#verCarrito" class="btn botonesListadoInventario ml-5"><span
+                <a href="#" data-toggle="modal" data-target="#verCarrito"
+                    class="btn botonesListadoInventario ml-5"><span
                         class="fas fa-shopping-cart mr-3 tamañoIconosBotones"></span>Ver Carrito</a>
 
-                <a href="#" data-toggle="modal" data-target="#verCarrito" class="btn botonesListadoInventarioIcono"><span
+                <a href="#" data-toggle="modal" data-target="#verCarrito"
+                    class="btn botonesListadoInventarioIcono"><span
                         class="fas fa-shopping-cart tamañoIconosBotones"></span></a>
 
             </div>
 
             <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
                 <form>
-                    <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp"
+                    <input type="email" class="form-control buscador mr-5" id="buscar" aria-describedby="emailHelp"
                         placeholder="Buscar...                                                                           &#xf002;">
                 </form>
             </div>
         </div><br>
 
         <!-- Fila de Tarjetas -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center animate__animated animate__backInUp">
             <div
                 class="col-xl-4 col-md-4 col-sm-12 col-xs-12 d-flex margenTarjetas justify-content-center align-items-center text-center">
                 <!-- Inicio de Tarjeta -->
@@ -116,7 +118,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
         <!-- Desde aqui finaliza el contenido -->
         <!-- Modal para Ver Carrito -->
         <div class="modal fade" id="verCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content px-3 py-2">
                     <!-- Cabecera del Modal -->
                     <div class="modal-header">
@@ -130,59 +132,55 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                     </div>
                     <br>
                     <!-- Contenido del Modal -->
-                    <div class="textoModal px-3 pb-4 mt-2">
+                    <div class="textoModal px-3 pb-4 mt-2 justify-content-center">
+                        <!-- Inicio de la Tabla -->
                         <div class="row justify-content-center">
-                            <div class="col-12 table-responsive d-flex justify-content-center align-items-center">
-                                <div class="colorTabla">
-                                    <form>
-                                        <table class="table table-dark table-borderless" id="tablaCarrito">
+                            <div class="col-12 d-flex justify-content-center align-items-center">
+                                <div class="row justify-content-center table-responsive tablaResponsive bg-dark"
+                                    id="tablaCarritoModal">
+                                    <div class="col-12 justify-content-center align-items-center text-center">
+                                        <table class="table table-borderless citigerTable">
                                             <thead>
-                                                <tr class="text-center">
-                                                    <th id="columnaFotoCarrito" scope="col">#</th>
-                                                    <th id="columnaMaterialCarrito" scope="col">Material</th>
-                                                    <th id="columnaCantidadCarrito" scope="col">Cantidad</th>
-                                                    <th id="columnaSubtotalCarrito" scope="col">Subtotal</th>
-                                                    <th id="columnaEliminarCarrito" scope="col"></th>
+                                                <!-- Columnas-->
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col">Nombre de la Marca</th>
+                                                    <th scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="text-center">
+                                                <tr>
+                                                    <!-- Fotografia-->
                                                     <th scope="row">
-                                                        <div class="row paddingTh">
-                                                            <div class="col-12"><img src="../../resources/img/Stockage_de_ciments.JPG" alt="" class="img-fluid rounded-circle" width="25px"></div>
-                                                        </div>
-                                                    </th>
-                                                    <td>CEMENTO CEMEX USO GRAL.</td>
-                                                    <th scope="row">
-                                                        <div class="row paddingBotones justify-content-center">
-                                                            <div class="col-12 columnaBotones">
-                                                                <button class="btn botonesCarrito mr-2"><span
-                                                                        class="fas fa-minus"></span></button>
-                                                                1
-                                                                <button class="btn botonesCarrito ml-2"><span
-                                                                        class="fas fa-plus"></span></button>
+                                                        <div class="row paddingTh" id="imagenRegistroMarca">
+                                                            <div class="col-12">
+                                                                <img src="../../resources/img/brand.png" alt=""
+                                                                    class="img-fluid mt-1" width="25px">
                                                             </div>
                                                         </div>
                                                     </th>
-                                                    <td>$14.99</td>
+                                                    <!-- Datos-->
+                                                    <td>CEMEX</td>
+                                                    <!-- Boton-->
                                                     <th scope="row">
                                                         <div class="row paddingBotones">
                                                             <div class="col-12">
-                                                                <button class="btn botonesCarrito ml-2"><span
-                                                                        class="fas fa-times"></span></button>
+                                                                <a href="#" data-toggle="modal"
+                                                                    data-target="#editarMarcas" class="btn btnTabla"><i
+                                                                        class="fas fa-edit"></i></a>
                                                             </div>
                                                         </div>
                                                     </th>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </form>
+                                    </div>
                                 </div>
-                                
                             </div>
                         </div>
+                        <!-- Desde aqui termina la tabla -->
 
-                        <div class="row justify-content-center mt-3">
+                        <div class="row justify-content-center">
                             <div class="col-12 d-flex justify-content-center align-items-center">
                                 <h1 class="totalLabel">Total: <span class="totalNumeroLabel">$14.99</span></h1>
                             </div>
@@ -190,7 +188,8 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
 
                         <div class="row justify-content-center mt-3">
                             <div class="col-12 d-flex justify-content-center align-items-center ">
-                                <a href="detalles_pedido.php" class="btn botonesListadoInventario"><span class="fas fa-arrow-right mr-3"></span>Continuar</a>
+                                <a href="detalles_pedido.php" class="btn botonesListadoInventario"><span
+                                        class="fas fa-arrow-right mr-3"></span>Continuar</a>
                             </div>
                         </div>
                         <!-- Fin del Contenido del Modal -->
