@@ -447,6 +447,26 @@ body {
   color: var(--color-tipografia) !important;
 }
 
+.imagenModal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tituloModal2{
+  font-family: 'Manrope',sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--color-tipografia) !important;
+}
+
+.textoModal2{
+  font-family: 'Manrope',sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-tipografia) !important;
+}
+
 .modal-content {
   border-radius: 15px;
   background-color: var(--color-fondo) !important;
@@ -571,6 +591,10 @@ textarea :-ms-input-placeholder {
   background-color: var(--color-fondo) !important;
 }
 
+#cbEmpleadoPedido{
+  width: 400px !important;
+}
+
 .custom-select{
   border: 0 !important;
   background-color: var(--color-fondo) !important;
@@ -612,8 +636,6 @@ textarea :-ms-input-placeholder {
 }
 
 .letraDestacadaTarjeta {
-  font-family: 'Manrope', sans-serif;
-  font-size: 13px;
   color: var(--color-citiger) !important;
 }
 
@@ -1075,6 +1097,21 @@ textarea :-ms-input-placeholder {
   padding-left: 150px !important;
 }
 
+#tablaCarritoModal{
+  padding-right: 25px !important;
+  padding-left: 0px !important;
+}
+
+#tablaCarritoDetalle{
+  padding-right: 260px !important;
+  padding-left: 220px !important;
+}
+
+#tablaCarritoEditar{
+  padding-right: 250px !important;
+  padding-left: 150px !important;
+}
+
 /*MODIFICACIONES DE TAMAÑO PARA LAS TABLAS*/
 
 .tituloMenu {
@@ -1216,12 +1253,32 @@ textarea :-ms-input-placeholder {
     padding-left: 60px !important;
   }
 
+  #tablaCarritoDetalle{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+
+  #tablaCarritoEditar{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+
   #imagenRegistroMarca{
     display: none;
   }
 
+  #cbEmpleadoPedido{
+    width: 300px !important;
+  }
+
   .cbCitiger{
     width: 300px;
+  }
+
+  .responsiveImagenModal{
+    margin-top: 0 !important;
+    padding-top: 0% !important;
+    margin-bottom: 25apx !important;
   }
 }
 
@@ -1712,169 +1769,26 @@ textarea[placeholder],
   }
 }
 
-/*Medidas Tabla Carrito*/
-
-#tablaCarrito {
-  background-color: #15181A;
-
-}
-
-.colorTabla {
-  background-color: #15181A;
-  padding-top: 15px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 15px;
-}
-
-#tablaCarrito td {
-  padding: 0 !important;
-  margin: 0 !important;
-  padding: 15px !important;
-  font-family: 'Manrope', sans-serif;
-  font-size: 13px;
-}
-
-#tablaCarrito th {
-  padding: 0 !important;
-  margin: 0 !important;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 13px;
-}
-
-.paddingTh {
-  padding-top: 15px !important;
-}
-
-.paddingBotones {
-  padding-top: 10px !important;
-}
-
-.botonesCarrito {
-  background-color: #5494F5;
-  color: #292E32;
-  font-family: 'Quicksand', 'sans-serif';
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.botonesCarrito:hover {
-  background-color: #3964a3;
-  color: white;
-}
-
-#columnaFotoCarrito {
-  padding-left: 20px !important;
-  padding-right: 20px !important;
-}
-
-#columnaMaterialCarrito {
-  padding-left: 300px !important;
-  padding-right: 70px !important;
-}
-
-#columnaCantidadCarrito {
-  padding-left: 30px !important;
-  padding-right: 30px !important;
-}
-
-#columnaSubtotalCarrito {
-  padding-left: 10px !important;
-  padding-right: 10px !important;
-}
-
-#columnaEliminarCarrito {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-}
-
-/*Tabla Detalle Pedido*/
-
-#tablaDetallePedido {
-  background-color: #202427;
-
-}
-
-.colorTablaDetallePedido {
-  background-color: #202427;
-  padding-top: 15px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 15px;
-}
-
-#tablaDetallePedido td {
-  padding: 0 !important;
-  margin: 0 !important;
-  padding: 15px !important;
-  font-family: 'Manrope', sans-serif;
-  font-size: 13px;
-}
-
-#tablaDetallePedido th {
-  padding: 0 !important;
-  margin: 0 !important;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 13px;
-}
-
-
-
-.botonesCarrito {
-  background-color: #5494F5;
-  color: #292E32;
-  font-family: 'Quicksand', 'sans-serif';
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.botonesCarrito:hover {
-  background-color: #3964a3;
-  color: white;
-}
-
-#columnaFotoCarrito {
-  padding-left: 20px !important;
-  padding-right: 20px !important;
-}
-
-#columnaMaterialCarrito {
-  padding-left: 300px !important;
-  padding-right: 70px !important;
-}
-
-#columnaCantidadCarrito {
-  padding-left: 30px !important;
-  padding-right: 30px !important;
-}
-
-#columnaSubtotalCarrito {
-  padding-left: 10px !important;
-  padding-right: 10px !important;
-}
-
-#columnaEliminarCarrito {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-}
-
-.tablaDetallePedidoResponsive {
-  padding-left: 40px;
-  padding-right: 40px;
-}
 
 .totalLabel {
   font-family: 'Quicksand', sans-serif;
   font-size: 18px;
   font-weight: 700;
-  color: white;
+  color: var(--color-tipografia-titulos) !important;
 }
 
 .totalNumeroLabel {
   font-family: 'Quicksand', sans-serif;
   font-size: 18px;
   font-weight: 700;
-  color: #5494F5;
+  color: var(--color-citiger) !important;
+}
+
+.cantidadNumeroLabel{
+  font-family: 'Quicksand',sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--color-tipografia) !important;
 }
 
 #btnSuspender {
