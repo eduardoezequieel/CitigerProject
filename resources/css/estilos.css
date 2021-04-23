@@ -1112,6 +1112,11 @@ textarea :-ms-input-placeholder {
   padding-left: 150px !important;
 }
 
+.tablaEmpleados{
+  padding-left: 150px !important;
+  padding-right: 50px !important;
+}
+
 /*MODIFICACIONES DE TAMAÑO PARA LAS TABLAS*/
 
 .tituloMenu {
@@ -1269,6 +1274,11 @@ textarea :-ms-input-placeholder {
 
   #cbEmpleadoPedido{
     width: 300px !important;
+  }
+
+  .tablaEmpleados{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
 
   .cbCitiger{
