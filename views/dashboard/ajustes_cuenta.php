@@ -28,7 +28,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                         <div class="col">
                                             <div class="divFotografiaAjustes">
                                                 <div class="cargarFoto d-flex justify-content-center align-items-center">
-                                                    <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt="" class="img-fluid rounded-circle" width="140px">
+                                                    <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt="" class="fit-images rounded-circle" width="140px" height="140px">
                                                 </div>
                                                 <button class="btn btnCargarFoto2"><span class="fas fa-plus"></span></button>
                                                 <h1 class="tituloUsuario mt-3">Eduardo Rivera</h1>

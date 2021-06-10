@@ -7,7 +7,13 @@
   --bordes-inputs: #999999;
   --color-citiger: #5494F5;
   --color-citiger-hover: #4174c2;
+  --color-rojo: rgb(255, 183, 183);
+  --color-rojo-hover: rgb(255, 72, 72);
   --color-citiger-claro: #c5dcff;
+}
+
+#cbCasaResidente{
+  width: 235px !important;
 }
 
 /*Inicio del Login*/
@@ -134,6 +140,10 @@ body {
   width: calc(100% - 17rem);
   margin-left: 17rem;
   transition: all 0.4s;
+}
+
+.fit-images{
+  object-fit: cover !important;
 }
 
 .vertical-nav {
@@ -367,6 +377,16 @@ body {
 .btnTabla:hover {
   background-color: var(--color-citiger-claro) !important;
   color: var(--color-citiger) !important;
+}
+
+.btnTabla2 {
+  background-color: transparent !important;
+  color: var(--color-tipografia-titulos) !important;
+}
+
+.btnTabla2:hover {
+  background-color: var(--color-rojo) !important;
+  color: var(--color-rojo-hover) !important;
 }
 
 .tamañoIconosTabla{
@@ -732,6 +752,27 @@ textarea :-ms-input-placeholder {
   margin-bottom: 10px;
 }
 
+.cajaTextoFormularioTelefono {
+  background-color: var(--color-fondo) !important;
+  border: 0.01rem solid var(--bordes-inputs) !important;
+  color: var(--color-tipografia) !important;
+  border-radius: 16px;
+  padding: 10px;
+  height: 40px;
+  width: 127px;
+  margin-bottom: 10px;
+}
+
+.closeModalButton{
+  color: var(--color-tipografia-titulos) !important;
+}
+
+.cajaTextoFormularioTelefono:focus {
+  background-color: var(--color-fondo) !important;
+  border: 0.01rem solid var(--bordes-inputs) !important;
+  color: var(--color-tipografia) !important;
+}
+
 .cajaTextoFormulario:focus {
   background-color: transparent !important;
   border: 0.01rem solid var(--bordes-inputs) !important;
@@ -767,6 +808,7 @@ textarea :-ms-input-placeholder {
 .tituloCajaTextoFormulario {
   font-family: 'Manrope', sans-serif;
   color: var(--color-tipografia-titulos) !important;
+
   font-size: 13px;
   padding-left: 15px;
 }
@@ -1543,17 +1585,13 @@ textarea[placeholder],
   color: #33373b;
 }
 
-
-
-
-
 #paddingCajas {
   margin-top: 12px;
 }
 
 
 .marginPrimeraColumna {
-  margin-top: 35px;
+  margin-top: 44px;
 }
 
 .subTituloPagina {

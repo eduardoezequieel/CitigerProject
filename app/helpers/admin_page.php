@@ -45,7 +45,7 @@
                         <div id="tarjetaPerfil" class="p-3">
                             <div class="row">
                                 <div class="col-3">
-                                    <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt="" class="redondearImg" width="60px">
+                                    <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt="" class="rounded-circle fit-images" width="60px" height="60px">
                                 </div>
                             <div class="col-9">
                                 <label for="ajustes" class="pl-4 pt-2" id="usuario">Eduardo Rivera</label>
