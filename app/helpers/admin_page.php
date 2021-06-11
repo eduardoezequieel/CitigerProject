@@ -36,7 +36,7 @@
                 <div class="vertical-nav colorCitiger" id="sidebar">
                     <div class="py-3 px-3 colorCitiger">
                     <div class="media d-flex">
-                        <a href="dashboard.php" class="btn btnInicio"><img src="../../resources/img/citigerWhiteLogo2.png" alt="" class="img-fluid" width="140px"></a>
+                        <a href="dashboard.php" id="btnDashboard" class="btn btnInicio"><img src="../../resources/img/citigerWhiteLogo2.png" alt="" class="img-fluid" width="140px"></a>
                     </div>
                     </div>
                     
