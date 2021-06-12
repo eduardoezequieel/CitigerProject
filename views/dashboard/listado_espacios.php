@@ -18,16 +18,18 @@ admin_Page::sidebarTemplate('Espacios | Citiger');
             </div>
 
             <!-- Controles del Inicio -->
-            <div class="row justify-content-center animate__animated animate__bounceIn">
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones" id="">
-                    <a href="#" data-toggle="modal" data-target="#administrarEspacio" class="btn botonesListado centrarBotones ml-5"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nuevo Espacio</a>
+            <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
+                <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
+                    <div class="mt-4 mx-3 mb-3">
+                        <a href="#" data-toggle="modal" data-target="#administrarEspacio" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                    </div>
+                      
+                    <form class="mx-3">
+                        <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
+                        <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
+                    </form>            
                 </div>
-
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
-                    <form>
-                        <input type="email" class="form-control buscador centrarBotones mr-5" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                           &#xf002;">
-                    </form>
-                </div>
+                
             </div><br>
 
             <!-- Fila de Tarjetas -->

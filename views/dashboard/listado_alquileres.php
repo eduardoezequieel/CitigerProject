@@ -17,15 +17,18 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
                 </div>
             </div>
 
-            <div class="row animate__animated animate__bounceIn">
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
-                    <a href="#" data-target="#administrarAlquiler" data-toggle="modal" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
-                </div>
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
-                    <form>
+            <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
+                <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
+                    <div class="mt-4 mx-3 mb-3">
+                        <a href="#" data-toggle="modal" data-target="#administrarAlquiler" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                    </div>
+                      
+                    <form class="mx-3">
+                        <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
                         <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
-                    </form>
+                    </form>            
                 </div>
+                
             </div><br>
             <!-- Desde aqui comienza la tabla -->
             <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaAlquileres">
@@ -102,14 +105,32 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
                     <div class="col-xl-7 col-md-7 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                         <form id="EmpleadosColumna1">
                             <label class="tituloCajaTextoFormulario" for="cbResidente">Residente:</label>
-                            <select class="form-control cajaTextoFormulario" id="cbResidente"
-                                placeholder="Seleccionar..."></select>
+                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                            cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                            deseado en el combobox  -->
+                            <div class="cbCitiger mb-2">
+                                <select class="custom-select">
+                                    <option selected="">Seleccionar...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select> 
+                            </div>
 
-                            <label class="tituloCajaTextoFormulario" for="cbEspacio">Espacio:</label>
-                            <select class="form-control cajaTextoFormulario" id="cbEspacio"
-                                placeholder="Seleccionar..."></select>
+                            <label class="tituloCajaTextoFormulario mt-2" for="cbEspacio">Espacio:</label>
+                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                            cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                            deseado en el combobox  -->
+                            <div class="cbCitiger mb-2">
+                                <select class="custom-select">
+                                    <option selected="">Seleccionar...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select> 
+                            </div>
 
-                            <label class="tituloCajaTextoFormulario" for="txtFechaAlquiler">Fecha de Alquiler:</label>
+                            <label class="tituloCajaTextoFormulario mt-2" for="txtFechaAlquiler">Fecha de Alquiler:</label>
                             <input type="date" class="form-control cajaTextoFormulario" id="txtFechaAlquiler"
                                 placeholder="AAAA-MM-DD">
 

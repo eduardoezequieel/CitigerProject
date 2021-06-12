@@ -36,7 +36,7 @@
                 <div class="vertical-nav colorCitiger" id="sidebar">
                     <div class="py-3 px-3 colorCitiger">
                     <div class="media d-flex">
-                        <a href="dashboard.php" id="btnDashboard" class="btn btnInicio"><img src="../../resources/img/citigerWhiteLogo2.png" alt="" class="img-fluid" width="140px"></a>
+                        <a href="dashboard.php" id="btnDashboard" class="btn btnInicio"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
                     </div>
                     </div>
                     
@@ -73,7 +73,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="menu_aportaciones.php" class="nav-link ">
+                        <a href="listado_aportaciones.php" class="nav-link ">
                         <i class="fas fa-coins mr-3 tamañoIconos"></i>
                         Aportaciones
                         </a>

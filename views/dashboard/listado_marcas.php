@@ -17,15 +17,18 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
                 </div>
             </div>
 
-            <div class="row animate__animated animate__bounceIn">
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
-                    <a href="#" class="btn botonesListado" data-toggle="modal" data-target="#agregarMarcas" data><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Marca</a>
-                </div>
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
-                    <form>
+            <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
+                <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
+                    <div class="mt-4 mx-3 mb-3">
+                        <a href="#" data-toggle="modal" data-target="#agregarMarcas" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                    </div>
+                      
+                    <form class="mx-3">
+                        <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
                         <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
-                    </form>
+                    </form>            
                 </div>
+                
             </div><br>
 
             <!-- Desde aqui comienza la tabla -->
@@ -57,6 +60,7 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
                                     <div class="row paddingBotones">
                                         <div class="col-12">
                                             <a href="#" data-toggle="modal" data-target="#editarMarcas" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btnTabla2"><i class="fas fa-trash"></i></a>
                                         </div>
                                     </div>
                                 </th>
@@ -132,11 +136,8 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
                             </div>
                             <div class="row justify-content-center mt-3">
                                 <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                                    <a href="#" class="btn btnEditarFormulario"><span
+                                    <a href="#" class="btn btnAgregarFormulario"><span
                                             class="fas fa-edit mr-3 tamañoIconosBotones"></span>Editar</a>
-
-                                    <a href="#" class="btn btnEditarFormulario"><span
-                                            class="fas fa-minus mr-3 tamañoIconosBotones"></span>Eliminar</a>
                                 </div>
                             </div>
                         <!-- Fin del Contenido del Modal -->

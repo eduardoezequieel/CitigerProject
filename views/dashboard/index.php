@@ -40,7 +40,7 @@
                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="row mt-3">
                         <div class="col-12">
-                            <img id="CitigerLogo" src="../../resources/img/citigerWhiteLogo.png" alt="" class="img-fluid animate__animated animate__bounceIn animate__slow">
+                            <img id="CitigerLogo" src="../../resources/img/citigerDarkLogo.png" alt="" class="img-fluid animate__animated animate__bounceIn animate__slow">
                         </div>
                     </div>
                     <div class="row">
