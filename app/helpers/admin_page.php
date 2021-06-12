@@ -17,13 +17,12 @@
                 <link rel="stylesheet" href="../../resources/css/estilos2.css">
                 <link rel="stylesheet" href="../../resources/css/estilosControles.css">
                 <link rel="stylesheet" href="../../resources/css/estilos4.css">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
             
                 <!-- Fuentes -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
-                <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
-                <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Quicksand&display=swap" rel="stylesheet">
-                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet"> 
-                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet"> 
+                <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"> 
+                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
                 <meta http-equiv="Expires" content="0">
                 <meta http-equiv="Last-Modified" content="0">
@@ -37,7 +36,7 @@
                 <div class="vertical-nav colorCitiger" id="sidebar">
                     <div class="py-3 px-3 colorCitiger">
                     <div class="media d-flex">
-                        <a href="dashboard.php" class="btn btnInicio"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
+                        <a href="dashboard.php" id="btnDashboard" class="btn btnInicio"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
                     </div>
                     </div>
                     
@@ -46,7 +45,7 @@
                         <div id="tarjetaPerfil" class="p-3">
                             <div class="row">
                                 <div class="col-3">
-                                    <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt="" class="redondearImg" width="60px">
+                                    <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt="" class="rounded-circle fit-images" width="60px" height="60px">
                                 </div>
                             <div class="col-9">
                                 <label for="ajustes" class="pl-4 pt-2" id="usuario">Eduardo Rivera</label>
@@ -58,6 +57,7 @@
                                     <div id="botones">
                                     <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
                                     <a href="index.php" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
+                                    <a href="index.php" class="btn fas fa-adjust botonesPerfil" id="modo"></a>
                                     </div>
                                 </div>
                             </div>
@@ -67,37 +67,37 @@
                     <!-- Botones de Navegación -->
                     <ul class="nav flex-column colorCitiger mt-4">
                     <li class="nav-item">
-                        <a href="menu_alquileres.php" class="nav-link categoriasFuente">
+                        <a href="menu_alquileres.php" class="nav-link ">
                         <i class="fas fa-home mr-3 tamañoIconos"></i>
                         Alquileres
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="menu_aportaciones.php" class="nav-link categoriasFuente">
+                        <a href="listado_aportaciones.php" class="nav-link ">
                         <i class="fas fa-coins mr-3 tamañoIconos"></i>
                         Aportaciones
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="listado_denuncias.php" class="nav-link categoriasFuente">
+                        <a href="listado_denuncias.php" class="nav-link ">
                         <i class="fas fa-exclamation-triangle mr-3 tamañoIconos"></i>
                         Denuncias
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="menu_materiales.php" class="nav-link categoriasFuente">
+                        <a href="menu_materiales.php" class="nav-link ">
                         <i class="fas fa-boxes mr-3 tamañoIconos"></i>
                         Materiales
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="menu_usuarios.php" class="nav-link categoriasFuente">
+                        <a href="menu_usuarios.php" class="nav-link ">
                         <i class="fas fa-users-cog mr-3 tamañoIconos"></i>
                         Usuarios
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="listado_visitas.php" class="nav-link categoriasFuente">
+                        <a href="listado_visitas.php" class="nav-link ">
                         <i class="fas fa-car mr-3 tamañoIconos"></i>
                         Visitas
                         </a>

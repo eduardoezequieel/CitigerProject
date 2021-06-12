@@ -20,25 +20,25 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
         </div>
 
         <div class="row">
-            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
+            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
                 <a href="casas_pendientes.php" class="btn botonMenu1">
-                    <img src="../../resources/img/warning.png" alt="" class="img-fluid" width="50px">
+                    <i class="fas fa-exclamation-triangle iconosBotonesMenu"></i>
                     <label class="textoBotonesMenu">Casas con pagos pendientes</label>
                 </a>
             </div>
 
-            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
+            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
                 <a href="casas_solventes.php" class="btn botonMenu2">
-                    <img src="../../resources/img/checked.png" alt="" class="img-fluid" width="66px">
+                <i class="fas fa-check-circle iconosBotonesMenu"></i>
                     <label class="textoBotonesMenu">Casas con pagos solventes</label>
                 </a>
             </div>
         </div>
 
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-4 animate__animated animate__bounceIn">
             <div class="col d-flex justify-content-center align-items-center">
                 <a href="listado_casas.php" class="btn botonMenu3">
-                    <img src="../../resources/img/home.png" alt="" class="img-fluid" width="76px">
+                    <i class="fas fa-house-user iconosBotonesMenu"></i>
                     <label class="textoBotonesMenu">Casas</label>
                 </a>
             </div>

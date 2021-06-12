@@ -13,14 +13,14 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                 class="text-uppercase font-weight-bold"></small></button>
 
         <!-- Desde aqui comienza el contenido -->
-        <div class="row justify-content-center mb-3">
+        <div class="row justify-content-center mb-3 animate__animated animate__bounceIn">
             <div class="col-12 d-flex justify-content-center align-items-center">
                 <h1 class="tituloPagina text-center">Denuncia</h1>
             </div>
         </div>
 
         <!-- Inicio de Fila -->
-        <div class="row">
+        <div class="row animate__animated animate__bounceIn">
             <!-- Primera columna de controles -->
             <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                 <form id="EmpleadosColumna1">
@@ -56,7 +56,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
 
         </div>
 
-        <div class="row justify-content-center marginPrimeraColumna">
+        <div class="row justify-content-center marginPrimeraColumna animate__animated animate__bounceIn">
             <label class="tituloCajaTextoFormulario" for="txtDireccion">Descripción:</label>
             <div class="col-12 d-flex justify-content-center align-items-center ">
                 <textarea class="form-control cajaTextoFormulario" placeholder="" id="txtDireccion" rows="7"></textarea>
@@ -64,13 +64,17 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
         </div>
 
         <!-- Botones de Acción del Formulario -->
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-4 animate__animated animate__bounceIn">
             <div class="col-12 d-flex justify-content-center align-items-center text-center">
                 <a href="#" class="btn btnEditarFormulario" data-toggle="modal" data-target="#agregarMarcas" data><span
                         class="fas fa-times mr-3 tamañoIconosBotones"></span>Rechazar</a>
+                <a href="#" class="btn btnEditarFormularioIcono" data-toggle="modal" data-target="#agregarMarcas" data><span
+                        class="fas fa-times tamañoIconosBotones"></span></a>
 
                 <a href="#" class="btn btnEditarFormulario" data-toggle="modal" data-target="#solucionar" data><span
                         class="fas fa-check mr-3 tamañoIconosBotones"></span>Solucionar</a>
+                <a href="#" class="btn btnEditarFormularioIcono" data-toggle="modal" data-target="#solucionar" data><span
+                        class="fas fa-check tamañoIconosBotones"></span></a>
             </div>
         </div>
         <!-- Desde aqui finaliza el contenido -->

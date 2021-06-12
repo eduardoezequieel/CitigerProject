@@ -6,89 +6,10 @@
     
   }
 
-#menuAlqui{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 73%;
-}  
+
   
-.cajaTextoFormularioHora {
-  background-color: #202427;
-  border: 0.01rem solid #41464b;
-  color: white;
-  border-radius: 16px;
-  padding: 10px;
-  height: 40px;
-  width: 130px;
-  margin-bottom: 10px;
-}
 
-.cajaTextoFormularioHora:focus {
-  background-color: #202427;
-  border: 0.01rem solid #41464b;
-  color: white;
-}
 
-.cajaTextoFormularioPrecio {
-  background-color: #202427;
-  border: 0.01rem solid #41464b;
-  color: white;
-  border-radius: 16px;
-  padding: 10px;
-  height: 40px;
-  width: 95px;
-  margin-bottom: 10px;
-}
-
-.cajaTextoFormularioPrecio:focus {
-  background-color: #202427;
-  border: 0.01rem solid #41464b;
-  color: white;
-}
-
-.cargarFoto6{
-  width: 200px;
-  height: 165px;
-  border-radius: 5px;
-  border: 1px solid #5494F5
-}
-
-.cargarFoto7{
-  width: 60px;
-  height: 55px;
-  border-radius: 5px;
-  border: 1px solid #5494F5
-}
-
-.cargarFoto8{
-  width: 60px;
-  height: 55px;
-  border-radius: 5px;
-  border: 1px solid #5494F5;
-  margin-left: 13px;
-}
-
-.divFotografia4{
-  display: flex;
-  flex-direction: inline;
-  
-  justify-content: center;
-  width: min-content;
-}
-
-.btnCargarFoto6{
-  margin-top: 20px;
-  background-color: transparent;
-  color: #5494F5;
-}
-
-.btnCargarFoto6:hover{
-  border: 1px solid transparent;
-  background-color: #5494F5;
-  color: #33373b;
-}
 
 
 .contenedorDetalle{
