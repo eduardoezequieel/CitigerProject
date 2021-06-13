@@ -238,3 +238,13 @@ CREATE TABLE aportacion(
 	fechaPago DATE NOT NULL,
 	descripcion CHARACTER VARYING (200) NOT NULL
 );
+
+--cambios 13/06/2021
+alter table usuario add constraint UQ_usuario_username unique (username);
+alter table usuario add constraint UQ_usuario_correo unique (correo);
+ALTER TABLE usuario ALTER COLUMN foto TYPE character varying(50) USING CAST(foto AS bytea);
+ALTER TABLE usuario ALTER COLUMN contrasena TYPE character varying(60) USING CAST(contrasena AS character varying);
+alter table residente add constraint UQ_residente_usuario unique (username);
+alter table residente add constraint UQ_residente_correo unique (correo);
+ALTER TABLE residente ALTER COLUMN foto TYPE character varying(50) USING CAST(foto AS bytea);
+ALTER TABLE residente ALTER COLUMN contrasena TYPE character varying(60) USING CAST(contrasena AS character varying);
