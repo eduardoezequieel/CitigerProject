@@ -47,24 +47,24 @@
                         <div class="col-12">
                             <h1 class="titulo mt-2 animate__animated animate__bounceIn animate__slow">Iniciar Sesión</h1>
                             <div id="controlesInicio" class="mt-4">
-                                <form>
+                                <form method="post" id="login-form">
                                     <!-- Input Correo -->
                                     <div class="form-group mb-4 animate__animated animate__bounceIn animate__slow">
                                         <h1 class="tituloCajasLogin">Correo Electrónico:</h1>
-                                        <input type="email" class="form-control cajaTextoLogin" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su correo electrónico...">
+                                        <input type="email" class="form-control cajaTextoLogin" id="txtCorreo" name="txtCorreo" aria-describedby="emailHelp" onChange="checkCorreo('txtCorreo')" placeholder="Ingrese su correo electrónico..." Required>
                                     </div>
                                     <!-- Input Contraseña -->
                                     <div class="form-group mb-1 animate__animated animate__bounceIn animate__slow">
                                         <h1 class="tituloCajasLogin">Contraseña:</h1>
-                                        <input type="password" class="form-control cajaTextoLogin  mb-1" id="exampleInputPassword1" placeholder="Ingrese su contraseña...">
+                                        <input type="password" class="form-control cajaTextoLogin  mb-1" id="txtContrasenia" name="txtContrasenia" onChange="checkInput('txtContrasenia')" placeholder="Ingrese su contraseña..." Required>
                                         
-                                        <input id="mostrarContraseña" type="checkbox" class="checkboxCitiger">
+                                        <input id="mostrarContraseña" type="checkbox" class="checkboxCitiger" onChange="showHidePassword('mostrarContraseña', 'txtContrasenia')">
                                         <label class="checkboxLabel checkboxCitiger mt-2" for="mostrarContraseña">      Mostrar Contraseña</label>
                                     </div>
                                     <!-- Botones -->
                                     <div class="row justify-content-center animate__animated animate__bounceIn animate__slow">
                                         <div class="col-12 d-flex justify-content-center align-items-center">
-                                            <a href="dashboard.php" class="btn botonLogin my-3">Iniciar Sesión →</a>
+                                            <button class="btn botonLogin my-3" type="submit">Iniciar Sesión →</button>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -91,5 +91,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/08b7535157.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../../app/controllers/dashboard/index.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../app/helpers/components.js"></script>
   </body>
 </html> 
