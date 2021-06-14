@@ -107,42 +107,6 @@
   margin-top: 30px;
 }
 
-
-.cajaTextoDUI {
-  background-color: #202427;
-  border: 0.01rem solid #41464b;
-  color: white;
-  border-radius: 16px;
-  padding: 10px;
-  height: 40px;
-  width: 195px;
-  margin-bottom: 10px;
-}
-
-
-.cajaTextoDUI:focus {
-  background-color: #202427;
-  border: 0.01rem solid #41464b;
-  color: white;
-}
-
-
-#tarjetaCaja {
-  background-color: #202427;
-  border-radius: 20px;
-  width: 85%;
-  margin-left: 15px;
-  margin-top: 10px;
-}
-
-.textoCard {
-  margin-top: 30px;
-  font-family: 'Manrope', sans-serif;
-  font-size: 17px;
-  color: #ffffff;
-  justify-content: start;
-}
-
 .btnInicio2{
   background-color: transparent;
   border-radius: 20px;

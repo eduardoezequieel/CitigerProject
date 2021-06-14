@@ -20,7 +20,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
                         
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center animate__animated animate__zoomIn">
                             <div class="col-12 d-flex justify-content-center">
                                 <form>
                                     <!-- Cargar Fotografia -->
@@ -28,7 +28,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                         <div class="col">
                                             <div class="divFotografiaAjustes">
                                                 <div class="cargarFoto d-flex justify-content-center align-items-center">
-                                                    <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt="" class="img-fluid rounded-circle" width="140px">
+                                                    <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt="" class="fit-images rounded-circle" width="140px" height="140px">
                                                 </div>
                                                 <button class="btn btnCargarFoto2"><span class="fas fa-plus"></span></button>
                                                 <h1 class="tituloUsuario mt-3">Eduardo Rivera</h1>
@@ -48,7 +48,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
 
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center animate__animated animate__zoomIn">
                             <div class="col-12 d-flex justify-content-center align-items-center">
                                 <!-- Div especializado para cada sección -->
                                 <div class="informacionPersonal">
@@ -105,7 +105,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                         </div>
                                         <div class="col-6 divColumnasAjustes">
                                             <form>
-                                                <button class="btn botonesAjustes" id="btnEditarAjustes">Editar</button>
+                                                <a href="#" id="btnEditarAjustes" data-toggle="modal" data-target="#administrarCuenta" class="btn botonesAjustes">Editar</a>
                                             </form>
                                         </div>
                                     </div>
@@ -121,7 +121,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
 
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center animate__animated animate__zoomIn">
                             <div class="col-12 d-flex justify-content-center align-items-center">
                                 <div class="informacionPersonal">
                                     <div class="row">
@@ -139,7 +139,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                             <h2 class="informacion">riv.edu10@gmail.com</h2>
                                         </div>
                                         <div class="col-6">
-                                            <button class="btn botonesAjustes">Editar</button>
+                                            <a href="#" class="btn botonesAjustes">Editar</a>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -164,6 +164,74 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
 
     </div>
     <!-- Final del contenido -->
+
+<!-- Modal para Administrar informacion personal -->
+<div class="modal fade" id="administrarCuenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Alquileres</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                
+                <div class="row">
+                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <label class="tituloCajaTextoFormulario mt-2" for="txtTelefono">Nombres:</label>
+                        <input type="text" class="form-control cajaTextoModal" id="txtTelefonomovil"
+                        placeholder="">
+
+                        <label class="tituloCajaTextoFormulario mt-2" for="txtTelefono">Apellidos:</label>
+                        <input type="text" class="form-control cajaTextoModal" id="txtTelefonomovil"
+                        placeholder="">
+
+                        <label class="tituloCajaTextoFormulario mt-2" for="txtTelefono">Género:</label>
+                        <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                        deseado en el combobox  -->
+                        <div class="cbCitiger" id="selectGeneroVisitante">
+                            <select class="custom-select">
+                                <option selected="">Seleccionar...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select> 
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <label class="tituloCajaTextoFormulario mt-2" for="txtTelefono">Fecha de Nacimiento:</label>
+                        <input type="date" class="form-control cajaTextoModal" id="txtTelefonomovil"
+                        placeholder="">
+
+                        <label class="tituloCajaTextoFormulario mt-2" for="txtTelefono">Teléfono Fijo:</label>
+                        <input type="text" class="form-control cajaTextoModal" id="txtTelefonomovil"
+                        placeholder="">
+
+                        <label class="tituloCajaTextoFormulario mt-2" for="txtTelefono">Teléfono Movil:</label>
+                        <input type="text" class="form-control cajaTextoModal" id="txtTelefonomovil"
+                        placeholder="">
+                    </div>
+                </div>
+                
+                <!-- Botones de Acción del Formulario -->
+                <div class="row justify-content-center mt-4">
+                    <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button> 
+                    </div>
+                </div>
+                <!-- Fin del Contenido del Modal -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
 
 <?php
 //Se imprimen los JS necesarios

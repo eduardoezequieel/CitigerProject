@@ -31,7 +31,7 @@
                 <div class="vertical-nav colorCitiger" id="sidebar">
                     <div class="py-3 px-3 colorCitiger">
                     <div class="media d-flex">
-                    <a href="index.php" class="btn btnInicio2"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
+                    <a href="dashboard.php" class="btn btnInicio2"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
                     </div>
                     </div>
                     
@@ -54,19 +54,19 @@
                     <!-- Botones de Navegación -->
                     <ul class="nav flex-column colorCitiger mt-4">
                         <li class="nav-item">
-                            <a href="menu_alquileres.php" class="nav-link ">
+                            <a href="../../views/caseta/ajustes_cuenta.php" class="nav-link ">
                             <i class="fas fa-cog mr-3 tamañoIconos"></i>
                             Ajustes
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="menu_alquileres.php" class="nav-link ">
+                            <a href="#" class="nav-link ">
                             <i class="fas fa-adjust mr-3 tamañoIconos"></i>
                             Dia
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="menu_alquileres.php" class="nav-link ">
+                            <a href="../../views/caseta/index.php" class="nav-link ">
                             <i class="fas fa-sign-out-alt mr-3 tamañoIconos"></i>
                             Cerrar Sesión
                             </a>

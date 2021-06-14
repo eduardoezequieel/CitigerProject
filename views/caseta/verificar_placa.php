@@ -20,9 +20,9 @@ admin_Page::sidebarTemplate('Verificar | Citiger');
         </div>
 
         <!-- Inicio de Fila -->
-        <div class="row">
+        <div class="row justify-content-center animate__animated animate__backInDown">
             <!-- Primera columna de controles -->
-            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12  centrarColumnas">
+            <div class="d-flex justify-content-center col-xl-12 col-md-12 col-sm-12 col-xs-12  centrarColumnas">
                 <form id="EmpleadosColumna1">
                     <label class="tituloCajaTextoFormulario" for="txtNombres">Placa del vehiculo:</label>
                     <input type="text" class="form-control cajaTextoDUI" id="txtNombres" placeholder="P454 451">
@@ -30,10 +30,10 @@ admin_Page::sidebarTemplate('Verificar | Citiger');
                 </form>
             </div>
             <!-- Segunda columna de controles -->
-            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginBoton centrarColumnas">
+            <div class="d-flex justify-content-center col-xl-12 col-md-12 col-sm-12 col-xs-12 mt-2 centrarColumnas">
                 <form>
                     <a href="#" class="btn btnAgregarFormulario"><span
-                            class="fas fa-check-circle mr-3 tamañoIconosBotones"></span>Verificar información</a>
+                            class="fas fa-check-circle mr-3 tamañoIconosBotones"></span>Verificar</a>
 
                 </form>
             </div>
@@ -48,7 +48,7 @@ admin_Page::sidebarTemplate('Verificar | Citiger');
             </div> 
         </div>
 
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-4 animate__animated animate__backInUp">
             <div class="col-12 d-flex justify-content-center align-items-center text-left">
                 <div id="tarjeta">
                     <div id="tarjetaCaja" class="p-4">

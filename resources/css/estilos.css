@@ -1647,7 +1647,39 @@ hr {
 }
 
 
+.cajaTextoDUI {
+  background-color: var(--color-fondo) !important;
+  border: 0.01rem solid var(--bordes-inputs) !important;
+  color: var(--color-tipografia) !important;
+  border-radius: 16px;
+  padding: 10px;
+  height: 40px;
+  width: 195px;
+  margin-bottom: 10px;
+}
 
+#tarjetaCaja {
+  background-color: var(--color-fondo) !important;
+  border: 3px dashed var(--bordes-inputs) !important;
+  border-radius: 20px;
+  width: 85%;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.textoCard {
+  margin-top: 30px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 17px;
+  color: var(--color-tipografia) !important;
+  justify-content: start;
+}
+
+.cajaTextoDUI:focus {
+  background-color: var(--color-fondo) !important;
+  border: 0.01rem solid var(--bordes-inputs) !important;
+  color: var(--color-tipografia) !important;
+}
 
 
 .cajaTextoFormulario1 {
