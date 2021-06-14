@@ -240,7 +240,7 @@ CREATE TABLE aportacion(
 );
 
 --cambios 13/06/2021 (las que estan en comentarios quizas no sean necesarias, PostgreSQL indica que
---ya existen)--
+--ya existen)
 alter table usuario add constraint UQ_usuario_username unique (username);
 alter table usuario add constraint UQ_usuario_correo unique (correo);
 ALTER TABLE usuario ALTER COLUMN foto TYPE character varying(50) USING CAST(foto AS bytea);
