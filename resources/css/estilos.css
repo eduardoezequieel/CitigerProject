@@ -210,6 +210,10 @@ option[selected]{
     width: 280px !important;
     margin-bottom: 10px !important;
   }
+
+  .page-content{
+    padding: 0px !important;
+  }
 }
 
 @media (max-width: 768px) {

@@ -34,7 +34,7 @@ admin_Page::sidebarTemplate('Espacios | Citiger');
 
             <!-- Fila de Tarjetas -->
             <div class="row justify-content-center animate__animated animate__backInUp">
-                <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 mt-2 d-flex margenTarjetas justify-content-center align-items-center text-center">
+                <div class="animate__animated animate__bounceIn col-xl-4 col-md-4 col-sm-12 col-xs-12 mt-2 d-flex margenTarjetas justify-content-center align-items-center text-center">
                     <!-- Inicio de Tarjeta -->
                     <div class="tarjeta">
                         <!-- Fila para Imagen -->

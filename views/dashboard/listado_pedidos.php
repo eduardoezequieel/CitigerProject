@@ -140,7 +140,7 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr class="animate__animated animate__fadeIn">
                                             <!-- Datos-->
                                             <td>CEMENTO CEMEX USO GRAL</td>
                                             <td>$6.99</td>

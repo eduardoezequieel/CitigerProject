@@ -49,7 +49,7 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr class="animate__animated animate__fadeIn">
                                 <!-- Fotografia-->
                                 <th scope="row">
                                     <div class="row paddingTh">

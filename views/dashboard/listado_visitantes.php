@@ -46,7 +46,7 @@ admin_Page::sidebarTemplate('Visitantes | Citiger');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr class="animate__animated animate__fadeIn">
                                 <!-- Datos-->
                                 <td>Edenilson Ramírez</td>
                                 <td>12345678-9</td>
