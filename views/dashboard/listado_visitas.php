@@ -17,68 +17,51 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
-                    <a href="agregar_visita.php" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar Nueva Visita</a>
+            <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
+                <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
+                    <div class="mt-4 mx-3 mb-3">
+                        <a href="#" data-toggle="modal" data-target="#administrarVisitantes" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                    </div>
+                      
+                    <form class="mx-3">
+                        <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
+                        <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
+                    </form>            
                 </div>
-                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
-                    <form>
-                        <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                               &#xf002;">
-                    </form>
-                </div>
+                
             </div><br>
             <!-- Desde aqui comienza la tabla -->
-            <div class="row">
-                <div class="col">
-                    <table class="table table-dark table-hover table-responsive-lg tablaVisitas">
-                        <thead class="tituloTabla4">
+            <div class="row mt-1 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
+                <div class="col-12 justify-content-center align-items-center text-center">
+                    <table class="table table-borderless citigerTable">
+                        <thead>
+                            <!-- Columnas-->
                             <tr>
-                                <th class=" pt-4"></th>
-                                <th class="pt-4">Visitante</th>
-                                <th class="pt-4">Fecha</th>
-                                <th class=" pt-4">Placa</th>
-                                <th class="pt-4"></th>
+                                <th scope="col">Visitante</th>
+                                <th scope="col">DUI</th>
+                                <th scope="col">Placa</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Estado de la Visita</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr >
-                                <th scope="row" class="d-flex justify-content-center boto"><img src="../../resources/img/car.png" alt="userIcon" class="imagenTabla"></th>
-                                <td class="primer" >BRANDER CRISTOFER PEÑA PERLA</td>
-                                <td class="primer" id="align">2021-04-20</td>
-                                <td class="primer" id="align">P360 048</td>
-                                <th scope="row" class="boto1">
-                                    <a href="editar_visita.php" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
-                                </th>
-                            </tr>
                             <tr>
-                                <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/car.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>DENIS GABRIEL ROMERO LEIVA</td>
-                                <td>2021-04-21</td>
-                                <td>P360 048</td>
+                                <!-- Datos-->
+                                <td>Edenilson Ramírez</td>
+                                <td>12345678-9</td>
+                                <td>P246-182</td>
+                                <td>13/6/2021</td>
+                                <td>Por llegar</td>
+                                
+                                <!-- Boton-->
                                 <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/car.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>JUAN ANGEL HERNANDEZ PEREZ</td>
-                                <td>2021-04-22</td>
-                                <td>P360 048</td>
-                                <th scope="row">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/car.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>ERNESTO ARMANDO PÉREZ</td>
-                                <td>2021-04-23</td>
-                                <td>P360 048</td>
-                                <th scope="row" class="pb-5">
-                                    <a href="#" class="btn botonesListadoTabla "><i class="fas fa-edit  mr-3 tamañoIconosBotonesTabla"></i>Editar</a>
-                                    <a href="#" class="btn botonesListadoTablaIcono "><i class="fas fa-edit tamañoIconosBotonesTabla"></i></a>
+                                    <div class="row paddingBotones">
+                                        <div class="col-12">
+                                            <a href="#" data-toggle="modal" data-target="#administrarVisitantes" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+                                            <a href="#" class="btn btnTabla2"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </div>
                                 </th>
                             </tr>
                         </tbody>

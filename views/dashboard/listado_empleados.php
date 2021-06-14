@@ -19,24 +19,34 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
             </div>
         </div>
 
-        <div class="row animate__animated animate__bounceIn">
-            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarBotones">
-                <a href="#" data-toggle="modal" data-target="#administrarEmpleado" class="btn botonesListado"><span
-                        class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
-            </div>
-            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 search">
-                <form>
-                    <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp"
-                        placeholder="Buscar...                                                                         &#xf002;">
+        <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
+            <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
+                <div class="mt-4 mx-3 mb-3">
+                    <a href="#" data-toggle="modal" data-target="#administrarEmpleado" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                </div>
+                    
+                <form class="mx-3">
+                    <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
+                    <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
+                </form>   
+
+                <form class="mx-3">
+                    <h1 class="tituloCajaTextoFormulario">Tipo:</h1>
+                    <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                    cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                    deseado en el combobox  -->
+                    <div class="cbCitigerBusqueda">
+                        <select class="custom-select">
+                            <option selected="">Seleccionar...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select> 
+                    </div>
                 </form>
             </div>
+            
         </div><br>
-        <!-- Desde aqui comienza la tabla -->
-        <div class="row animate__animated animate__bounceInUp">
-            <div class="col-12">
-                <h2 class="subTituloPagina text-center pb-2">Caseta</h2>
-            </div>
-        </div>
         <!-- Desde aqui comienza la tabla -->
         <div class="row mt-3 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
             <div class="col-12 justify-content-center align-items-center text-center">
@@ -49,6 +59,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                             <th scope="col">DUI</th>
                             <th scope="col">Telefono</th>
                             <th scope="col">Estado</th>
+                            <th scope="col">Tipo</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -68,6 +79,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                             <td>12345678-9</td>
                             <td>1111-2222</td>
                             <td>Activo</td>
+                            <td>Limpieza</td>
                             <!-- Boton-->
                             <th scope="row">
                                 <div class="row paddingBotones">
@@ -87,60 +99,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
             </div>
         </div>
         <!-- Desde aqui termina la tabla --><br>
-        <!-- Desde aqui termina la tabla -->
-        <div class="row animate__animated animate__bounceInUp">
-            <div class="col-12">
-                <h2 class="subTituloPagina text-center pb-2">Limpieza</h2>
-            </div>
-        </div>
-        <div class="row mt-3 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
-            <div class="col-12 justify-content-center align-items-center text-center">
-                <table class="table table-borderless citigerTable">
-                    <thead>
-                        <!-- Columnas-->
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">DUI</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <!-- Fotografia-->
-                            <th scope="row">
-                                <div class="row paddingTh">
-                                    <div class="col-12">
-                                        <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt=""
-                                            class="rounded-circle fit-images" width="30px" height="30px">
-                                    </div>
-                                </div>
-                            </th>
-                            <!-- Datos-->
-                            <td>Eduardo Rivera</td>
-                            <td>12345678-9</td>
-                            <td>1111-2222</td>
-                            <td>Activo</td>
-                            <!-- Boton-->
-                            <th scope="row">
-                                <div class="row paddingBotones">
-                                    <div class="col-12">
-                                        <a href="#" data-toggle="modal" data-target="#administrarEmpleado" class="btn btnTabla mx-2"><i
-                                                class="fas fa-edit"></i></a>
-
-                                        <a href="#" class="btn btnTabla2 mx-2"><i
-                                        class="fas fa-trash"></i></a>
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-        </div><br>
+       
         <!-- Desde aqui termina la tabla -->
         <!-- Desde aqui finaliza el contenido -->
 

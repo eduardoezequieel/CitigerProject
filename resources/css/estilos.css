@@ -81,6 +81,8 @@ option[selected]{
   height: 50px;
 }
 
+
+
 .cajaTextoLogin:focus {
   background-color: transparent;
   border: 0.01rem solid var(--bordes-inputs);
@@ -197,6 +199,17 @@ option[selected]{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#selectGeneroVisitante{
+  width: 200px !important;
+}
+
+@media (max-width:725px){
+  #selectGeneroVisitante{
+    width: 280px !important;
+    margin-bottom: 10px !important;
+  }
 }
 
 @media (max-width: 768px) {

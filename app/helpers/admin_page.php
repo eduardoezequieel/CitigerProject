@@ -97,7 +97,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="listado_visitas.php" class="nav-link ">
+                        <a href="menu_visitas.php" class="nav-link ">
                         <i class="fas fa-car mr-3 tamañoIconos"></i>
                         Visitas
                         </a>
