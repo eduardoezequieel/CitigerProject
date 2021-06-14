@@ -1553,27 +1553,14 @@ hr {
 /*Dashboard*/
 
 
-
-
-
-
 .redondearImg {
   border-radius: 50px;
 }
 
 
-
-
-
-
-
 .tamañoIconos {
   font-size: 15px;
 }
-
-
-
-
 
 .menuDiv {
   height: 95vh;
@@ -1590,7 +1577,7 @@ hr {
 
 
 .botonMenuGenerico {
-  background-color: #202427;
+  background-color: var(--color-citiger);
   width: 200px;
   height: 200px;
   display: flex;
@@ -1603,16 +1590,8 @@ hr {
 }
 
 .botonMenuGenerico:hover {
-  background-color: #181b1d;
+  background-color: var(--color-citiger-claro);
 }
-
-
-
-
-
-
-
-
 
 .titulo1 {
   font-family: 'Quicksand', 'sans-serif';

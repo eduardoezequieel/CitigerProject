@@ -14,14 +14,15 @@
             
                 <!-- Estilos -->
                 <link rel="stylesheet" href="../../resources/css/estilos.css">
+                <link rel="stylesheet" href="../../resources/css/estilos2.css">
+                <link rel="stylesheet" href="../../resources/css/estilosControles.css">
                 <link rel="stylesheet" href="../../resources/css/estilos4.css">
-                <link rel="stylesheet" href="../../resources/css/estilos2.css">                
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+            
                 <!-- Fuentes -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
-                <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
-                <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Quicksand&display=swap" rel="stylesheet">
-                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet"> 
-                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet"> 
+                <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"> 
+                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
                 <title>'.$titulo.'</title>
               </head>
@@ -41,25 +42,35 @@
                                 <div class="col-3">
                                    <img src="../../resources/img/ppEdenilson.png" alt="" class="redondearImg" width="60px">
                                 </div>
-                            <div class="col-9">
-                                <label for="ajustes" class="pl-4 pt-2" id="usuario">Edenilson Ramírez</label>
-                                <label for="ajustes" class="pl-4" id="tipoUsuario">Caseta</label>
-                            </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-12" id="filaBotones">
-                                    <div id="botones">
-                                    <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
-                                    <a href="../dashboard/index.php" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
-                                    </div>
+                                <div class="col-9">
+                                    <label for="ajustes" class="pl-4 pt-2" id="usuario">Edenilson Ramírez</label>
+                                    <label for="ajustes" class="pl-4" id="tipoUsuario">Caseta</label>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 
                     <!-- Botones de Navegación -->
                     <ul class="nav flex-column colorCitiger mt-4">
-                    
+                        <li class="nav-item">
+                            <a href="menu_alquileres.php" class="nav-link ">
+                            <i class="fas fa-cog mr-3 tamañoIconos"></i>
+                            Ajustes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="menu_alquileres.php" class="nav-link ">
+                            <i class="fas fa-adjust mr-3 tamañoIconos"></i>
+                            Dia
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="menu_alquileres.php" class="nav-link ">
+                            <i class="fas fa-sign-out-alt mr-3 tamañoIconos"></i>
+                            Cerrar Sesión
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Fin del sidebar -->

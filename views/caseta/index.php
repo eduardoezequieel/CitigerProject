@@ -23,18 +23,18 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                 </div>
             </div>
 
-            <div class="row pb-5">
+            <div class="row pb-5 animate__animated animate__backInDown">
                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                    <a href="verificar_dui.php" class="btn botonMenuGenerico">
-                        <img src="../../resources/img/id-card2.png" alt="" class="img-fluid" width="90px">
-                        <label class="textoBotonesMenu text-white">DUI</label>
+                    <a href="verificar_dui.php" class="btn botonMenu1">
+                        <i class="fas fa-id-card iconosBotonesMenu"></i>
+                        <label class="textoBotonesMenu">DUI</label>
                     </a>
                 </div>
 
                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                    <a href="verificar_placa.php" class="btn botonMenuGenerico float-left">
-                        <img src="../../resources/img/license-plate2.png" alt="" class="img-fluid" width="100px">
-                        <label class="textoBotonesMenu text-white">Placa</label>
+                    <a href="verificar_placa.php" class="btn botonMenu2 float-left">
+                        <i class="fas fa-car-side iconosBotonesMenu"></i>
+                        <label class="textoBotonesMenu">Placa</label>
                     </a>
                 </div>
             </div>
@@ -47,7 +47,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
 
             
 
-            <div class="row justify-content-center">
+            <div class="row justify-content-center animate__animated animate__backInUp">
                 <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
                     <div class="tarjetaDashboard">
                         <div class="row">
