@@ -239,7 +239,8 @@ CREATE TABLE aportacion(
 	descripcion CHARACTER VARYING (200) NOT NULL
 );
 
---cambios 13/06/2021
+--cambios 13/06/2021 (las que estan en comentarios quizas no sean necesarias, PostgreSQL indica que
+--ya existen)
 alter table usuario add constraint UQ_usuario_username unique (username);
 alter table usuario add constraint UQ_usuario_correo unique (correo);
 ALTER TABLE usuario ALTER COLUMN foto TYPE character varying(50) USING CAST(foto AS bytea);
@@ -248,9 +249,9 @@ alter table residente add constraint UQ_residente_usuario unique (username);
 alter table residente add constraint UQ_residente_correo unique (correo);
 ALTER TABLE residente ALTER COLUMN foto TYPE character varying(50) USING CAST(foto AS bytea);
 ALTER TABLE residente ALTER COLUMN contrasena TYPE character varying(60) USING CAST(contrasena AS character varying);
-ALTER TABLE usuario ADD COLUMN direccion character varying(200);
-alter table usuario add constraint UQ_usuario_dui unique (dui);
-alter table residente add constraint UQ_residente_dui unique (dui);
+-- ALTER TABLE usuario ADD COLUMN direccion character varying(200);
+--alter table usuario add constraint UQ_usuario_dui unique (dui);
+-- alter table residente add constraint UQ_residente_dui unique (dui);
 ALTER TABLE usuario ADD COLUMN direccion character varying(200);
 ALTER TABLE usuario ALTER COLUMN nombre TYPE character varying(25) USING CAST(nombre AS character varying); 
 ALTER TABLE usuario ALTER COLUMN apellido TYPE character varying(25) USING CAST(apellido AS character varying); 
