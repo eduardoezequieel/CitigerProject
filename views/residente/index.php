@@ -1,240 +1,98 @@
 <?php
-//Se incluye la clase con las plantillas del documento
-include('../../app/helpers/resident_page.php');
-//Se imprime la plantilla del encabezado y se envía el titulo para la página web
-admin_Page::sidebarTemplate('Dashboard | Citiger');
-?>    
-<link rel="stylesheet" href="../../resources/css/estilos3.css">    
-    <!-- Contenedor de la Pagina -->
-    <div class="page-content p-3" id="content">
-        <div id="cuadroContenido">
-            <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars categoriasFuente tamañoIconos"></i><small class="text-uppercase font-weight-bold"></small></button>
+  header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+  header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
+?>
 
-            <div class="row my-4">
-                <div class="col-12">
-                    <h1 class="tituloDashboard">¡Bienvenido Eduardo!</h1>
-                </div>
-            </div>
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            <!-- Desde aqui comienza el contenido -->
-            <div class="row justify-content-center">
-                <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
-                    <!-- Inicio de Tarjeta -->
-                    <div class="tarjetaDashboard">
-                        <!-- Boton de opciones -->
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="" class="btn btnTarjetaDashboard3"><span class="fas fa-ellipsis-v"></span></a>
-                            </div>
-                        </div>
-                        <!-- Icono -->
-                        <div class="row justify-content-center">
-                            <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                                <i class="fas fa-money-bill-wave icono3"></i>
-                            </div>
-                        </div>
-                        <!-- Labels -->
-                        <div class="row justify-content-center mt-4">
-                            <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
-                                <h1 class="tituloTarjetaDashboard">Aportaciones Pendientes</h1>
-                                <h1 class="contadorTarjetaDashboard mt-1">14</h1>
-                            </div>
-                        </div>
-                    <!-- Final de Tarjeta -->
-                    </div>
-                </div>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-                <!-- Inicio de Tarjeta (Se repite el mismo formato) -->
-                <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
-                    <div class="tarjetaDashboard">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="" class="btn btnTarjetaDashboard2"><span class="fas fa-ellipsis-v"></span></a>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                                <i class="fas fa-car-side icono2"></i>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center mt-4">
-                            <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
-                                <h1 class="tituloTarjetaDashboard">Visitas<br>Vigentes</h1>
-                                <h1 class="contadorTarjetaDashboard mt-1">30</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../../resources/css/estilos.css">
 
-                <!-- Inicio de Tarjeta (Se repite el mismo formato) -->
-                <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
-                    <div class="tarjetaDashboard">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="" class="btn btnTarjetaDashboard"><span class="fas fa-ellipsis-v"></span></a>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                                <i class="fas fa-exclamation-triangle icono1"></i>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center mt-4">
-                            <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
-                                <h1 class="tituloTarjetaDashboard">Denuncias realizadas</h1>
-                                <h1 class="contadorTarjetaDashboard mt-1">2</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet"> 
 
-            <!-- Tabla de Actividad Reciente -->
-            <div class="row my-4">
-                <div class="col-12">
-                    <h1 class="tituloDashboard">Aportaciones en mora</h1>
-                </div>
-            </div>
-            <!-- Desde aqui comienza la tabla -->
+    <title>Iniciar Sesión | Citiger</title>
+  </head>
+  <body>
+      <!-- Contenedor Principal -->
+    <div id="containerr">
+        <div id="contenedor">   
             <div class="row">
-                <div class="col">
-                    <table class="table table-dark table-hover table-responsive-lg tablaAportacion">
-                        <thead class="tituloTabla">
-                            <tr>
-                                <th class="pl-5 pt-4"></th>
-                                <th class="pl-5 pt-4">Casa</th>
-                                <th class="pl-4 pt-4">Monto</th>
-                                <th class="pl-5 pt-4">Fecha</th>
-                                <th class="pl-5 pt-4"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr >
-                                <th scope="row" class="d-flex justify-content-center boto"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td class="primer" >#99, ETAPA 6, BLOCK 5</td>
-                                <td class="primer" id="align">$66.72</td>
-                                <td class="primer" id="align">2021-04-12</td>
-                                <th scope="row" class="boto1">
-                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
-                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>#99, ETAPA 6, BLOCK 5</td>
-                                <td>$66.72</td>
-                                <td>2021-01-12</td>
-                                <th scope="row">
-                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
-                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>#22, ETAPA 1, BLOCK 19</td>
-                                <td>$66.72</td>
-                                <td>2021-04-12</td>
-                                <th scope="row">
-                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
-                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="d-flex justify-content-center icon"><img src="../../resources/img/bluehouse.png" alt="userIcon" class="imagenTabla"></th>
-                                <td>#25, ETAPA 1, BLOCK 8</td>
-                                <td>$66.72</td>
-                                <td>2021-03-12</td>
-                                <th scope="row">
-                                <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTabla"><i class="fas fa-eye"></i>  Ver</a>
-                                    <a href="" data-toggle="modal" data-target="#verPago" class="btn botonesListadoTablaIcono"><i class="fas fa-eye"></i>  Ver</a>
-                                </th>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
+                <!-- Imagen -->
+                <div class="col-6 mt-5 pt-4">
+                    <img id="imagenPrincipal" src="../../resources/img/Interaction Design-pana.png" class="img-fluid animate__animated animate__bounceIn animate__slow">
                 </div>
-            </div><br>
-            <!-- Desde aqui finaliza el contenido -->
-                    <!-- Modal para Editar Visitas -->
-        <div class="modal fade" id="verPago" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content justify-content-center px-3 py-2">
-                    <!-- Cabecera del Modal -->
-                    <div class="modal-header">
-                        <!-- Titulo -->
-                        <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
-                                class="fas fa-info-circle mr-4 iconoModal"></span>Editar Pago</h5>
-                        <!-- Boton para Cerrar -->
-                        <button type="button" class="close text-light lead" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+    
+                <!-- Contenido -->
+                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <img id="CitigerLogo" src="../../resources/img/citigerDarkLogo.png" alt="" class="img-fluid animate__animated animate__bounceIn animate__slow">
+                        </div>
                     </div>
-                    <br>
-                    <!-- Contenido del Modal -->
-                    <div class="textoModal px-3 pb-4 mt-2">
-                        <div class="row">
-                            <!-- Primera columna de controles -->
-                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12  centrarColumnas">
-                                <form id="EmpleadosColumna1">
-                                    <label class="tituloCajaTextoFormulario" for="cbResidente">Casa:</label>
-                                    <input type="text" class="form-control cajaTextoFormulario" id="cbResidente"
-                                        placeholder="#69, Etapa 3, Block 6">
-
-
-                                    <div class="row">
-
-                                        <div class="col-6 ">
-                                            <label class="tituloCajaTextoFormulario" for="txtTelefono">Estado:</label>
-                                            <input type="text" class="form-control cajaTextoFormularioTelefono"
-                                                id="txtTelefonofijo" placeholder="Completado">
-
-                                        </div>
-
-                                        <div class="col-6 ">
-
-                                            <label class="tituloCajaTextoFormulario" for="txtTelefono">Monto:</label>
-                                            <input type="text" class="form-control cajaTextoFormularioTelefono"
-                                                id="txtTelefonomovil" placeholder="$120">
-                                        </div>
-
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="titulo mt-2 animate__animated animate__bounceIn animate__slow">Iniciar Sesión</h1>
+                            <div id="controlesInicio" class="mt-4">
+                                <form method="post" id="login-form">
+                                    <!-- Input Correo -->
+                                    <div class="form-group mb-4 animate__animated animate__bounceIn animate__slow">
+                                        <h1 class="tituloCajasLogin">Correo Electrónico:</h1>
+                                        <input type="email" class="form-control cajaTextoLogin" id="txtCorreo" name="txtCorreo" aria-describedby="emailHelp" onChange="checkCorreo('txtCorreo')" placeholder="Ingrese su correo electrónico..." Required>
                                     </div>
-                                    <label class="tituloCajaTextoFormulario" for="cbResidente">Mes Pago:</label>
-                                    <input type="text" class="form-control cajaTextoFormulario" id="cbResidente"
-                                        placeholder="Febrero, 2021">
-                                    
-
+                                    <!-- Input Contraseña -->
+                                    <div class="form-group mb-1 animate__animated animate__bounceIn animate__slow">
+                                        <h1 class="tituloCajasLogin">Contraseña:</h1>
+                                        <input type="password" class="form-control cajaTextoLogin  mb-1" id="txtContrasenia" name="txtContrasenia" onChange="checkInput('txtContrasenia')" placeholder="Ingrese su contraseña..." Required>
+                                        
+                                        <input id="mostrarContraseña" type="checkbox" class="checkboxCitiger" onChange="showHidePassword('mostrarContraseña', 'txtContrasenia')">
+                                        <label class="checkboxLabel checkboxCitiger mt-2" for="mostrarContraseña">      Mostrar Contraseña</label>
+                                    </div>
+                                    <!-- Botones -->
+                                    <div class="row justify-content-center animate__animated animate__bounceIn animate__slow">
+                                        <div class="col-12 d-flex justify-content-center align-items-center">
+                                            <a href="dashboard.php" class="btn botonLogin my-3" type="submit">Iniciar Sesión →</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-center align-items-center animate__animated animate__bounceIn animate__slow">
+                                            <h1 class="texto">  ¿Sucede algo?  </h1>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center animate__animated animate__bounceIn animate__slow">
+                                        <div class="col-12 d-flex justify-content-center align-items-center">
+                                            <a class="btn botonLogin2 my-2">Olvide mi contraseña →</a>
+                                        </div>
+                                    </div>
                                 </form>
-
-                            </div>
-                            <!-- Segunda columna de controles -->
-                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12  centrarColumnas">
-                                <form id="EmpleadosColumna1">
-                                    
-                                    <label class="tituloCajaTextoFormulario" for="txtObservacion">Descripción:</label>
-                                    <textarea class="form-control cajaTextoFormulario"
-                                        placeholder="Pago dirigido a mantenimiento de la piscina y ornamentación..." id="txtObservacion" rows="5"></textarea>
-
-                                    <label class="tituloCajaTextoFormulario" for="cbResidente">Fecha Pago:</label>
-                                    <input type="text" class="form-control cajaTextoFormulario" id="cbResidente"
-                                        placeholder="2021-04-21">
-
-                                </form>
-
                             </div>
                         </div>
-                        <!-- Fin del Contenido del Modal -->
                     </div>
                 </div>
+    
             </div>
         </div>
-        <!-- Fin del Modal -->
-            
-        </div>
-
     </div>
-    <!-- Final del contenido -->
-
-<?php
-//Se imprimen los JS necesarios
-admin_Page::footerTemplate();
-?>   
+   
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/08b7535157.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../../app/controllers/dashboard/indexzzzz.js"></script>
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../../app/helpers/components.js"></script>
+  </body>
+</html> 

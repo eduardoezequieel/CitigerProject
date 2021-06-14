@@ -41,6 +41,7 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
                                 <th scope="col">Residente</th>
                                 <th scope="col">Espacio</th>
                                 <th scope="col">Fecha</th>
+                                <th scope="col">Estado</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -58,6 +59,7 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
                                 <td>Edenilson Ramírez</td>
                                 <td>Piscina 2</td>
                                 <td>3/4/2021</td>
+                                <td>Revisión</td>
                                 <!-- Boton-->
                                 <th scope="row">
                                     <div class="row paddingBotones">
@@ -163,8 +165,8 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
                     <div class="col-12 d-flex justify-content-center align-items-center text-center">
                         <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
                         <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
-                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
-                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
+                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Autorizar</button>
+                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-ban mr-3 tamañoIconosBotones"></span>Denegar</button>
                     </div>
                 </div>
                 <!-- Fin del Contenido del Modal -->

@@ -16,13 +16,13 @@
                 <link rel="stylesheet" href="../../resources/css/estilos.css">
                 <link rel="stylesheet" href="../../resources/css/estilos2.css">
                 <link rel="stylesheet" href="../../resources/css/estilosControles.css">
+                <link rel="stylesheet" href="../../resources/css/estilos4.css">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
             
                 <!-- Fuentes -->
                 <link rel="preconnect" href="https://fonts.gstatic.com">
-                <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
-                <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Quicksand&display=swap" rel="stylesheet">
-                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet"> 
-                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet"> 
+                <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"> 
+                <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
                 <meta http-equiv="Expires" content="0">
                 <meta http-equiv="Last-Modified" content="0">
@@ -45,7 +45,7 @@
                         <div id="tarjetaPerfil" class="p-3">
                             <div class="row">
                                 <div class="col-3">
-                                   <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt="" class="redondearImg" width="60px">
+                                   <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt="" class="redondearImg fit-images" height="60px" width="60px">
                                 </div>
                             <div class="col-9">
                                 <label for="ajustes" class="pl-4 pt-2" id="usuario">Eduardo Rivera</label>
@@ -55,8 +55,9 @@
                             <div class="row mt-2">
                                 <div class="col-12" id="filaBotones">
                                     <div id="botones">
-                                    <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
-                                    <a href="../dashboard/index.php" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
+                                        <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
+                                        <a href="index.php" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
+                                        <a href="index.php" class="btn fas fa-adjust botonesPerfil" id="modo"></a>
                                     </div>
                                 </div>
                             </div>
