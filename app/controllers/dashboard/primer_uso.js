@@ -93,7 +93,7 @@ function previewPicture(idInputExaminar, idDivFoto){
             image.src = reader.result;
     
             //Se aplican las respectivas clases para que la preview aparezca estilizada
-            image.className = 'fit-images rounded-circle';
+            image.className = 'fit-images rounded-circle fotoPrimerUso';
     
             //Se quita lo que este dentro del div (en caso de que exista otra imagen)
             preview.innerHTML = ' ';

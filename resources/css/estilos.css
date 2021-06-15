@@ -172,8 +172,11 @@ option[selected]{
 
 .fit-images{
   object-fit: cover !important;
-  height: 150px;
-  width: 150px;
+}
+
+.fotoPrimerUso{
+  width: 155px;
+  height: 155px;
 }
 
 .vertical-nav {

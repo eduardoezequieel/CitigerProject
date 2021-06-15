@@ -22,6 +22,7 @@ Class Database{
 
     }*/
 
+    /*
     private static function connect()
     {
         // Credenciales para establecer la conexión con la base de datos.
@@ -32,9 +33,10 @@ Class Database{
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
-    }
+    }*/
     
     /*//Metodo para hacer la conexión (Eduardo)
+    */
     private static function connect(){
 
         // Credenciales.
@@ -45,7 +47,7 @@ Class Database{
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
-    }*/
+    }
 
     /*
     //Metodo para hacer la conexión (Samuel)

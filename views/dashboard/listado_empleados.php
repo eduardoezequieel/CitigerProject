@@ -204,5 +204,5 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate();
+admin_Page::footerTemplate('empleados.js');
 ?>

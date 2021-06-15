@@ -50,5 +50,5 @@ admin_Page::sidebarTemplate('Usuarios | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate();
+admin_Page::footerTemplate('noarchivo.js');
 ?>   
