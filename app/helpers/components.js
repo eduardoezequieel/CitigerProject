@@ -480,22 +480,22 @@ function logOut() {
     });
 }
 
-function checkInputLetras(i){
-
-    if(formulario[i].value.trim() === ""){
-        formulario[i].classList.remove("success");
-        formulario[i].classList.add("error");
+function checkInputLetras(input){
+    var field = document.getElementById(input);
+    if(field.value.trim() === ""){
+        field.classList.remove("success");
+        field.classList.add("error");
     } else{
-        formulario[i].classList.remove("error");
-        formulario[i].classList.add("success");
+        field.classList.remove("error");
+        field.classList.add("success");
 
-        if(/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]+$/.test(formulario[i].value)){
-            formulario[i].classList.remove("error");
-            formulario[i].classList.add("success");
+        if(/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]+$/.test(field.value)){
+            field.classList.remove("error");
+            field.classList.add("success");
             
         } else{
-            formulario[i].classList.remove("success");
-            formulario[i].classList.add("error");
+            field.classList.remove("success");
+            field.classList.add("error");
         }    
     }
     
@@ -545,27 +545,28 @@ function checkInput(input){
     
 }
 
-function checkTelefono(i){
-
-    if(formulario[i].value.trim() === ""){
-        formulario[i].classList.remove("success");
-        formulario[i].classList.add("error");
+function checkTelefono(input){
+    var field = document.getElementById(input);
+    if(field.value.trim() === ""){
+        field.classList.remove("success");
+        field.classList.add("error");
     } else{
-        formulario[i].classList.remove("error");
-        formulario[i].classList.add("success");   
+        field.classList.remove("error");
+        field.classList.add("success");   
 
-        if(/[0-9-]+$/i.test(formulario[i].value)){
-            formulario[i].classList.remove("error");
-            formulario[i].classList.add("success");
+        if(/[0-9-]+$/i.test(field.value)){
+            field.classList.remove("error");
+            field.classList.add("success");
         } else{
-            formulario[i].classList.remove("success");
-            formulario[i].classList.add("error");
+            field.classList.remove("success");
+            field.classList.add("error");
         }
     }
     
 }
 
-function checkDireccion(){
+function checkDireccion(input){
+    var direccion = document.getElementById(input);
     direccion.classList.add("error");
     if(direccion.value.trim() === ""){
         direccion.classList.remove("success");

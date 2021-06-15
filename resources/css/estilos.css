@@ -860,7 +860,7 @@ textarea :-ms-input-placeholder {
 
 .cajaTextoFormulario {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 0.01rem solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -874,7 +874,7 @@ textarea :-ms-input-placeholder {
 }
 
 .heightDireccion{
-  height: 130px !important;
+  height: 100px ;
 }
 
 #selectUnidadMedida{
@@ -2049,5 +2049,13 @@ input.error{
 }
 
 input.success{
+  border: 1px solid green;
+}
+
+textarea.error{
+  border: 1px solid red;
+}
+
+textarea.success{
   border: 1px solid green;
 }
