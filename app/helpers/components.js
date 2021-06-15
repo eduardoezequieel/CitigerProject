@@ -132,6 +132,13 @@ function readRows(api) {
     });
 }
 
+/*Sidebar responsive*/
+$(function() { 
+    $('#sidebarCollapse').on('click', function() {
+        $('#sidebar, #content').toggleClass('active');
+    });
+});
+
 /*
 *   Función para obtener los resultados de una búsqueda en los mantenimientos de tablas (operación search).
 *

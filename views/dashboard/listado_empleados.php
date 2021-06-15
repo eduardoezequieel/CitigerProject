@@ -122,76 +122,95 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
             </div>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
-                <div class="row">
-                    <!-- Primera columna de controles -->
-                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
-                        <form id="EmpleadosColumna1">
-                            <label class="tituloCajaTextoFormulario" for="txtNombres">Nombres:</label>
-                            <input type="text" class="form-control cajaTextoFormulario" id="txtNombres"
-                                placeholder="Escriba sus nombres...">
+                <form method="post" id="administrarEmpleado-form">
+                    <div class="row">
+                        <!-- Primera columna de controles -->
+                        <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
+                            <div class="#" id="EmpleadosColumna1">
+                                <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
+                                <input type="text" class="form-control cajaTextoFormulario" id="txtNombre"
+                                    placeholder="Escriba sus nombres...">
 
-                            <label class="tituloCajaTextoFormulario" for="txtApellidos">Apellidos:</label>
-                            <input type="text" class="form-control cajaTextoFormulario" id="txtApellidos"
-                                placeholder="Escriba sus apellidos...">
+                                <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
+                                <input type="text" class="form-control cajaTextoFormulario" id="txtApellido"
+                                    placeholder="Escriba sus apellidos...">
 
-                            <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                            <input type="text" class="form-control cajaTextoFormulario" id="txtDUI" placeholder="12345678-9">
+                                <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
+                                <input type="text" class="form-control cajaTextoFormulario" id="txtDUI" placeholder="12345678-9">
 
-                            <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono:</label>
-                            <input type="text" class="form-control cajaTextoFormulario" id="txtTelefono"
-                                placeholder="0000-0000">
-                                
+                                <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono:</label>
+                                <input type="text" class="form-control cajaTextoFormulario" id="txtTelefono"
+                                    placeholder="0000-0000">
+                                    
 
-                            <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
-                            <input type="text" class="form-control cajaTextoFormulario" id="txtCorreo"
-                                placeholder="ejemplo@mail.com">
+                                <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
+                                <input type="text" class="form-control cajaTextoFormulario" id="txtCorreo"
+                                    placeholder="ejemplo@mail.com">
 
-                            <!-- RadioButtonGroup Género -->
-                            <h1 class="tituloCajaTextoFormulario mb-3">Género</h1>
-                            <select class="form-control cajaTextoFormulario" id="cbGenero"
-                                placeholder="Seleccionar..."></select>
-
-                        </form>
-                    </div>
-
-                    <!-- Segunda columna de controles -->
-                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarColumnas">
-                        <form>
-                            <!-- Cargar Fotografia -->
-                            <div class="row pl-5 my-4">
-                                <div class="col">
-                                    <div class="divFotografia">
-                                        <div class="cargarFoto"></div>
-                                        <button class="btn btnCargarFoto2 mx-2"><span class="fas fa-plus"></span></button>
-                                    </div>
+                                <!-- RadioButtonGroup Género -->
+                                <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
+                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                deseado en el combobox  -->
+                                <div class="cbCitiger">
+                                    <select class="custom-select" id="cbGenero">
+                                        <option selected="">Seleccionar...</option>
+                                        <option value="F">Masculino</option>
+                                        <option value="M">Femenino</option>
+                                    </select> 
                                 </div>
-                                <!-- Final Cargar Fotografia -->
                             </div>
+                        </div>
 
-                            <!-- Controles -->
-                            <label class="tituloCajaTextoFormulario" for="cbTipoEmpleado">Tipo de Empleado:</label>
-                            <select class="form-control cajaTextoFormulario" id="cbTipoEmpleado"
-                                placeholder="Seleccionar..."></select>
+                        <!-- Segunda columna de controles -->
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarColumnas">     
+                            <div class="form-group">
+                                <!-- Cargar Fotografia -->
+                                <div class="d-flex justify-content-center align-items-center mb-4">
+                                    <div class="bordeDivFotografia mb-1">
+                                        <div class="divFotografia" id="divFoto">
+                                            <!--<img src="../../resources/img/67641302_948622395468919_4792483860753416192_n.jpg" alt="#" class="fit-images rounded-circle" width="150px">-->
+                                        </div>
+                                    </div>
+                                    <div id="btnAgregarFoto">
+                                        <button type="submit" class="btn btnCargarFoto2 mx-2" id="botonFoto"><span class="fas fa-plus" ></span></button>
+                                    </div>
+                                    <input id="archivo_usuario" type="file" class="d-none" name="archivo_usuario" accept=".gif, .jpg, .png">
+                                </div>
 
-                            <label class="tituloCajaTextoFormulario" for="txtFechaNacimiento">Fecha de Nacimiento:</label>
-                            <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento"
-                                placeholder="01-01-2000">
+                                <!-- Controles -->
+                                <label class="tituloCajaTextoFormulario" for="cbTipoEmpleado">Tipo de Empleado:</label>
+                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                deseado en el combobox  -->
+                                <div class="cbCitiger w-75">
+                                    <select class="custom-select" id="cbTipoEmpleado">
+                                        <option selected="">Seleccionar...</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select> 
+                                </div>
 
-                            <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
-                            <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..."
-                                id="txtDireccion" rows="4"></textarea>
-                        </form>
+                                <label class="tituloCajaTextoFormulario mt-2" for="txtFechaNacimiento">Fecha de Nacimiento:</label>
+                                <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento"
+                                    placeholder="01-01-2000">
+
+                                <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
+                                <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" rows="4"></textarea>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <!-- Botones de Acción del Formulario -->
-                <div class="row justify-content-center mt-4">
-                    <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                        <button href="#" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
-                        <button href="#" id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
-                        <button href="#" id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
-                        <button href="#" id="btnActivar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button> 
+                    <!-- Botones de Acción del Formulario -->
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                            <button href="#" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                            <button href="#" id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
+                            <button href="#" id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
+                            <button href="#" id="btnActivar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button> 
+                        </div>
                     </div>
-                </div>
+                </form>
                 <!-- Desde aqui finaliza el contenido -->
                 <!-- Fin del Contenido del Modal -->
             </div>

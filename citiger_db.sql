@@ -263,3 +263,14 @@ ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_dui UNIQUE (dui);
 ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_telefono UNIQUE (telefono);
 ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_correo UNIQUE (correo);
 ALTER TABLE empleado ALTER COLUMN foto TYPE character varying(50) USING CAST(foto AS bytea);
+
+INSERT INTO tipoEmpleado 
+
+CREATE TABLE tipoEmpleado(
+	idTipoEmpleado SERIAL NOT NULL PRIMARY KEY, 
+	tipoEmpleado VARCHAR(15) NOT NULL
+)
+
+ALTER TABLE empleado ADD COLUMN idTipoEmpleado INTEGER NOT NULL REFERENCES tipoEmpleado(idTipoEmpleado);
+
+INSERT INTO tipoEmpleado(tipoEmpleado) VALUES('Albañil'),('Limpieza'),('Bodega');
