@@ -120,8 +120,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                                     <div class="row paddingBotones">
                                         <div class="col-12">
                                             <a href="#" data-toggle="modal" data-target="#administrarCasa" class="btn btnTabla"><i class="fas fa-edit"></i></a>
-                                            <a href="#" data-toggle="modal" data-target="#administrarPago" class="btn btnTabla3"><i class="fas fa-comment-dollar"></i></a>
-                                            <a href="ventana_pago.php" class="btn btnTabla2"><i class="fas fa-trash"></i></a>
+                                            
                                         </div>
                                     </div>
                                 </th>
