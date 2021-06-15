@@ -8,9 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(request => {
         //Se verifica si la petición fue correcta
         if (request.ok) {
-            //Se convierte la petición a json
             request.json().then(response => {
-                //Se verifica si la respuesta es satisfactoria
+                //Se verifica si la respuesta no es correcta para redireccionar al primer uso
                 if (!response.status) {
                     sweetAlert(3, response.exception, 'primer_uso.php');
                 }
@@ -26,17 +25,15 @@ document.getElementById('login-form').addEventListener('submit', function (event
     //Evento para que no recargue la pagina
     event.preventDefault();
 
-    //Verificando las credenciales
+    //Verificando las credenciales del usuario
     fetch(API_USUARIO + 'logIn', {
         method: 'post',
         body: new FormData(document.getElementById('login-form'))
-    }) 
-    .then(request => {
+    }).then(request => {
         //Verificando si la petición fue correcta
         if (request.ok) {
-            //Se convierte la petición a json
             request.json().then(response => {
-                //Verificando si la respuesta es satisfactoria
+                //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
                 if (response.status) {
                     sweetAlert(1, response.message, 'dashboard.php');
                 } else {
@@ -46,5 +43,5 @@ document.getElementById('login-form').addEventListener('submit', function (event
         } else {
             console.log(request.status + ' ' + request.statusText);
         }
-    }).catch(error => console.log(error))
+    }).catch(error => console.log(error));
 })

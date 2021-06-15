@@ -238,7 +238,9 @@
     //Método para verificar si el usuario existe
     public function checkUser($email)
     {
-        $sql = 'SELECT idUsuario,foto,idEstadoUsuario, username FROM usuario WHERE correo = ?';
+        $sql = 'SELECT idUsuario,foto,idEstadoUsuario, username,tipoUsuario FROM usuario 
+                INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = usuario.idTipoUsuario
+                WHERE correo = ?';
         $params = array($email);
         if ($data = Database::getRow($sql, $params)) {
             $this->idUsuario = $data['idusuario'];
@@ -246,6 +248,7 @@
             $this->foto= $data['foto'];
             $this->idEstadoUsuario= $data['idestadousuario'];
             $this->username = $data['username'];
+            $this->idTipoUsuario = $data['tipousuario'];
             return true;
         } else {
             return false;
@@ -325,16 +328,17 @@
         return Database::getRows($sql, $params);
     }
 
+    //Método para crear un nuevo registro
     public function createRow()
     {
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
         $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO admon(nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, 
-                direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?)';
-        $params = array($this->nombre, $this->apellido, $this->genero, $this->correo, $this->foto, 
-                        $this->fechaNacimiento, $this->telefono, $this->direccion, $this->usuario, 
-                        $hash, $this->idEstadoUsuario, $this->idTipoUsuario);
+        $sql = 'INSERT INTO usuario(idEstadoUsuario, idTipoUsuario, nombre, apellido, telefonoFijo, 
+                telefonoCelular, foto,correo, fechaNacimiento, genero, dui,username, contrasena,direccion)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        $params = array($this->idEstadoUsuario, $this->idTipoUsuario, $this->nombre, $this->apellido, $this->telefonoFijo, 
+                        $this->telefonoCelular, $this->foto, $this->correo, $this->fechaNacimiento, $this->genero,
+                        $this->dui, $this->username, $hash, $this->direccion);
         return Database::executeRow($sql, $params);
     }
 

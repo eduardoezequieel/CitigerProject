@@ -43,23 +43,23 @@
             </div>
         </div>
 
-        <form id="register-form" method="post">
+        <form id="primeruso-form" method="post">
             <div class="row justify-content-center">
                 <div class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
                     <div class="form-group">
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Nombres:</label>
-                            <input type="text" name="txtNombre" id="txtNombre" onChange="checkInputLetras('txtNombre')" class="form-control cajaTextoFormulario widthRegister" Required>
+                            <input type="text" name="txtNombre" id="txtNombre" onchange="checkInputLetras('txtNombre')" class="form-control cajaTextoFormulario widthRegister" Required>
                         </div>
                     
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Apellidos:</label>
-                            <input type="text" name="txtApellido" id="txtApellido" class="form-control cajaTextoFormulario widthRegister" onChange="checkInputLetras('txtApellido')" Required>
+                            <input type="text" name="txtApellido" id="txtApellido" class="form-control cajaTextoFormulario widthRegister" onchange="checkInputLetras('txtApellido')" Required>
                         </div>
                     
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Usuario:</label>
-                            <input type="text" name="txtUsuario" id="txtUsuario" class="form-control cajaTextoFormulario widthRegister" onChange="checkInput('txtUsuario')" Required>
+                            <input type="text" name="txtUsuario" id="txtUsuario" class="form-control cajaTextoFormulario widthRegister" onchange="checkInput('txtUsuario')" Required>
                         </div>
                     
                         <div class="form-group">
@@ -72,22 +72,22 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Correo:</label>
-                            <input type="email" name="txtCorreo" id="txtCorreo" class="form-control cajaTextoFormulario widthRegister" onChange="checkCorreo('txtCorreo')" Required>
+                            <input type="email" name="txtCorreo" id="txtCorreo" class="form-control cajaTextoFormulario widthRegister" onchange="checkCorreo('txtCorreo')" Required>
                         </div>
                     
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Confirmar Correo:</label>
-                            <input type="text" name="txtCorreoConfirmar" id="txtCorreoConfirmar" class="form-control cajaTextoFormulario widthRegister" onChange="checkCorreo('txtCorreoConfirmar')" Required>
+                            <input type="text" name="txtCorreoConfirmar" id="txtCorreoConfirmar" class="form-control cajaTextoFormulario widthRegister" onchange="checkCorreo('txtCorreoConfirmar')" Required>
                         </div>
                     
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Contraseña:</label>
-                            <input type="password" name="txtContrasenia" id="txtContrasenia" class="form-control cajaTextoFormulario widthRegister" onChange="checkInput('txtContrasenia')" Required>
+                            <input type="password" name="txtContrasenia" id="txtContrasenia" class="form-control cajaTextoFormulario widthRegister" onchange="checkInput('txtContrasenia')" Required>
                         </div>
 
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Confirmar Contraseña:</label>
-                            <input type="password" name="txtContraseniaConfirmar" id="txtContraseniaConfirmar" class="form-control cajaTextoFormulario widthRegister" onChange="checkInput('txtContraseniaConfirmar')" Required>
+                            <input type="password" name="txtContraseniaConfirmar" id="txtContraseniaConfirmar" class="form-control cajaTextoFormulario widthRegister" onchange="checkInput('txtContraseniaConfirmar')" Required>
                         </div>
                     </div>
                 </div>
@@ -95,11 +95,11 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Teléfono Fijo:</label>
-                            <input type="text" name="txtFijo" id="txtFijo" class="form-control cajaTextoFormulario widthRegister mb-0" onChange="checkTelefono('txtFijo')" Required>
+                            <input type="text" name="txtFijo" id="txtFijo" class="form-control cajaTextoFormulario widthRegister mb-0" onchange="checkTelefono('txtFijo')" Required>
                         </div>
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Teléfono Celular:</label>
-                            <input type="text" name="txtCelular" id="txtCelular" class="form-control cajaTextoFormulario widthRegister mb-0" onChange="checkTelefono('txtCelular')" Required>
+                            <input type="text" name="txtCelular" id="txtCelular" class="form-control cajaTextoFormulario widthRegister mb-0" onchange="checkTelefono('txtCelular')" Required>
                         </div>
 
                         <label for="" class="tituloCajaTextoFormulario">Género:</label>
@@ -107,7 +107,7 @@
                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                         deseado en el combobox  -->
                         <div class="cbCitiger widthRegister">
-                            <select class="custom-select" id="txtGenero">
+                            <select class="custom-select" id="txtGenero" name="txtGenero">
                                 <option selected="">Seleccionar...</option>
                                 <option value="F">Femenino</option>
                                 <option value="M">Masculino</option>
@@ -115,7 +115,7 @@
                         </div>
                         <div class="form-group mt-3">
                             <label for="" class="tituloCajaTextoFormulario">DUI:</label>
-                            <input type="text" name="txtDui" id="txtDui" class="form-control cajaTextoFormulario widthRegister mb-0" onChange="checkInput('txtDui')" Required>
+                            <input type="text" name="txtDui" id="txtDui" class="form-control cajaTextoFormulario widthRegister mb-0" onchange="checkDui('txtDui')" Required>
                         </div>
                         
                     </div>
@@ -130,14 +130,14 @@
                                 </div>
                             </div>
                             <div id="btnAgregarFoto">
-                                <button class="btn btnCargarFoto2 mx-2" id="botonFoto"><span class="fas fa-plus"></span></button>
+                                <button class="btn btnCargarFoto2 mx-2" id="botonFoto"><span class="fas fa-plus" ></span></button>
                             </div>
                             <input id="archivo_usuario" type="file" class="d-none" name="archivo_usuario" accept=".gif, .jpg, .png">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="" class="tituloCajaTextoFormulario">Dirección:</label>
-                        <textarea class="form-control cajaTextoFormulario widthRegister heightDireccion" name="txtDireccion" id="txtDireccion" onChange="checkDireccion('txtDireccion')" Required></textarea>
+                        <textarea class="form-control cajaTextoFormulario widthRegister heightDireccion" name="txtDireccion" id="txtDireccion" onChange="checkInput('txtDireccion')" Required></textarea>
                     </div>
                 </div>
             </div>

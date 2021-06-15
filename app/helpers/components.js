@@ -474,8 +474,6 @@ function logOut() {
             }).catch(function (error) {
                 console.log(error);
             });
-        } else {
-            //sweetAlert(4, 'Puede continuar con la sesión', null);
         }
     });
 }
@@ -533,7 +531,7 @@ function showHidePassword(checkbox, pass) {
 }
 
 
-function checkInput(input){
+function checkInput(input) {
     var field = document.getElementById(input);
     if(field.value.trim() === ""){
         field.classList.remove("success");
@@ -545,7 +543,8 @@ function checkInput(input){
     
 }
 
-function checkTelefono(input){
+//Método para verificar telefono
+function checkTelefono(input) {
     var field = document.getElementById(input);
     if(field.value.trim() === ""){
         field.classList.remove("success");
@@ -565,17 +564,24 @@ function checkTelefono(input){
     
 }
 
-function checkDireccion(input){
-    var direccion = document.getElementById(input);
-    direccion.classList.add("error");
-    if(direccion.value.trim() === ""){
-        direccion.classList.remove("success");
-        direccion.classList.add("error");
+//Método para verificar el dui
+function checkDui(input) {
+    var field = document.getElementById(input);
+    if(field.value.trim() === ""){
+        field.classList.remove("success");
+        field.classList.add("error");
     } else{
-        direccion.classList.remove("error");
-        direccion.classList.add("success");   
+        field.classList.remove("error");
+        field.classList.add("success");   
+
+        if(/(^\d{8})-(\d$)/.test(field.value)){
+            field.classList.remove("error");
+            field.classList.add("success");
+        } else{
+            field.classList.remove("success");
+            field.classList.add("error");
+        }
     }
-    
 }
 
 //Función para limpiar contraseña
