@@ -257,3 +257,9 @@ ALTER TABLE usuario ALTER COLUMN nombre TYPE character varying(25) USING CAST(no
 ALTER TABLE usuario ALTER COLUMN apellido TYPE character varying(25) USING CAST(apellido AS character varying); 
 ALTER TABLE residente ALTER COLUMN nombre TYPE character varying(25) USING CAST(nombre AS character varying); 
 ALTER TABLE residente ALTER COLUMN apellido TYPE character varying(25) USING CAST(apellido AS character varying); 
+
+--Cambios 15/6/2021 (eduardo)
+ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_dui UNIQUE (dui);
+ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_telefono UNIQUE (telefono);
+ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_correo UNIQUE (correo);
+ALTER TABLE empleado ALTER COLUMN foto TYPE character varying(50) USING CAST(foto AS bytea);

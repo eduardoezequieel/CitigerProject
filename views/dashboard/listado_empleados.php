@@ -22,7 +22,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
         <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
             <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" data-toggle="modal" data-target="#administrarEmpleado" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarEmpleado" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
                 </div>
                     
                 <form class="mx-3">
@@ -63,7 +63,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                             <th scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody-rows">
                         <tr class="animate__animated animate__fadeIn">
                             <!-- Fotografia-->
                             <th scope="row">
@@ -186,10 +186,10 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                 <!-- Botones de Acción del Formulario -->
                 <div class="row justify-content-center mt-4">
                     <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
-                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
-                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
-                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button> 
+                        <button href="#" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                        <button href="#" id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
+                        <button href="#" id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
+                        <button href="#" id="btnActivar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button> 
                     </div>
                 </div>
                 <!-- Desde aqui finaliza el contenido -->
