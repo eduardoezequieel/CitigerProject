@@ -41,7 +41,7 @@ Class Database{
 
         // Credenciales.
         $server = 'localhost';
-        $database = 'citiger_db';
+        $database = 'citiger';
         $username = 'postgres';
         $password = 'eduardo2021';
         //Crear conexión.
