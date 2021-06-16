@@ -10,7 +10,7 @@
         //Instanciando clases
         $empleado = new Empleados;
         //Array para respuesta de la API
-        $result= array('status'=>0, 'recaptcha' => 0,'error'=>0, 'message'=>null,'exception'=> null);
+        $result = array('status'=>0, 'error'=>0, 'message'=>null, 'exception'=>null);        
         //Verificando si hay una sesion iniciada
         if (isset($_SESSION['idusuario'])) {
             //Se compara la acción a realizar cuando la sesion está iniciada

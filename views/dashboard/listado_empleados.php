@@ -99,6 +99,114 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
             </div>
         </div>
         <!-- Desde aqui termina la tabla --><br>
+        <!-- Modal para Administrar Empleados -->
+        <div class="modal fade" id="administrarEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content justify-content-center px-3 py-2">
+                    <!-- Cabecera del Modal -->
+                    <div class="modal-header">
+                        <!-- Titulo -->
+                        <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Empleados</h5>
+                        <!-- Boton para Cerrar -->
+                        <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!-- Contenido del Modal -->
+                    <div class="textoModal px-3 pb-4 mt-2">
+                        <form method="post" id="administrarEmpleado-form">
+                            <div class="row">
+                                <!-- Primera columna de controles -->
+                                <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
+                                    <div class="#" id="EmpleadosColumna1">
+                                        <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
+                                        <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
+                                            placeholder="Escriba sus nombres...">
+
+                                        <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
+                                        <input type="text" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido"
+                                            placeholder="Escriba sus apellidos...">
+
+                                        <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
+                                        <input type="text" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9">
+
+                                        <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono:</label>
+                                        <input type="text" class="form-control cajaTextoFormulario" id="txtTelefono" name="txtTelefono"
+                                            placeholder="0000-0000">
+                                            
+
+                                        <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
+                                        <input type="text" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo"
+                                            placeholder="ejemplo@mail.com">
+
+                                        <!-- RadioButtonGroup Género -->
+                                        <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
+                                        <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                                        <div class="cbCitiger">
+                                            <select class="custom-select" id="cbGenero" name="cbGenero">
+                                                <option selected="">Seleccionar...</option>
+                                                <option value="F">Masculino</option>
+                                                <option value="M">Femenino</option>
+                                            </select> 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Segunda columna de controles -->
+                                <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarColumnas">     
+                                    <div class="form-group">
+                                        <!-- Cargar Fotografia -->
+                                        <div class="d-flex justify-content-center align-items-center mb-4">
+                                            <div class="bordeDivFotografia mb-1">
+                                                <div class="divFotografia" id="divFoto">
+                                                    <!--<img src="../../resources/img/67641302_948622395468919_4792483860753416192_n.jpg" alt="#" class="fit-images rounded-circle" width="150px">-->
+                                                </div>
+                                            </div>
+                                            <div id="btnAgregarFoto">
+                                                <button type="submit" class="btn btnCargarFoto2 mx-2" id="botonFoto"><span class="fas fa-plus" ></span></button>
+                                            </div>
+                                            <input id="archivo_usuario" type="file" class="d-none" name="archivo_usuario" accept=".gif, .jpg, .png">
+                                        </div>
+
+                                        <!-- Controles -->
+                                        <label class="tituloCajaTextoFormulario" for="cbTipoEmpleado2">Tipo de Empleado:</label>
+                                        <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                                        <div class="cbCitiger w-75">
+                                            <select class="custom-select" id="cbTipoEmpleado2" name="cbTipoEmpleado2">
+                                                <option selected="">Seleccionar...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select> 
+                                        </div>
+
+                                        <label class="tituloCajaTextoFormulario mt-2" for="txtFechaNacimiento">Fecha de Nacimiento:</label>
+                                        <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento"
+                                            placeholder="01-01-2000">
+
+                                        <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
+                                        <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Botones de Acción del Formulario -->
+                            <div class="row justify-content-center mt-4">
+                                <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                                    <button id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Desde aqui finaliza el contenido -->
+                        <!-- Fin del Contenido del Modal -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin del Modal -->
        
         <!-- Desde aqui termina la tabla -->
         <!-- Desde aqui finaliza el contenido -->
@@ -107,114 +215,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
 
 </div>
 
-<!-- Modal para Administrar Empleados -->
-<div class="modal fade" id="administrarEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content justify-content-center px-3 py-2">
-            <!-- Cabecera del Modal -->
-            <div class="modal-header">
-                <!-- Titulo -->
-                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Empleados</h5>
-                <!-- Boton para Cerrar -->
-                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!-- Contenido del Modal -->
-            <div class="textoModal px-3 pb-4 mt-2">
-                <form method="post" id="administrarEmpleado-form">
-                    <div class="row">
-                        <!-- Primera columna de controles -->
-                        <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
-                            <div class="#" id="EmpleadosColumna1">
-                                <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
-                                    placeholder="Escriba sus nombres...">
 
-                                <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido"
-                                    placeholder="Escriba sus apellidos...">
-
-                                <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9">
-
-                                <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtTelefono" name="txtTelefono"
-                                    placeholder="0000-0000">
-                                    
-
-                                <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo"
-                                    placeholder="ejemplo@mail.com">
-
-                                <!-- RadioButtonGroup Género -->
-                                <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
-                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                deseado en el combobox  -->
-                                <div class="cbCitiger">
-                                    <select class="custom-select" id="cbGenero" name="cbGenero">
-                                        <option selected="">Seleccionar...</option>
-                                        <option value="F">Masculino</option>
-                                        <option value="M">Femenino</option>
-                                    </select> 
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Segunda columna de controles -->
-                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarColumnas">     
-                            <div class="form-group">
-                                <!-- Cargar Fotografia -->
-                                <div class="d-flex justify-content-center align-items-center mb-4">
-                                    <div class="bordeDivFotografia mb-1">
-                                        <div class="divFotografia" id="divFoto">
-                                            <!--<img src="../../resources/img/67641302_948622395468919_4792483860753416192_n.jpg" alt="#" class="fit-images rounded-circle" width="150px">-->
-                                        </div>
-                                    </div>
-                                    <div id="btnAgregarFoto">
-                                        <button type="submit" class="btn btnCargarFoto2 mx-2" id="botonFoto"><span class="fas fa-plus" ></span></button>
-                                    </div>
-                                    <input id="archivo_usuario" type="file" class="d-none" name="archivo_usuario" accept=".gif, .jpg, .png">
-                                </div>
-
-                                <!-- Controles -->
-                                <label class="tituloCajaTextoFormulario" for="cbTipoEmpleado2">Tipo de Empleado:</label>
-                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                deseado en el combobox  -->
-                                <div class="cbCitiger w-75">
-                                    <select class="custom-select" id="cbTipoEmpleado2" name="cbTipoEmpleado2">
-                                        <option selected="">Seleccionar...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select> 
-                                </div>
-
-                                <label class="tituloCajaTextoFormulario mt-2" for="txtFechaNacimiento">Fecha de Nacimiento:</label>
-                                <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento"
-                                    placeholder="01-01-2000">
-
-                                <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
-                                <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="4"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Botones de Acción del Formulario -->
-                    <div class="row justify-content-center mt-4">
-                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                            <button href="#" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
-                        </div>
-                    </div>
-                </form>
-                <!-- Desde aqui finaliza el contenido -->
-                <!-- Fin del Contenido del Modal -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Fin del Modal -->
 
 <!-- Final del contenido -->
 

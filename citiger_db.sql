@@ -53,12 +53,12 @@ CREATE TABLE empleado(
 	idTipoEmpleado INTEGER NOT NULL REFERENCES tipoEmpleado(idTipoEmpleado),
 	nombre VARCHAR(30) NOT NULL,
 	apellido VARCHAR(30) NOT NULL,
-	telefono CHAR(9) NOT NULL UNIQUE,
-	dui CHAR(10) NOT NULL UNIQUE,
+	telefono CHAR(9) NOT NULL ,
+	dui CHAR(10) NOT NULL ,
 	genero CHAR(1) NOT NULL,
 	foto VARCHAR(50),
 	direccion VARCHAR(200) NOT NULL,
-	correo VARCHAR(50) NOT NULL UNIQUE,
+	correo VARCHAR(50) NOT NULL ,
 	fechaNacimiento DATE NOT NULL
 );
 
@@ -79,13 +79,13 @@ CREATE TABLE usuario(
 	nombre VARCHAR(30) NOT NULL,
 	apellido VARCHAR(30) NOT NULL,
 	telefonoFijo CHAR(9) NOT NULL,
-	telefonoCelular CHAR(9) NOT NULL UNIQUE,
+	telefonoCelular CHAR(9) NOT NULL ,
 	foto VARCHAR(50),
-	correo VARCHAR(50) NOT NULL UNIQUE,
+	correo VARCHAR(50) NOT NULL ,
 	fechaNacimiento DATE NOT NULL,
 	genero CHAR(1) NOT NULL,
-	dui CHAR(10) NOT NULL UNIQUE,
-	username VARCHAR(25) NOT NULL UNIQUE,
+	dui CHAR(10) NOT NULL ,
+	username VARCHAR(25) NOT NULL ,
 	contrasena VARCHAR(60) NOT NULL,
 	direccion VARCHAR(200) NOT NULL
 );
@@ -122,13 +122,13 @@ CREATE TABLE residente(
 	nombre VARCHAR(30) NOT NULL,
 	apellido VARCHAR(30) NOT NULL,
 	telefonoFijo CHAR(9) NOT NULL,
-	telefonoCelular CHAR(9) NOT NULL UNIQUE,
+	telefonoCelular CHAR(9) NOT NULL ,
 	foto VARCHAR(50),
-	correo VARCHAR(50) NOT NULL UNIQUE,
+	correo VARCHAR(50) NOT NULL ,
 	fechaNacimiento DATE NOT NULL,
 	genero CHAR(1) NOT NULL,
-	dui CHAR(10) NOT NULL UNIQUE,
-	username VARCHAR(25) NOT NULL UNIQUE,
+	dui CHAR(10) NOT NULL ,
+	username VARCHAR(25) NOT NULL ,
 	contrasena VARCHAR(60) NOT NULL
 );
 
@@ -196,9 +196,9 @@ CREATE TABLE visitante(
 	idVisitante SERIAL NOT NULL PRIMARY KEY,
 	nombre VARCHAR(30) NOT NULL,
 	apellido VARCHAR(30) NOT NULL,
-	dui CHAR(10) NOT NULL UNIQUE,
+	dui CHAR(10) NOT NULL ,
 	genero CHAR(1) NOT NULL,
-	placa VARCHAR(10) NOT NULL UNIQUE
+	placa VARCHAR(10) NOT NULL 
 );
 
 CREATE TABLE detalleVisita(

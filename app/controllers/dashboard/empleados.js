@@ -9,37 +9,37 @@ document.addEventListener('DOMContentLoaded', function(){
 
 document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('btnAgregar').className="btn btnAgregarFormulario mr-2";
-    document.getElementById('btnActualizar').className="d-none";
-    document.getElementById('btnSuspender').className="d-none";
-    document.getElementById('btnActivar').className="d-none";
 });
 
-document.getElementById('btnAgregar'),addEventListener('click',function(){
-    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
-        event.preventDefault();
 
-        //Evento para evitar que recargue la página
-        event.preventDefault();
-        //Fetch para registrar al primer usuario del sistema
+document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
+    event.preventDefault();
+
+    //Evento para evitar que recargue la página
+    event.preventDefault();
+    //Fetch para registrar al primer usuario del sistema
         fetch(API_EMPLEADO + 'createRow', {
             method: 'post',
             body: new FormData(document.getElementById('administrarEmpleado-form'))
-        }).then(request => {
-            //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
             if (request.ok) {
-                request.json().then(response => {
-                    //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
+                request.json().then(function (response) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                     if (response.status) {
-                        sweetAlert(1, response.message, null);
+                        // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
+                        sweetAlert(1, response.message, closeModal('administrarEmpleado'));
                     } else {
                         sweetAlert(2, response.exception, null);
                     }
-                })
+                });
             } else {
-                console.log(response.status + ' ' + response.exception);
+                console.log(request.status + ' ' + request.statusText);
             }
-        }).catch(error => console.log(error));
-    })
+        }).catch(function (error) {
+            console.log(error);
+        });
+
 })
 
 
