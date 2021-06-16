@@ -54,13 +54,13 @@ function previewSavePicture(idDivFoto, name, foto){
     let ruta;
     switch (foto) {
         case 1:
-            ruta = '../../resources/img/dashboard_img/admon_fotos/';
+            ruta = '../../resources/img/dashboard_img/usuarios_fotos/';
             break;
         case 2:
-            ruta = '../../resources/img/dashboard_img/cliente_fotos/'
+            ruta = '../../resources/img/dashboard_img/empleados_fotos/'
             break;
         case 3:
-            ruta = '../../resources/img/dashboard_img/producto_fotos/';
+            ruta = '../../resources/img/dashboard_img/residente_fotos/';
             break;
         default:
             break;
@@ -71,8 +71,10 @@ function previewSavePicture(idDivFoto, name, foto){
                     
         image = document.createElement('img');
 
+        image.style.width = '150px';
+
         //Se aplican las respectivas clases para que la preview aparezca estilizada
-        image.className = 'rounded-circle fotografiaPerfil';
+        image.className = 'fit-images rounded-circle';
                 
         //Se quita lo que este dentro del div (en caso de que exista otra imagen)
         preview.innerHTML = ' ';
@@ -84,11 +86,13 @@ function previewSavePicture(idDivFoto, name, foto){
         let preview=document.getElementById(idDivFoto);
                     
         image = document.createElement('img');
+
+        image.style.width = '150px';
         //Se le asigna la ruta al elemento creado
         image.src = ruta + name;
                 
         //Se aplican las respectivas clases para que la preview aparezca estilizada
-        image.className = 'rounded-circle fotografiaPerfil';
+        image.className = 'fit-images rounded-circle';
                 
         //Se quita lo que este dentro del div (en caso de que exista otra imagen)
         preview.innerHTML = ' ';

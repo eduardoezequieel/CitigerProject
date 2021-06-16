@@ -15,7 +15,64 @@
         if (isset($_SESSION['idusuario'])) {
             //Se compara la acción a realizar cuando la sesion está iniciada
             switch ($_GET['action']) {
-                //Caso para crear registros en la tabla empleados
+                //Caso para leer todos los registros de la tabla
+                case 'readAll':
+                    if ($result['dataset'] = $empleado->readAll()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Se ha encontrado al menos un empleado.';
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No existen empleados registrados.';
+                        }
+                    }
+                    break;
+                //Caso para cargar un registro en especifico
+                case 'readOne':
+                    $_POST = $empleado -> validateForm($_POST);
+                    if($empleado->setIdEmpleado($_POST['idEmpleado'])){
+                        if($result['dataset'] = $empleado->readOne()){
+                            $result['status'] = 1;
+                        } else{
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'Empleado inexistente';
+                            }
+                        }
+                    } else{
+                        $result['exception'] = 'Empleado seleccionado incorrecto';
+                    }
+                    break;
+                //Caso para cargar un registro en especifico
+                case 'filterByEmployeeType':
+                    $_POST = $empleado -> validateForm($_POST);
+                    if (isset($_POST['cbTipoEmpleado'])) {
+                        if ($empleado->setIdTipoEmpleado($_POST['cbTipoEmpleado'])) {
+                            if($result['dataset'] = $empleado->filterByEmployeeType()){
+                                $result['status'] = 1;
+                                $row = count($result['dataset']);
+                                if($row > 0){
+                                    $result['message'] = 'Se han encontrado '.$row .' coincidencias';
+                                } else{
+                                    $result['message'] = 'Se ha encontrado una coincidencia';
+                                }
+                            } else{
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No hay coincidencias';
+                                }
+                            }
+                        }else{
+                            $result['exception'] = 'Error id select';
+                        }
+                    }else{
+                        $result['exception'] = 'Error id isset';
+                    }
+                    break;
+                //Caso para cargar información en los select
                 case 'readEmployeeTypes':
                     if ($result['dataset'] = $empleado->readEmployeeTypes()) {
                         $result['status'] = 1;
@@ -28,7 +85,7 @@
                         }
                     }
                     break;
-                
+                //Caso para crear registros en la tabla empleados
                 case 'createRow':
                     $_POST = $empleado->validateForm($_POST);
                     $empleado->setIdEstadoEmpleado(1);
@@ -93,6 +150,19 @@
                         }
                     }else{
                         $result['exception'] = 'Nombre invalido';
+                    }
+                    break;
+                case 'delete':
+                    $_POST = $empleado -> validateForm($_POST);
+                    if ($empleado -> setIdEmpleado($_POST['idEmpleado'])) {
+                        if ($empleado -> deleteRow()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Registro eliminado correctamente';
+                        }else{
+                            $result['exception'] = Database::getException();
+                        }
+                    }else{
+                        $result['exception'] = 'Id invalido';
                     }
                     break;
                 //Caso de default del switch

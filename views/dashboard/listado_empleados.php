@@ -30,7 +30,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                     <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
                 </form>   
 
-                <form class="mx-3">
+                <form method="post" id="filtrarTipoEmpleado-form" class="mx-3">
                     <h1 class="tituloCajaTextoFormulario">Tipo:</h1>
                     <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                     cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
@@ -43,6 +43,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                             <option value="3">Three</option>
                         </select> 
                     </div>
+                    <button class="d-none" id="btnFiltrarEmpleado" type="submit"></button>
                 </form>
             </div>
             
@@ -64,36 +65,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                         </tr>
                     </thead>
                     <tbody id="tbody-rows">
-                        <tr class="animate__animated animate__fadeIn">
-                            <!-- Fotografia-->
-                            <th scope="row">
-                                <div class="row paddingTh">
-                                    <div class="col-12">
-                                        <img src="../../resources/img/140025816_1267548823644856_116407320835883935_n.jpg" alt=""
-                                            class="rounded-circle fit-images" width="30px" height="30px">
-                                    </div>
-                                </div>
-                            </th>
-                            <!-- Datos-->
-                            <td>Eduardo Rivera</td>
-                            <td>12345678-9</td>
-                            <td>1111-2222</td>
-                            <td>Activo</td>
-                            <td>Limpieza</td>
-                            <!-- Boton-->
-                            <th scope="row">
-                                <div class="row paddingBotones">
-                                    <div class="col-12">
-                                        <a href="#" data-toggle="modal" data-target="#administrarEmpleado" class="btn btnTabla mx-2"><i
-                                                class="fas fa-edit"></i></a>
-
-                                        <a href="#" class="btn btnTabla2 mx-2"><i
-                                        class="fas fa-trash"></i></a>
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
-
+                        
                     </tbody>
                 </table>
             </div>
@@ -115,6 +87,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                     <!-- Contenido del Modal -->
                     <div class="textoModal px-3 pb-4 mt-2">
                         <form method="post" id="administrarEmpleado-form">
+                            <input type="number" name="idEmpleado" id="idEmpleado" class="d-none">
                             <div class="row">
                                 <!-- Primera columna de controles -->
                                 <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
@@ -197,6 +170,10 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                             <div class="row justify-content-center mt-4">
                                 <div class="col-12 d-flex justify-content-center align-items-center text-center">
                                     <button id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                                    <button id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
+                                    <button id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
+                                    <button id="btnActivar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
+
                                 </div>
                             </div>
                         </form>

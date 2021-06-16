@@ -205,11 +205,49 @@
         }
 
         //Sentencias SQL a la tabla empleados.
+
+        //Carga datos para el select cbTipoEmpleado
         public function readEmployeeTypes()
         {
             $sql='SELECT*FROM tipoEmpleado';
             $params = null;
             return Database::getRows($sql, $params);
+        }
+
+        //Lee todos los registros de la tabla
+        public function readAll()
+        {
+            $sql = 'SELECT idEmpleado, foto, CONCAT(nombre,\' \', apellido) AS nombre, dui, telefono, estadoempleado.estadoempleado, tipoempleado.tipoempleado
+            FROM empleado 
+            INNER JOIN estadoempleado ON empleado.idestadoempleado = estadoempleado.idestadoempleado
+            INNER JOIN tipoempleado ON empleado.idtipoempleado = tipoempleado.idtipoempleado
+            ORDER BY nombre ASC';
+            $params = null;
+            return Database::getRows($sql, $params);
+        }
+
+        //Lee todos los registros de la tabla
+        public function filterByEmployeeType()
+        {
+            $sql = 'SELECT idEmpleado, foto, CONCAT(nombre,\' \', apellido) AS nombre, dui, telefono, estadoempleado.estadoempleado, tipoempleado.tipoempleado
+            FROM empleado 
+            INNER JOIN estadoempleado ON empleado.idestadoempleado = estadoempleado.idestadoempleado
+            INNER JOIN tipoempleado ON empleado.idtipoempleado = tipoempleado.idtipoempleado
+            WHERE tipoempleado.idempleado = ?
+            ORDER BY nombre ASC';
+            $params = array($this->idTipoEmpleado);
+            return Database::getRows($sql, $params);
+        }
+
+        //Lee un registro de la tabla
+        public function readOne()
+        {
+            $sql = 'SELECT idEmpleado, correo, fechanacimiento, foto, nombre, apellido, dui, telefono, idestadoempleado, direccion, genero, idtipoempleado
+            FROM empleado
+			WHERE idEmpleado = ?
+			ORDER BY nombre ASC';
+            $params = array($this->idEmpleado);
+            return Database::getRow($sql, $params);
         }
 
         //Crear registro de empleado
@@ -223,6 +261,14 @@
                             $this->telefono, $this->dui, $this->genero, $this->foto,
                             $this->direccion, $this->correo, $this->fechaNacimiento,
                             $this->idTipoEmpleado);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Eliminar registro de empleado
+        public function deleteRow()
+        {
+            $sql = 'DELETE FROM empleado WHERE idempleado = ?';
+            $params = array($this->idEmpleado);
             return Database::executeRow($sql, $params);
         }
     }

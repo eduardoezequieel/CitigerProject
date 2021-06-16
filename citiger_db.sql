@@ -130,7 +130,7 @@ CREATE TABLE residente(
 	dui CHAR(10) NOT NULL ,
 	username VARCHAR(25) NOT NULL ,
 	contrasena VARCHAR(60) NOT NULL
-);
+);	
 
 CREATE TABLE estadoAlquiler(
 	idEstadoAlquiler SERIAL NOT NULL PRIMARY KEY,
@@ -249,4 +249,7 @@ CREATE TABLE aportacion(
 INSERT INTO tipoUsuario(tipoUsuario) VALUES('Administrador');
 INSERT INTO estadoUsuario(estadoUsuario) VALUES('Disponible'),('Suspendido');
 INSERT INTO tipoEmpleado(tipoEmpleado) VALUES('Albañil'),('Limpieza'),('Bodega');
-INSERT INTO estadoEmpleado(estadoEmpleado) VALUES ('Disponible'),('Ocupado');	
+INSERT INTO estadoEmpleado(estadoEmpleado) VALUES ('Disponible'),('Ocupado');
+
+--Cambios 16/6/2021
+INSERT INTO estadoempleado VALUES (DEFAULT, 'Suspendido');
