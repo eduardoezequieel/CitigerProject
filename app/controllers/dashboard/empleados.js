@@ -1,5 +1,11 @@
 //Constante para la direccion de la API
 const API_EMPLEADO = '../../app/api/dashboard/empleados.php?action=';
+const ENDPOINT_TIPOS = '../../app/api/dashboard/empleados.php?action=readEmployeeTypes';
+
+document.addEventListener('DOMContentLoaded', function(){
+    fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado', null);
+    fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado2', null);
+})
 
 document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('btnAgregar').className="btn btnAgregarFormulario mr-2";

@@ -36,7 +36,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                     cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                     deseado en el combobox  -->
                     <div class="cbCitigerBusqueda">
-                        <select class="custom-select">
+                        <select class="custom-select" id="cbTipoEmpleado">
                             <option selected="">Seleccionar...</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -128,23 +128,23 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                         <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                             <div class="#" id="EmpleadosColumna1">
                                 <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtNombre"
+                                <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
                                     placeholder="Escriba sus nombres...">
 
                                 <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtApellido"
+                                <input type="text" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido"
                                     placeholder="Escriba sus apellidos...">
 
                                 <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtDUI" placeholder="12345678-9">
+                                <input type="text" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9">
 
                                 <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtTelefono"
+                                <input type="text" class="form-control cajaTextoFormulario" id="txtTelefono" name="txtTelefono"
                                     placeholder="0000-0000">
                                     
 
                                 <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtCorreo"
+                                <input type="text" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo"
                                     placeholder="ejemplo@mail.com">
 
                                 <!-- RadioButtonGroup Género -->
@@ -153,7 +153,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                 deseado en el combobox  -->
                                 <div class="cbCitiger">
-                                    <select class="custom-select" id="cbGenero">
+                                    <select class="custom-select" id="cbGenero" name="cbGenero">
                                         <option selected="">Seleccionar...</option>
                                         <option value="F">Masculino</option>
                                         <option value="M">Femenino</option>
@@ -179,12 +179,12 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 </div>
 
                                 <!-- Controles -->
-                                <label class="tituloCajaTextoFormulario" for="cbTipoEmpleado">Tipo de Empleado:</label>
+                                <label class="tituloCajaTextoFormulario" for="cbTipoEmpleado2">Tipo de Empleado:</label>
                                 <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                 cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                 deseado en el combobox  -->
                                 <div class="cbCitiger w-75">
-                                    <select class="custom-select" id="cbTipoEmpleado">
+                                    <select class="custom-select" id="cbTipoEmpleado2" name="cbTipoEmpleado2">
                                         <option selected="">Seleccionar...</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -193,11 +193,11 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 </div>
 
                                 <label class="tituloCajaTextoFormulario mt-2" for="txtFechaNacimiento">Fecha de Nacimiento:</label>
-                                <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento"
+                                <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento"
                                     placeholder="01-01-2000">
 
                                 <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
-                                <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" rows="4"></textarea>
+                                <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="4"></textarea>
                             </div>
                         </div>
                     </div>

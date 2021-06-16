@@ -14,12 +14,23 @@
         private $correo = null;
         private $fechaNacimiento = null;
         private $ruta = '../../../resources/img/dashboard_img/empleados_fotos/';
+        private $idTipoEmpleado = null;
 
         //Metodos set para todas las variables del modelo.
         public function setIdEmpleado($value)
         {
             if ($this->validateNaturalNumber($value)) {
                 $this->idEmpleado = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setIdTipoEmpleado($value)
+        {
+            if ($this->validateNaturalNumber($value)) {
+                $this->idTipoEmpleado = $value;
                 return true;
             } else {
                 return false;
@@ -38,7 +49,7 @@
 
         public function setNombre($value)
         {
-            if ($this->validateAlphabetic($value,1,15)) {
+            if ($this->validateAlphabetic($value,1,30)) {
                 $this->nombre = $value;
                 return true;
             } else {
@@ -48,8 +59,8 @@
 
         public function setApellido($value)
         {
-            if ($this->validateAlphabetic($value,1,15)) {
-                $this->nombre = $value;
+            if ($this->validateAlphabetic($value,1,30)) {
+                $this->apellido = $value;
                 return true;
             } else {
                 return false;
@@ -143,6 +154,11 @@
             return $this -> nombre;
         }
 
+        public function getIdTipoEmpleado()
+        {
+            return $this -> idTipoEmpleado;
+        }
+
         public function getApellido()
         {
             return $this -> apellido;
@@ -189,25 +205,25 @@
         }
 
         //Sentencias SQL a la tabla empleados.
+        public function readEmployeeTypes()
+        {
+            $sql='SELECT*FROM tipoEmpleado';
+            $params = null;
+            return Database::getRows($sql, $params);
+        }
 
         //Crear registro de empleado
         public function createRow()
         {
             $sql = 'INSERT INTO empleado(idestadoempleado, nombre, apellido, telefono, dui, 
-            genero, foto, direccion, correo, fechanacimiento) 
+            genero, foto, direccion, correo, fechanacimiento, idtipoempleado) 
             VALUES
-            (?,?,?,?,?,?,?,?,?,?)';
+            (?,?,?,?,?,?,?,?,?,?,?)';
             $params = array($this->idEstadoEmpleado, $this->nombre, $this->apellido,
                             $this->telefono, $this->dui, $this->genero, $this->foto,
-                            $this->direccion, $this->correo, $this->fechaNacimiento);
+                            $this->direccion, $this->correo, $this->fechaNacimiento,
+                            $this->idTipoEmpleado);
             return Database::executeRow($sql, $params);
-        }
-
-        public function readEmployeeTypes(
-        {
-            $sql='SELECT*FROM tipoEmpleado';
-            $params = null;
-            return Database::getRows($sql, $params);
         }
     }
     
