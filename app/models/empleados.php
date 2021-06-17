@@ -233,7 +233,7 @@
             FROM empleado 
             INNER JOIN estadoempleado ON empleado.idestadoempleado = estadoempleado.idestadoempleado
             INNER JOIN tipoempleado ON empleado.idtipoempleado = tipoempleado.idtipoempleado
-            WHERE tipoempleado.idempleado = ?
+            WHERE tipoempleado.idtipoempleado = ?
             ORDER BY nombre ASC';
             $params = array($this->idTipoEmpleado);
             return Database::getRows($sql, $params);
@@ -250,6 +250,19 @@
             return Database::getRow($sql, $params);
         }
 
+        //Función para buscar
+        public function searchRows($value)
+        {
+            $sql = 'SELECT idEmpleado, foto, CONCAT(nombre,\' \', apellido) AS nombre, dui, telefono, estadoempleado.estadoempleado, tipoempleado.tipoempleado
+            FROM empleado 
+            INNER JOIN estadoempleado ON empleado.idestadoempleado = estadoempleado.idestadoempleado
+            INNER JOIN tipoempleado ON empleado.idtipoempleado = tipoempleado.idtipoempleado
+            WHERE nombre ILIKE ? OR apellido ILIKE ? OR DUI ILIKE ? OR telefono ILIKE ?
+            ORDER BY nombre ASC';
+            $params = array("%$value%", "%$value%", "%$value%", "%$value%");
+            return Database::getRows($sql, $params);
+        }
+
         //Crear registro de empleado
         public function createRow()
         {
@@ -263,6 +276,40 @@
                             $this->idTipoEmpleado);
             return Database::executeRow($sql, $params);
         }
+
+        //Actualizacion de datos
+        public function updateRow($current_image)
+        {
+            // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+            ($this->foto) ? $this->deleteFile($this->getRuta(), $current_image) : $this->foto = $current_image;
+
+            $sql = 'UPDATE empleado 
+            SET idtipoempleado = ?, nombre = ?, apellido = ?, telefono = ?, dui = ?, 
+                genero = ?, foto = ?, direccion = ?, correo = ?, fechanacimiento = ? 
+            WHERE idempleado = ?';
+            $params = array($this->idTipoEmpleado, $this->nombre, $this->apellido,
+                            $this->telefono, $this->dui, $this->genero, $this->foto,
+                            $this->direccion, $this->correo, $this->fechaNacimiento,
+                            $this->idEmpleado);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Suspender empleado
+        public function suspend(){
+            $sql = 'UPDATE empleado SET idestadoempleado = 3
+                    WHERE idempleado = ?';
+            $params = array($this->idEmpleado);
+            return Database::executeRow($sql, $params);
+        }
+
+        //Activar empleado
+        public function activate(){
+            $sql = 'UPDATE empleado SET idestadoempleado = 1
+                    WHERE idempleado = ?';
+            $params = array($this->idEmpleado);
+            return Database::executeRow($sql, $params);
+        }
+
 
         //Eliminar registro de empleado
         public function deleteRow()

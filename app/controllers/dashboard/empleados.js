@@ -3,6 +3,20 @@ const API_EMPLEADO = '../../app/api/dashboard/empleados.php?action=';
 const ENDPOINT_TIPOS = '../../app/api/dashboard/empleados.php?action=readEmployeeTypes';
 
 document.addEventListener('DOMContentLoaded', function(){
+    // Se declara e inicializa un objeto para obtener la fecha y hora actual.
+    let today = new Date();
+    // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
+    let day = ('0' + today.getDate()).slice(-2);
+    // Se declara e inicializa una variable para guardar el mes en formato de 2 dígitos.
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    // Se declara e inicializa una variable para guardar el año con la mayoría de edad.
+    let year = today.getFullYear() - 18;
+    // Se declara e inicializa una variable para establecer el formato de la fecha.
+    let date = `${year}-${month}-${day}`;
+    // Se asigna la fecha como valor máximo en el campo del formulario.
+    document.getElementById('txtFechaNacimiento').setAttribute('max', date);
+    document.getElementById('txtFechaNacimiento').setAttribute('value', date);
+
     fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado', null);
     fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado2', null);
     readRows(API_EMPLEADO);
@@ -48,12 +62,33 @@ function fillTable(dataset){
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
-//ocultar los demas botones de acción en el formulario
+document.getElementById('btnReiniciar').addEventListener('click',function(){
+    readRows(API_EMPLEADO);
+});
+
+//---------------------------Operaciones CRUD---------------------------
+
+
+//ocultar los demas botones de acción en el formulario al presionar Agregar.
 document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('btnAgregar').className="btn btnAgregarFormulario mr-2";
     document.getElementById('btnActualizar').className="d-none";
     document.getElementById('btnSuspender').className="d-none";
     document.getElementById('btnActivar').className="d-none";
+
+    // Se reinician los campos del formulario
+    document.getElementById('idEmpleado').value = '';
+    document.getElementById('txtNombre').value = '';
+    document.getElementById('txtApellido').value = '';
+    document.getElementById('txtDUI').value = '';
+    document.getElementById('txtNombre').value = '';
+    document.getElementById('txtTelefono').value = '';
+    document.getElementById('txtCorreo').value = '';
+
+    fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado2', null);
+    
+    document.getElementById('txtDireccion').value = '';
+    previewSavePicture('divFoto', null, 2);
 });
 
 //agregar registros a la tabla de empleados
@@ -84,12 +119,7 @@ document.getElementById('btnAgregar').addEventListener('click',function(){
     });
 });
 
-//actualizar registros
-document.getElementById('btnActualizar').addEventListener('click',function(event){
-    event.preventDefault();
-    console.log('come mierda yeik');
-})
-
+//Carga de datos del registro seleccionado
 function readDataOnModal(id){
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
@@ -142,6 +172,118 @@ function readDataOnModal(id){
     });
 }
 
+
+//actualizar registros
+document.getElementById('btnActualizar').addEventListener('click',function(event){
+
+    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
+        event.preventDefault();
+        //Fetch para actualizar empleado
+        fetch(API_EMPLEADO + 'updateRow', {
+            method: 'post',
+            body: new FormData(document.getElementById('administrarEmpleado-form'))
+        }).then(request => {
+            //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
+            if (request.ok) {
+                request.json().then(response => {
+                    //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
+                    if (response.status) {
+                        readRows(API_EMPLEADO);
+                        sweetAlert(1, response.message, closeModal('administrarEmpleado'));
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                })
+            } else {
+                console.log(response.status + ' ' + response.exception);
+            }
+        }).catch(error => console.log(error));
+    
+    });
+});
+
+//Suspender registros
+document.getElementById('btnSuspender').addEventListener('click',function(){
+
+    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
+        event.preventDefault();
+        //Fetch para suspender empleado
+        swal({
+            title: 'Advertencia',
+            text: '¿Desea suspender el registro?',
+            icon: 'warning',
+            buttons: ['No', 'Sí'],
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        }).then(function (value) {
+            // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+            if (value) {
+                fetch(API_EMPLEADO + 'suspendEmployee', {
+                    method: 'post',
+                    body: new FormData(document.getElementById('administrarEmpleado-form'))
+                }).then(request => {
+                    //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
+                    if (request.ok) {
+                        request.json().then(response => {
+                            //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
+                            if (response.status) {
+                                readRows(API_EMPLEADO);
+                                sweetAlert(1, response.message, closeModal('administrarEmpleado'));
+                            } else {
+                                sweetAlert(2, response.exception, null);
+                            }
+                        })
+                    } else {
+                        console.log(response.status + ' ' + response.exception);
+                    }
+                }).catch(error => console.log(error));
+            }
+        });
+    
+    });
+})
+
+//Activar registros
+document.getElementById('btnActivar').addEventListener('click',function(){
+
+    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
+        event.preventDefault();
+        //Fetch para suspender empleado
+        swal({
+            title: 'Advertencia',
+            text: '¿Desea activar el registro?',
+            icon: 'warning',
+            buttons: ['No', 'Sí'],
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        }).then(function (value) {
+            // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+            if (value) {
+                fetch(API_EMPLEADO + 'activateEmployee', {
+                    method: 'post',
+                    body: new FormData(document.getElementById('administrarEmpleado-form'))
+                }).then(request => {
+                    //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
+                    if (request.ok) {
+                        request.json().then(response => {
+                            //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
+                            if (response.status) {
+                                readRows(API_EMPLEADO);
+                                sweetAlert(1, response.message, closeModal('administrarEmpleado'));
+                            } else {
+                                sweetAlert(2, response.exception, null);
+                            }
+                        })
+                    } else {
+                        console.log(response.status + ' ' + response.exception);
+                    }
+                }).catch(error => console.log(error));
+            }
+        });
+    
+    });
+})
+
 //eliminar registros de la tabla empleado.
 function deleteRow(id){
     // Se define un objeto con los datos del registro seleccionado.
@@ -151,12 +293,38 @@ function deleteRow(id){
     confirmDelete(API_EMPLEADO, data);
 }
 
-document.getElementById('cbTipoEmpleado').addEventListener('change',function(){
-    document.getElementById('btnFiltrarEmpleado').click();    
+//---------------------------BUSQUEDAS EN LA TABLA---------------------------
+
+//Busqueda común
+
+/*En el evento submit del formulario llamamos una funcion que ya tiene especificado un fetch para
+las busquedas.*/
+document.getElementById('search-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+
+    //Llamamos la funcion
+    searchRows(API_EMPLEADO, 'search-form');
 })
 
+
+
+//Busqueda por tipo de empleado
+
+/*Cada vez que cambie el valor del select, se enviara a un input invisible y de igual forma se 
+presionara un boton invisible para poder activar el evento submit del form filtrarTipoEmpleado-form*/
+document.getElementById('cbTipoEmpleado').addEventListener('change',function(){
+    //Guardando el valor del select en un input
+    document.getElementById('idTipoEmpleado').value = document.getElementById('cbTipoEmpleado').value;
+    //Presionando el boton invisible
+    document.getElementById('btnFiltrarEmpleado').click();   
+})
+
+//Una vez presionado el boton invisible, se hace un fetch con la información del form.
 document.getElementById('filtrarTipoEmpleado-form').addEventListener('submit',function(event){
+    //Se evita recargar la pagina
     event.preventDefault();
+
     fetch(API_EMPLEADO + 'filterByEmployeeType', {
         method: 'post',
         body: new FormData(document.getElementById('filtrarTipoEmpleado-form'))
@@ -168,6 +336,7 @@ document.getElementById('filtrarTipoEmpleado-form').addEventListener('submit',fu
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     data = response.dataset;
+                    //sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(4, response.exception, null);
                 }
@@ -181,6 +350,8 @@ document.getElementById('filtrarTipoEmpleado-form').addEventListener('submit',fu
         console.log(error);
     });
 });  
+
+//---------------------------METODOS NECESARIOS PARA LA CARGA DE FOTOS---------------------------
 
 
 //Metodo para usar un boton diferente de examinar

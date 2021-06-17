@@ -25,9 +25,9 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                     <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarEmpleado" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
                 </div>
                     
-                <form class="mx-3">
+                <form class="mx-3 mb-2" method="post" id="search-form">
                     <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
-                    <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
+                    <input type="text" class="form-control buscador" id="search" name="search" aria-describedby="emailHelp" placeholder="{ Nombre, Apellido, DUI, Teléfono }">
                 </form>   
 
                 <form method="post" id="filtrarTipoEmpleado-form" class="mx-3">
@@ -43,8 +43,13 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                             <option value="3">Three</option>
                         </select> 
                     </div>
+                    <input type="number" name="idTipoEmpleado" id="idTipoEmpleado" class="d-none">
                     <button class="d-none" id="btnFiltrarEmpleado" type="submit"></button>
                 </form>
+
+                <div class="mt-4 mx-3 mb-3">
+                    <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
+                </div>
             </div>
             
         </div><br>
@@ -93,23 +98,23 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                 <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                                     <div class="#" id="EmpleadosColumna1">
                                         <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
+                                        <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
                                             placeholder="Escriba sus nombres...">
 
                                         <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido"
+                                        <input type="text" onchange="checkInputLetras('txtApellido')" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido"
                                             placeholder="Escriba sus apellidos...">
 
                                         <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9">
+                                        <input type="text" onchange="checkDui('txtDUI')" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9">
 
                                         <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="txtTelefono" name="txtTelefono"
+                                        <input type="text" onchange="checkTelefono('txtTelefono')" class="form-control cajaTextoFormulario" id="txtTelefono" name="txtTelefono"
                                             placeholder="0000-0000">
                                             
 
                                         <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo"
+                                        <input type="text" onchange="checkCorreo('txtCorreo')" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo"
                                             placeholder="ejemplo@mail.com">
 
                                         <!-- RadioButtonGroup Género -->
@@ -119,7 +124,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                         deseado en el combobox  -->
                                         <div class="cbCitiger">
                                             <select class="custom-select" id="cbGenero" name="cbGenero">
-                                                <option selected="">Seleccionar...</option>
+                                                <option selected="default">Seleccionar...</option>
                                                 <option value="F">Masculino</option>
                                                 <option value="M">Femenino</option>
                                             </select> 
@@ -159,10 +164,10 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
 
                                         <label class="tituloCajaTextoFormulario mt-2" for="txtFechaNacimiento">Fecha de Nacimiento:</label>
                                         <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento"
-                                            placeholder="01-01-2000">
+                                            value="2000-01-01">
 
                                         <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
-                                        <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="4"></textarea>
+                                        <textarea onchange="checkInput('txtDireccion')" class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="4"></textarea>
                                     </div>
                                 </div>
                             </div>
