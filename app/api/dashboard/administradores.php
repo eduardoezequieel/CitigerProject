@@ -261,7 +261,7 @@ if (isset($_GET['action'])) {
                 if ($usuarios->setId($_POST['txtId'])) {
                     if ($usuarios->suspend()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Se ha suspendido al empleado correctamente.';
+                        $result['message'] = 'Se ha suspendido al usuario correctamente.';
                     } else {
                         $result['exception'] = Database::getException();
                     }

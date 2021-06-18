@@ -103,33 +103,33 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                         <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                             <div class="#" id="EmpleadosColumna1">
                                 <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre" placeholder="Escriba sus nombres...">
+                                <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre" placeholder="Escriba sus nombres...">
 
                                 <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido" placeholder="Escriba sus apellidos...">
+                                <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido" placeholder="Escriba sus apellidos...">
 
                                 <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9">
+                                <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9">
 
                                 <div class="row">
                                     <div class="col-6 ">
-                                        <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono
+                                        <label class="tituloCajaTextoFormulario" for="txtTelefonofijo">Teléfono
                                             Fijo:</label>
-                                        <input type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000">
+                                        <input onchange="checkTelefono('txtTelefonofijo')" type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000">
 
                                     </div>
 
                                     <div class="col-6 ">
-                                        <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono
+                                        <label class="tituloCajaTextoFormulario" for="txtTelefonomovil">Teléfono
                                             Movil:</label>
-                                        <input type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="0000-0000">
+                                        <input onchange="checkTelefono('txtTelefonomovil')" type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="0000-0000">
                                     </div>
 
                                 </div>
 
 
                                 <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo" placeholder="ejemplo@mail.com">
+                                <input onchange="checkCorreo('txtCorreo')" type="text" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo" placeholder="ejemplo@mail.com">
 
                                 <label class="tituloCajaTextoFormulario" for="txtUsuario">Nombre de usuario:</label>
                                 <input type="text" class="form-control cajaTextoFormulario" id="txtUsuario" name="txtUsuario" placeholder="Escriba su nombre de usuario">
