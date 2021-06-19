@@ -1,6 +1,5 @@
 //Constante para la direccion de la API
-const API_EMPLEADO = '../../app/api/dashboard/administradores.php?action=';
-const ENDPOINT_TIPOS = '../../app/api/dashboard/administradores.php?action=readEmployeeTypes';
+const API_RESIDENTE = '../../app/api/dashboard/residentes.php?action=';
 
 document.addEventListener('DOMContentLoaded', function(){
     // Se declara e inicializa un objeto para obtener la fecha y hora actual.
@@ -16,10 +15,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // Se asigna la fecha como valor máximo en el campo del formulario.
     document.getElementById('txtFechaNacimiento').setAttribute('max', date);
     document.getElementById('txtFechaNacimiento').setAttribute('value', date);
-
-    fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado', null);
-    fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado2', null);
-    readRows(API_EMPLEADO);
+    readRows(API_RESIDENTE);
 })
 
 //Llenado de tabla
@@ -34,7 +30,7 @@ function fillTable(dataset){
                 <th scope="row">
                     <div class="row paddingTh">
                         <div class="col-12">
-                            <img src="../../resources/img/dashboard_img/usuarios_fotos/${row.foto}" alt="#"
+                            <img src="../../resources/img/dashboard_img/residentes_fotos/${row.foto}" alt="#"
                                 class="rounded-circle fit-images" width="30px" height="30px">
                         </div>
                     </div>
@@ -42,15 +38,15 @@ function fillTable(dataset){
                 <!-- Datos-->
                 <td>${row.nombre}</td>
                 <td>${row.dui}</td>
-                <td>${row.telefonofijo}</td>
-                <td>${row.estadousuario}</td>
+                <td>${row.telefonocelular}</td>
+                <td>${row.estadoresidente}</td>
                 <!-- Boton-->
                 <th scope="row">
                     <div class="row paddingBotones">
                         <div class="col-12">
-                            <a href="#" onclick="readDataOnModal(${row.idusuario}) "data-toggle="modal" data-target="#administrarAdmin" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
+                            <a href="#" onclick="readDataOnModal(${row.idresidente}) "data-toggle="modal" data-target="#administrarResidente" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
 
-                            <a href="#" onclick="deleteRow(${row.idusuario})" class="btn btnTabla2 mx-2"><i class="fas fa-trash"></i></a>
+                            <a href="#" onclick="deleteRow(${row.idresidente})" class="btn btnTabla2 mx-2"><i class="fas fa-trash"></i></a>
                         </div>
                     </div>
                 </th>
@@ -60,9 +56,8 @@ function fillTable(dataset){
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
 }
-
 document.getElementById('btnReiniciar').addEventListener('click',function(){
-    readRows(API_EMPLEADO);
+    readRows(API_RESIDENTE);
 });
 
 //---------------------------Operaciones CRUD---------------------------
@@ -76,36 +71,33 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('btnActivar').className="d-none";
 
     // Se reinician los campos del formulario
-    document.getElementById('txtId').value = '';
+    document.getElementById('idResidente').value = '';
     document.getElementById('txtNombre').value = '';
     document.getElementById('txtApellido').value = '';
     document.getElementById('txtDUI').value = '';
-    document.getElementById('txtNombre').value = '';
-    document.getElementById('txtTelefonomovil').value = '';
     document.getElementById('txtTelefonofijo').value = '';
-    document.getElementById('txtCorreo').value = '';
-
-    fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado2', null);
-    
-    document.getElementById('txtDireccion').value = '';
+    document.getElementById('txtTelefonomovil').value = '';
+    document.getElementById('txtCorreo').value = '';    
+    document.getElementById('txtUser').value = '';
+    previewSavePicture('divFoto', null, 2);
 });
 
-//agregar registros a la tabla de empleados
+//agregar registros a la tabla de residentes
 document.getElementById('btnAgregar').addEventListener('click',function(){
-    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
+    document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
         event.preventDefault();
         //Fetch para registrar empleado
-        fetch(API_EMPLEADO + 'register', {
+        fetch(API_RESIDENTE + 'createRow', {
             method: 'post',
-            body: new FormData(document.getElementById('administrarEmpleado-form'))
+            body: new FormData(document.getElementById('administrarResidente-form'))
         }).then(request => {
             //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
             if (request.ok) {
                 request.json().then(response => {
                     //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
                     if (response.status) {
-                        readRows(API_EMPLEADO);
-                        sweetAlert(1, response.message, closeModal('administrarAdmin'));
+                        readRows(API_RESIDENTE);
+                        sweetAlert(1, response.message, closeModal('administrarEmpleado'));
                     } else {
                         sweetAlert(2, response.exception, null);
                     }
@@ -122,14 +114,14 @@ document.getElementById('btnAgregar').addEventListener('click',function(){
 function readDataOnModal(id){
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('txtId', id);
+    data.append('idResidente', id);
     console.log(id);
 
     //Se ocultan los botones del formulario.
     document.getElementById('btnAgregar').className="d-none";
     document.getElementById('btnActualizar').className="btn btnAgregarFormulario mr-2";
 
-    fetch(API_EMPLEADO + 'readOne', {
+    fetch(API_RESIDENTE + 'readOne', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -139,24 +131,21 @@ function readDataOnModal(id){
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('txtId').value = response.dataset.idusuario;
-                    document.getElementById('txtUsuario').value = response.dataset.username;
+                    document.getElementById('idResidente').value = response.dataset.idresidente;
                     document.getElementById('txtNombre').value = response.dataset.nombre;
                     document.getElementById('txtApellido').value = response.dataset.apellido;
                     document.getElementById('txtDUI').value = response.dataset.dui;
-                    document.getElementById('txtNombre').value = response.dataset.nombre;
                     document.getElementById('txtTelefonofijo').value = response.dataset.telefonofijo;
                     document.getElementById('txtTelefonomovil').value = response.dataset.telefonocelular;
                     document.getElementById('txtCorreo').value = response.dataset.correo;
                     document.getElementById('cbGenero').value = response.dataset.genero;
-                    fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado2', response.dataset.idtipousuario);
                     document.getElementById('txtFechaNacimiento').value = response.dataset.fechanacimiento;
-                    document.getElementById('txtDireccion').value = response.dataset.direccion;
-                    previewSavePicture('divFoto', response.dataset.foto,1);
-                    if (response.dataset.idestadousuario == 1) {
+                    document.getElementById('txtUser').value = response.dataset.username;
+                    previewSavePicture('divFoto', response.dataset.foto,2);
+                    if (response.dataset.idestadoresidente == 1) {
                         document.getElementById('btnSuspender').className="btn btnAgregarFormulario mr-2";
                         document.getElementById('btnActivar').className="d-none";
-                    }else if(response.dataset.idestadousuario == 2){
+                    }else if(response.dataset.idestadoresidente == 2){
                         document.getElementById('btnActivar').className="btn btnAgregarFormulario mr-2";
                         document.getElementById('btnSuspender').className="d-none";
                     }
@@ -173,24 +162,23 @@ function readDataOnModal(id){
     });
 }
 
-
-//actualizar registros
+//Actualizar registros 
 document.getElementById('btnActualizar').addEventListener('click',function(event){
 
-    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
+    document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
         event.preventDefault();
         //Fetch para actualizar empleado
-        fetch(API_EMPLEADO + 'updateRow', {
+        fetch(API_RESIDENTE + 'updateRow', {
             method: 'post',
-            body: new FormData(document.getElementById('administrarEmpleado-form'))
+            body: new FormData(document.getElementById('administrarResidente-form'))
         }).then(request => {
             //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
             if (request.ok) {
                 request.json().then(response => {
                     //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
                     if (response.status) {
-                        readRows(API_EMPLEADO);
-                        sweetAlert(1, response.message, closeModal('administrarAdmin'));
+                        readRows(API_RESIDENTE);
+                        sweetAlert(1, response.message, closeModal('administrarResidente'));
                     } else {
                         sweetAlert(2, response.exception, null);
                     }
@@ -206,9 +194,9 @@ document.getElementById('btnActualizar').addEventListener('click',function(event
 //Suspender registros
 document.getElementById('btnSuspender').addEventListener('click',function(){
 
-    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
+    document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
         event.preventDefault();
-        //Fetch para suspender empleado
+        //Fetch para deshailitar residente
         swal({
             title: 'Advertencia',
             text: '¿Desea suspender el registro?',
@@ -219,17 +207,17 @@ document.getElementById('btnSuspender').addEventListener('click',function(){
         }).then(function (value) {
             // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
             if (value) {
-                fetch(API_EMPLEADO + 'suspendEmployee', {
+                fetch(API_RESIDENTE + 'suspendResident', {
                     method: 'post',
-                    body: new FormData(document.getElementById('administrarEmpleado-form'))
+                    body: new FormData(document.getElementById('administrarResidente-form'))
                 }).then(request => {
                     //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
                     if (request.ok) {
                         request.json().then(response => {
                             //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
                             if (response.status) {
-                                readRows(API_EMPLEADO);
-                                sweetAlert(1, response.message, closeModal('administrarAdmin'));
+                                readRows(API_RESIDENTE);
+                                sweetAlert(1, response.message, closeModal('administrarResidente'));
                             } else {
                                 sweetAlert(2, response.exception, null);
                             }
@@ -247,9 +235,9 @@ document.getElementById('btnSuspender').addEventListener('click',function(){
 //Activar registros
 document.getElementById('btnActivar').addEventListener('click',function(){
 
-    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
+    document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
         event.preventDefault();
-        //Fetch para suspender empleado
+        //Fetch para activar residente
         swal({
             title: 'Advertencia',
             text: '¿Desea activar el registro?',
@@ -260,17 +248,17 @@ document.getElementById('btnActivar').addEventListener('click',function(){
         }).then(function (value) {
             // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
             if (value) {
-                fetch(API_EMPLEADO + 'activateEmployee', {
+                fetch(API_RESIDENTE + 'activateResident', {
                     method: 'post',
-                    body: new FormData(document.getElementById('administrarEmpleado-form'))
+                    body: new FormData(document.getElementById('administrarResidente-form'))
                 }).then(request => {
                     //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
                     if (request.ok) {
                         request.json().then(response => {
                             //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
                             if (response.status) {
-                                readRows(API_EMPLEADO);
-                                sweetAlert(1, response.message, closeModal('administrarAdmin'));
+                                readRows(API_RESIDENTE);
+                                sweetAlert(1, response.message, closeModal('administrarResidente'));
                             } else {
                                 sweetAlert(2, response.exception, null);
                             }
@@ -285,13 +273,13 @@ document.getElementById('btnActivar').addEventListener('click',function(){
     });
 })
 
-//eliminar registros de la tabla empleado.
+//eliminar registros de la tabla residente.
 function deleteRow(id){
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
-    data.append('txtId', id);
+    data.append('idResidente', id);
     // Se llama a la función que elimina un registro.
-    confirmDelete(API_EMPLEADO, data);
+    confirmDelete(API_RESIDENTE, data);
 }
 
 //---------------------------BUSQUEDAS EN LA TABLA---------------------------
@@ -305,61 +293,17 @@ document.getElementById('search-form').addEventListener('submit',function(event)
     event.preventDefault();
 
     //Llamamos la funcion
-    searchRows(API_EMPLEADO, 'search-form');
+    searchRows(API_RESIDENTE, 'search-form');
 })
-
-
-
-//Busqueda por tipo de empleado
-
-/*Cada vez que cambie el valor del select, se enviara a un input invisible y de igual forma se 
-presionara un boton invisible para poder activar el evento submit del form filtrarTipoEmpleado-form*/
-document.getElementById('cbTipoEmpleado').addEventListener('change',function(){
-    //Guardando el valor del select en un input
-    document.getElementById('idTipoEmpleado').value = document.getElementById('cbTipoEmpleado').value;
-    //Presionando el boton invisible
-    document.getElementById('btnFiltrarEmpleado').click();   
-})
-
-//Una vez presionado el boton invisible, se hace un fetch con la información del form.
-document.getElementById('filtrarTipoEmpleado-form').addEventListener('submit',function(event){
-    //Se evita recargar la pagina
-    event.preventDefault();
-
-    fetch(API_EMPLEADO + 'filterByEmployeeType', {
-        method: 'post',
-        body: new FormData(document.getElementById('filtrarTipoEmpleado-form'))
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                let data = [];
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    data = response.dataset;
-                    //sweetAlert(1, response.message, null);
-                } else {
-                    sweetAlert(4, response.exception, null);
-                }
-                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
-                fillTable(data);
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(function (error) {
-        console.log(error);
-    });
-});  
 
 //---------------------------METODOS NECESARIOS PARA LA CARGA DE FOTOS---------------------------
 
 
 //Metodo para usar un boton diferente de examinar
-botonExaminar('btnAgregarFoto', 'archivo_usuario');
+botonExaminar('btnAgregarFoto', 'archivo_residente');
 
 //Metodo para crear una previsualizacion del archivo a cargar en la base de datos
-previewPicture('archivo_usuario','divFoto');
+previewPicture('archivo_residente','divFoto');
 
 function botonExaminar(idBoton, idInputExaminar){
     document.getElementById(idBoton).addEventListener('click', function(event){

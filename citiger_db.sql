@@ -253,3 +253,6 @@ INSERT INTO estadoEmpleado(estadoEmpleado) VALUES ('Disponible'),('Ocupado');
 
 --Cambios 16/6/2021
 INSERT INTO estadoempleado VALUES (DEFAULT, 'Suspendido');
+
+--Cambios 17/06/2021
+INSERT INTO estadoresidente (estadoresidente) VALUES ('Activo'),('Deshabilitado');
