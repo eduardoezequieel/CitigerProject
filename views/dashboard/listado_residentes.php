@@ -136,7 +136,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                         <!-- Cargar Fotografia -->
                                         <div class="d-flex justify-content-center align-items-center mb-4">
                                             <div class="bordeDivFotografia mb-1">
-                                                <div class="divFotografia" id="divFoto">
+                                                <div class="divFotografia" id="divFoto" name="divFoto">
                                                     <!--<img src="../../resources/img/67641302_948622395468919_4792483860753416192_n.jpg" alt="#" class="fit-images rounded-circle" width="150px">-->
                                                 </div>
                                             </div>

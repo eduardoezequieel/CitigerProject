@@ -249,10 +249,10 @@
         //Función para buscar
         public function searchRows($value)
         {
-            $sql = 'SELECT idResidente, foto, CONCAT(nombre,\' \', apellido) AS nombre, dui, telefonocelular, estadoresidente.estadoresidente
+            $sql = 'SELECT idResidente, foto, CONCAT(nombre,\' \', apellido) AS nombre, apellido, dui, telefonocelular, estadoresidente.estadoresidente
             FROM residente 
             INNER JOIN estadoresidente ON residente.idestadoresidente = estadoresidente.idestadoresidente
-            WHERE nombre ILIKE ? OR apellido ILIKE ? OR DUI ILIKE ? OR telefono ILIKE ?
+            WHERE nombre ILIKE ? OR apellido ILIKE ? OR dui ILIKE ? OR telefonocelular ILIKE ?
             ORDER BY nombre ASC';
             $params = array("%$value%", "%$value%", "%$value%", "%$value%");
             return Database::getRows($sql, $params);

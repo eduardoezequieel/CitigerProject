@@ -30,7 +30,7 @@ function fillTable(dataset){
                 <th scope="row">
                     <div class="row paddingTh">
                         <div class="col-12">
-                            <img src="../../resources/img/dashboard_img/empleados_fotos/${row.foto}" alt="#"
+                            <img src="../../resources/img/dashboard_img/residentes_fotos/${row.foto}" alt="#"
                                 class="rounded-circle fit-images" width="30px" height="30px">
                         </div>
                     </div>
@@ -38,8 +38,8 @@ function fillTable(dataset){
                 <!-- Datos-->
                 <td>${row.nombre}</td>
                 <td>${row.dui}</td>
-                <td>${row.telefonom}</td>
-                <td>${row.estadoeresidente}</td>
+                <td>${row.telefonocelular}</td>
+                <td>${row.estadoresidente}</td>
                 <!-- Boton-->
                 <th scope="row">
                     <div class="row paddingBotones">
@@ -131,13 +131,12 @@ function readDataOnModal(id){
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('idResidente').value = response.dataset.idempleado;
+                    document.getElementById('idResidente').value = response.dataset.idresidente;
                     document.getElementById('txtNombre').value = response.dataset.nombre;
                     document.getElementById('txtApellido').value = response.dataset.apellido;
                     document.getElementById('txtDUI').value = response.dataset.dui;
-                    document.getElementById('txtNombre').value = response.dataset.nombre;
-                    document.getElementById('txtTelefonofijo').value = response.dataset.telefonof;
-                    document.getElementById('txtTelefonomovil').value = response.dataset.telefonom;
+                    document.getElementById('txtTelefonofijo').value = response.dataset.telefonofijo;
+                    document.getElementById('txtTelefonomovil').value = response.dataset.telefonocelular;
                     document.getElementById('txtCorreo').value = response.dataset.correo;
                     document.getElementById('cbGenero').value = response.dataset.genero;
                     document.getElementById('txtFechaNacimiento').value = response.dataset.fechanacimiento;
@@ -163,3 +162,185 @@ function readDataOnModal(id){
     });
 }
 
+//Actualizar registros 
+document.getElementById('btnActualizar').addEventListener('click',function(event){
+
+    document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
+        event.preventDefault();
+        //Fetch para actualizar empleado
+        fetch(API_RESIDENTE + 'updateRow', {
+            method: 'post',
+            body: new FormData(document.getElementById('administrarResidente-form'))
+        }).then(request => {
+            //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
+            if (request.ok) {
+                request.json().then(response => {
+                    //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
+                    if (response.status) {
+                        readRows(API_RESIDENTE);
+                        sweetAlert(1, response.message, closeModal('administrarResidente'));
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                })
+            } else {
+                console.log(response.status + ' ' + response.exception);
+            }
+        }).catch(error => console.log(error));
+    
+    });
+});
+
+//Suspender registros
+document.getElementById('btnSuspender').addEventListener('click',function(){
+
+    document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
+        event.preventDefault();
+        //Fetch para deshailitar residente
+        swal({
+            title: 'Advertencia',
+            text: '¿Desea suspender el registro?',
+            icon: 'warning',
+            buttons: ['No', 'Sí'],
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        }).then(function (value) {
+            // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+            if (value) {
+                fetch(API_RESIDENTE + 'suspendResident', {
+                    method: 'post',
+                    body: new FormData(document.getElementById('administrarResidente-form'))
+                }).then(request => {
+                    //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
+                    if (request.ok) {
+                        request.json().then(response => {
+                            //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
+                            if (response.status) {
+                                readRows(API_RESIDENTE);
+                                sweetAlert(1, response.message, closeModal('administrarResidente'));
+                            } else {
+                                sweetAlert(2, response.exception, null);
+                            }
+                        })
+                    } else {
+                        console.log(response.status + ' ' + response.exception);
+                    }
+                }).catch(error => console.log(error));
+            }
+        });
+    
+    });
+})
+
+//Activar registros
+document.getElementById('btnActivar').addEventListener('click',function(){
+
+    document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
+        event.preventDefault();
+        //Fetch para activar residente
+        swal({
+            title: 'Advertencia',
+            text: '¿Desea activar el registro?',
+            icon: 'warning',
+            buttons: ['No', 'Sí'],
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        }).then(function (value) {
+            // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+            if (value) {
+                fetch(API_RESIDENTE + 'activateResident', {
+                    method: 'post',
+                    body: new FormData(document.getElementById('administrarResidente-form'))
+                }).then(request => {
+                    //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
+                    if (request.ok) {
+                        request.json().then(response => {
+                            //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
+                            if (response.status) {
+                                readRows(API_RESIDENTE);
+                                sweetAlert(1, response.message, closeModal('administrarResidente'));
+                            } else {
+                                sweetAlert(2, response.exception, null);
+                            }
+                        })
+                    } else {
+                        console.log(response.status + ' ' + response.exception);
+                    }
+                }).catch(error => console.log(error));
+            }
+        });
+    
+    });
+})
+
+//eliminar registros de la tabla residente.
+function deleteRow(id){
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('idResidente', id);
+    // Se llama a la función que elimina un registro.
+    confirmDelete(API_RESIDENTE, data);
+}
+
+//---------------------------BUSQUEDAS EN LA TABLA---------------------------
+
+//Busqueda común
+
+/*En el evento submit del formulario llamamos una funcion que ya tiene especificado un fetch para
+las busquedas.*/
+document.getElementById('search-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+
+    //Llamamos la funcion
+    searchRows(API_RESIDENTE, 'search-form');
+})
+
+//---------------------------METODOS NECESARIOS PARA LA CARGA DE FOTOS---------------------------
+
+
+//Metodo para usar un boton diferente de examinar
+botonExaminar('btnAgregarFoto', 'archivo_residente');
+
+//Metodo para crear una previsualizacion del archivo a cargar en la base de datos
+previewPicture('archivo_residente','divFoto');
+
+function botonExaminar(idBoton, idInputExaminar){
+    document.getElementById(idBoton).addEventListener('click', function(event){
+        //Se evita recargar la pagina
+        event.preventDefault();
+    
+        //Se hace click al input invisible
+        document.getElementById(idInputExaminar).click();
+    });
+}
+
+function previewPicture(idInputExaminar, idDivFoto){
+    document.getElementById(idInputExaminar).onchange=function(e){
+
+        //variable creada para obtener la URL del archivo a cargar
+        let reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+    
+        //Se ejecuta al obtener una URL
+        reader.onload=function(){
+            //Parte de la pagina web en donde se incrustara la imagen
+            let preview=document.getElementById(idDivFoto);
+    
+            //Se crea el elemento IMG que contendra la preview
+            image = document.createElement('img');
+    
+            //Se le asigna la ruta al elemento creado
+            image.src = reader.result;
+    
+            //Se aplican las respectivas clases para que la preview aparezca estilizada
+            image.className = 'fit-images rounded-circle fotoPrimerUso';
+    
+            //Se quita lo que este dentro del div (en caso de que exista otra imagen)
+            preview.innerHTML = ' ';
+    
+            //Se agrega el elemento recien creado
+            preview.append(image);
+        }
+    }
+}
