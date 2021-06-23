@@ -196,6 +196,7 @@ function saveRow(api, action, form, modal) {
                     // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
                     readRows(api);
                     sweetAlert(1, response.message, closeModal(modal));
+                    clearForm(form);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -440,18 +441,152 @@ function pieGraph(canvas, legends, values, title) {
     });
 }
 
-
-function openModal(form){
+//Función para abrir cualquier modal
+function openModal(form) {
     $(document.getElementById(form)).modal('show');
 }
 
-
-function closeModal(form){
+//Función para cerrar cualquier modal
+function closeModal(form) {
     $(document.getElementById(form)).modal('hide');
 }
 
-function clearForm(form){
+//Función para limpiar los campos del formulario
+function clearForm(form) {
     document.getElementById(form).reset();
+    var formulario = document.getElementById(form);
+    for (let field of formulario) {
+        field.classList.remove("error");
+        field.classList.remove("success");
+    }
+}
+
+//Función para resetear botones
+function resetButtons(buttons){
+    for (let i = 5; i < buttons.length; i++) {
+        if (i != 5) {
+            buttons[i].className = 'd-none';
+        } else {
+            buttons[i].className = 'btn btnAgregarFormulario mr-2';
+        }
+    }
+}
+
+/*
+*   Función para suspender un registro en los mantenimientos de tablas (operación update).
+*
+*   Parámetros: api (ruta del servidor para enviar los datos), form (identificador del formulario) y modal (identificador de la caja de dialogo).
+*
+*   Retorno: ninguno.
+*/
+function suspendRow(api,form,modal) {
+    swal({
+        title: 'Advertencia',
+        text: '¿Desea suspender el registro?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(value => {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value) {
+            fetch(api + 'suspendRow', {
+                method: 'post',
+                body: new FormData(document.getElementById(form))
+            }).then(request => {
+                //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
+                if (request.ok) {
+                    request.json().then(response => {
+                        //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
+                        if (response.status) {
+                            readRows(api);
+                            sweetAlert(1, response.message, closeModal(modal));
+                            clearForm(form);
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    })
+                } else {
+                    console.log(response.status + ' ' + response.exception);
+                }
+            }).catch(error => console.log(error));
+        }
+    });
+}
+
+/*
+*   Función para activar un registro en los mantenimientos de tablas (operación update).
+*
+*   Parámetros: api (ruta del servidor para enviar los datos), form (identificador del formulario) y modal (identificador de la caja de dialogo).
+*
+*   Retorno: ninguno.
+*/
+function activateRow(api,form,modal) {
+    swal({
+        title: 'Advertencia',
+        text: '¿Desea activar el registro?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(value => {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value) {
+            fetch(api + 'activateRow', {
+                method: 'post',
+                body: new FormData(document.getElementById(form))
+            }).then(request => {
+                //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
+                if (request.ok) {
+                    request.json().then(response => {
+                        //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
+                        if (response.status) {
+                            readRows(api);
+                            sweetAlert(1, response.message, closeModal(modal));
+                            clearForm(form);
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    })
+                } else {
+                    console.log(response.status + ' ' + response.exception);
+                }
+            }).catch(error => console.log(error));
+        }
+    });
+}
+
+/*
+*   Función para filtrar los registros por su estado (select).
+*
+*   Parámetros: api (ruta del servidor para enviar los datos), form (identificador del formulario) y action (acción que se va a ejecutar).
+*
+*   Retorno: ninguno.
+*/
+function filter(api,action,form) {
+    fetch(api + action, {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(request => {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(response => {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillTable(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 }
 
 // Función para mostrar un mensaje de confirmación al momento de cerrar sesión.

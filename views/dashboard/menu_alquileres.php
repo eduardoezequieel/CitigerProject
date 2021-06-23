@@ -2,7 +2,7 @@
 //Se incluye la clase con las plantillas del documento
 include('../../app/helpers/admin_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
-admin_Page::sidebarTemplate('Alquileres | Citiger');
+Admin_Page::sidebarTemplate('Alquileres | Citiger');
 ?>
 <link rel="stylesheet" href="../../resources/css/estilos3.css">
 <!-- Contenedor de la Pagina -->
@@ -47,5 +47,5 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate();
+Admin_Page::footerTemplate('');
 ?>

@@ -827,6 +827,10 @@ textarea :-ms-input-placeholder {
   float: right;
 }
 
+.searchInput{
+  width: 250px !important;
+}
+
 #buscadorCasasPendientes{
   margin-top: 21px;
 }
