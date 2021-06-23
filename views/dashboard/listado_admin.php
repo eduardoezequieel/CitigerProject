@@ -98,7 +98,7 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
             <div class="textoModal px-3 pb-4 mt-2">
                 <form method="post" id="administrarEmpleado-form">
                     <input class="d-none" type="number" id="txtId" name="txtId" />
-                    <div class="row">
+                    <div class="row animate__animated animate__bounceIn">
                         <!-- Primera columna de controles -->
                         <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                             <div class="#" id="EmpleadosColumna1">
@@ -106,7 +106,7 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                                 <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre" placeholder="Escriba sus nombres...">
 
                                 <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
-                                <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido" placeholder="Escriba sus apellidos...">
+                                <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido" placeholder="Escriba sus apellidos...">
 
                                 <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
                                 <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9">
