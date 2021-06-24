@@ -63,6 +63,8 @@ function fillTable(dataset){
 
 document.getElementById('btnReiniciar').addEventListener('click',function(){
     readRows(API_EMPLEADO);
+    fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado', null);
+
 });
 
 //---------------------------Operaciones CRUD---------------------------
@@ -86,7 +88,8 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('txtCorreo').value = '';
 
     fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado2', null);
-    
+    previewSavePicture('divFoto', null, 1);
+
     document.getElementById('txtDireccion').value = '';
 });
 

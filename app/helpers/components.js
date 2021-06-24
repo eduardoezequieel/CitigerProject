@@ -10,47 +10,43 @@
 *   Retorno: ninguno.
 */
 
-function botonExaminar(idBoton, idInputExaminar){
-    document.getElementById(idBoton).addEventListener('click', function(event){
+function botonExaminar(idBoton, idInputExaminar) {
+    document.getElementById(idBoton).addEventListener('click', function (event) {
         //Se evita recargar la pagina
         event.preventDefault();
-    
+
         //Se hace click al input invisible
         document.getElementById(idInputExaminar).click();
     });
 }
 
-function previewPicture(idInputExaminar, idDivFoto){
-    document.getElementById(idInputExaminar).onchange=function(e){
+function previewPicture(idInputExaminar, idDivFoto) {
+    document.getElementById(idInputExaminar).onchange = function (e) {
 
         //variable creada para obtener la URL del archivo a cargar
         let reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
-    
+
         //Se ejecuta al obtener una URL
-        reader.onload=function(){
+        reader.onload = function () {
             //Parte de la pagina web en donde se incrustara la imagen
-            let preview=document.getElementById(idDivFoto);
-    
+            let preview = document.getElementById(idDivFoto);
+
             //Se crea el elemento IMG que contendra la preview
             image = document.createElement('img');
-    
             //Se le asigna la ruta al elemento creado
             image.src = reader.result;
-    
             //Se aplican las respectivas clases para que la preview aparezca estilizada
             image.className = 'rounded-circle fotografiaPerfil';
-    
             //Se quita lo que este dentro del div (en caso de que exista otra imagen)
             preview.innerHTML = ' ';
-    
             //Se agrega el elemento recien creado
             preview.append(image);
         }
     }
 }
 
-function previewSavePicture(idDivFoto, name, foto){
+function previewSavePicture(idDivFoto, name, foto) {
     let ruta;
     switch (foto) {
         case 1:
@@ -62,50 +58,70 @@ function previewSavePicture(idDivFoto, name, foto){
         case 3:
             ruta = '../../resources/img/dashboard_img/residente_fotos/';
             break;
+        case 4:
+            ruta = '../../resources/img/dashboard_img/materiales_fotos/';
+            break;
         default:
             break;
     }
-    if(foto == 0){
+    if (foto == 0) {
         //Parte de la pagina web en donde se incrustara la imagen
-        let preview=document.getElementById(idDivFoto);
-                    
+        let preview = document.getElementById(idDivFoto);
+
         image = document.createElement('img');
 
         image.style.width = '150px';
 
         //Se aplican las respectivas clases para que la preview aparezca estilizada
         image.className = 'fit-images rounded-circle';
-                
+
         //Se quita lo que este dentro del div (en caso de que exista otra imagen)
         preview.innerHTML = ' ';
-                
+
         //Se agrega el elemento recien creado
         preview.append(image);
-    } else{
+    } else {
         //Parte de la pagina web en donde se incrustara la imagen
-        let preview=document.getElementById(idDivFoto);
-                    
+        let preview = document.getElementById(idDivFoto);
+
         image = document.createElement('img');
 
         image.style.width = '150px';
         //Se le asigna la ruta al elemento creado
         image.src = ruta + name;
-                
+
         //Se aplican las respectivas clases para que la preview aparezca estilizada
         image.className = 'fit-images rounded-circle';
-                
+
         //Se quita lo que este dentro del div (en caso de que exista otra imagen)
         preview.innerHTML = ' ';
-                
+
+        //Se agrega el elemento recien creado
+        preview.append(image);
+    } if (foto == 4) {
+
+        let preview = document.getElementById(idDivFoto);
+
+        image = document.createElement('img');
+
+        //Se le asigna la ruta al elemento creado
+        image.src = ruta + name;
+
+        //Se aplican las respectivas clases para que la preview aparezca estilizada
+        image.className = 'img-fluid fit-images fotoMaterial2';
+
+        //Se quita lo que este dentro del div (en caso de que exista otra imagen)
+        preview.innerHTML = ' ';
+
         //Se agrega el elemento recien creado
         preview.append(image);
     }
 }
 
-function restartSearch(btn, api){
-    document.getElementById(btn).addEventListener('click', function(event){
+function restartSearch(btn, api) {
+    document.getElementById(btn).addEventListener('click', function (event) {
         event.preventDefault();
-        document.getElementById('search').value='';
+        document.getElementById('search').value = '';
         readRows(api);
     })
 }
@@ -137,8 +153,8 @@ function readRows(api) {
 }
 
 /*Sidebar responsive*/
-$(function() { 
-    $('#sidebarCollapse').on('click', function() {
+$(function () {
+    $('#sidebarCollapse').on('click', function () {
         $('#sidebar, #content').toggleClass('active');
     });
 });
@@ -150,31 +166,31 @@ $(function() {
 *
 *   Retorno: ninguno.
 */
-    function searchRows(api, form) {
-        fetch(api + 'search', {
-            method: 'post',
-            body: new FormData(document.getElementById(form))
-        }).then(function (request) {
-            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-            if (request.ok) {
-                request.json().then(function (response) {
-                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                    if (response.status) {
-                        // Se envían los datos a la función del controlador para que llene la tabla en la vista.
-                        fillTable(response.dataset);
-                        sweetAlert(1, response.message, null);
-                    } else {
-                        sweetAlert(2, response.exception, null);
-                        console.log("error");
-                    }
-                });
-            } else {
-                console.log(request.status + ' ' + request.statusText);
-            }
-        }).catch(function (error) {
-            console.log(error);
-        });
-    }
+function searchRows(api, form) {
+    fetch(api + 'search', {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                    fillTable(response.dataset);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log("error");
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 
 /*
 *   Función para crear o actualizar un registro en los mantenimientos de tablas (operación create y update).
@@ -462,7 +478,7 @@ function clearForm(form) {
 }
 
 //Función para resetear botones
-function resetButtons(buttons){
+function resetButtons(buttons) {
     for (let i = 5; i < buttons.length; i++) {
         if (i != 5) {
             buttons[i].className = 'd-none';
@@ -479,7 +495,7 @@ function resetButtons(buttons){
 *
 *   Retorno: ninguno.
 */
-function suspendRow(api,form,modal) {
+function suspendRow(api, form, modal) {
     swal({
         title: 'Advertencia',
         text: '¿Desea suspender el registro?',
@@ -521,7 +537,7 @@ function suspendRow(api,form,modal) {
 *
 *   Retorno: ninguno.
 */
-function activateRow(api,form,modal) {
+function activateRow(api, form, modal) {
     swal({
         title: 'Advertencia',
         text: '¿Desea activar el registro?',
@@ -563,7 +579,7 @@ function activateRow(api,form,modal) {
 *
 *   Retorno: ninguno.
 */
-function filter(api,action,form) {
+function filter(api, action, form) {
     fetch(api + action, {
         method: 'post',
         body: new FormData(document.getElementById(form))
@@ -624,43 +640,43 @@ function logOut() {
     });
 }
 
-function checkInputLetras(input){
+function checkInputLetras(input) {
     var field = document.getElementById(input);
-    if(field.value.trim() === ""){
-        field.classList.remove("success");
-        field.classList.add("error");
-    } else{
-        field.classList.remove("error");
-        field.classList.add("success");
-
-        if(/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]+$/.test(field.value)){
-            field.classList.remove("error");
-            field.classList.add("success");
-            
-        } else{
-            field.classList.remove("success");
-            field.classList.add("error");
-        }    
-    }
-    
-}
-
-function checkCorreo(input) {
-    var field = document.getElementById(input);
-    if(field.value.trim() === "") {
+    if (field.value.trim() === "") {
         field.classList.remove("success");
         field.classList.add("error");
     } else {
         field.classList.remove("error");
         field.classList.add("success");
 
-        if(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(field.value)) {
+        if (/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]+$/.test(field.value)) {
+            field.classList.remove("error");
+            field.classList.add("success");
+
+        } else {
+            field.classList.remove("success");
+            field.classList.add("error");
+        }
+    }
+
+}
+
+function checkCorreo(input) {
+    var field = document.getElementById(input);
+    if (field.value.trim() === "") {
+        field.classList.remove("success");
+        field.classList.add("error");
+    } else {
+        field.classList.remove("error");
+        field.classList.add("success");
+
+        if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(field.value)) {
             field.classList.remove("error");
             field.classList.add("success");
         } else {
             field.classList.remove("success");
             field.classList.add("error");
-        }    
+        }
     }
 }
 
@@ -679,51 +695,51 @@ function showHidePassword(checkbox, pass) {
 
 function checkInput(input) {
     var field = document.getElementById(input);
-    if(field.value.trim() === ""){
+    if (field.value.trim() === "") {
         field.classList.remove("success");
         field.classList.add("error");
-    } else{
+    } else {
         field.classList.remove("error");
-        field.classList.add("success");   
+        field.classList.add("success");
     }
-    
+
 }
 
 //Método para verificar telefono
 function checkTelefono(input) {
     var field = document.getElementById(input);
-    if(field.value.trim() === ""){
+    if (field.value.trim() === "") {
         field.classList.remove("success");
         field.classList.add("error");
-    } else{
+    } else {
         field.classList.remove("error");
-        field.classList.add("success");   
+        field.classList.add("success");
 
-        if(/[0-9-]+$/i.test(field.value)){
+        if (/[0-9-]+$/i.test(field.value)) {
             field.classList.remove("error");
             field.classList.add("success");
-        } else{
+        } else {
             field.classList.remove("success");
             field.classList.add("error");
         }
     }
-    
+
 }
 
 //Método para verificar el dui
 function checkDui(input) {
     var field = document.getElementById(input);
-    if(field.value.trim() === ""){
+    if (field.value.trim() === "") {
         field.classList.remove("success");
         field.classList.add("error");
-    } else{
+    } else {
         field.classList.remove("error");
-        field.classList.add("success");   
+        field.classList.add("success");
 
-        if(/(^\d{8})-(\d$)/.test(field.value)){
+        if (/(^\d{8})-(\d$)/.test(field.value)) {
             field.classList.remove("error");
             field.classList.add("success");
-        } else{
+        } else {
             field.classList.remove("success");
             field.classList.add("error");
         }
@@ -731,7 +747,7 @@ function checkDui(input) {
 }
 
 //Función para limpiar contraseña
-function clearPassword(clave){
+function clearPassword(clave) {
     var contra = document.getElementById(clave);
     contra.value = '';
     contra.classList.remove("error");

@@ -124,3 +124,15 @@
   background-color: #292E32;
   border-left: 3px solid #5494F5;
 }
+
+.fotoMaterial{
+  width: 250px;
+  height: 195px;
+  border-radius: 5px;
+}
+
+.fotoMaterial2{
+  width: 220px;
+  height: 195px;
+  border-radius: 5px;
+}

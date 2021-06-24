@@ -29,7 +29,7 @@ class Inventario extends Validator
 
     public function setNombres($value)
     {
-        if ($this->validateAlphabetic($value, 1, 25)) {
+        if ($this->validateAlphanumeric($value, 1, 25)) {
             $this->nombreMaterial = $value;
             return true;
         } else {
@@ -69,7 +69,7 @@ class Inventario extends Validator
 
     public function setTamanio($value)
     {
-        if ($this->validateAlphabetic($value, 1, 25)) {
+        if ($this->validateAlphanumeric($value, 1, 25)) {
             $this->tamanio = $value;
             return true;
         } else {
@@ -79,7 +79,7 @@ class Inventario extends Validator
 
     public function setDescripcion($value)
     {
-        if ($this->validateAlphabetic($value, 1, 200)) {
+        if ($this->validateString($value, 1, 200)) {
             $this->descripcion = $value;
             return true;
         } else {
@@ -195,6 +195,11 @@ class Inventario extends Validator
         return $this->idTipoUnidad;
     }
 
+    public function getRuta()
+    {
+        return $this->ruta;
+    }
+
 
     public function readTipoUnidad()
     {
@@ -203,11 +208,94 @@ class Inventario extends Validator
         return Database::getRows($sql, $params);
     }
 
+    public function readCategoria()
+    {
+        $sql = 'SELECT*FROM categoria';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readMarca()
+    {
+        $sql = 'SELECT*FROM marca';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+
     public function readUnidadmedida()
     {
 
-        $sql = ' SELECT idunidadmedida, unidadmedida from unidadmedida where idtipounidad=?';
+        $sql = 'SELECT idunidadmedida, unidadmedida from unidadmedida where idtipounidad=?';
         $params = array($this->idTipoUnidad);
         return Database::getRows($sql, $params);
+    }
+
+    public function createRow()
+    {
+        $sql = 'INSERT INTO material(
+                nombreproducto, costo, imagen, idcategoria, tamaño, descripcion, cantidad, idmarca, idunidadmedida)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+
+        $params = array(
+            $this->nombreMaterial, $this->costo, $this->imagen, $this->idcategoria,
+            $this->tamanio, $this->descripcion, $this->cantidad, $this->idmarca, $this->idunidadmedida
+        );
+        return Database::executeRow($sql, $params);
+    }
+
+    public function readAll()
+    {
+        $sql = "SELECT m.idmaterial, m.imagen,concat(b.marca,' ', m.nombreproducto) as producto, m.cantidad  from material m, marca b
+        where m.idmarca=b.idmarca";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function searchRows($value)
+    {
+        $sql = "SELECT m.idmaterial, m.imagen,concat(b.marca,' ', m.nombreproducto) as producto, m.cantidad  from material m, marca b
+        where m.idmarca=b.idmarca and m.nombreproducto ILIKE ?";
+        $params = array("%$value%");
+        return Database::getRows($sql, $params);
+    }
+
+    public function filterCategoria()
+    {
+        $sql = "SELECT m.idmaterial, m.imagen,concat(b.marca,' ', m.nombreproducto) as producto, m.cantidad  from material m, marca b
+        where m.idmarca=b.idmarca and m.idcategoria = ?";
+        $params = array($this->idcategoria);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readOne()
+    {
+
+        $sql = 'SELECT idmaterial, nombreproducto, costo, imagen, idcategoria, "tamaño", descripcion, cantidad, idmarca, idunidadmedida
+        FROM material where idmaterial=?';
+        $params = array($this->idmaterial);
+        return Database::getRow($sql, $params);
+    }
+
+    public function deleteRow()
+    {
+        $sql = 'DELETE FROM material WHERE idmaterial = ?';
+        $params = array($this->idmaterial);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function updateRow($current_image)
+    {
+
+        ($this->imagen) ? $this->deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
+
+        $sql = 'UPDATE material
+        SET nombreproducto=?, costo=?, imagen=?, idcategoria=?, "tamaño"=?, descripcion=?, cantidad=?, idmarca=?, idunidadmedida=?
+        WHERE idmaterial=?';
+        $params = array(
+            $this->nombreMaterial, $this->costo, $this->imagen, $this->idcategoria,
+            $this->tamanio, $this->descripcion, $this->cantidad, $this->idmarca, $this->idunidadmedida, $this->idmaterial
+        );
+        return Database::executeRow($sql, $params);
     }
 }
