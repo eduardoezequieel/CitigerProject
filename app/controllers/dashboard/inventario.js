@@ -39,7 +39,7 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     fillSelect(ENDPOINT_CATEGORIAS, 'cbCategoria', null);
     fillSelect(ENDPOINT_UNIDAD, 'cbUnidad', null);
 
-    previewSavePicture('divFoto', 'default.jpg', 4);
+    previewSavePicture('divFoto', 'default.png', 4);
 
 });
 

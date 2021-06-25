@@ -172,7 +172,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
             <!-- Cabecera del Modal -->
             <div class="modal-header">
                 <!-- Titulo -->
-                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Alquileres</h5>
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Editar información</h5>
                 <!-- Boton para Cerrar -->
                 <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -235,5 +235,5 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate();
+admin_Page::footerTemplate('account.js');
 ?>   
