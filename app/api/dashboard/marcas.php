@@ -31,26 +31,27 @@
                         }
                     }
                     break;
-                case 'readOne':
-                    $_POST = $marcas -> validateForm($_POST);
-                    if($marcas->setIdMarca($_POST['idMarca'])){
-                        if($result['dataset'] = $marcas->readOne()){
-                            $result['status'] = 1;
-                        } else{
-                            if (Database::getException()) {
-                                $result['exception'] = Database::getException();
-                            } else {
-                                $result['exception'] = 'Marca inexistente';
+                
+                    case 'readOne':
+                        $_POST = $marcas -> validateForm($_POST);
+                        if($marcas->setIdMarca($_POST['idMarca'])){
+                            if($result['dataset'] = $marcas->readOne()){
+                                $result['status'] = 1;
+                            } else{
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'Marca inexistente';
+                                }
                             }
+                        } else{
+                            $result['exception'] = 'Marca seleccionada incorrecta';
                         }
-                    } else{
-                        $result['exception'] = 'Marca seleccionado incorrecto';
-                    }
-                    break;
+                        break;
 
                 case 'createRow':
                     $_POST = $marcas -> validateForm($_POST);
-                    if ($marcas->setNombreMarca($_POST['txtMarca'])) {
+                    if ($marcas->setNombreMarca($_POST['txtNombre'])) {
                         if ($marcas -> createRow()) {
                             $result['status'] = 1;
                             $result['message'] = 'Marca registrada correctamente.';
@@ -62,11 +63,22 @@
                         $result['exception'] = 'Escriba otro nombre para la marca.';
                     }
                     break;
+
                 case 'updateRow':
                     $_POST = $marcas -> validateForm($_POST);
                         if ($marcas -> setIdMarca($_POST['idMarca'])) {
-                            if ($data = $marcas -> readOne()) {
-                                if ($marcas->setNombreMarca($_POST['txtMarca'])) {
+                            if ($marcas -> readOne()) {
+                                if ($marcas->setNombreMarca($_POST['txtNombre'])) {
+                                    if ($marcas->updateRow()) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Se ha actualizado la marca correctamente.';
+                                    } else {
+                                        if (Database::getException()) {
+                                            $result['exception'] = Database::getException();
+                                        } else {
+                                            $result['exception'] = 'No se ha actualizado la marca correctamente';
+                                        }
+                                    }
                                 }else{
                                     $result['exception'] = 'Escriba la marca nuevamente.';
                                 }
@@ -77,6 +89,7 @@
                             $result['exception'] = 'Marca seleccionado incorrecto';
                         }
                     break;
+
                 case 'delete':
                     $_POST = $marcas -> validateForm($_POST);
                     if ($marcas -> setIdMarca($_POST['idMarca'])) {

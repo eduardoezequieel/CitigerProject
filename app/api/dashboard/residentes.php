@@ -150,7 +150,7 @@ if (isset($_GET['action'])) {
                                         $result['exception'] = 'Foto invalida.';
                                     }
                                 } else{
-
+                                    $result['exception'] = 'Por favor cargue una fotografía.';
                                 }
                             } else{
                                 $result['exception'] = 'Telefono Movil invalido.';
@@ -169,29 +169,42 @@ if (isset($_GET['action'])) {
             //Caso para actualizar el registro
             case 'updateRow':
                 $_POST = $residente ->validateForm($_POST);
-                $residente->setIdEstadoResidente(1);
-                if($residente->setNombre($_POST['txtNombre'])){
-                    if($residente->setApellido($_POST['txtApellido'])){
-                        if($residente->setTelefonof($_POST['txtTelefonofijo'])){
-                            if($residente->setTelefonom($_POST['txtTelefonomovil'])){
-                                if(is_uploaded_file($_FILES['archivo_residente']['tmp_name'])){
-                                    if($residente->setFoto($_FILES['archivo_residente'])){
+                if($residente->setIdResidente($_POST['idResidente'])){
+                    if($data = $residente->readOne()){
+                        if($residente->setNombre($_POST['txtNombre'])){
+                            if($residente->setApellido($_POST['txtApellido'])){
+                                if($residente->setTelefonof($_POST['txtTelefonofijo'])){
+                                    if($residente->setTelefonom($_POST['txtTelefonomovil'])){
                                         if($residente->setCorreo($_POST['txtCorreo'])){
                                             if($residente->setNacimiento($_POST['txtFechaNacimiento'])){
                                                 if(isset($_POST['cbGenero'])){
                                                     if($residente->setGenero($_POST['cbGenero'])){
                                                         if($residente->setDui($_POST['txtDUI'])){
                                                             if($residente->setUsername($_POST['txtUser'])){
-                                                               if ($residente->updateRow($data['foto'])) {
-                                                                    $result['status'] = 1;
-                                                                    if ($residente->saveFile($_FILES['archivo_residente'], $residente->getRuta(), $residente->getFoto())) {
-                                                                        $result['message'] = 'Residente registrado correctamente';
-                                                                    } else {
-                                                                        $result['message'] = 'Residente registrado pero no se guardó la imagen';
+                                                                if(is_uploaded_file($_FILES['archivo_residente']['tmp_name'])){
+                                                                    if($residente->setFoto($_FILES['archivo_residente'])){
+                                                                        if ($residente->updateRow($data['foto'])) {
+                                                                            $result['status'] = 1;
+                                                                            if ($residente->saveFile($_FILES['archivo_residente'], $residente->getRuta(), $residente->getFoto())) {
+                                                                                $result['message'] = 'Residente modificado correctamente';
+                                                                            } else {
+                                                                                $result['message'] = 'Residente modificado pero no se guardó la imagen';
+                                                                            }
+                                                                        } else {
+                                                                            $result['exception'] = Database::getException();
+                                                                        } 
+                                                                    } else{
+                                                                        $result['exception'] = $residente->getImageError();
                                                                     }
-                                                            } else {
-                                                                $result['exception'] = Database::getException();
-                                                            } 
+                                                                } else{
+                                                                    if ($residente->updateRow($data['foto'])) {
+                                                                        $result['status'] = 1;
+                                                                        $result['message'] = 'Residente modificado correctamente';
+                                                                    } else {
+                                                                        $result['exception'] = Database::getException();
+                                                                    }
+                                                                }
+
                                                             } else{
                                                                 $result['exception'] = 'Usuario invalido.';
                                                             }
@@ -211,22 +224,22 @@ if (isset($_GET['action'])) {
                                             $result['exception'] = 'Correo invalido.';
                                         }
                                     } else{
-                                        $result['exception'] = 'Foto invalida.';
+                                        $result['exception'] = 'Telefono Movil invalido.';
                                     }
                                 } else{
-
+                                    $result['exception'] = 'Telejono Fijo invalido.';
                                 }
                             } else{
-                                $result['exception'] = 'Telefono Movil invalido.';
+                                $result['exception'] = 'Apellido invalido.';
                             }
                         } else{
-                            $result['exception'] = 'Telejono Fijo invalido.';
+                            $result['exception'] = 'Nombre invalido';
                         }
                     } else{
-                        $result['exception'] = 'Apellido invalido.';
+
                     }
                 } else{
-                    $result['exception'] = 'Nombre invalido.';
+
                 }
                 break;
 
