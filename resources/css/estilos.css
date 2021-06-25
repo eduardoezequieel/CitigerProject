@@ -198,6 +198,14 @@ option[selected]{
   margin: 0;
 }
 
+#login-form{
+  width: 300px !important;
+}
+
+#contenedor{
+  margin-right: 40px !important;
+}
+
 #container2 {
   height: 100vh;
   min-height: 100vh;
@@ -219,6 +227,7 @@ option[selected]{
   .page-content{
     padding: 0px !important;
   }
+
 }
 
 @media (max-width: 768px) {
@@ -247,6 +256,10 @@ option[selected]{
   #content.active {
     margin-left: 17rem;
     /*width: calc(100% - 17rem);*/
+  }
+
+  #login-form{
+    width: 300px !important;
   }
 }
 
@@ -1326,19 +1339,18 @@ textarea :-ms-input-placeholder {
     width: 300px !important;
   }
 
+  #imagenInicio{
+    display: none !important;
+  }
+
+  #contenedor{
+    margin-right: 0 !important;
+  }
+
   #buscar{
     margin: 0 !important;
   }
 
-  #imagenPrincipal {
-    width: 0;
-    height: 0;
-  }
-
-  #contenedor {
-    margin: auto;
-    display: block;
-  }
 
   .centrarBotones {
     display: flex;
@@ -1500,21 +1512,13 @@ textarea :-ms-input-placeholder {
   align-items: center;
 }
 
-#contenedor {
-  margin-right: 90px;
-}
-
 #CitigerLogo {
   width: 130px;
   margin: auto;
   display: block;
 }
 
-#controlesInicio {
-  width: 330px;
-  margin: auto;
-  display: block;
-}
+
 
 .texto {
   font-family: 'Manrope', sans-serif;
@@ -1906,6 +1910,7 @@ textarea[placeholder],
   .botonesListadoTabla {
     display: none;
   }
+
 }
 
 @media screen and (max-width:1200px) {
