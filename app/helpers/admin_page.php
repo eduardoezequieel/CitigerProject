@@ -7,7 +7,7 @@
             print('
                 <!doctype html>
                 <html lang="es">
-                <head>
+                <head onload="loadPage()">
                     <!-- Required meta tags -->
                     <meta charset="utf-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,35 +47,44 @@
                         <!-- Inicio del Sidebar -->
                         <div class="vertical-nav colorCitiger" id="sidebar">
                             <div class="py-3 px-3 colorCitiger">
-                            <div class="media d-flex">
-                                <a href="dashboard.php" id="btnDashboard" class="btn btnInicio"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
+                                <div class="media d-flex">
+                                    <a href="dashboard.php" id="btnDashboard" class="btn btnInicio"><img
+                                            src="../../resources/img/citigerDarkLogo2.png" alt="#" id="imgDashboard"
+                                            class="img-fluid" width="140px"></a>
+                                </div>
                             </div>
-                            </div>
-                            
+
                             <!-- Perfil -->
                             <div id="tarjeta">
                                 <div id="tarjetaPerfil" class="p-3">
                                     <div class="row">
                                         <div class="col-3">
-                                            <img src="../../resources/img/dashboard_img/usuarios_fotos/' . $_SESSION['foto'] . '" id="fotoPerfil" alt="" class="rounded-circle fit-image" width="60px" height="60px">
+                                            <img src="../../resources/img/dashboard_img/usuarios_fotos/' . $_SESSION['foto'] . '"
+                                                id="fotoPerfil" alt="" class="rounded-circle fit-image" width="60px"
+                                                height="60px">
                                         </div>
-                                    <div class="col-9">
-                                        <label for="ajustes" class="pl-4 pt-2" id="usuario">'. $_SESSION['usuario'].'</label>
-                                        <label for="ajustes" class="pl-4" id="tipoUsuario">'. $_SESSION['tipousuario'].'</label>
-                                    </div>
+                                        <div class="col-9">
+                                            <label for="ajustes" class="pl-4 pt-2" id="usuario">'. $_SESSION['usuario'].'</label>
+                                            <label for="ajustes" class="pl-4" id="tipoUsuario">'. $_SESSION['tipousuario'].'</label>
+                                            <input type="text" id="txtModo" class="d-none" value="'. $_SESSION['modo'].'">
+                                        </div>
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-12" id="filaBotones">
                                             <div id="botones">
-                                            <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
-                                            <a href="#" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar" onclick="logOut()"></a>
-                                            <a href="index.php" class="btn fas fa-adjust botonesPerfil" id="modo"></a>
+                                                <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil"
+                                                    id="ajustes"></a>
+                                                <a href="#" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"
+                                                    onclick="logOut()"></a>
+                                                <a href="#" class="btn fas fa-sun botonesPerfil" id="lightMode"
+                                                    onclick="lightMode()"></a>
+                                                <a href="#" class="btn fas fa-moon botonesPerfil" id="darkMode"
+                                                    onclick="darkMode()"></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        
                             <!-- Botones de Navegación -->
                             <ul class="nav flex-column colorCitiger mt-4">
                             <li class="nav-item">

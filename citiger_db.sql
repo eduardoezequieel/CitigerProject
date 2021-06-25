@@ -259,3 +259,17 @@ INSERT INTO estadoresidente (estadoresidente) VALUES ('Activo'),('Deshabilitado'
 
 --Cambios 22/06/2021
 INSERT INTO estadoEspacio(estadoEspacio) VALUES('Disponible'),('Ocupado'),('Suspendido');
+
+--Cambios 24/06/2021
+INSERT INTO categoria(categoria) VALUES ('Artículos de limpieza'),('Artículos de construcción'),('Ornamentación');
+INSERT INTO marca(marca) VALUES ('CEMEX'),('Kimberly-Clark'),('HOLCIM'),('IKEA');
+INSERT INTO tipoUnidad(tipoUnidad) VALUES ('Volumen'),('Peso'),('Altura');
+INSERT INTO unidadMedida(idTipoUnidad,unidadMedida) VALUES (1,'Litros'), (2,'Libras'), (3,'Metros');
+
+--Cambios 24/6/2021
+ALTER TABLE usuario ADD COLUMN modo VARCHAR(6) NULL;
+UPDATE usuario SET modo = 'light';
+
+--Cambios 25/06/2021
+INSERT INTO estadoAlquiler(estadoAlquiler) VALUES('Revisión'),('Activo'),('Finalizado'),('Denegado');
+

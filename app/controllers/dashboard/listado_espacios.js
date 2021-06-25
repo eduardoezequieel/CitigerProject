@@ -197,7 +197,7 @@ document.getElementById('btnReiniciar').addEventListener('click', function (even
 //Método para resetear botones
 document.getElementById('btnInsertDialog').addEventListener('click', function () {
     clearForm('espacio-form');
-    resetButtons(BOTONES);
+    resetButtons(BOTONES,5);
 })
 
 

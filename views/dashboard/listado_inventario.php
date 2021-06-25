@@ -21,7 +21,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
         <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
             <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12  centrarBotones">
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" data-toggle="modal" data-target="#administrarInventario" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarInventario" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
                 </div>
 
                 <div class="mt-4 mx-3 mb-3">
@@ -30,7 +30,23 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
 
                 <form class="mx-3" method="post" id="search-form">
                     <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
-                    <input type="text" class="form-control buscador" id="search" name="search" aria-describedby="emailHelp" placeholder="{Nombre, Descripcion}">
+                    <input type="text" class="form-control buscador" id="search" name="search" aria-describedby="emailHelp" placeholder="{Nombre}">
+                </form>
+                <form method="post" id="filtrarCategoria-form" class="mx-3">
+                    <h1 class="tituloCajaTextoFormulario">Categoría:</h1>
+                    <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                    cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                    deseado en el combobox  -->
+                    <div class="cbCitigerBusqueda">
+                        <select class="custom-select" id="cbCategoria2">
+                            <option selected="">Seleccionar...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <input type="number" name="idCategoria" id="idCategoria" class="d-none">
+                    <button class="d-none" id="btnCategoria" name="btnCategoria" type="submit"></button>
                 </form>
                 <div class="mt-4 mx-3 mb-3">
                     <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
@@ -41,33 +57,6 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
 
         <!-- Fila de Tarjetas -->
         <div class="row justify-content-center animate__animated animate__backInUp" id="materiales">
-            <div class="animate__animated animate__bounceIn col-xl-4 col-md-4 col-sm-12 col-xs-12 d-flex margenTarjetas justify-content-center align-items-center text-center">
-                <!-- Inicio de Tarjeta -->
-                <div class="tarjeta">
-                    <!-- Fila para Imagen -->
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="../../resources/img/Stockage_de_ciments.JPG" alt="" class="img-fluid imagenTarjeta">
-                        </div>
-                    </div>
-                    <!-- Fila para Información -->
-                    <div class="row mt-2">
-                        <div class="col-12 text-left">
-                            <h1 class="letraTarjeta">CEMENTO CEMEX USO GRAL.</h1>
-                            <h1 class="letraTarjeta">En Stock: <span class="letraDestacadaTarjeta">122</span></h1>
-                        </div>
-                    </div>
-                    <!-- Fila para Boton -->
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="#" data-toggle="modal" data-target="#administrarInventario" class="btn btnTabla"><span class="fas fa-edit"></span></a>
-                            <a href="#" class="btn btnTabla2"><span class="fas fa-trash"></span></a>
-                        </div>
-                    </div>
-                    <!-- Fin de Tarjeta -->
-                </div>
-
-            </div>
 
 
 
@@ -94,7 +83,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                 <!-- Contenido del Modal -->
                 <div class="textoModal px-3 pb-4 mt-2">
                     <form method="post" id="administrarMateriales-form">
-                        <input class="d-none" type="number" id="txtId" name="txtId" />
+                    <input class="d-none" type="number" id="txtId" name="txtId" />
                         <div class="row animate__animated animate__bounceIn">
                             <!-- Primera columna de controles -->
                             <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginCol2 centrarColumnas">
@@ -159,8 +148,8 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                             <option value="3">Three</option>
                                         </select>
                                     </div>
-                                    <input type="number" name="idTipoEmpleado" id="idTipoEmpleado" class="">
-                                    <button class="d-none" id="btnFiltrarEmpleado" name="btnFiltrarEmpleado" type="submit"></button>
+                                    <input type="number" name="idTipoUnidad" id="idTipoUnidad" class="d-none">
+                                    <button class="d-none" id="btnFiltrarUnidad" name="btnFiltrarUnidad" type="submit"></button>
 
                                     <label class="tituloCajaTextoFormulario mt-2" for="cbUnidad">Unidad de medida:</label>
 

@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function(){
     fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado', null);
     fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado2', null);
     readRows(API_EMPLEADO);
+
 })
 
 //Llenado de tabla
@@ -63,6 +64,8 @@ function fillTable(dataset){
 
 document.getElementById('btnReiniciar').addEventListener('click',function(){
     readRows(API_EMPLEADO);
+    fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado', null);
+
 });
 
 //---------------------------Operaciones CRUD---------------------------
@@ -86,37 +89,17 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('txtCorreo').value = '';
 
     fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado2', null);
-    
+    previewSavePicture('divFoto', 'default.png', 1);
+
     document.getElementById('txtDireccion').value = '';
 });
 
-//agregar registros a la tabla de empleados
-document.getElementById('btnAgregar').addEventListener('click',function(){
-    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
-        event.preventDefault();
-        //Fetch para registrar empleado
-        fetch(API_EMPLEADO + 'register', {
-            method: 'post',
-            body: new FormData(document.getElementById('administrarEmpleado-form'))
-        }).then(request => {
-            //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-            if (request.ok) {
-                request.json().then(response => {
-                    //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                    if (response.status) {
-                        readRows(API_EMPLEADO);
-                        sweetAlert(1, response.message, closeModal('administrarAdmin'));
-                    } else {
-                        sweetAlert(2, response.exception, null);
-                    }
-                })
-            } else {
-                console.log(response.status + ' ' + response.exception);
-            }
-        }).catch(error => console.log(error));
-    
-    });
-});
+document.getElementById('btnAgregar').addEventListener('click', function (event) {
+    //Evento para evitar que recargue la pagina
+    event.preventDefault();
+    //Se agrega el nuevo registro
+    saveRow(API_EMPLEADO, 'register', 'administrarEmpleado-form', 'administrarAdmin');
+})
 
 //Carga de datos del registro seleccionado
 function readDataOnModal(id){

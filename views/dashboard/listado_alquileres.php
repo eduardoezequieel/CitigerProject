@@ -20,13 +20,34 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
             <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
                 <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                     <div class="mt-4 mx-3 mb-3">
-                        <a href="#" data-toggle="modal" data-target="#administrarAlquiler" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                        <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarAlquiler" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
                     </div>
                       
-                    <form class="mx-3">
+                    <form class="mx-3" method="post" id="search-form">
                         <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
-                        <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
-                    </form>            
+                        <input type="text" class="form-control buscador" id="search" name="search" aria-describedby="emailHelp" placeholder="{ Residente, Espacio, Fecha }                                                                          &#xf002;">
+                    </form>
+
+                    <form method="post" id="filtrarEstadoAlquiler-form" class="mx-3">
+                        <h1 class="tituloCajaTextoFormulario">Estado:</h1>
+                        <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                        deseado en el combobox  -->
+                        <div class="cbCitigerBusqueda">
+                            <select class="custom-select" id="cbEstadoAlquiler">
+                                <option selected="">Seleccionar...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select> 
+                        </div>
+                        <input type="number" name="idEstadoAlquiler" id="idEstadoAlquiler" class="d-none">
+                        <button class="d-none" id="btnFiltrarAlquiler" type="submit"></button>
+                    </form>
+
+                    <div class="mt-4 mx-3 mb-3">
+                        <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
+                    </div>       
                 </div>
                 
             </div><br>
@@ -45,33 +66,7 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="animate__animated animate__fadeIn">
-                                <!-- Fotografia-->
-                                <th scope="row">
-                                    <div class="row paddingTh">
-                                        <div class="col-12">
-                                            <img src="../../resources/img/ppEdenilson.png" alt="" class="fit-images rounded-circle" width="30px" height="30px">
-                                        </div>
-                                    </div>
-                                </th>
-                                <!-- Datos-->
-                                <td>Edenilson Ramírez</td>
-                                <td>Piscina 2</td>
-                                <td>3/4/2021</td>
-                                <td>Revisión</td>
-                                <!-- Boton-->
-                                <th scope="row">
-                                    <div class="row paddingBotones">
-                                        <div class="col-12">
-                                            <a href="#" data-target="#administrarAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
-
-                                            <a href="#" class="btn btnTabla2 mx-2"><i
-                                            class="fas fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
+                        <tbody id="tbody-rows">
                             
                         </tbody>
                     </table>
@@ -102,73 +97,77 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4">
                 
-                <div class="row animate__animated animate__bounceIn">
-                    <!-- Primera columna de controles -->
-                    <div class="col-xl-7 col-md-7 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
-                        <form id="EmpleadosColumna1">
-                            <label class="tituloCajaTextoFormulario" for="cbResidente">Residente:</label>
-                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                            cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                            deseado en el combobox  -->
-                            <div class="cbCitiger mb-2">
-                                <select class="custom-select">
-                                    <option selected="">Seleccionar...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select> 
+                <form method="post" id="alquiler-form">
+                    <div class="row animate__animated animate__bounceIn">
+                        <!-- Primera columna de controles -->
+                        <div class="col-xl-7 col-md-7 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
+                            <div id="EmpleadosColumna1">
+                                <input type="number" name="idAlquiler" id="idAlquiler" class="d-none">
+                                <input type="number" name="idEspacio" id="idEspacio" class="d-none">
+                                <input type="number" name="idEstado" id="idEstado" class="d-none">
+                                <label class="tituloCajaTextoFormulario" for="cbResidente">Residente:</label>
+                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                deseado en el combobox  -->
+                                <div class="cbCitiger mb-2">
+                                    <select class="custom-select" id="cbResidente" name="cbResidente">
+                                        <option selected="">Seleccionar...</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select> 
+                                </div>
+
+                                <label class="tituloCajaTextoFormulario mt-2" for="cbEspacio">Espacio:</label>
+                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                deseado en el combobox  -->
+                                <div class="cbCitiger mb-2">
+                                    <select class="custom-select" id="cbEspacio" name="cbEspacio">
+                                        <option selected="">Seleccionar...</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select> 
+                                </div>
+
+                                <label class="tituloCajaTextoFormulario mt-2" for="txtFechaAlquiler">Fecha de Alquiler:</label>
+                                <input type="date" class="form-control cajaTextoFormulario" id="txtFecha" name="txtFecha" onchange="checkInput('txtFecha')"
+                                    placeholder="AAAA-MM-DD" Required>
+
                             </div>
 
-                            <label class="tituloCajaTextoFormulario mt-2" for="cbEspacio">Espacio:</label>
-                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                            cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                            deseado en el combobox  -->
-                            <div class="cbCitiger mb-2">
-                                <select class="custom-select">
-                                    <option selected="">Seleccionar...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select> 
-                            </div>
+                        </div>
 
-                            <label class="tituloCajaTextoFormulario mt-2" for="txtFechaAlquiler">Fecha de Alquiler:</label>
-                            <input type="date" class="form-control cajaTextoFormulario" id="txtFechaAlquiler"
-                                placeholder="AAAA-MM-DD">
+                        <!-- Segunda columna de controles -->
+                        <div class="col-xl-5 col-md-5 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
 
-                        </form>
+                                <!-- Controles -->
+                                <label class="tituloCajaTextoFormulario" for="txtHoraInicio">Hora inicio:</label>
+                                <input type="time" class="form-control cajaTextoFormularioHora" id="txtHoraInicio" name="txtHoraInicio"
+                                    min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraInicio')" Required>
 
+                                <label class="tituloCajaTextoFormulario" for="txtHoraFin">Hora Fin:</label>
+                                <input type="time" class="form-control cajaTextoFormularioHora" id="txtHoraFin" name="txtHoraFin"
+                                    min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraFin')" Required>
+
+                                <label class="tituloCajaTextoFormulario" for="txtPrecio">Precio:</label>
+                                <input type="number" class="form-control cajaTextoFormularioPrecio" id="txtPrecio" name="txtPrecio"
+                                    placeholder="$00.00" min="0.01" step="any" onchange="checkInput('txtPrecio')" Required>
+                        </div>
                     </div>
 
-                    <!-- Segunda columna de controles -->
-                    <div class="col-xl-5 col-md-5 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
-                        <form>
-
-                            <!-- Controles -->
-                            <label class="tituloCajaTextoFormulario" for="txtHoraInicio">Hora inicio:</label>
-                            <input type="text" class="form-control cajaTextoFormularioHora" id="txtHoraInicio"
-                                placeholder="HH:MM">
-
-                            <label class="tituloCajaTextoFormulario" for="txtHorFin">Hora fin:</label>
-                            <input type="text" class="form-control cajaTextoFormularioHora" id="txtHorFin"
-                                placeholder="HH:MM">
-
-                            <label class="tituloCajaTextoFormulario" for="txtPrecio">Precio:</label>
-                            <input type="text" class="form-control cajaTextoFormularioPrecio" id="txtPrecio"
-                                placeholder="$00.00">
-                        </form>
+                    <!-- Botones de Acción del Formulario -->
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                            <button type="submit" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                            <button  type="submit" id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
+                            <button  id="btnFinalizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check-double mr-3 tamañoIconosBotones"></span>Finalizar</button>
+                            <button  id="btnAutorizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Autorizar</button>
+                            <button  id="btnDenegar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-ban mr-3 tamañoIconosBotones"></span>Denegar</button>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Botones de Acción del Formulario -->
-                <div class="row justify-content-center mt-4">
-                    <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
-                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
-                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Autorizar</button>
-                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-ban mr-3 tamañoIconosBotones"></span>Denegar</button>
-                    </div>
-                </div>
+                </form>
                 <!-- Fin del Contenido del Modal -->
             </div>
         </div>
