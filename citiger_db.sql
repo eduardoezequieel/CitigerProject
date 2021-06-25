@@ -270,3 +270,6 @@ INSERT INTO unidadMedida(idTipoUnidad,unidadMedida) VALUES (1,'Litros'), (2,'Lib
 ALTER TABLE usuario ADD COLUMN modo VARCHAR(6) NULL;
 UPDATE usuario SET modo = 'light';
 
+--Cambios 25/06/2021
+INSERT INTO estadoAlquiler(estadoAlquiler) VALUES('Revisión'),('Activo'),('Finalizado'),('Denegado');
+

@@ -643,9 +643,9 @@ function clearForm(form) {
 }
 
 //Función para resetear botones
-function resetButtons(buttons) {
-    for (let i = 5; i < buttons.length; i++) {
-        if (i != 5) {
+function resetButtons(buttons, inicio){
+    for (let i = inicio; i < buttons.length; i++) {
+        if (i != inicio) {
             buttons[i].className = 'd-none';
         } else {
             buttons[i].className = 'btn btnAgregarFormulario mr-2';

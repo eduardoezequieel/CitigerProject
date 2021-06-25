@@ -962,7 +962,7 @@ textarea :-ms-input-placeholder {
 
 .tituloCajaTextoFormulario {
   font-family: 'Manrope', sans-serif;
-  color: var(--color-tipografia-titulos) !important;
+  color: var(--color-tipografia-titulos);
 
   font-size: 13px;
   padding-left: 15px;
@@ -970,7 +970,7 @@ textarea :-ms-input-placeholder {
 
 .cajaTextoFormularioHora {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 0.01rem solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -981,13 +981,13 @@ textarea :-ms-input-placeholder {
 
 .cajaTextoFormularioHora:focus {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 0.01rem solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
 }
 
 .cajaTextoFormularioPrecio {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 0.01rem solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -1632,7 +1632,7 @@ hr {
 
 .cajaTextoDUI {
   background-color: var(--color-fondo) !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 0.01rem solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
