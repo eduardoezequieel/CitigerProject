@@ -27,6 +27,7 @@
     <title>Primer Uso | Citiger</title>
   </head>
   <body>
+    <input type="text" id="txtModo" class="d-none" text="">
       <!-- Contenedor Principal -->
     <div class="flex-column" id="container2">
 
@@ -155,6 +156,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/08b7535157.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../../app/controllers/dashboard/primer_uso.js"></script>
+    <script>document.getElementById('txtModo').value = 'light'</script>
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../app/helpers/components.js"></script>
   </body>
