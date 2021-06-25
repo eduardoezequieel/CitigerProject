@@ -79,14 +79,14 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('txtTelefonomovil').value = '';
     document.getElementById('txtCorreo').value = '';    
     document.getElementById('txtUser').value = '';
-    previewSavePicture('divFoto', null, 2);
+    previewSavePicture('divFoto', null, 3);
 });
 
 //agregar registros a la tabla de residentes
 document.getElementById('btnAgregar').addEventListener('click',function(){
     document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
         event.preventDefault();
-        //Fetch para registrar empleado
+        //Fetch para registrar residente
         fetch(API_RESIDENTE + 'createRow', {
             method: 'post',
             body: new FormData(document.getElementById('administrarResidente-form'))
@@ -97,7 +97,7 @@ document.getElementById('btnAgregar').addEventListener('click',function(){
                     //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
                     if (response.status) {
                         readRows(API_RESIDENTE);
-                        sweetAlert(1, response.message, closeModal('administrarEmpleado'));
+                        sweetAlert(1, response.message, closeModal('administrarResidente'));
                     } else {
                         sweetAlert(2, response.exception, null);
                     }
@@ -141,7 +141,7 @@ function readDataOnModal(id){
                     document.getElementById('cbGenero').value = response.dataset.genero;
                     document.getElementById('txtFechaNacimiento').value = response.dataset.fechanacimiento;
                     document.getElementById('txtUser').value = response.dataset.username;
-                    previewSavePicture('divFoto', response.dataset.foto,2);
+                    previewSavePicture('divFoto', response.dataset.foto,3);
                     if (response.dataset.idestadoresidente == 1) {
                         document.getElementById('btnSuspender').className="btn btnAgregarFormulario mr-2";
                         document.getElementById('btnActivar').className="d-none";
@@ -167,7 +167,7 @@ document.getElementById('btnActualizar').addEventListener('click',function(event
 
     document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
         event.preventDefault();
-        //Fetch para actualizar empleado
+        //Fetch para actualizar residente
         fetch(API_RESIDENTE + 'updateRow', {
             method: 'post',
             body: new FormData(document.getElementById('administrarResidente-form'))

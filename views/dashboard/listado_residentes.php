@@ -136,7 +136,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                         <!-- Cargar Fotografia -->
                                         <div class="d-flex justify-content-center align-items-center mb-4">
                                             <div class="bordeDivFotografia mb-1">
-                                                <div class="divFotografia" id="divFoto" name="divFoto">
+                                                <div class="divFotografia" id="divFoto">
                                                     <!--<img src="../../resources/img/67641302_948622395468919_4792483860753416192_n.jpg" alt="#" class="fit-images rounded-circle" width="150px">-->
                                                 </div>
                                             </div>
@@ -166,8 +166,8 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                         <div class="cbCitiger">
                                             <select class="custom-select" id="cbGenero" name="cbGenero">
                                                 <option selected="default">Seleccionar...</option>
-                                                <option value="F">Masculino</option>
-                                                <option value="M">Femenino</option>
+                                                <option value="M">Masculino</option>
+                                                <option value="F">Femenino</option>
                                             </select>
                                         </div>
 
