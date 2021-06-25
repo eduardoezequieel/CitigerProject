@@ -9,6 +9,171 @@
 *
 *   Retorno: ninguno.
 */
+//Constante para la ruta API
+const API_USUARIO2 = '../../app/api/dashboard/usuarios.php?action=';
+
+document.addEventListener('DOMContentLoaded',function(){
+    loadPage();
+})
+
+function loadPage(){
+    var modo = document.getElementById('txtModo').value;
+    if (modo == 'light') {
+        //Modo claro
+        //Se cambian los colores de las variables declaradas en el archivo estilos.css
+        document.documentElement.style.setProperty('--color-fondo', '#ffffff');
+        document.documentElement.style.setProperty('--color-fondo-opaco', '#F1F4F9');
+        document.documentElement.style.setProperty('--color-tipografia-titulos', '#333333');
+        document.documentElement.style.setProperty('--color-tipografia', '#000000');
+        document.documentElement.style.setProperty('--bordes-inputs', '#999999');
+        document.documentElement.style.setProperty('--color-citiger', '#5496F5');
+        document.documentElement.style.setProperty('--color-citiger-hover', '#4174c2');
+        document.documentElement.style.setProperty('--color-rojo', 'rgb(255, 183, 183)');
+        document.documentElement.style.setProperty('--color-rojo-hover', 'rgb(255, 72, 72)');
+        document.documentElement.style.setProperty('--color-verde', 'rgb(175, 255, 175)');
+        document.documentElement.style.setProperty('--color-verde-hover', 'rgb(63, 209, 63);');
+        document.documentElement.style.setProperty('--color-citiger-claro', '#c5dcff');
+
+        //Se cambia la imagen del boton de inicio para que coincida con el modo
+        document.getElementById('imgDashboard').src = '../../resources/img/citigerWhiteLogo2.png';
+
+        //Se ocultan/muestran los botones indicados para cambiar de modo posteriormente
+        document.getElementById('lightMode').className = 'd-none';
+        document.getElementById('darkMode').className = 'btn fas fa-moon botonesPerfil';
+    } else if (modo == 'dark') {
+        //Modo oscuro
+        //Se cambian los colores de las variables declaradas en el archivo estilos.css
+        document.documentElement.style.setProperty('--color-fondo', '#090909');
+        document.documentElement.style.setProperty('--color-fondo-opaco', '#101010');
+        document.documentElement.style.setProperty('--color-tipografia-titulos', '#e6e6e6');
+        document.documentElement.style.setProperty('--color-tipografia', '#ffffff');
+        document.documentElement.style.setProperty('--bordes-inputs', '#3f3f3f');
+        document.documentElement.style.setProperty('--color-citiger', '#5496F5');
+        document.documentElement.style.setProperty('--color-citiger-hover', '#4174c2');
+        document.documentElement.style.setProperty('--color-rojo', 'rgb(46, 10, 10)');
+        document.documentElement.style.setProperty('--color-rojo-hover', 'rgb(255, 72, 72)');
+        document.documentElement.style.setProperty('--color-verde', 'rgb(14, 61, 14)');
+        document.documentElement.style.setProperty('--color-verde-hover', 'rgb(63, 209, 63)');
+        document.documentElement.style.setProperty('--color-citiger-claro', '#0b1d35');
+
+        //Se cambia la imagen del boton de inicio para que coincida con el modo
+        document.getElementById('imgDashboard').src = '../../resources/img/citigerDarkLogo2.png';
+
+        document.getElementById('lightMode').className = 'btn fas fa-sun botonesPerfil';
+        document.getElementById('darkMode').className = 'd-none';
+    } else {
+        console.log('error');
+    }
+};
+
+function lightMode(){
+    //Modo claro
+    setLightValue();
+    
+    swal({
+        title: 'Aviso',
+        text: 'Para ver los cambios, es necesario que reinicie la sesión. ¿Quieres cerrar la sesión?',
+        icon: 'info',
+        buttons: ['Lo hare después', 'Sí, por favor'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
+        if (value) {
+            fetch('../../app/api/dashboard/usuarios.php?action=logOut', {
+                method: 'get'
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            sweetAlert(1, response.message, 'index.php');
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    });
+}
+
+function darkMode(){
+    //Modo oscuro
+    setDarkValue();
+
+    swal({
+        title: 'Reiniciar la sesión',
+        text: 'Para ver los cambios, es necesario que reinicie la sesión. ¿Quieres cerrar la sesión?',
+        icon: 'info',
+        buttons: ['Lo hare después', 'Sí, por favor'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
+        if (value) {
+            fetch('../../app/api/dashboard/usuarios.php?action=logOut', {
+                method: 'get'
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            sweetAlert(1, response.message, 'index.php');
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    });
+}
+
+function setDarkValue(){ 
+    fetch(API_USUARIO2 + 'setDarkMode')
+    .then(request => {
+        //Se verifica si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Se verifica si la respuesta no es correcta para redireccionar al primer uso
+                if (response.status) {
+                    console.log('modo oscuro');
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(error => console.log(error))
+}
+
+function setLightValue(){ 
+    fetch(API_USUARIO2 + 'setLightMode')
+    .then(request => {
+        //Se verifica si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Se verifica si la respuesta no es correcta para redireccionar al primer uso
+                if (response.status) {
+                    console.log('modo claro');
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(error => console.log(error))
+}
+
 
 function botonExaminar(idBoton, idInputExaminar) {
     document.getElementById(idBoton).addEventListener('click', function (event) {

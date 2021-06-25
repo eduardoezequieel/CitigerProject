@@ -16,18 +16,18 @@
 
 /*Variables de color (dark mode)*/
 :root {
-  --color-fondo: #090909;
-  --color-fondo-opaco: #101010;
-  --color-tipografia-titulos: #e6e6e6;
-  --color-tipografia: #ffffff;
-  --bordes-inputs: #3f3f3f;
-  --color-citiger: #5494F5;
-  --color-citiger-hover: #4174c2;
-  --color-rojo: rgb(46, 10, 10);
-  --color-rojo-hover: rgb(255, 72, 72);
-  --color-verde: rgb(14, 61, 14);
-  --color-verde-hover: rgb(63, 209, 63);
-  --color-citiger-claro: #0b1d35;
+  --color-fondo: #;
+  --color-fondo-opaco: #;
+  --color-tipografia-titulos: #;
+  --color-tipografia: #;
+  --bordes-inputs: #;
+  --color-citiger: #;
+  --color-citiger-hover: #;
+  --color-rojo: #;
+  --color-rojo-hover: #;
+  --color-verde: #;
+  --color-verde-hover: #;
+  --color-citiger-claro: #;
 }
 
 #cbCasaResidente{
@@ -167,7 +167,7 @@ option[selected]{
 .page-content {
   width: calc(100% - 17rem);
   margin-left: 17rem;
-  transition: all 0.4s;
+  /*transition: all 0.4s;*/
 }
 
 .fit-images{
@@ -186,7 +186,7 @@ option[selected]{
   position: fixed;
   top: 0;
   left: 0;
-  transition: all 0.4s;
+  /*transition: all 0.4s;*/
 }
 
 #sidebar.active {
@@ -402,6 +402,10 @@ option[selected]{
   padding: 0 !important;
   margin: 0 !important;
   color: var(--color-tipografia) !important;
+}
+
+.swal-modal .swal-text {
+  text-align: center !important;
 }
 
 .citigerTable th {
@@ -1512,45 +1516,11 @@ textarea :-ms-input-placeholder {
   display: block;
 }
 
-[type="checkbox"] {
-  display: none;
-}
-
-.checkboxCitiger {
-  padding-left: 1.9em;
-  position: relative;
-}
-
-.checkboxCitiger:before {
-  content: ' ';
-  color: #6C757D;
-  border: 1px solid #6C757D;
-  border-radius: 1px;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  left: 0px;
-  top: 0.2em;
-  transition: all 0.5s;
-  transform: rotate(0deg);
-}
-
-[type="checkbox"]:checked+.checkboxCitiger:before {
-  border-color: #5494F5;
-  font-size: 12px;
-  color: #5494F5;
-  content: '\f00c';
-  font-family: FontAwesome;
-  transition: all 0.5s;
-  transform: rotate(360deg);
-}
-
 .texto {
   font-family: 'Manrope', sans-serif;
   font-size: 13px;
   color: #6C757D;
 }
-
 
 hr {
   margin: 7px;

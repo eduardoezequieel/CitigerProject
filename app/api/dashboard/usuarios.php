@@ -37,6 +37,22 @@
                         $result['exception'] = 'Ocurrió un problema al cerrar sesión';
                     }
                     break;
+                case 'setLightMode':
+                    if ($usuarios->setLightMode()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Modo claro activado correctamente.';
+                    } else {
+                        $result['exception'] = 'Ocurrio un problema-';
+                    }
+                    break;
+                case 'setDarkMode':
+                    if ($usuarios->setDarkMode()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Modo oscuro activado correctamente.';
+                    } else {
+                        $result['exception'] = 'Ocurrio un problema-';
+                    }
+                    break;
                 //Caso de default del switch
                 default: 
                     $result['exception'] = 'La acción no está disponible dentro de la sesión';
@@ -69,6 +85,7 @@
                                 $_SESSION['usuario'] = $usuarios->getUsername();
                                 $_SESSION['foto'] = $usuarios->getFoto();
                                 $_SESSION['tipousuario'] = $usuarios->getIdTipoUsuario();
+                                $_SESSION['modo'] = $usuarios->getModo();
                             } else {
                                 $result['exception'] = 'La contraseña ingresada es incorrecta.';
                             }

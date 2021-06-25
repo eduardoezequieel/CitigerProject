@@ -27,6 +27,7 @@
     <title>Iniciar Sesión | Citiger</title>
   </head>
   <body>
+      <input type="text" id="txtModo" class="d-none" text="">
       <!-- Contenedor Principal -->
     <div id="containerr">
         <div id="contenedor">   
@@ -40,7 +41,7 @@
                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="row mt-3">
                         <div class="col-12">
-                            <img id="CitigerLogo" src="../../resources/img/citigerDarkLogo.png" alt="" class="img-fluid animate__animated animate__bounceIn animate__slow">
+                            <img id="CitigerLogo" src="../../resources/img/citigerWhiteLogo.png" alt="" class="img-fluid animate__animated animate__bounceIn animate__slow">
                         </div>
                     </div>
                     <div class="row">
@@ -93,6 +94,7 @@
     <script src="https://kit.fontawesome.com/08b7535157.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../../app/controllers/dashboard/index.js"></script>
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script>document.getElementById('txtModo').value = 'light'</script>
     <script type="text/javascript" src="../../app/helpers/components.js"></script>
   </body>
 </html> 

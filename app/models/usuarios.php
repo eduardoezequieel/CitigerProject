@@ -20,6 +20,7 @@
         private $contrasenia = null;
         private $direccion = null;
         private $ruta = '../../../resources/img/dashboard_img/usuarios_fotos/';
+        private $modo = null;
         
         public function setId($value)
     {
@@ -35,6 +36,16 @@
     {
         if ($this->validateAlphabetic($value,1,25)) {
             $this->nombre = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setModo($value)
+    {
+        if ($this->validateAlphabetic($value,1,25)) {
+            $this->modo = $value;
             return true;
         } else {
             return false;
@@ -185,6 +196,10 @@
         return $this -> apellido;
     }
 
+    public function getModo(){
+        return $this -> modo;
+    }
+
     public function getGenero(){
         return $this -> genero;
     }
@@ -238,7 +253,7 @@
     //Método para verificar si el usuario existe
     public function checkUser($email)
     {
-        $sql = 'SELECT idUsuario,foto,idEstadoUsuario, username,tipoUsuario FROM usuario 
+        $sql = 'SELECT idUsuario,foto,idEstadoUsuario, username,tipoUsuario, modo FROM usuario 
                 INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = usuario.idTipoUsuario
                 WHERE correo = ?';
         $params = array($email);
@@ -249,6 +264,7 @@
             $this->idEstadoUsuario= $data['idestadousuario'];
             $this->username = $data['username'];
             $this->idTipoUsuario = $data['tipousuario'];
+            $this->modo = $data['modo'];
             return true;
         } else {
             return false;
@@ -282,6 +298,20 @@
         $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
         $sql = 'UPDATE admon SET contraseña = ? WHERE idAdmon = ?';
         $params = array($hash, $_SESSION['idAdmon']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function setDarkMode()
+    {
+        $sql = 'UPDATE usuario SET modo = \'dark\' WHERE idUsuario = ?';
+        $params = array($_SESSION['idusuario']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function setLightMode()
+    {
+        $sql = 'UPDATE usuario SET modo = \'light\' WHERE idUsuario = ?';
+        $params = array($_SESSION['idusuario']); 
         return Database::executeRow($sql, $params);
     }
 
