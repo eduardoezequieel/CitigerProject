@@ -105,7 +105,7 @@
                     }
                     break;
                 //Caso para suspender empleados
-                case 'suspendEmployee':
+                case 'suspendRow':
                     $_POST = $empleado->validateForm($_POST);
                     if ($empleado->setIdEmpleado($_POST['idEmpleado'])) {
                         if ($empleado->suspend()) {
@@ -119,7 +119,7 @@
                     }
                     break;
                 //Caso para suspender empleados
-                case 'activateEmployee':
+                case 'activateRow':
                     $_POST = $empleado->validateForm($_POST);
                     if ($empleado->setIdEmpleado($_POST['idEmpleado'])) {
                         if ($empleado->activate()) {
