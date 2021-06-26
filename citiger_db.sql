@@ -277,3 +277,7 @@ INSERT INTO estadoAlquiler(estadoAlquiler) VALUES('Revisión'),('Activo'),('Fina
 ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_dui UNIQUE (dui);
 ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_telefono UNIQUE (telefono);
 ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_correo UNIQUE (correo);
+
+INSERT INTO tipodenuncia(tipodenuncia) VALUES ('Mantenimiento'),('Limpieza'),('Disturbio');
+INSERT INTO estadodenuncia(estadodenuncia) VALUES ('Pendiente'),('Rechazada'),('Revisión'),('En proceso'),('Solucionada');
+INSERT INTO denuncia(idempleado, idresidente,idtipodenuncia, idestadodenuncia, fecha, descripcion) VALUES (1, 1, 1, 1, '2021-06-26','Denuncia de prueba');
