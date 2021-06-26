@@ -108,7 +108,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readAll': // METODO READ CARGAR TODOS LOS DATOS 
-                if ($result['dataset'] = $usuarios->readAll()) {
+                if ($result['dataset'] = $usuarios->readAllSCRUD()) {
                     $result['status'] = 1;
                 } else {
                     if (Database::getException()) {
