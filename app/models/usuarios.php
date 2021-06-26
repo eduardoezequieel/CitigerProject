@@ -1,28 +1,28 @@
 <?php
-    
-    //Clase para manejar la tabla de usuarios
-    Class Usuarios extends Validator
-    {
-        //Declarando atributos
-        private $idUsuario = null;
-        private $idEstadoUsuario = null;
-        private $idTipoUsuario = null;
-        private $nombre = null;
-        private $apellido = null;
-        private $telefonoFijo = null;
-        private $telefonoCelular = null;
-        private $foto = null;
-        private $correo = null;
-        private $fechaNacimiento = null;
-        private $genero = null;
-        private $dui = null;
-        private $username = null;
-        private $contrasenia = null;
-        private $direccion = null;
-        private $ruta = '../../../resources/img/dashboard_img/usuarios_fotos/';
-        private $modo = null;
-        
-        public function setId($value)
+
+//Clase para manejar la tabla de usuarios
+class Usuarios extends Validator
+{
+    //Declarando atributos
+    private $idUsuario = null;
+    private $idEstadoUsuario = null;
+    private $idTipoUsuario = null;
+    private $nombre = null;
+    private $apellido = null;
+    private $telefonoFijo = null;
+    private $telefonoCelular = null;
+    private $foto = null;
+    private $correo = null;
+    private $fechaNacimiento = null;
+    private $genero = null;
+    private $dui = null;
+    private $username = null;
+    private $contrasenia = null;
+    private $direccion = null;
+    private $ruta = '../../../resources/img/dashboard_img/usuarios_fotos/';
+    private $modo = null;
+
+    public function setId($value)
     {
         if ($this->validateNaturalNumber($value)) {
             $this->idUsuario = $value;
@@ -34,7 +34,7 @@
 
     public function setNombres($value)
     {
-        if ($this->validateAlphabetic($value,1,25)) {
+        if ($this->validateAlphabetic($value, 1, 25)) {
             $this->nombre = $value;
             return true;
         } else {
@@ -44,7 +44,7 @@
 
     public function setModo($value)
     {
-        if ($this->validateAlphabetic($value,1,25)) {
+        if ($this->validateAlphabetic($value, 1, 25)) {
             $this->modo = $value;
             return true;
         } else {
@@ -54,7 +54,7 @@
 
     public function setApellidos($value)
     {
-        if ($this->validateAlphabetic($value,1,25)) {
+        if ($this->validateAlphabetic($value, 1, 25)) {
             $this->apellido = $value;
             return true;
         } else {
@@ -64,7 +64,7 @@
 
     public function setGenero($value)
     {
-        if ($this->validateAlphabetic($value,1,10)) {
+        if ($this->validateAlphabetic($value, 1, 10)) {
             $this->genero = $value;
             return true;
         } else {
@@ -92,15 +92,15 @@
         }
     }
 
-        public function setNacimiento($value)
-        {
-            if ($this->validateDate($value)) {
-                $this->fechaNacimiento = $value;
-                return true;
-            } else {
-                return false;
-            }
+    public function setNacimiento($value)
+    {
+        if ($this->validateDate($value)) {
+            $this->fechaNacimiento = $value;
+            return true;
+        } else {
+            return false;
         }
+    }
 
     public function setTelefonoFijo($value)
     {
@@ -134,7 +134,7 @@
 
     public function setDireccion($value)
     {
-        if ($this->validateString($value,1,200)) {
+        if ($this->validateString($value, 1, 200)) {
             $this->direccion = $value;
             return true;
         } else {
@@ -144,7 +144,7 @@
 
     public function setUsername($value)
     {
-        if ($this->validateAlphanumeric($value,1,25)) {
+        if ($this->validateAlphanumeric($value, 1, 25)) {
             $this->username = $value;
             return true;
         } else {
@@ -184,32 +184,39 @@
 
     //Metodos get
 
-    public function getId(){
-        return $this -> idUsuario;
+    public function getId()
+    {
+        return $this->idUsuario;
     }
 
-    public function getNombres(){
-        return $this -> nombre;
+    public function getNombres()
+    {
+        return $this->nombre;
     }
 
-    public function getApellidos(){
-        return $this -> apellido;
+    public function getApellidos()
+    {
+        return $this->apellido;
     }
 
-    public function getModo(){
-        return $this -> modo;
+    public function getModo()
+    {
+        return $this->modo;
     }
 
-    public function getGenero(){
-        return $this -> genero;
+    public function getGenero()
+    {
+        return $this->genero;
     }
 
-    public function getCorreo(){
-        return $this -> correo;
+    public function getCorreo()
+    {
+        return $this->correo;
     }
 
-    public function getFoto(){
-        return $this -> foto;
+    public function getFoto()
+    {
+        return $this->foto;
     }
 
     public function getRuta()
@@ -217,35 +224,43 @@
         return $this->ruta;
     }
 
-    public function getNacimiento(){
-        return $this -> fechaNacimiento;
+    public function getNacimiento()
+    {
+        return $this->fechaNacimiento;
     }
 
-    public function getTelefonoFijo(){
-        return $this -> telefonoFijo;
+    public function getTelefonoFijo()
+    {
+        return $this->telefonoFijo;
     }
 
-    public function getTelefonoCelular(){
-        return $this -> telefonoCelular;
+    public function getTelefonoCelular()
+    {
+        return $this->telefonoCelular;
     }
 
-    public function getDui(){
-        return $this -> dui;
+    public function getDui()
+    {
+        return $this->dui;
     }
-    public function getUsername(){
-        return $this -> username;
-    }
-
-    public function getContrasenia(){
-        return $this -> contrasenia;
+    public function getUsername()
+    {
+        return $this->username;
     }
 
-    public function getIdEstadoUsuario(){
-        return $this -> idEstadoUsuario;
+    public function getContrasenia()
+    {
+        return $this->contrasenia;
     }
 
-    public function getIdTipoUsuario(){
-        return $this -> idTipoUsuario;
+    public function getIdEstadoUsuario()
+    {
+        return $this->idEstadoUsuario;
+    }
+
+    public function getIdTipoUsuario()
+    {
+        return $this->idTipoUsuario;
     }
 
     //***Métodos para administrar cuenta del usuario***
@@ -260,8 +275,8 @@
         if ($data = Database::getRow($sql, $params)) {
             $this->idUsuario = $data['idusuario'];
             $this->correo = $email;
-            $this->foto= $data['foto'];
-            $this->idEstadoUsuario= $data['idestadousuario'];
+            $this->foto = $data['foto'];
+            $this->idEstadoUsuario = $data['idestadousuario'];
             $this->username = $data['username'];
             $this->idTipoUsuario = $data['tipousuario'];
             $this->modo = $data['modo'];
@@ -311,16 +326,25 @@
     public function setLightMode()
     {
         $sql = 'UPDATE usuario SET modo = \'light\' WHERE idUsuario = ?';
-        $params = array($_SESSION['idusuario']); 
+        $params = array($_SESSION['idusuario']);
         return Database::executeRow($sql, $params);
     }
 
     public function readProfile()
     {
-        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario
-        FROM admon
-        WHERE idAdmon = ?';
-        $params = array($_SESSION['idAdmon']);
+        $sql = "SELECT idUsuario, nombre, apellido, CONCAT(nombre,' ',apellido) as nombres,dui, genero, correo, foto, fechaNacimiento, telefonofijo, telefonocelular, direccion, username, contrasena, idEstadoUsuario, idTipoUsuario
+        FROM usuario
+        WHERE idusuario = ?";
+        $params = array($_SESSION['idusuario']);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readProfile2()
+    {
+        $sql = "SELECT idUsuario, nombre, apellido, CONCAT(nombre,' ',apellido) as nombres,dui, genero, correo, foto, fechaNacimiento, telefonofijo, telefonocelular, direccion, username, contrasena, idEstadoUsuario, idTipoUsuario
+        FROM usuario
+        WHERE idusuario = ?";
+        $params = array($_SESSION['idusuario']);
         return Database::getRow($sql, $params);
     }
 
@@ -332,31 +356,19 @@
         $sql = 'UPDATE admon
                 SET foto = ?, nombre = ?, apellido = ?, genero = ?, fechaNacimiento = ?, telefono = ?, direccion = ?
                 WHERE idAdmon = ?';
-        $params = array($this->foto, $this->nombre, $this->apellido, $this->genero, $this->fechaNacimiento, $this->telefono,$this->direccion, $_SESSION['idAdmon']);
+        $params = array($this->foto, $this->nombre, $this->apellido, $this->genero, $this->fechaNacimiento, $this->telefono, $this->direccion, $_SESSION['idAdmon']);
         return Database::executeRow($sql, $params);
     }
 
-    public function updateProfileAccount()
+    public function updateInfo()
     {
-        $sql = 'UPDATE admon
-                SET usuario = ?, correo = ?
-                WHERE idAdmon = ?';
-        $params = array($this->usuario, $this->correo, $_SESSION['idAdmon']);
+        $sql = 'UPDATE usuario
+        SET nombre=?, apellido=?, telefonofijo=?, telefonocelular=?, fechanacimiento=?, genero=?
+        WHERE idusuario=?';
+        $params = array($this->nombre, $this->apellido, $this->telefonoFijo, $this->telefonoCelular, $this->fechaNacimiento, $this->genero, $_SESSION['idusuario']);
         return Database::executeRow($sql, $params);
     }
 
-    //Función para buscar
-    public function searchRows($value)
-    {
-        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, estadoUsuario, tipoUsuario
-        FROM admon
-        INNER JOIN estadoUsuario ON estadoUsuario.idEstadoUsuario = admon.idEstadoUsuario
-        INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = admon.idTipoUsuario
-        WHERE apellido ILIKE ? OR nombre ILIKE ? OR usuario ILIKE ?
-        ORDER BY apellido';
-        $params = array("%$value%", "%$value%", "%$value%");
-        return Database::getRows($sql, $params);
-    }
 
     //Método para crear un nuevo registro
     public function createRow()
@@ -366,67 +378,115 @@
         $sql = 'INSERT INTO usuario(idEstadoUsuario, idTipoUsuario, nombre, apellido, telefonoFijo, 
                 telefonoCelular, foto,correo, fechaNacimiento, genero, dui,username, contrasena,direccion)
                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-        $params = array($this->idEstadoUsuario, $this->idTipoUsuario, $this->nombre, $this->apellido, $this->telefonoFijo, 
-                        $this->telefonoCelular, $this->foto, $this->correo, $this->fechaNacimiento, $this->genero,
-                        $this->dui, $this->username, $hash, $this->direccion);
+        $params = array(
+            $this->idEstadoUsuario, $this->idTipoUsuario, $this->nombre, $this->apellido, $this->telefonoFijo,
+            $this->telefonoCelular, $this->foto, $this->correo, $this->fechaNacimiento, $this->genero,
+            $this->dui, $this->username, $hash, $this->direccion
+        );
         return Database::executeRow($sql, $params);
     }
 
     //Métodos para obtener valores
-    public function readAll(){
-        $sql = 'SELECT idUsuario, estadoUsuario, tipoUsuario, nombre, apellido, telefonoFijo, telefonoCelular, foto, correo,  fechaNacimiento, genero, dui, username, contrasena, direccion
-        FROM usuario
-        INNER JOIN estadoUsuario ON estadoUsuario.idEstadoUsuario = usuario.idEstadoUsuario
-        INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = usuario.idTipoUsuario
-        ORDER BY apellido';
+    public function readEmployeeTypes()
+    {
+        $sql = 'SELECT*FROM tipoUsuario';
         $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function createRow2()
+    {
+        // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
+        $sql = 'INSERT INTO usuario(idEstadoUsuario, idTipoUsuario, nombre, apellido, telefonoFijo, 
+                        telefonoCelular, foto,correo, fechaNacimiento, genero, dui,username, contrasena,direccion)
+                        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        $params = array(
+            $this->idEstadoUsuario, $this->idTipoUsuario, $this->nombre, $this->apellido, $this->telefonoFijo,
+            $this->telefonoCelular, $this->foto, $this->correo, $this->fechaNacimiento, $this->genero,
+            $this->dui, $this->username, $this->contrasenia, $this->direccion
+        );
+        return Database::executeRow($sql, $params);
+    }
+
+    public function readAll()
+    {
+        $sql = "SELECT u.idusuario, u.foto, Concat(u.nombre,' ',u.apellido) as nombre, u.dui, u.telefonofijo,e.estadousuario
+                from usuario u
+                inner join estadousuario e on u.idestadousuario=e.idestadousuario where u.idusuario<> ? 
+                order by u.apellido";
+        $params = array($_SESSION['idusuario']);
+        return Database::getRows($sql, $params);
+    }
+
+    public function searchRows($value)
+    {
+        $sql = "SELECT u.idusuario, u.foto, Concat(u.nombre,' ',u.apellido) as nombre, u.dui, u.telefonofijo,e.estadousuario
+                from usuario u
+                inner join estadousuario e on u.idestadousuario=e.idestadousuario where Concat(u.nombre,' ',u.apellido) ILIKE ?
+                or Concat(u.username,' ',u.dui) ILIKE ? and u.idusuario<> ? 
+                order by u.apellido";
+        $params = array("%$value%","%$value%", $_SESSION['idusuario']);
         return Database::getRows($sql, $params);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT idAdmon, nombre, apellido, genero, correo, foto, fechaNacimiento, telefono, direccion, usuario, contraseña, idEstadoUsuario, idTipoUsuario
-        FROM admon
-        WHERE idAdmon = ?';
-        $params = array($this->idAdmon);
+        $sql = "SELECT idusuario, idestadousuario, idtipousuario, nombre, apellido, telefonofijo, telefonocelular, foto, correo, fechanacimiento, genero, dui, username, contrasena, direccion
+                FROM usuario where idusuario=?";
+        $params = array($this->idUsuario);
         return Database::getRow($sql, $params);
-    }
-
-    //Métodos para obtener tipos de usuario
-    public function readAllTipos(){
-        $sql = 'SELECT * FROM tipoUsuario';
-        $params = null;
-        return Database::getRows($sql, $params);
     }
 
     public function updateRow($current_image)
     {
-        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+
         ($this->foto) ? $this->deleteFile($this->getRuta(), $current_image) : $this->foto = $current_image;
 
-        $sql = 'UPDATE admon
-                SET foto = ?, nombre = ?, apellido = ?, genero = ?, correo = ?, fechaNacimiento = ?, telefono = ?, direccion = ?, usuario = ?, idTipoUsuario = ?
-                WHERE idAdmon = ?';
-        $params = array($this->foto, $this->nombre, $this->apellido, $this->genero, $this->correo, $this->fechaNacimiento, $this->telefono,$this->direccion, $this->usuario, $this->idTipoUsuario, $this->idAdmon);
+        $sql = 'UPDATE usuario
+                SET idtipousuario=?, nombre=?, apellido=?, telefonofijo=?, telefonocelular=?, foto=?, correo=?, fechanacimiento=?, genero=?, dui=?, username=?,direccion=?
+                WHERE idusuario=?';
+        $params = array(
+            $this->idTipoUsuario, $this->nombre, $this->apellido, $this->telefonoFijo,
+            $this->telefonoCelular, $this->foto, $this->correo, $this->fechaNacimiento, $this->genero,
+            $this->dui, $this->username, $this->direccion, $this->idUsuario
+        );
         return Database::executeRow($sql, $params);
     }
 
-    public function deleteRow(){
-        $sql = 'DELETE FROM admon WHERE idAdmon = ?';
-        $params = array($this->idAdmon);
+    //Eliminar registro de empleado
+    public function deleteRow()
+    {
+        $sql = 'DELETE FROM usuario WHERE idusuario = ?';
+        $params = array($this->idUsuario);
         return Database::executeRow($sql, $params);
     }
 
-    public function suspenderRow(){
-        $sql = 'UPDATE admon SET idEstadoUsuario = 2 WHERE idAdmon = ?';
-        $params = array($this->idAdmon);
+    //Suspender usuario
+    public function suspend(){
+        $sql = 'UPDATE usuario SET idestadousuario = 2
+                WHERE idusuario = ?';
+        $params = array($this->idUsuario);
         return Database::executeRow($sql, $params);
     }
 
-    public function activarRow(){
-        $sql = 'UPDATE admon SET idEstadoUsuario = 1 WHERE idAdmon = ?';
-        $params = array($this->idAdmon);
+    //Activar usuario
+    public function activar(){
+        $sql = 'UPDATE usuario SET idestadousuario = 1
+                WHERE idusuario = ?';
+        $params = array($this->idUsuario);
         return Database::executeRow($sql, $params);
     }
+
+
+    public function filterByEmployeeType()
+    {
+        $sql = "SELECT u.idusuario, u.foto, Concat(u.nombre,' ',u.apellido) as nombre, u.dui, u.telefonofijo,e.estadousuario, t.tipousuario
+        from usuario u
+        inner join tipousuario t on u.idtipousuario=t.idtipousuario
+        inner join estadousuario e on u.idestadousuario=e.idestadousuario where t.idtipousuario=?
+        and u.idusuario<> ?
+        order by u.apellido";
+        $params = array($this->idTipoUsuario, $_SESSION['idusuario']);
+        return Database::getRows($sql, $params);
     }
-?>
+}

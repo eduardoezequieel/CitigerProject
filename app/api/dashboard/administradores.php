@@ -1,14 +1,14 @@
 <?php
 require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
-require_once('../../models/administradores.php');
+require_once('../../models/usuarios.php');
 
 //Verificando si existe alguna acción
 if (isset($_GET['action'])) {
     //Se crea una sesion o se reanuda la actual
     session_start();
     //Instanciando clases
-    $usuarios = new Administradores;
+    $usuarios = new Usuarios;
     //Array para respuesta de la API
     $result = array('status' => 0, 'recaptcha' => 0, 'error' => 0, 'message' => null, 'exception' => null);
     //Verificando si hay una sesion iniciada
