@@ -90,15 +90,15 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                                     <input type="number" name="idEspacio" id="idEspacio" class="d-none">
                                     <label class="tituloCajaTextoFormulario" for="txtNombre">Nombre:</label>
                                     <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
-                                        placeholder="Escriba nombre del espacio..." onchange="checkInput('txtNombre')">
+                                        placeholder="Escriba nombre del espacio..." onchange="checkInput('txtNombre')" Required>
 
                                     <label class="tituloCajaTextoFormulario" for="txtDescripcion">Descripción:</label>
                                     <textarea class="form-control cajaTextoFormulario" placeholder="Escriba la descripción del espacio..."
-                                    id="txtDescripcion" name="txtDescripcion" rows="3" onchange="checkInput('txtDescripcion')"></textarea>
+                                    id="txtDescripcion" name="txtDescripcion" rows="3" onchange="checkInput('txtDescripcion')" Required></textarea>
 
                                     <label class="tituloCajaTextoFormulario" for="txtCapacidad">Capacidad:</label>
                                     <input type="number" class="form-control cajaTextoFormulario" id="txtCapacidad" name="txtCapacidad" 
-                                    placeholder="Escriba la capacidad..." onchange="checkInput('txtCapacidad')">
+                                    placeholder="Escriba la capacidad..." onchange="checkInput('txtCapacidad')" Required>
 
                                 </div>
 
@@ -127,8 +127,8 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                         <!-- Botones de Acción del Formulario -->
                         <div class="row justify-content-center mt-4">
                             <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                                <button href="#" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
-                                <button href="#" id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
+                                <button href="#" type="submit" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                                <button href="#" type="submit" id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
                                 <button href="#" id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
                                 <button href="#" id="btnActivar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
                             </div>

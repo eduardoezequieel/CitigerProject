@@ -84,7 +84,7 @@
                                 if ($espacio->setDescripcion($_POST['txtDescripcion'])) {
                                     if ($espacio->setCapacidad($_POST['txtCapacidad'])) {
                                         if ($espacio->setIdEstadoEspacio($_POST['idEstadoEspacio1'])) {
-                                            if (!$espacio->duplicateRow()) {
+                                            if (!$espacio->duplicateRowUpdate()) {
                                                 if ($espacio->updateRow()) {
                                                     $result['status'] = 1;
                                                     $result['message'] = 'Se ha actualizado el espacio correctamente.';

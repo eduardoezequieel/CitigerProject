@@ -114,20 +114,20 @@ function readDataOnModal(id){
     }).catch(error => console.log(error));
 }
 
-//Agregando un nuevo registro a la tabla
-document.getElementById('btnAgregar').addEventListener('click', function (event) {
-    //Evento para evitar que recargue la pagina
-    event.preventDefault();
-    //Se agrega el nuevo registro
-    saveRow(API_ESPACIO, 'createRow','espacio-form','administrarEspacio');
-})
-
-//Actualizando un registro de la tabla
-document.getElementById('btnActualizar').addEventListener('click', function (event) {
-    //Evento para evitar que recargue la pagina
-    event.preventDefault();
-    //Se agrega el nuevo registro
-    saveRow(API_ESPACIO, 'updateRow','espacio-form','administrarEspacio');
+/*Agregando o actualizando un nuevo registro a la tabla
+  Se verifica si se muestra el botón agregar se hace un createRow, de lo contrario un updateRow*/
+  document.getElementById('espacio-form').addEventListener('submit', function (event) {
+    //Evento para evitar que recargué la pagina
+     event.preventDefault();
+    //Verificando la acción que se va a realizar
+    if(document.getElementById('btnAgregar').className != 'd-none') {
+        //Agregando el registro
+        saveRow(API_ESPACIO, 'createRow','espacio-form','administrarEspacio');
+        console.log('agregar')
+    } else {
+        console.log('actualizar')
+        saveRow(API_ESPACIO, 'updateRow','espacio-form','administrarEspacio');
+   }
 })
 
 //Eliminar registros de la tabla empleado.

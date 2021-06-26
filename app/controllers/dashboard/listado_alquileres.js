@@ -146,7 +146,8 @@ function readDataOnModal(id){
     }).catch(error => console.log(error));
 }
 
-//Agregando un nuevo registro a la tabla
+/*Agregando o actualizando un nuevo registro a la tabla
+  Se verifica si se muestra el botón agregar se hace un createRow, de lo contrario un updateRow*/
 document.getElementById('alquiler-form').addEventListener('submit', function (event) {
     //Evento para evitar que recargué la pagina
      event.preventDefault();

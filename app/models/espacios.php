@@ -116,6 +116,14 @@
             return Database::getRow($sql,$params);
         }
 
+        //Método para verificar datos duplicados de la tabla en el evento actualizar
+        public function duplicateRowUpdate()
+        {
+            $sql = 'SELECT * FROM espacio WHERE nombre = ? AND idespacio != ?';
+            $params =  array($this->nombre, $this->idEspacio);
+            return Database::getRow($sql,$params);
+        }
+
         //Método para crear un nuevo registro
         public function createRow()
         {
