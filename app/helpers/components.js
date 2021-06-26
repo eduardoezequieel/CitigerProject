@@ -23,8 +23,8 @@ function loadPage(){
         //Se cambian los colores de las variables declaradas en el archivo estilos.css
         document.documentElement.style.setProperty('--color-fondo', '#ffffff');
         document.documentElement.style.setProperty('--color-fondo-opaco', '#F1F4F9');
-        document.documentElement.style.setProperty('--color-tipografia-titulos', '#333333');
-        document.documentElement.style.setProperty('--color-tipografia', '#000000');
+        document.documentElement.style.setProperty('--color-tipografia-titulos', '#1C1C1C');
+        document.documentElement.style.setProperty('--color-tipografia', '#1C1C1C');
         document.documentElement.style.setProperty('--bordes-inputs', '#999999');
         document.documentElement.style.setProperty('--color-citiger', '#5496F5');
         document.documentElement.style.setProperty('--color-citiger-hover', '#4174c2');
@@ -505,7 +505,7 @@ function fillSelect(endpoint, select, selected) {
                 if (response.status) {
                     // Si no existe un valor para seleccionar, se muestra una opción para indicarlo.
                     if (!selected) {
-                        content += '<option disabled selected>Seleccione una opción</option>';
+                        content += '<option disabled selected>Seleccionar...</option>';
                     }
                     // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
                     response.dataset.map(function (row) {

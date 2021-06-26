@@ -20,13 +20,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
         <!-- Controles del Inicio -->
         <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
             <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12  centrarBotones">
-                <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarInventario" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
-                </div>
-
-                <div class="mt-4 mx-3 mb-3">
-                    <a href="listado_marcas.php" class="btn botonesListado"><span class="fas fa-tag mr-3 tamañoIconosBotones"></span>Marcas</a>
-                </div>
+                
 
                 <form class="mx-3" method="post" id="search-form">
                     <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
@@ -48,11 +42,23 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                     <input type="number" name="idCategoria" id="idCategoria" class="d-none">
                     <button class="d-none" id="btnCategoria" name="btnCategoria" type="submit"></button>
                 </form>
+            </div>
+
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="mt-4 mx-3 mb-3">
+                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarInventario" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                </div>
+
+                <div class="mt-4 mx-3 mb-3">
+                    <a href="listado_marcas.php" class="btn botonesListado"><span class="fas fa-tag mr-3 tamañoIconosBotones"></span>Marcas</a>
+                </div>
+
                 <div class="mt-4 mx-3 mb-3">
                     <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
                 </div>
             </div>
-
         </div><br>
 
         <!-- Fila de Tarjetas -->

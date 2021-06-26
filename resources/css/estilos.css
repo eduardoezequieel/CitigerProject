@@ -819,7 +819,7 @@ textarea :-ms-input-placeholder {
   background-color: var(--color-citiger-claro) !important;
   color: var(--color-citiger) !important;
   font-family: 'Quicksand', 'sans-serif';
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -1549,10 +1549,6 @@ hr {
   height: 95vh;
   padding: 10px;
 }
-
-
-
-
 
 
 /*Botones de Menú*/
