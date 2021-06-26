@@ -416,8 +416,13 @@ class Usuarios extends Validator
         return Database::getRow($sql,$params);
     }
 
+    public function readAll(){
+        $sql = 'SELECT*FROM usuario';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 
-    public function readAll()
+    public function readAllSCRUD()
     {
         $sql = "SELECT u.idusuario, u.foto, Concat(u.nombre,' ',u.apellido) as nombre, u.dui, u.telefonofijo,e.estadousuario
                 from usuario u

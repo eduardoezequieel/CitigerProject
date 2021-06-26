@@ -91,6 +91,10 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     previewSavePicture('divFoto', null, 2);
 });
 
+document.getElementById('administrarEmpleado-form').addEventListener('submit',function(){
+
+});
+
 //agregar registros a la tabla de empleados
 document.getElementById('btnAgregar').addEventListener('click',function(){
     document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
