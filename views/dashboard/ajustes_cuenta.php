@@ -75,10 +75,18 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                 <label class="tituloCajaTextoFormulario " for="txtTelefonoFijo">Teléfono Fijo:</label>
                                 <input onchange="checkTelefono('txtTelefonoFijo')" type="text" class="form-control cajaTextoModal" id="txtTelefonoFijo" name="txtTelefonoFijo" placeholder="">
 
-                                <label class="tituloCajaTextoFormulario mb-1" for="txtTelefonomovil">Teléfono Movil:</label>
-                                <input input onchange="checkTelefono('txtTelefonomovil')" type="text" class="form-control cajaTextoModal" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="">
+                                <label class="tituloCajaTextoFormulario" for="txtTelefonomovil">Teléfono Movil:</label>
+                                <input onchange="checkTelefono('txtTelefonomovil')" type="text" class="form-control cajaTextoModal" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="">
+
                             </div>
                         </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col col-xl-6 col-md-6 col-sm-12 col-xs-12 align-items-center">
+                            <label class="tituloCajaTextoFormulario" for="txtDUI">DUI</label>
+                            <input input onchange="checkDUI('txtDUI')" type="text" class="form-control cajaTextoModal" id="txtDUI" name="txtDUI" placeholder="">
+                        </div>
+
                     </div>
 
                     <!-- Botones de Acción del Formulario -->

@@ -77,40 +77,44 @@ if (isset($_GET['action'])) {
                 break;
             case 'editProfile':
                 $_POST = $usuarios->validateForm($_POST);
-                if ($usuarios->setTelefonoFijo($_POST['txtTelefonoFijo'])) {
-                    if ($usuarios->setTelefonoCelular($_POST['txtTelefonomovil'])) {
-                        if ($usuarios->setNacimiento($_POST['txtFechaNacimiento'])) {
-                            if ($usuarios->setNombres($_POST['txtNombres'])) {
-                                if ($usuarios->setApellidos($_POST['txtApellidos'])) {
-                                    if (isset($_POST['cbGenero'])) {
-                                        if ($usuarios->setGenero($_POST['cbGenero'])) {
+                if ($usuarios->setDui($_POST['txtDUI'])) {
+                    if ($usuarios->setTelefonoFijo($_POST['txtTelefonoFijo'])) {
+                        if ($usuarios->setTelefonoCelular($_POST['txtTelefonomovil'])) {
+                            if ($usuarios->setNacimiento($_POST['txtFechaNacimiento'])) {
+                                if ($usuarios->setNombres($_POST['txtNombres'])) {
+                                    if ($usuarios->setApellidos($_POST['txtApellidos'])) {
+                                        if (isset($_POST['cbGenero'])) {
+                                            if ($usuarios->setGenero($_POST['cbGenero'])) {
 
-                                            if ($usuarios->updateInfo()) {
-                                                $result['status'] = 1;
-                                                $result['message'] = 'Perfil modificado correctamente';
+                                                if ($usuarios->updateInfo()) {
+                                                    $result['status'] = 1;
+                                                    $result['message'] = 'Perfil modificado correctamente';
+                                                } else {
+                                                    $result['exception'] = Database::getException();
+                                                }
                                             } else {
-                                                $result['exception'] = Database::getException();
+                                                $result['exception'] = 'Seleccione una opción';
                                             }
                                         } else {
-                                            $result['exception'] = 'Seleccione una opción';
+                                            $result['exception'] = 'Correo incorrecto';
                                         }
                                     } else {
-                                        $result['exception'] = 'Correo incorrecto';
+                                        $result['exception'] = 'Apellido invalido';
                                     }
                                 } else {
-                                    $result['exception'] = 'Apellido invalido';
+                                    $result['exception'] = 'Nombre invalido';
                                 }
                             } else {
-                                $result['exception'] = 'Nombre invalido';
+                                $result['exception'] = 'Fecha invalida';
                             }
                         } else {
-                            $result['exception'] = 'Fecha invalida';
+                            $result['exception'] = 'Telefono invalido';
                         }
                     } else {
                         $result['exception'] = 'Telefono invalido';
                     }
                 } else {
-                    $result['exception'] = 'Telefono invalido';
+                    $result['exception'] = 'DUI invalido';
                 }
                 break;
                 //Caso de default del switch

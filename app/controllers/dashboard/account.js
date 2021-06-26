@@ -199,6 +199,7 @@ function readDataOnModal() {
                     document.getElementById('txtTelefonomovil').value = response.dataset.telefonocelular;
                     document.getElementById('cbGenero').value = response.dataset.genero;
                     document.getElementById('txtFechaNacimiento').value = response.dataset.fechanacimiento;
+                    document.getElementById('txtDUI').value = response.dataset.dui;
                     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
                 } else {
                     sweetAlert(2, response.exception, null);

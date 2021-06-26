@@ -363,9 +363,9 @@ class Usuarios extends Validator
     public function updateInfo()
     {
         $sql = 'UPDATE usuario
-        SET nombre=?, apellido=?, telefonofijo=?, telefonocelular=?, fechanacimiento=?, genero=?
+        SET nombre=?, apellido=?, telefonofijo=?, telefonocelular=?, fechanacimiento=?, genero=?, dui=?
         WHERE idusuario=?';
-        $params = array($this->nombre, $this->apellido, $this->telefonoFijo, $this->telefonoCelular, $this->fechaNacimiento, $this->genero, $_SESSION['idusuario']);
+        $params = array($this->nombre, $this->apellido, $this->telefonoFijo, $this->telefonoCelular, $this->fechaNacimiento, $this->genero,$this->dui,$_SESSION['idusuario']);
         return Database::executeRow($sql, $params);
     }
 
@@ -407,6 +407,15 @@ class Usuarios extends Validator
         );
         return Database::executeRow($sql, $params);
     }
+
+    //Método para verificar datos duplicados de la tabla
+    public function duplicateRow()
+    {
+        $sql = 'SELECT * FROM usuario WHERE username = ? or telefonoCelular=? or telefonoFijo=? or correo=? or dui=?';
+        $params =  array($this->username,$this->telefonoCelular,$this->telefonoFijo,$this->correo,$this->dui);
+        return Database::getRow($sql,$params);
+    }
+
 
     public function readAll()
     {
