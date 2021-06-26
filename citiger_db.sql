@@ -273,3 +273,7 @@ UPDATE usuario SET modo = 'light';
 --Cambios 25/06/2021
 INSERT INTO estadoAlquiler(estadoAlquiler) VALUES('Revisión'),('Activo'),('Finalizado'),('Denegado');
 
+--Cambios 26/6/2021	(Validación de datos duplicados)
+ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_dui UNIQUE (dui);
+ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_telefono UNIQUE (telefono);
+ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_correo UNIQUE (correo);

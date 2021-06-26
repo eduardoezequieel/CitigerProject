@@ -91,36 +91,17 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     previewSavePicture('divFoto', null, 2);
 });
 
-document.getElementById('administrarEmpleado-form').addEventListener('submit',function(){
+//Agregar y actualizar información
+document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
+    //Se evita que se recargue la pagina
+    event.preventDefault();
 
-});
-
-//agregar registros a la tabla de empleados
-document.getElementById('btnAgregar').addEventListener('click',function(){
-    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
-        event.preventDefault();
-        //Fetch para registrar empleado
-        fetch(API_EMPLEADO + 'createRow', {
-            method: 'post',
-            body: new FormData(document.getElementById('administrarEmpleado-form'))
-        }).then(request => {
-            //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-            if (request.ok) {
-                request.json().then(response => {
-                    //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                    if (response.status) {
-                        readRows(API_EMPLEADO);
-                        sweetAlert(1, response.message, closeModal('administrarEmpleado'));
-                    } else {
-                        sweetAlert(2, response.exception, null);
-                    }
-                })
-            } else {
-                console.log(response.status + ' ' + response.exception);
-            }
-        }).catch(error => console.log(error));
-    
-    });
+    //Se evalua si el usuario esta haciendo una inserción o una actualización
+    if (document.getElementById('btnAgregar').className != 'd-none') {
+        saveRow(API_EMPLEADO, 'createRow','administrarEmpleado-form', 'administrarEmpleado');
+    } else {
+        saveRow(API_EMPLEADO, 'updateRow','administrarEmpleado-form', 'administrarEmpleado');
+    }
 });
 
 //Carga de datos del registro seleccionado
@@ -175,36 +156,6 @@ function readDataOnModal(id){
         console.log(error);
     });
 }
-
-
-//actualizar registros
-document.getElementById('btnActualizar').addEventListener('click',function(event){
-
-    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
-        event.preventDefault();
-        //Fetch para actualizar empleado
-        fetch(API_EMPLEADO + 'updateRow', {
-            method: 'post',
-            body: new FormData(document.getElementById('administrarEmpleado-form'))
-        }).then(request => {
-            //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-            if (request.ok) {
-                request.json().then(response => {
-                    //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                    if (response.status) {
-                        readRows(API_EMPLEADO);
-                        sweetAlert(1, response.message, closeModal('administrarEmpleado'));
-                    } else {
-                        sweetAlert(2, response.exception, null);
-                    }
-                })
-            } else {
-                console.log(response.status + ' ' + response.exception);
-            }
-        }).catch(error => console.log(error));
-    
-    });
-});
 
 //Suspender registros
 document.getElementById('btnSuspender').addEventListener('click',function(){

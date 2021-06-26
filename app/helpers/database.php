@@ -126,6 +126,9 @@ Class Database{
             case '42703':
                 self::$error = 'Nombre de campo desconocido';
                 break;
+            case '23505':
+                self::$error = 'Se han encontrado registros duplicados, escriba otros.';
+                break;
             case '42P01':
                 self::$error = 'Nombre de tabla desconocido';
                 break;
