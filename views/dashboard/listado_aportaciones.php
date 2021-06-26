@@ -237,5 +237,5 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate();
+admin_Page::footerTemplate('aportaciones.js');
 ?>  

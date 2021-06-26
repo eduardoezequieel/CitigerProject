@@ -521,7 +521,7 @@ function fillSelect(endpoint, select, selected) {
                         }
                     });
                 } else {
-                    content += '<option>No hay opciones disponibles</option>';
+                    content += '<option>Sin opciones.</option>';
                 }
                 // Se agregan las opciones a la etiqueta select mediante su id.
                 document.getElementById(select).innerHTML = content;

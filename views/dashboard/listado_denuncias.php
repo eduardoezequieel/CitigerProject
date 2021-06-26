@@ -308,5 +308,5 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate();
+admin_Page::footerTemplate('denuncias.js');
 ?>  
