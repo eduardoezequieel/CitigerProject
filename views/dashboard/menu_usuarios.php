@@ -19,14 +19,14 @@ admin_Page::sidebarTemplate('Usuarios | Citiger');
 
                 <div class="row">
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
-                        <a href="listado_empleados.php" class="btn botonMenu1">
+                        <a href="empleados.php" class="btn botonMenu1">
                             <i class="fas fa-user-tie iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">Empleados</label>
                         </a>
                     </div>
 
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
-                        <a href=listado_admin.php class="btn botonMenu2">
+                        <a href=admin.php class="btn botonMenu2">
                             <i class="fas fa-user-shield iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">Administradores</label>
                         </a>
@@ -35,7 +35,7 @@ admin_Page::sidebarTemplate('Usuarios | Citiger');
 
                 <div class="row justify-content-center mt-4">
                     <div class="col d-flex justify-content-center align-items-center animate__animated animate__bounceIn">
-                        <a href="listado_residentes.php" class="btn botonMenu3">
+                        <a href="residentes.php" class="btn botonMenu3">
                             <i class="fas fa-user iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">Residentes</label>
                         </a>

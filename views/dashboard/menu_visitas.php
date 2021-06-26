@@ -23,7 +23,7 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
             <div class="row">
                 <!-- Opción "alquiler" de menú -->
                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
-                    <a href="listado_visitantes.php" class="btn botonMenu1">
+                    <a href="visitantes.php" class="btn botonMenu1">
                         <i class="fas fa-child iconosBotonesMenu"></i>
                         <label class="textoBotonesMenu">Visitantes</label>
                     </a>
@@ -31,7 +31,7 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
 
                 <!-- Opción "espacios" de menú -->
                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
-                    <a href="listado_visitas.php" class="btn botonMenu2">
+                    <a href="visitas.php" class="btn botonMenu2">
                         <i class="fas fa-address-book iconosBotonesMenu"></i>
                         <label class="textoBotonesMenu">Visitas</label>
                     </a>

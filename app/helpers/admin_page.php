@@ -94,13 +94,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="listado_aportaciones.php" class="nav-link ">
+                                <a href="aportaciones.php" class="nav-link ">
                                 <i class="fas fa-coins mr-3 tamañoIconos"></i>
                                 Aportaciones
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="listado_denuncias.php" class="nav-link ">
+                                <a href="denuncias.php" class="nav-link ">
                                 <i class="fas fa-exclamation-triangle mr-3 tamañoIconos"></i>
                                 Denuncias
                                 </a>

@@ -52,7 +52,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                 </div>
 
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="listado_marcas.php" class="btn botonesListado"><span class="fas fa-tag mr-3 tamañoIconosBotones"></span>Marcas</a>
+                    <a href="marcas.php" class="btn botonesListado"><span class="fas fa-tag mr-3 tamañoIconosBotones"></span>Marcas</a>
                 </div>
 
                 <div class="mt-4 mx-3 mb-3">
