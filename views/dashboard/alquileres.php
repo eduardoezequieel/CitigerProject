@@ -178,5 +178,5 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-Admin_Page::footerTemplate('listado_alquileres.js');
+Admin_Page::footerTemplate('alquileres.js');
 ?>  

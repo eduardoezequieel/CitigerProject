@@ -142,5 +142,5 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
     <!-- Fin del Modal -->
 <?php
 //Se imprimen los JS necesarios
-Admin_Page::footerTemplate('listado_espacios.js');
+Admin_Page::footerTemplate('espacios.js');
 ?>   
