@@ -22,7 +22,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
 
                     <div class="row justify-content-center animate__animated animate__zoomIn">
                         <div class="col-12 d-flex justify-content-center">
-                            <form>
+                            <form method="post" id="img-form">
                                 <!-- Cargar Fotografia -->
                                 <div class="row">
                                     <div class="col">
@@ -33,6 +33,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                                 <button class="btn btnCargarFoto2"><span class="fas fa-plus"></span></button>
                                             </div>
                                             <input id="archivo_usuario" type="file" class="d-none" name="archivo_usuario" accept=".gif, .jpg, .png">
+                                            <button class="d-none" id="btnUpload" type="submit"></button>
                                             <h1 id="nombres" class="tituloUsuario mt-3"></h1>
                                         </div>
                                     </div>

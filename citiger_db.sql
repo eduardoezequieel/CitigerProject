@@ -281,3 +281,9 @@ ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_correo UNIQUE (correo);
 INSERT INTO tipodenuncia(tipodenuncia) VALUES ('Mantenimiento'),('Limpieza'),('Disturbio');
 INSERT INTO estadodenuncia(estadodenuncia) VALUES ('Pendiente'),('Rechazada'),('Revisión'),('En proceso'),('Solucionada');
 INSERT INTO denuncia(idempleado, idresidente,idtipodenuncia, idestadodenuncia, fecha, descripcion) VALUES (1, 1, 1, 1, '2021-06-26','Denuncia de prueba');
+
+ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_dui UNIQUE (dui);
+ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_telefono_fijo UNIQUE (telefonofijo);
+ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_telefono_celular UNIQUE (telefonocelular);
+ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_correo UNIQUE (correo);
+ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_username UNIQUE (username);

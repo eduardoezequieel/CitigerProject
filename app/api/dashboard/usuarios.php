@@ -53,17 +53,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrio un problema-';
                 }
                 break;
-            case 'readProfile':
-                if ($result['dataset'] = $usuarios->readProfile()) {
-                    $result['status'] = 1;
-                } else {
-                    if (Database::getException()) {
-                        $result['exception'] = Database::getException();
-                    } else {
-                        $result['exception'] = 'Usuario inexistente';
-                    }
-                }
-                break;
             case 'readProfile2':
                 if ($result['dataset'] = $usuarios->readProfile2()) {
                     $result['status'] = 1;
@@ -116,6 +105,30 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'DUI invalido';
                 }
+                break;
+            case 'updateFoto':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
+                    if ($data = $usuarios->readProfile2()) {
+
+                    if ($usuarios->updateFoto($data['foto'])) {
+                        $result['status'] = 1;
+                        $_SESSION['foto'] = $usuarios->getFoto();
+                        if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
+                            $result['message'] = 'Foto modificada correctamente';
+                        } else {
+                            $result['exception'] = 'Foto no actualiza';
+                        }
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } else {
+                    $result['exception'] = $usuarios->getImageError();
+                }
+            }else{
+                $result['exception'] = 'Usuario inválido';
+            }
+        
                 break;
                 //Caso de default del switch
             default:

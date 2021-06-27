@@ -348,15 +348,15 @@ class Usuarios extends Validator
         return Database::getRow($sql, $params);
     }
 
-    public function updateProfileInfo($current_image)
+    public function updateFoto($current_image)
     {
         // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
         ($this->foto) ? $this->deleteFile($this->getRuta(), $current_image) : $this->foto = $current_image;
 
-        $sql = 'UPDATE admon
-                SET foto = ?, nombre = ?, apellido = ?, genero = ?, fechaNacimiento = ?, telefono = ?, direccion = ?
-                WHERE idAdmon = ?';
-        $params = array($this->foto, $this->nombre, $this->apellido, $this->genero, $this->fechaNacimiento, $this->telefono, $this->direccion, $_SESSION['idAdmon']);
+        $sql = 'UPDATE usuario
+                SET foto = ?
+                WHERE idusuario = ?';
+        $params = array($this->foto, $_SESSION['idusuario']);
         return Database::executeRow($sql, $params);
     }
 
