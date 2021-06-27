@@ -251,7 +251,9 @@ function previewSavePicture(idDivFoto, name, foto) {
 
         image = document.createElement('img');
 
-        image.style.width = '150px';
+        image.style.width = '140px';
+        image.style.heigth = '140px';
+
         //Se le asigna la ruta al elemento creado
         image.src = ruta + name;
 

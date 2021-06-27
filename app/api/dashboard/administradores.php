@@ -35,19 +35,15 @@ if (isset($_GET['action'])) {
                                                                         $usuarios->setContrasenia('$2y$10$vZ.dSTcvEURUaDCKW8eFkeI.zNfWKz6NAcKnzu9N1KcbyjZ4..M4y');
                                                                         if ($usuarios->setDireccion($_POST['txtDireccion'])) {
                                                                             $usuarios->setIdEstadoUsuario(1);
-                                                                            if (!$usuarios->duplicateRow()) {
-                                                                                if ($usuarios->createRow()) {
-                                                                                    $result['status'] = 1;
-                                                                                    if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
-                                                                                        $result['message'] = 'Usuario registrado correctamente';
-                                                                                    } else {
-                                                                                        $result['message'] = 'Usuario registrado pero no se guardó la imagen';
-                                                                                    }
+                                                                            if ($usuarios->createRow()) {
+                                                                                $result['status'] = 1;
+                                                                                if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
+                                                                                    $result['message'] = 'Usuario registrado correctamente';
                                                                                 } else {
-                                                                                    $result['exception'] = Database::getException();;
+                                                                                    $result['message'] = 'Usuario registrado pero no se guardó la imagen';
                                                                                 }
                                                                             } else {
-                                                                                $result['exception'] = 'Los datos ya existen en la base de datos';
+                                                                                $result['exception'] = Database::getException();;
                                                                             }
                                                                         } else {
                                                                             $result['exception'] = 'La dirección ingresada no es válida';
@@ -260,7 +256,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Cliente seleccionado incorrecto';
                 }
                 break;
-            case 'suspendEmployee':
+            case 'suspendRow':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_POST['txtId'])) {
                     if ($usuarios->suspend()) {
@@ -296,7 +292,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 //Caso para suspender empleados
-            case 'activateEmployee':
+            case 'activateRow':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_POST['txtId'])) {
                     if ($usuarios->activar()) {

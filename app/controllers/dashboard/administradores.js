@@ -94,13 +94,6 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('txtDireccion').value = '';
 });
 
-document.getElementById('btnAgregar').addEventListener('click', function (event) {
-    //Evento para evitar que recargue la pagina
-    event.preventDefault();
-    //Se agrega el nuevo registro
-    saveRow(API_EMPLEADO, 'register', 'administrarEmpleado-form', 'administrarAdmin');
-})
-
 //Carga de datos del registro seleccionado
 function readDataOnModal(id){
     // Se define un objeto con los datos del registro seleccionado.
@@ -157,116 +150,31 @@ function readDataOnModal(id){
 }
 
 
-//actualizar registros
-document.getElementById('btnActualizar').addEventListener('click',function(event){
-
-    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
-        event.preventDefault();
-        //Fetch para actualizar empleado
-        fetch(API_EMPLEADO + 'updateRow', {
-            method: 'post',
-            body: new FormData(document.getElementById('administrarEmpleado-form'))
-        }).then(request => {
-            //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-            if (request.ok) {
-                request.json().then(response => {
-                    //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                    if (response.status) {
-                        readRows(API_EMPLEADO);
-                        sweetAlert(1, response.message, closeModal('administrarAdmin'));
-                    } else {
-                        sweetAlert(2, response.exception, null);
-                    }
-                })
-            } else {
-                console.log(response.status + ' ' + response.exception);
-            }
-        }).catch(error => console.log(error));
-    
-    });
+document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
+    //Se evita que se recargue la pagina
+    event.preventDefault();
+    //Se evalua si el usuario esta haciendo una inserción o una actualización
+    if (document.getElementById('btnAgregar').className != 'd-none') {
+        saveRow(API_EMPLEADO, 'register','administrarEmpleado-form', 'administrarAdmin');
+    } else {
+        saveRow(API_EMPLEADO, 'updateRow','administrarEmpleado-form', 'administrarAdmin');
+    }
 });
 
 //Suspender registros
-document.getElementById('btnSuspender').addEventListener('click',function(){
-
-    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
-        event.preventDefault();
-        //Fetch para suspender empleado
-        swal({
-            title: 'Advertencia',
-            text: '¿Desea suspender el registro?',
-            icon: 'warning',
-            buttons: ['No', 'Sí'],
-            closeOnClickOutside: false,
-            closeOnEsc: false
-        }).then(function (value) {
-            // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
-            if (value) {
-                fetch(API_EMPLEADO + 'suspendEmployee', {
-                    method: 'post',
-                    body: new FormData(document.getElementById('administrarEmpleado-form'))
-                }).then(request => {
-                    //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-                    if (request.ok) {
-                        request.json().then(response => {
-                            //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                            if (response.status) {
-                                readRows(API_EMPLEADO);
-                                sweetAlert(1, response.message, closeModal('administrarAdmin'));
-                            } else {
-                                sweetAlert(2, response.exception, null);
-                            }
-                        })
-                    } else {
-                        console.log(response.status + ' ' + response.exception);
-                    }
-                }).catch(error => console.log(error));
-            }
-        });
-    
-    });
+document.getElementById('btnSuspender').addEventListener('click',function(event){
+    event.preventDefault();
+    suspendRow(API_EMPLEADO, 'administrarEmpleado-form','administrarAdmin');
 })
 
 //Activar registros
-document.getElementById('btnActivar').addEventListener('click',function(){
+document.getElementById('btnActivar').addEventListener('click',function(event){
+    event.preventDefault();
+    activateRow(API_EMPLEADO, 'administrarEmpleado-form','administrarAdmin');
 
-    document.getElementById('administrarEmpleado-form').addEventListener('submit',function(event){
-        event.preventDefault();
-        //Fetch para suspender empleado
-        swal({
-            title: 'Advertencia',
-            text: '¿Desea activar el registro?',
-            icon: 'warning',
-            buttons: ['No', 'Sí'],
-            closeOnClickOutside: false,
-            closeOnEsc: false
-        }).then(function (value) {
-            // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
-            if (value) {
-                fetch(API_EMPLEADO + 'activateEmployee', {
-                    method: 'post',
-                    body: new FormData(document.getElementById('administrarEmpleado-form'))
-                }).then(request => {
-                    //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-                    if (request.ok) {
-                        request.json().then(response => {
-                            //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                            if (response.status) {
-                                readRows(API_EMPLEADO);
-                                sweetAlert(1, response.message, closeModal('administrarAdmin'));
-                            } else {
-                                sweetAlert(2, response.exception, null);
-                            }
-                        })
-                    } else {
-                        console.log(response.status + ' ' + response.exception);
-                    }
-                }).catch(error => console.log(error));
-            }
-        });
-    
-    });
+
 })
+
 
 //eliminar registros de la tabla empleado.
 function deleteRow(id){

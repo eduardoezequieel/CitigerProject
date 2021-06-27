@@ -13,8 +13,150 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
 
         <div class="row justify-content-center">
             <div class="col-12 d-flex justify-content-center align-items-center">
-                <div class="contenedorMiCuenta" id="miCuenta">
+                <div class="contenedorMiCuenta">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <h1 class="tituloPagina text-center">Mi Cuenta</h1>
+                        </div>
+                    </div>
 
+                    <div class="row justify-content-center animate__animated animate__zoomIn">
+                        <div class="col-12 d-flex justify-content-center">
+                            <form>
+                                <!-- Cargar Fotografia -->
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="divFotografiaAjustes">
+                                            <div class="cargarFoto d-flex justify-content-center align-items-center" id="divFoto">
+                                            </div>
+                                            <div id="btnAgregarFoto">
+                                                <button class="btn btnCargarFoto2"><span class="fas fa-plus"></span></button>
+                                            </div>
+                                            <input id="archivo_usuario" type="file" class="d-none" name="archivo_usuario" accept=".gif, .jpg, .png">
+                                            <h1 id="nombres" class="tituloUsuario mt-3"></h1>
+                                        </div>
+                                    </div>
+                                    <!-- Final Cargar Fotografia -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Sección para cambiar información personal -->
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h1 class="tituloTarjetaAjustes">Información Personal</h1>
+
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center animate__animated animate__zoomIn">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <!-- Div especializado para cada sección -->
+                            <div class="informacionPersonal">
+                                <div class="row justify-content-center ml-4">
+                                    <div class="col-6 divColumnasAjustes">
+                                        <form>
+                                            <!-- Titulo -->
+                                            <h1 class="tituloInformacion">Nombres</h1>
+                                            <!-- Información -->
+                                            <h2 class="informacion" id="lblNombres"></h2>
+                                        </form>
+                                    </div>
+                                    <div class="col-6 divColumnasAjustes">
+                                        <form>
+                                            <h1 class="tituloInformacion">Apellidos</h1>
+                                            <h2 class="informacion" id="lblApellidos"></h2>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row mt-2 justify-content-center ml-4">
+                                    <div class="col-6 divColumnasAjustes">
+                                        <form>
+                                            <h1 class="tituloInformacion">DUI</h1>
+                                            <h2 class="informacion" id="lblDUI"></h2>
+                                        </form>
+                                    </div>
+                                    <div class="col-6 divColumnasAjustes">
+                                        <form>
+                                            <h1 class="tituloInformacion">Genéro</h1>
+                                            <h2 class="informacion" id="lblGenero"></h2>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row mt-2 justify-content-center ml-4">
+                                    <div class="col-6 divColumnasAjustes">
+                                        <form>
+                                            <h1 class="tituloInformacion">Teléfono Fijo</h1>
+                                            <h2 class="informacion" id="lblTelFijo"></h2>
+                                        </form>
+                                    </div>
+                                    <div class="col-6 divColumnasAjustes">
+                                        <form>
+                                            <h1 class="tituloInformacion">Teléfono Celular</h1>
+                                            <h2 class="informacion" id="lblTelCelular"></h2>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row mt-2 justify-content-center ml-4">
+                                    <div class="col-6 divColumnasAjustes">
+                                        <form>
+                                            <h1 class="tituloInformacion">Fecha de Nacimiento</h1>
+                                            <h2 class="informacion" id="lblFechaNac"></h2>
+                                        </form>
+                                    </div>
+                                    <div class="col-6 divColumnasAjustes">
+                                        <form>
+                                            <a href="#" id="btnEditarAjustes" onclick="readDataOnModal()" data-toggle="modal" data-target="#administrarCuenta" class="btn botonesAjustes">Editar</a>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección para administrar ajustes de la cuenta (mismo formato de arriba) -->
+                    <div class="row mt-4">
+                        <div class="col">
+                            <h1 class="tituloTarjetaAjustes">Ajustes de la Cuenta</h1>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center animate__animated animate__zoomIn">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <div class="informacionPersonal">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h1 class="tituloInformacion">Usuario</h1>
+                                        <h2 class="informacion" id="lblUser"></h2>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn botonesAjustes">Editar</button>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-6">
+                                        <h1 class="tituloInformacion">Correo Electrónico</h1>
+                                        <h2 class="informacion" id="lblCorreo"></h2>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="#" class="btn botonesAjustes">Editar</a>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-6">
+                                        <h1 class="tituloInformacion">Contraseña</h1>
+                                        <h2 class="informacion">*********</h2>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn botonesAjustes">Cambiar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -25,6 +167,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
 </div>
 <!-- Final del contenido -->
 
+<!-- Modal para Administrar informacion personal -->
 <!-- Modal para Administrar informacion personal -->
 <div class="modal fade" id="administrarCuenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -105,5 +248,5 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate('account.js');
+admin_Page::footerTemplate('ajustes_cuenta.js');
 ?>
