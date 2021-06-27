@@ -163,36 +163,51 @@ function previewPicture(idInputExaminar, idDivFoto) {
 }
 
 
-document.getElementById('archivo_usuario').addEventListener('change',function(){
+document.getElementById('archivo_usuario').addEventListener('change', function () {
     //Presionando el boton invisible
-    document.getElementById('btnUpload').click();   
+    document.getElementById('btnUpload').click();
 })
 
-// Método manejador de eventos que se ejecuta cuando se envía el formulario de editar perfil.
+
 document.getElementById('img-form').addEventListener('submit', function (event) {
-    // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
+    //Fetch para actualizar foto de perfil
+    swal({
+        title: 'Advertencia',
+        text: '¿Desea cambiar su foto de perfil?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cambio, de lo contrario no se hace nada.
+        if (value) {
+            fetch(API_USUARIOS + 'updateFoto', {
+                method: 'post',
+                body: new FormData(document.getElementById('img-form'))
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
 
-    fetch(API_USUARIOS + 'updateFoto', {
-        method: 'post',
-        body: new FormData(document.getElementById('img-form'))
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-
-                    // Se muestra un mensaje y se direcciona a la página web de bienvenida para actualizar el nombre del usuario en el menú.
-                    sweetAlert(1, response.message, 'ajustes_cuenta.php');
+                            // Se muestra un mensaje y se direcciona a la página web de bienvenida para actualizar los datos en el menú.
+                            sweetAlert(1, response.message, 'ajustes_cuenta.php');
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
                 } else {
-                    sweetAlert(2, response.exception, null);
+                    console.log(request.status + ' ' + request.statusText);
                 }
+            }).catch(function (error) {
+                console.log(error);
             });
         } else {
-            console.log(request.status + ' ' + request.statusText);
+            sweetAlert(4, 'Foto no actualizada', 'ajustes_cuenta.php');
+
         }
-    }).catch(function (error) {
-        console.log(error);
     });
+
 });
