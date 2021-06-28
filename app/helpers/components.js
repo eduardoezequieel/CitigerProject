@@ -235,7 +235,9 @@ function previewSavePicture(idDivFoto, name, foto) {
 
         image = document.createElement('img');
 
-        image.style.width = '150px';
+        image.style.width = '130px';
+
+        image.style.height = '130px';
 
         //Se aplican las respectivas clases para que la preview aparezca estilizada
         image.className = 'fit-images rounded-circle';
@@ -251,14 +253,11 @@ function previewSavePicture(idDivFoto, name, foto) {
 
         image = document.createElement('img');
 
-        image.style.width = '140px';
-        image.style.heigth = '140px';
-
         //Se le asigna la ruta al elemento creado
         image.src = ruta + name;
 
         //Se aplican las respectivas clases para que la preview aparezca estilizada
-        image.className = 'fit-images rounded-circle';
+        image.className = 'fit-images rounded-circle fotoPrimerUso';
 
         //Se quita lo que este dentro del div (en caso de que exista otra imagen)
         preview.innerHTML = ' ';

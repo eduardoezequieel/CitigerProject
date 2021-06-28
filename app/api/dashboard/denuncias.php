@@ -28,6 +28,48 @@
                         }
                     }
                     break;
+                case 'readOne':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setIdDenuncia($_POST['idDenuncia'])) {
+                        if ($result['dataset'] = $denuncia->readOne()) {
+                            $result['status'] = 1;
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'Denuncia inexistente';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
+                case 'acceptComplaint':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setIdDenuncia($_POST['idDenuncia1'])) {
+                        if ($denuncia->acceptComplaint()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Denuncia aceptada. Por favor asigne un empleado para solucionarla.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
+                case 'rejectComplaint':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setIdDenuncia($_POST['idDenuncia1'])) {
+                        if ($denuncia->rejectComplaint()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Denuncia rechazada correctamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
                 
                 //Caso de default del switch
                 default: 

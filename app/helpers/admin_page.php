@@ -60,7 +60,7 @@
                                     <div class="row">
                                         <div class="col-3">
                                             <img src="../../resources/img/dashboard_img/usuarios_fotos/' . $_SESSION['foto'] . '"
-                                                id="fotoPerfil" alt="" class="rounded-circle fit-image" width="60px"
+                                                id="fotoPerfil" alt="" class="rounded-circle fit-images" width="60px"
                                                 height="60px">
                                         </div>
                                         <div class="col-9">

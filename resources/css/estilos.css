@@ -1091,7 +1091,7 @@ textarea :-ms-input-placeholder {
   justify-content: center;
   width: min-content;
   background-color: var(--color-fondo-opaco) !important;
-  padding: 30px;
+  padding: 40px;
   border-radius: 20px;
 }
 
@@ -1119,7 +1119,6 @@ textarea :-ms-input-placeholder {
   width: 150px;
   height: 150px;
   border-radius: 100px;
-  border: 1px solid var(--color-tipografia-titulos) !important;
 }
 
 .informacionPersonal {

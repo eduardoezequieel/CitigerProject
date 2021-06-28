@@ -27,7 +27,9 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                 <div class="row">
                                     <div class="col">
                                         <div class="divFotografiaAjustes">
-                                            <div class="cargarFoto d-flex justify-content-center align-items-center" id="divFoto">
+                                            <div class="bordeDivFotografia mb-1">
+                                                <div id="divFoto">
+                                                </div>
                                             </div>
                                             <div id="btnAgregarFoto">
                                                 <button class="btn btnCargarFoto2"><span class="fas fa-plus"></span></button>

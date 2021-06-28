@@ -144,14 +144,12 @@ function previewPicture(idInputExaminar, idDivFoto) {
 
             //Se crea el elemento IMG que contendra la preview
             image = document.createElement('img');
-            image.style.width = '140px';
-            image.style.height = '140px';
 
             //Se le asigna la ruta al elemento creado
             image.src = reader.result;
 
             //Se aplican las respectivas clases para que la preview aparezca estilizada
-            image.className = 'fit-images rounded-circle';
+            image.className = 'fit-images rounded-circle fotoPrimerUso';
 
             //Se quita lo que este dentro del div (en caso de que exista otra imagen)
             preview.innerHTML = ' ';
@@ -171,43 +169,27 @@ document.getElementById('archivo_usuario').addEventListener('change', function (
 
 document.getElementById('img-form').addEventListener('submit', function (event) {
     event.preventDefault();
-    //Fetch para actualizar foto de perfil
-    swal({
-        title: 'Advertencia',
-        text: '¿Desea cambiar su foto de perfil?',
-        icon: 'warning',
-        buttons: ['No', 'Sí'],
-        closeOnClickOutside: false,
-        closeOnEsc: false
-    }).then(function (value) {
-        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cambio, de lo contrario no se hace nada.
-        if (value) {
-            fetch(API_USUARIOS + 'updateFoto', {
-                method: 'post',
-                body: new FormData(document.getElementById('img-form'))
-            }).then(function (request) {
-                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-                if (request.ok) {
-                    request.json().then(function (response) {
-                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                        if (response.status) {
+    fetch(API_USUARIOS + 'updateFoto', {
+        method: 'post',
+        body: new FormData(document.getElementById('img-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
 
-                            // Se muestra un mensaje y se direcciona a la página web de bienvenida para actualizar los datos en el menú.
-                            sweetAlert(1, response.message, 'ajustes_cuenta.php');
-                        } else {
-                            sweetAlert(2, response.exception, null);
-                        }
-                    });
+                    // Se muestra un mensaje y se direcciona a la página web de bienvenida para actualizar los datos en el menú.
+                    //sweetAlert(1, response.message, 'ajustes_cuenta.php');
                 } else {
-                    console.log(request.status + ' ' + request.statusText);
+                    sweetAlert(2, response.exception, null);
                 }
-            }).catch(function (error) {
-                console.log(error);
             });
         } else {
-            sweetAlert(4, 'Foto no actualizada', 'ajustes_cuenta.php');
-
+            console.log(request.status + ' ' + request.statusText);
         }
+    }).catch(function (error) {
+        console.log(error);
     });
 
 });

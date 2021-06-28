@@ -42,7 +42,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                 
             </div><br>
             <!-- Desde aqui comienza la tabla -->
-            <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaListadoDenuncias">
+            <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
                 <div class="col-12 justify-content-center align-items-center text-center">
                     <table class="table table-borderless citigerTable">
                         <thead>
@@ -86,33 +86,36 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
             <br>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
-                <div class="row">
-                    <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
-                        <h1 class="tituloDato text-center">Residente</h1>
-                        <h1 class="campoDato text-center mb-3">Eduardo Rivera</h1>
+                <form method="post" id="administrarDenunciaPendiente-form">
+                <input type="number" class="d-none" name="idDenuncia1" id="idDenuncia1">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                            <h1 class="tituloDato text-center">Residente</h1>
+                            <h1 class="campoDato text-center mb-3" id="txtResidente">Eduardo Rivera</h1>
 
-                        <h1 class="tituloDato text-center">Tipo de Denuncia</h1>
-                        <h1 class="campoDato text-center mb-3">Mantenimiento</h1>
+                            <h1 class="tituloDato text-center">Tipo de Denuncia</h1>
+                            <h1 class="campoDato text-center mb-3" id="txtTipoDenuncia">Mantenimiento</h1>
 
-                        <h1 class="tituloDato text-center">Fecha</h1>
-                        <h1 class="campoDato text-center mb-3">11/6/2021</h1>
+                            <h1 class="tituloDato text-center">Fecha</h1>
+                            <h1 class="campoDato text-center mb-3" id="txtFecha">11/6/2021</h1>
 
-                        <h1 class="tituloDato text-center">Estado</h1>
-                        <h1 class="campoDato text-center mb-3">Pendiente</h1>
+                            <h1 class="tituloDato text-center">Estado</h1>
+                            <h1 class="campoDato text-center mb-3" id="txtEstadoDenuncia">Pendiente</h1>
+                        </div>
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                            <textarea name="txtDescripcion" id="txtDescripcion" rows="11" class="form-control cajaTextoFormulario" readonly>Texto de ejemplo</textarea>
+                        </div>
                     </div>
-                    <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
-                        <textarea name="#" id="#" rows="11" class="form-control cajaTextoFormulario" readonly>Texto de ejemplo</textarea>
+                    
+                    <!-- Botones de Acción del Formulario -->
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                            <button id="btnAceptar" data-toggle="modal" data-dismiss="modal" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Aceptar</button>
+                            <button id="btnRechazar" data-toggle="modal" data-dismiss="modal" data-target="#administrarDenunciaRechazada" class="btn btnAgregarFormulario mr-2"><span class="fas fa-times mr-3 tamañoIconosBotones"></span>Rechazar</button>
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Botones de Acción del Formulario -->
-                <div class="row justify-content-center mt-4">
-                    <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                        <button href="#" data-toggle="modal" data-dismiss="modal" data-target="#administrarDenunciaAsignar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Aceptar</button>
-                        <button href="#" data-toggle="modal" data-dismiss="modal" data-target="#administrarDenunciaRechazada" class="btn btnAgregarFormulario mr-2"><span class="fas fa-times mr-3 tamañoIconosBotones"></span>Rechazar</button>
-                    </div>
-                </div>
-                <!-- Fin del Contenido del Modal -->
+                    <!-- Fin del Contenido del Modal -->
+                </form>
             </div>
         </div>
     </div>

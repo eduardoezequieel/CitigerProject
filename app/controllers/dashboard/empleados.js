@@ -157,11 +157,11 @@ function readDataOnModal(id){
     });
 }
 
-//Suspender registros
-document.getElementById('btnSuspender').addEventListener('click',function(event){
-    event.preventDefault();
-    suspendRow(API_EMPLEADO, 'administrarEmpleado-form','administrarEmpleado');
-})
+    //Suspender registros
+    document.getElementById('btnSuspender').addEventListener('click',function(event){
+        event.preventDefault();
+        suspendRow(API_EMPLEADO, 'administrarEmpleado-form','administrarEmpleado');
+    })
 
 //Activar registros
 document.getElementById('btnActivar').addEventListener('click',function(event){

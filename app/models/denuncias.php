@@ -121,13 +121,38 @@
 
         public function readAll()
         {
-            $sql = 'SELECT CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
+            $sql = 'SELECT idDenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
             FROM denuncia
             INNER JOIN residente ON denuncia.idresidente = residente.idresidente
             INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
             INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia';
             $params = null;
             return Database::getRows($sql, $params);
+        }
+
+        public function readOne(){
+            $sql = 'SELECT CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha, descripcion
+            FROM denuncia
+            INNER JOIN residente ON denuncia.idresidente = residente.idresidente
+            INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
+            INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
+            WHERE idDenuncia = ?';
+            $params = array($this->idDenuncia);
+            return Database::getRow($sql, $params);
+        }
+
+        public function acceptComplaint(){
+            $sql = 'UPDATE denuncia SET idestadodenuncia = 3 
+                    WHERE iddenuncia = ?';
+            $params = array($this->idDenuncia);
+            return Database::executeRow($sql, $params);
+        }
+
+        public function rejectComplaint(){
+            $sql = 'UPDATE denuncia SET idestadodenuncia = 2 
+                    WHERE iddenuncia = ?';
+            $params = array($this->idDenuncia);
+            return Database::executeRow($sql, $params);
         }
     }
 
