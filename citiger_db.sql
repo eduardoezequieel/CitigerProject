@@ -287,3 +287,7 @@ ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_telefono_fijo UNIQUE (telefonofijo
 ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_telefono_celular UNIQUE (telefonocelular);
 ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_correo UNIQUE (correo);
 ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_username UNIQUE (username);
+
+--Cambios 27/6/2021	
+
+INSERT INTO estadocasa(idestadocasa, estadocasa) VALUES (DEFAULT, 'Activa'),(DEFAULT, 'Desactivada');
