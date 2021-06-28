@@ -8,18 +8,21 @@ const ENDPOINT_CATEGORIAS = '../../app/api/dashboard/inventario.php?action=readC
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    fillSelect(ENDPOINT_TIPOS, 'cbTipo', null);
+    fillSelect(ENDPOINT_TIPOS, 'cbTipo', 1);
     fillSelect(ENDPOINT_MARCAS, 'cbMarca', null);
     fillSelect(ENDPOINT_CATEGORIAS, 'cbCategoria', null);
     fillSelect(ENDPOINT_CATEGORIAS, 'cbCategoria2', null);
-    fillSelect(ENDPOINT_UNIDAD, 'cbUnidad', null);
+    fillSelectSpace(ENDPOINT_UNIDAD, 'cbUnidad', null);
 
     readRows(API_MATERIAL);
 
 
 })
 
-
+document.getElementById('cbTipo').addEventListener('change',function(){
+    document.getElementById('idTipoUnidad').value = document.getElementById('cbTipo').value;
+    fillSelectSpace(ENDPOINT_UNIDAD, 'cbUnidad', null);
+})
 
 //ocultar los demas botones de acción en el formulario al presionar Agregar.
 document.getElementById('btnInsertDialog').addEventListener('click', function () {
@@ -34,10 +37,10 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     document.getElementById('txtCantidad').value = '';
     document.getElementById('txtDesc').value = '';
 
-    fillSelect(ENDPOINT_TIPOS, 'cbTipo', null);
+    fillSelect(ENDPOINT_TIPOS, 'cbTipo', 1);
     fillSelect(ENDPOINT_MARCAS, 'cbMarca', null);
     fillSelect(ENDPOINT_CATEGORIAS, 'cbCategoria', null);
-    fillSelect(ENDPOINT_UNIDAD, 'cbUnidad', null);
+    fillSelectSpace(ENDPOINT_UNIDAD, 'cbUnidad', null);
 
     previewSavePicture('divFoto', 'default.png', 4);
 
@@ -77,6 +80,48 @@ document.getElementById('btnActualizar').addEventListener('click', function (eve
     //Se agrega el nuevo registro
     saveRow(API_MATERIAL, 'updateRow', 'administrarMateriales-form', 'administrarInventario');
 })
+
+function fillSelectSpace(endpoint, select, selected) {
+    fetch(endpoint, {
+        method: 'post',
+        body: new FormData(document.getElementById('administrarMateriales-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let content = '';
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Si no existe un valor para seleccionar, se muestra una opción para indicarlo.
+                    if (!selected) {
+                        content += '<option disabled selected>Seleccione una opción</option>';
+                    }
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
+                        value = Object.values(row)[0];
+                        // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
+                        text = Object.values(row)[1];
+                        // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
+                        if (value != selected) {
+                            content += `<option value="${value}">${text}</option>`;
+                        } else {
+                            content += `<option value="${value}" selected>${text}</option>`;
+                        }
+                    });
+                } else {
+                    content += '<option>No hay opciones disponibles</option>';
+                }
+                // Se agregan las opciones a la etiqueta select mediante su id.
+                document.getElementById(select).innerHTML = content;
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 
 
 document.getElementById('cbCategoria2').addEventListener('change', function () {

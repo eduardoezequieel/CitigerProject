@@ -130,7 +130,8 @@
             return Database::getRows($sql, $params);
         }
 
-        public function readOne(){
+        public function readOne()
+        {
             $sql = 'SELECT CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha, descripcion
             FROM denuncia
             INNER JOIN residente ON denuncia.idresidente = residente.idresidente
@@ -141,18 +142,34 @@
             return Database::getRow($sql, $params);
         }
 
-        public function acceptComplaint(){
+        public function acceptComplaint()
+        {
             $sql = 'UPDATE denuncia SET idestadodenuncia = 3 
                     WHERE iddenuncia = ?';
             $params = array($this->idDenuncia);
             return Database::executeRow($sql, $params);
         }
 
-        public function rejectComplaint(){
+        public function rejectComplaint()
+        {
             $sql = 'UPDATE denuncia SET idestadodenuncia = 2 
                     WHERE iddenuncia = ?';
             $params = array($this->idDenuncia);
             return Database::executeRow($sql, $params);
+        }
+
+        public function revertChanges()
+        {
+            $sql = 'UPDATE denuncia SET idestadodenuncia = 1 
+                    WHERE iddenuncia = ?';
+            $params = array($this->idDenuncia);
+            return Database::executeRow($sql, $params);
+        }
+
+        public function readStates(){
+            $sql = 'SELECT*FROM estadodenuncia';
+            $params = null;
+            return Database::getRows($sql, $params);
         }
     }
 

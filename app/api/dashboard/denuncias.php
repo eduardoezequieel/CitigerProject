@@ -16,6 +16,18 @@
             //Se compara la acción a realizar cuando la sesion está iniciada
             switch ($_GET['action']) {
                 //Caso para leer todos los registros de la tabla
+                case 'readStates':
+                    if ($result['dataset'] = $denuncia->readStates()) {
+                        $result['status'] = '1';
+                        $result['message'] = 'Se han encontrado estados de denuncias.';
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No se han encontrado estados de denuncias.';
+                        }
+                    }
+                    break;
                 case 'readAll':
                     if ($result['dataset'] = $denuncia->readAll()) {
                         $result['status'] = 1;
@@ -58,6 +70,19 @@
                     }
                     break;
                 case 'rejectComplaint':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setIdDenuncia($_POST['idDenuncia1'])) {
+                        if ($denuncia->rejectComplaint()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Denuncia rechazada correctamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
+                case 'revertChanges':
                     $_POST = $denuncia -> validateForm($_POST);
                     if ($denuncia->setIdDenuncia($_POST['idDenuncia1'])) {
                         if ($denuncia->rejectComplaint()) {

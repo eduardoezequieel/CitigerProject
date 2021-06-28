@@ -141,8 +141,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                             <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12  centrarColumnas ">
                                 <div class="form-group ">
                                     <!-- Controles -->
-                                    <label class="tituloCajaTextoFormulario" for="txtTamanio">Tamaño:</label>
-                                    <input type="text" class="form-control cajaTextoFormulario" id="txtTamanio" name="txtTamanio" placeholder="Escriba el tamaño">
+                                    
 
                                     <h1 class="tituloCajaTextoFormulario">Tipo de unidad de medida:</h1>
 
@@ -154,7 +153,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                             <option value="3">Three</option>
                                         </select>
                                     </div>
-                                    <input type="number" name="idTipoUnidad" id="idTipoUnidad" class="d-none">
+                                    <input type="number" value="1" name="idTipoUnidad" id="idTipoUnidad" class="d-none">
                                     <button class="d-none" id="btnFiltrarUnidad" name="btnFiltrarUnidad" type="submit"></button>
 
                                     <label class="tituloCajaTextoFormulario mt-2" for="cbUnidad">Unidad de medida:</label>
@@ -168,11 +167,14 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                         </select>
                                     </div>
 
+                                    <label class="tituloCajaTextoFormulario" for="txtTamanio">Tamaño:</label>
+                                    <input type="text" class="form-control cajaTextoFormulario" id="txtTamanio" name="txtTamanio" placeholder="Escriba el tamaño">
+
                                     <label class="tituloCajaTextoFormulario mt-1" for="txtCosto">Costo:</label>
-                                    <input type="number" class="form-control cajaTextoFormulario" id="txtCosto" name="txtCosto" placeholder="Ingrese el costo del material">
+                                    <input type="number" max="1000" min="1" class="form-control cajaTextoFormulario" id="txtCosto" name="txtCosto" placeholder="Ingrese el costo del material">
 
                                     <label class="tituloCajaTextoFormulario" for="txtCantidad">Cantidad:</label>
-                                    <input type="number" class="form-control cajaTextoFormulario" id="txtCantidad" name="txtCantidad" placeholder="Ingrese el la cantidad del material">
+                                    <input type="number" max="1000" min="1" class="form-control cajaTextoFormulario" id="txtCantidad" name="txtCantidad" placeholder="Ingrese el la cantidad del material">
 
                                     <label class="tituloCajaTextoFormulario" for="txtDesc">Descripción:</label>
                                     <textarea class="form-control cajaTextoFormulario" placeholder="" id="txtDesc" name="txtDesc" rows="5"></textarea>

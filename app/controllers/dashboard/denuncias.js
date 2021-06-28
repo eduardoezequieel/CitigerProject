@@ -1,8 +1,10 @@
 //Constante para la direccion de la API
 const API_DENUNCIAS = '../../app/api/dashboard/denuncias.php?action=';
+const ENDPOINT_STATES = '../../app/api/dashboard/denuncias.php?action=readStates';
 
 document.addEventListener('DOMContentLoaded', function(){
     readRows(API_DENUNCIAS);
+    fillSelect(ENDPOINT_STATES, 'cbEstadoDenuncia', null);
 })
 
 //Llenado de tabla

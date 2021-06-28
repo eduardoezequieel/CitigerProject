@@ -30,7 +30,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                         deseado en el combobox  -->
                         <div class="cbCitigerBusqueda">
-                            <select class="custom-select">
+                            <select class="custom-select" id="cbEstadoDenuncia">
                                 <option selected="">Seleccionar...</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>

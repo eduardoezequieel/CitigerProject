@@ -54,19 +54,24 @@ if (isset($_GET['action'])) {
                 break;
             case 'cargarUnidadMedida':
                 $_POST = $material->validateForm($_POST);
-                if ($material->setIdTipo(1)) {
-                    if ($result['dataset'] = $material->readUnidadmedida()) {
-                        $result['status'] = 1;
-                    } else {
-                        if (Database::getException()) {
-                            $result['exception'] = Database::getException();
+                if (isset($_POST['cbTipo'])) {
+                    if ($material->setIdTipo($_POST['cbTipo'])) {
+                        if ($result['dataset'] = $material->readUnidadmedida()) {
+                            $result['status'] = 1;
                         } else {
-                            $result['exception'] = 'No existen tipos registrados.';
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No existen tipos registrados.';
+                            }
                         }
+                    } else {
+                        $result['exception'] = 'id malo';
                     }
                 } else {
-                    $result['exception'] = 'Error id select';
+                    $result['exception'] = 'Error isset';
                 }
+                
                 break;
             case 'createRow':
                 $_POST = $material->validateForm($_POST);
