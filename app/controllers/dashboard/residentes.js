@@ -82,6 +82,20 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     previewSavePicture('divFoto', null, 3);
 });
 
+//Agregar y actualizar información
+document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
+    //Se evita que se recargue la pagina
+    event.preventDefault();
+
+    //Se evalua si el usuario esta haciendo una inserción o una actualización
+    if (document.getElementById('btnAgregar').className != 'd-none') {
+        saveRow(API_RESIDENTE, 'createRow','administrarResidente-form', 'administrarResidente');
+    } else {
+        saveRow(API_RESIDENTE, 'updateRow','administrarResidente-form', 'administrarResidente');
+    }
+});
+
+/*
 //agregar registros a la tabla de residentes
 document.getElementById('btnAgregar').addEventListener('click',function(){
     document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
@@ -109,6 +123,7 @@ document.getElementById('btnAgregar').addEventListener('click',function(){
     
     });
 });
+*/
 
 //Carga de datos del registro seleccionado
 function readDataOnModal(id){
@@ -191,88 +206,20 @@ document.getElementById('btnActualizar').addEventListener('click',function(event
     });
 });
 
-//Suspender registros
-document.getElementById('btnSuspender').addEventListener('click',function(){
 
-    document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
-        event.preventDefault();
-        //Fetch para deshailitar residente
-        swal({
-            title: 'Advertencia',
-            text: '¿Desea suspender el registro?',
-            icon: 'warning',
-            buttons: ['No', 'Sí'],
-            closeOnClickOutside: false,
-            closeOnEsc: false
-        }).then(function (value) {
-            // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
-            if (value) {
-                fetch(API_RESIDENTE + 'suspendResident', {
-                    method: 'post',
-                    body: new FormData(document.getElementById('administrarResidente-form'))
-                }).then(request => {
-                    //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-                    if (request.ok) {
-                        request.json().then(response => {
-                            //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                            if (response.status) {
-                                readRows(API_RESIDENTE);
-                                sweetAlert(1, response.message, closeModal('administrarResidente'));
-                            } else {
-                                sweetAlert(2, response.exception, null);
-                            }
-                        })
-                    } else {
-                        console.log(response.status + ' ' + response.exception);
-                    }
-                }).catch(error => console.log(error));
-            }
-        });
-    
-    });
+//Suspender registros
+document.getElementById('btnSuspender').addEventListener('click',function(event){
+    event.preventDefault();
+    suspendRow(API_RESIDENTE, 'administrarResidente-form','administrarResidente');
 })
 
 //Activar registros
-document.getElementById('btnActivar').addEventListener('click',function(){
+document.getElementById('btnActivar').addEventListener('click',function(event){
+    event.preventDefault();
+    activateRow(API_RESIDENTE, 'administrarResidente-form','administrarResidente');
 
-    document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
-        event.preventDefault();
-        //Fetch para activar residente
-        swal({
-            title: 'Advertencia',
-            text: '¿Desea activar el registro?',
-            icon: 'warning',
-            buttons: ['No', 'Sí'],
-            closeOnClickOutside: false,
-            closeOnEsc: false
-        }).then(function (value) {
-            // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
-            if (value) {
-                fetch(API_RESIDENTE + 'activateResident', {
-                    method: 'post',
-                    body: new FormData(document.getElementById('administrarResidente-form'))
-                }).then(request => {
-                    //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-                    if (request.ok) {
-                        request.json().then(response => {
-                            //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                            if (response.status) {
-                                readRows(API_RESIDENTE);
-                                sweetAlert(1, response.message, closeModal('administrarResidente'));
-                            } else {
-                                sweetAlert(2, response.exception, null);
-                            }
-                        })
-                    } else {
-                        console.log(response.status + ' ' + response.exception);
-                    }
-                }).catch(error => console.log(error));
-            }
-        });
-    
-    });
+
 })
-
 //eliminar registros de la tabla residente.
 function deleteRow(id){
     // Se define un objeto con los datos del registro seleccionado.

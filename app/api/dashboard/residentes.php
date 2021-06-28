@@ -72,7 +72,7 @@ if (isset($_GET['action'])) {
                 break;
 
             //Caso para suspender residentes
-            case 'suspendResident':
+            case 'suspendRow':
                 $_POST = $residente->validateForm($_POST);
                 if ($residente->setIdResidente($_POST['idResidente'])) {
                     if ($residente->suspend()) {
@@ -87,7 +87,7 @@ if (isset($_GET['action'])) {
                 break;
 
             //Caso para activar residentes
-            case 'activateResident':
+            case 'activateRow':
                 $_POST = $residente->validateForm($_POST);
                 if ($residente->setIdResidente($_POST['idResidente'])) {
                     if ($residente->activate()) {

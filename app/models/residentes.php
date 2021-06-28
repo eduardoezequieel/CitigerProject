@@ -288,18 +288,19 @@
 
             $sql = 'UPDATE residente 
             SET nombre = ?, apellido = ?, telefonofijo = ?, telefonocelular = ?, dui = ?, 
-                genero = ?, foto = ?, direccion = ?, correo = ?, fechanacimiento = ?, username = ? 
+                genero = ?, foto = ?, correo = ?, fechanacimiento = ?, username = ? 
             WHERE idresidente = ?';
             $params = array($this->nombre, 
                             $this->apellido,
                             $this->telefonof, 
                             $this->telefonom, 
+                            $this->dui,
+                            $this->genero, 
                             $this->foto, 
                             $this->correo, 
-                            $this->fechaNacimiento,
-                            $this->genero, 
-                            $this->dui, 
-                            $this->username);
+                            $this->fechaNacimiento,                             
+                            $this->username,
+                            $this->idResidente);
             return Database::executeRow($sql, $params);
         }
 
