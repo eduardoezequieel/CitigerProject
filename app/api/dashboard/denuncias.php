@@ -82,9 +82,9 @@
                         $result['exception'] = 'Id incorrecto';
                     }
                     break;
-                case 'revertChanges':
+                case 'revertChangesAfterAccepted':
                     $_POST = $denuncia -> validateForm($_POST);
-                    if ($denuncia->setIdDenuncia($_POST['idDenuncia1'])) {
+                    if ($denuncia->setIdDenuncia($_POST['idDenuncia2'])) {
                         if ($denuncia->rejectComplaint()) {
                             $result['status'] = 1;
                             $result['message'] = 'Denuncia rechazada correctamente.';
@@ -93,6 +93,18 @@
                         }
                     } else {
                         $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
+                case 'readEmployeeTypes':
+                    if ($result['dataset'] = $denuncia->readEmployeeTypes()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Se han encontrado tipos de empleados.';
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No se han encontrado tipos de empleados';
+                        }
                     }
                     break;
                 

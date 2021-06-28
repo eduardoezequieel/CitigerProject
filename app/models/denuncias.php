@@ -166,11 +166,21 @@
             return Database::executeRow($sql, $params);
         }
 
-        public function readStates(){
+        public function readStates()
+        {
             $sql = 'SELECT*FROM estadodenuncia';
             $params = null;
             return Database::getRows($sql, $params);
         }
+
+        public function readEmployeeTypes()
+        {
+            $sql = 'SELECT*FROM tipoempleado';
+            $params = null;
+            return Database::getRows($sql, $params);
+        }
+
+        
     }
 
 ?>

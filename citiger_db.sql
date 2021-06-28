@@ -291,3 +291,13 @@ ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_username UNIQUE (username);
 --Cambios 27/6/2021	
 
 INSERT INTO estadocasa(idestadocasa, estadocasa) VALUES (DEFAULT, 'Activa'),(DEFAULT, 'Desactivada');
+
+--Cambios 28/6/2021
+CREATE TABLE bitacora(
+	idBitacora SERIAL NOT NULL PRIMARY KEY,
+	idUsuario INTEGER NOT NULL REFERENCES usuario(idUsuario),
+	hora TIME NOT NULL,
+	fecha DATE NOT NULL,
+	accion VARCHAR(20) NOT NULL,
+	descripcion VARCHAR(200) NOT NULL
+)

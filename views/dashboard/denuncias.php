@@ -174,55 +174,57 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
             <br>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
-                
-                <div class="row">
-                    <div class="col-12">
-                        <h1 class="campoDato text-center mb-3">¿Qué empleado se encargará de solucionar está denuncia?</h1>
+                <form method="post" id="administrarDenunciaAsignar-form">
+                <input type="number" name="idDenuncia2" id="idDenuncia2" class="d-none">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="campoDato text-center mb-3">¿Qué empleado se encargará de solucionar está denuncia?</h1>
 
-                        <h1 class="tituloDato text-center">Tipo de Denuncia</h1>
-                        <h1 class="campoDato text-center mb-3">Mantenimiento</h1>
+                            <h1 class="tituloDato text-center">Tipo de Denuncia</h1>
+                            <h1 class="campoDato text-center mb-3">Mantenimiento</h1>
 
-                        <div class="form-group d-flex justify-content-center mt-3 flex-column-media">
-                            <form class="mx-2">
-                                <h1 class="tituloCajaTextoFormulario">Tipo de Empleado:</h1>
-                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                deseado en el combobox  -->
-                                <div class="cbCitiger">
-                                    <select class="custom-select">
-                                        <option selected="">Seleccionar...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select> 
+                            <div class="form-group d-flex justify-content-center mt-3 flex-column-media">
+                                
+                                <div class="">
+                                    <h1 class="tituloCajaTextoFormulario">Tipo de Empleado:</h1>
+                                    <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                    cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                    deseado en el combobox  -->
+                                    <div class="cbCitiger">
+                                        <select class="custom-select" id="cbTipoEmpleado">
+                                            <option selected="">Seleccionar...</option>
+                                            
+                                        </select> 
+                                    </div>
                                 </div>
-                            </form>
-                            <div id="marginSelectEmpleado" class="mx-2">
-                                <h1 class="tituloCajaTextoFormulario">Empleado:</h1>
-                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                deseado en el combobox  -->
-                                <div class="cbCitiger">
-                                    <select class="custom-select">
-                                        <option selected="">Seleccionar...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select> 
+                                
+                                <div id="marginSelectEmpleado" class="mx-2">
+                                    <h1 class="tituloCajaTextoFormulario">Empleado:</h1>
+                                    <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                    cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                    deseado en el combobox  -->
+                                    <div class="cbCitiger">
+                                        <select class="custom-select">
+                                            <option selected="">Seleccionar...</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Botones de Acción del Formulario -->
-                <div class="row justify-content-center mt-2">
-                    <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                        <button href="#" data-toggle="modal" data-dismiss="modal" data-target="#administrarDenunciaEnSolucion" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Aceptar</button>
-                        <button href="#" data-toggle="modal" data-dismiss="modal" data-target="#administrarDenunciaPendiente" class="btn btnAgregarFormulario mr-2"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Revertir</button>
+                    
+                    <!-- Botones de Acción del Formulario -->
+                    <div class="row justify-content-center mt-2">
+                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                            <button href="#" data-toggle="modal" data-dismiss="modal" data-target="#administrarDenunciaEnSolucion" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Aceptar</button>
+                            <button href="#" data-toggle="modal" data-dismiss="modal" data-target="#administrarDenunciaPendiente" class="btn btnAgregarFormulario mr-2"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Revertir</button>
+                        </div>
                     </div>
-                </div>
-                <!-- Fin del Contenido del Modal -->
+                    <!-- Fin del Contenido del Modal -->
+                </form>
             </div>
         </div>
     </div>

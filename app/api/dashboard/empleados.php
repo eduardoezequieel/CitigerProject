@@ -111,6 +111,7 @@
                         if ($empleado->suspend()) {
                             $result['status'] = 1;
                             $result['message'] = 'Se ha suspendido al empleado correctamente.';
+                            $empleado->registerAction('Suspender','El usuario suspendio un registro en la tabla de empleados.');
                         }else{
                             $result['exception'] = Database::getException();
                         }
@@ -125,6 +126,8 @@
                         if ($empleado->activate()) {
                             $result['status'] = 1;
                             $result['message'] = 'Se ha activado al empleado correctamente.';
+                            $empleado->registerAction('Activar','El usuario activo un registro en la tabla de empleados.');
+
                         }else{
                             $result['exception'] = Database::getException();
                         }
@@ -153,6 +156,8 @@
                                                                             $result['status'] = 1;
                                                                             if ($empleado->saveFile($_FILES['archivo_usuario'], $empleado->getRuta(), $empleado->getFoto())) {
                                                                                 $result['message'] = 'Empleado registrado correctamente';
+                                                                                $empleado->registerAction('Registrar','El usuario registro un registro en la tabla de empleados.');
+
                                                                             } else {
                                                                                 $result['message'] = 'Empleado registrado pero no se guardó la imagen';
                                                                             }
@@ -221,6 +226,8 @@
                                                                                     $result['status'] = 1;
                                                                                     if ($empleado->saveFile($_FILES['archivo_usuario'], $empleado->getRuta(), $empleado->getFoto())) {
                                                                                         $result['message'] = 'Empleado modificado correctamente';
+                                                                                        $empleado->registerAction('Actualizar','El usuario actualizó un registro con cambio de foto en la tabla de empleados.');
+
                                                                                     } else {
                                                                                         $result['message'] = 'Empleado modificado pero no se guardó la imagen';
                                                                                     }
@@ -234,6 +241,8 @@
                                                                             if ($empleado->updateRow($data['foto'])) {
                                                                                 $result['status'] = 1;
                                                                                 $result['message'] = 'Empleado modificado correctamente';
+                                                                                $empleado->registerAction('Suspender','El usuario actualizó un registro en la tabla de empleados sin cambiar su fotografía..');
+
                                                                             } else {
                                                                                 $result['exception'] = Database::getException();
                                                                             }
@@ -286,6 +295,7 @@
                                 if($empleado->deleteFile($empleado->getRuta(), $data['foto'])){
                                     $result['status'] = 1;
                                     $result['message'] = 'Cliente eliminado correctamente';
+                                    $empleado->registerAction('Eliminar','El usuario eliminó un registro en la tabla de empleados.');
                                 } else{
                                     $result['exception'] = 'Se borró el registro pero no la imagen';
                                 }

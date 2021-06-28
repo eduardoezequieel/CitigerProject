@@ -1,6 +1,7 @@
 //Constante para la direccion de la API
 const API_DENUNCIAS = '../../app/api/dashboard/denuncias.php?action=';
 const ENDPOINT_STATES = '../../app/api/dashboard/denuncias.php?action=readStates';
+const ENDPOINT_EMPLOYEETYPES = '../../app/api/dashboard/denuncias.php?action=readEmployeeTypes';
 
 document.addEventListener('DOMContentLoaded', function(){
     readRows(API_DENUNCIAS);
@@ -58,7 +59,7 @@ function fillTable(dataset){
                     <th scope="row">
                     <div class="row paddingBotones">
                         <div class="col-12">
-                            <a href="#" data-toggle="modal" data-target="#administrarDenunciaAsignar" class="btn btnTabla"><i class="fas fa-question"></i></a>
+                            <a href="#" data-toggle="modal" onclick="administrarDenunciaAsignar(${row.iddenuncia})" data-target="#administrarDenunciaAsignar" class="btn btnTabla"><i class="fas fa-question"></i></a>
                         </div>
                     </div>
                 </th>
@@ -122,6 +123,11 @@ function administrarDenunciaPendiente(id){
     }).catch(function (error) {
         console.log(error);
     });
+}
+
+function administrarDenunciaAsignar(id){
+    document.getElementById('idDenuncia2').value = id;
+    fillSelect(ENDPOINT_EMPLOYEETYPES, 'cbTipoEmpleado', null);
 }
 
 //Aceptar denuncias
