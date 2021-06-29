@@ -135,76 +135,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <!-- Fotografia-->
-                                <th scope="row">
-                                    <div class="row paddingTh">
-                                        <div class="col-12">
-                                            <img src="../../resources/img/ppEdenilson.png" alt="" class="img-fluid rounded-circle" width="30px">
-                                        </div>
-                                    </div>
-                                </th>
-                                <!-- Datos-->
-                                <td>Edenilson Ramírez</td>
-                                <td>7:30:49</td>
-                                <td>3/4/2021</td>
-                                <td>Actualizar</td>
-                                <!-- Boton-->
-                                <th scope="row">
-                                    <div class="row paddingBotones">
-                                        <div class="col-12">
-                                            <a href="" class="btn btnTabla"><i class="fas fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr>
-                                <!-- Fotografia-->
-                                <th scope="row">
-                                    <div class="row paddingTh">
-                                        <div class="col-12">
-                                            <img src="../../resources/img/ppEdenilson.png" alt="" class="img-fluid rounded-circle" width="30px">
-                                        </div>
-                                    </div>
-                                </th>
-                                <!-- Datos-->
-                                <td>Edenilson Ramírez</td>
-                                <td>7:30:49</td>
-                                <td>3/4/2021</td>
-                                <td>Actualizar</td>
-                                <!-- Boton-->
-                                <th scope="row">
-                                    <div class="row paddingBotones">
-                                        <div class="col-12">
-                                            <a href="" class="btn btnTabla"><i class="fas fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr>
-                                <!-- Fotografia-->
-                                <th scope="row">
-                                    <div class="row paddingTh">
-                                        <div class="col-12">
-                                            <img src="../../resources/img/ppEdenilson.png" alt="" class="img-fluid rounded-circle" width="30px">
-                                        </div>
-                                    </div>
-                                </th>
-                                <!-- Datos-->
-                                <td>Edenilson Ramírez</td>
-                                <td>7:30:49</td>
-                                <td>3/4/2021</td>
-                                <td>Actualizar</td>
-                                <!-- Boton-->
-                                <th scope="row">
-                                    <div class="row paddingBotones">
-                                        <div class="col-12">
-                                            <a href="" class="btn btnTabla"><i class="fas fa-eye"></i></a>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
+                        <tbody id="tbody-rows">
                             
                         </tbody>
                     </table>
