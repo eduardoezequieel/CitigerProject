@@ -365,7 +365,7 @@ class Usuarios extends Validator
         $sql = 'UPDATE usuario
         SET nombre=?, apellido=?, telefonofijo=?, telefonocelular=?, fechanacimiento=?, genero=?, dui=?
         WHERE idusuario=?';
-        $params = array($this->nombre, $this->apellido, $this->telefonoFijo, $this->telefonoCelular, $this->fechaNacimiento, $this->genero,$this->dui,$_SESSION['idusuario']);
+        $params = array($this->nombre, $this->apellido, $this->telefonoFijo, $this->telefonoCelular, $this->fechaNacimiento, $this->genero, $this->dui, $_SESSION['idusuario']);
         return Database::executeRow($sql, $params);
     }
 
@@ -412,11 +412,12 @@ class Usuarios extends Validator
     public function duplicateRow()
     {
         $sql = 'SELECT * FROM usuario WHERE username = ? or telefonoCelular=? or telefonoFijo=? or correo=? or dui=?';
-        $params =  array($this->username,$this->telefonoCelular,$this->telefonoFijo,$this->correo,$this->dui);
-        return Database::getRow($sql,$params);
+        $params =  array($this->username, $this->telefonoCelular, $this->telefonoFijo, $this->correo, $this->dui);
+        return Database::getRow($sql, $params);
     }
 
-    public function readAll(){
+    public function readAll()
+    {
         $sql = 'SELECT*FROM usuario';
         $params = null;
         return Database::getRows($sql, $params);
@@ -439,7 +440,7 @@ class Usuarios extends Validator
                 inner join estadousuario e on u.idestadousuario=e.idestadousuario where Concat(u.nombre,' ',u.apellido) ILIKE ?
                 or Concat(u.username,' ',u.dui) ILIKE ? and u.idusuario<> ? 
                 order by u.apellido";
-        $params = array("%$value%","%$value%", $_SESSION['idusuario']);
+        $params = array("%$value%", "%$value%", $_SESSION['idusuario']);
         return Database::getRows($sql, $params);
     }
 
@@ -476,7 +477,8 @@ class Usuarios extends Validator
     }
 
     //Suspender usuario
-    public function suspend(){
+    public function suspend()
+    {
         $sql = 'UPDATE usuario SET idestadousuario = 2
                 WHERE idusuario = ?';
         $params = array($this->idUsuario);
@@ -484,7 +486,8 @@ class Usuarios extends Validator
     }
 
     //Activar usuario
-    public function activar(){
+    public function activar()
+    {
         $sql = 'UPDATE usuario SET idestadousuario = 1
                 WHERE idusuario = ?';
         $params = array($this->idUsuario);
@@ -502,5 +505,12 @@ class Usuarios extends Validator
         order by u.apellido";
         $params = array($this->idTipoUsuario, $_SESSION['idusuario']);
         return Database::getRows($sql, $params);
+    }
+
+    public function registerAction($action, $desc)
+    {
+        $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
+        $params = array($_SESSION['idusuario'], $action, $desc);
+        return Database::executeRow($sql, $params);
     }
 }

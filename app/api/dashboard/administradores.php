@@ -39,6 +39,7 @@ if (isset($_GET['action'])) {
                                                                                 $result['status'] = 1;
                                                                                 if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
                                                                                     $result['message'] = 'Usuario registrado correctamente';
+                                                                                    $usuarios->registerAction('Registrar', 'El usuario registró un registro en la tabla de usuarios.');
                                                                                 } else {
                                                                                     $result['message'] = 'Usuario registrado pero no se guardó la imagen';
                                                                                 }
@@ -174,6 +175,7 @@ if (isset($_GET['action'])) {
                                                                                         $result['status'] = 1;
                                                                                         if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
                                                                                             $result['message'] = 'Usuario modificado correctamente';
+                                                                                            $usuarios->registerAction('Actualizar', 'El usuario actualizó un registro con cambio de foto en la tabla de usuarios.');
                                                                                         } else {
                                                                                             $result['message'] = 'Usuario modificado pero no se guardó la imagen';
                                                                                         }
@@ -187,6 +189,7 @@ if (isset($_GET['action'])) {
                                                                                 if ($usuarios->updateRow($data['foto'])) {
                                                                                     $result['status'] = 1;
                                                                                     $result['message'] = 'Usuario modificado correctamente';
+                                                                                    $usuarios->registerAction('Actualizar', 'El usuario actualizó un registro en la tabla de usuarios sin cambiar su fotografía.');
                                                                                 } else {
                                                                                     $result['exception'] = Database::getException();
                                                                                 }
@@ -243,6 +246,8 @@ if (isset($_GET['action'])) {
                             if ($usuarios->deleteFile($usuarios->getRuta(), $data['foto'])) {
                                 $result['status'] = 1;
                                 $result['message'] = 'Usuario eliminado correctamente';
+                                $usuarios->registerAction('Eliminar','El usuario eliminó un registro en la tabla de usuarios.');
+
                             } else {
                                 $result['exception'] = 'Se borró el registro pero no la imagen';
                             }
@@ -262,6 +267,7 @@ if (isset($_GET['action'])) {
                     if ($usuarios->suspend()) {
                         $result['status'] = 1;
                         $result['message'] = 'Se ha suspendido al usuario correctamente.';
+                        $usuarios->registerAction('Suspender', 'El usuario suspendió un registro en la tabla de usuarios.');
                     } else {
                         $result['exception'] = Database::getException();
                     }
@@ -298,6 +304,7 @@ if (isset($_GET['action'])) {
                     if ($usuarios->activar()) {
                         $result['status'] = 1;
                         $result['message'] = 'Se ha activado al usuario correctamente.';
+                        $usuarios->registerAction('Activar', 'El usuario activó un registro en la tabla de usuarios.');
                     } else {
                         $result['exception'] = Database::getException();
                     }

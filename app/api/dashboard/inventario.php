@@ -92,6 +92,7 @@ if (isset($_GET['action'])) {
                                                                         $result['status'] = 1;
                                                                         if ($material->saveFile($_FILES['archivo_usuario'], $material->getRuta(), $material->getImagen())) {
                                                                             $result['message'] = 'Material registrado correctamente';
+                                                                            $material->registerAction('Registrar', 'El usuario registró un material en la tabla de materiales.');
                                                                         } else {
                                                                             $result['message'] = 'Material registrado pero no se guardó la imagen';
                                                                         }
@@ -218,6 +219,7 @@ if (isset($_GET['action'])) {
                             if ($material->deleteFile($material->getRuta(), $data['imagen'])) {
                                 $result['status'] = 1;
                                 $result['message'] = 'Material eliminado correctamente';
+                                $material->registerAction('Eliminar','El usuario eliminó un registro en la tabla de materiales.');
                             } else {
                                 $result['exception'] = 'Se borró el registro pero no la imagen';
                             }
@@ -252,6 +254,7 @@ if (isset($_GET['action'])) {
                                                                                 $result['status'] = 1;
                                                                                 if ($material->saveFile($_FILES['archivo_usuario'], $material->getRuta(), $material->getImagen())) {
                                                                                     $result['message'] = 'Material modificado correctamente';
+                                                                                    $material->registerAction('Actualizar', 'El usuario actualizó un registro con cambio de foto en la tabla de materiales.');
                                                                                 } else {
                                                                                     $result['message'] = 'Material modificado pero no se guardó la imagen';
                                                                                 }
@@ -265,6 +268,7 @@ if (isset($_GET['action'])) {
                                                                         if ($material->updateRow($data['imagen'])) {
                                                                             $result['status'] = 1;
                                                                             $result['message'] = 'Material modificado correctamente';
+                                                                            $material->registerAction('Actualizar', 'El usuario actualizó un registro en la tabla de materiales sin cambiar su imagen.');
 
                                                                         } else {
                                                                             $result['exception'] = Database::getException();;

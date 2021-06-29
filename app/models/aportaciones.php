@@ -156,4 +156,11 @@ class Aportaciones extends Validator
         $params = null;
         return Database::getRows($sql, $params);
     }
+
+    public function registerAction($action, $desc)
+    {
+        $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
+        $params = array($_SESSION['idusuario'], $action, $desc);
+        return Database::executeRow($sql, $params);
+    }
 }
