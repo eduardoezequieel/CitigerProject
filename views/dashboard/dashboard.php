@@ -10,11 +10,9 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
         <div id="cuadroContenido">
             <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars tamañoIconos"></i></button>
 
-            <div class="row my-4">
-                <div class="col-12">
-                    <h1 class="tituloDashboard">¡Bienvenido Eduardo!</h1>
-                </div>
-            </div>
+            <?php
+                Admin_Page::welcomeMessage();
+            ?>
 
             <!-- Desde aqui comienza el contenido -->
             <div class="row justify-content-center">

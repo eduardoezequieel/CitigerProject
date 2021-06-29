@@ -36,6 +36,7 @@
                 </head>
                 <body>
             ');
+
             // Se obtiene el nombre del archivo de la página web actual.
             $filename = basename($_SERVER['PHP_SELF']);
             // Se comprueba si existe una sesión de administrador para mostrar el menú de opciones, de lo contrario se muestra un menú vacío.
@@ -136,6 +137,18 @@
                     header('location: index.php');
                 } 
             }
+        }
+
+        public static function welcomeMessage()
+        {
+            print('
+                <div class="row my-4">
+                    <div class="col-12">
+                        <h1 class="tituloDashboard">¡Bienvenido '.$_SESSION['usuario'].'!</h1>
+                    </div>
+                </div>
+            '                
+            );
         }
 
         public static function footerTemplate($controller){
