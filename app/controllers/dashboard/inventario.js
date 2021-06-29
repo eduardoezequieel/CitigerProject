@@ -192,7 +192,7 @@ function readDataOnModal(id) {
                     document.getElementById('txtCantidad').value = response.dataset.cantidad;
                     fillSelect(ENDPOINT_MARCAS, 'cbMarca', response.dataset.idmarca);
                     fillSelect(ENDPOINT_CATEGORIAS, 'cbCategoria', response.dataset.idcategoria);
-                    fillSelect(ENDPOINT_UNIDAD, 'cbUnidad', response.dataset.idunidadmedida);
+                    fillSelectSpace(ENDPOINT_UNIDAD, 'cbUnidad', null);
                     previewSavePicture('divFoto', response.dataset.imagen, 4);
 
                 } else {
