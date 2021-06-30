@@ -7,12 +7,14 @@
         private $idAlquiler = null;
         private $idEstadoAlquiler = null;
         private $idEspacio = null;
+        private $idEstadoEspacio = null;
         private $precio = null;
         private $idUsuario = null;
         private $idResidente = null;
         private $fecha = null;
         private $horaInicio = null;
         private $horaFin = null;
+        private $idBitacora = null;
 
         //Métodos set
         public function setIdAlquiler($value)
@@ -39,6 +41,16 @@
         {
             if ($this->validateNaturalNumber($value)) {
                 $this->idEspacio = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setIdEstadoEspacio($value)
+        {
+            if ($this->validateNaturalNumber($value)) {
+                $this->idEstadoEspacio = $value;
                 return true;
             } else {
                 return false;
@@ -97,6 +109,16 @@
             return true;
         }
 
+        public function setIdBitacora($value)
+        {
+            if ($this->validateNaturalNumber($value)) {
+                $this->idBitacora = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         //Métodos get
         
         public function getIdAlquiler()
@@ -112,6 +134,11 @@
         public function getIdEspacio()
         {
             return $this -> idEspacio;
+        }
+
+        public function getIdEstadoEspacio()
+        {
+            return $this -> idEstadoEspacio;
         }
 
         public function getPrecio(){
@@ -140,6 +167,11 @@
         public function getHoraFin()
         {
             return $this -> horaFin;
+        }
+
+        public function getIdBitacora()
+        {
+            return $this->idBitacora;
         }
 
         //Función para leer todos los datos de la tabla
@@ -176,7 +208,7 @@
         //Función para llenar cbEstados
         public function readRentalStatus()
         {
-            $sql = 'SELECT*FROM estadoalquiler';
+            $sql = 'SELECT*FROM estadoalquiler ORDER BY estadoalquiler';
             $params = null;
             return Database::getRows($sql,$params);
         }
@@ -184,7 +216,7 @@
         //Función para llenar cbEspacios
         public function readSpaceUpdate()
         {
-            $sql = 'SELECT idespacio, nombre FROM espacio WHERE idestadoespacio = 1 OR idespacio= ? 
+            $sql = 'SELECT idespacio, nombre FROM espacio WHERE idestadoespacio != 3 OR idespacio= ? 
                     ORDER BY nombre';
             $params = array($this->idEspacio);
             return Database::getRows($sql,$params);
@@ -220,9 +252,18 @@
         //Función para cambiar el estado del espacio
         public function changeSpaceStatus()
         {
-            $sql = 'UPDATE espacio SET idestadoespacio = 2 WHERE idespacio = ?';
-            $params = array($this->idEspacio);
+            $sql = 'UPDATE espacio SET idestadoespacio = ? WHERE idespacio = ?';
+            $params = array($this->idEstadoEspacio,$this->idEspacio);
             return Database::executeRow($sql,$params);
+        }
+
+        //Función para evaluar si se hace un update del estado del espacio 
+        public function checkSpaceStatus() 
+        {
+            $sql = 'SELECT * FROM espacio WHERE idespacio = ? AND idestadoespacio != 3 
+                    AND idestadoespacio != ?';
+            $params = array($this->idEspacio, $this->idEstadoEspacio);
+            return Database::getRows($sql,$params);
         }
 
         //Función para actualizar el registro
@@ -293,6 +334,14 @@
                     ORDER BY fecha';
             $params = array($this->idEstadoAlquiler);
             return Database::getRows($sql, $params);
+        }
+
+        //Función para llenar bitacora
+        public function registerAction($action, $desc)
+        {
+        $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
+        $params = array($_SESSION['idusuario'], $action, $desc);
+        return Database::executeRow($sql, $params);
         }
     }
 ?>

@@ -61,7 +61,6 @@
             }
         }
 
-        //Métodos set
         public function setIdBitacora($value)
         {
             if ($this->validateNaturalNumber($value)) {
