@@ -304,3 +304,7 @@ CREATE TABLE bitacora(
 
 --Cambios 29/06/2021
 INSERT INTO tipoUsuario(tipousuario) VALUES('Caseta');
+
+--Cambios 30/06/2021
+INSERT INTO estadoespacio(estadoespacio) VALUES('Reservado');
+ALTER TABLE espacio ADD CONSTRAINT UQ_espacio_nombre UNIQUE (nombre);

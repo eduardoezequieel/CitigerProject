@@ -192,7 +192,7 @@
 
         public function readSpace()
         {
-            $sql = 'SELECT idespacio, nombre FROM espacio WHERE idestadoespacio = 1 ORDER BY nombre';
+            $sql = 'SELECT idespacio, nombre FROM espacio WHERE idestadoespacio != 3 ORDER BY nombre';
             $params = null;
             return Database::getRows($sql,$params);
         }

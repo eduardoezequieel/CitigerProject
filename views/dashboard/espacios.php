@@ -98,7 +98,7 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
 
                                     <label class="tituloCajaTextoFormulario" for="txtCapacidad">Capacidad:</label>
                                     <input type="number" class="form-control cajaTextoFormulario" id="txtCapacidad" name="txtCapacidad" 
-                                    placeholder="Escriba la capacidad..." onchange="checkInput('txtCapacidad')" Required>
+                                    placeholder="Escriba la capacidad..." min="1" step="any" onchange="checkInput('txtCapacidad')" Required>
 
                                 </div>
 

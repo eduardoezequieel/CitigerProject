@@ -51,19 +51,16 @@
                         if ($espacio->setDescripcion($_POST['txtDescripcion'])) {
                             if ($espacio->setCapacidad($_POST['txtCapacidad'])) {
                                 $espacio->setIdEstadoEspacio(1);
-                                if (!$espacio->duplicateRow()) {
-                                    if ($espacio->createRow()) {
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Se ha agregado el espacio correctamente.';
-                                    } else {
-                                        if (Database::getException()) {
-                                            $result['exception'] = Database::getException();
-                                        } else {
-                                            $result['exception'] = 'No se ha agregado el espacio correctamente';
-                                        }
-                                    }
+                                if ($espacio->createRow()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Se ha agregado el espacio correctamente.';
+                                    $espacio->registerAction('Registrar','El usuario registró un dato en la tabla de espacios');
                                 } else {
-                                    $result['exception'] = 'El nombre ingresado ya existe en la base de datos.';
+                                    if (Database::getException()) {
+                                        $result['exception'] = Database::getException();
+                                    } else {
+                                        $result['exception'] = 'No se ha agregado el espacio correctamente';
+                                    }
                                 }
                             } else {
                                 $result['exception'] = 'La cantidad ingresada no es válida.';
@@ -84,19 +81,16 @@
                                 if ($espacio->setDescripcion($_POST['txtDescripcion'])) {
                                     if ($espacio->setCapacidad($_POST['txtCapacidad'])) {
                                         if ($espacio->setIdEstadoEspacio($_POST['idEstadoEspacio1'])) {
-                                            if (!$espacio->duplicateRowUpdate()) {
-                                                if ($espacio->updateRow()) {
-                                                    $result['status'] = 1;
-                                                    $result['message'] = 'Se ha actualizado el espacio correctamente.';
-                                                } else {
-                                                    if (Database::getException()) {
-                                                        $result['exception'] = Database::getException();
-                                                    } else {
-                                                        $result['exception'] = 'No se ha actualizado el espacio correctamente';
-                                                    }
-                                                }
+                                            if ($espacio->updateRow()) {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Se ha actualizado el espacio correctamente.';
+                                                $espacio->registerAction('Actualizar','El usuario actualizó un registro en la tabla de espacios');
                                             } else {
-                                                $result['exception'] = 'El nombre ingresado ya existe en la base de datos.';
+                                                if (Database::getException()) {
+                                                    $result['exception'] = Database::getException();
+                                                } else {
+                                                    $result['exception'] = 'No se ha actualizado el espacio correctamente';
+                                                }
                                             }
                                         } else {
                                             $result['exception'] = 'El estado ingresado no es válido.';
@@ -124,6 +118,7 @@
                         if ($espacio->deleteRow()) {
                             $result['status'] = 1;
                             $result['message'] = 'Se ha eliminado el espacio correctamente';
+                            $espacio->registerAction('Eliminar','El usuario eliminó un registro en la tabla de espacios');
                         } else {
                             if (Database::getException()) {
                                 $result['exception'] = Database::getException();
@@ -143,6 +138,7 @@
                         if ($espacio->changeStatus()) {
                             $result['status'] = 1;
                             $result['message'] = 'Se ha suspendido el espacio correctamente';
+                            $espacio->registerAction('Suspender','El usuario suspendió un registro en la tabla de espacios');
                         } else {
                             if (Database::getException()) {
                                 $result['exception'] = Database::getException();
@@ -162,6 +158,7 @@
                         if ($espacio->changeStatus()) {
                             $result['status'] = 1;
                             $result['message'] = 'Se ha activado el espacio correctamente';
+                            $espacio->registerAction('Activar','El usuario activó un registro en la tabla de espacios');
                         } else {
                             if (Database::getException()) {
                                 $result['exception'] = Database::getException();

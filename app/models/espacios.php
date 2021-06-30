@@ -8,6 +8,7 @@
         private $nombre = null;
         private $descripcion = null;
         private $capacidad = null;
+        private $idBitacora = null;
 
         //Métodos set 
         public function setIdEspacio($value)
@@ -60,6 +61,17 @@
             }
         }
 
+        //Métodos set
+        public function setIdBitacora($value)
+        {
+            if ($this->validateNaturalNumber($value)) {
+                $this->idBitacora = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         //Métodos get
         public function getIdEspacio() 
         {
@@ -86,6 +98,11 @@
             return $this->capacidad;
         }
 
+        public function getIdBitacora()
+        {
+            return $this->idBitacora;
+        }
+
         //Método para leer todos los datos de la tabla
         public function readAll()
         {
@@ -105,22 +122,6 @@
                     WHERE idEspacio = ?
                     ORDER BY nombre';
             $params =  array($this->idEspacio);
-            return Database::getRow($sql,$params);
-        }
-
-        //Método para verificar datos duplicados de la tabla
-        public function duplicateRow()
-        {
-            $sql = 'SELECT * FROM espacio WHERE nombre = ?';
-            $params =  array($this->nombre);
-            return Database::getRow($sql,$params);
-        }
-
-        //Método para verificar datos duplicados de la tabla en el evento actualizar
-        public function duplicateRowUpdate()
-        {
-            $sql = 'SELECT * FROM espacio WHERE nombre = ? AND idespacio != ?';
-            $params =  array($this->nombre, $this->idEspacio);
             return Database::getRow($sql,$params);
         }
 
@@ -176,7 +177,7 @@
         //Método para llenar combobox de estado
         public function readSpaceStatus()
         {
-            $sql = 'SELECT * FROM estadoEspacio';
+            $sql = 'SELECT * FROM estadoEspacio ORDER BY estadoespacio';
             $params =  null;
             return Database::getRows($sql,$params);
         }
@@ -191,6 +192,14 @@
                     ORDER BY nombre';
             $params = array($this->idEstadoEspacio);
             return Database::getRows($sql, $params);
+        }
+
+        //Función para llenar bitacora
+        public function registerAction($action, $desc)
+        {
+        $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
+        $params = array($_SESSION['idusuario'], $action, $desc);
+        return Database::executeRow($sql, $params);
         }
 
     }
