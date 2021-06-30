@@ -286,6 +286,27 @@ class Usuarios extends Validator
         }
     }
 
+    //Método para verificar si el usuario existe
+    public function checkUserCaseta($email)
+    {
+        $sql = 'SELECT idUsuario,foto,idEstadoUsuario, username,tipoUsuario, modo FROM usuario 
+                INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = usuario.idTipoUsuario
+                WHERE correo = ? AND tipousuario = \'Administrador\' OR tipousuario = \'Caseta\'';
+        $params = array($email);
+        if ($data = Database::getRow($sql, $params)) {
+            $this->idUsuario = $data['idusuario'];
+            $this->correo = $email;
+            $this->foto = $data['foto'];
+            $this->idEstadoUsuario = $data['idestadousuario'];
+            $this->username = $data['username'];
+            $this->idTipoUsuario = $data['tipousuario'];
+            $this->modo = $data['modo'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //Método para verificar el estado del usuario
     public function checkEstado()
     {

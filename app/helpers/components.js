@@ -174,6 +174,15 @@ function setLightValue(){
     }).catch(error => console.log(error))
 }
 
+//Función para mostrar dark/light mode en caseta
+function modeCaseta() {
+    if (document.getElementById('txtModo').value == 'light') {
+        document.getElementById('lightMode').className = 'd-none';
+    } else {
+        document.getElementById('darkMode').className = 'd-none';
+    }
+}
+
 
 function botonExaminar(idBoton, idInputExaminar) {
     document.getElementById(idBoton).addEventListener('click', function (event) {

@@ -84,8 +84,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
 
     </div>
     <!-- Final del contenido -->
-
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate();
+Admin_Page::footerTemplate('dashboard.js');
 ?>   

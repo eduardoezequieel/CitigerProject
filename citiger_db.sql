@@ -301,3 +301,6 @@ CREATE TABLE bitacora(
 	accion VARCHAR(20) NOT NULL,
 	descripcion VARCHAR(200) NOT NULL
 )
+
+--Cambios 29/06/2021
+INSERT INTO tipoUsuario(tipousuario) VALUES('Caseta');
