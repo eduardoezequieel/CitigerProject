@@ -308,3 +308,12 @@ INSERT INTO tipoUsuario(tipousuario) VALUES('Caseta');
 --Cambios 30/06/2021
 INSERT INTO estadoespacio(estadoespacio) VALUES('Reservado');
 ALTER TABLE espacio ADD CONSTRAINT UQ_espacio_nombre UNIQUE (nombre);
+
+CREATE TABLE estadoVisita(
+	idEstadoVisita SERIAL NOT NULL PRIMARY KEY,
+	estadoVisita VARCHAR(15) NOT NULL
+);
+
+ALTER TABLE visita ADD COLUMN idEstadoVisita INTEGER NOT NULL REFERENCES estadovisita(idestadovisita)
+
+INSERT INTO estadovisita(idestadovisita, estadovisita) VALUES (DEFAULT, 'Activa'),(DEFAULT, 'Por llegar'),(DEFAULT, 'Finalizada');
