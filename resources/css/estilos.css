@@ -681,6 +681,13 @@ textarea :-ms-input-placeholder {
   color: var(--color-tipografia-titulos) !important;
 }
 
+.tituloDato2{
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-tipografia-titulos) !important;
+}
+
 .campoDato{
   font-family: 'Manrope', sans-serif;
   font-size: 16px;

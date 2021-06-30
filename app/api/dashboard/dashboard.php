@@ -30,7 +30,29 @@
                             $result['exception'] = 'No existen registros en la bitacora.';
                         }
                     }
-                    break;   
+                    break; 
+                case 'readOne':
+                    $_POST = $dashboard->validateForm($_POST);
+                    if ($dashboard->setIdBitacora($_POST['idBitacora'])) {
+                        if ($result['dataset'] = $dashboard->readOneBitacora()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Registro encontrado';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
+                case 'contadorDenuncias':
+                    if ($result['dataset'] = $dashboard->contadorDenuncias()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Denuncias encontradas';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                    break;
             }
             // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
             header('content-type: application/json; charset=utf-8');

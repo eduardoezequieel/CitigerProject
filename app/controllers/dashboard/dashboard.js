@@ -2,28 +2,8 @@
 const API_DASHBOARD = '../../app/api/dashboard/dashboard.php?action=';
 
 document.addEventListener('DOMContentLoaded',function(){
-    fetch(API_DASHBOARD + 'readAll', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                let data = [];
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    data = response.dataset;
-                } else {
-                    sweetAlert(4, response.exception, null);
-                }
-                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
-                fillTable(data);
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(function (error) {
-        console.log(error);
-    });
+    readRows(API_DASHBOARD);
+    contadorDenuncias();
 });
 
 function fillTable(dataset){
@@ -50,7 +30,7 @@ function fillTable(dataset){
             <th scope="row">
                 <div class="row paddingBotones">
                     <div class="col-12">
-                        <a href="" class="btn btnTabla"><i class="fas fa-eye"></i></a>
+                        <a href="#" data-toggle="modal" onclick="readBitacora(${row.idbitacora})" data-target="#bitacoraModal" class="btn btnTabla"><i class="fas fa-eye"></i></a>
                     </div>
                 </div>
             </th>
@@ -59,4 +39,61 @@ function fillTable(dataset){
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
+}
+
+function contadorDenuncias(){
+    fetch(API_DASHBOARD + 'contadorDenuncias', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    document.getElementById('txtDenuncia').textContent = response.dataset.denunciaspendientes;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function readBitacora(id){
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('idBitacora', id);
+
+    fetch(API_DASHBOARD + 'readOne', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    document.getElementById('txtUsuario').textContent = response.dataset.username;
+                    document.getElementById('txtHora').textContent = response.dataset.hora.substring(0,8);
+                    document.getElementById('txtFecha').textContent = response.dataset.fecha;
+                    document.getElementById('txtAccion').textContent = response.dataset.accion;
+                    document.getElementById('txtDescripcion').textContent = response.dataset.descripcion;
+                    previewSavePicture('divFoto', response.dataset.foto,1);
+
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 }

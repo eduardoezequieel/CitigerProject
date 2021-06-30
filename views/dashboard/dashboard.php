@@ -44,7 +44,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                         <div class="row justify-content-center mt-4">
                             <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
                                 <h1 class="tituloTarjetaDashboard">Denuncias por Atender</h1>
-                                <h1 class="contadorTarjetaDashboard mt-1">14</h1>
+                                <h1 class="contadorTarjetaDashboard mt-1" id="txtDenuncia">0</h1>
                             </div>
                         </div>
                     <!-- Final de Tarjeta -->
@@ -76,7 +76,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                         <div class="row justify-content-center mt-4">
                             <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
                                 <h1 class="tituloTarjetaDashboard">Visitas<br>Vigentes</h1>
-                                <h1 class="contadorTarjetaDashboard mt-1">30</h1>
+                                <h1 class="contadorTarjetaDashboard mt-1" id="txtVisitas">0</h1>
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                         <div class="row justify-content-center mt-4">
                             <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
                                 <h1 class="tituloTarjetaDashboard">Aportaciones Pendientes</h1>
-                                <h1 class="contadorTarjetaDashboard mt-1">2</h1>
+                                <h1 class="contadorTarjetaDashboard mt-1" id="txtAportaciones">0</h1>
                             </div>
                         </div>
                     </div>
@@ -147,6 +147,59 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
 
     </div>
     <!-- Final del contenido -->
+
+<!-- Modal para ver detalles de la bitacora -->
+<div class="modal fade" id="bitacoraModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Bitacora</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <div class="row justify-content-center">
+                    <div class="d-flex flex-column justify-content-center col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="d-flex justify-content-center align-items-center mb-4">
+                            <div class="bordeDivFotografia mb-1">
+                                <div class="divFotografia" id="divFoto">
+                                    <!--<img src="../../resources/img/67641302_948622395468919_4792483860753416192_n.jpg" alt="#" class="fit-images rounded-circle" width="150px">-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h1 class="text-center tituloDato" id="txtUsuario">edu4rdorivera</h1>
+                        </div>
+                    </div>
+                    <div class=" d-flex flex-column justify-content-center col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <h1 class="text-center tituloDato2">Hora</h1>
+                            <h1 class="text-center campoDato" id="txtHora"></h1>
+                        </div>
+                        <div class="form-group">
+                            <h1 class="text-center tituloDato2">Fecha</h1>
+                            <h1 class="text-center campoDato" id="txtFecha"></h1>
+                        </div>
+                        <div class="form-group">
+                            <h1 class="text-center tituloDato2">Acción</h1>
+                            <h1 class="text-center campoDato" id="txtAccion"></h1>
+                        </div>
+                        <div class="form-group">
+                            <h1 class="text-center tituloDato2">Descripción</h1>
+                            <h1 class="text-center campoDato" id="txtDescripcion">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis magni deleniti rem, harum at tenetur exercitationem vel nobis sapiente, iste sit. Pariatur consectetur saepe magnam neque suscipit tempore maxime nam!</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
 
 <?php
 //Se imprimen los JS necesarios
