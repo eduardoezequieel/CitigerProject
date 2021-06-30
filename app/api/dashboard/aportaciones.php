@@ -45,6 +45,22 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Marca seleccionada incorrecta';
                 }
                 break;
+            case 'readAportacion':
+                $_POST = $aportaciones->validateForm($_POST);
+                if ($aportaciones->setIdCasa($_POST['txtIdx'])) {
+                    if ($result['dataset'] = $aportaciones->readOne()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Marca inexistente';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Marca seleccionada incorrecta';
+                }
+                break;
 
             case 'createRow':
                 $_POST = $aportaciones->validateForm($_POST);
@@ -76,7 +92,6 @@ if (isset($_GET['action'])) {
                                     $result['status'] = 1;
                                     $result['message'] = 'Se ha actualizado la casa correctamente.';
                                     $aportaciones->registerAction('Actualizar', 'El usuario actualizó un registro en la tabla de casas.');
-
                                 } else {
                                     if (Database::getException()) {
                                         $result['exception'] = Database::getException();
@@ -104,7 +119,7 @@ if (isset($_GET['action'])) {
                     if ($aportaciones->deleteRow()) {
                         $result['status'] = 1;
                         $result['message'] = 'Registro eliminado correctamente';
-                        $aportaciones->registerAction('Eliminar','El usuario eliminó un registro en la tabla de casas.');
+                        $aportaciones->registerAction('Eliminar', 'El usuario eliminó un registro en la tabla de casas.');
                     } else {
                         $result['exception'] = Database::getException();
                     }
@@ -141,7 +156,6 @@ if (isset($_GET['action'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Se ha activado el registro correctamente.';
                         $aportaciones->registerAction('Activar', 'El usuario activó un registro en la tabla de casas.');
-                        
                     } else {
                         $result['exception'] = Database::getException();
                     }
@@ -157,7 +171,6 @@ if (isset($_GET['action'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Se ha suspendido el registro correctamente.';
                         $aportaciones->registerAction('Suspender', 'El usuario suspendió un registro en la tabla de casas.');
-
                     } else {
                         $result['exception'] = Database::getException();
                     }

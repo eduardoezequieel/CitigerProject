@@ -88,7 +88,7 @@ class Aportaciones extends Validator
 
     public function readOne()
     {
-        $sql = 'SELECT idcasa, numerocasa,idestadocasa, direccion from casa where idcasa=?';
+        $sql = "SELECT CONCAT('#',numerocasa,' ',direccion) AS casa, idcasa, numerocasa,idestadocasa, direccion from casa where idcasa=?";
         $params = array(
             $this->idCasa
         );

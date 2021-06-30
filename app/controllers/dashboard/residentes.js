@@ -79,7 +79,7 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('txtTelefonomovil').value = '';
     document.getElementById('txtCorreo').value = '';    
     document.getElementById('txtUser').value = '';
-    previewSavePicture('divFoto', null, 3);
+    previewSavePicture('divFoto', 'default.png', 1);
 });
 
 //Agregar y actualizar información

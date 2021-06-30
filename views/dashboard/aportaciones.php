@@ -145,6 +145,9 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
             <br>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
+                <form method="post" id="casa-form" enctype="multipart/form-data">
+                    <input class="d-none" type="number" id="txtIdx" name="txtIdx" />
+                </form>
                 <!-- Desde aqui comienza el contenido -->
                 <div class="row justify-content-center mb-3">
                     <div class="col-12 d-flex justify-content-center align-items-center">
@@ -176,17 +179,18 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center text-center">
                         <form>
                             <h1 class="tituloDato text-center">Casa:</h1>
-                            <label class="campoDato text-center">#69, Etapa 3, Block 6</label>
+                            <label class="campoDato text-center" id="casa"></label>
                         </form>
                     </div>
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center text-center">
                         <form>
                             <h1 class="tituloDato text-center">Fecha:</h1>
-                            <label class="campoDato text-center">16/4/2021</label>
+                            <label class="campoDato text-center" id="lblFecha"></label>
                         </form>
                     </div>
                 </div>
 
+                <br>
                 <!-- Desde aqui comienza la tabla -->
                 <div class="row mt-4 justify-content-center table-responsive tablaResponsive">
                     <div class="col-12 justify-content-center align-items-center text-center">
