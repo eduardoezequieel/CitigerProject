@@ -36,7 +36,7 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
         </div><br>
         <!-- Desde aqui comienza la tabla -->
         <div class="row mt-3 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
-            <div class="col-12 justify-content-center align-items-center text-center">
+            <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center" id="tablaMarcas">
                 <table class="table table-borderless citigerTable">
                     <thead>
                         <!-- Columnas-->
@@ -47,7 +47,7 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
                         </tr>
                     </thead>
                     <tbody id="tbody-rows">
-
+                        
                     </tbody>
                 </table>
             </div>

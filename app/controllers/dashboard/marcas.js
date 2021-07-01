@@ -20,7 +20,7 @@ function fillTable(dataset){
                     <div class="row paddingTh">
                         <div class="col-12">
                             <img src="../../resources/img/brand.png" alt="#"
-                                class="rounded-circle fit-images" width="30px" height="30px">
+                                class="rounded-circle fit-images" width="25px" height="25px">
                         </div>
                     </div>
                 </th>
