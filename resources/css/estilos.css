@@ -1295,8 +1295,7 @@ textarea :-ms-input-placeholder {
 }
 
 #tablaMarcas{
-  padding-right: 200px !important;
-  padding-left: 250px !important;
+  padding-left: 200px !important;
 }
 
 #tablaPedidos{
@@ -1470,7 +1469,7 @@ textarea :-ms-input-placeholder {
 
   #tablaMarcas{
     padding-right: 0px !important;
-    padding-left: 60px !important;
+    padding-left: 90px !important;
   }
 
   #tablaCarritoDetalle{
