@@ -204,6 +204,78 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
 
 </div>
 
+<!-- Modal para asignar casa a residente -->
+<div class="modal fade" id="casaResidente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Casas</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="tituloDato text-center">Casa del Residente:</h1>
+                        <h1 class="campoDato text-center">Sin asignar</h1>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
+                    <div class="col-xl-12 d-flex flex-column justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
+                        <form class="mx-3 mb-2" method="post" id="search-form">
+                            <h1 class="tituloCajaTextoFormulario">Número de Casa:</h1>
+                            <input type="number" class="form-control buscador" id="search" name="search"
+                                aria-describedby="emailHelp" placeholder="{ Número }">
+                        </form>
+                        <form class="mx-3 mb-2" method="post" id="search-form">
+                            <h1 class="tituloCajaTextoFormulario">Dirección:</h1>
+                            <input type="text" class="form-control buscador" id="search" name="search"
+                                aria-describedby="emailHelp" placeholder="{ Dirección }">
+                        </form>
+                    </div>
+
+                </div><br>
+                <!-- Desde aqui comienza la tabla -->
+                <div class="row mt-3 justify-content-center table-responsive">
+                    <div class="col-12 justify-content-center align-items-center text-center">
+                        <table class="table table-borderless citigerTable">
+                            <thead>
+                                <!-- Columnas-->
+                                <tr>
+                                    <th scope="col">Número de Casa</th>
+                                    <th scope="col">Dirección</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-rows">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Tu mama</td>
+                                    <!-- Boton-->
+                                    <th scope="row">
+                                        <div class="row paddingBotones">
+                                            <div class="col-12">
+                                                <a href="#" class="btn btnTabla mx-2"><i class="fas fa-plus"></i></a>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Desde aqui termina la tabla --><br>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
+
 
 
 <!-- Final del contenido -->

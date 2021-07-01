@@ -44,6 +44,8 @@ function fillTable(dataset){
                 <th scope="row">
                     <div class="row paddingBotones">
                         <div class="col-12">
+                            <a href="#" data-toggle="modal" data-target="#casaResidente" class="btn btnTabla3 mx-2"><i class="fas fa-home"></i></a>
+
                             <a href="#" onclick="readDataOnModal(${row.idresidente}) "data-toggle="modal" data-target="#administrarResidente" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
 
                             <a href="#" onclick="deleteRow(${row.idresidente})" class="btn btnTabla2 mx-2"><i class="fas fa-trash"></i></a>
