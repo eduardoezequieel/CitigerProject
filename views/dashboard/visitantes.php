@@ -84,16 +84,16 @@ admin_Page::sidebarTemplate('Visitantes | Citiger');
                             <div class="row">
                                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
                                     <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
-                                    <input type="text" class="form-control cajaTextoModal" id="txtNombre"
+                                    <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre"
                                         name="txtNombre" placeholder="">
 
                                     <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
-                                    <input type="text" class="form-control cajaTextoModal" id="txtApellido"
+                                    <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario" id="txtApellido"
                                         name="txtApellido" placeholder="">
                                 </div>
                                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
                                     <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                    <input type="text" class="form-control cajaTextoModal" id="txtDUI"
+                                    <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario" id="txtDUI"
                                         name="txtDUI" placeholder="12345678-9">
 
                                     <!-- RadioButtonGroup Género -->
@@ -113,7 +113,7 @@ admin_Page::sidebarTemplate('Visitantes | Citiger');
                             <div class="row">
                                 <div class="col-12">
                                     <label class="tituloCajaTextoFormulario" for="txtPlaca">Placa:</label>
-                                    <input type="text" class="form-control cajaTextoModal" id="txtPlaca"
+                                    <input type="text" class="form-control cajaTextoFormulario" id="txtPlaca"
                                         name="txtPlaca" placeholder="P123 456">
                                 </div>
                             </div>
