@@ -36,6 +36,7 @@
 
 #ResidentesColumna1{
   margin-top: 12px !important;
+  margin-left: 50px !important;
 }
 /*Inicio del Login*/
 
@@ -1358,6 +1359,10 @@ textarea :-ms-input-placeholder {
 
   #buscar{
     margin: 0 !important;
+  }
+
+  #ResidentesColumna1{
+    margin-left: 0 !important;
   }
 
 

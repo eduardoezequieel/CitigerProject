@@ -173,7 +173,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                 </div>
                             </div>
                             <!-- Botones de Acción del Formulario -->
-                            <div class="row justify-content-center mt-4">
+                            <div class="row justify-content-center">
                                 <div class="col-12 d-flex justify-content-center align-items-center text-center">
                                     <button id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span
                                             class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
