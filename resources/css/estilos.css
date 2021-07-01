@@ -34,6 +34,9 @@
   width: 235px !important;
 }
 
+#ResidentesColumna1{
+  margin-top: 12px !important;
+}
 /*Inicio del Login*/
 
 body {
@@ -683,7 +686,7 @@ textarea :-ms-input-placeholder {
 
 .tituloDato2{
   font-family: 'Quicksand', sans-serif;
-  font-size: 20px;
+  font-size: 20Respx;
   font-weight: 500;
   color: var(--color-tipografia-titulos) !important;
 }

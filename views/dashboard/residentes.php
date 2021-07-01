@@ -82,11 +82,10 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                     <div class="textoModal px-3 pb-4 mt-2">
                         <form method="post" id="administrarResidente-form">
                             <input type="number" name="idResidente" id="idResidente" class="d-none">
-                            <div class="row">
+                            <div class="row justify-content-center">
                                 <!-- Primera columna de controles -->
-                                <div
-                                    class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
-                                    <div class="#" id="ResidentesColumna1">
+                                <div class="d-flex justify-content-center col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
+                                    <div class="form-group" id="ResidentesColumna1">
                                         <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
                                         <input onchange="checkInputLetras('txtNombre')" type="text"
                                             class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
@@ -97,30 +96,36 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                             class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido"
                                             placeholder="Escriba sus apellidos...">
 
-                                        <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                        <input type="text" onchange="checkDui('txtDUI')"
-                                            class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI"
-                                            placeholder="12345678-9">
-
-                                        <div class="row">
-                                            <div class="col-6 ">
-                                                <label class="tituloCajaTextoFormulario" for="txtTelefonofijo">Teléfono
-                                                    Fijo:</label>
-                                                <input type="text" class="form-control cajaTextoFormularioTelefono"
-                                                    id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000">
-
-                                            </div>
-
-                                            <div class="col-6 ">
-                                                <label class="tituloCajaTextoFormulario" for="txtTelefonomovil">Teléfono
-                                                    Movil:</label>
-                                                <input type="text" class="form-control cajaTextoFormularioTelefono"
-                                                    id="txtTelefonomovil" name="txtTelefonomovil"
-                                                    placeholder="0000-0000">
-                                            </div>
-
+                                        <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
+                                        <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                                        <div class="cbCitiger">
+                                            <select class="custom-select" id="cbGenero" name="cbGenero">
+                                                <option selected="default">Seleccionar...</option>
+                                                <option value="M">Masculino</option>
+                                                <option value="F">Femenino</option>
+                                            </select>
                                         </div>
 
+                                        <div class="row mt-2">
+                                            <div class="form-group m-0 p-0 d-flex">
+                                                <div class="col-6 ">
+                                                    <label class="tituloCajaTextoFormulario" for="txtTelefonofijo">Teléfono
+                                                        Fijo:</label>
+                                                    <input type="text" class="form-control cajaTextoFormularioTelefono"
+                                                        id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000">
+
+                                                </div>
+                                                <div class="col-6 ">
+                                                    <label class="tituloCajaTextoFormulario" for="txtTelefonomovil">Teléfono
+                                                        Movil:</label>
+                                                    <input type="text" class="form-control cajaTextoFormularioTelefono"
+                                                        id="txtTelefonomovil" name="txtTelefonomovil"
+                                                        placeholder="0000-0000">
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo
                                             Electrónico:</label>
@@ -158,18 +163,11 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                             class="form-control cajaTextoFormulario" id="txtUser" name="txtUser"
                                             placeholder="Escriba su nombre de usuario...">
 
-                                        <!-- RadioButtonGroup Género -->
-                                        <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
-                                        <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                        deseado en el combobox  -->
-                                        <div class="cbCitiger">
-                                            <select class="custom-select" id="cbGenero" name="cbGenero">
-                                                <option selected="default">Seleccionar...</option>
-                                                <option value="M">Masculino</option>
-                                                <option value="F">Femenino</option>
-                                            </select>
-                                        </div>
+                                        <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
+                                        <input type="text" onchange="checkDui('txtDUI')"
+                                            class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI"
+                                            placeholder="12345678-9">
+                                        
 
                                     </div>
                                 </div>
