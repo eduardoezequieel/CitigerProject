@@ -521,6 +521,23 @@
     border: 0.01rem solid #41464b;
     color: white;
   }
+
+  .cajaTextoFormularioMarcas {
+    background-color: #202427;
+    border: 0.01rem solid #41464b;
+    color: white;
+    border-radius: 16px;
+    padding: 10px;
+    height: 40px;
+    width: 235px;
+    margin-bottom: 10px;
+  }
+  
+  .cajaTextoFormularioMarcas:focus {
+    background-color: #202427;
+    border: 0.01rem solid #41464b;
+    color: white;
+  }
   
   textarea[placeholder],
   [placeholder],
