@@ -211,7 +211,6 @@
                         if ($alquiler->setIdEspacio($_POST['idEspacio'])) {
                             if ($alquiler->deleteRow()) {
                                 $result['status'] = 1;
-                                $alquiler->setIdEstadoEspacio(4);
                                 if ($alquiler->checkSpaceStatus()) {
                                     $result['message'] = 'Se ha eliminado el alquiler correctamente';
                                 } else {
@@ -242,7 +241,6 @@
                         if ($alquiler->setIdEspacio($_POST['idEspacio'])) {                     
                             if ($alquiler->changeStatus()) {
                                 $result['status'] = 1;
-                                $alquiler->setIdEstadoEspacio(4);
                                 if ($alquiler->checkSpaceStatus()) {
                                     $result['message'] = 'Se ha denegado el alquiler correctamente';
                                 } else {
@@ -299,7 +297,6 @@
                         if ($alquiler->setIdEspacio($_POST['idEspacio'])) {
                             if ($alquiler->changeStatus()) {
                                 $result['status'] = 1;
-                                $alquiler->setIdEstadoEspacio(4);
                                 if ($alquiler->checkSpaceStatus()) {
                                     $result['message'] = 'Se ha finalizado el alquiler correctamente.';
                                 } else {

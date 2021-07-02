@@ -260,9 +260,9 @@
         //Función para evaluar si se hace un update del estado del espacio 
         public function checkSpaceStatus() 
         {
-            $sql = 'SELECT * FROM espacio WHERE idespacio = ? AND idestadoespacio != 3 
-                    AND idestadoespacio != ?';
-            $params = array($this->idEspacio, $this->idEstadoEspacio);
+            $sql = 'SELECT * FROM alquiler WHERE idespacio = ? AND idalquiler != ?
+                    AND idestadoalquiler = 2';
+            $params = array($this->idEspacio, $this->idAlquiler);
             return Database::getRows($sql,$params);
         }
 
