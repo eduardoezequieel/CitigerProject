@@ -32,24 +32,24 @@
                 case 'readOne':
                     $_POST = $visita -> validateForm($_POST);
                     if($visita->setIdVisita($_POST['idVisita'])){
-                        if($result['dataset'] = $vi->readOne()){
+                        if($result['dataset'] = $visita->readOne()){
                             $result['status'] = 1;
                         } else{
                             if (Database::getException()) {
                                 $result['exception'] = Database::getException();
                             } else {
-                                $result['exception'] = 'Empleado inexistente';
+                                $result['exception'] = 'Visita inexistente';
                             }
                         }
                     } else{
-                        $result['exception'] = 'Empleado seleccionado incorrecto';
+                        $result['exception'] = 'Visita seleccionada incorrecta';
                     }
                     break;
                 //Caso para cargar un registro en especifico
-                case 'filterByEmployeeType':
-                    $_POST = $empleado -> validateForm($_POST);
-                    if ($empleado->setIdTipoEmpleado($_POST['idTipoEmpleado'])) {
-                        if($result['dataset'] = $empleado->filterByEmployeeType()){
+                case 'filterByVisitStatus':
+                    $_POST = $visita -> validateForm($_POST);
+                    if ($visita->setIdEstadoVisita($_POST['idEstadoVisita'])) {
+                        if($result['dataset'] = $visita->filterByVisitStatus()){
                             $result['status'] = 1;
                             $row = count($result['dataset']);
                             if($row > 0){
@@ -68,50 +68,42 @@
                         $result['exception'] = 'Error id select';
                     }
                     break;
-                //Caso para realizar busquedas
-                case 'search':
-                    $_POST = $empleado->validateForm($_POST);
-                    if($_POST['search'] != ''){
-                        if($result['dataset'] = $empleado->searchRows($_POST['search'])){
-                            $result['status'] = 1;
-                            $row = count($result['dataset']);
-                            if($row > 0){
-                                $result['message'] = 'Se han encontrado '.$row .' coincidencias';
-                            } else{
-                                $result['message'] = 'Se ha encontrado una coincidencia';
-                            }
-                        } else{
-                            if (Database::getException()) {
-                                $result['exception'] = Database::getException();
-                            } else {
-                                $result['exception'] = 'No hay coincidencias';
-                            }
-                        }
-                    } else {
-                        $result['exception'] = 'Campo vacio';
-                    }
-                    break;
+                
                 //Caso para cargar información en los select
-                case 'readEmployeeTypes':
-                    if ($result['dataset'] = $empleado->readEmployeeTypes()) {
+                case 'readVisitStatus':
+                    if ($result['dataset'] = $visita->readVisitStatus()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Se ha encontrado al menos un tipo.';
+                        $result['message'] = 'Se ha encontrado al menos un estado.';
                     } else {
                         if (Database::getException()) {
                             $result['exception'] = Database::getException();
                         } else {
-                            $result['exception'] = 'No existen tipos registrados.';
+                            $result['exception'] = 'No existen estados registrados.';
                         }
                     }
                     break;
-                //Caso para suspender empleados
+
+                //Caso para cargar información en los select
+                case 'readResident':
+                    if ($result['dataset'] = $visita->readResident()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Se ha encontrado al menos un residente.';
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No existen residentes registrados.';
+                        }
+                    }
+                    break;
+                //Caso para suspender visita
                 case 'suspendRow':
-                    $_POST = $empleado->validateForm($_POST);
-                    if ($empleado->setIdEmpleado($_POST['idEmpleado'])) {
-                        if ($empleado->suspend()) {
+                    $_POST = $visita->validateForm($_POST);
+                    if ($visita->setIdVisita($_POST['idVisita'])) {
+                        if ($visita->suspend()) {
                             $result['status'] = 1;
-                            $result['message'] = 'Se ha suspendido al empleado correctamente.';
-                            $empleado->registerAction('Suspender','El usuario suspendio un registro en la tabla de empleados.');
+                            $result['message'] = 'Se ha suspendido la visita correctamente.';
+                            $visita->registerAction('Suspender','El usuario suspendio una visita.');
                         }else{
                             $result['exception'] = Database::getException();
                         }
@@ -119,14 +111,14 @@
                         $result['exception'] = 'ID incorrecto';
                     }
                     break;
-                //Caso para suspender empleados
+                //Caso para activar visita
                 case 'activateRow':
-                    $_POST = $empleado->validateForm($_POST);
-                    if ($empleado->setIdEmpleado($_POST['idEmpleado'])) {
-                        if ($empleado->activate()) {
+                    $_POST = $visita->validateForm($_POST);
+                    if ($visita->setIdVisita($_POST['idVisita'])) {
+                        if ($visita->activate()) {
                             $result['status'] = 1;
-                            $result['message'] = 'Se ha activado al empleado correctamente.';
-                            $empleado->registerAction('Activar','El usuario activo un registro en la tabla de empleados.');
+                            $result['message'] = 'Se ha activado la visita correctamente.';
+                            $visita->registerAction('Activar','El usuario activo una visita.');
 
                         }else{
                             $result['exception'] = Database::getException();
@@ -135,151 +127,95 @@
                         $result['exception'] = 'ID incorrecto';
                     }
                     break;
-                //Caso para crear registros en la tabla empleados
-                case 'createRow':
-                    $_POST = $empleado->validateForm($_POST);
-                    $empleado->setIdEstadoEmpleado(1);
-                    if ($empleado->setNombre($_POST['txtNombre'])) {
-                        if ($empleado->setApellido($_POST['txtApellido'])) {
-                            if ($empleado->setTelefono($_POST['txtTelefono'])) {
-                                if ($empleado->setDui($_POST['txtDUI'])) {
-                                    if (isset($_POST['cbGenero'])) {
-                                        if ($empleado->setGenero($_POST['cbGenero'])) {
-                                            if (is_uploaded_file($_FILES['archivo_usuario']['tmp_name'])) {
-                                                if ($empleado->setFoto($_FILES['archivo_usuario'])){
-                                                    if ($empleado->setDireccion($_POST['txtDireccion'])) {
-                                                        if ($empleado->setCorreo($_POST['txtCorreo'])) {
-                                                            if ($empleado->setNacimiento($_POST['txtFechaNacimiento'])) {
-                                                                if (isset($_POST['cbTipoEmpleado2'])) {
-                                                                    if ($empleado->setIdTipoEmpleado($_POST['cbTipoEmpleado2'])) {
-                                                                        if ($empleado->createRow()) {
-                                                                            $result['status'] = 1;
-                                                                            if ($empleado->saveFile($_FILES['archivo_usuario'], $empleado->getRuta(), $empleado->getFoto())) {
-                                                                                $result['message'] = 'Empleado registrado correctamente';
-                                                                                $empleado->registerAction('Registrar','El usuario registro un registro en la tabla de empleados.');
 
-                                                                            } else {
-                                                                                $result['message'] = 'Empleado registrado pero no se guardó la imagen';
-                                                                            }
-                                                                        } else {
-                                                                            $result['exception'] = Database::getException();
-                                                                        }  
-                                                                    }else{
-                                                                        $result['exception'] = 'Tipo de empleado invalido.';
-                                                                    }
-                                                                }else{
-                                                                    $result['exception'] = 'Tipo de empleado invalido.';
-                                                                }
-                                                            }else{
-                                                                $result['exception'] = 'Fecha invalida.';
-                                                            }
-                                                        }else{
-                                                            $result['exception'] = 'Correo invalido.';
-                                                        }
-                                                    }else{
-                                                        $result['exception'] = 'Dirección invalida.';
-                                                    }
-                                                }else{
-                                                    $result['exception'] = 'Por favor cargue una fotografía.';
-                                                }
-                                            }else{
-                                                $result['exception'] = 'Por favor cargue una fotografía.';
-                                            }
-                                        }else{
-                                            $result['exception'] = 'Género invalido.';
-                                        }
-                                    }else{
-                                        $result['exception'] = 'Género invalido.';
-                                    }
-                                }else{
-                                    $result['exception'] = 'DUI invalido';
-                                }
-                            }else{
-                                $result['exception'] = 'Telefono invalido.';
-                            }
+                //Caso para poner una visita en camino
+                case 'onthewayRow':
+                    $_POST = $visita->validateForm($_POST);
+                    if ($visita->setIdVisita($_POST['idVisita'])) {
+                        if ($visita->ontheway()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha puesto la visita en camino.';
+                            $visita->registerAction('Activar','El usuario puso una visita en camino.');
+
                         }else{
-                            $result['exception'] = 'Apellido invalido.';
+                            $result['exception'] = Database::getException();
                         }
                     }else{
-                        $result['exception'] = 'Nombre invalido.';
+                        $result['exception'] = 'ID incorrecto';
                     }
+                    break;
+                //Caso para crear registros en la tabla visitas
+                case 'createRow':
+                    $_POST = $visita->validateForm($_POST);
+                    $visita->setIdEstadoVisita(1);
+                     if(isset($_POST['cbResidente'])){
+                        if($visita->setIdResidente($_POST['cbResidente'])){
+                            if($visita->setFecha($_POST['txtFecha'])){
+                                if(isset($_POST['cbVisitaR'])){
+                                    if($visita->setVisitaR($_POST['cbVisitaR'])){
+                                        if($visita->setObservacion($_POST['txtObservacion'])){
+                                            if ($visita->createRow()) {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Visita registrada correctamente.';
+                                                $visita->registerAction('Registrar','El usuario registro una visita.');
+                                            } else {
+                                                $result['exception'] = Database::getException();
+                                            }
+                                        } else{
+                                            $result['exception'] = 'Onservacion invalido.';
+                                        }
+                                    } else{
+                                        $result['exception'] = 'Visita Recurrente invalida.';
+                                    }
+                                } else{
+                                    $result['exception'] = 'Visita Recurrente invalido.';
+                                }
+                            } else{
+                                $result['exception'] = 'Fecha invalida.';
+                            }
+                        } else{
+                            $result['exception'] = 'Residente invalido.';
+                        }
+                     } else{
+                        $result['exception'] = 'Residente invalido.';
+                     }
+                    
                     break;
                 //Actualizar datos
                 case 'updateRow':
-                    $_POST = $empleado->validateForm($_POST);
-                    if ($empleado->setIdEmpleado($_POST['idEmpleado'])) {
-                        if ($data = $empleado->readOne()) {
-                            if ($empleado->setNombre($_POST['txtNombre'])) {
-                                if ($empleado->setApellido($_POST['txtApellido'])) {
-                                    if ($empleado->setTelefono($_POST['txtTelefono'])) {
-                                        if ($empleado->setDui($_POST['txtDUI'])) {
-                                            if (isset($_POST['cbGenero'])) {
-                                                if ($empleado->setGenero($_POST['cbGenero'])) {
-                                                    if ($empleado->setDireccion($_POST['txtDireccion'])) {
-                                                        if ($empleado->setCorreo($_POST['txtCorreo'])) {
-                                                            if ($empleado->setNacimiento($_POST['txtFechaNacimiento'])) {
-                                                                if (isset($_POST['cbTipoEmpleado2'])) {
-                                                                    if ($empleado->setIdTipoEmpleado($_POST['cbTipoEmpleado2'])) {
-                                                                        if (is_uploaded_file($_FILES['archivo_usuario']['tmp_name'])) {
-                                                                            if ($empleado->setFoto($_FILES['archivo_usuario'])){
-                                                                                if ($empleado->updateRow($data['foto'])) {
-                                                                                    $result['status'] = 1;
-                                                                                    if ($empleado->saveFile($_FILES['archivo_usuario'], $empleado->getRuta(), $empleado->getFoto())) {
-                                                                                        $result['message'] = 'Empleado modificado correctamente';
-                                                                                        $empleado->registerAction('Actualizar','El usuario actualizó un registro con cambio de foto en la tabla de empleados.');
-
-                                                                                    } else {
-                                                                                        $result['message'] = 'Empleado modificado pero no se guardó la imagen';
-                                                                                    }
-                                                                                } else {
-                                                                                    $result['exception'] = Database::getException();
-                                                                                } 
-                                                                            }else{
-                                                                                $result['exception'] = $clientes->getImageError();
-                                                                            }
-                                                                        }else{
-                                                                            if ($empleado->updateRow($data['foto'])) {
-                                                                                $result['status'] = 1;
-                                                                                $result['message'] = 'Empleado modificado correctamente';
-                                                                                $empleado->registerAction('Suspender','El usuario actualizó un registro en la tabla de empleados sin cambiar su fotografía..');
-
-                                                                            } else {
-                                                                                $result['exception'] = Database::getException();
-                                                                            }
-                                                                        }
-                                                                    }else{
-                                                                        $result['exception'] = 'Tipo2 invalida';
-                                                                    }
-                                                                }else{
-                                                                    $result['exception'] = 'Tipo1 invalida';
-                                                                }
-                                                            }else{
-                                                                $result['exception'] = 'Fecha invalida';
-                                                            }
-                                                        }else{
-                                                            $result['exception'] = 'Correo invalido';
-                                                        }
-                                                    }else{
-                                                        $result['exception'] = 'Direccion invalida';
-                                                    }
-                                                }else{
-                                                    $result['exception'] = 'Genero invalido2';
+                    $_POST = $visita->validateForm($_POST);
+                    if ($visita->setIdVisita($_POST['idVisita'])) {
+                        if ($data = $visita->readOne()) {
+                            if(isset($_POST['cbResidente'])){
+                                if($visita->setIdResidente($_POST['cbResidente'])){
+                                    if($visita->setFecha($_POST['txtFecha'])){
+                                        if(isset($_POST['cbVisitaR'])){
+                                            if($visita->setVisitaR($_POST['cbVisitaR'])){
+                                                if($visita->setObservacion($_POST['txtObservacion'])){
+                                                    if ($visita->updateRow()) {
+                                                        $result['status'] = 1;
+                                                        $result['message'] = 'Visita actualizada correctamente';
+                                                    } else {
+                                                        $result['exception'] = Database::getException();
+                                                    } 
+                                                } else{
+                                                    $result['exception'] = 'Onservacion invalido.';
                                                 }
-                                            }else{
-                                                $result['exception'] = 'Genero invalido1';
+                                            } else{
+                                                $result['exception'] = 'Visita Recurrente invalida.';
                                             }
-                                        }else{
-                                            $result['exception'] = 'Nombre invalido';
+                                        } else{
+                                            $result['exception'] = 'Visita Recurrente invalida.';
                                         }
-                                    }else{
-                                        $result['exception'] = 'Telefono invalido';
+                                    } else{
+                                        $result['exception'] = 'Fecha invalida.';
                                     }
-                                }else{
-                                    $result['exception'] = 'Apellido invalido';
+                                } else{
+                                    $result['exception'] = 'Residente invalido.';
                                 }
-                            }else{
-                                $result['exception'] = 'Nombre invalido';
-                            }
+                             } else{
+                                $result['exception'] = 'Residente invalido.';
+                             }
                         }else{
 
                         }
@@ -287,26 +223,18 @@
 
                     }
                     break;
+                //Caso para eliminar el registro
                 case 'delete':
-                    $_POST = $empleado -> validateForm($_POST);
-                    if($empleado->setIdEmpleado($_POST['idEmpleado'])){
-                        if($data = $empleado->readOne()){
-                            if($empleado->deleteRow()){
-                                if($empleado->deleteFile($empleado->getRuta(), $data['foto'])){
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Cliente eliminado correctamente';
-                                    $empleado->registerAction('Eliminar','El usuario eliminó un registro en la tabla de empleados.');
-                                } else{
-                                    $result['exception'] = 'Se borró el registro pero no la imagen';
-                                }
-                            } else{
-                                $result['exception'] = Database::getException();
-                            }
-                        } else{
-                            $result['exception'] = 'Cliente no existente';
+                    $_POST = $visita -> validateForm($_POST);
+                    if ($visita -> setIdVisita($_POST['idVisita'])) {
+                        if ($visita -> deleteRow()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Registro eliminado correctamente';
+                        }else{
+                            $result['exception'] = Database::getException();
                         }
-                    } else {    
-                        $result['exception'] = 'Cliente seleccionado incorrecto';
+                    }else{
+                        $result['exception'] = 'Id invalido';
                     }
                     break;
                 //Caso de default del switch
