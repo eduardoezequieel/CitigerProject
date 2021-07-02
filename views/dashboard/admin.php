@@ -98,41 +98,42 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
             <div class="textoModal px-3 pb-4 mt-2">
                 <form method="post" id="administrarEmpleado-form">
                     <input class="d-none" type="number" id="txtId" name="txtId" />
+                    <input class="d-none" type="text" id="txtContrasenia" name="txtContrasenia" />
                     <div class="row animate__animated animate__bounceIn">
                         <!-- Primera columna de controles -->
                         <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                             <div class="#" id="EmpleadosColumna1">
                                 <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
-                                <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre" placeholder="Escriba sus nombres...">
+                                <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre" placeholder="Escriba sus nombres..." Required>
 
                                 <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
-                                <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido" placeholder="Escriba sus apellidos...">
+                                <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido" placeholder="Escriba sus apellidos..." Required>
 
                                 <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9">
+                                <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9" Required>
 
                                 <div class="row">
                                     <div class="col-6 ">
                                         <label class="tituloCajaTextoFormulario" for="txtTelefonofijo">Teléfono
                                             Fijo:</label>
-                                        <input onchange="checkTelefono('txtTelefonofijo')" type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000">
+                                        <input onchange="checkTelefono('txtTelefonofijo')" type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000" Required>
 
                                     </div>
 
                                     <div class="col-6 ">
                                         <label class="tituloCajaTextoFormulario" for="txtTelefonomovil">Teléfono
                                             Movil:</label>
-                                        <input onchange="checkTelefono('txtTelefonomovil')" type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="0000-0000">
+                                        <input onchange="checkTelefono('txtTelefonomovil')" type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="0000-0000"Required>
                                     </div>
 
                                 </div>
 
 
                                 <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
-                                <input onchange="checkCorreo('txtCorreo')" type="text" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo" placeholder="ejemplo@mail.com">
+                                <input onchange="checkCorreo('txtCorreo')" type="text" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo" placeholder="ejemplo@mail.com" Required>
 
                                 <label class="tituloCajaTextoFormulario" for="txtUsuario">Nombre de usuario:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtUsuario" name="txtUsuario" placeholder="Escriba su nombre de usuario">
+                                <input type="text" class="form-control cajaTextoFormulario" id="txtUsuario" name="txtUsuario" placeholder="Escriba su nombre de usuario" Required>
 
                                 <!-- RadioButtonGroup Género -->
                                 <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
@@ -178,10 +179,10 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
 
                                 <label class="tituloCajaTextoFormulario mt-2" for="txtFechaNacimiento">Fecha de
                                     Nacimiento:</label>
-                                <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento" placeholder="01-01-2000">
+                                <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento" placeholder="01-01-2000" Required>
 
                                 <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
-                                <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="4"></textarea>
+                                <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="4"Required ></textarea>
                             </div>
                         </div>
                     </div>

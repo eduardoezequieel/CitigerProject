@@ -32,16 +32,18 @@ if (isset($_GET['action'])) {
                                                             if ($usuarios->setGenero($_POST['cbGenero'])) {
                                                                 if ($usuarios->setDui($_POST['txtDUI'])) {
                                                                     if ($usuarios->setUsername($_POST['txtUsuario'])) {
-                                                                        $usuarios->setContrasenia('$2y$10$vZ.dSTcvEURUaDCKW8eFkeI.zNfWKz6NAcKnzu9N1KcbyjZ4..M4y');
+                                                                        $usuarios->setContrasenia($_POST['txtContrasenia']);
                                                                         if ($usuarios->setDireccion($_POST['txtDireccion'])) {
                                                                             $usuarios->setIdEstadoUsuario(1);
                                                                             if ($usuarios->createRow2()) {
                                                                                 $result['status'] = 1;
                                                                                 if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
-                                                                                    $result['message'] = 'Usuario registrado correctamente';
+                                                                                    $result['message'] = 'Usuario registrado correctamente, la contraseña por defecto es: '
+                                                                                                            .$usuarios->getContrasenia();
                                                                                     $usuarios->registerAction('Registrar', 'El usuario registró un registro en la tabla de usuarios.');
                                                                                 } else {
-                                                                                    $result['message'] = 'Usuario registrado pero no se guardó la imagen';
+                                                                                    $result['message'] = 'Usuario registrado pero no se guardó la imagen, la contraseña por defecto es: ' 
+                                                                                                            .$usuarios->getContrasenia();
                                                                                 }
                                                                             } else {
                                                                                 $result['exception'] = Database::getException();;
