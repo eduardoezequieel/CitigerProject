@@ -687,9 +687,13 @@ textarea :-ms-input-placeholder {
 
 .tituloDato2{
   font-family: 'Quicksand', sans-serif;
-  font-size: 20Respx;
+  font-size: 20px;
   font-weight: 500;
   color: var(--color-tipografia-titulos) !important;
+}
+
+.tamañoInputModalMedium{
+  width: auto !important;
 }
 
 .campoDato{
@@ -903,6 +907,16 @@ textarea :-ms-input-placeholder {
   padding: 10px;
   height: 40px;
   width: 290px;
+  margin-bottom: 10px;
+}
+
+.cajaTextoFormulario2 {
+  background-color: transparent !important;
+  border: 0.01rem solid var(--bordes-inputs);
+  color: var(--color-tipografia) !important;
+  border-radius: 16px;
+  padding: 10px;
+  height: 40px;
   margin-bottom: 10px;
 }
 
