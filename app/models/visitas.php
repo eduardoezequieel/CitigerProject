@@ -109,7 +109,7 @@
         //Carga datos para el select cbEstadoVisita
         public function readVisitStatus()
         {
-            $sql='SELECT*FROM estadoVisita';
+            $sql='SELECT * FROM estadovisita';
             $params = null;
             return Database::getRows($sql, $params);
         }
@@ -117,7 +117,7 @@
         //Carga datos para el select cbEstadoVisita
         public function readResident()
         {
-            $sql='SELECT*FROM residente';
+            $sql='SELECT idresidente, CONCAT(nombre,\' \', apellido) AS nombre FROM residente';
             $params = null;
             return Database::getRows($sql, $params);
         }
@@ -125,7 +125,7 @@
         //Lee todos los registros de la tabla
         public function readAll()
         {
-            $sql = 'SELECT idVisita, residente.nombre, fecha, visitarecurrente, observacion estadovisita.estadovisita
+            $sql = 'SELECT idVisita, residente.nombre, fecha, visitarecurrente, observacion, estadovisita.estadovisita
             FROM visita 
             INNER JOIN estadovisita ON visita.idestadovisita = estadovisita.idestadovisita
             INNER JOIN residente ON visita.idresidente = residente.idresidente
@@ -137,7 +137,7 @@
         //Lee todos los registros de la tabla
         public function filterByVisitStatus()
         {
-            $sql = 'SELECT idVisita, residente.nombre, fecha, visitarecurrente, observacion estadovisita.estadovisita
+            $sql = 'SELECT idVisita, residente.nombre, fecha, visitarecurrente, observacion, estadovisita.estadovisita
             FROM visita 
             INNER JOIN estadovisita ON visita.idestadovisita = estadovisita.idestadovisita
             INNER JOIN residente ON visita.idresidente = residente.idresidente
@@ -173,7 +173,7 @@
         }
 
         //Actualizacion de datos
-        public function updateRow($current_image)
+        public function updateRow()
         {
 
             $sql = 'UPDATE visita 

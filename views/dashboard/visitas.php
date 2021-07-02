@@ -22,8 +22,8 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
         <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
             <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" data-toggle="modal" data-target="#administrarVisita" class="btn botonesListado"><span
-                            class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarVisita"
+                        class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
                 </div>
 
                 <form method="post" id="filtrarEstadoVisita-form" class="mx-3">
@@ -97,16 +97,17 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             <br>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
-                <form method="post" id="administrarVisitante-form">
+                <form method="post" id="administrarVisita-form">
                     <input type="number" name="idVisita" id="idVisita" class="d-none">
                     <div class="row">
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                            <label class="tituloCajaTextoFormulario" for="txtResidente">Residente:</label>
+
+                            <label class="tituloCajaTextoFormulario" for="cbResidente">Residente:</label>
                             <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                        deseado en el combobox  -->
-                            <div class="cbCitiger" id="selectVisitante">
-                                <select class="custom-select">
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                            <div class="cbCitiger">
+                                <select class="custom-select" id="cbResidente" name="cbResidente">
                                     <option selected="">Seleccionar...</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -115,22 +116,24 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                             </div>
 
                             <label class="tituloCajaTextoFormulario mt-2" for="txtFecha">Fecha:</label>
-                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" placeholder="">
+                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha"
+                                placeholder="">
 
-                            <label class="tituloCajaTextoFormulario" for="txtVisitaR">¿Visita recurrente?:</label>
+                            <!-- RadioButtonGroup Género -->
+                            <h1 class="tituloCajaTextoFormulario mb-2">Visita Recurrente</h1>
                             <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                        deseado en el combobox  -->
-                            <div class="cbCitiger" id="selectVisitaRecurrente">
-                                <select class="custom-select">
-                                    <option selected="">Seleccionar...</option>
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                            <div class="cbCitiger">
+                                <select class="custom-select" id="cbVisitaR" name="cbVisitaR">
+                                    <option selected="default">Seleccionar...</option>
                                     <option value="Si">Si</option>
                                     <option value="No">No</option>
                                 </select>
                             </div>
                         </div><br>
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                            
+
 
                             <label class="tituloCajaTextoFormulario mt-2" for="txtObservacion">Observación:</label>
                             <textarea id="txtObservacion" name="txtObservacion" rows="3"
@@ -144,10 +147,6 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                                     class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
                             <button id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span
                                     class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center mt-3">
-                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
                             <button id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span
                                     class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
                             <button id="btnActivar" class="btn btnAgregarFormulario mr-2"><span
@@ -156,6 +155,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                                     class="fas fa-car mr-3 tamañoIconosBotones"></span>En Camino</button>
                         </div>
                     </div>
+
                 </form>
 
                 <!-- Fin del Contenido del Modal -->
