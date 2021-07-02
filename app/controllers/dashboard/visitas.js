@@ -101,19 +101,14 @@ function readDataOnModal(id){
                     fillSelect(ENDPOINT_RESIDENTE, 'cbResidente', response.dataset.idresidente);
                     document.getElementById('txtFecha').value = response.dataset.fecha;
                     document.getElementById('txtObservacion').value = response.dataset.observacion;
-                    if (response.dataset.idestadovisita == 1) {
+                    if (response.dataset.idestadovisita == 4) {
                         document.getElementById('btnSuspender').className="btn btnAgregarFormulario mr-2";
                         document.getElementById('btnCamino').className="btn btnAgregarFormulario mr-2";
                         document.getElementById('btnActivar').className="d-none";
-                    }else if(response.dataset.idestadovisita == 3){
+                    }else if(response.dataset.idestadovisita == 5){
                         document.getElementById('btnActivar').className="btn btnAgregarFormulario mr-2";
                         document.getElementById('btnSuspender').className="d-none";
                         document.getElementById('btnCamino').className="d-none";
-                    }else if(response.dataset.idestadovisita == 2){
-                        document.getElementById('btnActivar').className="d-none";
-                        document.getElementById('btnSuspender').className="btn btnAgregarFormulario mr-2";
-                        document.getElementById('btnCamino').className="d-none";
-                    }
 
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -139,11 +134,6 @@ document.getElementById('btnActivar').addEventListener('click',function(event){
     activateRow(API_VISITA, 'administrarVisita-form','administrarVisita');
 })
 
-//En camino
-document.getElementById('btnCamino').addEventListener('click',function(event){
-    event.preventDefault();
-    onthewayRow(API_VISITA, 'administrarVisita-form','administrarVisita');
-})
 
 //eliminar registros de la tabla visita.
 function deleteRow(id){

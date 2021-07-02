@@ -177,20 +177,19 @@
         {
 
             $sql = 'UPDATE visita 
-            SET idresidente = ?, fecha = ?, visitarecurrente = ?, observacion = ?, idestadovisita = ? 
+            SET idresidente = ?, fecha = ?, visitarecurrente = ?, observacion = ?
             WHERE idvisita = ?';
             $params = array($this->idResidente, 
                             $this->fecha, 
                             $this->visitarecurrente,
-                            $this->observacion, 
-                            $this->idEstadoVisita, 
+                            $this->observacion,  
                             $this->idVisita);
             return Database::executeRow($sql, $params);
         }
 
         //Suspender visita
         public function suspend(){
-            $sql = 'UPDATE visita SET idestadovisita = 3
+            $sql = 'UPDATE visita SET idestadovisita = 5
                     WHERE idvisita = ?';
             $params = array($this->idVisita);
             return Database::executeRow($sql, $params);
@@ -198,19 +197,12 @@
 
         //Activar visita
         public function activate(){
-            $sql = 'UPDATE visita SET idestadovisita = 1
+            $sql = 'UPDATE visita SET idestadovisita = 4
                     WHERE idvisita = ?';
             $params = array($this->idVisita);
             return Database::executeRow($sql, $params);
         }
 
-        //Visita en camino
-        public function ontheway(){
-            $sql = 'UPDATE visita SET idestadovisita = 2
-                    WHERE idvisita = ?';
-            $params = array($this->idVisita);
-            return Database::executeRow($sql, $params);
-        }
 
 
         //Eliminar registro de visita

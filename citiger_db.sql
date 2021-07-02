@@ -316,4 +316,4 @@ CREATE TABLE estadoVisita(
 
 ALTER TABLE visita ADD COLUMN idEstadoVisita INTEGER NOT NULL REFERENCES estadovisita(idestadovisita)
 
-INSERT INTO estadovisita(idestadovisita, estadovisita) VALUES (DEFAULT, 'Activa'),(DEFAULT, 'Por llegar'),(DEFAULT, 'Finalizada');
+INSERT INTO estadovisita(idestadovisita, estadovisita) VALUES (DEFAULT, 'Activa'),('Finalizada');

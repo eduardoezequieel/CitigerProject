@@ -128,26 +128,10 @@
                     }
                     break;
 
-                //Caso para poner una visita en camino
-                case 'onthewayRow':
-                    $_POST = $visita->validateForm($_POST);
-                    if ($visita->setIdVisita($_POST['idVisita'])) {
-                        if ($visita->ontheway()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Se ha puesto la visita en camino.';
-                            $visita->registerAction('Activar','El usuario puso una visita en camino.');
-
-                        }else{
-                            $result['exception'] = Database::getException();
-                        }
-                    }else{
-                        $result['exception'] = 'ID incorrecto';
-                    }
-                    break;
                 //Caso para crear registros en la tabla visitas
                 case 'createRow':
                     $_POST = $visita->validateForm($_POST);
-                    $visita->setIdEstadoVisita(1);
+                    $visita->setIdEstadoVisita(4);
                      if(isset($_POST['cbResidente'])){
                         if($visita->setIdResidente($_POST['cbResidente'])){
                             if($visita->setFecha($_POST['txtFecha'])){

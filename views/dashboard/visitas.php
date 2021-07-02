@@ -151,8 +151,6 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                                     class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
                             <button id="btnActivar" class="btn btnAgregarFormulario mr-2"><span
                                     class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
-                            <button id="btnCamino" class="btn btnAgregarFormulario mr-2"><span
-                                    class="fas fa-car mr-3 tamañoIconosBotones"></span>En Camino</button>
                         </div>
                     </div>
 
