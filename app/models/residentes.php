@@ -261,6 +261,8 @@
         //Crear registro de residente
         public function createRow()
         {
+            // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
+            $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
             $sql = 'INSERT INTO residente(idestadoresidente, nombre, apellido, telefonofijo, telefonocelular, foto, 
             correo, fechanacimiento, genero, dui, username, contrasena) 
             VALUES
@@ -276,7 +278,7 @@
                             $this->genero, 
                             $this->dui, 
                             $this->username,
-                            $this->contrasenia);
+                            $hash);
             return Database::executeRow($sql, $params);
         }
 

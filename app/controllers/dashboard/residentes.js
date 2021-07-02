@@ -91,10 +91,6 @@ document.getElementById('administrarResidente-form').addEventListener('submit',f
 
     //Se evalua si el usuario esta haciendo una inserción o una actualización
     if (document.getElementById('btnAgregar').className != 'd-none') {
-        var numRandom1 = Math.floor(Math.random() * ((100+1) - 1) + 1);
-        var numRandom2 = Math.floor(Math.random() * ((100+1) - 1) + 1);
-        var contrasenia = 'newResident-' + numRandom1.toString() + numRandom2.toString();
-        document.getElementById('txtContrasenia').value = contrasenia;
         saveRow(API_RESIDENTE, 'createRow','administrarResidente-form', 'administrarResidente');
     } else {
         saveRow(API_RESIDENTE, 'updateRow','administrarResidente-form', 'administrarResidente');

@@ -270,7 +270,7 @@ class Usuarios extends Validator
     {
         $sql = 'SELECT idUsuario,foto,idEstadoUsuario, username,tipoUsuario, modo FROM usuario 
                 INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = usuario.idTipoUsuario
-                WHERE correo = ?';
+                WHERE correo = ? AND tipoUsuario != \'Caseta\'';
         $params = array($email);
         if ($data = Database::getRow($sql, $params)) {
             $this->idUsuario = $data['idusuario'];
@@ -332,8 +332,8 @@ class Usuarios extends Validator
     public function changePassword()
     {
         $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
-        $sql = 'UPDATE admon SET contraseña = ? WHERE idAdmon = ?';
-        $params = array($hash, $_SESSION['idAdmon']);
+        $sql = 'UPDATE usuario SET contrasena = ? WHERE idusuario = ?';
+        $params = array($hash, $_SESSION['idusuario']);
         return Database::executeRow($sql, $params);
     }
 
@@ -413,20 +413,6 @@ class Usuarios extends Validator
         $sql = 'SELECT*FROM tipoUsuario';
         $params = null;
         return Database::getRows($sql, $params);
-    }
-
-    public function createRow2()
-    {
-        // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
-        $sql = 'INSERT INTO usuario(idEstadoUsuario, idTipoUsuario, nombre, apellido, telefonoFijo, 
-                        telefonoCelular, foto,correo, fechaNacimiento, genero, dui,username, contrasena,direccion,modo)
-                        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,\'light\')';
-        $params = array(
-            $this->idEstadoUsuario, $this->idTipoUsuario, $this->nombre, $this->apellido, $this->telefonoFijo,
-            $this->telefonoCelular, $this->foto, $this->correo, $this->fechaNacimiento, $this->genero,
-            $this->dui, $this->username, $this->contrasenia, $this->direccion
-        );
-        return Database::executeRow($sql, $params);
     }
 
     //Método para verificar datos duplicados de la tabla

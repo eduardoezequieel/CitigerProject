@@ -106,29 +106,50 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'DUI invalido';
                 }
                 break;
+            //Caso para actualizar la foto
             case 'updateFoto':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
                     if ($data = $usuarios->readProfile2()) {
-
-                    if ($usuarios->updateFoto($data['foto'])) {
-                        $result['status'] = 1;
-                        $_SESSION['foto'] = $usuarios->getFoto();
-                        if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
-                            $result['message'] = 'Foto modificada correctamente';
+                        if ($usuarios->updateFoto($data['foto'])) {
+                            $result['status'] = 1;
+                            $_SESSION['foto'] = $usuarios->getFoto();
+                            if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
+                                $result['message'] = 'Foto modificada correctamente';
+                            } else {
+                                $result['exception'] = 'Foto no actualiza';
+                            }
                         } else {
-                            $result['exception'] = 'Foto no actualiza';
+                            $result['exception'] = Database::getException();
                         }
                     } else {
-                        $result['exception'] = Database::getException();
+                        $result['exception'] = $usuarios->getImageError();
+                    }
+                }else{
+                    $result['exception'] = 'Usuario inválido';
+                }
+                break;
+            //Caso para actualizar la contraseña
+            case 'changePassword':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($_POST['txtContrasena'] == $_POST['txtConfirmarContra']) {
+                    if ($usuarios->setContrasenia($_POST['txtContrasena'])) {
+                        if ($usuarios->changePassword()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha actualizado la contraseña correctamente.';
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No se ha actualizado la contraseña correctamente.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'La contraseña no es válida.';
                     }
                 } else {
-                    $result['exception'] = $usuarios->getImageError();
+                    $result['exception'] = 'Las contraseñas no coinciden.';
                 }
-            }else{
-                $result['exception'] = 'Usuario inválido';
-            }
-        
                 break;
                 //Caso de default del switch
             default:
@@ -155,14 +176,19 @@ if (isset($_GET['action'])) {
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->checkUser($_POST['txtCorreo'])) {
                     if ($usuarios->checkEstado()) {
-                        if ($usuarios->checkPassword($_POST['txtContrasenia'])) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Sesión iniciada correctamente.';
+                        if ($usuarios->checkPassword($_POST['txtContrasenia'])) {  
                             $_SESSION['idusuario'] = $usuarios->getId();
                             $_SESSION['usuario'] = $usuarios->getUsername();
                             $_SESSION['foto'] = $usuarios->getFoto();
                             $_SESSION['tipousuario'] = $usuarios->getIdTipoUsuario();
                             $_SESSION['modo'] = $usuarios->getModo();
+                            if ($_POST['txtContrasenia'] != 'newUser') {
+                                $result['status'] = 1;
+                                $result['message'] = 'Sesión iniciada correctamente.';
+                            } else {
+                                $result['error'] = 1;
+                                $result['message'] = 'Contraseña por defecto, para mayor seguridad actualizar la clave.';
+                            }
                         } else {
                             $result['exception'] = 'La contraseña ingresada es incorrecta.';
                         }
@@ -170,7 +196,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'El usuario está inactivo. Contacte con el administrador.';
                     }
                 } else {
-                    $result['exception'] = 'El correo ingresado es incorrecto.';
+                    $result['exception'] = 'El correo ingresado es incorrecto o no tiene los permisos requeridos.';
                 }
                 break;
                 //Caso para registrar el primer usuario del sistema

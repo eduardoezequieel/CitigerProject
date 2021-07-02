@@ -155,10 +155,6 @@ document.getElementById('administrarEmpleado-form').addEventListener('submit',fu
     event.preventDefault();
     //Se evalua si el usuario esta haciendo una inserción o una actualización
     if (document.getElementById('btnAgregar').className != 'd-none') {
-        var numRandom1 = Math.floor(Math.random() * ((100+1) - 1) + 1);
-        var numRandom2 = Math.floor(Math.random() * ((100+1) - 1) + 1);
-        var contrasenia = 'newUser-' + numRandom1.toString() + numRandom2.toString();
-        document.getElementById('txtContrasenia').value = contrasenia;
         saveRow(API_EMPLEADO, 'register','administrarEmpleado-form', 'administrarAdmin');
     } else {
         saveRow(API_EMPLEADO, 'updateRow','administrarEmpleado-form', 'administrarAdmin');

@@ -183,7 +183,7 @@
                     FROM alquiler
                     INNER JOIN estadoalquiler ON estadoalquiler.idestadoalquiler = alquiler.idestadoalquiler
                     INNER JOIN espacio ON espacio.idespacio = alquiler.idespacio
-                    INNER JOIN residente ON residente.idresidente = residente.idresidente
+                    INNER JOIN residente ON residente.idresidente = alquiler.idresidente
                     ORDER BY fecha';
             $params = null;
             return Database::getRows($sql,$params);

@@ -117,7 +117,7 @@ if (isset($_GET['action'])) {
                                                     if($residente->setGenero($_POST['cbGenero'])){
                                                         if($residente->setDui($_POST['txtDUI'])){
                                                             if($residente->setUsername($_POST['txtUser'])){
-                                                               $residente->setContrasenia($_POST['txtContrasenia']); 
+                                                               $residente->setContrasenia('newResident'); 
                                                                if ($residente->createRow()) {
                                                                     $result['status'] = 1;
                                                                     if ($residente->saveFile($_FILES['archivo_residente'], $residente->getRuta(), $residente->getFoto())) {
