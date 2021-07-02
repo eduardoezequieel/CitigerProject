@@ -69,7 +69,6 @@ document.getElementById('administrarVisita-form').addEventListener('submit',func
     //Se evalua si el usuario esta haciendo una inserción o una actualización
     if (document.getElementById('btnAgregar').className != 'd-none') {
         saveRow(API_VISITA, 'createRow','administrarVisita-form', 'administrarVisita');
-        document.getElementById('btnCamino').className="d-none";
     } else {
         saveRow(API_VISITA, 'updateRow','administrarVisita-form', 'administrarVisita');
     }

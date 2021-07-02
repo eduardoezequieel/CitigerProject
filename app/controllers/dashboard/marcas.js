@@ -59,32 +59,17 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('txtNombre').value = '';
 });
 
-//agregar marca
-document.getElementById('btnAgregar').addEventListener('click',function(){
-    document.getElementById('administrarMarcas-form').addEventListener('submit',function(event){
-        event.preventDefault();
-        //Fetch para registrar Marca
-        fetch(API_MARCAS + 'createRow', {
-            method: 'post',
-            body: new FormData(document.getElementById('administrarMarcas-form'))
-        }).then(request => {
-            //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-            if (request.ok) {
-                request.json().then(response => {
-                    //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                    if (response.status) {
-                        readRows(API_MARCAS);
-                        sweetAlert(1, response.message, closeModal('administrarMarcas'));
-                    } else {
-                        sweetAlert(2, response.exception, null);
-                    }
-                })
-            } else {
-                console.log(response.status + ' ' + response.exception);
-            }
-        }).catch(error => console.log(error));
-    
-    });
+//Agregar y actualizar información
+document.getElementById('administrarMarcas-form').addEventListener('submit',function(event){
+    //Se evita que se recargue la pagina
+    event.preventDefault();
+
+    //Se evalua si el usuario esta haciendo una inserción o una actualización
+    if (document.getElementById('btnAgregar').className != 'd-none') {
+        saveRow(API_MARCAS, 'createRow','administrarMarcas-form', 'administrarMarcas');
+    } else {
+        saveRow(API_MARCAS, 'updateRow','administrarMarcas-form', 'administrarMarcas');
+    }
 });
 
 //Carga de datos del registro seleccionado
@@ -123,34 +108,6 @@ function readDataOnModal(id){
     });
 }
 
-//Actualizar registros 
-document.getElementById('btnActualizar').addEventListener('click',function(event){
-
-    document.getElementById('administrarMarcas-form').addEventListener('submit',function(event){
-        event.preventDefault();
-        //Fetch para actualizar Marca
-        fetch(API_MARCAS + 'updateRow', {
-            method: 'post',
-            body: new FormData(document.getElementById('administrarMarcas-form'))
-        }).then(request => {
-            //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-            if (request.ok) {
-                request.json().then(response => {
-                    //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                    if (response.status) {
-                        readRows(API_MARCAS);
-                        sweetAlert(1, response.message, closeModal('administrarMarcas'));
-                    } else {
-                        sweetAlert(2, response.exception, null);
-                    }
-                })
-            } else {
-                console.log(response.status + ' ' + response.exception);
-            }
-        }).catch(error => console.log(error));
-    
-    });
-});
 
 //eliminar registros de la tabla marca.
 function deleteRow(id){

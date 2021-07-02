@@ -55,7 +55,7 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
         <!-- Desde aqui termina la tabla --><br>
         <!-- Modal para Administrar Marcas -->
         <div class="modal fade" id="administrarMarcas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
                 <div class="modal-content justify-content-center px-3 py-2">
                     <!-- Cabecera del Modal -->
                     <div class="modal-header">
@@ -72,7 +72,7 @@ admin_Page::sidebarTemplate('Marcas | Citiger');
                             <input type="number" name="idMarca" id="idMarca" class="d-none">
 
                             <label class="tituloCajaTextoFormulario" for="txtNombre">Nombre de la Marca:</label>
-                            <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre" placeholder="Escriba el nombre de la marca...">
+                            <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="Escriba el nombre de la marca...">
                             <!-- Botones de Acción del Formulario -->
                             <div class="row justify-content-center mt-4">
                                 <div class="col-12 d-flex justify-content-center align-items-center text-center">
