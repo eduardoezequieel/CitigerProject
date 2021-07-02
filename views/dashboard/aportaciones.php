@@ -104,7 +104,7 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                         <input class="d-none" type="number" id="txtId" name="txtId" />
                         <div class="col-12">
                             <label class="tituloCajaTextoFormulario" for="txtNum">Número de Casa:</label>
-                            <input type="text" class="form-control cajaTextoModal" id="txtNum" name="txtNum" placeholder="Escriba el número de casa...">
+                            <input type="text" class="form-control cajaTextoModal" id="txtNum" name="txtNum" placeholder="Escriba el número de casa..." required>
 
                             <label class="tituloCajaTextoFormulario" for="txtUbicacion">Ubicación:</label>
                             <textarea class="form-control cajaTextoModal" id="txtUbicacion" name="txtUbicacion" rows="3" placeholder="Escriba los detallles de la ubicación de la casa..."></textarea>
@@ -147,6 +147,8 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
             <div class="textoModal px-3 pb-4 mt-2">
                 <form method="post" id="casa-form" enctype="multipart/form-data">
                     <input class="d-none" type="number" id="txtIdx" name="txtIdx" />
+                    <input class="d-none" type="number" id="txtIdAportacion" name="txtIdAportacion" />
+
                 </form>
                 <!-- Desde aqui comienza el contenido -->
                 <div class="row justify-content-center mb-3">
@@ -157,19 +159,24 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
 
                 <div class="row justify-content-center mb-3">
                     <div class="col-12 d-flex justify-content-center">
-                        <form class="mx-3">
+                        <form method="post" id="filtrarAportacion-form" class="mx-3">
                             <h1 class="tituloCajaTextoFormulario">Año:</h1>
                             <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                             cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                             deseado en el combobox  -->
                             <div class="cbCitiger">
-                                <select class="custom-select">
+                                <select class="custom-select" id="cbAnio">
                                     <option selected="">Seleccionar...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
                                 </select>
                             </div>
+                            <input class="d-none" type="number" id="txtId2" name="txtId2" />
+                            <input type="number" name="anio" id="anio" class="d-none">
+                            <button class="d-none" id="btnFiltrar" type="submit"></button>
                         </form>
                     </div>
                 </div>
@@ -205,25 +212,7 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <!-- Datos-->
-                                    <td>ABRIL 2021</td>
-                                    <td>$20.99</td>
-                                    <td>3/4/2021</td>
-                                    <td>Pendiente</td>
-                                    <!-- Boton-->
-                                    <th scope="row">
-                                        <div class="row paddingBotones">
-                                            <div class="col-12">
-                                                <a href="#" class="btn btnTabla"><i class="fas fa-check"></i></a>
-                                                <a href="#" class="btn btnTabla2"><i class="fas fa-times"></i></a>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
-
-
+                            <tbody id="tbody-rows2">
                             </tbody>
                         </table>
                     </div>

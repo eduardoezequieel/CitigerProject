@@ -317,3 +317,30 @@ CREATE TABLE estadoVisita(
 ALTER TABLE visita ADD COLUMN idEstadoVisita INTEGER NOT NULL REFERENCES estadovisita(idestadovisita)
 
 INSERT INTO estadovisita(idestadovisita, estadovisita) VALUES (DEFAULT, 'Activa'),('Finalizada');
+
+--Cambios 02/07/2021
+insert into estadoaportacion values(default, 'Pendiente'),(default, 'Cancelada')
+
+--es importante que el id empieze desde 1, sino, reiniciar cuenta
+
+insert into mespago values(default,'Enero',2021),(default,'Febrero',2021),(default,'Marzo',2021),(default,'Abril',2021),(default,'Mayo',2021),
+(default,'Junio',2021),(default,'Julio',2021),(default,'Agosto',2021),(default,'Septiembre',2021),
+(default,'Octubre',2021),(default,'Noviembre',2021),(default,'Diciembre',2021),
+
+(default,'Enero',2022),(default,'Febrero',2022),(default,'Marzo',2022),(default,'Abril',2022),(default,'Mayo',2022),
+(default,'Junio',2022),(default,'Julio',2022),(default,'Agosto',2022),(default,'Septiembre',2022),
+(default,'Octubre',2022),(default,'Noviembre',2022),(default,'Diciembre',2022),
+
+(default,'Enero',2023),(default,'Febrero',2023),(default,'Marzo',2023),(default,'Abril',2023),(default,'Mayo',2023),
+(default,'Junio',2023),(default,'Julio',2023),(default,'Agosto',2023),(default,'Septiembre',2023),
+(default,'Octubre',2023),(default,'Noviembre',2023),(default,'Diciembre',2023),
+
+(default,'Enero',2024),(default,'Febrero',2024),(default,'Marzo',2024),(default,'Abril',2024),(default,'Mayo',2021),
+(default,'Junio',2024),(default,'Julio',2024),(default,'Agosto',2024),(default,'Septiembre',2024),
+(default,'Octubre',2024),(default,'Noviembre',2024),(default,'Diciembre',2024),
+
+(default,'Enero',2025),(default,'Febrero',2025),(default,'Marzo',2025),(default,'Abril',2025),(default,'Mayo',2025),
+(default,'Junio',2025),(default,'Julio',2025),(default,'Agosto',2025),(default,'Septiembre',2025),
+(default,'Octubre',2025),(default,'Noviembre',2025),(default,'Diciembre',2025);
+
+

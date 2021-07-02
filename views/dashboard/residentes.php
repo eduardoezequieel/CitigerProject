@@ -8,9 +8,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
 <!-- Contenedor de la Pagina -->
 <div class="page-content p-3" id="content">
     <div id="cuadroContenido">
-        <button id="sidebarCollapse" type="button" class="btn bg-darken"><i
-                class="fa fa-bars categoriasFuente tamañoIconos"></i><small
-                class="text-uppercase font-weight-bold"></small></button>
+        <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars categoriasFuente tamañoIconos"></i><small class="text-uppercase font-weight-bold"></small></button>
 
         <!-- Desde aqui comienza el contenido -->
         <div class="row justify-content-center mb-3 animate__animated animate__bounceIn">
@@ -22,26 +20,22 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
         <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
             <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarResidente"
-                        class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarResidente" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
                 </div>
 
                 <form class="mx-3 mb-2" method="post" id="search-form">
                     <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
-                    <input type="text" class="form-control buscador" id="search" name="search"
-                        aria-describedby="emailHelp" placeholder="{ Nombre, Apellido, DUI, Teléfono }">
+                    <input type="text" class="form-control buscador" id="search" name="search" aria-describedby="emailHelp" placeholder="{ Nombre, Apellido, DUI, Teléfono }">
                 </form>
 
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span
-                            class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
+                    <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
                 </div>
             </div>
 
         </div><br>
         <!-- Desde aqui comienza la tabla -->
-        <div
-            class="row mt-3 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
+        <div class="row mt-3 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
             <div class="col-12 justify-content-center align-items-center text-center">
                 <table class="table table-borderless citigerTable">
                     <thead>
@@ -63,18 +57,15 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
         </div>
         <!-- Desde aqui termina la tabla --><br>
         <!-- Modal para Administrar Empleados -->
-        <div class="modal fade" id="administrarResidente" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="administrarResidente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content justify-content-center px-3 py-2">
                     <!-- Cabecera del Modal -->
                     <div class="modal-header">
                         <!-- Titulo -->
-                        <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
-                                class="fas fa-info-circle mr-4 iconoModal"></span>Residentes</h5>
+                        <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Residentes</h5>
                         <!-- Boton para Cerrar -->
-                        <button type="button" class="close closeModalButton lead" data-dismiss="modal"
-                            aria-label="Close">
+                        <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -83,19 +74,15 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                         <form method="post" id="administrarResidente-form">
                             <input type="number" name="idResidente" id="idResidente" class="d-none">
                             <input class="d-none" type="text" id="txtContrasenia" name="txtContrasenia" />
-                            <div class="row justify-content-center">
+                            <div class="row justify-content-center animate__animated animate__bounceIn" >
                                 <!-- Primera columna de controles -->
                                 <div class="d-flex justify-content-center col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                                     <div class="form-group" id="ResidentesColumna1">
                                         <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
-                                        <input onchange="checkInputLetras('txtNombre')" type="text"
-                                            class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
-                                            placeholder="Escriba sus nombres..." Required>
+                                        <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre" placeholder="Escriba sus nombres..." Required>
 
                                         <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
-                                        <input type="text" onchange="checkInputLetras('txtApellido')"
-                                            class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido"
-                                            placeholder="Escriba sus apellidos..." Required>
+                                        <input type="text" onchange="checkInputLetras('txtApellido')" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido" placeholder="Escriba sus apellidos..." Required>
 
                                         <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
                                         <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
@@ -109,30 +96,25 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                             </select>
                                         </div>
 
-                                        <div class="row mt-2">
+                                        <div class="row mt-2 ">
                                             <div class="form-group m-0 p-0 d-flex">
                                                 <div class="col-6 ">
                                                     <label class="tituloCajaTextoFormulario" for="txtTelefonofijo">Teléfono
                                                         Fijo:</label>
-                                                    <input type="text" class="form-control cajaTextoFormularioTelefono"
-                                                        id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000" Required>
+                                                    <input type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000" Required>
 
                                                 </div>
                                                 <div class="col-6 ">
                                                     <label class="tituloCajaTextoFormulario" for="txtTelefonomovil">Teléfono
                                                         Movil:</label>
-                                                    <input type="text" class="form-control cajaTextoFormularioTelefono"
-                                                        id="txtTelefonomovil" name="txtTelefonomovil"
-                                                        placeholder="0000-0000" Required>
+                                                    <input type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="0000-0000" Required>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo
                                             Electrónico:</label>
-                                        <input type="text" onchange="checkCorreo('txtCorreo')"
-                                            class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo"
-                                            placeholder="ejemplo@mail.com" Required>
+                                        <input type="text" onchange="checkCorreo('txtCorreo')" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo" placeholder="ejemplo@mail.com" Required>
                                     </div>
                                 </div>
 
@@ -147,28 +129,21 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                                 </div>
                                             </div>
                                             <div id="btnAgregarFoto">
-                                                <button type="submit" class="btn btnCargarFoto2 mx-2"
-                                                    id="botonFoto"><span class="fas fa-plus"></span></button>
+                                                <button type="submit" class="btn btnCargarFoto2 mx-2" id="botonFoto"><span class="fas fa-plus"></span></button>
                                             </div>
-                                            <input id="archivo_residente" type="file" class="d-none"
-                                                name="archivo_residente" accept=".gif, .jpg, .png">
+                                            <input id="archivo_residente" type="file" class="d-none" name="archivo_residente" accept=".gif, .jpg, .png">
                                         </div>
 
                                         <label class="tituloCajaTextoFormulario mt-2" for="txtFechaNacimiento">Fecha de
                                             Nacimiento:</label>
-                                        <input type="date" class="form-control cajaTextoFormulario"
-                                            id="txtFechaNacimiento" name="txtFechaNacimiento" value="2000-01-01">
+                                        <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento" value="2000-01-01">
 
                                         <label class="tituloCajaTextoFormulario" for="txtUser">Nombre de Usuario:</label>
-                                        <input type="text" onchange="checkInputLetras('txtUser')"
-                                            class="form-control cajaTextoFormulario" id="txtUser" name="txtUser"
-                                            placeholder="Escriba su nombre de usuario..." Required>
+                                        <input type="text" onchange="checkInputLetras('txtUser')" class="form-control cajaTextoFormulario" id="txtUser" name="txtUser" placeholder="Escriba su nombre de usuario..." Required>
 
                                         <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                        <input type="text" onchange="checkDui('txtDUI')"
-                                            class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI"
-                                            placeholder="12345678-9" Required>
-                                        
+                                        <input type="text" onchange="checkDui('txtDUI')" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9" Required>
+
 
                                     </div>
                                 </div>
@@ -176,14 +151,10 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                             <!-- Botones de Acción del Formulario -->
                             <div class="row justify-content-center">
                                 <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                                    <button id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span
-                                            class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
-                                    <button id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span
-                                            class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
-                                    <button id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span
-                                            class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
-                                    <button id="btnActivar" class="btn btnAgregarFormulario mr-2"><span
-                                            class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
+                                    <button id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                                    <button id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
+                                    <button id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
+                                    <button id="btnActivar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
 
                                 </div>
                             </div>
@@ -220,21 +191,22 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
             <div class="textoModal px-3 pb-4 mt-2">
                 <div class="row">
                     <div class="col-12">
-                        <h1 class="tituloDato text-center">Casa del Residente:</h1>
-                        <h1 class="campoDato text-center">Sin asignar</h1>
+                        <form method="post" id="casa-form" enctype="multipart/form-data">
+                            <input class="d-none" type="number" id="txtIdx" name="txtIdx" />
+                            <input class="d-none" type="number" id="txtIdCasa" name="txtIdCasa" />
+                            <input class="d-none" type="number" id="txtCasa" name="txtCasa" />
+                            <h1 class="tituloDato text-center">Casa del Residente:</h1>
+                            <form>
+                                <h1 class="campoDato text-center" id="casa">Sin asignar</h1>
+                            </form>
                     </div>
                 </div>
                 <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
                     <div class="col-xl-12 d-flex flex-column justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
-                        <form class="mx-3 mb-2" method="post" id="search-form">
-                            <h1 class="tituloCajaTextoFormulario">Número de Casa:</h1>
-                            <input type="number" class="form-control buscador" id="search" name="search"
-                                aria-describedby="emailHelp" placeholder="{ Número }" Required>
-                        </form>
-                        <form class="mx-3 mb-2" method="post" id="search-form">
-                            <h1 class="tituloCajaTextoFormulario">Dirección:</h1>
-                            <input type="text" class="form-control buscador" id="search" name="search"
-                                aria-describedby="emailHelp" placeholder="{ Dirección }" Required>
+                        <form class="mx-3 mb-2" method="post" id="search-form2">
+                            <h1 class="tituloCajaTextoFormulario">Buscar:</h1>
+                            <input type="text" class="form-control buscador" id="search2" name="search2" aria-describedby="emailHelp" placeholder="{ Dirección, Número }">
+
                         </form>
                     </div>
 
@@ -251,23 +223,14 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody id="tbody-rows">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Tu mama</td>
-                                    <!-- Boton-->
-                                    <th scope="row">
-                                        <div class="row paddingBotones">
-                                            <div class="col-12">
-                                                <a href="#" class="btn btnTabla mx-2"><i class="fas fa-plus"></i></a>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
+                            <tbody id="tbody-rows2">
+
                             </tbody>
                         </table>
                     </div>
                 </div>
+                </form>
+
                 <!-- Desde aqui termina la tabla --><br>
             </div>
         </div>

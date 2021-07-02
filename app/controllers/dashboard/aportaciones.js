@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se declara e inicializa una variable para guardar el mes en formato de 2 dígitos.
     var month = ('0' + (today.getMonth() + 1)).slice(-2);
     // Se declara e inicializa una variable para guardar el año con la mayoría de edad.
-    let year = today.getFullYear() ;
+    let year = today.getFullYear();
     // Se declara e inicializa una variable para establecer el formato de la fecha.
     let date = `${year}-${month}-${day}`;
     document.getElementById('lblFecha').textContent = date;
@@ -42,6 +42,7 @@ document.getElementById('adminCasa-form').addEventListener('submit', function (e
     //Se evalua si el usuario esta haciendo una inserción o una actualización
     if (document.getElementById('btnAgregar').className != 'd-none') {
         saveRow(API_CASAS, 'createRow', 'adminCasa-form', 'administrarCasa');
+
     } else {
         saveRow(API_CASAS, 'updateRow', 'adminCasa-form', 'administrarCasa');
     }
@@ -127,6 +128,8 @@ function readDataOnModal(id) {
     }).catch(function (error) {
         console.log(error);
     });
+
+
 }
 
 
@@ -215,14 +218,16 @@ document.getElementById('btnReiniciar').addEventListener('click', function () {
 });
 
 
+//funcion para cargar las credenciales de la casa
 function readAportacion(id) {
 
-
+   
+    document.getElementById('txtIdAportacion').value = ' ';
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('txtIdx', id);
     console.log(id);
-  
+
 
     fetch(API_CASAS + 'readAportacion', {
         method: 'post',
@@ -236,6 +241,8 @@ function readAportacion(id) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('txtIdx').value = response.dataset.idcasa;
                     document.getElementById('casa').textContent = (response.dataset.casa);
+                    document.getElementById('txtId2').value = response.dataset.idcasa;
+
 
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -248,6 +255,99 @@ function readAportacion(id) {
         console.log(error);
     });
 
+    document.getElementById('txtIdx').value = id;
+    readRows2(API_CASAS, 'casa-form');
 
 }
 
+//funcion para llenar la tabla dependiendo del id de la casa
+function fillTableParam(dataset) {
+    let content = '';
+    dataset.map(function (row) {
+        content += `
+        <tr>
+        <td>${row.mespago}</td>
+        <td>${row.monto}</td>
+        <td>${row.fechapago}</td>
+        <td>${row.estadoaportacion}</td>
+        <!-- Boton-->
+        <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" onclick="aceptarAportacion(${row.idaportacion})" class="btn btnTabla"><i class="fas fa-check"></i></a>
+                    <a href="#" onclick="aportacionPendiente(${row.idaportacion})" class="btn btnTabla2"><i class="fas fa-times"></i></a>
+                </div>
+            </div>
+        </th>
+    </tr>
+        `;
+    });
+    document.getElementById('tbody-rows2').innerHTML = content;
+
+}
+
+// Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
+function DeleteTable() {
+    let content = '';
+    content += `
+            <tr>
+
+            </tr>
+        `;
+    document.getElementById('tbody-rows2').innerHTML = content;
+
+}
+
+//funcion para cancelar aportacion
+function aceptarAportacion(id) {
+    document.getElementById('txtIdAportacion').value = id;
+    saveRow(API_CASAS, 'cancelarAportacion', 'casa-form', 'administrarPago');
+
+}
+
+//funcion para anular cancelacion de aportacion
+function aportacionPendiente(id) {
+    document.getElementById('txtIdAportacion').value = id;
+    saveRow(API_CASAS, 'AportacionPendiente', 'casa-form', 'administrarPago');
+
+}
+
+
+/*Cada vez que cambie el valor del select, se enviara a un input invisible y de igual forma se 
+presionara un boton invisible para poder activar el evento submit del form filtrarTipoEmpleado-form*/
+document.getElementById('cbAnio').addEventListener('change', function () {
+    //Guardando el valor del select en un input
+    document.getElementById('anio').value = document.getElementById('cbAnio').value;
+    //Presionando el boton invisible
+    document.getElementById('btnFiltrar').click();
+})
+
+//Una vez presionado el boton invisible, se hace un fetch con la información del form.
+document.getElementById('filtrarAportacion-form').addEventListener('submit', function (event) {
+    //Se evita recargar la pagina
+    event.preventDefault();
+
+    fetch(API_CASAS + 'filtrarAportacion', {
+        method: 'post',
+        body: new FormData(document.getElementById('filtrarAportacion-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                    //sweetAlert(1, response.message, null);
+                } else {
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillTableParam(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});

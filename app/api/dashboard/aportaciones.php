@@ -54,11 +54,11 @@ if (isset($_GET['action'])) {
                         if (Database::getException()) {
                             $result['exception'] = Database::getException();
                         } else {
-                            $result['exception'] = 'Marca inexistente';
+                            $result['exception'] = 'Aportacion inexistente';
                         }
                     }
                 } else {
-                    $result['exception'] = 'Marca seleccionada incorrecta';
+                    $result['exception'] = 'Casa incorrecta';
                 }
                 break;
 
@@ -69,7 +69,7 @@ if (isset($_GET['action'])) {
                         if ($aportaciones->createRow()) {
                             $result['status'] = 1;
                             $result['message'] = 'Casa registrada correctamente.';
-                            $aportaciones->registerAction('Registrar', 'El usuario registró un registro en la tabla de casas.');
+                            $aportaciones->registerAction('Registrar', 'El usuario agregó  un registro en la tabla de casas.');
                         } else {
                             $result['error'] = 1;
                             $result['exception'] = Database::getException();
@@ -212,6 +212,71 @@ if (isset($_GET['action'])) {
                     }
                 } else {
                     $result['exception'] = 'Error id select';
+                }
+                break;
+
+            case 'readAllParam': // METODO BUSQUEDA FILTRADA
+                $_POST = $aportaciones->validateForm($_POST);
+                if ($result['dataset'] = $aportaciones->readAllParam($_POST['txtIdx'])) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $_POST = $aportaciones->validateForm($_POST);
+                        if ($aportaciones->setIdCasa($_POST['txtIdx'])) {
+                            if ($aportaciones->crearAportacion()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Se han agregado las aportaciones';
+                            } else {
+                                $result['error'] = 1;
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'Id inválido.';
+                        }
+                    }
+                }
+                break;
+
+            case 'cancelarAportacion':
+                $_POST = $aportaciones->validateForm($_POST);
+                if ($aportaciones->setIdAportacion($_POST['txtIdAportacion'])) {
+                    if ($aportaciones->cancelarAportacion()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Se ha cancelado la aportación.';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } else {
+                    $result['exception'] = 'ID incorrecto';
+                }
+                break;
+
+            case 'AportacionPendiente':
+                $_POST = $aportaciones->validateForm($_POST);
+                if ($aportaciones->setIdAportacion($_POST['txtIdAportacion'])) {
+                    if ($aportaciones->aportacionPendiente()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'La aportación se ha establecido como pendiente';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } else {
+                    $result['exception'] = 'ID incorrecto';
+                }
+                break;
+
+            case 'filtrarAportacion': // METODO BUSQUEDA FILTRADA
+                $_POST = $aportaciones->validateForm($_POST);
+                if ($result['dataset'] = $aportaciones->filtrarAportacion($_POST['txtId2'],$_POST['anio'])) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+
+                    }
                 }
                 break;
         }

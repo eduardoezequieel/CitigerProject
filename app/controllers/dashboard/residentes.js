@@ -1,7 +1,7 @@
 //Constante para la direccion de la API
 const API_RESIDENTE = '../../app/api/dashboard/residentes.php?action=';
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
     // Se declara e inicializa un objeto para obtener la fecha y hora actual.
     let today = new Date();
     // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
@@ -16,10 +16,11 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('txtFechaNacimiento').setAttribute('max', date);
     document.getElementById('txtFechaNacimiento').setAttribute('value', date);
     readRows(API_RESIDENTE);
+
 })
 
 //Llenado de tabla
-function fillTable(dataset){
+function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
@@ -44,7 +45,7 @@ function fillTable(dataset){
                 <th scope="row">
                     <div class="row paddingBotones">
                         <div class="col-12">
-                            <a href="#" data-toggle="modal" data-target="#casaResidente" class="btn btnTabla3 mx-2"><i class="fas fa-home"></i></a>
+                            <a href="#" onclick="AsignarCasa(${row.idresidente})" data-toggle="modal" data-target="#casaResidente" class="btn btnTabla3 mx-2"><i class="fas fa-home"></i></a>
 
                             <a href="#" onclick="readDataOnModal(${row.idresidente}) "data-toggle="modal" data-target="#administrarResidente" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
 
@@ -53,12 +54,13 @@ function fillTable(dataset){
                     </div>
                 </th>
             </tr>
-        `; 
+        `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
 }
-document.getElementById('btnReiniciar').addEventListener('click',function(){
+
+document.getElementById('btnReiniciar').addEventListener('click', function () {
     readRows(API_RESIDENTE);
 });
 
@@ -66,11 +68,11 @@ document.getElementById('btnReiniciar').addEventListener('click',function(){
 
 
 //ocultar los demas botones de acción en el formulario al presionar Agregar.
-document.getElementById('btnInsertDialog').addEventListener('click',function(){
-    document.getElementById('btnAgregar').className="btn btnAgregarFormulario mr-2";
-    document.getElementById('btnActualizar').className="d-none";
-    document.getElementById('btnSuspender').className="d-none";
-    document.getElementById('btnActivar').className="d-none";
+document.getElementById('btnInsertDialog').addEventListener('click', function () {
+    document.getElementById('btnAgregar').className = "btn btnAgregarFormulario mr-2";
+    document.getElementById('btnActualizar').className = "d-none";
+    document.getElementById('btnSuspender').className = "d-none";
+    document.getElementById('btnActivar').className = "d-none";
 
     // Se reinician los campos del formulario
     document.getElementById('idResidente').value = '';
@@ -79,21 +81,21 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('txtDUI').value = '';
     document.getElementById('txtTelefonofijo').value = '';
     document.getElementById('txtTelefonomovil').value = '';
-    document.getElementById('txtCorreo').value = '';    
+    document.getElementById('txtCorreo').value = '';
     document.getElementById('txtUser').value = '';
     previewSavePicture('divFoto', 'default.png', 1);
 });
 
 //Agregar y actualizar información
-document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
+document.getElementById('administrarResidente-form').addEventListener('submit', function (event) {
     //Se evita que se recargue la pagina
     event.preventDefault();
 
     //Se evalua si el usuario esta haciendo una inserción o una actualización
     if (document.getElementById('btnAgregar').className != 'd-none') {
-        saveRow(API_RESIDENTE, 'createRow','administrarResidente-form', 'administrarResidente');
+        saveRow(API_RESIDENTE, 'createRow', 'administrarResidente-form', 'administrarResidente');
     } else {
-        saveRow(API_RESIDENTE, 'updateRow','administrarResidente-form', 'administrarResidente');
+        saveRow(API_RESIDENTE, 'updateRow', 'administrarResidente-form', 'administrarResidente');
     }
 });
 
@@ -128,15 +130,15 @@ document.getElementById('btnAgregar').addEventListener('click',function(){
 */
 
 //Carga de datos del registro seleccionado
-function readDataOnModal(id){
+function readDataOnModal(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idResidente', id);
     console.log(id);
 
     //Se ocultan los botones del formulario.
-    document.getElementById('btnAgregar').className="d-none";
-    document.getElementById('btnActualizar').className="btn btnAgregarFormulario mr-2";
+    document.getElementById('btnAgregar').className = "d-none";
+    document.getElementById('btnActualizar').className = "btn btnAgregarFormulario mr-2";
 
     fetch(API_RESIDENTE + 'readOne', {
         method: 'post',
@@ -158,13 +160,13 @@ function readDataOnModal(id){
                     document.getElementById('cbGenero').value = response.dataset.genero;
                     document.getElementById('txtFechaNacimiento').value = response.dataset.fechanacimiento;
                     document.getElementById('txtUser').value = response.dataset.username;
-                    previewSavePicture('divFoto', response.dataset.foto,3);
+                    previewSavePicture('divFoto', response.dataset.foto, 3);
                     if (response.dataset.idestadoresidente == 1) {
-                        document.getElementById('btnSuspender').className="btn btnAgregarFormulario mr-2";
-                        document.getElementById('btnActivar').className="d-none";
-                    }else if(response.dataset.idestadoresidente == 2){
-                        document.getElementById('btnActivar').className="btn btnAgregarFormulario mr-2";
-                        document.getElementById('btnSuspender').className="d-none";
+                        document.getElementById('btnSuspender').className = "btn btnAgregarFormulario mr-2";
+                        document.getElementById('btnActivar').className = "d-none";
+                    } else if (response.dataset.idestadoresidente == 2) {
+                        document.getElementById('btnActivar').className = "btn btnAgregarFormulario mr-2";
+                        document.getElementById('btnSuspender').className = "d-none";
                     }
 
                 } else {
@@ -180,9 +182,9 @@ function readDataOnModal(id){
 }
 
 //Actualizar registros 
-document.getElementById('btnActualizar').addEventListener('click',function(event){
+document.getElementById('btnActualizar').addEventListener('click', function (event) {
 
-    document.getElementById('administrarResidente-form').addEventListener('submit',function(event){
+    document.getElementById('administrarResidente-form').addEventListener('submit', function (event) {
         event.preventDefault();
         //Fetch para actualizar residente
         fetch(API_RESIDENTE + 'updateRow', {
@@ -204,26 +206,26 @@ document.getElementById('btnActualizar').addEventListener('click',function(event
                 console.log(response.status + ' ' + response.exception);
             }
         }).catch(error => console.log(error));
-    
+
     });
 });
 
 
 //Suspender registros
-document.getElementById('btnSuspender').addEventListener('click',function(event){
+document.getElementById('btnSuspender').addEventListener('click', function (event) {
     event.preventDefault();
-    suspendRow(API_RESIDENTE, 'administrarResidente-form','administrarResidente');
+    suspendRow(API_RESIDENTE, 'administrarResidente-form', 'administrarResidente');
 })
 
 //Activar registros
-document.getElementById('btnActivar').addEventListener('click',function(event){
+document.getElementById('btnActivar').addEventListener('click', function (event) {
     event.preventDefault();
-    activateRow(API_RESIDENTE, 'administrarResidente-form','administrarResidente');
+    activateRow(API_RESIDENTE, 'administrarResidente-form', 'administrarResidente');
 
 
 })
 //eliminar registros de la tabla residente.
-function deleteRow(id){
+function deleteRow(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idResidente', id);
@@ -237,7 +239,7 @@ function deleteRow(id){
 
 /*En el evento submit del formulario llamamos una funcion que ya tiene especificado un fetch para
 las busquedas.*/
-document.getElementById('search-form').addEventListener('submit',function(event){
+document.getElementById('search-form').addEventListener('submit', function (event) {
     //Evitamos recargar la pagina
     event.preventDefault();
 
@@ -252,44 +254,189 @@ document.getElementById('search-form').addEventListener('submit',function(event)
 botonExaminar('btnAgregarFoto', 'archivo_residente');
 
 //Metodo para crear una previsualizacion del archivo a cargar en la base de datos
-previewPicture('archivo_residente','divFoto');
+previewPicture('archivo_residente', 'divFoto');
 
-function botonExaminar(idBoton, idInputExaminar){
-    document.getElementById(idBoton).addEventListener('click', function(event){
+function botonExaminar(idBoton, idInputExaminar) {
+    document.getElementById(idBoton).addEventListener('click', function (event) {
         //Se evita recargar la pagina
         event.preventDefault();
-    
+
         //Se hace click al input invisible
         document.getElementById(idInputExaminar).click();
     });
 }
 
-function previewPicture(idInputExaminar, idDivFoto){
-    document.getElementById(idInputExaminar).onchange=function(e){
+function previewPicture(idInputExaminar, idDivFoto) {
+    document.getElementById(idInputExaminar).onchange = function (e) {
 
         //variable creada para obtener la URL del archivo a cargar
         let reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
-    
+
         //Se ejecuta al obtener una URL
-        reader.onload=function(){
+        reader.onload = function () {
             //Parte de la pagina web en donde se incrustara la imagen
-            let preview=document.getElementById(idDivFoto);
-    
+            let preview = document.getElementById(idDivFoto);
+
             //Se crea el elemento IMG que contendra la preview
             image = document.createElement('img');
-    
+
             //Se le asigna la ruta al elemento creado
             image.src = reader.result;
-    
+
             //Se aplican las respectivas clases para que la preview aparezca estilizada
             image.className = 'fit-images rounded-circle fotoPrimerUso';
-    
+
             //Se quita lo que este dentro del div (en caso de que exista otra imagen)
             preview.innerHTML = ' ';
-    
+
             //Se agrega el elemento recien creado
             preview.append(image);
         }
     }
+}
+
+
+function AsignarCasa(id) {
+
+
+    document.getElementById('txtIdCasa').value = '';
+    document.getElementById('casa').textContent = 'Sin asignar';
+
+
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('txtIdx', id);
+    console.log(id);
+
+
+    fetch(API_RESIDENTE + 'readCasa', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    document.getElementById('txtIdx').value = response.dataset.idresidente;
+                    document.getElementById('txtIdCasa').value = response.dataset.idcasa;
+                    document.getElementById('casa').textContent = (response.dataset.casa);
+
+                } else {
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+
+    document.getElementById('txtIdx').value = id;
+    readRows3(API_RESIDENTE);
+
+
+}
+
+function readRows3(API_RESIDENTE) {
+    fetch(API_RESIDENTE + 'readCasas', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillTable2(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Llenado de tabla
+function fillTable2(dataset) {
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+        <td># ${row.numerocasa}</td>
+        <td>${row.direccion}</td>
+        <!-- Boton-->
+        <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" id="btnResidenteCasa" onclick="ResidenteCasa(${row.idcasa})" class="btn btnTabla mx-2"><i class="fas fa-plus"></i></a>
+                </div>
+            </div>
+        </th>
+    </tr>
+        `;
+    });
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('tbody-rows2').innerHTML = content;
+}
+
+function searchRows2(API_RESIDENTE, form) {
+    fetch(API_RESIDENTE + 'searchCasa', {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                    fillTable2(response.dataset);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log("error");
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+
+document.getElementById('search-form2').addEventListener('submit', function (event) {
+    //Evitamos recargar la pagina
+    event.preventDefault();
+
+    //Llamamos la funcion
+    searchRows2(API_RESIDENTE, 'search-form2');
+})
+
+
+function ResidenteCasa(id) {
+
+    document.getElementById('txtCasa').value = id;
+    if (document.getElementById('txtIdCasa').value) {
+        saveRow(API_RESIDENTE, 'updateResidenteCasa', 'casa-form', 'casaResidente');
+
+    } else {
+        saveRow(API_RESIDENTE, 'createResidenteCasa', 'casa-form', 'casaResidente');
+
+    }
+
+
+
+
 }

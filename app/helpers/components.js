@@ -953,3 +953,25 @@ function clearPassword(clave) {
     contra.classList.remove("error");
     contra.classList.remove("success");
 }
+
+function readRows2(api, form) {
+    fetch(api + 'readAllParam', {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        if (request.ok) {
+            request.json().then(function (response) {
+                if (response.status) {
+                    fillTableParam(response.dataset);
+                } else {
+                    DeleteTable();
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
