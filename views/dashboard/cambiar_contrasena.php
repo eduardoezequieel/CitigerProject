@@ -50,12 +50,14 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="txtContrasena" class="tituloCajaTextoFormulario">Nueva Contraseña:</label>
-                            <input type="password" name="txtContrasena" id="txtContrasena" class="form-control cajaTextoFormulario widthRegister">
+                            <input type="password" name="txtContrasena" id="txtContrasena" class="form-control cajaTextoFormulario widthRegister" 
+                            onchange="checkInput()" Required>
                         </div>
                     
                         <div class="form-group">
                             <label for="txtContrasena" class="tituloCajaTextoFormulario">Confirmar Contraseña:</label>
-                            <input type="password" name="txtConfirmarContra" id="txtConfirmarContra" class="form-control cajaTextoFormulario widthRegister">
+                            <input type="password" name="txtConfirmarContra" id="txtConfirmarContra" class="form-control cajaTextoFormulario widthRegister"  
+                            onchange="checkInput()" Required>
                         </div>
                     </div>
                 </div>

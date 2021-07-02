@@ -36,7 +36,7 @@
                 <div class="vertical-nav colorCitiger" id="sidebar">
                     <div class="py-3 px-3 colorCitiger">
                     <div class="media d-flex">
-                        <a href="index.php" class="btn btnInicio"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
+                        <a href="dashboard.php" class="btn btnInicio"><img id="imgDashboard" src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
                     </div>
                     </div>
                     
@@ -50,6 +50,7 @@
                             <div class="col-9">
                                 <label for="ajustes" class="pl-4 pt-2" id="usuario">Eduardo Rivera</label>
                                 <label for="ajustes" class="pl-4" id="tipoUsuario">Residente</label>
+                                <input type="text" id="txtModo" class="d-none" value="light">
                             </div>
                             </div>
                             <div class="row mt-2">
@@ -73,13 +74,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="listado_aportaciones.php" class="nav-link categoriasFuente">
-                        <i class="fas fa-coins mr-3 tamañoIconos"></i>
-                        Aportaciones
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="agregar_denuncia.php" class="nav-link categoriasFuente">
+                        <a href="denuncias.php" class="nav-link categoriasFuente">
                         <i class="fas fa-exclamation-triangle mr-3 tamañoIconos"></i>
                         Denuncias
                         </a>
@@ -101,6 +96,7 @@
                     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
                     <script src="../../app/controllers/js/main.js"></script>
+                    <script src="../../app/helpers/components.js"></script>
                     <script src="https://kit.fontawesome.com/08b7535157.js" crossorigin="anonymous"></script>
                 </body>
                 </html> 

@@ -117,13 +117,15 @@ if (isset($_GET['action'])) {
                                                     if($residente->setGenero($_POST['cbGenero'])){
                                                         if($residente->setDui($_POST['txtDUI'])){
                                                             if($residente->setUsername($_POST['txtUser'])){
-                                                               $residente->setContrasenia('citiger1234'); 
+                                                               $residente->setContrasenia('newResident'); 
                                                                if ($residente->createRow()) {
                                                                     $result['status'] = 1;
                                                                     if ($residente->saveFile($_FILES['archivo_residente'], $residente->getRuta(), $residente->getFoto())) {
-                                                                        $result['message'] = 'Residente registrado correctamente';
+                                                                        $result['message'] = 'Residente registrado correctamente, la contraseña por defecto es: ' 
+                                                                                            .$residente->getContrasenia();
                                                                     } else {
-                                                                        $result['message'] = 'Residente registrado pero no se guardó la imagen';
+                                                                        $result['message'] = 'Residente registrado pero no se guardó la imagen, la contraseña por defecto es: '
+                                                                                            .$residente->getContrasenia();;
                                                                     }
                                                             } else {
                                                                 $result['exception'] = Database::getException();

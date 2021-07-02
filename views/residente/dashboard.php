@@ -103,30 +103,27 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                             <!-- Columnas-->
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col">Casa</th>
+                                <th scope="col">Concepto</th>
+                                <th scope="col">Monto</th>
+                                <th scope="col">Fecha Limite</th>
                                 <th scope="col">Estado</th>
-                                <th scope="col">Dueño</th>
-                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="animate__animated animate__fadeIn">
                                 <!-- Datos-->
-                                <td>#69 ETAPA 3 BLOCK 6</td>
-                                <td>Disponible</td>
-                                <td>Eduardo Rivera</td>
-                                <!-- Boton-->
                                 <th scope="row">
-                                    <div class="row paddingBotones">
-                                        <div class="col-12">
-                                            <a href="#" data-toggle="modal" data-target="#administrarCasa" class="btn btnTabla"><i class="fas fa-edit"></i></a>
-                                            
+                                    <div class="row paddingTh">
+                                        <div class="col-12 mt-1">
+                                            <i class="fas fa-home lead"></i>
                                         </div>
                                     </div>
                                 </th>
+                                <td>Enero 2021</td>
+                                <td>$20.00</td>
+                                <td>1/7/2021</td>
+                                <td>Pendiente</td>
                             </tr>
-                            
-                            
                         </tbody>
                     </table>
                 </div>

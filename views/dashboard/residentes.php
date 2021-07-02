@@ -82,6 +82,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                     <div class="textoModal px-3 pb-4 mt-2">
                         <form method="post" id="administrarResidente-form">
                             <input type="number" name="idResidente" id="idResidente" class="d-none">
+                            <input class="d-none" type="text" id="txtContrasenia" name="txtContrasenia" />
                             <div class="row justify-content-center">
                                 <!-- Primera columna de controles -->
                                 <div class="d-flex justify-content-center col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
@@ -89,12 +90,12 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                         <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
                                         <input onchange="checkInputLetras('txtNombre')" type="text"
                                             class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
-                                            placeholder="Escriba sus nombres...">
+                                            placeholder="Escriba sus nombres..." Required>
 
                                         <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
                                         <input type="text" onchange="checkInputLetras('txtApellido')"
                                             class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido"
-                                            placeholder="Escriba sus apellidos...">
+                                            placeholder="Escriba sus apellidos..." Required>
 
                                         <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
                                         <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
@@ -114,7 +115,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                                     <label class="tituloCajaTextoFormulario" for="txtTelefonofijo">Teléfono
                                                         Fijo:</label>
                                                     <input type="text" class="form-control cajaTextoFormularioTelefono"
-                                                        id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000">
+                                                        id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000" Required>
 
                                                 </div>
                                                 <div class="col-6 ">
@@ -122,7 +123,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                                         Movil:</label>
                                                     <input type="text" class="form-control cajaTextoFormularioTelefono"
                                                         id="txtTelefonomovil" name="txtTelefonomovil"
-                                                        placeholder="0000-0000">
+                                                        placeholder="0000-0000" Required>
                                                 </div>
                                             </div>
                                         </div>
@@ -131,7 +132,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                             Electrónico:</label>
                                         <input type="text" onchange="checkCorreo('txtCorreo')"
                                             class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo"
-                                            placeholder="ejemplo@mail.com">
+                                            placeholder="ejemplo@mail.com" Required>
                                     </div>
                                 </div>
 
@@ -161,12 +162,12 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                         <label class="tituloCajaTextoFormulario" for="txtUser">Nombre de Usuario:</label>
                                         <input type="text" onchange="checkInputLetras('txtUser')"
                                             class="form-control cajaTextoFormulario" id="txtUser" name="txtUser"
-                                            placeholder="Escriba su nombre de usuario...">
+                                            placeholder="Escriba su nombre de usuario..." Required>
 
                                         <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
                                         <input type="text" onchange="checkDui('txtDUI')"
                                             class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI"
-                                            placeholder="12345678-9">
+                                            placeholder="12345678-9" Required>
                                         
 
                                     </div>
@@ -228,12 +229,12 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                         <form class="mx-3 mb-2" method="post" id="search-form">
                             <h1 class="tituloCajaTextoFormulario">Número de Casa:</h1>
                             <input type="number" class="form-control buscador" id="search" name="search"
-                                aria-describedby="emailHelp" placeholder="{ Número }">
+                                aria-describedby="emailHelp" placeholder="{ Número }" Required>
                         </form>
                         <form class="mx-3 mb-2" method="post" id="search-form">
                             <h1 class="tituloCajaTextoFormulario">Dirección:</h1>
                             <input type="text" class="form-control buscador" id="search" name="search"
-                                aria-describedby="emailHelp" placeholder="{ Dirección }">
+                                aria-describedby="emailHelp" placeholder="{ Dirección }" Required>
                         </form>
                     </div>
 

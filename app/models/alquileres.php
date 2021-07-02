@@ -183,7 +183,7 @@
                     FROM alquiler
                     INNER JOIN estadoalquiler ON estadoalquiler.idestadoalquiler = alquiler.idestadoalquiler
                     INNER JOIN espacio ON espacio.idespacio = alquiler.idespacio
-                    INNER JOIN residente ON residente.idresidente = residente.idresidente
+                    INNER JOIN residente ON residente.idresidente = alquiler.idresidente
                     ORDER BY fecha';
             $params = null;
             return Database::getRows($sql,$params);
@@ -260,9 +260,9 @@
         //Función para evaluar si se hace un update del estado del espacio 
         public function checkSpaceStatus() 
         {
-            $sql = 'SELECT * FROM espacio WHERE idespacio = ? AND idestadoespacio != 3 
-                    AND idestadoespacio != ?';
-            $params = array($this->idEspacio, $this->idEstadoEspacio);
+            $sql = 'SELECT * FROM alquiler WHERE idespacio = ? AND idalquiler != ?
+                    AND idestadoalquiler = 2';
+            $params = array($this->idEspacio, $this->idAlquiler);
             return Database::getRows($sql,$params);
         }
 

@@ -37,7 +37,11 @@ document.getElementById('login-form').addEventListener('submit', function (event
                 if (response.status) {
                     sweetAlert(1, response.message, 'dashboard.php');
                 } else {
-                    sweetAlert(2, response.exception, clearPassword('txtContrasenia'));
+                    if (response.error) {
+                        sweetAlert(3, response.message, 'cambiar_contrasena.php');
+                    } else {
+                        sweetAlert(2, response.exception, clearPassword('txtContrasenia'));
+                    }
                 }
             })
         } else {
