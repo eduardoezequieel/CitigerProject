@@ -109,6 +109,7 @@ function readDataOnModal(id){
                         document.getElementById('btnActivar').className="btn btnAgregarFormulario mr-2";
                         document.getElementById('btnSuspender').className="d-none";
                         document.getElementById('btnCamino').className="d-none";
+                    }
 
                 } else {
                     sweetAlert(2, response.exception, null);
