@@ -16,12 +16,24 @@ class Residentes extends Validator
     private $username = null;
     private $contrasenia = null;
     private $idCasa = null;
+    private $modo = null;
+
 
     //Metodos set para todas las variables del modelo.
     public function setIdResidente($value)
     {
         if ($this->validateNaturalNumber($value)) {
             $this->idResidente = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setModo($value)
+    {
+        if ($this->validateAlphabetic($value, 1, 25)) {
+            $this->modo = $value;
             return true;
         } else {
             return false;
@@ -164,6 +176,11 @@ class Residentes extends Validator
     public function getIdResidente()
     {
         return $this->idResidente;
+    }
+
+    public function getModo()
+    {
+        return $this->modo;
     }
 
     public function getIdCasa()
@@ -397,7 +414,7 @@ class Residentes extends Validator
         $sql = 'UPDATE residentecasa
         SET idcasa=?
         WHERE idresidente=?';
-        $params = array($this->idCasa,$this->idResidente);
+        $params = array($this->idCasa, $this->idResidente);
         return Database::executeRow($sql, $params);
     }
 
@@ -408,4 +425,59 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    public function checkUser($email)
+    {
+        $sql = 'SELECT idresidente,foto,idestadoresidente,modo, username FROM residente 
+                WHERE correo = ?';
+        $params = array($email);
+        if ($data = Database::getRow($sql, $params)) {
+            $this->idResidente = $data['idresidente'];
+            $this->correo = $email;
+            $this->foto = $data['foto'];
+            $this->idEstadoResidente = $data['idestadoresidente'];
+            $this->username = $data['username'];
+            $this->modo = $data['modo'];
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Método para verificar el estado del usuario
+    public function checkEstado()
+    {
+        if ($this->idEstadoResidente == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function checkPassword($password)
+    {
+        $sql = 'SELECT contrasena FROM residente WHERE idresidente = ?';
+        $params = array($this->idResidente);
+        $data = Database::getRow($sql, $params);
+        if (password_verify($password, $data['contrasena'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function setDarkMode()
+    {
+        $sql = 'UPDATE residente SET modo = \'dark\' WHERE idresidente = ?';
+        $params = array($_SESSION['idresidente']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function setLightMode()
+    {
+        $sql = 'UPDATE residente SET modo = \'light\' WHERE idresidente = ?';
+        $params = array($_SESSION['idresidente']);
+        return Database::executeRow($sql, $params);
+    }
 }

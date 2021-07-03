@@ -11,6 +11,8 @@
 */
 //Constante para la ruta API
 const API_USUARIO2 = '../../app/api/dashboard/usuarios.php?action=';
+const API_RESIDENTES = '../../app/api/residente/index.php?action=';
+
 
 document.addEventListener('DOMContentLoaded',function(){
     loadPage();
@@ -183,6 +185,115 @@ function modeCaseta() {
     }
 }
 
+//Funciones para cambiar entre modo oscuro y claro en los residentes
+
+function lightMode2(){
+    //Modo claro
+    setLightValue2();
+    
+    swal({
+        title: 'Aviso',
+        text: 'Para ver los cambios, es necesario que reinicie la sesión. ¿Quieres cerrar la sesión?',
+        icon: 'info',
+        buttons: ['Lo hare después', 'Sí, por favor'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
+        if (value) {
+            fetch('../../app/api/residente/index.php?action=logOut', {
+                method: 'get'
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            sweetAlert(1, response.message, 'index.php');
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    });
+}
+
+function darkMode2(){
+    //Modo oscuro
+    setDarkValue2();
+
+    swal({
+        title: 'Reiniciar la sesión',
+        text: 'Para ver los cambios, es necesario que reinicie la sesión. ¿Quieres cerrar la sesión?',
+        icon: 'info',
+        buttons: ['Lo hare después', 'Sí, por favor'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
+        if (value) {
+            fetch('../../app/api/residente/index.php?action=logOut', {
+                method: 'get'
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            sweetAlert(1, response.message, 'index.php');
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    });
+}
+
+function setDarkValue2(){ 
+    fetch(API_RESIDENTES + 'setDarkMode')
+    .then(request => {
+        //Se verifica si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Se verifica si la respuesta no es correcta para redireccionar al primer uso
+                if (response.status) {
+                    console.log('modo oscuro');
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(error => console.log(error))
+}
+
+function setLightValue2(){ 
+    fetch(API_RESIDENTES + 'setLightMode')
+    .then(request => {
+        //Se verifica si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Se verifica si la respuesta no es correcta para redireccionar al primer uso
+                if (response.status) {
+                    console.log('modo claro');
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(error => console.log(error))
+}
 
 function botonExaminar(idBoton, idInputExaminar) {
     document.getElementById(idBoton).addEventListener('click', function (event) {
@@ -967,6 +1078,41 @@ function logOut() {
         // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
         if (value) {
             fetch('../../app/api/dashboard/usuarios.php?action=logOut', {
+                method: 'get'
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            sweetAlert(1, response.message, 'index.php');
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    });
+}
+
+// Función para mostrar un mensaje de confirmación al momento de cerrar sesión del residente.
+function logOut2() {
+    swal({
+        title: 'Advertencia',
+        text: '¿Quiere cerrar la sesión?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
+        if (value) {
+            fetch('../../app/api/residente/index.php?action=logOut', {
                 method: 'get'
             }).then(function (request) {
                 // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
