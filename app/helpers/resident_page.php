@@ -68,7 +68,7 @@
                     <!-- Botones de Navegación -->
                     <ul class="nav flex-column colorCitiger mt-4">
                     <li class="nav-item">
-                        <a href="listado_alquiler.php" class="nav-link categoriasFuente">
+                        <a href="alquileres.php" class="nav-link categoriasFuente">
                         <i class="fas fa-home mr-3 tamañoIconos"></i>
                         Alquileres
                         </a>
@@ -80,7 +80,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="menu_visitas.php" class="nav-link categoriasFuente">
+                        <a href="visitas.php" class="nav-link categoriasFuente">
                         <i class="fas fa-car mr-3 tamañoIconos"></i>
                         Visitas
                         </a>
