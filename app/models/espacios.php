@@ -127,7 +127,7 @@
         //Método para leer todos los datos de la tabla
         public function readAll()
         {
-            $sql = 'SELECT idEspacio, estadoEspacio, nombre, descripcion, capacidad
+            $sql = 'SELECT idEspacio, estadoEspacio, nombre, descripcion, capacidad, imagenprincipal
                     FROM espacio 
                     INNER JOIN estadoEspacio ON estadoEspacio.idEstadoEspacio = espacio.idEstadoEspacio
                     ORDER BY nombre';
@@ -138,7 +138,7 @@
         //Método para leer un dato de la tabla
         public function readOne()
         {
-            $sql = 'SELECT idEspacio, idestadoespacio, nombre, descripcion, capacidad
+            $sql = 'SELECT idEspacio, idestadoespacio, nombre, descripcion, capacidad, imagenprincipal
                     FROM espacio 
                     WHERE idEspacio = ?
                     ORDER BY nombre';
@@ -149,9 +149,9 @@
         //Método para crear un nuevo registro
         public function createRow()
         {
-            $sql = 'INSERT INTO espacio(idestadoespacio, nombre, descripcion, capacidad) 
-                    VALUES(?,?,?,?)';
-            $params = array($this->idEstadoEspacio,$this->nombre,$this->descripcion,$this->capacidad);
+            $sql = 'INSERT INTO espacio(idestadoespacio, nombre, descripcion, capacidad,imagenprincipal) 
+                    VALUES(?,?,?,?,?)';
+            $params = array($this->idEstadoEspacio,$this->nombre,$this->descripcion,$this->capacidad,$this->imagen);
             return Database::executeRow($sql,$params);
         }
 
@@ -178,12 +178,13 @@
     
 
         //Método para actualizar un registro
-        public function updateRow()
+        public function updateRow($current_image)
         {
+            ($this->imagen) ? $this->deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
             $sql = 'UPDATE espacio 
-                    SET idestadoespacio = ?, nombre = ?, descripcion = ?, capacidad = ?
+                    SET idestadoespacio = ?, nombre = ?, descripcion = ?, capacidad = ?, imagenprincipal = ?
                     WHERE idespacio = ?';
-            $params = array($this->idEstadoEspacio,$this->nombre,$this->descripcion,$this->capacidad, $this->idEspacio);
+            $params = array($this->idEstadoEspacio,$this->nombre,$this->descripcion,$this->capacidad,$this->imagen, $this->idEspacio);
             return Database::executeRow($sql,$params);
         }
 

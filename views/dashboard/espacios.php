@@ -67,7 +67,7 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
         
         <!-- Modal para Administrar Espacios -->
         <div class="modal fade" id="administrarEspacio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content justify-content-center px-3 py-2">
                     <!-- Cabecera del Modal -->
                     <div class="modal-header">
@@ -81,40 +81,61 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                     <br>
                     <!-- Contenido del Modal -->
                     <div class="textoModal px-3 pb-4 mt-2"> 
-                        <form method="post" id="espacio-form">
-                            <div class="row animate__animated animate__bounceIn">
-                                <!-- Primera columna de controles -->
-                                <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas6">
-                                    <div id="">
-                                        <input type="number" name="idEspacio" id="idEspacio" class="d-none">
-                                        <label class="tituloCajaTextoFormulario" for="txtNombre">Nombre:</label>
-                                        <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
-                                            placeholder="Escriba nombre del espacio..." onchange="checkInput('txtNombre')" Required>
+                    <form method="post" id="espacio-form">
+                        <div class="row animate__animated animate__bounceIn">
+                            <!-- Primera columna de controles -->
+                            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
+                                <div id="EmpleadosColumna1">
+                                    <input type="number" name="idEspacio" id="idEspacio" class="d-none">
+                                    <label class="tituloCajaTextoFormulario" for="txtNombre">Nombre:</label>
+                                    <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
+                                        placeholder="Escriba nombre del espacio..." onchange="checkInput('txtNombre')" Required>
 
-                                        <label class="tituloCajaTextoFormulario" for="txtDescripcion">Descripción:</label>
-                                        <textarea class="form-control cajaTextoFormulario" placeholder="Escriba la descripción del espacio..."
-                                        id="txtDescripcion" name="txtDescripcion" rows="3" onchange="checkInput('txtDescripcion')" Required></textarea>
+                                    <label class="tituloCajaTextoFormulario" for="txtDescripcion">Descripción:</label>
+                                    <textarea class="form-control cajaTextoFormulario" placeholder="Escriba la descripción del espacio..."
+                                    id="txtDescripcion" name="txtDescripcion" rows="3" onchange="checkInput('txtDescripcion')" Required></textarea>
 
-                                        <label class="tituloCajaTextoFormulario" for="txtCapacidad">Capacidad:</label>
-                                        <input type="number" class="form-control cajaTextoFormulario" id="txtCapacidad" name="txtCapacidad" 
-                                        placeholder="Escriba la capacidad..." min="1" step="any" onchange="checkInput('txtCapacidad')" Required>
+                                    <label class="tituloCajaTextoFormulario" for="txtCapacidad">Capacidad:</label>
+                                    <input type="number" class="form-control cajaTextoFormulario" id="txtCapacidad" name="txtCapacidad" 
+                                    placeholder="Escriba la capacidad..." min="1" step="any" onchange="checkInput('txtCapacidad')" Required>
 
+                                </div>
+
+                            </div>
+
+                            <!-- Segunda columna de controles -->
+                            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
+                                    <!-- Cargar Fotografia -->
+                                    <div class="row pl-2 my-4">
+                                        <div class="col">
+                                            <div class="bordeDivFotografia1 mb-1">
+                                                <div class="divFotografia" id="divFotografia1">
+                                                    <!--<img src="../../resources/img/67641302_948622395468919_4792483860753416192_n.jpg" alt="#" class="fit-images rounded-circle" width="150px">-->
+                                                </div>
+                                            </div>
+ 
+                                            <button id="btnAgregarFoto1"class="btn mx-2"><span class="fas fa-file-upload"></span></button>
+                                           
+                                        </div>
+                                        <!-- Final Cargar Fotografia -->
                                     </div>
+                                    <!-- Cargar Fotografia -->
+                                    <input id="archivo_espacio1" type="file" class="d-none" name="archivo_espacio1" accept=".gif, .jpg, .png">
 
-                                </div>
-                                <input type="number" name="idEstadoEspacio1" id="idEstadoEspacio1" class="d-none">
                             </div>
-                            <!-- Botones de Acción del Formulario -->
-                            <div class="row justify-content-center mt-4">
-                                <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                                    <button href="#" type="submit" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
-                                    <button href="#" type="submit" id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
-                                    <button href="#" id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
-                                    <button href="#" id="btnActivar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
-                                </div>
+                            <input type="number" name="idEstadoEspacio1" id="idEstadoEspacio1" class="d-none">
+                        </div>
+                        <!-- Botones de Acción del Formulario -->
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                                <button href="#" type="submit" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                                <button href="#" type="submit" id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
+                                <button href="#" id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
+                                <button href="#" id="btnActivar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
                             </div>
-                        </form>
-                        <!-- Fin del Contenido del Modal -->
+                        </div>
+                    </form>
+                    <!-- Fin del Contenido del Modal -->
                     </div>
                 </div>
             </div>

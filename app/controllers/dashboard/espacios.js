@@ -31,8 +31,40 @@ function fillTable(dataset){
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
-        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        content += `
+        if (row.imagenprincipal) {
+            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+            content += `
+                    <div class="animate__animated animate__bounceIn col-xl-4 col-md-4 col-sm-12 col-xs-12 mt-2 d-flex margenTarjetas justify-content-center align-items-center text-center">
+                        <!-- Inicio de Tarjeta -->
+                        <div class="tarjeta">
+                        <!-- Fila para Imagen -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="../../resources/img/dashboard_img/espacios_fotos/${row.imagenprincipal}" alt="#" class="img-fluid fit-images imagenTarjeta">
+                                </div>
+                            </div>
+                            <!-- Fila para Información -->
+                            <div class="row mt-2">
+                                <div class="col-12 text-left">
+                                    <h1 class="letraTarjetaTitulo">${row.nombre}</h1>
+                                    <h1 class="letraTarjeta">Capacidad: <span class="letraDestacadaTarjeta">${row.capacidad}</span></h1>
+                                </div>
+                            </div>
+                            <!-- Fila para Boton -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <a href="#" onclick="readDataOnModal(${row.idespacio}) " data-toggle="modal" data-target="#administrarEspacio" class="btn btnTabla"><span class="fas fa-edit"></span></a>
+                                    <a href="#" onclick="deleteRow(${row.idespacio})" class="btn btnTabla2"><span class="fas fa-trash" ></span></a>
+                                </div>
+                            </div>
+
+                        <!-- Fin de Tarjeta -->
+                        </div>
+                    </div>
+            `; 
+        } else {
+            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+            content += `
                     <div class="animate__animated animate__bounceIn col-xl-4 col-md-4 col-sm-12 col-xs-12 mt-2 d-flex margenTarjetas justify-content-center align-items-center text-center">
                         <!-- Inicio de Tarjeta -->
                         <div class="tarjeta">
@@ -60,7 +92,8 @@ function fillTable(dataset){
                         <!-- Fin de Tarjeta -->
                         </div>
                     </div>
-        `; 
+            `; 
+        }
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('show-tarjeta').innerHTML = content;
@@ -98,6 +131,11 @@ function readDataOnModal(id){
                     }else if(response.dataset.idestadoespacio == 3){
                         document.getElementById('btnActivar').className = 'btn btnAgregarFormulario mr-2';
                         document.getElementById('btnSuspender').className = 'd-none';
+                    }
+                    if (response.dataset.imagenprincipal) {
+                        previewSavePicture('divFotografia1', response.dataset.imagenprincipal,5);
+                    } else {
+                        previewSavePicture('divFotografia1', 'default.png', 1);
                     }
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -196,6 +234,7 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     document.getElementById('btnActualizar').className = 'd-none';
     document.getElementById('btnActivar').className = 'd-none';
     document.getElementById('btnSuspender').className = 'd-none';
+    previewSavePicture('divFotografia1', 'default.png', 1);
 })
 
 
@@ -217,6 +256,12 @@ botonExaminar('btnAgregarFoto', 'archivo_espacio');
 
 //Metodo para crear una previsualizacion del archivo a cargar en la base de datos
 previewPicture5('archivo_espacio','divFotografia');
+
+//Metodo para usar un boton diferente de examinar
+botonExaminar('btnAgregarFoto1', 'archivo_espacio1');
+
+//Metodo para crear una previsualizacion del archivo a cargar en la base de datos
+previewPicture5('archivo_espacio1','divFotografia1');
 
 function botonExaminar(idBoton, idInputExaminar){
     document.getElementById(idBoton).addEventListener('click', function(event){

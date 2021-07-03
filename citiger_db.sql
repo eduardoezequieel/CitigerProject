@@ -343,4 +343,7 @@ insert into mespago values(default,'Enero',2021),(default,'Febrero',2021),(defau
 (default,'Junio',2025),(default,'Julio',2025),(default,'Agosto',2025),(default,'Septiembre',2025),
 (default,'Octubre',2025),(default,'Noviembre',2025),(default,'Diciembre',2025);
 
+--Cambios 03/07/2021
+ALTER TABLE espacio ADD COLUMN imagenprincipal CHARACTER VARYING(50);
+
 

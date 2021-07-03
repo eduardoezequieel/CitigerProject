@@ -50,18 +50,48 @@
                     if ($espacio->setNombre(strtoupper($_POST['txtNombre']))) {
                         if ($espacio->setDescripcion($_POST['txtDescripcion'])) {
                             if ($espacio->setCapacidad($_POST['txtCapacidad'])) {
-                                $espacio->setIdEstadoEspacio(1);
-                                if ($espacio->createRow()) {
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Se ha agregado el espacio correctamente.';
-                                    $espacio->registerAction('Registrar','El usuario registró un dato en la tabla de espacios');
-                                } else {
-                                    if (Database::getException()) {
-                                        $result['exception'] = Database::getException();
+                                if (is_uploaded_file($_FILES['archivo_espacio1']['tmp_name'])) {
+                                    if ($espacio->setFoto($_FILES['archivo_espacio1'])) {
+                                        $espacio->setIdEstadoEspacio(1);
+                                        if ($espacio->createRow()) {
+                                            $result['status'] = 1;
+                                            if ($espacio->saveFile($_FILES['archivo_espacio1'], $espacio->getRuta(), $espacio->getFoto())) {
+                                                $result['message'] = 'Se ha creado el espacio correctamente.';
+                                                $espacio->registerAction('Agregar','El usuario agregó un registro en la tabla de espacios.');
+                                            } else {
+                                                $result['message'] = 'Espacio agregado pero no se guardó la imagen';
+                                            }
+                                            
+                                        } else {
+                                            if (Database::getException()) {
+                                                $result['exception'] = Database::getException();
+                                            } else {
+                                                $result['exception'] = 'No se ha agregado el espacio correctamente';
+                                            }
+                                        }
                                     } else {
-                                        $result['exception'] = 'No se ha agregado el espacio correctamente';
+                                        $result['exception'] = $espacio->getImageError();
+                                    }
+                                } else {
+                                    $espacio->setIdEstadoEspacio(1);
+                                    if ($espacio->createRow()) {
+                                        $result['status'] = 1;
+                                        if ($espacio->saveFile($_FILES['archivo_espacio1'], $espacio->getRuta(), $espacio->getFoto())) {
+                                            $result['message'] = 'Se ha creado el espacio correctamente.';
+                                                $espacio->registerAction('Agregar','El usuario agregó un registro en la tabla de espacios.');
+                                        } else {
+                                            $result['message'] = 'Espacio agregado pero no se guardó la imagen';
+                                        }
+                                        
+                                    } else {
+                                        if (Database::getException()) {
+                                            $result['exception'] = Database::getException();
+                                        } else {
+                                            $result['exception'] = 'No se ha agregado el espacio correctamente';
+                                        }
                                     }
                                 }
+                                
                             } else {
                                 $result['exception'] = 'La cantidad ingresada no es válida.';
                             }
@@ -76,22 +106,45 @@
                 case 'updateRow':
                     $_POST = $espacio->validateForm($_POST);
                     if ($espacio->setIdEspacio($_POST['idEspacio'])) {
-                        if ($espacio->readOne()) {
+                        if ($data = $espacio->readOne()) {
                             if ($espacio->setNombre(strtoupper($_POST['txtNombre']))) {
                                 if ($espacio->setDescripcion($_POST['txtDescripcion'])) {
                                     if ($espacio->setCapacidad($_POST['txtCapacidad'])) {
                                         if ($espacio->setIdEstadoEspacio($_POST['idEstadoEspacio1'])) {
-                                            if ($espacio->updateRow()) {
-                                                $result['status'] = 1;
-                                                $result['message'] = 'Se ha actualizado el espacio correctamente.';
-                                                $espacio->registerAction('Actualizar','El usuario actualizó un registro en la tabla de espacios');
-                                            } else {
-                                                if (Database::getException()) {
-                                                    $result['exception'] = Database::getException();
+                                            if (is_uploaded_file($_FILES['archivo_espacio1']['tmp_name'])) {
+                                                if ($espacio->setFoto($_FILES['archivo_espacio1'])) {
+                                                    if ($espacio->updateRow($data['imagenprincipal'])) {
+                                                        $result['status'] = 1;
+                                                        if ($espacio->saveFile($_FILES['archivo_espacio1'], $espacio->getRuta(), $espacio->getFoto())) {
+                                                            $result['message'] = 'Se ha actualizado el espacio correctamente.';
+                                                        $espacio->registerAction('Actualizar','El usuario actualizó un registro en la tabla de espacios.');
+                                                        } else {
+                                                            $result['message'] = 'Usuario modificado pero no se guardó la imagen';
+                                                        }
+                                                    } else {
+                                                        if (Database::getException()) {
+                                                            $result['exception'] = Database::getException();
+                                                        } else {
+                                                            $result['exception'] = 'No se ha actualizado el espacio correctamente';
+                                                        }
+                                                    }
                                                 } else {
-                                                    $result['exception'] = 'No se ha actualizado el espacio correctamente';
+                                                    $result['exception'] = $espacio->getImageError();
+                                                }
+                                            } else {
+                                                if ($espacio->updateRow($data['imagenprincipal'])) {
+                                                    $result['status'] = 1;
+                                                    $result['message'] = 'Se ha actualizado el espacio correctamente.';
+                                                    $espacio->registerAction('Actualizar','El usuario actualizó un registro en la tabla de espacios.');
+                                                } else {
+                                                    if (Database::getException()) {
+                                                        $result['exception'] = Database::getException();
+                                                    } else {
+                                                        $result['exception'] = 'No se ha actualizado el espacio correctamente';
+                                                    }
                                                 }
                                             }
+                                            
                                         } else {
                                             $result['exception'] = 'El estado ingresado no es válido.';
                                         }
@@ -239,8 +292,10 @@
                                     $result['status'] = 1;
                                     if ($espacio->saveFile($_FILES['archivo_espacio'], $espacio->getRuta(), $espacio->getFoto())) {
                                         $result['message'] = 'Imagen registrada correctamente';
+                                        $espacio->registerAction('Registrar','El usuario registró una imágen en la tabla de imagenes_espacio');
                                     } else {
                                         $result['message'] = 'Imagen registrada pero no se guardó la imagen';
+                                        $espacio->registerAction('Registrar','El usuario registró una imágen en la tabla de imagenes_espacio');
                                     }
                                 } else {
                                     if (Database::getException()) {

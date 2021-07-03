@@ -235,6 +235,9 @@ function previewSavePicture(idDivFoto, name, foto) {
         case 4:
             ruta = '../../resources/img/dashboard_img/materiales_fotos/';
             break;
+        case 5:
+                ruta = '../../resources/img/dashboard_img/espacios_fotos/';
+                break;
         default:
             break;
     }
@@ -291,7 +294,28 @@ function previewSavePicture(idDivFoto, name, foto) {
         //Se agrega el elemento recien creado
         preview.append(image);
     }
+
+    if (foto == 5) {
+        //Parte de la pagina web en donde se incrustara la imagen
+        let preview = document.getElementById(idDivFoto);
+
+        image = document.createElement('img');
+
+        //Se le asigna la ruta al elemento creado
+        image.src = ruta + name;
+
+        //Se aplican las respectivas clases para que la preview aparezca estilizada
+        image.className = 'fit-images fotoPrimerUso';
+
+        //Se quita lo que este dentro del div (en caso de que exista otra imagen)
+        preview.innerHTML = ' ';
+
+        //Se agrega el elemento recien creado
+        preview.append(image);
+    }
 }
+
+
 
 function restartSearch(btn, api) {
     document.getElementById(btn).addEventListener('click', function (event) {
@@ -435,8 +459,6 @@ function saveRowBoolean(api, action, form, modal) {
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
-                    readRows(api);
                     sweetAlert(1, response.message, null);
                     checkSavePhoto(api, modal)
                     clearForm(form);
@@ -474,7 +496,6 @@ function checkSavePhoto(api, modal) {
                             closeModal(modal)
                             document.getElementById('idEspacio1').value = response.id;
                             document.getElementById('adminImagen').click();
-                            console.log(response.id)
                         } else {
                             sweetAlert(2, response.exception, null);
                             console.log(response.status + ' ' + response.statusText);
@@ -487,7 +508,9 @@ function checkSavePhoto(api, modal) {
                 console.log(error);
             });
         } else {
-            closeModal(modal)
+            closeModal(modal);
+            // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
+            readRows(api);
         }
     });
 }

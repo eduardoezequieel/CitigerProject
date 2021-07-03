@@ -737,6 +737,16 @@ textarea :-ms-input-placeholder {
   border-radius: 170px;
 }
 
+.bordeDivFotografia1{
+  content: " ";
+  width: 170px;
+  height: 170px;
+  border: 2px dashed var(--color-citiger) !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .divFotografia{
   content: " ";
   width: 150px;
