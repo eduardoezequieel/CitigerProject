@@ -99,6 +99,42 @@ function fillTable(dataset){
     document.getElementById('show-tarjeta').innerHTML = content;
 }
 
+//Llenado de tabla
+function fillTableImage(dataset){
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+            <tr class="animate__animated animate__fadeIn">
+                <!-- Fotografia-->
+                <th scope="row">
+                    <div class="row paddingTh">
+                        <div class="col-12">
+                            <img src="../../resources/img/dashboard_img/espacios_fotos/${row.imagen}" alt="#"
+                                class="fit-images" width="100px" height="70px">
+                        </div>
+                    </div>
+                </th>
+                <!-- Datos-->
+                <td>${row.nombre}</td>
+                <!-- Boton-->
+                <th scope="row">
+                    <div class="row paddingBotones">
+                        <div class="col-12">
+                            <a href="#" onclick="readDataOnModalImage(${row.idimagenesespacio}) "data-toggle="modal" data-target="#administrarImagen" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
+
+                            <a href="#" onclick="deleteRowImage(${row.idimagenesespacio})" class="btn btnTabla2 mx-2"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        `; 
+    });
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('tbody-rows').innerHTML = content;
+}
+
 //Carga de datos del registro seleccionado
 function readDataOnModal(id){
     // Se define un objeto con los datos del registro seleccionado.
@@ -106,6 +142,7 @@ function readDataOnModal(id){
     data.append('idEspacio', id);
     //Se ocultan los botones del formulario.
     document.getElementById('btnAgregar').className = 'd-none';
+    document.getElementById('btnInsertDialogImagen').className = 'btn btnAgregarFormulario mr-2';
     document.getElementById('btnActualizar').className = 'btn btnAgregarFormulario mr-2';
     document.getElementById('btnActivar').className = 'd-none';
     document.getElementById('btnSuspender').className = 'd-none';
@@ -121,6 +158,8 @@ function readDataOnModal(id){
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('idEspacio').value = response.dataset.idespacio;
+                    document.getElementById('idEspacio1').value = response.dataset.idespacio;
+                    document.getElementById('idEspacio3').value = response.dataset.idespacio;
                     document.getElementById('txtNombre').value = response.dataset.nombre;
                     document.getElementById('txtDescripcion').value = response.dataset.descripcion;
                     document.getElementById('txtCapacidad').value = response.dataset.capacidad;
@@ -135,7 +174,7 @@ function readDataOnModal(id){
                     if (response.dataset.imagenprincipal) {
                         previewSavePicture('divFotografia1', response.dataset.imagenprincipal,5);
                     } else {
-                        previewSavePicture('divFotografia1', 'default.png', 1);
+                        previewSavePicture('divFotografia1', 'default.png', 5);
                     }
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -234,8 +273,108 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     document.getElementById('btnActualizar').className = 'd-none';
     document.getElementById('btnActivar').className = 'd-none';
     document.getElementById('btnSuspender').className = 'd-none';
-    previewSavePicture('divFotografia1', 'default.png', 1);
+    document.getElementById('btnInsertDialogImagen').className = 'd-none';
+    
+    previewSavePicture('divFotografia1', 'default.png', 5);
 })
+
+//Método para resetear botones
+document.getElementById('adminImagen').addEventListener('click', function () {
+    previewSavePicture('divFotografia', 'default.png', 5);
+    document.getElementById('btnAgregarImagen').className = 'btn btnAgregarFormulario mr-2';
+    document.getElementById('btnActualizarImagen').className = 'd-none';
+})
+
+document.getElementById('agregar').addEventListener('click', function () {
+    document.getElementById('btnAgregarImagen').className = 'btn btnAgregarFormulario mr-2';
+    document.getElementById('btnActualizarImagen').className = 'd-none';
+    previewSavePicture('divFotografia', 'default.png', 5);
+    closeModal('administrarImagenes')
+})
+
+document.getElementById('btnInsertDialogImagen').addEventListener('click', function () {
+    closeModal('administrarEspacio')
+    readRowsImage(API_ESPACIO,'ImagenEspacio-form');
+})
+
+//Carga de datos del registro seleccionado
+function readDataOnModalImage(id){
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('idImagenEspacio', id);
+    closeModal('administrarImagenes');
+    document.getElementById('btnAgregarImagen').className = 'd-none';
+    document.getElementById('btnActualizarImagen').className = 'btn btnAgregarFormulario mr-2';
+
+    fetch(API_ESPACIO + 'readOneImage', {
+        method: 'post',
+        body: data
+    }).then(request => {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(response => {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    document.getElementById('idEspacio1').value = response.dataset.idespacio;
+                    document.getElementById('idEspacio3').value = response.dataset.idespacio;
+                    document.getElementById('idImagenEspacio').value = response.dataset.idimagenesespacio;
+                    document.getElementById('idImagenEspacio1').value = response.dataset.idimagenesespacio;
+                    previewSavePicture('divFotografia', response.dataset.imagen,5);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(error => console.log(error));
+}
+
+//Eliminar registros de la tabla empleado.
+/*function deleteRowImage(id){
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('idImagenEspacio', id);
+
+    swal({
+        title: 'Advertencia',
+        text: '¿Desea eliminar el registro?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value) {
+            fetch(API_ESPACIO + 'deleteImage', {
+                method: 'post',
+                body: data
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                            readRows(API_ESPACIO);
+                            readRowsImage(API_ESPACIO);
+                            sweetAlert(1, response.message, null);
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                            console.log(response.status + ' ' + response.statusText);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    });
+}*/
+
 
 
 /*Agregando o actualizando un nuevo registro a la tabla
@@ -244,11 +383,36 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     //Evento para evitar que recargué la pagina
      event.preventDefault();
     //Verificando la acción que se va a realizar
-    if(document.getElementById('btnAgregar').className != 'd-none') {
-        //Agregando el registro
-        savePhoto(API_ESPACIO, 'espacioImagen-form');
-        //console.log('agregar')
-    } 
+    if(document.getElementById('btnAgregarImagen').className != 'd-none') {
+        //Verificando la acción que se va a realizar
+        savePhoto(API_ESPACIO, 'savePhoto','espacioImagen-form');
+
+    } else {
+        fetch(API_ESPACIO + 'updatePhoto', {
+            method: 'post',
+            body: new FormData(document.getElementById('espacioImagen-form'))
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+            if (request.ok) {
+                request.json().then(function (response) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                        readRows(API_ESPACIO);
+                        sweetAlert(1, response.message, closeModal('administrarImagenes'));
+                        
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                        console.log(response.status + ' ' + response.statusText);
+                    }
+                });
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+   }
 })
 
 //Metodo para usar un boton diferente de examinar

@@ -11,12 +11,23 @@
         private $idBitacora = null;
         private $imagen = null;
         private $ruta = '../../../resources/img/dashboard_img/espacios_fotos/';
+        private $idimagenesespacio = null;
 
         //Métodos set 
         public function setIdEspacio($value)
         {
             if ($this->validateNaturalNumber($value)) {
                 $this->idEspacio = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setIdImagenEspacio($value)
+        {
+            if ($this->validateNaturalNumber($value)) {
+                $this->idimagenesespacio = $value;
                 return true;
             } else {
                 return false;
@@ -89,6 +100,11 @@
             return $this->idEspacio;
         }
 
+        public function getIdImagenEspacio() 
+        {
+            return $this->idimagenesespacio;
+        }
+
         public function getIdEstadoEspacio() 
         {
             return $this->idEstadoEspacio;
@@ -146,6 +162,39 @@
             return Database::getRow($sql,$params);
         }
 
+        //Método para leer un dato de la tabla
+        public function readOneImage()
+        {
+            $sql = 'SELECT idimagenesespacio,imagen, nombre, imagenesespacio.idespacio 
+                    FROM imagenesespacio
+                    INNER JOIN espacio ON espacio.idespacio = imagenesespacio.idespacio
+                    WHERE idimagenesespacio = ?';
+            $params =  array($this->idimagenesespacio);
+            return Database::getRow($sql,$params);
+        }
+
+        public function readImageSpace()
+        {
+            $sql = 'SELECT idimagenesespacio,imagen, nombre 
+                    FROM imagenesespacio
+                    INNER JOIN espacio ON espacio.idespacio = imagenesespacio.idespacio
+                    WHERE imagenesespacio.idespacio = ?';
+            $params =  array($this->idEspacio);
+            return Database::getRows($sql,$params);
+        }
+
+        public function updateFoto($current_image)
+        {
+            // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+            ($this->imagen) ? $this->deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
+
+            $sql = 'UPDATE imagenesespacio
+                    SET imagen = ?
+                    WHERE idimagenesespacio = ?';
+            $params = array($this->imagen, $this->idimagenesespacio);
+            return Database::executeRow($sql, $params);
+        }
+
         //Método para crear un nuevo registro
         public function createRow()
         {
@@ -193,6 +242,13 @@
         {
             $sql = 'DELETE FROM espacio WHERE idespacio = ?';
             $params = array($this->idEspacio);
+            return Database::executeRow($sql,$params);
+        }
+
+        public function deleteImage()
+        {
+            $sql = 'DELETE FROM imagenesespacio WHERE idimagenesespacio = ?';
+            $params = array($this->idimagenesespacio);
             return Database::executeRow($sql,$params);
         }
 

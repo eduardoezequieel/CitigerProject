@@ -460,7 +460,8 @@ function saveRowBoolean(api, action, form, modal) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     sweetAlert(1, response.message, null);
-                    checkSavePhoto(api, modal)
+                    checkSavePhoto(api, modal);
+                   
                     clearForm(form);
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -515,8 +516,8 @@ function checkSavePhoto(api, modal) {
     });
 }
 
-function savePhoto(api, form) {
-    fetch(api + 'savePhoto', {
+function savePhoto(api,action, form) {
+    fetch(api + action, {
         method: 'post',
         body: new FormData(document.getElementById(form))
     }).then(function (request) {
@@ -527,12 +528,38 @@ function savePhoto(api, form) {
                 if (response.status) {
                     // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
                     readRows(api);
-                    sweetAlert(1, response.message, closeModal('administrarImagen'));
-                    clearForm(form);
+                    sweetAlert(1, response.message, null);
+                    previewSavePicture('divFotografia', 'default.png', 5);
                 } else {
                     sweetAlert(2, response.exception, null);
                     console.log(response.status + ' ' + response.statusText);
                 }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function readRowsImage(api,form) {
+    fetch(api + 'readImageSpace', {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillTableImage(data);
             });
         } else {
             console.log(request.status + ' ' + request.statusText);
