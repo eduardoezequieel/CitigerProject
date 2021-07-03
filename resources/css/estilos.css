@@ -118,6 +118,12 @@ option[selected]{
 
 }
 
+.centrarColumnas6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .checkboxLabel {
   font-family: 'Manrope', sans-serif;
   font-size: 13px;

@@ -85,8 +85,8 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                     <form method="post" id="espacio-form">
                         <div class="row animate__animated animate__bounceIn">
                             <!-- Primera columna de controles -->
-                            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
-                                <div id="EmpleadosColumna1">
+                            <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas6">
+                                <div id="">
                                     <input type="number" name="idEspacio" id="idEspacio" class="d-none">
                                     <label class="tituloCajaTextoFormulario" for="txtNombre">Nombre:</label>
                                     <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
@@ -105,23 +105,8 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                             </div>
 
                             <!-- Segunda columna de controles -->
-                            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
-                                    <!-- Cargar Fotografia -->
-                                    <div class="row pl-2 my-4">
-                                        <div class="col">
-                                            <div class="divFotografia">
-                                                <div class="cargarFoto6"></div>
-                                                <button class="btn btnCargarFoto2 mx-2"><span class="fas fa-file-upload"></span></button>
-                                            </div>
-                                            <button href="#" class="btn btnAgregarFormulario mt-4"><span class="fas fa-images mr-3 tamañoIconosBotones"></span>Fotografias</button>
-                                        </div>
-                                        <!-- Final Cargar Fotografia -->
-                                    </div>
-
-                                    
-                                    <!-- Cargar Fotografia -->
-
-                            </div>
+                            <button class="btn btnCargarFoto2 mx-2 d-none"><span class="fas fa-file-upload"></span></button>
+                            <button href="#" class="btn btnAgregarFormulario mt-4 d-none"><span class="fas fa-images mr-3 tamañoIconosBotones"></span>Fotografias</button>
                             <input type="number" name="idEstadoEspacio1" id="idEstadoEspacio1" class="d-none">
                         </div>
                         <!-- Botones de Acción del Formulario -->
