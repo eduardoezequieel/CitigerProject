@@ -1,17 +1,10 @@
 //constante para guardar la ruta de la api
 const API_ESPACIO = '../../app/api/dashboard/espacios.php?action=';
 const ENDPOINT_ESTADO = '../../app/api/dashboard/espacios.php?action=readSpaceStatus';
-//Declarando constante para manipular botones
-const BOTONES =  document.getElementsByTagName('button');
+
 
 //Evento que se ejecuta al cargar la pag
 document.addEventListener('DOMContentLoaded', function () {
-    //Se ocultan los botones necesarios del formulario.
-    for (let i = 5; i < BOTONES.length; i++) {
-        if (i != 5) {
-            BOTONES[i].className = 'd-none';
-        }
-    }
     //Llenando combobox de estado espacio
     fillSelect(ENDPOINT_ESTADO, 'cbEstadoEspacio',null);
     //Verificar si hay espacios registrados en la base
@@ -79,8 +72,10 @@ function readDataOnModal(id){
     const data = new FormData();
     data.append('idEspacio', id);
     //Se ocultan los botones del formulario.
-    BOTONES[5].className = 'd-none';
-    BOTONES[6].className = 'btn btnAgregarFormulario mr-2';
+    document.getElementById('btnAgregar').className = 'd-none';
+    document.getElementById('btnActualizar').className = 'btn btnAgregarFormulario mr-2';
+    document.getElementById('btnActivar').className = 'd-none';
+    document.getElementById('btnSuspender').className = 'd-none';
 
     fetch(API_ESPACIO + 'readOne', {
         method: 'post',
@@ -98,11 +93,11 @@ function readDataOnModal(id){
                     document.getElementById('txtCapacidad').value = response.dataset.capacidad;
                     document.getElementById('idEstadoEspacio1').value = response.dataset.idestadoespacio;
                     if (response.dataset.idestadoespacio == 1) {
-                        BOTONES[7].className="btn btnAgregarFormulario mr-2";
-                        BOTONES[8].className="d-none";
+                        document.getElementById('btnActivar').className = 'd-none';
+                        document.getElementById('btnSuspender').className = 'btn btnAgregarFormulario mr-2';
                     }else if(response.dataset.idestadoespacio == 3){
-                        BOTONES[8].className="btn btnAgregarFormulario mr-2";
-                        BOTONES[7].className="d-none";
+                        document.getElementById('btnActivar').className = 'btn btnAgregarFormulario mr-2';
+                        document.getElementById('btnSuspender').className = 'd-none';
                     }
                 } else {
                     sweetAlert(2, response.exception, null);
@@ -122,10 +117,10 @@ function readDataOnModal(id){
     //Verificando la acción que se va a realizar
     if(document.getElementById('btnAgregar').className != 'd-none') {
         //Agregando el registro
-        saveRow(API_ESPACIO, 'createRow','espacio-form','administrarEspacio');
-        console.log('agregar')
+        saveRowBoolean(API_ESPACIO, 'createRow','espacio-form','administrarEspacio');
+        //console.log('agregar')
     } else {
-        console.log('actualizar')
+        //console.log('actualizar')
         saveRow(API_ESPACIO, 'updateRow','espacio-form','administrarEspacio');
    }
 })
@@ -197,7 +192,68 @@ document.getElementById('btnReiniciar').addEventListener('click', function (even
 //Método para resetear botones
 document.getElementById('btnInsertDialog').addEventListener('click', function () {
     clearForm('espacio-form');
-    resetButtons(BOTONES,5);
+    document.getElementById('btnAgregar').className = 'btn btnAgregarFormulario mr-2';
+    document.getElementById('btnActualizar').className = 'd-none';
+    document.getElementById('btnActivar').className = 'd-none';
+    document.getElementById('btnSuspender').className = 'd-none';
 })
 
 
+/*Agregando o actualizando un nuevo registro a la tabla
+  Se verifica si se muestra el botón agregar se hace un createRow, de lo contrario un updateRow*/
+  document.getElementById('espacioImagen-form').addEventListener('submit', function (event) {
+    //Evento para evitar que recargué la pagina
+     event.preventDefault();
+    //Verificando la acción que se va a realizar
+    if(document.getElementById('btnAgregar').className != 'd-none') {
+        //Agregando el registro
+        savePhoto(API_ESPACIO, 'espacioImagen-form');
+        //console.log('agregar')
+    } 
+})
+
+//Metodo para usar un boton diferente de examinar
+botonExaminar('btnAgregarFoto', 'archivo_espacio');
+
+//Metodo para crear una previsualizacion del archivo a cargar en la base de datos
+previewPicture5('archivo_espacio','divFotografia');
+
+function botonExaminar(idBoton, idInputExaminar){
+    document.getElementById(idBoton).addEventListener('click', function(event){
+        //Se evita recargar la pagina
+        event.preventDefault();
+    
+        //Se hace click al input invisible
+        document.getElementById(idInputExaminar).click();
+    });
+}
+
+function previewPicture5(idInputExaminar, idDivFoto){
+    document.getElementById(idInputExaminar).onchange=function(e){
+
+        //variable creada para obtener la URL del archivo a cargar
+        let reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+    
+        //Se ejecuta al obtener una URL
+        reader.onload=function(){
+            //Parte de la pagina web en donde se incrustara la imagen
+            let preview=document.getElementById(idDivFoto);
+    
+            //Se crea el elemento IMG que contendra la preview
+            image = document.createElement('img');
+    
+            //Se le asigna la ruta al elemento creado
+            image.src = reader.result;
+    
+            //Se aplican las respectivas clases para que la preview aparezca estilizada
+            image.className = 'fit-images fotoPrimerUso';
+    
+            //Se quita lo que este dentro del div (en caso de que exista otra imagen)
+            preview.innerHTML = ' ';
+    
+            //Se agrega el elemento recien creado
+            preview.append(image);
+        }
+    }
+}

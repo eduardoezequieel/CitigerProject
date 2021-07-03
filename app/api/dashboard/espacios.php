@@ -229,6 +229,49 @@
                         $result['exception'] = 'Error id select';
                     }
                     break;
+                //Caso para guardar foto
+                case 'savePhoto':
+                    $_POST = $espacio -> validateForm($_POST);
+                    if ($espacio->setIdEspacio($_POST['idEspacio1'])) {
+                        if (is_uploaded_file($_FILES['archivo_espacio']['tmp_name'])) {
+                            if ($espacio->setFoto($_FILES['archivo_espacio'])) {
+                                if ($espacio->savePhoto()) {
+                                    $result['status'] = 1;
+                                    if ($espacio->saveFile($_FILES['archivo_espacio'], $espacio->getRuta(), $espacio->getFoto())) {
+                                        $result['message'] = 'Imagen registrada correctamente';
+                                    } else {
+                                        $result['message'] = 'Imagen registrada pero no se guardó la imagen';
+                                    }
+                                } else {
+                                    if (Database::getException()) {
+                                        $result['exception'] = Database::getException();
+                                    } else {
+                                        $result['exception'] = 'No se ha agregado la imágen correctamente.';
+                                    }
+                                }
+                            } else {
+                                $result['exception'] = $espacio->getImageError();
+                            }
+                        } else {
+                            $result['exception'] =  'Selecciona una imágen para el espacio.';
+                        }
+                    } else {
+                        $result['exception'] = 'Hubo un problema al seleccionar el espacio.';
+                    }
+                    break;
+                //Caso para leer el ultimo registro
+                case 'readLast':
+                    if ($result['dataset'] = $espacio->readLast()) {
+                        $result['status'] = 1;
+                        $result['id'] = $espacio->getIdEspacio();
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No se ha encontrado ningún espacio registrado.';
+                        }
+                    }
+                    break;
                 //Caso por defecto
                 default:
                     $result['exception'] = 'La acción solicitada no está disponible dentro de la sesión.';

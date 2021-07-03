@@ -9,12 +9,24 @@
         private $descripcion = null;
         private $capacidad = null;
         private $idBitacora = null;
+        private $imagen = null;
+        private $ruta = '../../../resources/img/dashboard_img/espacios_fotos/';
 
         //Métodos set 
         public function setIdEspacio($value)
         {
             if ($this->validateNaturalNumber($value)) {
                 $this->idEspacio = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setFoto($file)
+        {
+            if ($this->validateImageFile($file, 4000, 4000)) {
+                $this->imagen = $this->getImageName();
                 return true;
             } else {
                 return false;
@@ -102,6 +114,16 @@
             return $this->idBitacora;
         }
 
+        public function getFoto()
+        {
+            return $this->imagen;
+        }
+
+        public function getRuta()
+        {
+            return $this->ruta;
+        }
+
         //Método para leer todos los datos de la tabla
         public function readAll()
         {
@@ -132,6 +154,28 @@
             $params = array($this->idEstadoEspacio,$this->nombre,$this->descripcion,$this->capacidad);
             return Database::executeRow($sql,$params);
         }
+
+        //Método para crear un nuevo registro de imagen
+        public function savePhoto()
+        {
+            $sql = 'INSERT INTO imagenesespacio(imagen,idespacio) 
+                    VALUES(?,?)';
+            $params = array($this->imagen, $this->idEspacio);
+            return Database::executeRow($sql,$params);
+        }
+
+        public function readLast()
+        {
+            $sql = 'SELECT MAX(idespacio) as id FROM espacio';
+            $params =  null;
+            if ($data = Database::getRow($sql, $params)) {
+                $this->idEspacio = $data['id'];
+                return true;
+            } else {
+                return false;
+            }
+        }
+    
 
         //Método para actualizar un registro
         public function updateRow()

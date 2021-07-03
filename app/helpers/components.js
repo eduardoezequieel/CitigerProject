@@ -425,6 +425,100 @@ function saveRow(api, action, form, modal) {
     });
 }
 
+function saveRowBoolean(api, action, form, modal) {
+    fetch(api + action, {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
+                    readRows(api);
+                    sweetAlert(1, response.message, null);
+                    checkSavePhoto(api, modal)
+                    clearForm(form);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function checkSavePhoto(api, modal) {
+    swal({
+        title: 'Información',
+        text: '¿Desea agregar imágenes a el registro?',
+        icon: 'info',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value) {
+            fetch(api + 'readLast', {
+                method: 'get'
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            closeModal(modal)
+                            document.getElementById('idEspacio1').value = response.id;
+                            document.getElementById('adminImagen').click();
+                            console.log(response.id)
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                            console.log(response.status + ' ' + response.statusText);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        } else {
+            closeModal(modal)
+        }
+    });
+}
+
+function savePhoto(api, form) {
+    fetch(api + 'savePhoto', {
+        method: 'post',
+        body: new FormData(document.getElementById(form))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                    readRows(api);
+                    sweetAlert(1, response.message, closeModal('administrarImagen'));
+                    clearForm(form);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log(response.status + ' ' + response.statusText);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
 /*
 *   Función para eliminar un registro seleccionado en los mantenimientos de tablas (operación delete). Requiere el archivo sweetalert.min.js para funcionar.
 *
@@ -686,6 +780,11 @@ function resetButtons(buttons, inicio){
             buttons[i].className = 'btn btnAgregarFormulario mr-2';
         }
     }
+}
+
+//Función para resetear botones
+function resetButtonsSpace(buttons, inicio,inicio2){
+    document.getElementById('')
 }
 
 /*
