@@ -61,6 +61,22 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Casa incorrecta';
                 }
                 break;
+            case 'readAportacion2':
+                $_POST = $aportaciones->validateForm($_POST);
+                if ($aportaciones->setIdCasa($_POST['Casa'])) {
+                    if ($result['dataset'] = $aportaciones->readOne()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Aportacion inexistente';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Casa incorrecta';
+                }
+                break;
 
             case 'createRow':
                 $_POST = $aportaciones->validateForm($_POST);
@@ -269,15 +285,121 @@ if (isset($_GET['action'])) {
 
             case 'filtrarAportacion': // METODO BUSQUEDA FILTRADA
                 $_POST = $aportaciones->validateForm($_POST);
-                if ($result['dataset'] = $aportaciones->filtrarAportacion($_POST['txtId2'],$_POST['anio'])) {
+                if ($result['dataset'] = $aportaciones->filtrarAportacion($_POST['txtId2'], $_POST['anio'])) {
                     $result['status'] = 1;
                 } else {
                     if (Database::getException()) {
                         $result['exception'] = Database::getException();
                     } else {
-
                     }
                 }
+                break;
+
+            case 'agregarAportacion2022':
+
+                $_POST = $aportaciones->validateForm($_POST);
+                if ($_POST['anio2'] == '') {
+                    $result['exception'] = 'Seleccione un año';
+                } else {
+
+                    if ($aportaciones->verificarAportacion($_POST['Casa'], $_POST['anio2'])) {
+                        $result['exception'] = 'Ya se han agregado aportaciones con este año o no han sido canceladas';
+                    } else {
+
+                        $_POST = $aportaciones->validateForm($_POST);
+                        if ($aportaciones->setIdCasa($_POST['Casa'])) {
+                            if ($aportaciones->crearAportacion2022()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Se han agregado las aportaciones';
+                            } else {
+                                $result['error'] = 1;
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'Id inválido.';
+                        }
+                    }
+                }
+
+
+                break;
+            case 'agregarAportacion2023':
+                $_POST = $aportaciones->validateForm($_POST);
+                if ($_POST['anio2'] == '') {
+                    $result['exception'] = 'Seleccione un año';
+                } else {
+
+                    if ($aportaciones->verificarAportacion($_POST['Casa'], $_POST['anio2'])) {
+                        $result['exception'] = 'Ya se han agregado aportaciones con este año o no han sido canceladas';
+                    } else {
+
+                        $_POST = $aportaciones->validateForm($_POST);
+                        if ($aportaciones->setIdCasa($_POST['Casa'])) {
+                            if ($aportaciones->crearAportacion2023()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Se han agregado las aportaciones';
+                            } else {
+                                $result['error'] = 1;
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'Id inválido.';
+                        }
+                    }
+                }
+
+                break;
+            case 'agregarAportacion2024':
+                $_POST = $aportaciones->validateForm($_POST);
+                if ($_POST['anio2'] == '') {
+                    $result['exception'] = 'Seleccione un año';
+                } else {
+
+                    if ($aportaciones->verificarAportacion($_POST['Casa'], $_POST['anio2'])) {
+                        $result['exception'] = 'Ya se han agregado aportaciones con este año o no han sido canceladas';
+                    } else {
+
+
+                        $_POST = $aportaciones->validateForm($_POST);
+                        if ($aportaciones->setIdCasa($_POST['Casa'])) {
+                            if ($aportaciones->crearAportacion2024()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Ya se han agregado aportaciones con este año o no han sido canceladas';
+                            } else {
+                                $result['error'] = 1;
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'Id inválido.';
+                        }
+                    }
+                }
+                break;
+            case 'agregarAportacion2025':
+                $_POST = $aportaciones->validateForm($_POST);
+                if ($_POST['anio2'] == '') {
+                    $result['exception'] = 'Seleccione un año';
+                } else {
+
+                    if ($aportaciones->verificarAportacion($_POST['Casa'], $_POST['anio2'])) {
+                        $result['exception'] = 'Ya se han agregado aportaciones con este año o no han sido canceladas';
+                    } else {
+
+                        $_POST = $aportaciones->validateForm($_POST);
+                        if ($aportaciones->setIdCasa($_POST['Casa'])) {
+                            if ($aportaciones->crearAportacion2025()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Se han agregado las aportaciones correctamente';
+                            } else {
+                                $result['error'] = 1;
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'Id inválido.';
+                        }
+                    }
+                }
+
                 break;
         }
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.

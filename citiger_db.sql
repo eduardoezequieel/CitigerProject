@@ -346,4 +346,10 @@ insert into mespago values(default,'Enero',2021),(default,'Febrero',2021),(defau
 --Cambios 03/07/2021
 ALTER TABLE espacio ADD COLUMN imagenprincipal CHARACTER VARYING(50);
 
+--usado para que funcionen los estados de visita en el insert
+update estadovisita set idestadovisita=5 where idestadovisita=2
+update estadovisita set idestadovisita=4 where idestadovisita=1
+
+
+
 

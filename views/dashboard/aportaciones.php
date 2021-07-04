@@ -225,6 +225,77 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
 </div>
 <!-- Fin del Modal -->
 
+
+<!-- Modal para agregar pagos de años siguientes -->
+<div class="modal fade" id="agregarPago" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Pagos</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <form method="post" id="adminPagos-form">
+                    <input class="d-none" type="number" id="Casa" name="Casa" />
+                    <div class="row justify-content-center mb-3">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <h1 class="tituloPagina text-center">Registro de Aportaciones</h1>
+
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-3">
+
+                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center text-center">
+                            <h1 class="tituloDato text-center" id="casa2"></h1>
+                        </div>
+
+                    </div>
+                    <div class="row animate__animated animate__bounceIn">
+                        <!-- Primera columna de controles -->
+                        <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12  centrarColumnas">
+                            <div class="#" id="EmpleadosColumna1">
+
+                                <!-- Select para años -->
+                                <h1 class="tituloCajaTextoFormulario mb-2">Año</h1>
+                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                deseado en el combobox  -->
+                                <div class="cbCitiger">
+                                    <select class="custom-select" id="cbAnio2" name="cbAnio2">
+                                        <option selected="">Seleccionar...</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                    </select>
+                                    <input type="number" name="anio2" id="anio2" class="d-none">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Segunda columna de controles -->
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 mt-4 centrarColumnas">
+                                <button id="btnAgregarPago" type="submit" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                        </div>
+                    </div>
+
+                </form>
+                <br>
+                <!-- Fin del Contenido del Modal -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
+
 <?php
 //Se imprimen los JS necesarios
 admin_Page::footerTemplate('aportaciones.js');

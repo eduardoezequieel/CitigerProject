@@ -75,6 +75,8 @@ function fillTable(dataset) {
                     <a href="#" onclick="readDataOnModal(${row.idcasa})" data-toggle="modal" data-target="#administrarCasa" class="btn btnTabla"><i class="fas fa-edit"></i></a>
                     <a href="#"  onclick="readAportacion(${row.idcasa})" data-toggle="modal" data-target="#administrarPago" class="btn btnTabla3"><i class="fas fa-comment-dollar"></i></a>
                     <a href="#" onclick="deleteRow(${row.idcasa})" class="btn btnTabla2"><i class="fas fa-trash"></i></a>
+                    <a href="#" onclick="agregarAportacion(${row.idcasa})" data-toggle="modal" data-target="#agregarPago" class="btn btnTabla"><i class="fas fa-plus"></i></a>
+
                 </div>
             </div>
         </th>
@@ -221,7 +223,7 @@ document.getElementById('btnReiniciar').addEventListener('click', function () {
 //funcion para cargar las credenciales de la casa
 function readAportacion(id) {
 
-   
+
     document.getElementById('txtIdAportacion').value = ' ';
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
@@ -350,4 +352,81 @@ document.getElementById('filtrarAportacion-form').addEventListener('submit', fun
     }).catch(function (error) {
         console.log(error);
     });
+});
+
+
+function agregarAportacion(id) {
+
+    document.getElementById('Casa').value = ' ';
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('Casa', id);
+    console.log(id);
+    fetch(API_CASAS + 'readAportacion2', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    document.getElementById('Casa').value = response.dataset.idcasa;
+                    document.getElementById('casa2').textContent = (response.dataset.casa);
+
+
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+
+    document.getElementById('Casa').value = id;
+
+}
+
+
+document.getElementById('cbAnio2').addEventListener('change', function () {
+    //Guardando el valor del select en un input
+    document.getElementById('anio2').value = document.getElementById('cbAnio2').value;
+    //Presionando el boton invisible
+})
+
+document.getElementById('adminPagos-form').addEventListener('submit', function (event) {
+    //Se evita que se recargue la pagina
+    event.preventDefault();
+    //se evaluan los años
+    if (document.getElementById('anio2').value == 2022) {
+        saveRow(API_CASAS, 'agregarAportacion2022', 'adminPagos-form', 'agregarPago');
+
+    }
+    else if (document.getElementById('anio2').value == 2023) {
+
+        saveRow(API_CASAS, 'agregarAportacion2023', 'adminPagos-form', 'agregarPago');
+
+    }
+    else if (document.getElementById('anio2').value == 2024) {
+
+        saveRow(API_CASAS, 'agregarAportacion2024', 'adminPagos-form', 'agregarPago');
+
+    }
+    else if (document.getElementById('anio2').value == 2025) {
+
+        saveRow(API_CASAS, 'agregarAportacion2025', 'adminPagos-form', 'agregarPago');
+
+    } else {
+
+        sweetAlert(3, 'Seleccione un año', null);
+
+    }
+
+
+
+
 });
