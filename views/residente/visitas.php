@@ -59,7 +59,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                             <th scope="row">
                                 <div class="row paddingBotones">
                                     <div class="col-12">
-                                        <a href="#" data-toggle="modal" data-target="#administrarDenunciaPendiente" class="btn btnTabla"><i class="fas fa-info-circle"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#informacionVisita" class="btn btnTabla"><i class="fas fa-info-circle"></i></a>
 
                                     </div>
                                 </div>
@@ -100,7 +100,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                 <div class="row">
                     <!-- Opción "alquiler" de menú -->
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                        <a href="#" class="btn botonMenu1">
+                        <a href="#"  data-toggle="modal" data-dismiss="modal" data-target="#crearVisita" class="btn botonMenu1">
                             <i class="fas fa-thumbs-up iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">Si</label>
                         </a>
@@ -108,10 +108,215 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
 
                     <!-- Opción "espacios" de menú -->
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                        <a href="#" class="btn botonMenu2">
+                        <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#administrarVisitante" class="btn botonMenu2">
                             <i class="fas fa-thumbs-down iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">No</label>
                         </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
+
+<div class="modal fade" id="administrarVisitante" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+                        class="fas fa-info-circle mr-4 iconoModal"></span>Visitante</h5>
+                
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-toggle="modal" data-target="#modal1" data-dismiss="modal">
+                    <span class="fas fa-chevron-left" aria-hidden="true"></span>
+                </button>
+            </div>
+            <!--Contenido del Modal-->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <form method="post" id="administrarVisitante-form">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="tituloDato2 text-center">Complete el formulario para registrar al visitante en el sistema.</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12">
+                            <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
+                            <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario2" id="txtNombre"
+                                name="txtNombre" placeholder="">
+
+                            <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
+                            <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario2" id="txtApellido"
+                                name="txtApellido" placeholder="">
+
+                            <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
+                            <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario2" id="txtDUI"
+                                name="txtDUI" placeholder="12345678-9">
+
+                            <!-- RadioButtonGroup Género -->
+                            <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
+                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                deseado en el combobox  -->
+                            <div class="cbCitiger">
+                                <select class="custom-select" id="cbGenero" name="cbGenero">
+                                    <option selected="default">Seleccionar...</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                </select>
+                            </div>
+
+                            <label class="tituloCajaTextoFormulario mt-2" for="txtPlaca">Placa:</label>
+                            <input type="text" class="form-control cajaTextoFormulario2" id="txtPlaca"
+                                name="txtPlaca" placeholder="P123 456">
+                        </div>
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12">
+                            
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                            <button id="btnAgregar" data-dismiss="modal" data-toggle="modal" data-target="#crearVisita" class="btn btnAgregarFormulario mr-2"><span
+                                    class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Fin del Contenido del Modal -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
+
+<!-- Modal para crear la visita -->
+<div class="modal fade" id="crearVisita" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+                        class="fas fa-info-circle mr-4 iconoModal"></span>Visita</h5>
+                
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-toggle="modal" data-target="#modal1" data-dismiss="modal">
+                    <span class="fas fa-chevron-left" aria-hidden="true"></span>
+                </button>
+            </div>
+            <!--Contenido del Modal-->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <form method="post" id="administrarVisita-form">
+                    <input type="number" name="idVisita" id="idVisita" class="d-none">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+
+                            <label class="tituloCajaTextoFormulario" for="cbResidente">Residente:</label>
+                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                            <div class="cbCitiger">
+                                <select class="custom-select" id="cbResidente" name="cbResidente">
+                                    <option selected="">Seleccionar...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+
+                            <label class="tituloCajaTextoFormulario mt-2" for="txtFecha">Fecha:</label>
+                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha"
+                                placeholder="">
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                            <label class="tituloCajaTextoFormulario" for="txtObservacion">Observación:</label>
+                            <textarea id="txtObservacion" name="txtObservacion" rows="4"
+                                class="form-control cajaTextoModal"></textarea>
+
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-2">
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="form-group">
+                                <!-- RadioButtonGroup Género -->
+                                <h1 class="tituloCajaTextoFormulario mb-2">Visita Recurrente</h1>
+                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                            cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                            deseado en el combobox  -->
+                                <div class="cbCitiger">
+                                    <select class="custom-select" id="cbVisitaR" name="cbVisitaR">
+                                        <option selected="default">Seleccionar...</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                            <button id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span
+                                    class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Fin del Contenido del Modal -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
+
+<!-- Modal para ver información de una visita -->
+<div class="modal fade" id="informacionVisita" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Información de la Visita</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <div class="row justify-content-center">
+                    <div class="d-flex justify-content-center col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="flex-column">
+                            <div class="form-group">
+                                <h1 class="tituloDato2 text-center">Visitante:</h1>
+                                <h1 class="campoDato text-center">Eduardo Rivera</h1>
+                            </div>
+                            <div class="form-group">
+                                <h1 class="tituloDato2 text-center">Placa:</h1>
+                                <h1 class="campoDato text-center">P666 66</h1>
+                            </div>
+                            <div class="form-group">
+                                <h1 class="tituloDato2 text-center">Fecha:</h1>
+                                <h1 class="campoDato text-center">3/7/2021</h1>
+                            </div>
+                            <div class="form-group">
+                                <h1 class="tituloDato2 text-center">Visita recurrente:</h1>
+                                <h1 class="campoDato text-center">Si</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="flex-column">
+                            <div class="form-group">
+                                <h1 class="tituloDato2 text-center">Estado:</h1>
+                                <h1 class="campoDato text-center">Finalizada</h1>
+                            </div>
+                            <div class="form-group">
+                                <h1 class="tituloDato2 text-center">Observación:</h1>
+                                <h1 class="campoDato text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt quidem, unde non aspernatur recusandae maxime aliquid optio cupiditate obcaecati pariatur cum tempore, cumque sit corrupti et dicta officiis iure! Eaque?</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
