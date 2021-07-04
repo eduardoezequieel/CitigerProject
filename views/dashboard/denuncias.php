@@ -102,7 +102,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                             <h1 class="tituloDato text-center">Estado</h1>
                             <h1 class="campoDato text-center mb-3" id="txtEstadoDenuncia">Pendiente</h1>
                         </div>
-                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                        <div class=" d-flex justify-content-center col-xl-6 col-md-12 col-sm-12 col-xs-12">
                             <textarea name="txtDescripcion" id="txtDescripcion" rows="11" class="form-control cajaTextoFormulario" readonly>Texto de ejemplo</textarea>
                         </div>
                     </div>
@@ -138,19 +138,22 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
             <br>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
-                <div class="row justify-content-center">
-                    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                        <h1 class="campoDato text-center mb-2">¿Por qué ha sido rechazada está denuncia?</h1>
-                        <textarea name="#" id="#" rows="8" class="form-control cajaTextoFormulario"></textarea>
+                <form method="post" id="administrarDenunciaRechazada-form">
+                    <input type="number" class="d-none" id="idDenuncia3" name="idDenuncia3">
+                    <div class="row justify-content-center">
+                        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                            <h1 class="campoDato text-center mb-2">¿Por qué ha sido rechazada está denuncia?</h1>
+                            <textarea name="txtRespuesta" id="txtRespuesta" rows="8" class="form-control cajaTextoFormulario"></textarea>
+                        </div>
                     </div>
-                </div>
-                <!-- Botones de Acción del Formulario -->
-                <div class="row justify-content-center mt-4">
-                    <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                        <button href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Aceptar</button>
-                        <button href="#" data-toggle="modal" data-dismiss="modal" data-target="#administrarDenunciaPendiente" class="btn btnAgregarFormulario mr-2"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Revertir</button>
+                    <!-- Botones de Acción del Formulario -->
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                            <button id="btnEnviarRespuestaRechazo" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Aceptar</button>
+                            <button id="btnRevertirCambiosRechazo" class="btn btnAgregarFormulario mr-2"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Revertir</button>
+                        </div>
                     </div>
-                </div>
+                </form>
                 <!-- Fin del Contenido del Modal -->
             </div>
         </div>
@@ -176,40 +179,43 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
             <div class="textoModal px-3 pb-4 mt-2">
                 <form method="post" id="administrarDenunciaAsignar-form">
                 <input type="number" name="idDenuncia2" id="idDenuncia2" class="d-none">
-                    <div class="row">
-                        <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-12 justify-content-center">
                             <h1 class="campoDato text-center mb-3">¿Qué empleado se encargará de solucionar está denuncia?</h1>
 
                             <h1 class="tituloDato text-center">Tipo de Denuncia</h1>
                             <h1 class="campoDato text-center mb-3">Mantenimiento</h1>
 
-                            <div class="form-group d-flex justify-content-center mt-3 flex-column-media">
-                                
-                                <div class="">
-                                    <h1 class="tituloCajaTextoFormulario">Tipo de Empleado:</h1>
-                                    <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                    cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                    deseado en el combobox  -->
-                                    <div class="cbCitiger">
-                                        <select class="custom-select" id="cbTipoEmpleado">
-                                            <option selected="">Seleccionar...</option>
-                                            
-                                        </select> 
+                            <div class="d-flex justify-content-center justify-content-center mt-3">
+                                <div class="flex-column">
+                                    <div class="form-group">
+                                        <h1 class="tituloCajaTextoFormulario">Tipo de Empleado:</h1>
+                                        <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                                        <div class="cbCitiger">
+                                            <select class="custom-select" id="cbTipoEmpleado">
+                                                <option selected="">Seleccionar...</option>
+                                                
+                                            </select> 
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <div id="marginSelectEmpleado" class="mx-2">
-                                    <h1 class="tituloCajaTextoFormulario">Empleado:</h1>
-                                    <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                    cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                    deseado en el combobox  -->
-                                    <div class="cbCitiger">
-                                        <select class="custom-select">
-                                            <option selected="">Seleccionar...</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select> 
+
+                                    <input type="number" class="d-none" id="idTipoEmpleado" name="idTipoEmpleado">
+                                    
+                                    <div class="mt-2 form-group">
+                                        <h1 class="tituloCajaTextoFormulario">Empleado:</h1>
+                                        <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                                        <div class="cbCitiger">
+                                            <select class="custom-select" id="cbEmpleado" name="cbEmpleado">
+                                                <option selected="">Seleccionar...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select> 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -219,8 +225,8 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                     <!-- Botones de Acción del Formulario -->
                     <div class="row justify-content-center mt-2">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                            <button href="#" data-toggle="modal" data-dismiss="modal" data-target="#administrarDenunciaEnSolucion" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Aceptar</button>
-                            <button href="#" data-toggle="modal" data-dismiss="modal" data-target="#administrarDenunciaPendiente" class="btn btnAgregarFormulario mr-2"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Revertir</button>
+                            <button id="btnAsignarEmpleado" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Aceptar</button>
+                            <button id="btnRevertirCambiosAceptado" class="btn btnAgregarFormulario mr-2"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Revertir</button>
                         </div>
                     </div>
                     <!-- Fin del Contenido del Modal -->
@@ -247,34 +253,39 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
             <br>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
-                <div class="row">
-                    <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
-                        <h1 class="tituloDato text-center">Residente</h1>
-                        <h1 class="campoDato text-center mb-3">Eduardo Rivera</h1>
+                <form method="post" id="administrarDenunciaEnSolucion-form">
+                    <input type="number" class="d-none" id="idDenuncia" name="idDenuncia">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                            <h1 class="tituloDato text-center">Residente</h1>
+                            <h1 class="campoDato text-center mb-3" id="lblResidente">Eduardo Rivera</h1>
 
-                        <h1 class="tituloDato text-center">Tipo de Denuncia</h1>
-                        <h1 class="campoDato text-center mb-3">Mantenimiento</h1>
+                            <h1 class="tituloDato text-center">Tipo de Denuncia</h1>
+                            <h1 class="campoDato text-center mb-3" id="lblTipoDenuncia">Mantenimiento</h1>
 
-                        <h1 class="tituloDato text-center">Fecha</h1>
-                        <h1 class="campoDato text-center mb-3">11/6/2021</h1>
+                            <h1 class="tituloDato text-center">Fecha</h1>
+                            <h1 class="campoDato text-center mb-3" id="lblFecha">11/6/2021</h1>
 
-                        <h1 class="tituloDato text-center">Estado</h1>
-                        <h1 class="campoDato text-center mb-3">Pendiente</h1>
+                            <h1 class="tituloDato text-center">Estado</h1>
+                            <h1 class="campoDato text-center mb-3" id="lblEstado">Pendiente</h1>
 
-                        <h1 class="tituloDato text-center">Empleado Asignado</h1>
-                        <h1 class="campoDato text-center mb-3">Edenilson Ramírez</h1>
+                            <h1 class="tituloDato text-center">Empleado Asignado</h1>
+                            <h1 class="campoDato text-center mb-3" id="lblEmpleado">Edenilson Ramírez</h1>
+                        </div>
+                        <div class=" d-flex justify-content-center col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                            <textarea name="txtDescripcion2" id="txtDescripcion2" rows="11" class="form-control cajaTextoFormulario" readonly></textarea>
+                        </div>
                     </div>
-                    <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
-                        <textarea name="#" id="#" rows="14" class="form-control cajaTextoFormulario" readonly>Texto de ejemplo</textarea>
+                    
+                    <!-- Botones de Acción del Formulario -->
+                    <div class="row justify-content-center mt-4" id="botonesUltimoModal">
+                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                            <button id="btnFinalizarDenuncia" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Finalizar</button>
+                            <button id="btnRevertirEnSolucion" class="btn btnAgregarFormulario mr-2"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Revertir</button>
+
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Botones de Acción del Formulario -->
-                <div class="row justify-content-center mt-4">
-                    <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                        <button href="#" data-dismiss="modal" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Finalizar</button>
-                    </div>
-                </div>
+                </form>
                 <!-- Fin del Contenido del Modal -->
             </div>
         </div>

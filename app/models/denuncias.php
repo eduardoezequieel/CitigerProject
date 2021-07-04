@@ -8,6 +8,7 @@
         private $idEstadoDenuncia = null;
         private $fecha = null;
         private $descripcion = null;
+        private $respuesta = null;
 
         //Metodos set para las variables del modelo
 
@@ -73,8 +74,18 @@
 
         public function setDescripcion($value)
         {
-            if ($this->validateAlphabetic($value,1,200)) {
+            if ($this->validateAlphanumeric($value,1,200)) {
                 $this->descripcion = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setRespuesta($value)
+        {
+            if ($this->validateAlphanumeric($value,1,200)) {
+                $this->respuesta = $value;
                 return true;
             } else {
                 return false;
@@ -117,6 +128,11 @@
             return $this -> descripcion;
         }
 
+        public function getRespuesta()
+        {
+            return $this -> respuesta;
+        }
+
         //Sentencias SQL
 
         public function readAll()
@@ -152,7 +168,7 @@
 
         public function rejectComplaint()
         {
-            $sql = 'UPDATE denuncia SET idestadodenuncia = 2 
+            $sql = 'UPDATE denuncia SET idestadodenuncia = 2
                     WHERE iddenuncia = ?';
             $params = array($this->idDenuncia);
             return Database::executeRow($sql, $params);
@@ -160,11 +176,21 @@
 
         public function revertChanges()
         {
-            $sql = 'UPDATE denuncia SET idestadodenuncia = 1 
+            $sql = 'UPDATE denuncia SET idestadodenuncia = 1, respuesta = null, idempleado = null
                     WHERE iddenuncia = ?';
             $params = array($this->idDenuncia);
+           
             return Database::executeRow($sql, $params);
         }
+
+        public function finishComplaint()
+        {
+            $sql = 'UPDATE denuncia SET idestadodenuncia = 5 WHERE iddenuncia = ?';
+            $params = array($this->idDenuncia);
+           
+            return Database::executeRow($sql, $params);
+        }
+
 
         public function readStates()
         {
@@ -178,6 +204,50 @@
             $sql = 'SELECT*FROM tipoempleado';
             $params = null;
             return Database::getRows($sql, $params);
+        }
+
+        public function readEmployeeByTypes($id)
+        {
+            $sql = 'SELECT idempleado, CONCAT(nombre,\' \', apellido) AS empleado 
+                    FROM empleado 
+                    WHERE idtipoempleado = ? AND idestadoempleado = 1';
+            $params = array($id);
+            return Database::getRows($sql, $params);
+        }
+
+        public function setEmployee()
+        {
+            $sql = 'UPDATE denuncia SET idempleado = ?, idestadodenuncia = 4 WHERE iddenuncia = ?';
+            $params = array($this->idEmpleado, $this->idDenuncia);
+          
+            return Database::executeRow($sql, $params);
+        }
+
+        public function getInfo()
+        {
+            $sql = 'SELECT iddenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, fecha, estadodenuncia.estadodenuncia, CONCAT(empleado.nombre,\' \', empleado.apellido) AS empleado, descripcion
+                    FROM denuncia
+                    INNER JOIN residente ON denuncia.idresidente = residente.idresidente
+                    INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
+                    INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
+                    INNER JOIN empleado ON denuncia.idempleado = empleado.idempleado
+                    WHERE idDenuncia = ?';
+            $params = array($this->idDenuncia);
+            return Database::getRow($sql, $params);
+        }
+
+        public function getAnswer()
+        {
+            $sql = 'SELECT respuesta FROM denuncia WHERE iddenuncia = ?';
+            $params = array($this->idDenuncia);
+            return Database::getRow($sql, $params);
+        }
+
+        public function insertAnswer()
+        {
+            $sql = 'UPDATE denuncia SET respuesta = ? WHERE iddenuncia = ?';
+            $params = array($this->respuesta, $this->idDenuncia);
+            return Database::executeRow($sql, $params);
         }
 
         

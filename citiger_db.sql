@@ -356,6 +356,7 @@ UPDATE residente SET modo = 'light';
 
 --Denuncias
 ALTER TABLE denuncia ADD COLUMN respuesta VARCHAR(200) NULL;
+ALTER TABLE denuncia ALTER COLUMN idempleado DROP NOT NULL;
 
 
 

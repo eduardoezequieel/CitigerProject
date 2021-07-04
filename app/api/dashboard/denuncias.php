@@ -56,6 +56,18 @@
                         $result['exception'] = 'Id incorrecto';
                     }
                     break;
+                case 'getInfo':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setIdDenuncia($_POST['idDenuncia'])) {
+                        if ($result['dataset'] = $denuncia->getInfo()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    } else {
+                        $result['exception'] = 'id incorrecto';
+                    }
+                    break;
                 case 'acceptComplaint':
                     $_POST = $denuncia -> validateForm($_POST);
                     if ($denuncia->setIdDenuncia($_POST['idDenuncia1'])) {
@@ -82,12 +94,75 @@
                         $result['exception'] = 'Id incorrecto';
                     }
                     break;
+                case 'setEmployee':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if (isset($_POST['cbEmpleado'])) {
+                        if ($denuncia->setIdEmpleado($_POST['cbEmpleado'])) {
+                            if ($denuncia->setIdDenuncia($_POST['idDenuncia2'])) {
+                                if ($denuncia->setEmployee()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Empleado asignado exitosamente. Puede monitorear la denuncia posteriormente filtrandola en la lista de registros.';
+                                } else {
+                                    $result['exception'] = Database::getException();
+                                }
+                                
+                            } else {
+                                $result['exception'] = 'Id incorrecto2';
+                            }
+                            
+                        } else {
+                            $result['exception'] = 'Id incorrecto';
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'Por favor seleccione un empleado.';
+                    }
+                    break;
                 case 'revertChangesAfterAccepted':
                     $_POST = $denuncia -> validateForm($_POST);
                     if ($denuncia->setIdDenuncia($_POST['idDenuncia2'])) {
-                        if ($denuncia->rejectComplaint()) {
+                        if ($denuncia->revertChanges()) {
                             $result['status'] = 1;
-                            $result['message'] = 'Denuncia rechazada correctamente.';
+                            $result['message'] = 'Cambios revertidos con exito.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
+                case 'revertChangesAfterSettingEmployee':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setIdDenuncia($_POST['idDenuncia'])) {
+                        if ($denuncia->revertChanges()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Cambios revertidos con exito.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
+                case 'finishComplaint':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setIdDenuncia($_POST['idDenuncia'])) {
+                        if ($denuncia->finishComplaint()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Denuncia reportada como solucionada.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
+                case 'revertChangesAfterRejected':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setIdDenuncia($_POST['idDenuncia3'])) {
+                        if ($denuncia->revertChanges()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Cambios revertidos con exito.';
                         } else {
                             $result['exception'] = Database::getException();
                         }
@@ -106,6 +181,48 @@
                             $result['exception'] = 'No se han encontrado tipos de empleados';
                         }
                     }
+                    break;
+                case 'readEmployeeByTypes':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($result['dataset'] = $denuncia->readEmployeeByTypes($_POST['idTipoEmpleado'])) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                    break;
+                case 'getAnswer':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setIdDenuncia($_POST['idDenuncia3'])) {
+                        if ($result['dataset'] = $denuncia->getAnswer()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Respuesta obtenida exitosamente';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'id incorrecto';
+                    }
+                    break;
+                case 'insertAnswerAfterRejected':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setRespuesta($_POST['txtRespuesta'])) {
+                        if ($denuncia->setIdDenuncia($_POST['idDenuncia3'])) {
+                            if ($denuncia->insertAnswer()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Respuesta enviada correctamente.';
+                            } else {
+                                $result['exception'] = Database::getException();
+                            }
+                            
+                        } else {
+                            $result['exception'] = 'id incorrecto.';
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'Respuesta incorrecta.';
+                    }
+                    
                     break;
                 
                 //Caso de default del switch
