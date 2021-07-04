@@ -354,6 +354,8 @@ update estadovisita set idestadovisita=4 where idestadovisita=1
 ALTER TABLE residente ADD COLUMN modo VARCHAR(6) NULL;
 UPDATE residente SET modo = 'light';
 
+--Denuncias
+ALTER TABLE denuncia ADD COLUMN respuesta VARCHAR(200) NULL;
 
 
 

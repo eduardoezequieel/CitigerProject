@@ -110,8 +110,8 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                     <!-- Botones de Acción del Formulario -->
                     <div class="row justify-content-center mt-4">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                            <button id="btnAceptar" data-toggle="modal" data-dismiss="modal" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Aceptar</button>
-                            <button id="btnRechazar" data-toggle="modal" data-dismiss="modal" data-target="#administrarDenunciaRechazada" class="btn btnAgregarFormulario mr-2"><span class="fas fa-times mr-3 tamañoIconosBotones"></span>Rechazar</button>
+                            <button id="btnAceptar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Aceptar</button>
+                            <button id="btnRechazar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-times mr-3 tamañoIconosBotones"></span>Rechazar</button>
                         </div>
                     </div>
                     <!-- Fin del Contenido del Modal -->

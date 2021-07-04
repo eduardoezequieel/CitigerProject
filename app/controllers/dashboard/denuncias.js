@@ -155,12 +155,11 @@ document.getElementById('btnAceptar').addEventListener('click',function(event){
                         if (response.status) {
                             readRows(API_DENUNCIAS);
                             sweetAlert(1, response.message, closeModal('administrarDenunciaPendiente'));
-                            clearForm(form);
                             
                         } else {
                             sweetAlert(2, response.exception, null);
                         }
-
+                        console.log('modal por error')
                         openModal('administrarDenunciaAsignar');
                     })
                 } else {
@@ -195,11 +194,12 @@ document.getElementById('btnRechazar').addEventListener('click',function(event){
                         //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
                         if (response.status) {
                             readRows(API_DENUNCIAS);
-                            sweetAlert(1, response.message, openModal('administrarDenunciaAsignar'));
-                            clearForm(form);
+                            sweetAlert(1, response.message, closeModal('administrarDenunciaPendiente'));
                         } else {
                             sweetAlert(2, response.exception, null);
                         }
+
+                        openModal('administrarDenunciaRechazada');
                     })
                 } else {
                     console.log(response.status + ' ' + response.exception);
