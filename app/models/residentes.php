@@ -297,9 +297,9 @@ class Residentes extends Validator
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
         $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
         $sql = 'INSERT INTO residente(idestadoresidente, nombre, apellido, telefonofijo, telefonocelular, foto, 
-            correo, fechanacimiento, genero, dui, username, contrasena) 
+            correo, fechanacimiento, genero, dui, username, contrasena, modo) 
             VALUES
-            (?,?,?,?,?,?,?,?,?,?,?,?)';
+            (?,?,?,?,?,?,?,?,?,?,?,?,\'light\')';
         $params = array(
             $this->idEstadoResidente,
             $this->nombre,
