@@ -350,6 +350,10 @@ ALTER TABLE espacio ADD COLUMN imagenprincipal CHARACTER VARYING(50);
 update estadovisita set idestadovisita=5 where idestadovisita=2
 update estadovisita set idestadovisita=4 where idestadovisita=1
 
+--Agregar para que el cambio de modos funcione en el sitio de residentes.
+ALTER TABLE residente ADD COLUMN modo VARCHAR(6) NULL;
+UPDATE residente SET modo = 'light';
+
 
 
 
