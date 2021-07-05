@@ -42,7 +42,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
 
-                /* 
+                
             case 'readProfile2':
                 if ($result['dataset'] = $usuarios->readProfile2()) {
                     $result['status'] = 1;
@@ -57,11 +57,11 @@ if (isset($_GET['action'])) {
             case 'editProfile':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setDui($_POST['txtDUI'])) {
-                    if ($usuarios->setTelefonoFijo($_POST['txtTelefonoFijo'])) {
-                        if ($usuarios->setTelefonoCelular($_POST['txtTelefonomovil'])) {
+                    if ($usuarios->setTelefonof($_POST['txtTelefonoFijo'])) {
+                        if ($usuarios->setTelefonom($_POST['txtTelefonomovil'])) {
                             if ($usuarios->setNacimiento($_POST['txtFechaNacimiento'])) {
-                                if ($usuarios->setNombres($_POST['txtNombres'])) {
-                                    if ($usuarios->setApellidos($_POST['txtApellidos'])) {
+                                if ($usuarios->setNombre($_POST['txtNombres'])) {
+                                    if ($usuarios->setApellido($_POST['txtApellidos'])) {
                                         if (isset($_POST['cbGenero'])) {
                                             if ($usuarios->setGenero($_POST['cbGenero'])) {
 
@@ -117,7 +117,7 @@ if (isset($_GET['action'])) {
                 }else{
                     $result['exception'] = 'Usuario inválido';
                 }
-                break;*/
+                break;
             //Caso para actualizar la contraseña
             case 'changePassword':
                 $_POST = $usuarios->validateForm($_POST);

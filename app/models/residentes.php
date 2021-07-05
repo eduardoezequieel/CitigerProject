@@ -490,4 +490,43 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+
+    public function readProfile()
+    {
+        $sql = "SELECT idresidente, nombre, apellido, CONCAT(nombre,' ',apellido) as nombres,dui, genero, correo, foto, fechaNacimiento, telefonofijo, telefonocelular, username, contrasena
+        FROM residente
+        WHERE idresidente = ?";
+        $params = array($_SESSION['idresidente']);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readProfile2()
+    {
+        $sql = "SELECT idresidente, nombre, apellido, CONCAT(nombre,' ',apellido) as nombres,dui, genero, correo, foto, fechaNacimiento, telefonofijo, telefonocelular, username, contrasena
+        FROM residente
+        WHERE idresidente = ?";
+        $params = array($_SESSION['idresidente']);
+        return Database::getRow($sql, $params);
+    }
+
+    public function updateFoto($current_image)
+    {
+        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+        ($this->foto) ? $this->deleteFile($this->getRuta(), $current_image) : $this->foto = $current_image;
+
+        $sql = 'UPDATE residente
+                SET foto = ?
+                WHERE idresidente = ?';
+        $params = array($this->foto, $_SESSION['idresidente']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function updateInfo()
+    {
+        $sql = 'UPDATE residente
+        SET nombre=?, apellido=?, telefonofijo=?, telefonocelular=?, fechanacimiento=?, genero=?, dui=?
+        WHERE idresidente=?';
+        $params = array($this->nombre, $this->apellido, $this->telefonof, $this->telefonof, $this->fechaNacimiento, $this->genero, $this->dui, $_SESSION['idresidente']);
+        return Database::executeRow($sql, $params);
+    }
 }

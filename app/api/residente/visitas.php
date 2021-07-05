@@ -19,7 +19,19 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
                 //Caso para leer todos los registros de la tabla
             case 'readAll':
-                if ($result['dataset'] = $visita->readAll()) {
+                if ($result['dataset'] = $visita->getVisitasResidente()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha encontrado al menos una visita.';
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No existen visitas registradas.';
+                    }
+                }
+                break;
+            case 'detalleVisitas':
+                if ($result['dataset'] = $visita->readVisitas()) {
                     $result['status'] = 1;
                     $result['message'] = 'Se ha encontrado al menos una visita.';
                 } else {
@@ -33,8 +45,8 @@ if (isset($_GET['action'])) {
                 //Caso para cargar un registro en especifico
             case 'readOne':
                 $_POST = $visita->validateForm($_POST);
-                if ($visita->setIdVisita($_POST['idVisita'])) {
-                    if ($result['dataset'] = $visita->readOne()) {
+                if ($visita->setIdVisita($_POST['idDetalle'])) {
+                    if ($result['dataset'] = $visita->readOne2()) {
                         $result['status'] = 1;
                     } else {
                         if (Database::getException()) {
@@ -112,6 +124,66 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombre invalido.';
                 }
                 break;
+            case 'readVisitante':
+                if ($result['dataset'] = $visita->readVisitante()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha encontrado al menos un residente.';
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No existen residentes registrados.';
+                    }
+                }
+                break;
+            case 'detalleVisita':
+                $_POST = $visita->validateForm($_POST);
+                if ($visita->setIdVisita($_POST['txtIdx'])) {
+                    if (isset($_POST['cbVisitante'])) {
+                        if ($visita->setIdVisitante($_POST['cbVisitante'])) {
+                            if ($visita->insertDetalleVisita()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Detalle registrado correctamente.';
+                            } else {
+                                $result['error'] = 1;
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'Visitante inválido.';
+                        }
+                    } else {
+                        $result['exception'] = 'Seleccione un visitante.';
+                    }
+                } else {
+                    $result['exception'] = 'Visita invalida.';
+                }
+
+                break;
+
+            case 'search':
+                $_POST = $visita->validateForm($_POST);
+                if ($_POST['search'] != '') {
+                    if ($result['dataset'] = $visita->searchRows($_POST['search'])) {
+                        $result['status'] = 1;
+                        $row = count($result['dataset']);
+                        if ($row > 0) {
+                            $result['message'] = 'Se han encontrado ' . $row . ' coincidencias';
+                        } else {
+                            $result['message'] = 'Se ha encontrado una coincidencia';
+                        }
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay coincidencias';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Campo vacio';
+                }
+                break;
+
+
                 //Caso de default del switch
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';

@@ -372,6 +372,7 @@ function fillTable2(dataset) {
     dataset.map(function (row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
+        <tr class="animate__animated animate__fadeIn">
         <td># ${row.numerocasa}</td>
         <td>${row.direccion}</td>
         <!-- Boton-->

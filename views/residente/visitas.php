@@ -21,10 +21,13 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                 <div class="mt-4 mx-3 mb-3">
                     <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#modal1" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Nuevo</a>
                 </div>
-                <form class="mx-3">
+                <form class="mx-3 mb-2" method="post" id="search-form">
                     <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
-                    <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
+                    <input type="text" class="form-control buscador" id="search" name="search" aria-describedby="emailHelp" placeholder="{ Visitante }">
                 </form>
+                <div class="mt-4 mx-3 mb-3">
+                    <a href="#" id="btnInsertDialog2" data-toggle="modal" data-target="#visitaVisitante" class="btn botonesListado"><span class="fas fa-users mr-3 tamañoIconosBotones"></span>Asignar visitante</a>
+                </div>
             </div>
         </div><br>
 
@@ -48,7 +51,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         </tr>
                     </thead>
                     <tbody id="tbody-rows">
-                       
+
                     </tbody>
                 </table>
             </div>
@@ -158,7 +161,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                            <button id="btnAgregar" name="btnAgregar" type="submit" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                            <button id="btnAgregar" data-toggle="modal" data-target="#crearVisita" name="btnAgregar" type="submit" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
                         </div>
                     </div>
                 </form>
@@ -249,23 +252,27 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
                 <div class="row justify-content-center">
+                    <form method="post" id="formDetalle">
+                        <input type="number" name="idDetalle" id="idDetalle" class="d-none">
+
+                    </form>
                     <div class="d-flex justify-content-center col-xl-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="flex-column">
                             <div class="form-group">
                                 <h1 class="tituloDato2 text-center">Visitante:</h1>
-                                <h1 class="campoDato text-center">Eduardo Rivera</h1>
+                                <h1 class="campoDato text-center" id="lblVisitante"></h1>
                             </div>
                             <div class="form-group">
                                 <h1 class="tituloDato2 text-center">Placa:</h1>
-                                <h1 class="campoDato text-center">P666 66</h1>
+                                <h1 class="campoDato text-center" id="lblPlaca"></h1>
                             </div>
                             <div class="form-group">
                                 <h1 class="tituloDato2 text-center">Fecha:</h1>
-                                <h1 class="campoDato text-center">3/7/2021</h1>
+                                <h1 class="campoDato text-center" id="lblFecha"></h1>
                             </div>
                             <div class="form-group">
                                 <h1 class="tituloDato2 text-center">Visita recurrente:</h1>
-                                <h1 class="campoDato text-center">Si</h1>
+                                <h1 class="campoDato text-center" id="lblVisita"></h1>
                             </div>
                         </div>
                     </div>
@@ -273,11 +280,11 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         <div class="flex-column">
                             <div class="form-group">
                                 <h1 class="tituloDato2 text-center">Estado:</h1>
-                                <h1 class="campoDato text-center">Finalizada</h1>
+                                <h1 class="campoDato text-center" id="lblEstado"></h1>
                             </div>
                             <div class="form-group">
                                 <h1 class="tituloDato2 text-center">Observación:</h1>
-                                <h1 class="campoDato text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt quidem, unde non aspernatur recusandae maxime aliquid optio cupiditate obcaecati pariatur cum tempore, cumque sit corrupti et dicta officiis iure! Eaque?</h1>
+                                <h1 class="campoDato text-center" id="lblOb"></h1>
                             </div>
                         </div>
                     </div>
@@ -287,6 +294,72 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
     </div>
 </div>
 <!-- Fin del Modal -->
+
+
+<div class="modal fade" id="visitaVisitante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Visitas</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <form method="post" id="visita-form" enctype="multipart/form-data">
+
+                    <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
+
+                        <div class="col-xl-12 d-flex flex-column justify-content-center col-md-12 col-sm-12 col-xs-12">
+                            <input class="d-none" type="number" id="txtIdx" name="txtIdx" />
+
+                            <h1 class="tituloDato text-center">Asignar visitantes</h1>
+                            <br>
+
+                            <label class="tituloCajaTextoFormulario" for="cbVisitante">Visitante:</label>
+                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                            <div class="cbCitiger w-100">
+                                <select class="custom-select" id="cbVisitante" name="cbVisitante">
+                                    <option selected="default">Seleccionar...</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Desde aqui comienza la tabla -->
+                    <div class="row mt-3 justify-content-center table-responsive">
+
+                        <div class="col-12 justify-content-center align-items-center text-center">
+
+                            <table class="table table-borderless citigerTable">
+                                <thead>
+                                    <!-- Columnas-->
+                                    <tr>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Observación</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-rows2">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Desde aqui termina la tabla --><br>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php
 //Se imprimen los JS necesarios
