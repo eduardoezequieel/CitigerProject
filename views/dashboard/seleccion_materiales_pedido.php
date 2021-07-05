@@ -41,76 +41,8 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
         </div><br>
 
         <!-- Fila de Tarjetas -->
-        <div class="row justify-content-center animate__animated animate__backInUp">
-            <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 d-flex margenTarjetas justify-content-center align-items-center text-center">
-                <!-- Inicio de Tarjeta -->
-                <div class="tarjeta">
-                    <!-- Fila para Imagen -->
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="../../resources/img/Stockage_de_ciments.JPG" alt=""
-                                class="img-fluid imagenTarjeta">
-                        </div>
-                    </div>
-                    <!-- Fila para Información -->
-                    <div class="row mt-2">
-                        <div class="col-12 text-left">
-                            <h1 class="letraTarjeta">CEMENTO CEMEX USO GRAL.</h1>
-                            <h1 class="letraTarjeta">En Stock: <span class="letraDestacadaTarjeta">122</span></h1>
-                        </div>
-                    </div>
-                    <!-- Fila para Boton -->
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="#"  data-toggle="modal" data-target="#verMateriales" class="btn botonesTarjeta"><span class="fas fa-plus mr-2"></span>Agregar</a>
-                        </div>
-                    </div>
-                    <!-- Fin de Tarjeta -->
-                </div>
-            </div>
-            <!-- Tarjetas de relleno -->
-            <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas d-flex justify-content-center align-items-center text-center">
-                <div class="tarjeta">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="../../resources/img/Stockage_de_ciments.JPG" alt=""
-                                class="img-fluid imagenTarjeta">
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-12 text-left">
-                            <h1 class="letraTarjeta">CEMENTO CEMEX USO GRAL.</h1>
-                            <h1 class="letraTarjeta">En Stock: <span class="letraDestacadaTarjeta">122</span></h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="#" data-toggle="modal" data-target="#verMateriales" class="btn botonesTarjeta"><span class="fas fa-plus mr-2"></span>Agregar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas d-flex justify-content-center align-items-center text-center">
-                <div class="tarjeta">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="../../resources/img/Stockage_de_ciments.JPG" alt=""
-                                class="img-fluid imagenTarjeta">
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-12 text-left">
-                            <h1 class="letraTarjeta">CEMENTO CEMEX USO GRAL.</h1>
-                            <h1 class="letraTarjeta">En Stock: <span class="letraDestacadaTarjeta">122</span></h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="#" data-toggle="modal" data-target="#verMateriales"class="btn botonesTarjeta"><span class="fas fa-plus mr-2"></span>Agregar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="row justify-content-center animate__animated animate__backInUp" id="tbody-rows">
+            
         </div>
         <!-- Desde aqui finaliza el contenido -->
         <!-- Modal para Ver Carrito -->
@@ -205,46 +137,49 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                         <br>
                         <!-- Contenido del Modal -->
                         <div class="textoModal px-3 pb-4 mt-2">
-                            <div class="row justify-content-center">
-                                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                                            <div class="imagenModal mb-2 pt-3 responsiveImagenModal">
-                                                <img src="../../resources/img/Stockage_de_ciments.JPG" alt="" class="img-fluid imagenTarjeta" width="200px">
+                            <form method="post" id="verMateriales-form">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="imagenModal mb-2 pt-3 responsiveImagenModal" id="divFoto">
+                                        
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                                            <form>
-                                                <h1 class="tituloModal2">CEMENTO CEMEX USO GRAL.</h1>
-                                                <h1 class="textoModal2">Marca: <span class="letraDestacadaTarjeta">CEMEX</span></h1>
-                                                <h1 class="textoModal2">En Stock: <span class="letraDestacadaTarjeta">122</span></h1>
-                                                <h1 class="textoModal2">Unidad de Medida: <span class="letraDestacadaTarjeta">kg</span></h1>
-                                                <h1 class="textoModal2">Tamaño: <span class="letraDestacadaTarjeta">16m3</span></h1>
-                                                <h1 class="textoModal2">Costo: <span class="letraDestacadaTarjeta">$17.99</span></h1>
-                                            </form>
+                                            <div class="d-flex justify-content-center col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <h1 class="tituloModal2" id="txtTitulo">CEMENTO CEMEX USO GRAL.</h1>
+                                                    <h1 class="textoModal2">Marca: <span  id="txtMarca" class="letraDestacadaTarjeta">CEMEX</span></h1>
+                                                    <h1 class="textoModal2"">En Stock: <span id="txtCantidad" class="letraDestacadaTarjeta">122</span></h1>
+                                                    <h1 class="textoModal2">Unidad de Medida: <span id="txtUnidadMedida" class="letraDestacadaTarjeta">kg</span></h1>
+                                                    <h1 class="textoModal2">Tamaño: <span id="txtTamaño" class="letraDestacadaTarjeta">16m3</span></h1>
+                                                    <h1 class="textoModal2">Costo: <span id="txtCosto" class="letraDestacadaTarjeta">$17.99</span></h1>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row justify-content-center mt-3">
-                                <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                                    <a href="#" class="btn botonesTarjeta"><span
-                                            class="fas fa-minus tamañoIconosBotones"></span></a>
+                                <div class="row justify-content-center mt-3">
+                                    <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                                        <a id="btnMinus" class="btn botonesTarjeta"><span class="fas fa-minus tamañoIconosBotones"></span></a>
 
-                                            <h1 class="cantidadNumeroLabel mx-4 pt-1">1</h1>
+                                                <h1 class="cantidadNumeroLabel mx-4 pt-1" id="cantidadMaterial">10</h1>
 
-                                    <a href="#" class="btn botonesTarjeta"><span
-                                            class="fas fa-plus tamañoIconosBotones"></span></a>
+                                        <a id="btnPlus" class="btn botonesTarjeta"><span class="fas fa-plus tamañoIconosBotones"></span></a>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                    
+                                    </div>
+                                </div>
+                            </form>
                         <!-- Fin del Contenido del Modal -->
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Fin del Modal -->
-
-
     </div>
 
 </div>
@@ -252,5 +187,5 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate();
+admin_Page::footerTemplate('seleccion_materiales_pedido.js');
 ?>

@@ -158,7 +158,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                            <button id="btnAgregar" name="btnAgregar" type="submit" data-dismiss="modal" data-toggle="modal" data-target="#crearVisita" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                            <button id="btnAgregar" name="btnAgregar" type="submit" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
                         </div>
                     </div>
                 </form>
