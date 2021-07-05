@@ -91,6 +91,22 @@ function fillTable(dataset){
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
+document.getElementById('btnReiniciar').addEventListener('click', function(event){
+    event.preventDefault();
+    readRows(API_DENUNCIAS);
+    clearForm();
+});
+
+/*En el evento submit del formulario llamamos una funcion que ya tiene especificado un fetch para
+las busquedas.*/
+document.getElementById('search-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+
+    //Llamamos la funcion
+    searchRows(API_DENUNCIAS, 'search-form');
+})
+
 function administrarDenunciaPendiente(id){
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
@@ -176,7 +192,6 @@ function administrarDenunciaEnSolucion(id){
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idDenuncia', id);
-    console.log(id);
 
     fetch(API_DENUNCIAS + 'getInfo', {
         method: 'post',
@@ -194,6 +209,7 @@ function administrarDenunciaEnSolucion(id){
                     document.getElementById('lblEstado').textContent = response.dataset.estadodenuncia;
                     document.getElementById('lblEmpleado').textContent = response.dataset.empleado;
                     document.getElementById('txtDescripcion2').value = response.dataset.descripcion;
+                    document.getElementById('idEmpleado').value = response.dataset.idempleado;
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -231,7 +247,7 @@ function denunciaFinalizada(id){
                     document.getElementById('lblFecha').textContent = response.dataset.fecha;
                     document.getElementById('lblEstado').textContent = response.dataset.estadodenuncia;
                     document.getElementById('lblEmpleado').textContent = response.dataset.empleado;
-                    document.getElementById('txtDescripcion2').value = response.dataset.descripcion;
+                    document.getElementById('txtDescripcion2').value = response.dataset.descripcion
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -264,14 +280,19 @@ document.getElementById('btnAsignarEmpleado').addEventListener('click',function(
     setEmployee();
 })
 
-document.getElementById('btnRevertirEnSolucion').addEventListener('click',function(event){
-    event.preventDefault();
-    revertChangesAfterSettingEmployee();
-})
-
 document.getElementById('btnFinalizarDenuncia').addEventListener('click',function(event){
     event.preventDefault();
     finishComplaint();
+})
+
+document.getElementById('cbEstadoDenuncia').addEventListener('change',function(){
+    document.getElementById('txtEstadoDenuncia').value = document.getElementById('cbEstadoDenuncia').value;
+    document.getElementById('btnCambiarEstado').click();
+});
+
+document.getElementById('estadobusqueda-form').addEventListener('submit',function(event){
+    event.preventDefault();
+    filterByState();
 })
 
 //Contestar denuncias luego de haber sido rechazadas.
@@ -290,6 +311,29 @@ function insertAnswerAfterRejected(){
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
+            })
+        } else {
+            console.log(response.status + ' ' + response.exception);
+        }
+    }).catch(error => console.log(error));
+}
+
+function filterByState(){
+    fetch(API_DENUNCIAS + 'readAllByState', {
+        method: 'post',
+        body: new FormData(document.getElementById('estadobusqueda-form'))
+    }).then(request => {
+        //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
+        if (request.ok) {
+            request.json().then(response => {
+                let data = [];
+                //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                fillTable(data);
             })
         } else {
             console.log(response.status + ' ' + response.exception);
@@ -355,41 +399,6 @@ function revertChangesAfterRejected(){
                         if (response.status) {
                             readRows(API_DENUNCIAS);
                             sweetAlert(1, response.message, closeModal('administrarDenunciaRechazada'));
-                        } else {
-                            sweetAlert(2, response.exception, null);
-                        }
-                    })
-                } else {
-                    console.log(response.status + ' ' + response.exception);
-                }
-            }).catch(error => console.log(error));
-        }
-    });
-}
-
-//Revertir cambios despues de haber asignado un empleado
-function revertChangesAfterSettingEmployee(){
-    swal({
-        title: 'Advertencia',
-        text: '¿Deseas revertir los cambios hechos en esta denuncia?',
-        icon: 'warning',
-        buttons: ['No', 'Sí'],
-        closeOnClickOutside: false,
-        closeOnEsc: false
-    }).then(value => {
-        // Se verifica si fue cliqueado el botón Sí para hacer la petición, de lo contrario no se hace nada.
-        if (value) {
-            fetch(API_DENUNCIAS + 'revertChangesAfterSettingEmployee', {
-                method: 'post',
-                body: new FormData(document.getElementById('administrarDenunciaEnSolucion-form'))
-            }).then(request => {
-                //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-                if (request.ok) {
-                    request.json().then(response => {
-                        //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                        if (response.status) {
-                            readRows(API_DENUNCIAS);
-                            sweetAlert(1, response.message, closeModal('administrarDenunciaEnSolucion'));
                         } else {
                             sweetAlert(2, response.exception, null);
                         }

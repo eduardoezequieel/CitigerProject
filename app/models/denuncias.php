@@ -146,6 +146,30 @@
             return Database::getRows($sql, $params);
         }
 
+        public function readAllByState()
+        {
+            $sql = 'SELECT idDenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
+            FROM denuncia
+            INNER JOIN residente ON denuncia.idresidente = residente.idresidente
+            INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
+            INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
+            WHERE denuncia.idEstadoDenuncia = ?';
+            $params = array($this->idEstadoDenuncia);
+            return Database::getRows($sql, $params);
+        }
+
+        public function searchRows($value)
+        {
+            $sql = 'SELECT idDenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
+            FROM denuncia
+            INNER JOIN residente ON denuncia.idresidente = residente.idresidente
+            INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
+            INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
+            WHERE residente.nombre ILIKE ? OR residente.apellido ILIKE ?';
+            $params = array("%$value%", "%$value%");
+            return Database::getRows($sql, $params);
+        }
+
         public function readOne()
         {
             $sql = 'SELECT CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha, descripcion
@@ -187,7 +211,7 @@
         {
             $sql = 'UPDATE denuncia SET idestadodenuncia = 5 WHERE iddenuncia = ?';
             $params = array($this->idDenuncia);
-           
+            $this->showEmployee();
             return Database::executeRow($sql, $params);
         }
 
@@ -219,13 +243,25 @@
         {
             $sql = 'UPDATE denuncia SET idempleado = ?, idestadodenuncia = 4 WHERE iddenuncia = ?';
             $params = array($this->idEmpleado, $this->idDenuncia);
-          
+            $this->hideEmployee();
+            return Database::executeRow($sql, $params);
+        }
+
+        public function hideEmployee(){
+            $sql = 'UPDATE empleado SET idestadoempleado = 2 WHERE idempleado = ?';
+            $params = array($this->idEmpleado);
+            return Database::executeRow($sql, $params);
+        }
+
+        public function showEmployee(){
+            $sql = 'UPDATE empleado SET idestadoempleado = 1 WHERE idempleado = ?';
+            $params = array($this->idEmpleado);
             return Database::executeRow($sql, $params);
         }
 
         public function getInfo()
         {
-            $sql = 'SELECT iddenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, fecha, estadodenuncia.estadodenuncia, CONCAT(empleado.nombre,\' \', empleado.apellido) AS empleado, descripcion
+            $sql = 'SELECT iddenuncia, empleado.idempleado, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, fecha, estadodenuncia.estadodenuncia, CONCAT(empleado.nombre,\' \', empleado.apellido) AS empleado, descripcion
                     FROM denuncia
                     INNER JOIN residente ON denuncia.idresidente = residente.idresidente
                     INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia

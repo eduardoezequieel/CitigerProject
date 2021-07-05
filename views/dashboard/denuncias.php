@@ -20,11 +20,11 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
             <!-- Controles del Inicio -->
             <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
                 <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">  
-                    <form class="mx-3">
+                    <form class="mx-3 mt-2" id="search-form">
                         <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
-                        <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
+                        <input type="text" class="form-control buscador" id="search" name="search" placeholder="{ Residente }">
                     </form>   
-                    <form class="mx-3">
+                    <form class="mx-3 mt-2" id="estadobusqueda-form">
                         <h1 class="tituloCajaTextoFormulario">Estado:</h1>
                         <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
@@ -37,7 +37,14 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                                 <option value="3">Three</option>
                             </select> 
                         </div>
-                    </form>         
+                        <input type="number" class="d-none" id="txtEstadoDenuncia" name="txtEstadoDenuncia">
+                        <button type="submit" id="btnCambiarEstado" class="d-none"></button>
+                    </form>    
+
+                    <div class="form-group mt-4 mx-3">
+                        <h1 class="tituloCajaTextoFormulario">   </h1>
+                        <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
+                    </div>     
                 </div>
                 
             </div><br>
@@ -255,6 +262,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
             <div class="textoModal px-3 pb-4 mt-2">
                 <form method="post" id="administrarDenunciaEnSolucion-form">
                     <input type="number" class="d-none" id="idDenuncia" name="idDenuncia">
+                    <input type="number" class="d-none" id="idEmpleado" name="idEmpleado">
                     <div class="row">
                         <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
                             <h1 class="tituloDato text-center">Residente</h1>
@@ -281,8 +289,6 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                     <div class="row justify-content-center mt-4" id="botonesUltimoModal">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
                             <button id="btnFinalizarDenuncia" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Finalizar</button>
-                            <button id="btnRevertirEnSolucion" class="btn btnAgregarFormulario mr-2"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Revertir</button>
-
                         </div>
                     </div>
                 </form>

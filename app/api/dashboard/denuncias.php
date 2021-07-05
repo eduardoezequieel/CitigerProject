@@ -40,6 +40,46 @@
                         }
                     }
                     break;
+                case 'readAllByState':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setIdEstadoDenuncia($_POST['txtEstadoDenuncia'])) {
+                        if ($result['dataset'] = $denuncia->readAllByState()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha encontrado al menos una denuncia.';
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No existen denuncias.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    break;
+            //Caso para realizar busquedas
+            case 'search':
+                $_POST = $denuncia->validateForm($_POST);
+                if($_POST['search'] != ''){
+                    if($result['dataset'] = $denuncia->searchRows($_POST['search'])){
+                        $result['status'] = 1;
+                        $row = count($result['dataset']);
+                        if($row > 0){
+                            $result['message'] = 'Se han encontrado '.$row .' coincidencias';
+                        } else{
+                            $result['message'] = 'Se ha encontrado una coincidencia';
+                        }
+                    } else{
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay coincidencias';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Campo vacio';
+                }
+                break;
                 case 'readOne':
                     $_POST = $denuncia -> validateForm($_POST);
                     if ($denuncia->setIdDenuncia($_POST['idDenuncia'])) {
@@ -131,28 +171,20 @@
                         $result['exception'] = 'Id incorrecto';
                     }
                     break;
-                case 'revertChangesAfterSettingEmployee':
-                    $_POST = $denuncia -> validateForm($_POST);
-                    if ($denuncia->setIdDenuncia($_POST['idDenuncia'])) {
-                        if ($denuncia->revertChanges()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Cambios revertidos con exito.';
-                        } else {
-                            $result['exception'] = Database::getException();
-                        }
-                    } else {
-                        $result['exception'] = 'Id incorrecto';
-                    }
-                    break;
                 case 'finishComplaint':
                     $_POST = $denuncia -> validateForm($_POST);
                     if ($denuncia->setIdDenuncia($_POST['idDenuncia'])) {
-                        if ($denuncia->finishComplaint()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Denuncia reportada como solucionada.';
+                        if ($denuncia->setIdEmpleado($_POST['idEmpleado'])) {
+                            if ($denuncia->finishComplaint()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Denuncia reportada como solucionada.';
+                            } else {
+                                $result['exception'] = Database::getException();
+                            }
                         } else {
-                            $result['exception'] = Database::getException();
+                            $result['exception'] = 'id de empleado incorrecto';
                         }
+                        
                     } else {
                         $result['exception'] = 'Id incorrecto';
                     }
