@@ -153,8 +153,8 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                         <!-- Titulo -->
                         <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Imágenes de espacios</h5>
                         <!-- Boton para Cerrar -->
-                        <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" class="close closeModalButton lead" data-dismiss="modal" data-toggle="modal" data-target="#administrarEspacio">
+                            <span class="fas fa-chevron-left"></span>
                         </button>
                     </div>
                     <br>
@@ -200,7 +200,7 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
 
     </div>
     <!-- Final del contenido -->
-     <!-- Modal para Administrar Espacios -->
+     <!-- Modal para Administrar Imagenes -->
      <div class="modal fade" id="administrarImagenes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content justify-content-center px-3 py-2">
@@ -209,8 +209,8 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                         <!-- Titulo -->
                         <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Imágenes de espacios</h5>
                         <!-- Boton para Cerrar -->
-                        <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" class="close closeModalButton lead" data-dismiss="modal" data-toggle="modal" data-target="#administrarEspacio">
+                            <span class="fas fa-chevron-left"></span>
                         </button>
                     </div>
                     <br>
@@ -222,7 +222,7 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                             <!-- Desde aqui comienza la tabla -->
                             <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaAlquileres">
                                 <div class="col-12 justify-content-center align-items-center text-center">
-                                <a href="#" id="agregar"data-toggle="modal" data-target="#administrarImagen" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                                <a href="#" id="agregar"data-toggle="modal" data-target="#administrarImagen" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a><br>
                                     <table class="table table-borderless citigerTable">
                                         <thead>
                                             <!-- Columnas-->

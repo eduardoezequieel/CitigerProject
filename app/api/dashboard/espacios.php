@@ -23,7 +23,7 @@
                         if (Database::getException()) {
                             $result['exception'] = Database::getException();
                         } else {
-                            $result['exception'] = 'No se ha encontrado ningún espacio registrado (readAll).';
+                            $result['exception'] = 'No se ha encontrado ningún espacio registrado.';
                         }
                     }
                     break;
@@ -37,7 +37,7 @@
                             if (Database::getException()) {
                                 $result['exception'] = Database::getException();
                             } else {
-                                $result['exception'] = 'No se ha encontrado ningún espacio registrado (readOne).';
+                                $result['exception'] = 'No se ha encontrado ningún espacio registrado.';
                             }
                         }
                     } else {
@@ -323,7 +323,7 @@
                         if (Database::getException()) {
                             $result['exception'] = Database::getException();
                         } else {
-                            $result['exception'] = 'No se ha encontrado ningún espacio registrado (ultimo id).';
+                            $result['exception'] = 'No se ha encontrado ningún espacio registrado.';
                         }
                     }
                     break;
@@ -337,12 +337,13 @@
                             if (Database::getException()) {
                                 $result['exception'] = Database::getException();
                             } else {
-                                $result['exception'] = 'No se ha encontrado ningún espacio registrado (read).';
+                                $result['exception'] = 'No se ha encontrado ninguna imagen registrada.';
                             }
                         }
                     } else {
                         $result['exception'] = 'Hubo problemas al seleccionar el registro.';
                     }
+                    break;
                 //Caso para eliminar imagenes
                 case 'deleteImage':
                     $_POST = $espacio->validateForm($_POST);
@@ -355,16 +356,16 @@
                                     $espacio->registerAction('Eliminar','El usuario eliminó un registro en la tabla de imagenes.');
     
                                 } else {
-                                    $result['exception'] = 'Se borró el registro pero no la imagen';
+                                    $result['exception'] = 'Se borró el registro pero no la imagen.';
                                 }
                             } else {
                                 $result['exception'] = Database::getException();
                             }
                         } else {
-                            $result['exception'] = 'Imagen no existente';
+                            $result['exception'] = 'Imagen no existente.';
                         }
                     } else {
-                        $result['exception'] = 'Imagen seleccionado incorrecto';
+                        $result['exception'] = 'Imagen seleccionado incorrecto.';
                     }
                     break;
                 //Caso para actualizar foto
@@ -404,7 +405,7 @@
                             if (Database::getException()) {
                                 $result['exception'] = Database::getException();
                             } else {
-                                $result['exception'] = 'No se ha encontrado ningún espacio registrado (oneImage).';
+                                $result['exception'] = 'No se ha encontrado ninguna imagen registrada.';
                             }
                         }
                     } else {

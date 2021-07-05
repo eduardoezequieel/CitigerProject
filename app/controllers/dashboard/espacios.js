@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 
-//Llenado de tabla
+//Llenado de tabla de espacios
 function fillTable(dataset){
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -99,7 +99,7 @@ function fillTable(dataset){
     document.getElementById('show-tarjeta').innerHTML = content;
 }
 
-//Llenado de tabla
+//Llenado de tabla de imagenes
 function fillTableImage(dataset){
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -135,7 +135,7 @@ function fillTableImage(dataset){
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
-//Carga de datos del registro seleccionado
+//Carga de datos del registro seleccionado del espacio
 function readDataOnModal(id){
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
