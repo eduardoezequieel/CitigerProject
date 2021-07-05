@@ -133,19 +133,23 @@ if (isset($_GET['action'])) {
             case 'changePassword':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($_POST['txtContrasena'] == $_POST['txtConfirmarContra']) {
-                    if ($usuarios->setContrasenia($_POST['txtContrasena'])) {
-                        if ($usuarios->changePassword()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Se ha actualizado la contraseña correctamente.';
-                        } else {
-                            if (Database::getException()) {
-                                $result['exception'] = Database::getException();
+                    if ($_POST['txtContrasena'] != 'newUser') {
+                        if ($usuarios->setContrasenia($_POST['txtContrasena'])) {
+                            if ($usuarios->changePassword()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Se ha actualizado la contraseña correctamente.';
                             } else {
-                                $result['exception'] = 'No se ha actualizado la contraseña correctamente.';
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No se ha actualizado la contraseña correctamente.';
+                                }
                             }
+                        } else {
+                            $result['exception'] = 'La contraseña no es válida.';
                         }
                     } else {
-                        $result['exception'] = 'La contraseña no es válida.';
+                        $result['exception'] = 'La contraseña no puede ser igual a la contraseña por defecto.';
                     }
                 } else {
                     $result['exception'] = 'Las contraseñas no coinciden.';
@@ -171,33 +175,38 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-                //Caso para iniciar sesion
+            //Caso para iniciar sesion
             case 'logIn':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->checkUser($_POST['txtCorreo'])) {
-                    if ($usuarios->checkEstado()) {
-                        if ($usuarios->checkPassword($_POST['txtContrasenia'])) {  
-                            $_SESSION['idusuario'] = $usuarios->getId();
-                            $_SESSION['usuario'] = $usuarios->getUsername();
-                            $_SESSION['foto'] = $usuarios->getFoto();
-                            $_SESSION['tipousuario'] = $usuarios->getIdTipoUsuario();
-                            $_SESSION['modo'] = $usuarios->getModo();
-                            if ($_POST['txtContrasenia'] != 'newUser') {
-                                $result['status'] = 1;
-                                $result['message'] = 'Sesión iniciada correctamente.';
+                    if ($usuarios->checkUserType(2)) {
+                        if ($usuarios->checkEstado()) {
+                            if ($usuarios->checkPassword($_POST['txtContrasenia'])) {  
+                                $_SESSION['idusuario'] = $usuarios->getId();
+                                $_SESSION['usuario'] = $usuarios->getUsername();
+                                $_SESSION['foto'] = $usuarios->getFoto();
+                                $_SESSION['tipousuario'] = $usuarios->getIdTipoUsuario();
+                                $_SESSION['modo'] = $usuarios->getModo();
+                                if ($_POST['txtContrasenia'] != 'newUser') {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Sesión iniciada correctamente.';
+                                } else {
+                                    $result['error'] = 1;
+                                    $result['message'] = 'Contraseña por defecto, para mayor seguridad actualizar la clave.';
+                                }
                             } else {
-                                $result['error'] = 1;
-                                $result['message'] = 'Contraseña por defecto, para mayor seguridad actualizar la clave.';
+                                $result['exception'] = 'La contraseña ingresada es incorrecta.';
                             }
                         } else {
-                            $result['exception'] = 'La contraseña ingresada es incorrecta.';
+                            $result['exception'] = 'El usuario está inactivo. Contacte con el administrador.';
                         }
                     } else {
-                        $result['exception'] = 'El usuario está inactivo. Contacte con el administrador.';
+                        $result['exception'] = 'El usuario no tiene los permisos necesarios para acceder.';
                     }
                 } else {
-                    $result['exception'] = 'El correo ingresado es incorrecto o no tiene los permisos requeridos.';
+                    $result['exception'] = 'El correo ingresado es incorrecto.';
                 }
+                
                 break;
                 //Caso para registrar el primer usuario del sistema
             case 'register':

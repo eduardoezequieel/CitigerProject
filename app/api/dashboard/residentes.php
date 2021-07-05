@@ -361,6 +361,32 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Residente incorrecto';
                 }
                 break;
+            //Caso para actualizar la contraseña de primer uso 
+            case 'changePassword':
+                $_POST = $residente->validateForm($_POST);
+                if ($_POST['txtContrasena'] == $_POST['txtConfirmarContra']) {
+                    if ($_POST['txtContrasena'] != 'newResident') {
+                        if ($residente->setContrasenia($_POST['txtContrasena'])) {
+                            if ($residente->changePassword()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Se ha actualizado la contraseña correctamente.';
+                            } else {
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No se ha actualizado la contraseña correctamente.';
+                                }
+                            }
+                        } else {
+                            $result['exception'] = 'La contraseña no es válida.';
+                        }
+                    } else {
+                        $result['exception'] = 'La contraseña no puede ser igual a la contraseña por defecto.';
+                    }
+                } else {
+                    $result['exception'] = 'Las contraseñas no coinciden.';
+                }
+                break;
                 //Caso de default del switch
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';

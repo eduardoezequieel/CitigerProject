@@ -117,28 +117,33 @@ if (isset($_GET['action'])) {
                 }else{
                     $result['exception'] = 'Usuario inválido';
                 }
-                break;
+                break;*/
+            //Caso para actualizar la contraseña
             case 'changePassword':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($_POST['txtContrasena'] == $_POST['txtConfirmarContra']) {
-                    if ($usuarios->setContrasenia($_POST['txtContrasena'])) {
-                        if ($usuarios->changePassword()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Se ha actualizado la contraseña correctamente.';
-                        } else {
-                            if (Database::getException()) {
-                                $result['exception'] = Database::getException();
+                    if ($_POST['txtContrasena'] != 'newUser') {
+                        if ($usuarios->setContrasenia($_POST['txtContrasena'])) {
+                            if ($usuarios->changePassword()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Se ha actualizado la contraseña correctamente.';
                             } else {
-                                $result['exception'] = 'No se ha actualizado la contraseña correctamente.';
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No se ha actualizado la contraseña correctamente.';
+                                }
                             }
+                        } else {
+                            $result['exception'] = 'La contraseña no es válida.';
                         }
                     } else {
-                        $result['exception'] = 'La contraseña no es válida.';
+                        $result['exception'] = 'La contraseña no puede ser igual a la contraseña por defecto.';
                     }
                 } else {
                     $result['exception'] = 'Las contraseñas no coinciden.';
                 }
-                break; */
+                break;
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';
         }
@@ -155,7 +160,7 @@ if (isset($_GET['action'])) {
                             $_SESSION['username'] = $usuarios->getUsername();
                             $_SESSION['foto'] = $usuarios->getFoto();
                             $_SESSION['modo'] = $usuarios->getModo();
-                            if ($_POST['txtContrasenia'] != 'newUser') {
+                            if ($_POST['txtContrasenia'] != 'newResident') {
                                 $result['status'] = 1;
                                 $result['message'] = 'Sesión iniciada correctamente.';
                             } else {
@@ -169,7 +174,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'El usuario está inactivo. Contacte con el administrador.';
                     }
                 } else {
-                    $result['exception'] = 'El correo ingresado es incorrecto o no tiene los permisos requeridos.';
+                    $result['exception'] = 'El correo ingresado es incorrecto.';
                 }
                 break;
             default:

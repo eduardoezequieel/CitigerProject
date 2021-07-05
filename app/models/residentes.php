@@ -480,4 +480,14 @@ class Residentes extends Validator
         $params = array($_SESSION['idresidente']);
         return Database::executeRow($sql, $params);
     }
+
+    //Función para cambiar contraseña por defecto
+    public function changePassword()
+    {
+        $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
+        $sql = 'UPDATE residente SET contrasena = ? WHERE idresidente = ?';
+        $params = array($hash, $_SESSION['idresidente']);
+        return Database::executeRow($sql, $params);
+    }
+
 }
