@@ -8,6 +8,106 @@
         private $fecha = null;
         private $visitarecurrente = null;
         private $observacion = null;
+        
+        private $idVisitante = null;
+        private $nombre = null;
+        private $apellido = null;
+        private $dui = null;
+        private $genero = null;
+        private $placa = null;
+
+        //Metodos set para todas las variables del modelo.
+        public function setIdVisitante($value)
+        {
+            if ($this->validateNaturalNumber($value)) {
+                $this->idVisitante = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setNombre($value)
+        {
+            if ($this->validateAlphabetic($value,1,30)) {
+                $this->nombre = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setApellido($value)
+        {
+            if ($this->validateAlphabetic($value,1,30)) {
+                $this->apellido = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setDui($value)
+        {
+            if ($this->validateDUI($value)) {
+                $this->dui = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setGenero($value)
+        {
+            if ($this->validateAlphabetic($value,1,10)) {
+                $this->genero = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function setPlaca($value)
+        {
+            if ($this->validateAlphanumeric($value,1,30)) {
+                $this->placa = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        //Metodos get para las variables del modelo
+
+        public function getIdVisitante()
+        {
+            return $this -> idVisitante;
+        }
+
+        public function getNombre()
+        {
+            return $this -> nombre;
+        }
+
+        public function getApellido()
+        {
+            return $this -> apellido;
+        }
+
+        public function getDui()
+        {
+            return $this -> dui;
+        }
+
+        public function getGenero()
+        {
+            return $this -> genero;
+        }
+
+        public function getPlaca()
+        {
+            return $this -> placa;
+        }
 
         //Metodos set para todas las variables del modelo.
         public function setIdVisita($value)
@@ -216,9 +316,34 @@
         public function registerAction($action, $desc)
         {
             $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
-            $params = array($_SESSION['idusuario'],$action, $desc);
+            $params = array($_SESSION['idresidente'],$action, $desc);
             return Database::executeRow($sql, $params);
         }
-    }
     
-?>
+        public function createVisita()
+        {
+            $sql = 'INSERT INTO visita(idresidente, fecha, visitarecurrente, observacion, idestadovisita) 
+            VALUES
+            (?,?,?,?,?)';
+            $params = array($_SESSION['idresidente'], 
+                            $this->fecha, 
+                            $this->visitarecurrente,
+                            $this->observacion, 
+                            $this->idEstadoVisita);
+            return Database::executeRow($sql, $params);
+        }
+
+        public function createVistante()
+        {
+            $sql = 'INSERT INTO visitante(nombre, apellido, dui, genero, placa) 
+            VALUES
+            (?,?,?,?,?)';
+            $params = array($this->nombre, 
+                            $this->apellido,
+                            $this->dui, 
+                            $this->genero, 
+                            $this->placa);
+            return Database::executeRow($sql, $params);
+        }
+    
+    }

@@ -58,38 +58,13 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
                         <thead>
                             <!-- Columnas-->
                             <tr>
-                                <th scope="col"></th>
                                 <th scope="col">Empleado que solicito el pedido</th>
                                 <th scope="col">Estado</th>
                                 <th scope="col">Pedido</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <!-- Fotografia-->
-                                <th scope="row">
-                                    <div class="row paddingTh" id="imagenRegistroMarca">
-                                        <div class="col-12">
-                                            <img src="../../resources/img/67641302_948622395468919_4792483860753416192_n.jpg" alt="" class="img-fluid rounded-circle" width="30px">
-                                        </div>
-                                    </div>
-                                </th>
-                                <!-- Datos-->
-                                <td>Samuel Magaña</td>
-                                <td>Programado</td>
-                                <td>#123456</td>
-                                <!-- Boton-->
-                                <th scope="row">
-                                    <div class="row paddingBotones">
-                                        <div class="col-12">
-                                            <a href="#" data-toggle="modal" data-target="#administrarPedido" class="btn btnTabla"><i class="fas fa-cog"></i></a>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                            
-                            
+                        <tbody id="tbody-rows">
                             
                         </tbody>
                     </table>

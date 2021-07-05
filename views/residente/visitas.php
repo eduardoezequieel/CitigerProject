@@ -7,9 +7,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
 <!-- Contenedor de la Pagina -->
 <div class="page-content p-3" id="content">
     <div id="cuadroContenido">
-        <button id="sidebarCollapse" type="button" class="btn bg-darken"><i
-                class="fa fa-bars categoriasFuente tamañoIconos"></i><small
-                class="text-uppercase font-weight-bold"></small></button>
+        <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars categoriasFuente tamañoIconos"></i><small class="text-uppercase font-weight-bold"></small></button>
 
         <!-- Desde aqui comienza el contenido -->
         <div class="row justify-content-center mb-3">
@@ -19,14 +17,14 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
         </div>
         <!-- Controles del Inicio -->
         <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
-            <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">  
+            <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnNew" data-toggle="modal" data-target="#modal1" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Nuevo</a>
+                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#modal1" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Nuevo</a>
                 </div>
                 <form class="mx-3">
                     <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
                     <input type="email" class="form-control buscador" id="buscar" aria-describedby="emailHelp" placeholder="Buscar...                                                                          &#xf002;">
-                </form>           
+                </form>
             </div>
         </div><br>
 
@@ -50,27 +48,13 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         </tr>
                     </thead>
                     <tbody id="tbody-rows">
-                        <tr class="animate__animated animate__fadeIn">
-                            <!-- Datos-->   
-                            <td>Disturbio</td>
-                            <td>Pendiente</td>
-                            <td>1/7/2021</td>
-                            <!-- Boton-->
-                            <th scope="row">
-                                <div class="row paddingBotones">
-                                    <div class="col-12">
-                                        <a href="#" data-toggle="modal" data-target="#informacionVisita" class="btn btnTabla"><i class="fas fa-info-circle"></i></a>
-
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
+                       
                     </tbody>
                 </table>
             </div>
         </div><br>
         <!-- Desde aqui termina la tabla -->
-        
+
     </div>
 
 </div>
@@ -100,7 +84,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                 <div class="row">
                     <!-- Opción "alquiler" de menú -->
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                        <a href="#"  data-toggle="modal" data-dismiss="modal" data-target="#crearVisita" class="btn botonMenu1">
+                        <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#crearVisita" class="btn botonMenu1">
                             <i class="fas fa-thumbs-up iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">Si</label>
                         </a>
@@ -108,7 +92,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
 
                     <!-- Opción "espacios" de menú -->
                     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
-                        <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#administrarVisitante" class="btn botonMenu2">
+                        <a href="#" data-toggle="modal" data-dismiss="modal" id="btnNo" data-target="#administrarVisitante" class="btn botonMenu2">
                             <i class="fas fa-thumbs-down iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">No</label>
                         </a>
@@ -126,9 +110,8 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             <!-- Cabecera del Modal -->
             <div class="modal-header">
                 <!-- Titulo -->
-                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
-                        class="fas fa-info-circle mr-4 iconoModal"></span>Visitante</h5>
-                
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Visitante</h5>
+
                 <!-- Boton para Cerrar -->
                 <button type="button" class="close closeModalButton lead" data-toggle="modal" data-target="#modal1" data-dismiss="modal">
                     <span class="fas fa-chevron-left" aria-hidden="true"></span>
@@ -136,7 +119,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             </div>
             <!--Contenido del Modal-->
             <div class="textoModal px-3 pb-4 mt-2">
-                <form method="post" id="administrarVisitante-form">
+                <form method="post" id="Visitante-form">
                     <div class="row">
                         <div class="col-12">
                             <h1 class="tituloDato2 text-center">Complete el formulario para registrar al visitante en el sistema.</h1>
@@ -145,16 +128,13 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12">
                             <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
-                            <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario2" id="txtNombre"
-                                name="txtNombre" placeholder="">
+                            <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario2" id="txtNombre" name="txtNombre" placeholder="">
 
                             <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
-                            <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario2" id="txtApellido"
-                                name="txtApellido" placeholder="">
+                            <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario2" id="txtApellido" name="txtApellido" placeholder="">
 
                             <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                            <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario2" id="txtDUI"
-                                name="txtDUI" placeholder="12345678-9">
+                            <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario2" id="txtDUI" name="txtDUI" placeholder="12345678-9">
 
                             <!-- RadioButtonGroup Género -->
                             <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
@@ -170,17 +150,15 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                             </div>
 
                             <label class="tituloCajaTextoFormulario mt-2" for="txtPlaca">Placa:</label>
-                            <input type="text" class="form-control cajaTextoFormulario2" id="txtPlaca"
-                                name="txtPlaca" placeholder="P123 456">
+                            <input type="text" class="form-control cajaTextoFormulario2" id="txtPlaca" name="txtPlaca" placeholder="P123 456">
                         </div>
                         <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12">
-                            
+
                         </div>
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                            <button id="btnAgregar" data-dismiss="modal" data-toggle="modal" data-target="#crearVisita" class="btn btnAgregarFormulario mr-2"><span
-                                    class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                            <button id="btnAgregar" name="btnAgregar" type="submit" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
                         </div>
                     </div>
                 </form>
@@ -199,9 +177,8 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             <!-- Cabecera del Modal -->
             <div class="modal-header">
                 <!-- Titulo -->
-                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
-                        class="fas fa-info-circle mr-4 iconoModal"></span>Visita</h5>
-                
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Visita</h5>
+
                 <!-- Boton para Cerrar -->
                 <button type="button" class="close closeModalButton lead" data-toggle="modal" data-target="#modal1" data-dismiss="modal">
                     <span class="fas fa-chevron-left" aria-hidden="true"></span>
@@ -214,27 +191,24 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                     <div class="row">
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
 
-                            <label class="tituloCajaTextoFormulario" for="cbResidente">Residente:</label>
+                            <label class="tituloCajaTextoFormulario mt-2" for="txtFecha">Fecha:</label>
+                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha" placeholder="">
+
+                            <h1 class="tituloCajaTextoFormulario mb-2">Visita Recurrente</h1>
                             <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                        deseado en el combobox  -->
-                            <div class="cbCitiger">
-                                <select class="custom-select" id="cbResidente" name="cbResidente">
-                                    <option selected="">Seleccionar...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                            cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                            deseado en el combobox  -->
+                            <div class="cbCitiger w-100">
+                                <select class="custom-select" id="cbVisitaR" name="cbVisitaR">
+                                    <option selected="default">Seleccionar...</option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
                                 </select>
                             </div>
-
-                            <label class="tituloCajaTextoFormulario mt-2" for="txtFecha">Fecha:</label>
-                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha"
-                                placeholder="">
                         </div>
-                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 mt-2">
                             <label class="tituloCajaTextoFormulario" for="txtObservacion">Observación:</label>
-                            <textarea id="txtObservacion" name="txtObservacion" rows="4"
-                                class="form-control cajaTextoModal"></textarea>
+                            <textarea id="txtObservacion" name="txtObservacion" rows="4" class="form-control cajaTextoModal"></textarea>
 
                         </div>
                     </div>
@@ -242,24 +216,13 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         <div class="col-12 d-flex justify-content-center">
                             <div class="form-group">
                                 <!-- RadioButtonGroup Género -->
-                                <h1 class="tituloCajaTextoFormulario mb-2">Visita Recurrente</h1>
-                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                            cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                            deseado en el combobox  -->
-                                <div class="cbCitiger">
-                                    <select class="custom-select" id="cbVisitaR" name="cbVisitaR">
-                                        <option selected="default">Seleccionar...</option>
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                            <button id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span
-                                    class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                            <button id="btnAgregar2" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
                         </div>
                     </div>
                 </form>
@@ -327,5 +290,5 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate();
+admin_Page::footerTemplate('visitas.js');
 ?>

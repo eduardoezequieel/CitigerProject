@@ -110,7 +110,6 @@ function readDataOnModal(id){
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idEmpleado', id);
-    console.log(id);
 
     //Se ocultan los botones del formulario.
     document.getElementById('btnAgregar').className="d-none";
