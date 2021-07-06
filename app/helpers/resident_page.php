@@ -117,6 +117,17 @@
             }
         }
 
+        public static function welcomeMessage()
+        {
+            print('
+                <div class="row my-4">
+                    <div class="col-12">
+                        <h1 class="tituloDashboard">¡Bienvenido '.$_SESSION['username'].'!</h1>
+                    </div>
+                </div>
+            '                
+            );
+        }
         public static function footerTemplate($controller){
             print('
                     <

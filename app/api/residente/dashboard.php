@@ -14,10 +14,10 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'error' => 0, 'message' => null, 'exception' => null);
 
     //Acciones a ejecutar permitidas con la sesion iniciada
-    if (isset($_SESSION['idusuario'])) {
+    if (isset($_SESSION['idresidente'])) {
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $dashboard->readAllBitacora()) {
+                if ($result['dataset'] = $dashboard->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Se han encontrado registros en la bitacora.';
                 } else {
@@ -29,30 +29,16 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-            case 'readOne':
-                $_POST = $dashboard->validateForm($_POST);
-                if ($dashboard->setIdBitacora($_POST['idBitacora'])) {
-                    if ($result['dataset'] = $dashboard->readOneBitacora()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Registro encontrado';
-                    } else {
-                        $result['exception'] = Database::getException();
-                    }
-                } else {
-                    $result['exception'] = 'Id incorrecto';
-                }
-                break;
             case 'contadorDenuncias':
-                if ($result['dataset'] = $dashboard->contadorDenuncias()) {
+                if ($result['dataset'] = $dashboard->contadorDenuncias2()) {
                     $result['status'] = 1;
                     $result['message'] = 'Denuncias encontradas';
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
-
             case 'contadorVisitas':
-                if ($result['dataset'] = $dashboard->contadorVisitas2()) {
+                if ($result['dataset'] = $dashboard->contadorVisitas()) {
                     $result['status'] = 1;
                     $result['message'] = 'Visitas encontradas';
                 } else {
@@ -60,7 +46,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'contadorAportacion':
-                if ($result['dataset'] = $dashboard->contadorAportaciones2()) {
+                if ($result['dataset'] = $dashboard->contadorAportaciones()) {
                     $result['status'] = 1;
                     $result['message'] = 'Visitas encontradas';
                 } else {

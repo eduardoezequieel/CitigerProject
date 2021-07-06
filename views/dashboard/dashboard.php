@@ -123,7 +123,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
             <!-- Tabla-->
             <div class="row justify-content-center table-responsive animate__animated animate__backInUp tablaResponsive" id="tablaDashboard">
                 <div class="col-12 justify-content-center align-items-center text-center">
-                    <table class="table table-borderless citigerTable">
+                    <table class="table table-borderless citigerTable" id="data-table2">
                         <thead>
                             <!-- Columnas-->
                             <tr>

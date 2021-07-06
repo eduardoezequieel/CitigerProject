@@ -4,6 +4,8 @@ const API_DASHBOARD = '../../app/api/dashboard/dashboard.php?action=';
 document.addEventListener('DOMContentLoaded',function(){
     readRows(API_DASHBOARD);
     contadorDenuncias();
+    contadorVisitas();
+    contadorAportacion();
 });
 
 function fillTable(dataset){
@@ -39,6 +41,14 @@ function fillTable(dataset){
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
+    let dataTable = new DataTable('#data-table2', { 
+        labels: { 
+            placeholder: 'Buscar Bitácoras...', 
+            perPage: '{select} Bitácoras por pagina', 
+            noRows: 'No se encontraron Bitácoras', 
+            info:'Mostrando {start} a {end} de {rows} Bitácoras' 
+        } 
+    });
 }
 
 function contadorDenuncias(){
@@ -51,7 +61,56 @@ function contadorDenuncias(){
                 let data = [];
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    document.getElementById('txtV').textContent = response.dataset.denunciaspendientes;
+                    document.getElementById('txtDenuncia').textContent = response.dataset.denunciaspendientes;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+
+
+function contadorVisitas() {
+    fetch(API_DASHBOARD + 'contadorVisitas', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    document.getElementById('txtVisitas').textContent = response.dataset.visitas;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+
+function contadorAportacion() {
+    fetch(API_DASHBOARD + 'contadorAportacion', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    document.getElementById('txtAportaciones').textContent = response.dataset.aportaciones;
                 } else {
                     sweetAlert(4, response.exception, null);
                 }
