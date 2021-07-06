@@ -56,7 +56,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                                             class="fas fa-ellipsis-v"></span></button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="#">Generar Reporte</a>
-
+                                        <a class="dropdown-item" href="visitas.php">Visitas</a>
                                     </div>
                                 </div>
                             </div>

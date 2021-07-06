@@ -77,6 +77,59 @@
                         $result['exception'] = 'Hubo un problema al seleccionar la visita.';
                     }
                     break;
+                //Caso para leer todas las visitas
+                case 'readAll':
+                    if ($result['dataset'] = $visitas->readAllVisitas()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Se ha encontrado al menos una visita.';
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No existen visitas registradas.';
+                        }
+                    }
+                    break;
+                //Caso para realizar busquedas
+                case 'search':
+                    $_POST = $visitas->validateForm($_POST);
+                    if($_POST['search'] != ''){
+                        if($result['dataset'] = $visitas->searchRowsVisitas($_POST['search'])){
+                            $result['status'] = 1;
+                            $row = count($result['dataset']);
+                            if($row > 0){
+                                $result['message'] = 'Se han encontrado '.$row .' coincidencias';
+                            } else{
+                                $result['message'] = 'Se ha encontrado una coincidencia.';
+                            }
+                        } else{
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No hay coincidencias.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Campo vacio';
+                    }
+                    break;
+                //Caso para leer un dato en especifico
+                case 'readOne':
+                    $_POST = $visitas->validateForm($_POST);
+                    if ($visitas->setIdVisita($_POST['txtVisita'])) {
+                        if ($result['dataset'] = $visitas->readOneVisitas()) {
+                            $result['status'] = 1;
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No se ha encontrado ninguna visita registrado.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Hubo problemas al seleccionar el registro.';
+                    }
+                    break;
             }
             // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
             header('content-type: application/json; charset=utf-8');

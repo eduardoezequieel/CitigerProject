@@ -464,6 +464,54 @@ class Visitas extends Validator
         $params = null;
         return Database::getRow($sql, $params);
     }
+
+    
+    //Lee todos los registros de la tabla
+    public function readAllVisitas()
+    {
+        $sql = 'SELECT CONCAT(residente.apellido, \' \', residente.nombre) as residente, fecha, 
+                CONCAT(visitante.apellido, \' \', visitante.nombre) as visitante, observacion,
+                detallevisita.idvisita,residente.foto
+                FROM detallevisita
+                INNER JOIN visitante ON visitante.idvisitante = detallevisita.idvisitante
+                INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
+                INNER JOIN residente ON residente.idresidente = visita.idresidente
+                ORDER BY fecha ASC';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    //Lee un registro de la tabla
+    public function readOneVisitas()
+    {
+        $sql = 'SELECT CONCAT(residente.apellido, \' \', residente.nombre) as residente, fecha, 
+                CONCAT(visitante.apellido, \' \', visitante.nombre) as visitante, observacion,
+                detallevisita.idvisita,residente.foto
+                FROM detallevisita
+                INNER JOIN visitante ON visitante.idvisitante = detallevisita.idvisitante
+                INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
+                INNER JOIN residente ON residente.idresidente = visita.idresidente
+                WHERE detallevisita.idvisita = ?';
+        $params = array($this->idVisita);
+        return Database::getRow($sql, $params);
+    }
+
+    //Función para buscar
+    public function searchRowsVisitas($value)
+    {
+        $sql = 'SELECT CONCAT(residente.apellido, \' \', residente.nombre) as residente, fecha, 
+                CONCAT(visitante.apellido, \' \', visitante.nombre) as visitante, observacion,
+                detallevisita.idvisita,residente.foto
+                FROM detallevisita
+                INNER JOIN visitante ON visitante.idvisitante = detallevisita.idvisitante
+                INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
+                INNER JOIN residente ON residente.idresidente = visita.idresidente
+                WHERE residente.nombre ILIKE ? OR residente.apellido ILIKE ? 
+                OR visitante.nombre ILIKE ? OR visitante.apellido ILIKE ? 
+                ORDER BY fecha';
+        $params = array("%$value%", "%$value%","%$value%","%$value%");
+        return Database::getRows($sql, $params);
+    }
 }
 
 
