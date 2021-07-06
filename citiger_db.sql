@@ -362,3 +362,9 @@ ALTER TABLE denuncia ALTER COLUMN idempleado DROP NOT NULL;
 ALTER TABLE visitante ADD CONSTRAINT UQ_visitante_placa UNIQUE (placa);
 ALTER TABLE visitante ADD CONSTRAINT UQ_visitante_dui UNIQUE (dui);
 
+INSERT INTO estadopedido(estadopedido) VALUES ('En Proceso');
+INSERT INTO estadopedido(estadopedido) VALUES ('Realizado');
+INSERT INTO estadopedido(estadopedido) VALUES ('Recibido'),('Cancelado');
+
+ALTER TABLE detallematerial RENAME COLUMN cantidad TO cantidadmaterial;
+

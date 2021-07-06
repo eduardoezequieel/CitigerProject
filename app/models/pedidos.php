@@ -10,6 +10,13 @@
 
     //variables para la tabla de materiales
     private $idMaterial = null;
+    private $cantidadStock = null;
+
+    //Variables para la tabla de detallematerial
+    private $idDetalleMaterial = null;
+    private $precioMaterial = null;
+    private $cantidadMaterial = null;
+
 
     //Metodos get
 
@@ -21,6 +28,38 @@
         } else {
             return false;
         }
+    }
+
+    public function setCantidadStock($value)
+    {
+        $this->cantidadStock = $value;
+        return true;
+    }
+
+    public function setIdDetalleMaterial($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idDetalleMaterial = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setPrecioMaterial($value)
+    {
+        if ($this->validateMoney($value)) {
+            $this->precioMaterial = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setCantidadMaterial($value)
+    {
+        $this->cantidadMaterial = $value;
+        return true;
     }
 
     public function setIdMaterial($value)
@@ -78,6 +117,11 @@
         return $this -> idPedido;
     }
 
+    public function getCantidadStock()
+    {
+        return $this -> cantidadStock;
+    }
+
     public function getIdMaterial()
     {
         return $this -> idMaterial;
@@ -103,13 +147,69 @@
         return $this -> fechaPedido;
     }
 
+    public function getIdDetalleMaterial()
+    {
+        return $this -> idDetalleMaterial;
+    }
+
+    public function getPrecioMaterial()
+    {
+        return $this -> precioMaterial;
+    }
+
+    public function getCantidadMaterial()
+    {
+        return $this -> cantidadMaterial;
+    }
+
     public function readAll()
     {
-        $sql = 'SELECT CONCAT(empleado.nombre,\' \',empleado.apellido) AS empleado, estadopedido.estadopedido, idpedido FROM pedido
+        $sql = 'SELECT CONCAT(empleado.nombre,\' \',empleado.apellido) AS empleado, estadopedido.estadopedido, idpedido, fechapedido FROM pedido
         INNER JOIN empleado ON pedido.idempleado = empleado.idempleado
         INNER JOIN estadopedido ON pedido.idestadopedido = estadopedido.idestadopedido';
         $params = null;
         return Database::getRows($sql, $params);
+    }
+
+    public function readByState()
+    {
+        $sql = 'SELECT CONCAT(empleado.nombre,\'  \',empleado.apellido) AS empleado, estadopedido.estadopedido, idpedido, fechapedido FROM pedido
+                INNER JOIN empleado ON pedido.idempleado = empleado.idempleado
+                INNER JOIN estadopedido ON pedido.idestadopedido = estadopedido.idestadopedido
+                WHERE estadopedido.idestadopedido = ?;';
+        $params = array($this->idEstadoPedido);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readOne()
+    {
+        $sql = 'SELECT estadopedido.estadopedido, CONCAT(empleado.nombre,\' \',empleado.apellido) as empleado FROM pedido
+        INNER JOIN estadopedido ON pedido.idestadopedido = estadopedido.idestadopedido
+        INNER JOIN empleado ON pedido.idempleado = empleado.idempleado
+        WHERE idpedido = ?';
+        $params = array($this->idPedido);
+        return Database::getRow($sql, $params);
+    }
+
+    public function cancelOrder()
+    {
+        $sql = 'UPDATE pedido SET idestadopedido = 4 WHERE idPedido = ?';
+        $params = array($this->idPedido);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function confirmOrder()
+    {
+        $sql = 'UPDATE pedido SET idestadopedido = 3 WHERE idPedido = ?';
+        $params = array($this->idPedido);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function readStates()
+    {
+        $sql = 'SELECT*FROM estadopedido WHERE idestadopedido<>1';
+        $params = null;
+        return Database::getRows($sql,$params);
     }
 
     public function readMaterials()
@@ -133,6 +233,99 @@
         $sql = 'SELECT*FROM pedido WHERE idestadopedido = 1 AND idusuario = ?';
         $params = array($_SESSION['idusuario']);
         return Database::getRow($sql, $params);
+    }
+
+    public function getOrder()
+    {
+        $sql = 'SELECT iddetallematerial, material.idmaterial, material.nombreproducto, (preciomaterial*cantidadmaterial) as totalUnidad, preciomaterial, cantidadmaterial FROM detallematerial
+                INNER JOIN material ON detallematerial.idmaterial = material.idmaterial
+                WHERE idpedido = ?';
+        $params = array($this->idPedido);
+        return Database::getRows($sql, $params);
+    }
+
+    public function getTotalPrice()
+    {
+        $sql = 'SELECT sum (preciomaterial*cantidadmaterial) as total FROM detallematerial WHERE idpedido = ?';
+        $params = array($this->idPedido);
+        return Database::getRow($sql, $params);
+    }
+
+    public function createOrder()
+    {
+        $sql = 'INSERT INTO pedido (idestadopedido, idusuario, fechapedido) 
+                VALUES (1, ?, current_date)';
+        $params = array($_SESSION['idusuario']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function addMaterial()
+    {
+        $sql = 'INSERT INTO detallematerial(idpedido, idmaterial, preciomaterial, cantidadmaterial) 
+                VALUES (?,?,?,?)';
+        $params = array($this->idPedido, $this->idMaterial, $this->precioMaterial, $this->cantidadMaterial);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function noDuplicatedData()
+    {
+        $sql = 'SELECT*FROM detallematerial WHERE idpedido = ? AND idmaterial = ?';
+        $params = array($this->idPedido, $this->idMaterial);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readEmployees()
+    {
+        $sql = 'SELECT idempleado, CONCAT(nombre,\' \',apellido) as empleado FROM empleado';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function sendOrder()
+    {
+        $sql = 'UPDATE pedido SET idempleado = ?, idestadopedido = 2 WHERE idpedido = ?';
+        $params = array($this->idEmpleado,$this->idPedido);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function updateMaterialStock()
+    {
+        $newstock = $this->cantidadStock - $this->cantidadMaterial;
+        $sql = 'UPDATE material SET cantidad = ? WHERE idMaterial = ?';
+        $params = array($newstock, $this->idMaterial);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function restoreMaterialStock()
+    {
+        $newstock = $this->cantidadStock + $this->cantidadMaterial;
+        $sql = 'UPDATE material SET cantidad = ? WHERE idMaterial = ?';
+        $params = array($newstock, $this->idMaterial);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function deleteMaterial()
+    {
+        $sql = 'DELETE FROM detallematerial WHERE iddetallematerial = ?';
+        $params = array($this->idDetalleMaterial);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function verifyMaterialStock($value)
+    {
+        if ($value >= 1) {
+            $this->setCantidadMaterial($value);
+            $this->updateMaterialStock();
+            return true;
+        } else if ($value <= -1) {
+            $value = $value * -1;
+            $this->setCantidadMaterial($value);
+            $this->restoreMaterialStock();
+            return true;
+        } else {
+
+        }
+        
     }
  }
 ?>

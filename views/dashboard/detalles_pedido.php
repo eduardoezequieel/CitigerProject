@@ -30,24 +30,13 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
                                 <!-- Columnas-->
                                 <tr>
                                     <th scope="col">Material</th>
+                                    <th scope="col">Cantidad</th>
                                     <th scope="col">Precio</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">Subtotal</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <!-- Datos-->
-                                    <td>CEMENTO CEMEX USO GRAL</td>
-                                    <td>$6.99</td>
-                                    <!-- Boton-->
-                                    <th scope="row">
-                                        <div class="row paddingBotones">
-                                            <div class="col-12">
-                                                <a href="#" class="btn btnTabla"><i class="fas fa-times"></i></a>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
+                            <tbody id="tbody-rows">
+                                
                             </tbody>
                         </table>
                     </div>
@@ -58,7 +47,7 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
 
         <div class="row justify-content-center mb-3 animate__animated animate__bounceIn">
             <div class="col-12 d-flex justify-content-center align-items-center">
-                <h1 class="totalLabel">Total: <span class="totalNumeroLabel">$14.99</span></h1>
+                <h1 class="totalLabel">Total: <span class="totalNumeroLabel" id="lblTotal">$0.00</span></h1>
             </div>
         </div>
 
@@ -69,34 +58,33 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
             </div>
         </div>
 
-        <div class="row mt-3 justify-content-center animate__animated animate__bounceIn">
-            <div class="col-12 d-flex justify-content-center align-items-center">
-                <form>
-                    <h1 class="tituloCajaTextoFormulario">Empleado que encargo el pedido:</h1>
-                    <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                    cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                    deseado en el combobox  -->
-                    <div class="cbCitiger" id="cbEmpleadoPedido">
-                        <select class="custom-select">
-                            <option selected="">Seleccionar...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select> 
+        <form method="post" id="finalizarPedido-form">
+            <div class="row mt-3 justify-content-center animate__animated animate__bounceIn">
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <div class="form-group">
+                        <h1 class="tituloCajaTextoFormulario">Empleado que encargo el pedido:</h1>
+                        <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                        deseado en el combobox  -->
+                        <div class="cbCitiger">
+                            <select class="custom-select" id="txtEmpleadoPedido" name="txtEmpleadoPedido">
+                                
+                            </select> 
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
 
-        <!-- Botones -->
-        <div class="row mt-3 justify-content-center animate__animated animate__bounceIn">
-            <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                <form>
-                    <a href="listado_pedidos.php" class="btn botonesListado"><span
-                            class="fas fa-plus mr-3 tamañoIconosBotones"></span>Crear Nuevo Pedido</a>
-                </form>
+            <!-- Botones -->
+            <div class="row mt-3 justify-content-center animate__animated animate__bounceIn">
+                <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                    
+                    <button type="submit" class="btn botonesListado"><span
+                            class="fas fa-plus mr-3 tamañoIconosBotones"></span>Crear Nuevo Pedido</button>
+                    
+                </div>
             </div>
-        </div>
+        </form>
 
         <!-- Desde aqui finaliza el contenido -->
 
@@ -107,5 +95,5 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate();
+admin_Page::footerTemplate('detalles_pedido.js');
 ?>

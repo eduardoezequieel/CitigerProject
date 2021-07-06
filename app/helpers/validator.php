@@ -67,6 +67,16 @@ class Validator
         }
     }
 
+    public function validateNaturalNumberCart($value)
+    {
+        // Se verifica que el valor sea un número entero mayor o igual a uno.
+        if (filter_var($value, FILTER_VALIDATE_INT, array('min_range' => 0))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
     *   Método para validar un archivo de imagen.
     *

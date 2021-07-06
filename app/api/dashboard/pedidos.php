@@ -31,6 +31,97 @@
                         }
                     }
                     break;
+                case 'readOne':
+                    if ($pedidos->setIdPedido($_POST['idPedido'])) {
+                        if ($result['dataset'] = $pedidos -> readOne()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha encontrado registros de pedidos.';
+                        }
+                        else{
+                            if (Database::getException()) {
+                                $result['error'] = 1;
+                                $result['exception'] = Database::getException();
+                            }
+                            else{
+                                $result['exception'] = 'No se han encontrado registros de pedidos.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto.';
+                    }
+                    break;
+                case 'readByState':
+                    if ($pedidos->setIdEstadoPedido($_POST['txtEstadoPedido'])) {
+                        if ($result['dataset'] = $pedidos -> readByState()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha encontrado registros de pedidos.';
+                        }
+                        else{
+                            if (Database::getException()) {
+                                $result['error'] = 1;
+                                $result['exception'] = Database::getException();
+                            }
+                            else{
+                                $result['exception'] = 'No se han encontrado registros de pedidos.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto.';
+                    }
+                    
+                    break;
+                case 'cancelOrder':
+                    if ($pedidos->setIdPedido($_POST['txtIdPedido'])) {
+                        if ($pedidos->cancelOrder()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Pedido reportado como cancelado exitosamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'Id incorrecto.';
+                    }
+                    
+                    break;
+                case 'confirmOrder':
+                    if ($pedidos->setIdPedido($_POST['txtIdPedido'])) {
+                        if ($pedidos->confirmOrder()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Pedido reportado como recibido exitosamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'Id incorrecto.';
+                    }
+                    
+                    break;
+                case 'getTotal2':
+                    if ($pedidos->setIdPedido($_POST['idPedido2'])) {
+                        if ($result['dataset'] = $pedidos->getTotalPrice()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'id incorrecto';
+                    }
+                    break;
+                case 'readOrder2':
+                    if ($pedidos->setIdPedido($_POST['idPedido3'])) {
+                        if ($result['dataset'] = $pedidos->getOrder()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'id incorrecto';
+                    }
+                    break;
                 case 'readMaterials':
                     if ($result['dataset'] = $pedidos -> readMaterials()) {
                         $result['status'] = 1;
@@ -60,6 +151,240 @@
                     }
                     break;
                 case 'readOrder':
+                    if ($data = $pedidos->checkIfThereIsAnActiveOrder()) {
+                        if ($pedidos->setIdPedido($data['idpedido'])) {
+                            if ($result['dataset'] = $pedidos->getOrder()) {
+                                $result['status'] = 1;
+                            } else {
+                                $result['exception'] = Database::getException();
+                            }
+                            
+                        } else {
+                            $result['exception'] = 'id incorrecto';
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'Este usuario no tiene ordenes en proceso.';
+                    }
+                    break;
+                case 'getTotal':
+                    if ($data = $pedidos->checkIfThereIsAnActiveOrder()) {
+                        if ($pedidos->setIdPedido($data['idpedido'])) {
+                            if ($result['dataset'] = $pedidos->getTotalPrice()) {
+                                $result['status'] = 1;
+                            } else {
+                                $result['exception'] = Database::getException();
+                            }
+                            
+                        } else {
+                            $result['exception'] = 'id incorrecto';
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'Este usuario no tiene ordenes en proceso.';
+                    }
+                    break;
+                case 'readEmployees':
+                    if ($result['dataset'] = $pedidos->readEmployees()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Se han encontrado empleados.';
+                    } else {
+                        $result['exception'] = 'No se han encontrado empleados.';
+                    }
+                    break;
+                case 'readStates':
+                    if ($result['dataset'] = $pedidos->readStates()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Se han encontrado estados.';
+                    } else {
+                        $result['exception'] = 'No se han encontrado estados.';
+                    }
+                    
+                    break;
+                case 'sendPedido':
+                    if ($data = $pedidos->checkIfThereIsAnActiveOrder()) {
+                        if ($pedidos->setIdPedido($data['idpedido'])) {
+                            if (isset($_POST['txtEmpleadoPedido'])) {
+                                if ($pedidos->setIdEmpleado($_POST['txtEmpleadoPedido'])) {
+                                    if ($pedidos->sendOrder()) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Pedido realizado exitosamente.';
+                                    } else {
+                                        $result['exception'] = Database::getException();
+                                    }
+                                    
+                                } else {
+                                    $result['exception'] = 'Id empleado incorrecto';
+                                }
+                                
+                            } else {
+                                $result['exception'] = 'Por favor seleccione al empleado solicitante del pedido.';
+                            }
+                            
+                        } else {
+                            $result['exception'] = 'Id pedido incorrecto';
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'Este usuario no posee ordenes pendientes.';
+                    }
+                    
+                    break;
+                case 'addMaterialToOrder':
+                    if ($data = $pedidos->checkIfThereIsAnActiveOrder()) {
+                        if ($pedidos->setIdPedido($data['idpedido'])) {
+                            if ($pedidos->setIdMaterial($_POST['idMaterial'])) {
+                                if ($pedidos->setPrecioMaterial($_POST['txtPrecioMaterial'])) {
+                                    if ($pedidos->setCantidadMaterial($_POST['txtCantidadMaterial'])) {
+                                        if ($pedidos->noDuplicatedData()) {
+                                            $result['exception'] = 'El producto ya ha sido ingresado en el carrito de compras.';
+                                        } else {
+                                            if ($pedidos->addMaterial()) {
+                                                if ($dataMaterial = $pedidos->readOneMaterial()) {
+                                                    if ($pedidos->setCantidadStock($dataMaterial['cantidad'])) {
+                                                        if ($pedidos->updateMaterialStock()) {
+                                                            $result['status'] = 1;
+                                                            $result['message'] = 'Agregado al carrito correctamente.';
+                                                        } else {
+                                                            $result['exception'] = Database::getException();
+                                                        }
+                                                        
+                                                    } else {
+                                                        $result['exception'] = 'Cantidad stock incorrecta.';
+                                                    }
+                                                    
+                                                } else {
+                                                    $result['exception'] = Database::getException();
+                                                }
+                                                
+                                            } else {
+                                                $result['exception'] = Database::getException();
+                                            }
+                                        }
+                                        
+                                    } else {
+                                        $result['exception'] = 'Cantidad incorrecta.';
+                                    }
+                                    
+                                } else {
+                                    $result['exception'] = 'Precio incorrecto.';
+                                }
+                                
+                            } else {
+                                $result['exception'] = 'id material incorrecto';
+                            }
+                        } else {
+                            $result['exception'] = 'id incorrecto';
+                        }
+                        
+                    } else {
+                        if ($pedidos->createOrder()) {
+                            if ($data2 = $pedidos->checkIfThereIsAnActiveOrder()) {
+                                if ($pedidos->setIdPedido($data2['idpedido'])) {
+                                    if ($pedidos->setIdMaterial($_POST['idMaterial'])) {
+                                        if ($pedidos->setPrecioMaterial($_POST['txtPrecioMaterial'])) {
+                                            if ($pedidos->setCantidadMaterial($_POST['txtCantidadMaterial'])) {
+                                                if ($pedidos->addMaterial()) {
+                                                    if ($dataMaterial = $pedidos->readOneMaterial()) {
+                                                        if ($pedidos->setCantidadStock($dataMaterial['cantidad'])) {
+                                                            if ($pedidos->updateMaterialStock()) {
+                                                                $result['status'] = 1;
+                                                                $result['message'] = 'Agregado al carrito correctamente.';
+                                                            } else {
+                                                                $result['exception'] = Database::getException();
+                                                            }
+                                                            
+                                                        } else {
+                                                            $result['exception'] = 'Cantidad stock incorrecta.';
+                                                        }
+                                                        
+                                                    } else {
+                                                        $result['exception'] = Database::getException();
+                                                    }
+                                                } else {
+                                                    $result['exception'] = Database::getException();
+                                                }
+                                                
+                                            } else {
+                                                $result['exception'] = 'Cantidad incorrecta.';
+                                            }
+                                            
+                                        } else {
+                                            $result['exception'] = 'Precio incorrecto.';
+                                        }
+                                        
+                                    } else {
+                                        $result['exception'] = 'id material incorrecto';
+                                    }
+                                    
+                                } else {
+                                    $result['exception'] = 'id incorrecto';
+                                }
+                                
+                            } else {
+                                $result['exception'] = 'ta rebug pa';
+                            }
+                            
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        
+                    }
+                    break;
+                case 'deleteFromCart':
+                    $_POST = $pedidos -> validateForm($_POST);
+                    if ($pedidos->setIdDetalleMaterial($_POST['idDetalleMaterial'])) {
+                        if ($pedidos->setCantidadMaterial($_POST['cantidadMaterial'])) {
+                            if ($pedidos->setIdMaterial($_POST['idMaterial'])) {
+                                if ($data = $pedidos->readOneMaterial()) {
+                                    if ($pedidos->setCantidadStock($data['cantidad'])) {
+                                        if ($pedidos->restoreMaterialStock()) {
+                                            if ($pedidos->deleteMaterial()) {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Material eliminado del carrito con exito.';
+                                            } else {
+                                                $result['exception'] = Database::getException();
+                                            }
+                                        } else {
+                                            $result['exception'] = 'No se han podido restaurar las cantidades antes de eliminar el registro.';
+                                        }
+                                        
+                                    } else {
+                                        $result['exception'] = 'Cantidad incorrecta';
+                                    }
+                                    
+                                } else {
+                                    $result['exception'] = 'No se ha podido recuperar la informacion del material.';
+                                }
+                                
+                            } else {
+                                $result['exception'] = 'Id material incorrecto';
+                            }
+                            
+                        } else {
+                            $result['exception'] = 'cantidad material invalida';
+                        }
+                        
+                    } else {
+                        $result['exception'] = 'id incorrecto';
+                    }
+                    break;
+                case 'updateCantidad':
+                    if ($pedidos->setIdMaterial($_POST['txtIdMaterial'])) {
+                        if ($data = $pedidos->readOneMaterial()) {
+                            if ($pedidos->setCantidadStock($data['cantidad'])) {
+                                
+                            } else {
+                                $result['exception'] = 'Cantidad stock incorrecta.';
+                            }
+                            
+                        } else {
+                            $result['exception'] = 'No hay informacion acerca de este id';
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
+                    
                     
                     break;
             }
