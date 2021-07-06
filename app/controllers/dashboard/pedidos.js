@@ -36,6 +36,16 @@ function fillTable(dataset){
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
+
+    // Se inicializa la tabla con DataTable.
+    let dataTable = new DataTable('#data-table', {
+        labels: {
+            placeholder: 'Buscar pedidos...',
+            perPage: '{select} Pedidos por página',
+            noRows: 'No se encontraron pedidos',
+            info:'Mostrando {start} a {end} de {rows} pedidos'
+        }
+    });
 }
 
 document.getElementById('cbEstadoPedido').addEventListener('change',function(){
