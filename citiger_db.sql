@@ -358,5 +358,7 @@ UPDATE residente SET modo = 'light';
 ALTER TABLE denuncia ADD COLUMN respuesta VARCHAR(200) NULL;
 ALTER TABLE denuncia ALTER COLUMN idempleado DROP NOT NULL;
 
-
+--Cambios 05/07/2021
+ALTER TABLE visitante ADD CONSTRAINT UQ_visitante_placa UNIQUE (placa);
+ALTER TABLE visitante ADD CONSTRAINT UQ_visitante_dui UNIQUE (dui);
 
