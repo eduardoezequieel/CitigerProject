@@ -181,11 +181,10 @@ class Denuncias extends Validator
     {
         $sql = 'INSERT INTO denuncia(idresidente, idtipodenuncia, idestadodenuncia, fecha, descripcion) 
         VALUES
-        (?,?,?,?,?)';
-        $params = array($this->idResidente, 
+        (?,?,?,current_date,?)';
+        $params = array($_SESSION['idresidente'], 
                         $this->idTipoDenuncia,
                         $this->idEstadoDenuncia, 
-                        $this->fecha, 
                         $this->descripcion);
         return Database::executeRow($sql, $params);
     }
