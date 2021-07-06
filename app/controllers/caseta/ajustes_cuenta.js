@@ -1,4 +1,4 @@
-const API_USUARIOS = '../../app/api/dashboard/usuarios.php?action=';
+const API_USUARIOS = '../../app/api/caseta/usuarios.php?action=';
 document.addEventListener('DOMContentLoaded', function () {
 
     // Se declara e inicializa un objeto para obtener la fecha y hora actual.
