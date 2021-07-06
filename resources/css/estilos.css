@@ -189,6 +189,12 @@ option[selected]{
   height: 155px;
 }
 
+.fotoEspacio{
+  width: 250px;
+  height: 195px;
+  border-radius: 5px;
+}
+
 .vertical-nav {
   min-width: 17rem;
   width: 17rem;

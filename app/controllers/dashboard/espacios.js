@@ -40,7 +40,7 @@ function fillTable(dataset){
                         <!-- Fila para Imagen -->
                             <div class="row">
                                 <div class="col-12">
-                                    <img src="../../resources/img/dashboard_img/espacios_fotos/${row.imagenprincipal}" alt="#" class="img-fluid fit-images imagenTarjeta">
+                                    <img src="../../resources/img/dashboard_img/espacios_fotos/${row.imagenprincipal}" alt="#" class="img-fluid fit-images fotoEspacio imagenTarjeta">
                                 </div>
                             </div>
                             <!-- Fila para Información -->
@@ -71,7 +71,7 @@ function fillTable(dataset){
                         <!-- Fila para Imagen -->
                             <div class="row">
                                 <div class="col-12">
-                                    <img src="../../resources/img/no-image.png" alt="#" class="img-fluid fit-images imagenTarjeta">
+                                    <img src="../../resources/img/no-image.png" alt="#" class="img-fluid fit-images fotoEspacio imagenTarjeta">
                                 </div>
                             </div>
                             <!-- Fila para Información -->
