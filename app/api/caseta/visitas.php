@@ -8,7 +8,7 @@
         session_start();
 
         //Objeto para instanciar la clase
-        $dashboard = new Visitas();
+        $visitas = new Visitas();
 
         //Arreglo para guardar respuestas de la API
         $result = array('status'=>0, 'error'=>0, 'message'=>null, 'exception'=>null);
@@ -18,11 +18,63 @@
             switch($_GET['action']){
                 //Caso para contar las visitas activas
                 case 'contadorVisitas':
-                    if ($result['dataset'] = $dashboard->contadorVisitas()) {
+                    if ($result['dataset'] = $visitas->contadorVisitas()) {
                         $result['status'] = 1;
                         $result['message'] = 'Visitas encontradas';
                     } else {
                         $result['exception'] = Database::getException();
+                    }
+                    break;
+                //Caso para verificar visita por dui
+                case 'checkVisitDui':
+                    $_POST = $visitas->validateForm($_POST);
+                    if ($visitas->setDui($_POST['txtDui'])) {
+                        if ($result['dataset'] = $visitas->checkVisitDui()) {
+                            $result['status'] = 1;
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No se ha encontrado ninguna visita activa con este DUI.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'El dui ingresado no es válido.';
+                    }
+                    break;
+                //Caso para verificar visitas por tabla
+                case 'checkVisitPlaca':
+                    $_POST = $visitas->validateForm($_POST);
+                    if ($visitas->setPlaca($_POST['txtPlaca'])) {
+                        if ($result['dataset'] = $visitas->checkVisitPlaca()) {
+                            $result['status'] = 1;
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No se ha encontrado ninguna visita activa con esta placa.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'El placa ingresada no es válida.';
+                    }
+                    break;
+                //Caso para finalizar visita
+                case 'finishVisit':
+                    $_POST = $visitas->validateForm($_POST);
+                    if ($visitas->setIdVisita($_POST['txtVisita'])) {
+                        if ($result['dataset'] = $visitas->updateVisita()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha finalizado la visita correctamente.';
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No se ha finalizado la visita correctamente.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Hubo un problema al seleccionar la visita.';
                     }
                     break;
             }

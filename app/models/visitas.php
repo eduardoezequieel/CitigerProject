@@ -418,13 +418,51 @@ class Visitas extends Validator
 
     //Función para contar las visitas activas
     public function contadorVisitas()
-        {
-            $sql = 'SELECT COUNT(idvisita) as visitas 
-                    FROM visita 
-                    WHERE idestadovisita = 1';
-            $params = null;
-            return Database::getRow($sql, $params);
-        }
+    {
+        $sql = 'SELECT COUNT(idvisita) as visitas 
+                FROM visita 
+                WHERE idestadovisita = 1';
+        $params = null;
+        return Database::getRow($sql, $params);
+    }
+
+    //Función para verificar visita por el dui
+    public function checkVisitDui()
+    {
+        $sql = 'SELECT CONCAT(residente.apellido, \' \', residente.nombre) as residente, fecha, 
+                CONCAT(visitante.apellido, \' \', visitante.nombre) as visitante, observacion,detallevisita.idvisita
+                FROM detallevisita
+                INNER JOIN visitante ON visitante.idvisitante = detallevisita.idvisitante
+                INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
+                INNER JOIN residente ON residente.idresidente = visita.idresidente
+                WHERE visitante.dui = ? AND visita.idestadovisita = 1';
+        $params = array($this->dui);
+        return Database::getRow($sql, $params);
+    }
+
+    //Función para verificar visita por la placa
+    public function checkVisitPlaca()
+    {
+        $sql = 'SELECT CONCAT(residente.apellido, \' \', residente.nombre) as residente, fecha, 
+                CONCAT(visitante.apellido, \' \', visitante.nombre) as visitante, observacion,detallevisita.idvisita
+                FROM detallevisita
+                INNER JOIN visitante ON visitante.idvisitante = detallevisita.idvisitante
+                INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
+                INNER JOIN residente ON residente.idresidente = visita.idresidente
+                WHERE visitante.placa = ? AND visita.idestadovisita = 1';
+        $params = array($this->placa);
+        return Database::getRow($sql, $params);
+    }
+
+    //Función para cambiar estado de visita
+    public function updateVisita()
+    {
+        $sql = 'UPDATE visita 
+                SET idestadovisita = 2
+                WHERE idvisita = ?';
+        $params = array($this->idVisita);
+        return Database::executeRow($sql, $params);
+    }
 }
 
 

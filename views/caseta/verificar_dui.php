@@ -21,22 +21,26 @@ admin_Page::sidebarTemplate('Verificar | Citiger');
 
         <!-- Inicio de Fila -->
         <div class="row justify-content-center animate__animated animate__backInDown">
-            <!-- Primera columna de controles -->
-            <div class="d-flex justify-content-center col-xl-12 col-md-12 col-sm-12 col-xs-12  centrarColumnas">
-                <form id="EmpleadosColumna1">
-                    <label class="tituloCajaTextoFormulario" for="txtNombres">DUI del visitante:</label>
-                    <input type="text" class="form-control cajaTextoDUI" id="txtNombres" placeholder="0089532-9">
-
-                </form>
-            </div>
-            <!-- Segunda columna de controles -->
-            <div class="d-flex justify-content-center mt-2 col-xl-12 col-md-12 col-sm-12 col-xs-12 centrarColumnas">
-                <form>
-                    <a href="#" class="btn btnAgregarFormulario"><span
-                            class="fas fa-check-circle mr-3 tamañoIconosBotones"></span>Verificar</a>
-
-                </form>
-            </div>
+            <form id="dui-form" method="post">
+                <!-- Primera columna de controles -->
+                <div class=" justify-content-center col-xl-12 col-md-12 col-sm-12 col-xs-12  centrarColumnas">
+                        <label class="tituloCajaTextoFormulario" for="txtDui">DUI del visitante:</label>
+                        <input type="text" class="form-control cajaTextoDUI" id="txtDui" name="txtDui" placeholder="0089532-9" Required onchange="checkDui('txtDui')">
+                        <input type="number" class="form-control cajaTextoDUI d-none" id="txtVisita" name="txtVisita">
+                </div>
+                <!-- Segunda columna de controles -->
+                <div class="d-flex justify-content-center mt-2 col-xl-12 col-md-12 col-sm-12 col-xs-12 centrarColumnas">
+                    <div class="mt-1 mx-1 mb-3">
+                    <button type="submit" class="btn btnAgregarFormulario"><span
+                                class="fas fa-check-circle mr-3 tamañoIconosBotones"></span>Verificar</button>
+                    </div>                       
+                     <div class="mt-1 mx-1 mb-3">
+                        <button id="btnReiniciar" class="btn btnAgregarFormulario"><span
+                                class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</button>
+                </div>
+                               
+                </div>
+            </form>
 
 
 
@@ -54,19 +58,22 @@ admin_Page::sidebarTemplate('Verificar | Citiger');
                     <div id="tarjetaCaja" class="p-4">
                         
                         <ul class="textoCard">
-                            <li>Residente: Edenilson Ramirez</li>
+                            <li id="residente">Residente:</li>
                             <br>
-                            <li>Fecha: 13/04/2021</li>
+                            <li id="fecha">Fecha:</li>
                             <br>
-                            <li>Visitante: Karen Torres</li>
+                            <li id="visitante">Visitante:</li>
                             <br>
-                            <li>Observación: El visitante viene en un Toyota Corolla 2021</li>
+                            <li id="observacion">Observación:</li>
                             <br>
                         </ul>
                     </div>
                 </div>
             </div>
-
+            <div class="mt-1 mx-1 mb-3">
+                <button onclick="confirmVisit()" class="btn btnAgregarFormulario"><span
+                    class="fas fa-check-circle mr-3 tamañoIconosBotones"></span>Confirmar Visita</button>
+            </div> 
 
 
         </div>
