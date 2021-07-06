@@ -173,6 +173,18 @@
             return Database::getRow($sql,$params);
         }
 
+        //Método para leer un dato de la tabla
+        public function readAllImageSpace()
+        {
+            $sql = 'SELECT idimagenesespacio,imagen, nombre, imagenesespacio.idespacio 
+                    FROM imagenesespacio
+                    INNER JOIN espacio ON espacio.idespacio = imagenesespacio.idespacio
+                    WHERE imagenesespacio.idespacio  = ?';
+            $params =  array($this->idEspacio);
+            return Database::getRows($sql,$params);
+        }
+
+
         public function readImageSpace()
         {
             $sql = 'SELECT idimagenesespacio,imagen, nombre 

@@ -332,7 +332,7 @@ function readDataOnModalImage(id){
 }
 
 //Eliminar registros de la tabla empleado.
-/*function deleteRowImage(id){
+function deleteRowImage(id){
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idImagenEspacio', id);
@@ -358,7 +358,7 @@ function readDataOnModalImage(id){
                         if (response.status) {
                             // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
                             readRows(API_ESPACIO);
-                            readRowsImage(API_ESPACIO);
+                            readRowsImage(API_ESPACIO,'ImagenEspacio-form');
                             sweetAlert(1, response.message, null);
                         } else {
                             sweetAlert(2, response.exception, null);
@@ -373,7 +373,7 @@ function readDataOnModalImage(id){
             });
         }
     });
-}*/
+}
 
 
 
