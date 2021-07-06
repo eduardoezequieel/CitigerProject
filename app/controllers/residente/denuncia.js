@@ -70,7 +70,8 @@ document.getElementById('administrarDenuncia-form').addEventListener('submit',fu
     }
 });
 
-//Busqueda por estado visita
+
+//Busqueda por estado denuncia
 document.getElementById('cbEstadoDenuncia').addEventListener('change',function(){
     //Guardando el valor del select en un input
     document.getElementById('idEstadoDenuncia').value = document.getElementById('cbEstadoDenuncia').value;
@@ -83,7 +84,7 @@ document.getElementById('filtrarEstadoDenuncia-form').addEventListener('submit',
     //Se evita recargar la pagina
     event.preventDefault();
 
-    fetch(API_VISITA + 'filterByVisitStatus', {
+    fetch(API_DENUNCIA + 'readAllByState', {
         method: 'post',
         body: new FormData(document.getElementById('filtrarEstadoDenuncia-form'))
     }).then(function (request) {
@@ -108,3 +109,17 @@ document.getElementById('filtrarEstadoDenuncia-form').addEventListener('submit',
         console.log(error);
     });
 }); 
+
+
+//---------------------------BUSQUEDAS EN LA TABLA---------------------------
+
+//Busqueda común
+
+/*En el evento submit del formulario llamamos una funcion que ya tiene especificado un fetch para
+las busquedas.*/
+document.getElementById('search-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Llamamos la funcion
+    searchRows(API_DENUNCIA, 'search-form');
+})
