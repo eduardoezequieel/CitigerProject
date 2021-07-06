@@ -29,7 +29,7 @@ function fillTable(dataset){
                 <!-- Boton-->
                 <th scope="row">
                     <div class="row paddingBotones">
-                        <div class="col-6">
+                        <div class="col-12">
                             <a href="#" onclick="readDataOnModal(${row.idmarca}) "data-toggle="modal" data-target="#administrarMarcas" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
 
                             <a href="#" onclick="deleteRow(${row.idmarca})" class="btn btnTabla2 mx-2"><i class="fas fa-trash"></i></a>
@@ -41,6 +41,15 @@ function fillTable(dataset){
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
+
+    let dataTable = new DataTable('#data-table', { 
+        labels: { 
+            placeholder: 'Buscar marcas...', 
+            perPage: '{select} Marcas por página', 
+            noRows: 'No se encontraron marcas', 
+            info:'Mostrando {start} a {end} de {rows} marcas' 
+        } 
+    });
 }
 document.getElementById('btnReiniciar').addEventListener('click',function(){
     readRows(API_MARCAS);

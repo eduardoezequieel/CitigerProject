@@ -41,6 +41,15 @@ function fillTable(dataset) {
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
+
+    let dataTable = new DataTable('#data-table', { 
+        labels: { 
+            placeholder: 'Buscar visitas...', 
+            perPage: '{select} Visitas por página', 
+            noRows: 'No se encontraron visitas', 
+            info:'Mostrando {start} a {end} de {rows} visitas' 
+        } 
+    });
 }
 
 document.getElementById('btnReiniciar').addEventListener('click', function () {

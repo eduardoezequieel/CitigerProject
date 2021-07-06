@@ -85,6 +85,15 @@ function fillTable(dataset) {
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
+
+    let dataTable = new DataTable('#data-table', { 
+        labels: { 
+            placeholder: 'Buscar casas...', 
+            perPage: '{select} Casas por página', 
+            noRows: 'No se encontraron casas', 
+            info:'Mostrando {start} a {end} de {rows} casas' 
+        } 
+    });
 }
 
 
@@ -285,6 +294,15 @@ function fillTableParam(dataset) {
         `;
     });
     document.getElementById('tbody-rows2').innerHTML = content;
+
+    let dataTable = new DataTable('#data-table2', { 
+        labels: { 
+            placeholder: 'Buscar pagos...', 
+            perPage: '{select} Pagos por pagina', 
+            noRows: 'No se encontraron visitas', 
+            info:'Mostrando {start} a {end} de {rows} pagos' 
+        } 
+    });
 
 }
 
