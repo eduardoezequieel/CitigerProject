@@ -7,9 +7,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
 <!-- Contenedor de la Pagina -->
 <div class="page-content p-3" id="content">
     <div id="cuadroContenido">
-        <button id="sidebarCollapse" type="button" class="btn bg-darken"><i
-                class="fa fa-bars categoriasFuente tamañoIconos"></i><small
-                class="text-uppercase font-weight-bold"></small></button>
+        <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars categoriasFuente tamañoIconos"></i><small class="text-uppercase font-weight-bold"></small></button>
 
         <!-- Desde aqui comienza el contenido -->
         <div class="row justify-content-center mb-3">
@@ -21,14 +19,12 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
         <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
             <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarDenuncia"
-                        class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Nuevo</a>
+                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarDenuncia" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Nuevo</a>
                 </div>
 
                 <form class="mx-3 mb-2" method="post" id="search-form">
                     <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
-                    <input type="text" class="form-control buscador" id="search" name="search"
-                        aria-describedby="emailHelp" placeholder="{ Fecha }">
+                    <input type="text" class="form-control buscador" id="search" name="search" aria-describedby="emailHelp" placeholder="{ Fecha }">
                 </form>
 
                 <form method="post" id="filtrarEstadoDenuncia-form" class="mx-3">
@@ -49,8 +45,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                 </form>
 
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span
-                            class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
+                    <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
                 </div>
             </div>
         </div><br>
@@ -62,8 +57,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
         </div>
 
         <!-- Desde aqui comienza la tabla -->
-        <div
-            class="row mt-3 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
+        <div class="row mt-3 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
             <div class="col-12 justify-content-center align-items-center text-center">
                 <table class="table table-borderless citigerTable">
                     <thead>
@@ -96,8 +90,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
             <!-- Cabecera del Modal -->
             <div class="modal-header">
                 <!-- Titulo -->
-                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
-                        class="fas fa-info-circle mr-4 iconoModal"></span>Crear Denuncia</h5>
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Denuncias</h5>
                 <!-- Boton para Cerrar -->
                 <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -107,7 +100,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
             <div class="textoModal px-3 pb-4 mt-2">
                 <div class="row mb-2">
                     <div class="col-12">
-                        <h1 class="tituloDato2 text-center">Rellene el siguiente formulario:</h1>
+                        <h1 class="tituloDato2 text-center" id="texto">Rellene el siguiente formulario:</h1>
                     </div>
                 </div>
                 <form method="post" id="administrarDenuncia-form">
@@ -119,27 +112,31 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                                 <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                 cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                 deseado en el combobox  -->
-                            <div class="cbCitiger">
-                                <select class="custom-select" id="cbTipo" name="cbTipo">
-                                    <option selected="">Seleccionar...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
+                                <div class="cbCitiger">
+                                    <select class="custom-select" id="cbTipo" name="cbTipo">
+                                        <option selected="">Seleccionar...</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="tituloCajaTextoFormulario" for="txtDescripcion">Descripción:</label>
-                                <textarea class="form-control cajaTextoFormulario2"
-                                    placeholder="Escriba su descripcion..." id="txtDescripcion" name="txtDescripcion" rows="4"></textarea>
+                                <textarea class="form-control cajaTextoFormulario2" placeholder="Escriba su descripcion..." id="txtDescripcion" name="txtDescripcion" rows="4"></textarea>
+
                             </div>
+                        
+                                <h1 class="tituloDato2 text-center" id="lblResp2">Respuesta:</h1>
+                                <h1 class="campoDato text-center" id="lblResp"></h1>
                         </div>
+                        <br>
                     </div>
                     <div class="row justify-content-center mt-2">
                         <div class="col-12 d-flex justify-content-center">
-                            <button id="btnAgregar" type="submit" class="btn btnAgregarFormulario"><span
-                                    class="fas fa-paper-plane mr-3 tamañoIconosBotones"></span>Enviar Denuncia</button>
+                            <button id="btnAgregar" type="submit" class="btn btnAgregarFormulario"><span class="fas fa-paper-plane mr-3 tamañoIconosBotones"></span>Enviar Denuncia</button>
+                            <button id="btnActualizar" type="submit" class="btn btnAgregarFormulario"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar denuncia</button>
                         </div>
                     </div>
                 </form>

@@ -2,14 +2,15 @@ const API_DENUNCIA = '../../app/api/residente/denuncia.php?action=';
 const ENDPOINT_ESTADO = '../../app/api/residente/denuncia.php?action=readComplaintStatus';
 const ENDPOINT_TIPO = '../../app/api/residente/denuncia.php?action=readComplaintType';
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
 
     fillSelect(ENDPOINT_ESTADO, 'cbEstadoDenuncia', null);
     fillSelect(ENDPOINT_TIPO, 'cbTipo', null);
     readRows(API_DENUNCIA);
+
 })
 
-function fillTable(dataset){
+function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
@@ -31,56 +32,70 @@ function fillTable(dataset){
                 <th scope="row">
                     <div class="row paddingBotones">
                         <div class="col-12">
-                            <a href="#" onclick="readDataOnModal(${row.iddenuncia}) "data-toggle="modal" data-target="#administrarVisita" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
+                            <a href="#" onclick="readDataOnModal(${row.iddenuncia}) "data-toggle="modal" data-target="#administrarDenuncia" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
                         </div>
                     </div>
                 </th>
             </tr>
-        `; 
+        `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
-document.getElementById('btnReiniciar').addEventListener('click',function(){
+document.getElementById('btnReiniciar').addEventListener('click', function () {
     readRows(API_DENUNCIA);
+    fillSelect(ENDPOINT_ESTADO, 'cbEstadoDenuncia', null);
+
 });
 
 //ocultar los demas botones de acción en el formulario al presionar Agregar.
-document.getElementById('btnInsertDialog').addEventListener('click',function(){
-    document.getElementById('btnAgregar').className="btn btnAgregarFormulario mr-2";
+document.getElementById('btnInsertDialog').addEventListener('click', function () {
+    document.getElementById('lblResp').className = "d-none";
+    document.getElementById('lblResp2').className = "d-none";
+    document.getElementById('texto').className = "tituloDato2 text-center";
+    fillSelect(ENDPOINT_TIPO, 'cbTipo', null);
+
+
+    document.getElementById('btnAgregar').className = "btn btnAgregarFormulario mr-2";
+    document.getElementById('btnActualizar').className = "d-none";
 
     // Se reinician los campos del formulario
     document.getElementById('idDenuncia').value = '';
-    document.getElementById('txtObservacion').value = '';
-    fillSelect(ENDPOINT_RESIDENTE, 'cbTipo', null);
+    document.getElementById('txtDescripcion').value = '';
+
+
+
+
+
 
 });
 
 //Agregar y actualizar información
-document.getElementById('administrarDenuncia-form').addEventListener('submit',function(event){
+document.getElementById('administrarDenuncia-form').addEventListener('submit', function (event) {
     //Se evita que se recargue la pagina
     event.preventDefault();
 
     //Se evalua si el usuario esta haciendo una inserción o una actualización
     if (document.getElementById('btnAgregar').className != 'd-none') {
-        saveRow(API_DENUNCIA, 'createRow','administrarDenuncia-form', 'administrarDenuncia');
+        saveRow(API_DENUNCIA, 'createRow', 'administrarDenuncia-form', 'administrarDenuncia');
     } else {
-        
+        saveRow(API_DENUNCIA, 'updateRow', 'administrarDenuncia-form', 'administrarDenuncia');
+
     }
 });
 
 
 //Busqueda por estado denuncia
-document.getElementById('cbEstadoDenuncia').addEventListener('change',function(){
+document.getElementById('cbEstadoDenuncia').addEventListener('change', function () {
     //Guardando el valor del select en un input
     document.getElementById('idEstadoDenuncia').value = document.getElementById('cbEstadoDenuncia').value;
     //Presionando el boton invisible
-    document.getElementById('btnFiltrarDenuncia').click();   
+    document.getElementById('btnFiltrarDenuncia').click();
 })
 
 //Una vez presionado el boton invisible, se hace un fetch con la información del form.
-document.getElementById('filtrarEstadoDenuncia-form').addEventListener('submit',function(event){
+document.getElementById('filtrarEstadoDenuncia-form').addEventListener('submit', function (event) {
     //Se evita recargar la pagina
     event.preventDefault();
 
@@ -108,7 +123,7 @@ document.getElementById('filtrarEstadoDenuncia-form').addEventListener('submit',
     }).catch(function (error) {
         console.log(error);
     });
-}); 
+});
 
 
 //---------------------------BUSQUEDAS EN LA TABLA---------------------------
@@ -117,9 +132,63 @@ document.getElementById('filtrarEstadoDenuncia-form').addEventListener('submit',
 
 /*En el evento submit del formulario llamamos una funcion que ya tiene especificado un fetch para
 las busquedas.*/
-document.getElementById('search-form').addEventListener('submit',function(event){
+document.getElementById('search-form').addEventListener('submit', function (event) {
     //Evitamos recargar la pagina
     event.preventDefault();
     //Llamamos la funcion
     searchRows(API_DENUNCIA, 'search-form');
 })
+
+
+//Carga de datos del registro seleccionado
+function readDataOnModal(id) {
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('idDenuncia', id);
+    console.log(id);
+
+    //Se ocultan los botones del formulario.
+    document.getElementById('texto').className = "d-none";
+    document.getElementById('btnAgregar').className = "d-none";
+    document.getElementById('btnActualizar').className = "btn btnAgregarFormulario mr-2";
+    document.getElementById('lblResp').className = "campoDato text-center";
+    document.getElementById('lblResp2').className = "tituloDato2 text-center";
+
+
+
+
+
+    fetch(API_DENUNCIA + 'readOne2', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    document.getElementById('idDenuncia').value = response.dataset.iddenuncia;
+                    fillSelect(ENDPOINT_TIPO, 'cbTipo', response.dataset.idtipodenuncia);
+                    document.getElementById('txtDescripcion').value = response.dataset.descripcion;
+                    if (response.dataset.idestadodenuncia == 1) {
+                        document.getElementById('btnActualizar').className = "d-none";
+
+                    }
+
+                    document.getElementById('lblResp').textContent = (response.dataset.respuesta);
+
+
+
+
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}

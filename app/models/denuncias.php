@@ -1,332 +1,357 @@
 <?php
-    //Clase para tabla de denuncias
-    class Denuncias extends Validator{
-        private $idDenuncia = null;
-        private $idEmpleado = null;
-        private $idResidente = null;
-        private $idTipoDenuncia = null;
-        private $idEstadoDenuncia = null;
-        private $fecha = null;
-        private $descripcion = null;
-        private $respuesta = null;
+//Clase para tabla de denuncias
+class Denuncias extends Validator
+{
+    private $idDenuncia = null;
+    private $idEmpleado = null;
+    private $idResidente = null;
+    private $idTipoDenuncia = null;
+    private $idEstadoDenuncia = null;
+    private $fecha = null;
+    private $descripcion = null;
+    private $respuesta = null;
 
-        //Metodos set para las variables del modelo
+    //Metodos set para las variables del modelo
 
-        public function setIdDenuncia($value)
-        {
-            if ($this->validateNaturalNumber($value)) {
-                $this->idDenuncia = $value;
-                return true;
-            } else {
-                return false;
-            }
+    public function setIdDenuncia($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idDenuncia = $value;
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        public function setIdEmpleado($value)
-        {
-            if ($this->validateNaturalNumber($value)) {
-                $this->idEmpleado = $value;
-                return true;
-            } else {
-                return false;
-            }
+    public function setIdEmpleado($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idEmpleado = $value;
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        public function setIdResidente($value)
-        {
-            if ($this->validateNaturalNumber($value)) {
-                $this->idResidente = $value;
-                return true;
-            } else {
-                return false;
-            }
+    public function setIdResidente($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idResidente = $value;
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        public function setIdTipoDenuncia($value)
-        {
-            if ($this->validateNaturalNumber($value)) {
-                $this->idTipoDenuncia = $value;
-                return true;
-            } else {
-                return false;
-            }
+    public function setIdTipoDenuncia($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idTipoDenuncia = $value;
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        public function setIdEstadoDenuncia($value)
-        {
-            if ($this->validateNaturalNumber($value)) {
-                $this->idEstadoDenuncia = $value;
-                return true;
-            } else {
-                return false;
-            }
+    public function setIdEstadoDenuncia($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idEstadoDenuncia = $value;
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        public function setFecha($value)
-        {
-            if ($this->validateDate($value)) {
-                $this->fecha = $value;
-                return true;
-            } else {
-                return false;
-            }
+    public function setFecha($value)
+    {
+        if ($this->validateDate($value)) {
+            $this->fecha = $value;
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        public function setDescripcion($value)
-        {
-            if ($this->validateAlphanumeric($value,1,200)) {
-                $this->descripcion = $value;
-                return true;
-            } else {
-                return false;
-            }
+    public function setDescripcion($value)
+    {
+        if ($this->validateAlphanumeric($value, 1, 200)) {
+            $this->descripcion = $value;
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        public function setRespuesta($value)
-        {
-            if ($this->validateAlphanumeric($value,1,200)) {
-                $this->respuesta = $value;
-                return true;
-            } else {
-                return false;
-            }
+    public function setRespuesta($value)
+    {
+        if ($this->validateAlphanumeric($value, 1, 200)) {
+            $this->respuesta = $value;
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        //Metodos get para todas las variables del modelo
-        public function getIdDenuncia()
-        {
-            return $this -> idDenuncia;
-        }
+    //Metodos get para todas las variables del modelo
+    public function getIdDenuncia()
+    {
+        return $this->idDenuncia;
+    }
 
-        public function getIdEmpleado()
-        {
-            return $this -> idEmpleado;
-        }
+    public function getIdEmpleado()
+    {
+        return $this->idEmpleado;
+    }
 
-        public function getIdResidente()
-        {
-            return $this -> idResidente;
-        }   
+    public function getIdResidente()
+    {
+        return $this->idResidente;
+    }
 
-        public function getIdTipoDenuncia()
-        {
-            return $this -> idTipoDenuncia;
-        }
+    public function getIdTipoDenuncia()
+    {
+        return $this->idTipoDenuncia;
+    }
 
-        public function getIdEstadoDenuncia()
-        {
-            return $this -> idEstadoDenuncia;
-        }
+    public function getIdEstadoDenuncia()
+    {
+        return $this->idEstadoDenuncia;
+    }
 
-        public function getFecha()
-        {
-            return $this -> fecha;
-        }
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
 
-        public function getDescripcion()
-        {
-            return $this -> descripcion;
-        }
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
 
-        public function getRespuesta()
-        {
-            return $this -> respuesta;
-        }
+    public function getRespuesta()
+    {
+        return $this->respuesta;
+    }
 
-        //Sentencias SQL
+    //Sentencias SQL
 
-        public function readAll()
-        {
-            $sql = 'SELECT idDenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
+    public function readAll()
+    {
+        $sql = 'SELECT idDenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
             FROM denuncia
             INNER JOIN residente ON denuncia.idresidente = residente.idresidente
             INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
             INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia';
-            $params = null;
-            return Database::getRows($sql, $params);
-        }
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 
-        public function readAllByState()
-        {
-            $sql = 'SELECT idDenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
+    public function readAllByState()
+    {
+        $sql = 'SELECT idDenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
             FROM denuncia
             INNER JOIN residente ON denuncia.idresidente = residente.idresidente
             INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
             INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
             WHERE denuncia.idEstadoDenuncia = ?';
-            $params = array($this->idEstadoDenuncia);
-            return Database::getRows($sql, $params);
-        }
+        $params = array($this->idEstadoDenuncia);
+        return Database::getRows($sql, $params);
+    }
 
-        public function searchRows($value)
-        {
-            $sql = 'SELECT idDenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
+    public function searchRows($value)
+    {
+        $sql = 'SELECT idDenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
             FROM denuncia
             INNER JOIN residente ON denuncia.idresidente = residente.idresidente
             INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
             INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
             WHERE residente.nombre ILIKE ? OR residente.apellido ILIKE ?';
-            $params = array("%$value%", "%$value%");
-            return Database::getRows($sql, $params);
-        }
+        $params = array("%$value%", "%$value%");
+        return Database::getRows($sql, $params);
+    }
 
-        public function readOne()
-        {
-            $sql = 'SELECT CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha, descripcion
+    public function readOne()
+    {
+        $sql = 'SELECT CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha, descripcion
             FROM denuncia
             INNER JOIN residente ON denuncia.idresidente = residente.idresidente
             INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
             INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
             WHERE idDenuncia = ?';
-            $params = array($this->idDenuncia);
-            return Database::getRow($sql, $params);
-        }
+        $params = array($this->idDenuncia);
+        return Database::getRow($sql, $params);
+    }
 
-        public function acceptComplaint()
-        {
-            $sql = 'UPDATE denuncia SET idestadodenuncia = 3 
+    public function acceptComplaint()
+    {
+        $sql = 'UPDATE denuncia SET idestadodenuncia = 3 
                     WHERE iddenuncia = ?';
-            $params = array($this->idDenuncia);
-            return Database::executeRow($sql, $params);
-        }
+        $params = array($this->idDenuncia);
+        return Database::executeRow($sql, $params);
+    }
 
-        public function rejectComplaint()
-        {
-            $sql = 'UPDATE denuncia SET idestadodenuncia = 2
+    public function rejectComplaint()
+    {
+        $sql = 'UPDATE denuncia SET idestadodenuncia = 2
                     WHERE iddenuncia = ?';
-            $params = array($this->idDenuncia);
-            return Database::executeRow($sql, $params);
-        }
+        $params = array($this->idDenuncia);
+        return Database::executeRow($sql, $params);
+    }
 
-        public function revertChanges()
-        {
-            $sql = 'UPDATE denuncia SET idestadodenuncia = 1, respuesta = null, idempleado = null
+    public function revertChanges()
+    {
+        $sql = 'UPDATE denuncia SET idestadodenuncia = 1, respuesta = null, idempleado = null
                     WHERE iddenuncia = ?';
-            $params = array($this->idDenuncia);
-           
-            return Database::executeRow($sql, $params);
-        }
+        $params = array($this->idDenuncia);
 
-        public function finishComplaint()
-        {
-            $sql = 'UPDATE denuncia SET idestadodenuncia = 5 WHERE iddenuncia = ?';
-            $params = array($this->idDenuncia);
-            $this->showEmployee();
-            return Database::executeRow($sql, $params);
-        }
+        return Database::executeRow($sql, $params);
+    }
+
+    public function finishComplaint()
+    {
+        $sql = 'UPDATE denuncia SET idestadodenuncia = 5 WHERE iddenuncia = ?';
+        $params = array($this->idDenuncia);
+        $this->showEmployee();
+        return Database::executeRow($sql, $params);
+    }
 
 
-        public function readStates()
-        {
-            $sql = 'SELECT*FROM estadodenuncia';
-            $params = null;
-            return Database::getRows($sql, $params);
-        }
+    public function readStates()
+    {
+        $sql = 'SELECT*FROM estadodenuncia';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 
-        public function readTipoDenuncia()
-        {
-            $sql = 'SELECT*FROM tipodenuncia';
-            $params = null;
-            return Database::getRows($sql, $params);
-        }
+    public function readTipoDenuncia()
+    {
+        $sql = 'SELECT*FROM tipodenuncia';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 
-        public function readEmployeeTypes()
-        {
-            $sql = 'SELECT*FROM tipoempleado';
-            $params = null;
-            return Database::getRows($sql, $params);
-        }
+    public function readEmployeeTypes()
+    {
+        $sql = 'SELECT*FROM tipoempleado';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 
-        public function readEmployeeByTypes($id)
-        {
-            $sql = 'SELECT idempleado, CONCAT(nombre,\' \', apellido) AS empleado 
+    public function readEmployeeByTypes($id)
+    {
+        $sql = 'SELECT idempleado, CONCAT(nombre,\' \', apellido) AS empleado 
                     FROM empleado 
                     WHERE idtipoempleado = ? AND idestadoempleado = 1';
-            $params = array($id);
-            return Database::getRows($sql, $params);
-        }
+        $params = array($id);
+        return Database::getRows($sql, $params);
+    }
 
-        public function setEmployee()
-        {
-            $sql = 'UPDATE denuncia SET idempleado = ?, idestadodenuncia = 4 WHERE iddenuncia = ?';
-            $params = array($this->idEmpleado, $this->idDenuncia);
-            $this->hideEmployee();
-            return Database::executeRow($sql, $params);
-        }
+    public function setEmployee()
+    {
+        $sql = 'UPDATE denuncia SET idempleado = ?, idestadodenuncia = 4 WHERE iddenuncia = ?';
+        $params = array($this->idEmpleado, $this->idDenuncia);
+        $this->hideEmployee();
+        return Database::executeRow($sql, $params);
+    }
 
-        public function hideEmployee(){
-            $sql = 'UPDATE empleado SET idestadoempleado = 2 WHERE idempleado = ?';
-            $params = array($this->idEmpleado);
-            return Database::executeRow($sql, $params);
-        }
+    public function hideEmployee()
+    {
+        $sql = 'UPDATE empleado SET idestadoempleado = 2 WHERE idempleado = ?';
+        $params = array($this->idEmpleado);
+        return Database::executeRow($sql, $params);
+    }
 
-        public function showEmployee(){
-            $sql = 'UPDATE empleado SET idestadoempleado = 1 WHERE idempleado = ?';
-            $params = array($this->idEmpleado);
-            return Database::executeRow($sql, $params);
-        }
+    public function showEmployee()
+    {
+        $sql = 'UPDATE empleado SET idestadoempleado = 1 WHERE idempleado = ?';
+        $params = array($this->idEmpleado);
+        return Database::executeRow($sql, $params);
+    }
 
-        public function getInfo()
-        {
-            $sql = 'SELECT iddenuncia, empleado.idempleado, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, fecha, estadodenuncia.estadodenuncia, CONCAT(empleado.nombre,\' \', empleado.apellido) AS empleado, descripcion
+    public function getInfo()
+    {
+        $sql = 'SELECT iddenuncia, empleado.idempleado, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, fecha, estadodenuncia.estadodenuncia, CONCAT(empleado.nombre,\' \', empleado.apellido) AS empleado, descripcion
                     FROM denuncia
                     INNER JOIN residente ON denuncia.idresidente = residente.idresidente
                     INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
                     INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
                     INNER JOIN empleado ON denuncia.idempleado = empleado.idempleado
                     WHERE idDenuncia = ?';
-            $params = array($this->idDenuncia);
-            return Database::getRow($sql, $params);
-        }
+        $params = array($this->idDenuncia);
+        return Database::getRow($sql, $params);
+    }
 
-        public function getAnswer()
-        {
-            $sql = 'SELECT respuesta FROM denuncia WHERE iddenuncia = ?';
-            $params = array($this->idDenuncia);
-            return Database::getRow($sql, $params);
-        }
+    public function getAnswer()
+    {
+        $sql = 'SELECT respuesta FROM denuncia WHERE iddenuncia = ?';
+        $params = array($this->idDenuncia);
+        return Database::getRow($sql, $params);
+    }
 
-        public function insertAnswer()
-        {
-            $sql = 'UPDATE denuncia SET respuesta = ? WHERE iddenuncia = ?';
-            $params = array($this->respuesta, $this->idDenuncia);
-            return Database::executeRow($sql, $params);
-        }
+    public function insertAnswer()
+    {
+        $sql = 'UPDATE denuncia SET respuesta = ? WHERE iddenuncia = ?';
+        $params = array($this->respuesta, $this->idDenuncia);
+        return Database::executeRow($sql, $params);
+    }
 
-        //Consultas sitio residente
-        public function readAllResidente()
-        {
-            $sql = 'SELECT tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha FROM denuncia
+    //Consultas sitio residente
+    public function readAllResidente()
+    {
+        $sql = 'SELECT tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha FROM denuncia
                     INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
                     INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
                     WHERE idresidente = ?
                     ORDER BY fecha ASC';
-                
-            $params = ARRAY($_SESSION['idresidente']);
-            return Database::getRows($sql, $params);
-        }
 
-        //Crear registro de denuncia
-        public function createRow()
-        {
-            $sql = 'INSERT INTO denuncia(idresidente, idtipodenuncia, idestadodenuncia, fecha, descripcion) 
+        $params = array($_SESSION['idresidente']);
+        return Database::getRows($sql, $params);
+    }
+
+    //Crear registro de denuncia
+    public function createRow()
+    {
+        $sql = 'INSERT INTO denuncia(idresidente, idtipodenuncia, idestadodenuncia, fecha, descripcion) 
             VALUES
             (?,?,?,current_date,?)';
-            $params = array($_SESSION['idresidente'], 
-                            $this->idTipoDenuncia,
-                            $this->idEstadoDenuncia, 
-                            $this->descripcion);
-            return Database::executeRow($sql, $params);
-        }
+        $params = array(
+            $_SESSION['idresidente'],
+            $this->idTipoDenuncia,
+            $this->idEstadoDenuncia,
+            $this->descripcion
+        );
+        return Database::executeRow($sql, $params);
+    }
 
-        public function searchRowsRes($value)
-        {
-            $sql = "SELECT tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha FROM denuncia
+    public function searchRowsRes($value)
+    {
+        $sql = "SELECT tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha FROM denuncia
             INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
             INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
             WHERE idresidente = ?
             AND CONCAT(fecha,' ',iddenuncia) ILIKE ?";
-            $params = array($_SESSION['idresidente'], "%$value%");
-            return Database::getRows($sql, $params);
-        }
+        $params = array($_SESSION['idresidente'], "%$value%");
+        return Database::getRows($sql, $params);
     }
+
+    public function readOne2()
+    {
+
+        $sql = "SELECT iddenuncia,idtipodenuncia,descripcion, idestadodenuncia,respuesta from denuncia where iddenuncia=?";
+        $params = array($this->idDenuncia);
+        return Database::getRow($sql, $params);
+    }
+
+    public function updateRow()
+    {
+
+        $sql = "UPDATE denuncia set idtipodenuncia=?, descripcion=? where iddenuncia=? ";
+        $params = array(
+            $this->idTipoDenuncia,
+            $this->descripcion,
+            $this->idDenuncia
+        );
+        return Database::executeRow($sql, $params);
+    }
+}
