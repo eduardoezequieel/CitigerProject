@@ -128,5 +128,11 @@
         $params = array($this->idMaterial);
         return Database::getRow($sql, $params);
     }
+
+    public function checkIfThereIsAnActiveOrder(){
+        $sql = 'SELECT*FROM pedido WHERE idestadopedido = 1 AND idusuario = ?';
+        $params = array($_SESSION['idusuario']);
+        return Database::getRow($sql, $params);
+    }
  }
 ?>

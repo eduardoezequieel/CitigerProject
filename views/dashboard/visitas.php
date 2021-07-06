@@ -110,11 +110,21 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                                 </select>
                             </div>
 
-                            <label class="tituloCajaTextoFormulario mt-2" for="txtFecha">Fecha:</label>
-                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha" placeholder="">
+                            <label class="tituloCajaTextoFormulario mt-2" for="cbResidente">Visitante:</label>
+                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                            <div class="cbCitiger">
+                                <select class="custom-select" id="cbVisitante" name="cbVisitante">
+                                    <option selected="">Seleccionar...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
 
                             <!-- RadioButtonGroup Género -->
-                            <h1 class="tituloCajaTextoFormulario mb-2">Visita Recurrente</h1>
+                            <h1 class="tituloCajaTextoFormulario mb-2 mt-2">Visita Recurrente</h1>
                             <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                         deseado en el combobox  -->
@@ -128,7 +138,8 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         </div><br>
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
 
-
+                            <label class="tituloCajaTextoFormulario mt-2" for="txtFecha">Fecha:</label>
+                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha" placeholder="">
                             <label class="tituloCajaTextoFormulario mt-2" for="txtObservacion">Observación:</label>
                             <textarea id="txtObservacion" name="txtObservacion" rows="3" class="form-control cajaTextoModal"></textarea>
 

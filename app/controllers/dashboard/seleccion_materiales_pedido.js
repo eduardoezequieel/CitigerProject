@@ -91,6 +91,13 @@ function checkMaterial(id){
                     document.getElementById('txtTamaño').textContent = response.dataset.tamaño;
                     document.getElementById('txtCosto').textContent = response.dataset.costo;
                     cantidad = response.dataset.cantidad;
+                    if (cantidad == 0) {
+                        document.getElementById('btnAgregarCarrito').className = 'd-none';
+                        document.getElementById('controlesCantidad').className = 'd-none';
+                    } else {
+                        document.getElementById('btnAgregarCarrito').className = 'btn botonesListado';
+                        document.getElementById('controlesCantidad').className = 'form-group d-flex justify-content-center align-items-center text-center';
+                    }
                     document.getElementById('cantidadMaterial').textContent = '1';
                     previewSavePicture('divFoto', response.dataset.imagen, 4);
                 } else {
