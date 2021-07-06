@@ -253,42 +253,6 @@ if (isset($_GET['action'])) {
                 }
                 break;
 
-            case 'readVisitasList':
-                if ($result['dataset'] = $visita->getVisitasList()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Se ha encontrado al menos una visita.';
-                } else {
-                    if (Database::getException()) {
-                        $result['exception'] = Database::getException();
-                    } else {
-                        $result['exception'] = 'No existen visitas registradas.';
-                    }
-                }
-                break;
-
-            case 'detalleVisita':
-                $_POST = $visita->validateForm($_POST);
-                if ($visita->setIdVisita($_POST['txtIdx'])) {
-                    if (isset($_POST['cbVisitante'])) {
-                        if ($visita->setIdVisitante($_POST['cbVisitante'])) {
-                            if ($visita->insertDetalleVisita()) {
-                                $result['status'] = 1;
-                                $result['message'] = 'Detalle registrado correctamente.';
-                            } else {
-                                $result['error'] = 1;
-                                $result['exception'] = Database::getException();
-                            }
-                        } else {
-                            $result['exception'] = 'Visitante inválido.';
-                        }
-                    } else {
-                        $result['exception'] = 'Seleccione un visitante.';
-                    }
-                } else {
-                    $result['exception'] = 'Visita invalida.';
-                }
-
-                break;
                 //Caso de default del switch
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';
