@@ -139,13 +139,13 @@ class Denuncias extends Validator
 
     public function readAll()
     {
-        $sql = 'SELECT idDenuncia, empleado.nombre, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha, descripcion
+        $sql = 'SELECT idDenuncia, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
             FROM denuncia 
             INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
             INNER JOIN residente ON denuncia.idresidente = residente.idresidente
             INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
             INNER JOIN empleado ON denuncia.idempleado = empleado.idempleado
-            Where idresidente = ?
+            Where residente.idresidente = ?
             ORDER BY fecha ASC';
             
         $params = ARRAY($_SESSION['idresidente']);
@@ -157,6 +157,8 @@ class Denuncias extends Validator
     {
         $sql = 'SELECT idDenuncia, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
         FROM denuncia
+        INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
+        INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
         WHERE idDenuncia = ?
         ORDER BY fecha ASC';
         $params = array($this->idDenuncia);
@@ -209,6 +211,19 @@ class Denuncias extends Validator
     {
         $sql='SELECT * FROM tipodenuncia';
         $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    //Lee todos los registros de la tabla
+    public function filterByComplaintStatus()
+    {
+        $sql = 'SELECT idDenuncia, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
+        FROM denuncia 
+        INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
+        INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
+        WHERE estadodenuncia.idestadodenuncia = ?
+        ORDER BY fecha ASC';
+        $params = array($this->idEstadoDenuncia);
         return Database::getRows($sql, $params);
     }
 }

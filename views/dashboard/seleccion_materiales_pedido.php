@@ -146,7 +146,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                         
                                                 </div>
                                             </div>
-                                            <div class="d-flex justify-content-center col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                                            <div class="d-flex flex-column justify-content-center col-xl-6 col-md-6 col-sm-12 col-xs-12">
                                                 <div class="form-group">
                                                     <h1 class="tituloModal2" id="txtTitulo">CEMENTO CEMEX USO GRAL.</h1>
                                                     <h1 class="textoModal2">Marca: <span  id="txtMarca" class="letraDestacadaTarjeta">CEMEX</span></h1>
@@ -155,22 +155,20 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                                     <h1 class="textoModal2">Tamaño: <span id="txtTamaño" class="letraDestacadaTarjeta">16m3</span></h1>
                                                     <h1 class="textoModal2">Costo: <span id="txtCosto" class="letraDestacadaTarjeta">$17.99</span></h1>
                                                 </div>
+                                                <div id="controlesCantidad" class="form-group d-flex justify-content-center align-items-center text-center">
+                                                    <a id="btnMinus" class="btn botonesTarjeta"><span class="fas fa-minus tamañoIconosBotones"></span></a>
+
+                                                            <h1 class="cantidadNumeroLabel mx-4 pt-1" id="cantidadMaterial">10</h1>
+
+                                                    <a id="btnPlus" class="btn botonesTarjeta"><span class="fas fa-plus tamañoIconosBotones"></span></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row justify-content-center mt-3">
-                                    <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                                        <a id="btnMinus" class="btn botonesTarjeta"><span class="fas fa-minus tamañoIconosBotones"></span></a>
-
-                                                <h1 class="cantidadNumeroLabel mx-4 pt-1" id="cantidadMaterial">10</h1>
-
-                                        <a id="btnPlus" class="btn botonesTarjeta"><span class="fas fa-plus tamañoIconosBotones"></span></a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                    
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <a href="#" id="btnAgregarCarrito" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-cart-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
                                     </div>
                                 </div>
                             </form>

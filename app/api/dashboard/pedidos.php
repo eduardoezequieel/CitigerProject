@@ -58,6 +58,8 @@
                     } else {
                         $result['exception'] = 'id incorrecto';
                     }
+                    break;
+                case 'readOrder':
                     
                     break;
             }

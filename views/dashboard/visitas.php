@@ -8,9 +8,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
 <!-- Contenedor de la Pagina -->
 <div class="page-content p-3" id="content">
     <div id="cuadroContenido">
-        <button id="sidebarCollapse" type="button" class="btn bg-darken"><i
-                class="fa fa-bars categoriasFuente tamañoIconos"></i><small
-                class="text-uppercase font-weight-bold"></small></button>
+        <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars categoriasFuente tamañoIconos"></i><small class="text-uppercase font-weight-bold"></small></button>
 
         <!-- Desde aqui comienza el contenido -->
         <div class="row justify-content-center mb-3">
@@ -22,8 +20,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
         <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
             <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarVisita"
-                        class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarVisita" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
                 </div>
 
                 <form method="post" id="filtrarEstadoVisita-form" class="mx-3">
@@ -44,15 +41,14 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                 </form>
 
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span
-                            class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
+                    <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
                 </div>
+                
             </div>
 
         </div><br>
         <!-- Desde aqui comienza la tabla -->
-        <div
-            class="row mt-3 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
+        <div class="row mt-3 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
             <div class="col-12 justify-content-center align-items-center text-center">
                 <table class="table table-borderless citigerTable">
                     <thead>
@@ -87,8 +83,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             <!-- Cabecera del Modal -->
             <div class="modal-header">
                 <!-- Titulo -->
-                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
-                        class="fas fa-info-circle mr-4 iconoModal"></span>Visitas</h5>
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Visitas</h5>
                 <!-- Boton para Cerrar -->
                 <button type="button" class="close text-light lead" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -115,12 +110,21 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                                 </select>
                             </div>
 
-                            <label class="tituloCajaTextoFormulario mt-2" for="txtFecha">Fecha:</label>
-                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha"
-                                placeholder="">
+                            <label class="tituloCajaTextoFormulario mt-2" for="cbResidente">Visitante:</label>
+                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                            <div class="cbCitiger">
+                                <select class="custom-select" id="cbVisitante" name="cbVisitante">
+                                    <option selected="">Seleccionar...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
 
                             <!-- RadioButtonGroup Género -->
-                            <h1 class="tituloCajaTextoFormulario mb-2">Visita Recurrente</h1>
+                            <h1 class="tituloCajaTextoFormulario mb-2 mt-2">Visita Recurrente</h1>
                             <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                         deseado en el combobox  -->
@@ -134,23 +138,19 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         </div><br>
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
 
-
+                            <label class="tituloCajaTextoFormulario mt-2" for="txtFecha">Fecha:</label>
+                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha" placeholder="">
                             <label class="tituloCajaTextoFormulario mt-2" for="txtObservacion">Observación:</label>
-                            <textarea id="txtObservacion" name="txtObservacion" rows="3"
-                                class="form-control cajaTextoModal"></textarea>
+                            <textarea id="txtObservacion" name="txtObservacion" rows="3" class="form-control cajaTextoModal"></textarea>
 
                         </div>
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                            <button id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span
-                                    class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
-                            <button id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span
-                                    class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
-                            <button id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span
-                                    class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
-                            <button id="btnActivar" class="btn btnAgregarFormulario mr-2"><span
-                                    class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
+                            <button id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                            <button id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
+                            <button id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
+                            <button id="btnActivar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
                         </div>
                     </div>
 
@@ -162,6 +162,73 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
     </div>
 </div>
 <!-- Fin del Modal -->
+
+<!-- Modal para mostrar el detalle de las visitas-->
+
+<div class="modal fade" id="visitaVisitante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Visitas</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <form method="post" id="visita-form" enctype="multipart/form-data">
+
+                    <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
+
+                        <div class="col-xl-12 d-flex flex-column justify-content-center col-md-12 col-sm-12 col-xs-12">
+                            <input class="d-none" type="number" id="txtIdx" name="txtIdx" />
+
+                            <h1 class="tituloDato text-center">Asignar visitantes</h1>
+                            <br>
+
+                            <label class="tituloCajaTextoFormulario" for="cbVisitante">Visitante:</label>
+                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                            <div class="cbCitiger w-100">
+                                <select class="custom-select" id="cbVisitante" name="cbVisitante">
+                                    <option selected="default">Seleccionar...</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Desde aqui comienza la tabla -->
+                    <div class="row mt-3 justify-content-center table-responsive">
+
+                        <div class="col-12 justify-content-center align-items-center text-center">
+
+                            <table class="table table-borderless citigerTable">
+                                <thead>
+                                    <!-- Columnas-->
+                                    <tr>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Visita Recurrente</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-rows2">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Desde aqui termina la tabla --><br>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php
 //Se imprimen los JS necesarios
