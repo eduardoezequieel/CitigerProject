@@ -17,7 +17,7 @@ function fillTable(dataset) {
                     <div class="row paddingTh">
                         <div class="col-12">
                             <img src="../../resources/img/dashboard_img/residentes_fotos/${row.foto}" alt="#"
-                                class="rounded-circle fit-images" width="30px" height="30px">
+                                class="rounded-circle fit-images" width="50px" height="50px">
                         </div>
                     </div>
                 </th>
@@ -37,6 +37,16 @@ function fillTable(dataset) {
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
+
+    // Se inicializa la tabla con DataTable.
+    let dataTable = new DataTable('#data-table', {
+        labels: {
+            placeholder: 'Buscar visitas...',
+            perPage: '{select} Visitas por página',
+            noRows: 'No se encontraron visitas',
+            info:'Mostrando {start} a {end} de {rows} visitas'
+        }
+    });
 }
 
 document.getElementById('btnReiniciar').addEventListener('click', function () {
