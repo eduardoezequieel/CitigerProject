@@ -67,7 +67,7 @@
                                             <label for="ajustes" class="pl-4 pt-2" id="usuario">'. $_SESSION['usuario'].'</label><br>
                                             <label for="ajustes" class="pl-4" id="tipoUsuario">'. $_SESSION['tipousuario'].'</label>
                                             <input type="text" id="txtModo" class="d-none" value="'. $_SESSION['modo'].'">
-                                        </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +129,6 @@
                     <script type="text/javascript" src="../../resources/js/vanilla-dataTables.min.js"></script>
                     <script src="../../resources/js/sweetalert.min.js"></script>
                     <script src="../../app/helpers/components.js"></script>
-                    <script>document.getElementById(\'txtModo\').value = \'light\'</script>
                     <script>document.addEventListener(\'DOMContentLoaded\', function () {
                         //Mostrando dark o light mood
                         modeCaseta();

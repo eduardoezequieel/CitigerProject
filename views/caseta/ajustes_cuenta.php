@@ -1,6 +1,6 @@
 <?php
 //Se incluye la clase con las plantillas del documento
-include('../../app/helpers/admin_page.php');
+include('../../app/helpers/stand_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
 admin_Page::sidebarTemplate('Ajustes | Citiger');
 ?>
