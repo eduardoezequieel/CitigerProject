@@ -25,7 +25,7 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                       
                     <form class="mx-3" method="post" id="search-form">
                         <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
-                        <input type="text" class="form-control buscador" id="search" name="search" aria-describedby="emailHelp" placeholder="{ Residente, Espacio, Fecha }                                                                          &#xf002;">
+                        <input type="text" class="form-control buscador" id="search" name="search" aria-describedby="emailHelp" placeholder="{ Residente, Espacio }                                                                          &#xf002;">
                     </form>
 
                     <form method="post" id="filtrarEstadoAlquiler-form" class="mx-3">

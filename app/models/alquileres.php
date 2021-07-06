@@ -343,5 +343,53 @@
         $params = array($_SESSION['idusuario'], $action, $desc);
         return Database::executeRow($sql, $params);
         }
+
+        //***************** SITIO DEL RESIDENTE ************* */
+
+        //Función para leer todos los datos de la tabla
+        public function readAllResident()
+        {
+            $sql = 'SELECT idalquiler, estadoalquiler, espacio.nombre, 
+                    alquiler.idespacio, precio, idusuario,  CONCAT(residente.apellido, \', \', residente.nombre) 
+                    as residente,alquiler.idresidente, fecha, horainicio,horafin, foto, imagenprincipal, espacio.nombre
+                    FROM alquiler
+                    INNER JOIN estadoalquiler ON estadoalquiler.idestadoalquiler = alquiler.idestadoalquiler
+                    INNER JOIN espacio ON espacio.idespacio = alquiler.idespacio
+                    INNER JOIN residente ON residente.idresidente = alquiler.idresidente
+                    WHERE alquiler.idresidente = ?
+                    ORDER BY fecha';
+            $params = array($_SESSION['idresidente']);
+            return Database::getRows($sql,$params);
+        }
+
+        public function searchRowsResident($value)
+         {
+             $sql = 'SELECT idalquiler, estadoalquiler, espacio.nombre, 
+                    alquiler.idespacio, precio, idusuario,  CONCAT(residente.apellido, \', \', residente.nombre) 
+                    as residente,alquiler.idresidente, fecha, horainicio,horafin, foto, imagenprincipal, espacio.nombre
+                    FROM alquiler
+                    INNER JOIN estadoalquiler ON estadoalquiler.idestadoalquiler = alquiler.idestadoalquiler
+                    INNER JOIN espacio ON espacio.idespacio = alquiler.idespacio
+                    INNER JOIN residente ON residente.idresidente = alquiler.idresidente
+                    WHERE alquiler.idresidente = ? AND espacio.nombre ILIKE ? 
+                    ORDER BY fecha';
+             $params = array($_SESSION['idresidente'],"%$value%");
+             return Database::getRows($sql, $params);
+         }
+
+         public function filterRentalStatusResident()
+         {
+             $sql = 'SELECT idalquiler, estadoalquiler, espacio.nombre, 
+                    alquiler.idespacio, precio, idusuario,  CONCAT(residente.apellido, \', \', residente.nombre) 
+                    as residente,alquiler.idresidente, fecha, horainicio,horafin, foto, imagenprincipal, espacio.nombre
+                    FROM alquiler
+                    INNER JOIN estadoalquiler ON estadoalquiler.idestadoalquiler = alquiler.idestadoalquiler
+                    INNER JOIN espacio ON espacio.idespacio = alquiler.idespacio
+                    INNER JOIN residente ON residente.idresidente = alquiler.idresidente
+                     WHERE alquiler.idestadoalquiler = ? AND alquiler.idresidente = ?
+                     ORDER BY fecha';
+             $params = array($this->idEstadoAlquiler,$_SESSION['idresidente']);
+             return Database::getRows($sql, $params);
+         }
     }
 ?>
