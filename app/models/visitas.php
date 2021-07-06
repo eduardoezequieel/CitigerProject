@@ -415,6 +415,16 @@ class Visitas extends Validator
         $params = array($_SESSION['idresidente'], "%$value%");
         return Database::getRows($sql, $params);
     }
+
+    //Función para contar las visitas activas
+    public function contadorVisitas()
+        {
+            $sql = 'SELECT COUNT(idvisita) as visitas 
+                    FROM visita 
+                    WHERE idestadovisita = 1';
+            $params = null;
+            return Database::getRow($sql, $params);
+        }
 }
 
 

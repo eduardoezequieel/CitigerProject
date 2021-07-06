@@ -51,7 +51,7 @@ function contadorDenuncias(){
                 let data = [];
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    document.getElementById('txtDenuncia').textContent = response.dataset.denunciaspendientes;
+                    document.getElementById('txtV').textContent = response.dataset.denunciaspendientes;
                 } else {
                     sweetAlert(4, response.exception, null);
                 }

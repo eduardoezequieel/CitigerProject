@@ -79,5 +79,5 @@ admin_Page::sidebarTemplate('Verificar | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-admin_Page::footerTemplate();
+admin_Page::footerTemplate('verificar_dui.js');
 ?>

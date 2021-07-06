@@ -10,11 +10,9 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
         <div id="cuadroContenido">
             <button id="sidebarCollapse" type="button" class="btn bg-darken"><i class="fa fa-bars categoriasFuente tamañoIconos"></i><small class="text-uppercase font-weight-bold"></small></button>
 
-            <div class="row my-4">
-                <div class="col-12">
-                    <h1 class="tituloDashboard">¡Bienvenido Edenilson!</h1>
-                </div>
-            </div>
+            <?php
+                Admin_Page::welcomeMessage();
+            ?>
 
             <!-- Desde aqui comienza el contenido -->
             <div class="row justify-content-center mb-5">
@@ -57,7 +55,6 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                                         aria-haspopup="true" aria-expanded="false"><span
                                             class="fas fa-ellipsis-v"></span></button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="visitas.php">Visitas</a>
                                         <a class="dropdown-item" href="#">Generar Reporte</a>
 
                                     </div>
@@ -72,7 +69,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                         <div class="row justify-content-center mt-4">
                             <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
                                 <h1 class="tituloTarjetaDashboard">Visitas<br>Vigentes</h1>
-                                <h1 class="contadorTarjetaDashboard mt-1">30</h1>
+                                <h1 class="contadorTarjetaDashboard mt-1" id="txtVisitas">90</h1>
                             </div>
                         </div>
                     </div>
