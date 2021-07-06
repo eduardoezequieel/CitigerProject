@@ -31,7 +31,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                         aria-describedby="emailHelp" placeholder="{ Fecha }">
                 </form>
 
-                <form method="post" id="filtrarEstadoVisita-form" class="mx-3">
+                <form method="post" id="filtrarEstadoDenuncia-form" class="mx-3">
                     <h1 class="tituloCajaTextoFormulario">Estado Denuncia:</h1>
                     <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                     cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
@@ -45,7 +45,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                         </select>
                     </div>
                     <input type="number" name="idEstadoDenuncia" id="idEstadoDenuncia" class="d-none">
-                    <button class="d-none" id="btnFiltrarEstado" type="submit"></button>
+                    <button class="d-none" id="btnFiltrarDenuncia" type="submit"></button>
                 </form>
 
                 <div class="mt-4 mx-3 mb-3">

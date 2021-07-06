@@ -45,7 +45,7 @@
             case 'search':
                 $_POST = $denuncia->validateForm($_POST);
                 if($_POST['search'] != ''){
-                    if($result['dataset'] = $denuncia->searchRows($_POST['search'])){
+                    if($result['dataset'] = $denuncia->searchRowsRes($_POST['search'])){
                         $result['status'] = 1;
                         $row = count($result['dataset']);
                         if($row > 0){
@@ -116,6 +116,24 @@
                         $result['exception'] = 'Residente invalido.';
                      }
                     
+                    break;
+                
+                case 'readAllByState':
+                    $_POST = $denuncia -> validateForm($_POST);
+                    if ($denuncia->setIdEstadoDenuncia($_POST['idEstadoDenuncia'])) {
+                        if ($result['dataset'] = $denuncia->readAllByState()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha encontrado al menos una denuncia.';
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No existen denuncias.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Id incorrecto';
+                    }
                     break;
                 
                 //Caso de default del switch

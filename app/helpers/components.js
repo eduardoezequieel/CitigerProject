@@ -527,6 +527,8 @@ function searchRows(api, form) {
     });
 }
 
+
+
 /*
 *   Función para crear o actualizar un registro en los mantenimientos de tablas (operación create y update).
 *

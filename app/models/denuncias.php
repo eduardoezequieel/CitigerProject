@@ -318,4 +318,15 @@
                             $this->descripcion);
             return Database::executeRow($sql, $params);
         }
+
+        public function searchRowsRes($value)
+        {
+            $sql = "SELECT tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha FROM denuncia
+            INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
+            INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
+            WHERE idresidente = ?
+            AND CONCAT(fecha,' ',iddenuncia) ILIKE ?";
+            $params = array($_SESSION['idresidente'], "%$value%");
+            return Database::getRows($sql, $params);
+        }
     }
