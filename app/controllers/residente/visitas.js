@@ -4,9 +4,8 @@ const ENDPOINT_VISITANTE = '../../app/api/residente/visitas.php?action=readVisit
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    readRows(API_VISITA);
     fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
-    readRows3(API_VISITA);
+    readRows(API_VISITA);
 
 
 
@@ -19,6 +18,8 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     document.getElementById('idVisita').value = '';
     document.getElementById('txtFecha').value = '';
     document.getElementById('txtObservacion').value = '';
+    fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
+
 
 });
 
@@ -27,7 +28,10 @@ document.getElementById('administrarVisita-form').addEventListener('submit', fun
     //Se evita que se recargue la pagina
     event.preventDefault();
 
+    fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
     saveRow(API_VISITA, 'createRow', 'administrarVisita-form', 'crearVisita');
+    readRows(API_VISITA);
+
 
 });
 
@@ -53,78 +57,9 @@ document.getElementById('Visitante-form').addEventListener('submit', function (e
 });
 
 
-document.getElementById('btnInsertDialog2').addEventListener('click', function () {
-    readRows(API_VISITA);
-    fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
-    document.getElementById('txtIdx').value = '';
-
-
-});
 
 //Llenado de tabla
 function fillTable(dataset) {
-    let content = '';
-    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-    dataset.map(function (row) {
-        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        content += `
-        <tr class="animate__animated animate__fadeIn">
-        <td>${row.fecha}</td>
-        <td>${row.observacion}</td>
-        <!-- Boton-->
-        <th scope="row">
-            <div class="row paddingBotones">
-                <div class="col-12">
-                    <a href="#" id="btnResidenteCasa" onclick="visitas(${row.idvisita})" class="btn btnTabla mx-2"><i class="fas fa-plus"></i></a>
-                </div>
-            </div>
-        </th>
-    </tr>
-        `;
-    });
-    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-    document.getElementById('tbody-rows2').innerHTML = content;
-}
-
-
-function visitas(id) {
-
-    document.getElementById('txtIdx').value = id;
-
-    saveRow(API_VISITA, 'detalleVisita', 'visita-form', 'visitaVisitante');
-    readRows3(API_VISITA);
-
-}
-
-
-
-function readRows3(API_VISITA) {
-    fetch(API_VISITA + 'detalleVisitas', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                let data = [];
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    data = response.dataset;
-                } else {
-                    sweetAlert(4, response.exception, null);
-                }
-                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
-                fillTable2(data);
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(function (error) {
-        console.log(error);
-    });
-}
-
-//Llenado de tabla
-function fillTable2(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {

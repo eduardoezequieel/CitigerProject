@@ -25,9 +25,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                     <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
                     <input type="text" class="form-control buscador" id="search" name="search" aria-describedby="emailHelp" placeholder="{ Visitante }">
                 </form>
-                <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnInsertDialog2" data-toggle="modal" data-target="#visitaVisitante" class="btn botonesListado"><span class="fas fa-users mr-3 tamañoIconosBotones"></span>Asignar visitante</a>
-                </div>
+
             </div>
         </div><br>
 
@@ -216,10 +214,18 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         </div>
                     </div>
                     <div class="row justify-content-center mt-2">
-                        <div class="col-12 d-flex justify-content-center">
+                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 mt-2 d-flex justify-content-center">
                             <div class="form-group">
-                                <!-- RadioButtonGroup Género -->
+                                <label class="tituloCajaTextoFormulario" for="cbVisitante">Visitante:</label>
+                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                        deseado en el combobox  -->
+                                <div class="cbCitiger">
+                                    <select class="custom-select" id="cbVisitante" name="cbVisitante">
+                                        <option selected="default">Seleccionar...</option>
 
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -296,70 +302,6 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
 <!-- Fin del Modal -->
 
 
-<div class="modal fade" id="visitaVisitante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content justify-content-center px-3 py-2">
-            <!-- Cabecera del Modal -->
-            <div class="modal-header">
-                <!-- Titulo -->
-                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Visitas</h5>
-                <!-- Boton para Cerrar -->
-                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <!-- Contenido del Modal -->
-            <div class="textoModal px-3 pb-4 mt-2">
-                <form method="post" id="visita-form" enctype="multipart/form-data">
-
-                    <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
-
-                        <div class="col-xl-12 d-flex flex-column justify-content-center col-md-12 col-sm-12 col-xs-12">
-                            <input class="d-none" type="number" id="txtIdx" name="txtIdx" />
-
-                            <h1 class="tituloDato text-center">Asignar visitantes</h1>
-                            <br>
-
-                            <label class="tituloCajaTextoFormulario" for="cbVisitante">Visitante:</label>
-                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                        deseado en el combobox  -->
-                            <div class="cbCitiger w-100">
-                                <select class="custom-select" id="cbVisitante" name="cbVisitante">
-                                    <option selected="default">Seleccionar...</option>
-
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <!-- Desde aqui comienza la tabla -->
-                    <div class="row mt-3 justify-content-center table-responsive">
-
-                        <div class="col-12 justify-content-center align-items-center text-center">
-
-                            <table class="table table-borderless citigerTable">
-                                <thead>
-                                    <!-- Columnas-->
-                                    <tr>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Observación</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody-rows2">
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </form>
-
-                <!-- Desde aqui termina la tabla --><br>
-            </div>
-        </div>
-    </div>
-</div>
 
 <?php
 //Se imprimen los JS necesarios

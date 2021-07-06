@@ -138,9 +138,30 @@ if (isset($_GET['action'])) {
                                 if ($visita->setVisitaR($_POST['cbVisitaR'])) {
                                     if ($visita->setObservacion($_POST['txtObservacion'])) {
                                         if ($visita->createRow()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Visita registrada correctamente.';
-                                            $visita->registerAction('Registrar', 'El usuario registro una visita.');
+                                            if (isset($_POST['cbVisitante'])) {
+                                                if ($visita->setIdVisitante($_POST['cbVisitante'])) {
+                                                    if ($data = $visita->getLastId()) {
+                                                        if ($visita->setIdVisita($data['idvisita'])) {
+                                                            if ($visita->insertDetalleVisita()) {
+                                                                $result['status'] = 1;
+                                                                $result['message'] = 'Visita registrada correctamente.';
+                                                                $visita->registerAction('Registrar', 'El usuario registra una visita.');
+                                                            } else {
+
+                                                                $result['exception'] = 'Visitante invalido.';
+                                                            }
+                                                        } else {
+                                                            $result['exception'] = 'Visita invalida.';
+                                                        }
+                                                    } else {
+                                                        $result['exception'] = 'No id.';
+                                                    }
+                                                } else {
+                                                    $result['exception'] = 'Visitante invalido.';
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Visitante invalido.';
+                                            }
                                         } else {
                                             $result['exception'] = Database::getException();
                                         }

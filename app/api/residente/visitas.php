@@ -19,18 +19,6 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
                 //Caso para leer todos los registros de la tabla
             case 'readAll':
-                if ($result['dataset'] = $visita->getVisitasResidente()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Se ha encontrado al menos una visita.';
-                } else {
-                    if (Database::getException()) {
-                        $result['exception'] = Database::getException();
-                    } else {
-                        $result['exception'] = 'No existen visitas registradas.';
-                    }
-                }
-                break;
-            case 'detalleVisitas':
                 if ($result['dataset'] = $visita->readVisitas()) {
                     $result['status'] = 1;
                     $result['message'] = 'Se ha encontrado al menos una visita.';
@@ -63,30 +51,54 @@ if (isset($_GET['action'])) {
             case 'createRow':
                 $_POST = $visita->validateForm($_POST);
                 $visita->setIdEstadoVisita(4);
-                if ($visita->setFecha($_POST['txtFecha'])) {
-                    if (isset($_POST['cbVisitaR'])) {
-                        if ($visita->setVisitaR($_POST['cbVisitaR'])) {
-                            if ($visita->setObservacion($_POST['txtObservacion'])) {
-                                if ($visita->createVisita()) {
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Visita registrada correctamente.';
-                                    $visita->registerAction('Registrar', 'El usuario registro una visita.');
+                    if ($visita->setIdResidente($_SESSION['idresidente'])) {
+                        if ($visita->setFecha($_POST['txtFecha'])) {
+                            if (isset($_POST['cbVisitaR'])) {
+                                if ($visita->setVisitaR($_POST['cbVisitaR'])) {
+                                    if ($visita->setObservacion($_POST['txtObservacion'])) {
+                                        if ($visita->createRow()) {
+                                            if (isset($_POST['cbVisitante'])) {
+                                                if ($visita->setIdVisitante($_POST['cbVisitante'])) {
+                                                    if ($data = $visita->getLastId()) {
+                                                        if ($visita->setIdVisita($data['idvisita'])) {
+                                                            if ($visita->insertDetalleVisita()) {
+                                                                $result['status'] = 1;
+                                                                $result['message'] = 'Visita registrada correctamente.';
+                                                            } else {
+
+                                                                $result['exception'] = 'Visitante invalido.';
+                                                            }
+                                                        } else {
+                                                            $result['exception'] = 'Visita invalida.';
+                                                        }
+                                                    } else {
+                                                        $result['exception'] = 'No id.';
+                                                    }
+                                                } else {
+                                                    $result['exception'] = 'Visitante invalido.';
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Visitante invalido.';
+                                            }
+                                        } else {
+                                            $result['exception'] = Database::getException();
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Onservacion invalido.';
+                                    }
                                 } else {
-                                    $result['exception'] = Database::getException();
+                                    $result['exception'] = 'Visita Recurrente invalida.';
                                 }
                             } else {
-                                $result['exception'] = 'Onservacion invalido.';
+                                $result['exception'] = 'Visita Recurrente invalido.';
                             }
                         } else {
-                            $result['exception'] = 'Visita Recurrente invalida.';
+                            $result['exception'] = 'Fecha invalida.';
                         }
                     } else {
-                        $result['exception'] = 'Visita Recurrente invalido.';
+                        $result['exception'] = 'Residente invalido.';
                     }
-                } else {
-                    $result['exception'] = 'Fecha invalida.';
-                }
-
+              
 
                 break;
                 //Caso para ingresar visitante 
@@ -127,7 +139,7 @@ if (isset($_GET['action'])) {
             case 'readVisitante':
                 if ($result['dataset'] = $visita->readVisitante()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Se ha encontrado al menos un residente.';
+                    $result['message'] = 'Se ha encontrado al menos un visitante.';
                 } else {
                     if (Database::getException()) {
                         $result['exception'] = Database::getException();
@@ -136,30 +148,6 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-            case 'detalleVisita':
-                $_POST = $visita->validateForm($_POST);
-                if ($visita->setIdVisita($_POST['txtIdx'])) {
-                    if (isset($_POST['cbVisitante'])) {
-                        if ($visita->setIdVisitante($_POST['cbVisitante'])) {
-                            if ($visita->insertDetalleVisita()) {
-                                $result['status'] = 1;
-                                $result['message'] = 'Detalle registrado correctamente.';
-                            } else {
-                                $result['error'] = 1;
-                                $result['exception'] = Database::getException();
-                            }
-                        } else {
-                            $result['exception'] = 'Visitante inválido.';
-                        }
-                    } else {
-                        $result['exception'] = 'Seleccione un visitante.';
-                    }
-                } else {
-                    $result['exception'] = 'Visita invalida.';
-                }
-
-                break;
-
             case 'search':
                 $_POST = $visita->validateForm($_POST);
                 if ($_POST['search'] != '') {

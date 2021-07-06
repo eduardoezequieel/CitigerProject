@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
 
     readRows(API_VISITA);
-    readRows3(API_VISITA);
 
 })
 
@@ -187,63 +186,3 @@ document.getElementById('filtrarEstadoVisita-form').addEventListener('submit', f
     });
 });
 
-function readRows3(API_VISITA) {
-    fetch(API_VISITA + 'readVisitasList', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                let data = [];
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    data = response.dataset;
-                } else {
-                    sweetAlert(4, response.exception, null);
-                }
-                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
-                fillTable2(data);
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(function (error) {
-        console.log(error);
-    });
-}
-
-//Llenado de tabla
-function fillTable2(dataset) {
-    let content = '';
-    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-    dataset.map(function (row) {
-        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-        content += `
-        <tr class="animate__animated animate__fadeIn">
-        <td>${row.fecha}</td>
-        <td>${row.visitarecurrente}</td>
-        <!-- Boton-->
-        <th scope="row">
-            <div class="row paddingBotones">
-                <div class="col-12">
-                    <a href="#" id="btnResidenteCasa" onclick="visitas(${row.idvisita})" class="btn btnTabla mx-2"><i class="fas fa-plus"></i></a>
-                </div>
-            </div>
-        </th>
-    </tr>
-        `;
-    });
-    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-    document.getElementById('tbody-rows2').innerHTML = content;
-}
-
-
-
-function visitas(id) {
-
-    document.getElementById('txtIdx').value = id;
-
-    saveRow(API_VISITA, 'detalleVisita', 'visita-form', 'visitaVisitante');
-    readRows3(API_VISITA);
-
-}

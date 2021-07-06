@@ -356,12 +356,6 @@ class Visitas extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    public function getVisitasResidente()
-    {
-        $sql = 'SELECT idvisita, fecha, observacion from visita where idestadovisita=4 and idresidente=? order by idvisita asc';
-        $params = array($_SESSION['idresidente']);
-        return Database::getRows($sql, $params);
-    }
 
     public function readVisitante()
     {
@@ -462,6 +456,13 @@ class Visitas extends Validator
                 WHERE idvisita = ?';
         $params = array($this->idVisita);
         return Database::executeRow($sql, $params);
+    }
+
+    public function getLastId()
+    {
+        $sql = 'SELECT max(idvisita) as idvisita from visita';
+        $params = null;
+        return Database::getRow($sql, $params);
     }
 }
 
