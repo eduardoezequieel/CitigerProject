@@ -402,7 +402,7 @@ class Visitas extends Validator
         INNER JOIN visitante vi on d.idvisitante=vi.idvisitante
         INNER JOIN visita v on  d.idvisita=v.idvisita
         INNER JOIN estadovisita e on v.idestadovisita=e.idestadovisita where v.idresidente=? and  d.iddetallevisita=?";
-        $params = array($_SESSION['idresidente'],$this->idVisita);
+        $params = array($_SESSION['idresidente'], $this->idVisita);
         return Database::getRow($sql, $params);
     }
 
@@ -418,13 +418,19 @@ class Visitas extends Validator
 
     //Función para contar las visitas activas
     public function contadorVisitas()
-        {
-            $sql = 'SELECT COUNT(idvisita) as visitas 
+    {
+        $sql = 'SELECT COUNT(idvisita) as visitas 
                     FROM visita 
                     WHERE idestadovisita = 1';
-            $params = null;
-            return Database::getRow($sql, $params);
-        }
+        $params = null;
+        return Database::getRow($sql, $params);
+    }
+
+
+    public function getVisitasList()
+    {
+        $sql = 'SELECT idvisita, fecha, visitarecurrente from visita where idestadovisita=4 order by idvisita asc';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 }
-
-

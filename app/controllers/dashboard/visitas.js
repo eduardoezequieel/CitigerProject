@@ -1,15 +1,21 @@
 const API_VISITA = '../../app/api/dashboard/visitas.php?action=';
 const ENDPOINT_ESTADO = '../../app/api/dashboard/visitas.php?action=readVisitStatus';
 const ENDPOINT_RESIDENTE = '../../app/api/dashboard/visitas.php?action=readResident';
+const ENDPOINT_VISITANTE = '../../app/api/dashboard/visitas.php?action=readVisitante';
 
-document.addEventListener('DOMContentLoaded', function(){
+
+document.addEventListener('DOMContentLoaded', function () {
 
     fillSelect(ENDPOINT_ESTADO, 'cbEstadoVisita', null);
     fillSelect(ENDPOINT_RESIDENTE, 'cbResidente', null);
+    fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
+
     readRows(API_VISITA);
+    readRows3(API_VISITA);
+
 })
 
-function fillTable(dataset){
+function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
@@ -32,13 +38,13 @@ function fillTable(dataset){
                     </div>
                 </th>
             </tr>
-        `; 
+        `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
 }
 
-document.getElementById('btnReiniciar').addEventListener('click',function(){
+document.getElementById('btnReiniciar').addEventListener('click', function () {
     readRows(API_VISITA);
 });
 
@@ -46,11 +52,11 @@ document.getElementById('btnReiniciar').addEventListener('click',function(){
 
 
 //ocultar los demas botones de acción en el formulario al presionar Agregar.
-document.getElementById('btnInsertDialog').addEventListener('click',function(){
-    document.getElementById('btnAgregar').className="btn btnAgregarFormulario mr-2";
-    document.getElementById('btnActualizar').className="d-none";
-    document.getElementById('btnSuspender').className="d-none";
-    document.getElementById('btnActivar').className="d-none";
+document.getElementById('btnInsertDialog').addEventListener('click', function () {
+    document.getElementById('btnAgregar').className = "btn btnAgregarFormulario mr-2";
+    document.getElementById('btnActualizar').className = "d-none";
+    document.getElementById('btnSuspender').className = "d-none";
+    document.getElementById('btnActivar').className = "d-none";
 
     // Se reinician los campos del formulario
     document.getElementById('idVisita').value = '';
@@ -62,28 +68,28 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
 });
 
 //Agregar y actualizar información
-document.getElementById('administrarVisita-form').addEventListener('submit',function(event){
+document.getElementById('administrarVisita-form').addEventListener('submit', function (event) {
     //Se evita que se recargue la pagina
     event.preventDefault();
 
     //Se evalua si el usuario esta haciendo una inserción o una actualización
     if (document.getElementById('btnAgregar').className != 'd-none') {
-        saveRow(API_VISITA, 'createRow','administrarVisita-form', 'administrarVisita');
+        saveRow(API_VISITA, 'createRow', 'administrarVisita-form', 'administrarVisita');
     } else {
-        saveRow(API_VISITA, 'updateRow','administrarVisita-form', 'administrarVisita');
+        saveRow(API_VISITA, 'updateRow', 'administrarVisita-form', 'administrarVisita');
     }
 });
 
 //Carga de datos del registro seleccionado
-function readDataOnModal(id){
+function readDataOnModal(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idVisita', id);
     console.log(id);
 
     //Se ocultan los botones del formulario.
-    document.getElementById('btnAgregar').className="d-none";
-    document.getElementById('btnActualizar').className="btn btnAgregarFormulario mr-2";
+    document.getElementById('btnAgregar').className = "d-none";
+    document.getElementById('btnActualizar').className = "btn btnAgregarFormulario mr-2";
 
     fetch(API_VISITA + 'readOne', {
         method: 'post',
@@ -101,13 +107,11 @@ function readDataOnModal(id){
                     document.getElementById('txtFecha').value = response.dataset.fecha;
                     document.getElementById('txtObservacion').value = response.dataset.observacion;
                     if (response.dataset.idestadovisita == 4) {
-                        document.getElementById('btnSuspender').className="btn btnAgregarFormulario mr-2";
-                        document.getElementById('btnCamino').className="btn btnAgregarFormulario mr-2";
-                        document.getElementById('btnActivar').className="d-none";
-                    }else if(response.dataset.idestadovisita == 5){
-                        document.getElementById('btnActivar').className="btn btnAgregarFormulario mr-2";
-                        document.getElementById('btnSuspender').className="d-none";
-                        document.getElementById('btnCamino').className="d-none";
+                        document.getElementById('btnSuspender').className = "btn btnAgregarFormulario mr-2";
+                        document.getElementById('btnActivar').className = "d-none";
+                    } else if (response.dataset.idestadovisita == 5) {
+                        document.getElementById('btnActivar').className = "btn btnAgregarFormulario mr-2";
+                        document.getElementById('btnSuspender').className = "d-none";
                     }
 
                 } else {
@@ -123,20 +127,20 @@ function readDataOnModal(id){
 }
 
 //Suspender registros
-document.getElementById('btnSuspender').addEventListener('click',function(event){
+document.getElementById('btnSuspender').addEventListener('click', function (event) {
     event.preventDefault();
-    suspendRow(API_VISITA, 'administrarVisita-form','administrarVisita');
+    suspendRow(API_VISITA, 'administrarVisita-form', 'administrarVisita');
 })
 
 //Activar registros
-document.getElementById('btnActivar').addEventListener('click',function(event){
+document.getElementById('btnActivar').addEventListener('click', function (event) {
     event.preventDefault();
-    activateRow(API_VISITA, 'administrarVisita-form','administrarVisita');
+    activateRow(API_VISITA, 'administrarVisita-form', 'administrarVisita');
 })
 
 
 //eliminar registros de la tabla visita.
-function deleteRow(id){
+function deleteRow(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idVisita', id);
@@ -145,15 +149,15 @@ function deleteRow(id){
 }
 
 //Busqueda por estado visita
-document.getElementById('cbEstadoVisita').addEventListener('change',function(){
+document.getElementById('cbEstadoVisita').addEventListener('change', function () {
     //Guardando el valor del select en un input
     document.getElementById('idEstadoVisita').value = document.getElementById('cbEstadoVisita').value;
     //Presionando el boton invisible
-    document.getElementById('btnFiltrarEstado').click();   
+    document.getElementById('btnFiltrarEstado').click();
 })
 
 //Una vez presionado el boton invisible, se hace un fetch con la información del form.
-document.getElementById('filtrarEstadoVisita-form').addEventListener('submit',function(event){
+document.getElementById('filtrarEstadoVisita-form').addEventListener('submit', function (event) {
     //Se evita recargar la pagina
     event.preventDefault();
 
@@ -181,4 +185,65 @@ document.getElementById('filtrarEstadoVisita-form').addEventListener('submit',fu
     }).catch(function (error) {
         console.log(error);
     });
-});  
+});
+
+function readRows3(API_VISITA) {
+    fetch(API_VISITA + 'readVisitasList', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillTable2(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Llenado de tabla
+function fillTable2(dataset) {
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+        <tr class="animate__animated animate__fadeIn">
+        <td>${row.fecha}</td>
+        <td>${row.visitarecurrente}</td>
+        <!-- Boton-->
+        <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" id="btnResidenteCasa" onclick="visitas(${row.idvisita})" class="btn btnTabla mx-2"><i class="fas fa-plus"></i></a>
+                </div>
+            </div>
+        </th>
+    </tr>
+        `;
+    });
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('tbody-rows2').innerHTML = content;
+}
+
+
+
+function visitas(id) {
+
+    document.getElementById('txtIdx').value = id;
+
+    saveRow(API_VISITA, 'detalleVisita', 'visita-form', 'visitaVisitante');
+    readRows3(API_VISITA);
+
+}
