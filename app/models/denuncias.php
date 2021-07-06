@@ -223,6 +223,13 @@
             return Database::getRows($sql, $params);
         }
 
+        public function readTipoDenuncia()
+        {
+            $sql = 'SELECT*FROM tipodenuncia';
+            $params = null;
+            return Database::getRows($sql, $params);
+        }
+
         public function readEmployeeTypes()
         {
             $sql = 'SELECT*FROM tipoempleado';
@@ -286,7 +293,29 @@
             return Database::executeRow($sql, $params);
         }
 
-        
-    }
+        //Consultas sitio residente
+        public function readAllResidente()
+        {
+            $sql = 'SELECT tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha FROM denuncia
+                    INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
+                    INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
+                    WHERE idresidente = ?
+                    ORDER BY fecha ASC';
+                
+            $params = ARRAY($_SESSION['idresidente']);
+            return Database::getRows($sql, $params);
+        }
 
-?>
+        //Crear registro de denuncia
+        public function createRow()
+        {
+            $sql = 'INSERT INTO denuncia(idresidente, idtipodenuncia, idestadodenuncia, fecha, descripcion) 
+            VALUES
+            (?,?,?,current_date,?)';
+            $params = array($_SESSION['idresidente'], 
+                            $this->idTipoDenuncia,
+                            $this->idEstadoDenuncia, 
+                            $this->descripcion);
+            return Database::executeRow($sql, $params);
+        }
+    }

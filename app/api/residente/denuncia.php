@@ -1,7 +1,7 @@
 <?php
     require_once('../../helpers/database.php');
     require_once('../../helpers/validator.php');
-    require_once('../../models/denuncia.php');
+    require_once('../../models/denuncias.php');
 
     //Verificando si existe alguna acción
     if (isset($_GET['action'])) {
@@ -17,7 +17,7 @@
             switch ($_GET['action']) {
                 //Caso para leer todos los registros de la tabla
                 case 'readComplaintStatus':
-                    if ($result['dataset'] = $denuncia->readComplaintStatus()) {
+                    if ($result['dataset'] = $denuncia->readStates()) {
                         $result['status'] = '1';
                         $result['message'] = 'Se han encontrado estados de denuncias.';
                     } else {
@@ -30,7 +30,7 @@
                     break;
                 
                 case 'readComplaintType':
-                    if ($result['dataset'] = $denuncia->readComplaintType()) {
+                    if ($result['dataset'] = $denuncia->readTipoDenuncia()) {
                         $result['status'] = '1';
                         $result['message'] = 'Se han encontrado tipos de denuncias.';
                     } else {
@@ -80,29 +80,6 @@
                         $result['exception'] = 'Id incorrecto';
                     }
                     break;
-                
-                case 'filterByComplaintStatus':
-                    $_POST = $denuncia -> validateForm($_POST);
-                    if ($denuncia->setIdEstadoDenuncia($_POST['idEstadoDenuncia'])) {
-                        if($result['dataset'] = $denuncia->filterByComplaintStatus()){
-                            $result['status'] = 1;
-                            $row = count($result['dataset']);
-                            if($row > 0){
-                                $result['message'] = 'Se han encontrado '.$row .' coincidencias';
-                            } else{
-                                $result['message'] = 'Se ha encontrado una coincidencia';
-                            }
-                        } else{
-                            if (Database::getException()) {
-                                $result['exception'] = Database::getException();
-                            } else {
-                                $result['exception'] = 'No hay coincidencias';
-                            }
-                        }
-                    }else{
-                        $result['exception'] = 'Error id select';
-                    }
-                    break;
 
                 case 'readAll':
                     if ($result['dataset'] = $denuncia->readAll()) {
@@ -119,7 +96,7 @@
                 
                 case 'createRow':
                     $_POST = $denuncia->validateForm($_POST);
-                    $denuncia->setIdEstadoDenuncia(6);
+                    $denuncia->setIdEstadoDenuncia(1);
                      if(isset($_POST['cbTipo'])){
                         if($denuncia->setIdTipoDenuncia($_POST['cbTipo'])){
                             if($denuncia->setDescripcion($_POST['txtDescripcion'])){
