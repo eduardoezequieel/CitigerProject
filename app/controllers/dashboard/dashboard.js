@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded',function(){
     readRows(API_DASHBOARD);
     contadorDenuncias();
     contadorVisitas();
-    contadorAportacion();
+    contadorAportacion(); 
 });
+
 
 function fillTable(dataset){
     let content = '';
@@ -41,13 +42,35 @@ function fillTable(dataset){
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
-    let dataTable = new DataTable('#data-table2', { 
-        labels: { 
-            placeholder: 'Buscar Bitácoras...', 
-            perPage: '{select} Bitácoras por pagina', 
-            noRows: 'No se encontraron Bitácoras', 
-            info:'Mostrando {start} a {end} de {rows} Bitácoras' 
-        } 
+
+    $('#data-table2').DataTable({
+        retrieve: true,
+        searching: false,
+        language:
+            {
+                "decimal":        "",
+                "emptyTable":     "No hay información disponible en la tabla.",
+                "info":           "Mostrando _START_ de _END_ de _TOTAL_ registros.",
+                "infoEmpty":      "Mostrando 0 de 0 de 0 registros",
+                "infoFiltered":   "(filtered from _MAX_ total entries)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "Mostrar _MENU_ registros",
+                "loadingRecords": "Loading...",
+                "processing":     "Processing...",
+                "search":         "Search:",
+                "zeroRecords":    "No matching records found",
+                "paginate": {
+                    "first":      "AAA",
+                    "last":       "Ultimo",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+                "aria": {
+                    "sortAscending":  ": activate to sort column ascending",
+                    "sortDescending": ": activate to sort column descending"
+                }
+            }
     });
 }
 

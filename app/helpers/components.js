@@ -32,8 +32,8 @@ function loadPage(){
         document.documentElement.style.setProperty('--color-citiger-hover', '#4174c2');
         document.documentElement.style.setProperty('--color-rojo', 'rgb(255, 183, 183)');
         document.documentElement.style.setProperty('--color-rojo-hover', 'rgb(255, 72, 72)');
-        document.documentElement.style.setProperty('--color-verde', 'rgb(175, 255, 175)');
-        document.documentElement.style.setProperty('--color-verde-hover', 'rgb(63, 209, 63);');
+        document.documentElement.style.setProperty('--color-verde', 'rgb(176, 255, 197)');
+        document.documentElement.style.setProperty('--color-verde-hover', 'rgb(63, 209, 63)');
         document.documentElement.style.setProperty('--color-citiger-claro', '#c5dcff');
 
         //Se cambia la imagen del boton de inicio para que coincida con el modo

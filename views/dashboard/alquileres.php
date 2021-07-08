@@ -52,7 +52,7 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                 
             </div><br>
             <!-- Desde aqui comienza la tabla -->
-            <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaAlquileres">
+            <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive">
                 <div class="col-12 justify-content-center align-items-center text-center">
                     <table class="table table-borderless citigerTable" id="data-table">
                         <thead>

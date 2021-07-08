@@ -90,14 +90,34 @@ function fillTable(dataset){
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
 
-    // Se inicializa la tabla con DataTable.
-    let dataTable = new DataTable('#data-table', {
-        labels: {
-            placeholder: 'Buscar alquiler...',
-            perPage: '{select} Alquileres por página',
-            noRows: 'No se encontraron alquileres',
-            info:'Mostrando {start} a {end} de {rows} alquileres'
-        }
+    $('#data-table').DataTable({
+        retrieve: true,
+        searching: false,
+        language:
+            {
+                "decimal":        "",
+                "emptyTable":     "No hay información disponible en la tabla.",
+                "info":           "Mostrando _START_ de _END_ de _TOTAL_ registros.",
+                "infoEmpty":      "Mostrando 0 de 0 de 0 registros",
+                "infoFiltered":   "(filtered from _MAX_ total entries)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "Mostrar _MENU_ registros",
+                "loadingRecords": "Loading...",
+                "processing":     "Processing...",
+                "search":         "Search:",
+                "zeroRecords":    "No matching records found",
+                "paginate": {
+                    "first":      "AAA",
+                    "last":       "Ultimo",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+                "aria": {
+                    "sortAscending":  ": activate to sort column ascending",
+                    "sortDescending": ": activate to sort column descending"
+                }
+            }
     });
 }
 

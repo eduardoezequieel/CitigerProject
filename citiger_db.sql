@@ -319,7 +319,7 @@ ALTER TABLE visita ADD COLUMN idEstadoVisita INTEGER NOT NULL REFERENCES estadov
 INSERT INTO estadovisita(idestadovisita, estadovisita) VALUES (DEFAULT, 'Activa'),('Finalizada');
 
 --Cambios 02/07/2021
-insert into estadoaportacion values(default, 'Pendiente'),(default, 'Cancelada')
+insert into estadoaportacion values(default, 'Pendiente'),(default, 'Cancelada');
 
 --es importante que el id empieze desde 1, sino, reiniciar cuenta
 
