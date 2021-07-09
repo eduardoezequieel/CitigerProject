@@ -22,7 +22,7 @@ Class Database{
 
     }*/
 
-    
+
     /*private static function connect()
     {
         // Credenciales para establecer la conexión con la base de datos.
@@ -40,9 +40,9 @@ Class Database{
 
         // Credenciales.
         $server = 'localhost';
-        $database = 'Citiger';
-        $username = 'postgres';
-        $password = 'eduardo2021';
+        $database = 'citiger';
+        $username = 'eduardo';
+        $password = '123456';
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 

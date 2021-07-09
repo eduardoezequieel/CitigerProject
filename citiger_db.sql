@@ -9,7 +9,7 @@ CREATE TABLE tipoUnidad(
 );
 
 CREATE TABLE tipoEmpleado(
-	idTipoEmpleado SERIAL NOT NULL PRIMARY KEY, 
+	idTipoEmpleado SERIAL NOT NULL PRIMARY KEY,
 	tipoEmpleado VARCHAR(15) NOT NULL
 );
 
@@ -130,7 +130,7 @@ CREATE TABLE residente(
 	dui CHAR(10) NOT NULL ,
 	username VARCHAR(25) NOT NULL ,
 	contrasena VARCHAR(60) NOT NULL
-);	
+);
 
 CREATE TABLE estadoAlquiler(
 	idEstadoAlquiler SERIAL NOT NULL PRIMARY KEY,
@@ -198,7 +198,7 @@ CREATE TABLE visitante(
 	apellido VARCHAR(30) NOT NULL,
 	dui CHAR(10) NOT NULL ,
 	genero CHAR(1) NOT NULL,
-	placa VARCHAR(10) NOT NULL 
+	placa VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE detalleVisita(
@@ -260,6 +260,7 @@ INSERT INTO estadoresidente (estadoresidente) VALUES ('Activo'),('Deshabilitado'
 --Cambios 22/06/2021
 INSERT INTO estadoEspacio(estadoEspacio) VALUES('Disponible'),('Ocupado'),('Suspendido');
 
+SELECT*FROM tipounidad
 --Cambios 24/06/2021
 INSERT INTO categoria(categoria) VALUES ('Artículos de limpieza'),('Artículos de construcción'),('Ornamentación');
 INSERT INTO marca(marca) VALUES ('CEMEX'),('Kimberly-Clark'),('HOLCIM'),('IKEA');
@@ -280,7 +281,6 @@ ALTER TABLE empleado ADD CONSTRAINT UQ_empleado_correo UNIQUE (correo);
 
 INSERT INTO tipodenuncia(tipodenuncia) VALUES ('Mantenimiento'),('Limpieza'),('Disturbio');
 INSERT INTO estadodenuncia(estadodenuncia) VALUES ('Pendiente'),('Rechazada'),('Revisión'),('En proceso'),('Solucionada');
-INSERT INTO denuncia(idempleado, idresidente,idtipodenuncia, idestadodenuncia, fecha, descripcion) VALUES (1, 1, 1, 1, '2021-06-26','Denuncia de prueba');
 
 ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_dui UNIQUE (dui);
 ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_telefono_fijo UNIQUE (telefonofijo);
@@ -288,7 +288,7 @@ ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_telefono_celular UNIQUE (telefonoc
 ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_correo UNIQUE (correo);
 ALTER TABLE usuario ADD CONSTRAINT UQ_usuario_username UNIQUE (username);
 
---Cambios 27/6/2021	
+--Cambios 27/6/2021
 
 INSERT INTO estadocasa(idestadocasa, estadocasa) VALUES (DEFAULT, 'Activa'),(DEFAULT, 'Desactivada');
 
@@ -300,7 +300,7 @@ CREATE TABLE bitacora(
 	fecha DATE NOT NULL,
 	accion VARCHAR(20) NOT NULL,
 	descripcion VARCHAR(200) NOT NULL
-)
+);
 
 --Cambios 29/06/2021
 INSERT INTO tipoUsuario(tipousuario) VALUES('Caseta');
@@ -314,7 +314,7 @@ CREATE TABLE estadoVisita(
 	estadoVisita VARCHAR(15) NOT NULL
 );
 
-ALTER TABLE visita ADD COLUMN idEstadoVisita INTEGER NOT NULL REFERENCES estadovisita(idestadovisita)
+ALTER TABLE visita ADD COLUMN idEstadoVisita INTEGER NOT NULL REFERENCES estadovisita(idestadovisita);
 
 INSERT INTO estadovisita(idestadovisita, estadovisita) VALUES (DEFAULT, 'Activa'),('Finalizada');
 
@@ -347,8 +347,8 @@ insert into mespago values(default,'Enero',2021),(default,'Febrero',2021),(defau
 ALTER TABLE espacio ADD COLUMN imagenprincipal CHARACTER VARYING(50);
 
 --usado para que funcionen los estados de visita en el insert
-update estadovisita set idestadovisita=5 where idestadovisita=2
-update estadovisita set idestadovisita=4 where idestadovisita=1
+update estadovisita set idestadovisita=5 where idestadovisita=2;
+update estadovisita set idestadovisita=4 where idestadovisita=1;
 
 --Agregar para que el cambio de modos funcione en el sitio de residentes.
 ALTER TABLE residente ADD COLUMN modo VARCHAR(6) NULL;
@@ -367,4 +367,3 @@ INSERT INTO estadopedido(estadopedido) VALUES ('Realizado');
 INSERT INTO estadopedido(estadopedido) VALUES ('Recibido'),('Cancelado');
 
 ALTER TABLE detallematerial RENAME COLUMN cantidad TO cantidadmaterial;
-
