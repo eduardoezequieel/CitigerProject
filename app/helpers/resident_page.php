@@ -138,6 +138,7 @@
                     <script type="text/javascript" src="../../resources/js/vanilla-dataTables.min.js"></script>
                     <script src="../../app/controllers/residente/'.$controller.'"></script>
                     <script src="../../app/helpers/components.js"></script>
+                    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
                 </body>
                 </html> 
