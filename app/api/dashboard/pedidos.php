@@ -16,6 +16,7 @@
         //Acciones a ejecutar permitidas con la sesion iniciada
         if (isset($_SESSION['idusuario'])) {
             switch($_GET['action']){
+                //Caso para leer todos los registros
                 case 'readAll':
                     if ($result['dataset'] = $pedidos -> readAll()) {
                         $result['status'] = 1;
@@ -31,6 +32,7 @@
                         }
                     }
                     break;
+                //Caso para leer un pedido
                 case 'readOne':
                     if ($pedidos->setIdPedido($_POST['idPedido'])) {
                         if ($result['dataset'] = $pedidos -> readOne()) {
@@ -50,6 +52,7 @@
                         $result['exception'] = 'Id incorrecto.';
                     }
                     break;
+                //Caso para filtrar los registros mediante estado
                 case 'readByState':
                     if ($pedidos->setIdEstadoPedido($_POST['txtEstadoPedido'])) {
                         if ($result['dataset'] = $pedidos -> readByState()) {
@@ -70,6 +73,7 @@
                     }
                     
                     break;
+                //Caso para cambiar el estado de una orden/pedido a cancelado
                 case 'cancelOrder':
                     if ($pedidos->setIdPedido($_POST['txtIdPedido'])) {
                         if ($pedidos->cancelOrder()) {
@@ -84,6 +88,7 @@
                     }
                     
                     break;
+                //Caso para cambiar el estado de una orden/pedido a recibido
                 case 'confirmOrder':
                     if ($pedidos->setIdPedido($_POST['txtIdPedido'])) {
                         if ($pedidos->confirmOrder()) {
@@ -98,6 +103,7 @@
                     }
                     
                     break;
+                //Caso para obtener el total.
                 case 'getTotal2':
                     if ($pedidos->setIdPedido($_POST['idPedido2'])) {
                         if ($result['dataset'] = $pedidos->getTotalPrice()) {
@@ -110,6 +116,7 @@
                         $result['exception'] = 'id incorrecto';
                     }
                     break;
+                //Caso para obtener los productos de un pedido.
                 case 'readOrder2':
                     if ($pedidos->setIdPedido($_POST['idPedido3'])) {
                         if ($result['dataset'] = $pedidos->getOrder()) {

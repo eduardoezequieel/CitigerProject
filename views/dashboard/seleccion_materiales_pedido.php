@@ -154,9 +154,9 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
 
                                                     <a id="btnPlus" class="btn botonesTarjeta"><span class="fas fa-plus tamañoIconosBotones"></span></a>
                                                 </div>
-                                                <div class="form-group">
-                                                    <input type="number" class="d" id="txtPrecioMaterial" name="txtPrecioMaterial">
-                                                    <input type="number" class="d" id="txtCantidadMaterial" name="txtCantidadMaterial">
+                                                <div class="form-group d-none">
+                                                    <input type="number" id="txtPrecioMaterial" name="txtPrecioMaterial">
+                                                    <input type="number" id="txtCantidadMaterial" name="txtCantidadMaterial">
                                                 </div>
                                             </div>
                                         </div>
@@ -196,8 +196,9 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
             <div class="textoModal px-3 pb-4 mt-2">
                 <form method="post" id="actualizarCantidades-form">
                     <input type="number" class="d-none" id="txtIdDetalleMaterial" name="txtIdDetalleMaterial">
-                    <input type="number" class="d-none" id="txtGuardarCantidad" name="txtGuardarCantidad">
+                    <input type="number" class="" id="txtGuardarCantidad" name="txtGuardarCantidad">
                     <input type="number" class="d-none" id="txtIdMaterial" name="txtIdMaterial">
+                    <input type="number" id="txtStockDisponible" name="txtStockDisponible">
                     <div class="row">
                         <div class="col-12">
                             <h1 class="tituloDato2 text-center">Actualice la cantidad del material que desea agregar al pedido:</h1>
@@ -209,8 +210,8 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                 <a id="btnMinus2" class="btn botonesTarjeta"><span class="fas fa-minus tamañoIconosBotones"></span></a>
 
                                         <h1 class="cantidadNumeroLabel mx-4 pt-1" id="cantidadMaterial2">0</h1>
-                                        <input type="number" class="d-none" id="txtCantidadMaterial2" name="txtCantidadMaterial2">
-                                        <input type="number" class="d-none" id="txtRestante" name="txtRestante">
+                                        <input type="number" class="" id="txtCantidadMaterial2" name="txtCantidadMaterial2">
+                                        <input type="number" class="" id="txtRestante" name="txtRestante">
 
                                 <a id="btnPlus2" class="btn botonesTarjeta"><span class="fas fa-plus tamañoIconosBotones"></span></a>
                             </div>
