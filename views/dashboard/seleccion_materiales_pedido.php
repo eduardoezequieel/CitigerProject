@@ -66,8 +66,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                         <!-- Inicio de la Tabla -->
                         <div class="row justify-content-center">
                             <div class="col-12 d-flex justify-content-center align-items-center">
-                                <div class="row justify-content-center table-responsive tablaResponsive"
-                                    id="tablaCarritoModal">
+                                <div class="row justify-content-center table-responsive">
                                     <div class="col-12 justify-content-center align-items-center text-center">
                                         <table class="table table-borderless citigerTable">
                                             <thead>
@@ -208,7 +207,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                 <label class="cantidadNumeroLabel mx-4 pt-1" id="lblCantidadMaterial"></label>
                                 <a id="btnPlus2" class="btn botonesTarjeta"><span class="fas fa-plus tamañoIconosBotones"></span></a>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group d-none">
                                 <label>Id detalle</label>
                                 <input type="number" name="iddetalle" id="iddetalle">
 
@@ -226,7 +225,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                             </div>
                         </div>
                     </div>
-                    .
+
                     <div class="row mt-2 justify-content-center">
                         <div class="col-12 d-flex justify-content-center">
                             <button type="submit" id="btnActualizarCantidad" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-save mr-3 tamañoIconosBotones"></span>Guardar</button>
