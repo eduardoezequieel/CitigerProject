@@ -26,7 +26,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                     class="btn botonesListadoInventario ml-5"><span
                         class="fas fa-shopping-cart mr-3 tamañoIconosBotones"></span>Ver Pedido</a>
 
-                <a href="#" data-toggle="modal" data-target="#verCarrito"
+                <a href="#" onclick="readOrder()" data-toggle="modal" data-target="#verCarrito"
                     class="btn botonesListadoInventarioIcono"><span
                         class="fas fa-shopping-cart tamañoIconosBotones"></span></a>
 
