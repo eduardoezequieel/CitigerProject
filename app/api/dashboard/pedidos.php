@@ -81,6 +81,8 @@
                                 if ($pedidos->updateOrderStock($_POST['stockPedido'])) {
                                     $result['status'] = 1;
                                     $result['message'] = 'Cantidad de material actualizada correctamente.';
+                                    $pedidos->registerAction('Actualizar','El usuario cambio el stock de un producto mediante un pedido.');
+
                                 } else {
                                     $result['exception'] = Database::getException();
                                 }
@@ -100,6 +102,8 @@
                         if ($pedidos->cancelOrder()) {
                             $result['status'] = 1;
                             $result['message'] = 'Pedido reportado como cancelado exitosamente.';
+                            $pedidos->registerAction('Cancelar','El usuario canceló un pedido.');
+
                         } else {
                             $result['exception'] = Database::getException();
                         }
@@ -115,6 +119,7 @@
                         if ($pedidos->confirmOrder()) {
                             $result['status'] = 1;
                             $result['message'] = 'Pedido reportado como recibido exitosamente.';
+                            $pedidos->registerAction('Confirmar','El usuario reporto como recibido un pedido.');
                         } else {
                             $result['exception'] = Database::getException();
                         }
@@ -237,6 +242,7 @@
                                     if ($pedidos->sendOrder()) {
                                         $result['status'] = 1;
                                         $result['message'] = 'Pedido realizado exitosamente.';
+                                        $pedidos->registerAction('Crear','El usuario creó un pedido.');
                                     } else {
                                         $result['exception'] = Database::getException();
                                     }
@@ -273,6 +279,7 @@
                                                         if ($pedidos->updateMaterialStock()) {
                                                             $result['status'] = 1;
                                                             $result['message'] = 'Agregado al carrito correctamente.';
+                                                            $pedidos->registerAction('Agregar','El usuario agregó material a un pedido.');
                                                         } else {
                                                             $result['exception'] = Database::getException();
                                                         }
@@ -318,6 +325,7 @@
                                                             if ($pedidos->updateMaterialStock()) {
                                                                 $result['status'] = 1;
                                                                 $result['message'] = 'Agregado al carrito correctamente.';
+                                                                $pedidos->registerAction('Agregar','El usuario agregó material a un pedido.');
                                                             } else {
                                                                 $result['exception'] = Database::getException();
                                                             }
