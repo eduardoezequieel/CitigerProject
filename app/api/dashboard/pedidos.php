@@ -73,6 +73,27 @@
                     }
                     
                     break;
+                //Caso para actualizar el stock de un producto cuando este ya ha sido ingresado al carrito;
+                case 'updateStock':
+                    if ($pedidos->setIdMaterial($_POST['idmaterial'])) {
+                        if ($pedidos->setIdDetalleMaterial($_POST['iddetalle'])) {
+                            if ($pedidos->updateStock($_POST['stockBodega'])) {
+                                if ($pedidos->updateOrderStock($_POST['stockPedido'])) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Cantidad de material actualizada correctamente.';
+                                } else {
+                                    $result['exception'] = Database::getException();
+                                }
+                            } else {
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'Id material incorrecto';
+                        }
+                    } else {
+                        $result['exception'] = 'Id material incorrecto';
+                    }
+                    break;
                 //Caso para cambiar el estado de una orden/pedido a cancelado
                 case 'cancelOrder':
                     if ($pedidos->setIdPedido($_POST['txtIdPedido'])) {

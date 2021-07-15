@@ -251,7 +251,15 @@ function fillTable2(dataset){
         <tr class="animate__animated animate__fadeIn">
             <!-- Datos-->
             <td>${row.nombreproducto}</td>
-            <td>${row.cantidadmaterial}</td>
+            <th scope="row">
+                <div class="row paddingBotones">
+                    <div class="col-12 d-flex justify-content-center align-items-center">
+                        <h1 class="cantidadNumeroLabel mt-2 mx-2" id="cantidadMaterial2">${row.cantidadmaterial}</h1>
+                        <a href="#" onclick="actualizarCantidad(${row.idmaterial},${row.iddetallematerial},'${row.nombreproducto}', ${row.cantidadmaterial})" data-toggle="modal" data-target="#actualizarCantidades" data-dismiss="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+
+                    </div>
+                </div>
+            </th>
             <td>${row.preciomaterial}</td>
             <td>${row.totalunidad}</td>
             <!-- Boton-->
@@ -264,10 +272,123 @@ function fillTable2(dataset){
             </th>
         </tr>
         `; 
-    });
+    })
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows2').innerHTML = content;
 }
+
+function actualizarCantidad(idmaterial, iddetalle,producto, cantidadActual){
+    //Seteando valores necesarios para hacer la actualización
+    document.getElementById('lblProductoCant').textContent = producto;
+    document.getElementById('lblCantidadMaterial').textContent = cantidadActual;
+    document.getElementById('iddetalle').value = iddetalle;
+    document.getElementById('idmaterial').value = idmaterial;
+    const data = new FormData();
+    data.append('idMaterial', idmaterial);
+
+    fetch(API_PEDIDOS + 'readOneMaterial', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    var cantidadDetalle = parseInt(document.getElementById('lblCantidadMaterial').textContent); 
+                    var stockDisponible = parseInt(response.dataset.cantidad);
+                    var verdaderoStock = cantidadDetalle + stockDisponible; 
+                    document.getElementById('stockReal').value = verdaderoStock; 
+                    document.getElementById('txtCantidad2').textContent = verdaderoStock;  
+                    cantidad = verdaderoStock; 
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Se ejecuta al disminuir la cantidad deseada de stock para el pedido
+document.getElementById('btnMinus2').addEventListener('click',function(event){
+    //Se evita que se recargue la pagina
+    event.preventDefault();
+    //Se captura el valor del label en una variable
+    var valor = document.getElementById('lblCantidadMaterial').textContent;
+    //Se resta
+    valor--;
+    //Se evalua el valor seleccionado por el usuario, no esta permitido bajar de 1.
+    if (valor == 0) {
+        //Si el valor es igual a 0, se setea 1 en el label para evitar la cantidad nula.
+        document.getElementById('lblCantidadMaterial').textContent = '1';
+        sweetAlert(2, 'No puede colocar una cantidad nula.', null);
+    } else {
+        //Si el valor es mayor que 0, entonces se coloca en un input listo para su agregacion al carrito.
+        document.getElementById('lblCantidadMaterial').textContent = valor;
+    }
+    
+});
+
+//Se ejecuta al sumar la cantidad deseada de stock para el pedido
+document.getElementById('btnPlus2').addEventListener('click',function(event){
+    //Se evita que se recargue la pagina
+    event.preventDefault();
+    //Se evalua el valor seleccionado por el usuario, no esta permitido superar el stock registrado.
+    var valor = document.getElementById('lblCantidadMaterial').textContent;
+    if (valor == cantidad) {
+        /*Si el valor ingresado es mayor al stock, se regresa al maximo valor permitido y se le notifica
+        al usuario.*/
+        document.getElementById('lblCantidadMaterial').textContent = cantidad;
+        sweetAlert(2, 'Ha llegado al limite en existencias.', null);
+    } else {
+        /*Si el valor es menor o igual al stock permitido, entonces se coloca en un input listo 
+        para su agregacion al carrito luego de aumentar su valor en uno.*/
+        valor++;
+        document.getElementById('lblCantidadMaterial').textContent = valor;
+    }
+});
+
+document.getElementById('actualizarCantidades-form').addEventListener('submit',function(event){
+    event.preventDefault();
+
+    /*Calculos para determinar el stock que estará en bodega y en el pedido*/
+    var stockPedido = parseInt(document.getElementById('lblCantidadMaterial').textContent);
+    var stockActual = parseInt(document.getElementById('stockReal').value);
+    var stockNuevo = stockActual - stockPedido;
+    document.getElementById('stockPedido').value = stockPedido;
+    document.getElementById('stockBodega').value = stockNuevo;
+
+    //Petición
+    fetch(API_PEDIDOS + 'updateStock', {
+        method: 'post',
+        body: new FormData(document.getElementById('actualizarCantidades-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    readMaterials(API_PEDIDOS);
+                    readOrder();
+                    sweetAlert(1, response.message, closeModal('actualizarCantidades'));
+                    openModal('verCarrito')
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+})
 
 // Se ejecuta al intentar eliminar un producto del "carrito" de compras.
 function deleteFromCart(id, cantidad, idmaterial){

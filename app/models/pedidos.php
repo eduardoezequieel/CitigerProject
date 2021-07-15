@@ -311,21 +311,20 @@
         return Database::executeRow($sql, $params);
     }
 
-    public function verifyMaterialStock($value)
+    public function updateStock($cantidad)
     {
-        if ($value >= 1) {
-            $this->setCantidadMaterial($value);
-            $this->updateMaterialStock();
-            return true;
-        } else if ($value <= -1) {
-            $value = $value * -1;
-            $this->setCantidadMaterial($value);
-            $this->restoreMaterialStock();
-            return true;
-        } else {
-
-        }
-        
+        $sql = 'UPDATE material SET cantidad = ? WHERE idMaterial = ?';
+        $params = array($cantidad, $this->idMaterial);
+        return Database::executeRow($sql,$params);
     }
+
+    public function updateOrderStock($cantidad)
+    {
+        $sql = 'UPDATE detallematerial SET cantidadmaterial = ? WHERE iddetallematerial = ?';
+        $params = array($cantidad, $this->idDetalleMaterial);
+        return Database::executeRow($sql,$params);
+    }
+
+    
  }
 ?>

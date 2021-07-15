@@ -154,9 +154,9 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
 
                                                     <a id="btnPlus" class="btn botonesTarjeta"><span class="fas fa-plus tamañoIconosBotones"></span></a>
                                                 </div>
-                                                <div class="form-group d-none">
-                                                    <input type="number" id="txtPrecioMaterial" name="txtPrecioMaterial">
-                                                    <input type="number" id="txtCantidadMaterial" name="txtCantidadMaterial">
+                                                <div>
+                                                    <input type="text" class="d-none" id="txtPrecioMaterial" name="txtPrecioMaterial">
+                                                    <input type="text" class="d-none" id="txtCantidadMaterial" name="txtCantidadMaterial">
                                                 </div>
                                             </div>
                                         </div>
@@ -195,28 +195,38 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
                 <form method="post" id="actualizarCantidades-form">
-                    <input type="number" class="d-none" id="txtIdDetalleMaterial" name="txtIdDetalleMaterial">
-                    <input type="number" class="" id="txtGuardarCantidad" name="txtGuardarCantidad">
-                    <input type="number" class="d-none" id="txtIdMaterial" name="txtIdMaterial">
-                    <input type="number" id="txtStockDisponible" name="txtStockDisponible">
                     <div class="row">
                         <div class="col-12">
-                            <h1 class="tituloDato2 text-center">Actualice la cantidad del material que desea agregar al pedido:</h1>
+                            <h1 id="lblProductoCant" class="tituloModal2 text-center">Producto</h1>
+                            <h1 class="textoModal2 text-center my-3">En Stock: <span id="txtCantidad2" class="letraDestacadaTarjeta">122</span></h1>
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-12">
                             <div id="controlesCantidad" class="form-group d-flex justify-content-center align-items-center text-center">
                                 <a id="btnMinus2" class="btn botonesTarjeta"><span class="fas fa-minus tamañoIconosBotones"></span></a>
-
-                                        <h1 class="cantidadNumeroLabel mx-4 pt-1" id="cantidadMaterial2">0</h1>
-                                        <input type="number" class="" id="txtCantidadMaterial2" name="txtCantidadMaterial2">
-                                        <input type="number" class="" id="txtRestante" name="txtRestante">
-
+                                <label class="cantidadNumeroLabel mx-4 pt-1" id="lblCantidadMaterial"></label>
                                 <a id="btnPlus2" class="btn botonesTarjeta"><span class="fas fa-plus tamañoIconosBotones"></span></a>
+                            </div>
+                            <div class="form-group">
+                                <label>Id detalle</label>
+                                <input type="number" name="iddetalle" id="iddetalle">
+
+                                <label>Id material</label>
+                                <input type="number" name="idmaterial" id="idmaterial">
+
+                                <label>Stock real</label>
+                                <input type="number" name="stockReal" id="stockReal">
+
+                                <label>Stock para el pedido</label>
+                                <input type="number" name="stockPedido" id="stockPedido">
+
+                                <label>Stock nuevo para la bodega</label>
+                                <input type="number" name="stockBodega" id="stockBodega">
                             </div>
                         </div>
                     </div>
+                    .
                     <div class="row mt-2 justify-content-center">
                         <div class="col-12 d-flex justify-content-center">
                             <button type="submit" id="btnActualizarCantidad" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-save mr-3 tamañoIconosBotones"></span>Guardar</button>
