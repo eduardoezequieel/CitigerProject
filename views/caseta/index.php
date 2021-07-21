@@ -41,7 +41,7 @@
                     <form method="post" id="login-form">
                         <div class="row my-2">
                             <div class="col-12">
-                                <img id="CitigerLogo" src="../../resources/img/citigerWhiteLogo.png" alt="" class="img-fluid animate__animated animate__bounceIn animate__slow">
+                                <img id="CitigerLogo" src="../../resources/img/CitigerWhiteLogo.png" alt="" class="img-fluid animate__animated animate__bounceIn animate__slow">
                                 <h1 class="titulo mt-2 animate__animated animate__bounceIn animate__slow">Iniciar Sesión</h1>
                             </div>
                         </div>

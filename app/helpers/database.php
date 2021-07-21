@@ -11,7 +11,7 @@ Class Database{
 
     //Método para hacer la conexión (Katherine)
     /*private static function connect(){
-
+        
         // Credenciales.
         $server = 'localhost';
         $database = 'citiger_db';

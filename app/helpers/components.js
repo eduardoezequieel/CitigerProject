@@ -37,7 +37,7 @@ function loadPage(){
         document.documentElement.style.setProperty('--color-citiger-claro', '#c5dcff');
 
         //Se cambia la imagen del boton de inicio para que coincida con el modo
-        document.getElementById('imgDashboard').src = '../../resources/img/citigerWhiteLogo2.png';
+        document.getElementById('imgDashboard').src = '../../resources/img/CitigerWhiteLogo2.png';
 
         //Se ocultan/muestran los botones indicados para cambiar de modo posteriormente
         document.getElementById('lightMode').className = 'd-none';
