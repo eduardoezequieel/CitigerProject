@@ -46,11 +46,11 @@ function loadPage(){
         //Modo oscuro
         //Se cambian los colores de las variables declaradas en el archivo estilos.css
         document.documentElement.style.setProperty('--color-fondo', '#090909');
-        document.documentElement.style.setProperty('--color-fondo-opaco', '#101010');
+        document.documentElement.style.setProperty('--color-fondo-opaco', '#121212');
         document.documentElement.style.setProperty('--color-tipografia-titulos', '#e6e6e6');
         document.documentElement.style.setProperty('--color-tipografia', '#ffffff');
         document.documentElement.style.setProperty('--bordes-inputs', '#3f3f3f');
-        document.documentElement.style.setProperty('--color-citiger', '#5496F5');
+        document.documentElement.style.setProperty('--color-citiger', '#5496F5');   
         document.documentElement.style.setProperty('--color-citiger-hover', '#4174c2');
         document.documentElement.style.setProperty('--color-rojo', 'rgb(46, 10, 10)');
         document.documentElement.style.setProperty('--color-rojo-hover', 'rgb(255, 72, 72)');
@@ -416,7 +416,7 @@ function previewSavePicture(idDivFoto, name, foto) {
         image.src = ruta + name;
 
         //Se aplican las respectivas clases para que la preview aparezca estilizada
-        image.className = 'fit-images fotoPrimerUso';
+        image.className = 'fit-images fotoEspacioModal';
 
         //Se quita lo que este dentro del div (en caso de que exista otra imagen)
         preview.innerHTML = ' ';

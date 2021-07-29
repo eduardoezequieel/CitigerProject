@@ -190,6 +190,11 @@ option[selected] {
   height: 155px;
 }
 
+.fotoEspacioModal {
+  width: 280px !important;
+  height: 150px !important;
+}
+
 .fotoEspacio {
   width: 250px;
   height: 195px;
@@ -756,6 +761,16 @@ textarea :-ms-input-placeholder {
   align-items: center;
 }
 
+.bordeDivFotografiaEspacio {
+  content: " ";
+  width: 300px;
+  height: 170px;
+  border: 2px dashed var(--color-citiger) !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .divFotografia {
   content: " ";
   width: 150px;
@@ -797,7 +812,7 @@ textarea :-ms-input-placeholder {
 
 .tarjeta {
   content: "";
-  background-color: var(--color-fondo-opaco) !important;
+  background-color: var(--color-fondo-opaco);
   width: 280px;
   height: 310px !important;
   border-radius: 15px;

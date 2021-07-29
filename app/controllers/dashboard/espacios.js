@@ -34,7 +34,7 @@ function fillTable(dataset){
         if (row.imagenprincipal) {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             content += `
-                    <div class="animate__animated animate__bounceIn col-xl-4 col-md-4 col-sm-12 col-xs-12 mt-2 d-flex margenTarjetas justify-content-center align-items-center text-center">
+                    <div class="animate__animated animate__bounceIn col-xl-4 col-md-4 col-sm-12 col-xs-12 mt-4 d-flex margenTarjetas justify-content-center align-items-center text-center">
                         <!-- Inicio de Tarjeta -->
                         <div class="tarjeta">
                         <!-- Fila para Imagen -->
@@ -456,7 +456,7 @@ function previewPicture5(idInputExaminar, idDivFoto){
             image.src = reader.result;
     
             //Se aplican las respectivas clases para que la preview aparezca estilizada
-            image.className = 'fit-images fotoPrimerUso';
+            image.className = 'fit-images fotoEspacioModal';
     
             //Se quita lo que este dentro del div (en caso de que exista otra imagen)
             preview.innerHTML = ' ';

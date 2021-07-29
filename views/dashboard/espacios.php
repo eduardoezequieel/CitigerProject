@@ -70,7 +70,7 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content justify-content-center px-3 py-2">
                     <!-- Cabecera del Modal -->
-                    <div class="modal-header">
+                    <div class="modal-header p-3">
                         <!-- Titulo -->
                         <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Espacios</h5>
                         <!-- Boton para Cerrar -->
@@ -80,64 +80,57 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                     </div>
                     <br>
                     <!-- Contenido del Modal -->
-                    <div class="textoModal px-3 pb-4 mt-2"> 
-                    <form method="post" id="espacio-form">
-                        <div class="row animate__animated animate__bounceIn">
-                            <!-- Primera columna de controles -->
-                            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
-                                <div id="EmpleadosColumna1">
-                                    <input type="number" name="idEspacio" id="idEspacio" class="d-none">
-                                    <label class="tituloCajaTextoFormulario" for="txtNombre">Nombre:</label>
-                                    <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
-                                        placeholder="Escriba nombre del espacio..." onchange="checkInput('txtNombre')" Required>
+                    <div class="textoModal px-5 pb-5"> 
+                        <form method="post" id="espacio-form">
+                            <div class="row justify-content-center">
+                                <!-- Primera columna de controles -->
+                                <div class="d-flex flex-column justify-content-center align-items-center col-xl-6 col-md-12 col-sm-12 col-xs-12  centrarColumnas">
+                                    <div class="form-group">
+                                        <input type="number" name="idEspacio" id="idEspacio" class="d-none">
+                                        <label class="tituloCajaTextoFormulario" for="txtNombre">Nombre:</label>
+                                        <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
+                                            placeholder="Escriba nombre del espacio..." onchange="checkInput('txtNombre')" Required>
 
-                                    <label class="tituloCajaTextoFormulario" for="txtDescripcion">Descripción:</label>
-                                    <textarea class="form-control cajaTextoFormulario" placeholder="Escriba la descripción del espacio..."
-                                    id="txtDescripcion" name="txtDescripcion" rows="3" onchange="checkInput('txtDescripcion')" Required></textarea>
+                                        <label class="tituloCajaTextoFormulario" for="txtDescripcion">Descripción:</label>
+                                        <textarea class="form-control cajaTextoFormulario" placeholder="Escriba la descripción del espacio..."
+                                        id="txtDescripcion" name="txtDescripcion" rows="3" onchange="checkInput('txtDescripcion')" Required></textarea>
 
-                                    <label class="tituloCajaTextoFormulario" for="txtCapacidad">Capacidad:</label>
-                                    <input type="number" class="form-control cajaTextoFormulario" id="txtCapacidad" name="txtCapacidad" 
-                                    placeholder="Escriba la capacidad..." min="1" step="any" onchange="checkInput('txtCapacidad')" Required>
-
+                                        <label class="tituloCajaTextoFormulario" for="txtCapacidad">Capacidad:</label>
+                                        <input type="number" class="form-control cajaTextoFormulario" id="txtCapacidad" name="txtCapacidad" 
+                                        placeholder="Escriba la capacidad..." min="1" step="any" onchange="checkInput('txtCapacidad')" Required>
+                                    </div>
                                 </div>
-
-                            </div>
-
-                            <!-- Segunda columna de controles -->
-                            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
-                                    <!-- Cargar Fotografia -->
-                                    <div class="row pl-2 my-4">
-                                        <div class="col">
-                                            <div class="bordeDivFotografia1 mb-1">
+                                <!-- Segunda columna de controles -->
+                                <div class="d-flex flex-column justify-content-center align-items-center col-xl-6 col-md-12 col-sm-12 col-xs-12 centrarColumnas">
+                                        <!-- Cargar Fotografia -->
+                                        <div class="form-group d-flex flex-column justify-content-center align-items-center">
+                                            <div class="bordeDivFotografiaEspacio mb-1">
                                                 <div class="divFotografia" id="divFotografia1">
                                                     <!--<img src="../../resources/img/67641302_948622395468919_4792483860753416192_n.jpg" alt="#" class="fit-images rounded-circle" width="150px">-->
                                                 </div>
                                             </div>
                                             
-                                            <a href="#" id="btnInsertDialogImagen" data-toggle="modal" data-target="#administrarImagenes" class="btn botonesListado">
-                                            <span class="fas fa-camera mr-3 tamañoIconosBotones"></span>Fotografias</a>
-                                            <button id="btnAgregarFoto1"class="btn mx-2"><span class="fas fa-file-upload"></span></button>
-                                            
-                                           
+                                            <button id="btnAgregarFoto1" class="btn btnCargarFoto2 mx-2 mb-3"><span class="fas fa-plus"></span></button>
+                                            <button href="#" id="btnInsertDialogImagen" data-toggle="modal" data-target="#administrarImagenes" class="btn botonesListado mt-3"><span class="fas fa-camera mr-3 tamañoIconosBotones"></span>Fotografias</button>
                                         </div>
                                         <!-- Final Cargar Fotografia -->
-                                    </div>
-                                    <!-- Cargar Fotografia -->
-                                    <input id="archivo_espacio1" type="file" class="d-none" name="archivo_espacio1" accept=".gif, .jpg, .png">
+                                        
+                                        <!-- Cargar Fotografia -->
+                                        <input id="archivo_espacio1" type="file" class="d-none" name="archivo_espacio1" accept=".gif, .jpg, .png">
+                                        <input type="number" name="idEstadoEspacio1" id="idEstadoEspacio1" class="d-none">
+                                </div>
+                            </div>
+                            <!-- Botones de Acción del Formulario -->
+                            <div class="row justify-content-center mt-4">
+                                <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                                    <button href="#" type="submit" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                                    <button href="#" type="submit" id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
+                                    <button href="#" id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
+                                    <button href="#" id="btnActivar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
 
+                                </div>
                             </div>
-                            <input type="number" name="idEstadoEspacio1" id="idEstadoEspacio1" class="d-none">
-                        </div>
-                        <!-- Botones de Acción del Formulario -->
-                        <div class="row justify-content-center mt-4">
-                            <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                                <button href="#" type="submit" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
-                                <button href="#" type="submit" id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
-                                <button href="#" id="btnSuspender" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye-slash mr-3 tamañoIconosBotones"></span>Suspender</button>
-                                <button href="#" id="btnActivar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-eye mr-3 tamañoIconosBotones"></span>Activar</button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
                     <!-- Fin del Contenido del Modal -->
                     </div>
                 </div>
