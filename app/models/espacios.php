@@ -277,7 +277,7 @@
         //Método para buscar
         public function searchRows($value)
         {
-            $sql = 'SELECT idEspacio, estadoEspacio, nombre, descripcion, capacidad
+            $sql = 'SELECT idEspacio, estadoEspacio, nombre, descripcion, capacidad, imagenprincipal
                     FROM espacio 
                     INNER JOIN estadoEspacio ON estadoEspacio.idEstadoEspacio = espacio.idEstadoEspacio
                     WHERE nombre ILIKE ? OR estadoespacio ILIKE ?
@@ -297,7 +297,7 @@
         //Lee todos los registros de la tabla
         public function filterSpaceStatus()
         {
-            $sql = 'SELECT idEspacio, estadoEspacio, nombre, descripcion, capacidad
+            $sql = 'SELECT idEspacio, estadoEspacio, nombre, descripcion, capacidad, imagenprincipal
                     FROM espacio 
                     INNER JOIN estadoEspacio ON estadoEspacio.idEstadoEspacio = espacio.idEstadoEspacio
                     WHERE espacio.idestadoespacio = ?

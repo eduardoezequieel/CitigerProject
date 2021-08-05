@@ -313,7 +313,7 @@
                     FROM alquiler
                     INNER JOIN estadoalquiler ON estadoalquiler.idestadoalquiler = alquiler.idestadoalquiler
                     INNER JOIN espacio ON espacio.idespacio = alquiler.idespacio
-                    INNER JOIN residente ON residente.idresidente = residente.idresidente
+                    INNER JOIN residente ON residente.idresidente = alquiler.idresidente
                     WHERE residente.nombre ILIKE ? OR residente.apellido ILIKE ? OR espacio.nombre ILIKE ? 
                     ORDER BY fecha';
              $params = array("%$value%", "%$value%","%$value%");
@@ -323,13 +323,13 @@
           //Lee todos los registros de la tabla
         public function filterRentalStatus()
         {
-            $sql = 'SELECT idalquiler, estadoalquiler, alquiler.idestadoalquiler, espacio.nombre, 
+            $sql = 'SELECT idalquiler, estadoalquiler, espacio.nombre, 
                     alquiler.idespacio, precio, idusuario,  CONCAT(residente.apellido, \', \', residente.nombre) 
                     as residente,alquiler.idresidente, fecha, horainicio,horafin, foto
                     FROM alquiler
                     INNER JOIN estadoalquiler ON estadoalquiler.idestadoalquiler = alquiler.idestadoalquiler
                     INNER JOIN espacio ON espacio.idespacio = alquiler.idespacio
-                    INNER JOIN residente ON residente.idresidente = residente.idresidente
+                    INNER JOIN residente ON residente.idresidente = alquiler.idresidente
                     WHERE alquiler.idestadoalquiler = ?
                     ORDER BY fecha';
             $params = array($this->idEstadoAlquiler);
