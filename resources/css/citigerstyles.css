@@ -178,7 +178,7 @@ option[selected] {
 .page-content {
   width: calc(100% - 17rem);
   margin-left: 17rem;
-  /*transition: all 0.4s;*/
+  transition: all 0.4s;
 }
 
 .fit-images {
@@ -208,7 +208,7 @@ option[selected] {
   position: fixed;
   top: 0;
   left: 0;
-  /*transition: all 0.4s;*/
+  transition: all 0.4s;
 }
 
 #sidebar.active {
