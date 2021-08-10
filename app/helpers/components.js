@@ -14,6 +14,7 @@ const API_USUARIO2 = '../../app/api/dashboard/usuarios.php?action=';
 const API_RESIDENTES = '../../app/api/residente/index.php?action=';
 
 
+
 document.addEventListener('DOMContentLoaded',function(){
     loadPage();
 })
@@ -1271,4 +1272,107 @@ function readRows2(api, form) {
     }).catch(function (error) {
         console.log(error);
     });
+}
+
+//Metodos para graficas
+
+/*
+*   Función para generar una gráfica de lineas. Requiere el archivo chart.js para funcionar.
+*
+*   Parámetros: 
+    id (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), Variable (Para indicar que se esta evaluando), 
+    mensaje (El mensaje que se antepone en el tooltip) y titulo (titulo de la gráfica).
+*
+*   Retorno: ninguno.
+*/
+
+//Función para hacer un gráfico de lineas
+function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
+    //Se obtiene el canvas
+    var ctx = document.getElementById(id).getContext('2d');
+    //Chart js
+    var myChart = new Chart (ctx, {
+        //Se indica el tipo de grafica
+        type: 'line',
+        //Asignamos la data para la grafica y demás personalización.
+        data: data = {
+            labels: xAxis,
+            datasets: [{
+                label: variable,
+                data: yAxis,
+                fill: false,
+                borderColor: 'rgb(84, 150, 245)',
+                tension: 2
+              }]
+        },
+        //Opciones adicionales
+        options:{
+            scales: {
+                y: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: colorFuente,
+                        padding: 20,
+                        font: {
+                            family: "'Quicksand', sans-serif",
+                            size: 14,
+                            weight: 700
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: colorFuente,
+                        padding: 20,
+                        font: {
+                            family: "'Quicksand', sans-serif",
+                            size: 12,
+                            weight: 700
+                        }
+                    }
+                }
+            },
+            plugins:{
+                //Titulo
+                title:{
+                    display: false,
+                    text: titulo,
+                    color: colorFuente,
+                    font: {
+                        family: "'Quicksand', sans-serif",
+                        size: 24
+                    }
+                },
+                //Personalizando el tooltip
+                tooltip:{
+                    displayColors: false,
+                    callbacks: {
+                        //De tooltipItem obtenemos el index seleccionado al momento de hacer hover para darle formato.
+                        label: function(tooltipItem) {
+                            var value = myChart.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.dataIndex];
+                            console.log(colorFuente);
+                            return mensaje + value;    
+
+                            }
+                    }
+                },
+                //Personalizando la fuente
+                legend: {
+                    labels: {
+                        color: colorFuente,
+                        font: {
+                            family: "'Manrope', sans-serif",
+                            size: 16
+                        }
+                    }
+                }
+            }
+        }
+    });
+    
 }

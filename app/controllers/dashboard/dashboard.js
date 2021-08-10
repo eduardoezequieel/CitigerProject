@@ -2,11 +2,89 @@
 const API_DASHBOARD = '../../app/api/dashboard/dashboard.php?action=';
 
 document.addEventListener('DOMContentLoaded',function(){
+    //Carga la bitacora
     readRows(API_DASHBOARD);
+
+    //Graficas
+    graficaLineaVisitas();
+
+    //Carga los contadores
     contadorDenuncias();
     contadorVisitas();
     contadorAportacion(); 
 });
+
+function graficaLineaVisitas() {
+    fetch(API_DASHBOARD + 'last6MonthsOfVisits', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let cantidad = [];
+                let mes = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Se recorre el arreglo de datos
+                    response.dataset.map(function(row){
+                        //Se asignan a los arreglos creados previamente
+                        cantidad.push(row.visitas);
+                        mes.push(row.mes);
+                    });
+
+                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                    var modo = document.getElementById('txtModo').value;
+                    var colorFuente;
+
+                    if (modo == 'light') {
+                        colorFuente = 'rgb(0,0,0)';
+                    } else if (modo == 'dark') {
+                        colorFuente = 'rgb(255,255,255)';
+                    }
+
+                    //Creamos un arreglo para guardar los meses de forma textual
+                    let meses = [];
+                    //Recorremos el arreglo de meses uno por uno y evaluamos su valor 
+                    for (let index = 0; index < mes.length; index++) {
+                        if (mes[index] == 1) {
+                            meses[index] = 'Enero';
+                        } else if(mes[index] == 2) {
+                            meses[index] = 'Febrero';
+                        } else if(mes[index] == 3) {
+                            meses[index] = 'Marzo';
+                        } else if(mes[index] == 4) {
+                            meses[index] = 'Abril';
+                        } else if(mes[index] == 5) {
+                            meses[index] = 'Mayo';
+                        } else if(mes[index] == 6) {
+                            meses[index] = 'Junio';
+                        } else if(mes[index] == 7) {
+                            meses[index] = 'Julio';
+                        } else if(mes[index] == 8) {
+                            meses[index] = 'Agosto';
+                        } else if(mes[index] == 9) {
+                            meses[index] = 'Septiembre';
+                        } else if(mes[index] == 10) {
+                            meses[index] = 'Octubre';
+                        } else if(mes[index] == 11) {
+                            meses[index] = 'Noviembre';
+                        } else if(mes[index] == 2) {
+                            meses[index] = 'Diciembre';
+                        }
+                    }
+
+                    lineGraph('cnVisitas6Meses', meses, cantidad, 'Visitas', 'Cantidad de visitas: ', 'Visitas los Ultimos 6 Meses', colorFuente);
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 
 
 function fillTable(dataset){

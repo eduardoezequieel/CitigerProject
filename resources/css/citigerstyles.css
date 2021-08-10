@@ -417,6 +417,12 @@ option[selected] {
   content: "";
 }
 
+.tarjetaDashboardGrafica {
+  background-color: var(--color-fondo-opaco);
+  border-radius: 20px;
+  padding: 30px;
+}
+
 .tituloTarjetaDashboard {
   font-family: 'Quicksand', sans-serif;
   font-size: 18px;

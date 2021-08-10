@@ -158,6 +158,7 @@
                     <script src="../../app/controllers/dashboard/'.$controller.'"></script>
                     <script src="../../resources/js/datatables.min.js"></script>
                     <script src="../../resources/js/sweetalert.min.js"></script>
+                    <script src="../../resources/js/chart.js"></script>
                     <script src="../../app/helpers/components.js"></script>
                 </body>
                 </html> 

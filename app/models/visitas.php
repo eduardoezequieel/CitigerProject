@@ -206,6 +206,20 @@ class Visitas extends Validator
 
     //Sentencias SQL a la tabla visita.
 
+    //Cantidad de visitas de los ultimos 6 meses (Grafica)
+    public function last6MonthsOfVisits()
+    {
+        $sql = 'SELECT COUNT(idvisita) as visitas, EXTRACT(MONTH FROM fecha) as mes 
+                FROM visita 
+                WHERE EXTRACT(MONTH FROM fecha) <= (SELECT EXTRACT(MONTH FROM current_date)) 
+                AND EXTRACT(MONTH FROM fecha) > (SELECT EXTRACT(MONTH FROM current_date)- 6) 
+                AND idestadovisita = 3 
+                GROUP BY mes
+                ORDER BY mes ASC';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
     //Carga datos para el select cbEstadoVisita
     public function readVisitStatus()
     {

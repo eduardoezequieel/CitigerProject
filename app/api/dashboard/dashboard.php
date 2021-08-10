@@ -2,6 +2,7 @@
 require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/dashboard.php');
+require_once('../../models/visitas.php');
 
 if (isset($_GET['action'])) {
     //Reanudando la sesion
@@ -9,6 +10,8 @@ if (isset($_GET['action'])) {
 
     //Objeto para instanciar la clase
     $dashboard = new Dashboard();
+    //Objeto para instanciar la clase
+    $visita = new Visitas();
 
     //Arreglo para guardar respuestas de la API
     $result = array('status' => 0, 'error' => 0, 'message' => null, 'exception' => null);
@@ -65,6 +68,18 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Visitas encontradas';
                 } else {
                     $result['exception'] = Database::getException();
+                }
+                break;
+            //Caso para obtener la cantidad de visitas de los ultimos 6 meses
+            case 'last6MonthsOfVisits':
+                if ($result['dataset'] = $visita->last6MonthsOfVisits()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay visitas.';
+                    }
                 }
                 break;
         }

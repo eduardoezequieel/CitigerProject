@@ -114,6 +114,22 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                 </div>
             </div>
 
+            <!-- Titulo -->
+            <div class="row my-4" id="rowTitulo">
+                <div class="col-12">
+                    <h1 class="tituloDashboard">Ultimos 6 Meses</h1>
+                </div>
+            </div>
+
+            <!-- Grafica de lineas de las visitas de los ultimos 6 meses -->
+            <div class="row justify-content-center animate__animated animate__backInDown" id="rowGraficaVisitas">
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <div class="tarjetaDashboardGrafica">
+                        <canvas id="cnVisitas6Meses" width="1650px" height="800px"></canvas>
+                    </div>
+                </div>
+            </div>
+
             <!-- Tabla de Actividad Reciente -->
             <div class="row my-4">
                 <div class="col-12">
