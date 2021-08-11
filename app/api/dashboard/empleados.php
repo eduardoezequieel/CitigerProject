@@ -156,7 +156,7 @@
                                                                             $result['status'] = 1;
                                                                             if ($empleado->saveFile($_FILES['archivo_usuario'], $empleado->getRuta(), $empleado->getFoto())) {
                                                                                 $result['message'] = 'Empleado registrado correctamente';
-                                                                                $empleado->registerAction('Registrar','El usuario registro un registro en la tabla de empleados.');
+                                                                                $empleado->registerAction('Registrar','El usuario agregó un registro en la tabla de empleados.');
 
                                                                             } else {
                                                                                 $result['message'] = 'Empleado registrado pero no se guardó la imagen';

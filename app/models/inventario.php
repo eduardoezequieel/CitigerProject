@@ -305,4 +305,23 @@ class Inventario extends Validator
         $params = array($_SESSION['idusuario'], $action, $desc);
         return Database::executeRow($sql, $params);
     }
+
+    public function readCategoria2()
+    {
+        $sql = 'SELECT idcategoria, categoria FROM categoria';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    public function readMaterialesCategoria()
+    {
+        $sql = "SELECT categoria, idmaterial, concat(nombreproducto,' ', marca) as producto, descripcion, costo, cantidad, unidadmedida
+        FROM material INNER JOIN categoria USING(idcategoria)
+        INNER JOIN marca using(idmarca)
+        INNER JOIN unidadmedida using(idunidadmedida)
+        WHERE idcategoria = ?
+        ORDER BY producto";
+        $params = array($this->idcategoria);
+        return Database::getRows($sql, $params);
+    }
 }
