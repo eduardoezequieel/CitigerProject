@@ -423,6 +423,16 @@
                     
                     
                     break;
+                case 'readOne2': 
+                        $_SESSION['idpedido'] = $_POST['txtId'];
+                        if ($_SESSION['idpedido'] != null) {       
+                            $result['status'] = 1;
+                        } else {   
+                            $result['exception'] = 'Factura inexistente';                  
+                        }
+                    break;
+
+
             }
             // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
             header('content-type: application/json; charset=utf-8');
@@ -437,4 +447,3 @@
     else{
         print(json_encode('El recurso no esta disponible'));
     }
-?>

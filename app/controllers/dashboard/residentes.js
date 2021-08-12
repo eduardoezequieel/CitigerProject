@@ -50,6 +50,9 @@ function fillTable(dataset) {
                             <a href="#" onclick="readDataOnModal(${row.idresidente}) "data-toggle="modal" data-target="#administrarResidente" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
 
                             <a href="#" onclick="deleteRow(${row.idresidente})" class="btn btnTabla2 mx-2"><i class="fas fa-trash"></i></a>
+
+                            <a href="#" onclick="openReport(${row.idresidente})" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
+
                         </div>
                     </div>
                 </th>
@@ -469,5 +472,28 @@ function ResidenteCasa(id) {
 
 
 
+
+}
+
+
+function openReport(id) {
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('txtId', id);
+    // Realizamos una peticion a la API indicando el caso a utilizar y enviando la direccion de la API como parametro
+    fetch(API_RESIDENTE + 'readOne2', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            // Abrimos el reporte mediante su URL 
+            window.open("../../app/reports/dashboard/denuncias.php","");
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 
 }

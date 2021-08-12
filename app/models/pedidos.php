@@ -332,6 +332,42 @@
         return Database::executeRow($sql, $params);
     }
 
+    //Consultas para mostrar la factura
+
+    public function readReport()
+    {
+        $sql = 'SELECT sum(preciomaterial*d.cantidadmaterial) as precio
+		FROM detallematerial d
+		INNER JOIN material p ON p.idmaterial = d.idmaterial
+		WHERE idpedido = ?';
+        $params = array($_SESSION['idpedido']);
+        if ($data = Database::getRow($sql, $params)) {
+            $_SESSION['preciototal'] = $data['precio'];
+            $sql2 = "SELECT iddetallematerial,CONCAT(p.nombreproducto,' ',m.marca) as nombreproducto,costo,d.cantidadmaterial ,costo*d.cantidadmaterial as total
+            FROM detallematerial d
+            INNER JOIN material p ON p.idmaterial = d.idmaterial
+            INNER JOIN marca m ON p.idmarca = m.idmarca
+            WHERE idpedido = ?
+            ORDER BY costo desc";
+            $params2 = array($_SESSION['idpedido']);
+            return Database::getRows($sql2, $params2);
+        } else {
+            return false;
+        }   
+    }
+
+    public function readReportCabecera()
+    {
+        $sql = "SELECT Concat(e.nombre,' ',e.apellido) as empleado,fechapedido,Concat(u.nombre,' ',u.apellido) as usuario, f.idpedido
+        FROM pedido f 
+        INNER JOIN empleado e ON e.idempleado = f.idempleado
+        INNER JOIN usuario u ON u.idusuario = f.idusuario
+        WHERE idpedido = ?";
+        $params = array($_SESSION['idpedido']);
+        return Database::getRows($sql, $params);  
+    }
+
+
     
  }
 ?>

@@ -361,7 +361,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Residente incorrecto';
                 }
                 break;
-            //Caso para actualizar la contraseña de primer uso 
+                //Caso para actualizar la contraseña de primer uso 
             case 'changePassword':
                 $_POST = $residente->validateForm($_POST);
                 if ($_POST['txtContrasena'] == $_POST['txtConfirmarContra']) {
@@ -387,6 +387,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Las contraseñas no coinciden.';
                 }
                 break;
+            case 'readOne2':
+                $_SESSION['idresidente'] = $_POST['txtId'];
+                if ($_SESSION['idresidente'] != null) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'Factura inexistente';
+                }
+                break;
+
                 //Caso de default del switch
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';

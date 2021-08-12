@@ -62,7 +62,7 @@ class Report extends FPDF
             $this->Image('../../../resources/img/CitigerWhiteLogo.png', 17, 18, 29);
             // Se ubica el título.
             $this->Cell(20);
-            $this->SetFont('Roboto-Bold', 'B', 13);
+            $this->SetFont('Roboto-Bold', 'B', 14);
             $this->Cell(166, 12, utf8_decode($this->title), 0, 1, 'C');
             // Se ubica la fecha y hora del servidor.
             $this->Cell(20);

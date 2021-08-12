@@ -529,4 +529,22 @@ class Residentes extends Validator
         $params = array($this->nombre, $this->apellido, $this->telefonof, $this->telefonof, $this->fechaNacimiento, $this->genero, $this->dui, $_SESSION['idresidente']);
         return Database::executeRow($sql, $params);
     }
+
+    public function readReportCabecera()
+    {
+        $sql = "SELECT Concat(nombre,' ',apellido) as residente, telefonofijo, telefonocelular, idresidente from residente where idresidente=? ";
+        $params = array($_SESSION['idresidente']);
+        return Database::getRows($sql, $params);  
+    }
+
+    public function readReport()
+    {
+        $sql = 'SELECT d.iddenuncia, t.tipodenuncia, e.estadodenuncia, d.fecha, d.descripcion  from denuncia d
+        INNER JOIN tipodenuncia t on t.idtipodenuncia=d.idtipodenuncia
+        INNER JOIN estadodenuncia e on e.idestadodenuncia=d.idestadodenuncia 
+        WHERE idresidente=?';
+        $params = array($_SESSION['idresidente']);
+        return Database::getRows($sql, $params);
+    }
+
 }
