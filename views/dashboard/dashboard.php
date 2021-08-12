@@ -125,7 +125,11 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
             <div class="row justify-content-center animate__animated animate__backInDown" id="rowGraficaVisitas">
                 <div class="col-12 d-flex justify-content-center align-items-center">
                     <div class="tarjetaDashboardGrafica">
-                        <canvas id="cnVisitas6Meses" width="1650px" height="800px"></canvas>
+                        <canvas class="#" id="cnVisitas6Meses" width="1650px" height="800px"></canvas>
+                        <div id="noVisitas" class="d-none">
+                            <i class="fas fa-sad-tear icono4"></i>
+                            <h1 class="tituloTarjetaDashboard my-4">No hay visitas</h1>
+                        </div>
                     </div>
                 </div>
             </div>

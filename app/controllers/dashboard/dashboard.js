@@ -75,7 +75,10 @@ function graficaLineaVisitas() {
 
                     lineGraph('cnVisitas6Meses', meses, cantidad, 'Visitas', 'Cantidad de visitas: ', 'Visitas los Ultimos 6 Meses', colorFuente);
                 } else {
-                    sweetAlert(4, response.exception, null);
+                    //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+                    document.getElementById('cnVisitas6Meses').className = 'd-none';
+                    document.getElementById('noVisitas').className = 'd-flex flex-column justify-content-center align-items-center';
+
                 }
             });
         } else {
