@@ -14,7 +14,6 @@ const API_USUARIO2 = '../../app/api/dashboard/usuarios.php?action=';
 const API_RESIDENTES = '../../app/api/residente/index.php?action=';
 
 
-
 document.addEventListener('DOMContentLoaded',function(){
     loadPage();
 })
@@ -827,94 +826,6 @@ function fillSelect(endpoint, select, selected) {
     });
 }
 
-/*
-*   Función para generar una gráfica de barras verticales. Requiere el archivo chart.js para funcionar.
-*
-*   Parámetros: canvas (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), legend (etiqueta para los datos) y title (título de la gráfica).
-*
-*   Retorno: ninguno.
-*/
-function barGraph(canvas, xAxis, yAxis, legend, title) {
-    // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
-    const context = document.getElementById(canvas).getContext('2d');
-    // Se crea una instancia para generar la gráfica con los datos recibidos.
-    const chart = new Chart(context, {
-        type: 'bar',
-        data: {
-            labels: xAxis,
-            datasets: [{
-                label: legend,
-                data: yAxis,
-                borderColor: '#000000',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                text: title
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        precision: 0
-                    }
-                }]
-            }
-        }
-    });
-}
-
-/*
-*   Función para generar una gráfica de pastel con porcentajes. Requiere el archivo chart.js para funcionar.
-*
-*   Parámetros: canvas (identificador de la etiqueta canvas), legends (valores para las etiquetas), values (valores de los datos) y title (título de la gráfica).
-*
-*   Retorno: ninguno.
-*/
-function pieGraph(canvas, legends, values, title) {
-    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
-    let colors = [];
-    // Se declara e inicializa una variable para sumar los valores a graficar.
-    let total = 0;
-    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se van acumulando los valores.
-    for (i = 0; i < values.length; i++) {
-        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
-        total += values[i];
-    }
-    // Se declara un arreglo para guardar los porcentajes de cada cantidad.
-    let percentages = [];
-    // Se calcula el porcetaje que corresponde a cada valor.
-    for (i = 0; i < values.length; i++) {
-        percentages.push((values[i] * 100 / total).toFixed(2));
-    }
-    // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
-    const context = document.getElementById(canvas).getContext('2d');
-    // Se crea una instancia para generar la gráfica con los datos recibidos.
-    const chart = new Chart(context, {
-        type: 'pie',
-        data: {
-            labels: legends,
-            datasets: [{
-                data: percentages,
-                backgroundColor: colors
-            }]
-        },
-        options: {
-            responsive: true,
-            title: {
-                display: true,
-                text: title
-            }
-        }
-    });
-}
-
 //Función para abrir cualquier modal
 function openModal(form) {
     $(document.getElementById(form)).modal('show');
@@ -1274,6 +1185,39 @@ function readRows2(api, form) {
     });
 }
 
+//Funcion para generar numeros aleatorios
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // Mientras queden elementos a mezclar...
+    while (0 !== currentIndex) {
+  
+      // Seleccionar un elemento sin mezclar...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // E intercambiarlo con el elemento actual
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+
+//Arreglos globales para colores de graficas en base a la paleta de colores del sistema
+var coloresDefaultLight = ['rgb(84, 148, 245)',
+                            'rgb(117, 172, 255)', 
+                            'rgb(143, 187, 255)', 
+                            'rgb(36, 123, 255)', 
+                            'rgb(146, 183, 240)'];
+
+var coloresDefaultDark = ['rgb(84, 148, 245)',
+                            'rgb(56, 123, 224)',
+                            'rgb(79, 123, 189)',
+                            'rgb(8, 82, 194)',
+                            'rgb(17, 68, 145)', 
+                            'rgb(26, 53, 94)'];
 //Metodos para graficas
 
 /*
@@ -1285,8 +1229,6 @@ function readRows2(api, form) {
 *
 *   Retorno: ninguno.
 */
-
-//Función para hacer un gráfico de lineas
 function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
     //Se obtiene el canvas
     var ctx = document.getElementById(id).getContext('2d');
@@ -1302,11 +1244,12 @@ function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
                 data: yAxis,
                 fill: false,
                 borderColor: 'rgb(84, 150, 245)',
-                tension: 2
+                tension: 0
               }]
         },
         //Opciones adicionales
         options:{
+            responsive: true,
             scales: {
                 y: {
                     grid: {
@@ -1314,7 +1257,7 @@ function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
                     },
                     ticks: {
                         color: colorFuente,
-                        padding: 20,
+                        padding: 10,
                         font: {
                             family: "'Quicksand', sans-serif",
                             size: 14,
@@ -1328,7 +1271,7 @@ function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
                     },
                     ticks: {
                         color: colorFuente,
-                        padding: 20,
+                        padding: 10,
                         font: {
                             family: "'Quicksand', sans-serif",
                             size: 12,
@@ -1340,12 +1283,12 @@ function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
             plugins:{
                 //Titulo
                 title:{
-                    display: false,
+                    display: true,
                     text: titulo,
                     color: colorFuente,
                     font: {
                         family: "'Quicksand', sans-serif",
-                        size: 24
+                        size: 14
                     }
                 },
                 //Personalizando el tooltip
@@ -1363,11 +1306,13 @@ function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
                 },
                 //Personalizando la fuente
                 legend: {
+                    display: false,
                     labels: {
                         color: colorFuente,
                         font: {
-                            family: "'Manrope', sans-serif",
-                            size: 16
+                            family: "'Quicksand', sans-serif",
+                            weight: 700,
+                            size: 14
                         }
                     }
                 }
@@ -1375,4 +1320,157 @@ function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
         }
     });
     
+}
+
+/*
+*   Función para generar una gráfica de pastel. Requiere el archivo chart.js para funcionar.
+*
+*   Parámetros: 
+    id (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), Variable (Para indicar que se esta evaluando), 
+    mensaje (El mensaje que se antepone en el tooltip) y titulo (titulo de la gráfica).
+*
+*   Retorno: ninguno.
+*/
+
+function pieGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
+    /* Creamos un arreglo que contiene numeros correspondientes a las posiciones de los arreglos declarados 
+    globalmente con colores preestablecidos en base a la paleta de colores del sistema*/
+    var posiciones = [0,1,2,3,4,5];
+    //Revolvemos los datos del arreglo posiciones
+    posiciones = shuffle(posiciones);
+    //Creamos una arreglo que guardara colores en base al numero de datos enviados.
+    var colores = [];
+    //Evaluamos el modo del sistema (claro u oscuro) para elegir una paleta de colores para las graficas
+    if (colorFuente == 'rgb(0,0,0)') {
+        //Modo claro
+        //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
+        for (let index = 0; index < yAxis.length; index++) {
+            colores[index] = coloresDefaultLight[posiciones[index]];
+        }
+    } else if (colorFuente == 'rgb(255,255,255)') {
+        //Modo oscuro
+        //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
+        for (let index = 0; index < yAxis.length; index++) {
+            colores[index] = coloresDefaultDark[posiciones[index]];
+        }
+    }
+    console.log(colores);
+    //Se obtiene el canvas
+    var ctx = document.getElementById(id).getContext('2d');
+    //Chart js
+    var myChart = new Chart (ctx, {
+        //Se indica el tipo de grafica
+        type: 'pie',
+        //Asignamos la data para la grafica y demás personalización.
+        data: data = {
+            labels: xAxis,
+            datasets: [{
+                data: yAxis,
+                backgroundColor: colores,
+                borderColor: colorFondo,
+                borderWidth: 5,
+                hoverOffset: 4
+              }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: variable,
+                    color: colorFuente,
+                        font: {
+                            family: "'Quicksand', sans-serif",
+                            weight: 700,
+                            size: 14
+                        }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem){
+                            var label = myChart.data.labels[tooltipItem.dataIndex];
+                            var value = myChart.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.dataIndex];
+                            return label+ ': ' + value + '%'; 
+                        }
+                    }
+                },
+                //Personalizando la fuente
+                legend: {
+                    display: false,
+                    labels: {
+                        
+                    }
+                }
+            }
+        }
+        
+    });
+}
+
+/*
+*   Función para generar una gráfica de area. Requiere el archivo chart.js para funcionar.
+*
+*   Parámetros: 
+    id (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), Variable (Para indicar que se esta evaluando), 
+    mensaje (El mensaje que se antepone en el tooltip) y titulo (titulo de la gráfica).
+*
+*   Retorno: ninguno.
+*/
+
+function polarAreaGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
+    console.log(colorFuente);
+    //Creamos un arreglo que guardara colores preestablecidos.
+    var coloresDefault = ['rgb(125, 131, 253)','rgb(150, 186, 255)', 'rgb(126, 237, 255)', 'rgb(136, 255, 247)', 'rgb(84, 148, 245)'];
+    //Creamos un arreglo que contiene numeros correspondientes a las posiciones del arreglo anterior
+    var posiciones = [0,1,2,3,4];
+    //Revolvemos los datos del arreglo posiciones
+    posiciones = shuffle(posiciones);
+    //Creamos una arreglo que guardara colores en base al numero de datos enviados.
+    var colores = [];
+    //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
+    for (let index = 0; index < yAxis.length; index++) {
+        colores[index] = coloresDefault[posiciones[index]];
+    }
+    //Se obtiene el canvas
+    var ctx = document.getElementById(id).getContext('2d');
+    //Chart js
+    var myChart = new Chart (ctx, {
+        //Se indica el tipo de grafica
+        type: 'polarArea',
+        //Asignamos la data para la grafica y demás personalización.
+        data: data = {
+            labels: xAxis,
+            datasets: [{
+                label: variable,
+                data: yAxis,
+                backgroundColor: colores,
+                borderColor: colorFondo
+              }]
+        },
+        options: {
+            scales: {
+                r: {
+                    display: false,
+                    title: {
+                        display: false
+                    }
+                }
+            },
+            responsive: true,
+            plugins: {
+                //Personalizando la fuente
+                legend: {
+                    labels: {
+                        color: colorFuente,
+                        font: {
+                            family: "'Quicksand', sans-serif",
+                            weight: 700,
+                            size: 12
+                        }
+                    }
+                }
+            }
+        }
+        
+    });
 }

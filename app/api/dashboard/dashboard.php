@@ -3,6 +3,7 @@ require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/dashboard.php');
 require_once('../../models/visitas.php');
+require_once('../../models/denuncias.php');
 
 if (isset($_GET['action'])) {
     //Reanudando la sesion
@@ -12,6 +13,8 @@ if (isset($_GET['action'])) {
     $dashboard = new Dashboard();
     //Objeto para instanciar la clase
     $visita = new Visitas();
+    //Objeto para instanciar la clase
+    $denuncia = new Denuncias();
 
     //Arreglo para guardar respuestas de la API
     $result = array('status' => 0, 'error' => 0, 'message' => null, 'exception' => null);
@@ -79,6 +82,18 @@ if (isset($_GET['action'])) {
                         $result['exception'] = Database::getException();
                     } else {
                         $result['exception'] = 'No hay visitas.';
+                    }
+                }
+                break;
+            //Caso para obtener el porcentaje de denuncias por estado
+            case 'complaintPercentage':
+                if ($result['dataset'] = $denuncia->complaintPercentage()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay denuncias.';
                     }
                 }
                 break;

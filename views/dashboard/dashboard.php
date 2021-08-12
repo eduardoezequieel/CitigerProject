@@ -121,15 +121,40 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                 </div>
             </div>
 
-            <!-- Grafica de lineas de las visitas de los ultimos 6 meses -->
-            <div class="row justify-content-center animate__animated animate__backInDown" id="rowGraficaVisitas">
-                <div class="col-12 d-flex justify-content-center align-items-center">
-                    <div class="tarjetaDashboardGrafica">
-                        <canvas class="#" id="cnVisitas6Meses" width="1650px" height="800px"></canvas>
-                        <div id="noVisitas" class="d-none">
-                            <i class="fas fa-sad-tear icono4"></i>
-                            <h1 class="tituloTarjetaDashboard my-4">No hay visitas</h1>
+            <!--  Graficas de Visitas y Denuncias -->
+            <div class="row justify-content-center align-items-center animate__animated animate__backInUp" id="rowGraficaVisitas">
+                <div class="margenGraficas d-flex justify-content-center align-items-center">
+                    <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
+                        <div class="tarjetaDashboardGrafica" id="graficaVisitas">
+                            <canvas class="#" id="cnVisitas6Meses" width="1000px"></canvas>
+                            <div id="noVisitas" class="d-none">
+                                <i class="fas fa-sad-tear icono4"></i>
+                                <h1 class="tituloTarjetaDashboard text-center my-4">No hay visitas</h1>
+                            </div>
                         </div>
+                    </div>
+                    <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center mtResponsive">
+                        <div class="tarjetaDashboardGrafica" id="graficaDenuncias">
+                            <canvas class="#" id="cnEstadoDenuncia" width="540"></canvas>
+                            <div id="noDenuncias" class="d-none">
+                                <i class="fas fa-sad-tear icono4"></i>
+                                <h1 class="tituloTarjetaDashboard text-center my-4">No hay denuncias</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mt-4">
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <button id="btnCollapseGraficas" class="btn bg-darken" type="button" data-toggle="collapse" data-target="#graficasCollapse" aria-expanded="false" aria-controls="graficasCollapse"><i id="iconoCollapse" class="fas fa-caret-down animate__animated animate__swing"></i></button>
+                </div>
+            </div>
+
+            <div class="collapse" id="graficasCollapse">
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <h1 class="tituloTarjetaDashboard text-center">Que pedo puto</h1>
                     </div>
                 </div>
             </div>

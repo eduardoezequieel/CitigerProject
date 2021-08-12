@@ -136,6 +136,17 @@ class Denuncias extends Validator
 
     //Sentencias SQL
 
+    //Consulta para obtener el porcentaje de denuncias por estado
+    public function complaintPercentage()
+    {
+        $sql = 'SELECT estadodenuncia, (COUNT(iddenuncia) * 100) / (SELECT COUNT(iddenuncia) FROM denuncia) as porcentajedenuncia 
+                FROM denuncia
+                INNER JOIN estadodenuncia USING (idestadodenuncia)
+                GROUP BY estadodenuncia';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
     public function readAll()
     {
         $sql = 'SELECT idDenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha

@@ -7,13 +7,16 @@ document.addEventListener('DOMContentLoaded',function(){
 
     //Graficas
     graficaLineaVisitas();
+    graficaPastelDenuncia();
 
     //Carga los contadores
     contadorDenuncias();
     contadorVisitas();
     contadorAportacion(); 
+
 });
 
+//Genera una grafica de lineas acerca de las visitas de los ultimos 6 meses
 function graficaLineaVisitas() {
     fetch(API_DASHBOARD + 'last6MonthsOfVisits', {
         method: 'get'
@@ -73,11 +76,64 @@ function graficaLineaVisitas() {
                         }
                     }
 
-                    lineGraph('cnVisitas6Meses', meses, cantidad, 'Visitas', 'Cantidad de visitas: ', 'Visitas los Ultimos 6 Meses', colorFuente);
+                    lineGraph('cnVisitas6Meses', meses, cantidad, 'Visitas', 'Cantidad de visitas: ', 'Visitas', colorFuente);
                 } else {
                     //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
                     document.getElementById('cnVisitas6Meses').className = 'd-none';
                     document.getElementById('noVisitas').className = 'd-flex flex-column justify-content-center align-items-center';
+
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Funcion para crear una grafica de pastel acerca de las denuncias por estado
+function graficaPastelDenuncia(){
+    fetch(API_DASHBOARD + 'complaintPercentage', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let estadodenuncia = [];
+                let porcentajedenuncia = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Se recorre el arreglo de datos
+                    response.dataset.map(function(row){
+                        //Se asignan a los arreglos creados previamente
+                        estadodenuncia.push(row.estadodenuncia);
+                        porcentajedenuncia.push(row.porcentajedenuncia);
+                    });
+
+                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                    var modo = document.getElementById('txtModo').value;
+                    var colorFuente;
+                    var colorFondo;
+
+                    if (modo == 'light') {
+                        colorFuente = 'rgb(0,0,0)';
+                    } else if (modo == 'dark') {
+                        colorFuente = 'rgb(255,255,255)';
+                    }
+
+                    if (modo == 'light') {
+                        colorFondo = '#F1F4F9';
+                    } else if (modo == 'dark') {
+                        colorFondo = '#121212';
+                    }
+
+                    pieGraph('cnEstadoDenuncia', estadodenuncia, porcentajedenuncia, 'Denuncias', colorFondo, colorFuente)
+
+                } else {
+                    //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+                    document.getElementById('cnEstadoDenuncia').className = 'd-none';
+                    document.getElementById('noDenuncias').className = 'd-flex flex-column justify-content-center align-items-center';
 
                 }
             });
