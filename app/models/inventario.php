@@ -200,6 +200,17 @@ class Inventario extends Validator
         return $this->ruta;
     }
 
+    //Consulta para ver los productos mas demandados
+    public function topProducts(){
+        $sql = 'SELECT nombreproducto, sum(cantidadmaterial) as totalProducto FROM detallematerial
+                INNER JOIN material USING (idmaterial)
+                GROUP BY nombreproducto
+                ORDER BY totalProducto DESC
+                LIMIT 5';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
 
     public function readTipoUnidad()
     {

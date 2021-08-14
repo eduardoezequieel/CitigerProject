@@ -1298,7 +1298,6 @@ function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
                         //De tooltipItem obtenemos el index seleccionado al momento de hacer hover para darle formato.
                         label: function(tooltipItem) {
                             var value = myChart.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.dataIndex];
-                            console.log(colorFuente);
                             return mensaje + value;    
 
                             }
@@ -1354,7 +1353,6 @@ function pieGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
             colores[index] = coloresDefaultDark[posiciones[index]];
         }
     }
-    console.log(colores);
     //Se obtiene el canvas
     var ctx = document.getElementById(id).getContext('2d');
     //Chart js
@@ -1408,6 +1406,81 @@ function pieGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
 }
 
 /*
+*   Función para generar una gráfica de dona. Requiere el archivo chart.js para funcionar.
+*
+*   Parámetros: 
+    id (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), Variable (Para indicar que se esta evaluando), 
+    mensaje (El mensaje que se antepone en el tooltip) y titulo (titulo de la gráfica).
+*
+*   Retorno: ninguno.
+*/
+
+function doughnutGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
+    /* Creamos un arreglo que contiene numeros correspondientes a las posiciones de los arreglos declarados 
+    globalmente con colores preestablecidos en base a la paleta de colores del sistema*/
+    var posiciones = [0,1,2,3,4,5];
+    //Revolvemos los datos del arreglo posiciones
+    posiciones = shuffle(posiciones);
+    //Creamos una arreglo que guardara colores en base al numero de datos enviados.
+    var colores = [];
+    //Evaluamos el modo del sistema (claro u oscuro) para elegir una paleta de colores para las graficas
+    if (colorFuente == 'rgb(0,0,0)') {
+        //Modo claro
+        //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
+        for (let index = 0; index < yAxis.length; index++) {
+            colores[index] = coloresDefaultLight[posiciones[index]];
+        }
+    } else if (colorFuente == 'rgb(255,255,255)') {
+        //Modo oscuro
+        //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
+        for (let index = 0; index < yAxis.length; index++) {
+            colores[index] = coloresDefaultDark[posiciones[index]];
+        }
+    }
+    //Se obtiene el canvas
+    var ctx = document.getElementById(id).getContext('2d');
+    //Chart js
+    var myChart = new Chart (ctx, {
+        //Se indica el tipo de grafica
+        type: 'doughnut',
+        //Asignamos la data para la grafica y demás personalización.
+        data: data = {
+            labels: xAxis,
+            datasets: [{
+                data: yAxis,
+                backgroundColor: colores,
+                borderColor: colorFondo,
+                borderWidth: 5,
+                hoverOffset: 4
+              }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: variable,
+                    color: colorFuente,
+                        font: {
+                            family: "'Quicksand', sans-serif",
+                            weight: 700,
+                            size: 14
+                        }
+                },
+                //Personalizando la fuente
+                legend: {
+                    display: false,
+                    labels: {
+                        
+                    }
+                }
+            }
+        }
+        
+    });
+}
+
+/*
 *   Función para generar una gráfica de area. Requiere el archivo chart.js para funcionar.
 *
 *   Parámetros: 
@@ -1418,7 +1491,6 @@ function pieGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
 */
 
 function polarAreaGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
-    console.log(colorFuente);
     //Creamos un arreglo que guardara colores preestablecidos.
     var coloresDefault = ['rgb(125, 131, 253)','rgb(150, 186, 255)', 'rgb(126, 237, 255)', 'rgb(136, 255, 247)', 'rgb(84, 148, 245)'];
     //Creamos un arreglo que contiene numeros correspondientes a las posiciones del arreglo anterior

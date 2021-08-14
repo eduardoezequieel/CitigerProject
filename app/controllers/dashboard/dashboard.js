@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded',function(){
 
 });
 
+//Se ejecuta al desplegar el collapse
+document.getElementById('btnCollapseGraficas').addEventListener('click',function(){
+    graficaDonaProductos();
+})
+
 //Genera una grafica de lineas acerca de las visitas de los ultimos 6 meses
 function graficaLineaVisitas() {
     fetch(API_DASHBOARD + 'last6MonthsOfVisits', {
@@ -134,6 +139,69 @@ function graficaPastelDenuncia(){
                     //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
                     document.getElementById('cnEstadoDenuncia').className = 'd-none';
                     document.getElementById('noDenuncias').className = 'd-flex flex-column justify-content-center align-items-center';
+
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Funcion para crear una grafica de pastel acerca de las denuncias por estado
+function graficaDonaProductos(){
+    fetch(API_DASHBOARD + 'topProducts', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let nombreproducto = [];
+                let totalproducto = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Se recorre el arreglo de datos
+                    response.dataset.map(function(row){
+                        //Se asignan a los arreglos creados previamente
+                        nombreproducto.push(row.nombreproducto);
+                        totalproducto.push(row.totalproducto);
+                    });
+
+                    //Se destruye el grafico actual para poder hacer otro
+                    document.getElementById('graficaProducto').removeChild(document.getElementById('cnProductoDemandado'));
+                    //Creamos un nuevo canvas
+                    var graph = document.createElement('canvas');
+                    //Asignamos el mismo id
+                    graph.id = 'cnProductoDemandado';
+                    //Aplicamos el mismo tamaño
+                    graph.width = '250';
+                    //Añadimos el elemento al div 
+                    document.getElementById('graficaProducto').appendChild(graph);
+                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                    var modo = document.getElementById('txtModo').value;
+                    var colorFuente;
+                    var colorFondo;
+
+                    if (modo == 'light') {
+                        colorFuente = 'rgb(0,0,0)';
+                    } else if (modo == 'dark') {
+                        colorFuente = 'rgb(255,255,255)';
+                    }
+
+                    if (modo == 'light') {
+                        colorFondo = '#F1F4F9';
+                    } else if (modo == 'dark') {
+                        colorFondo = '#121212';
+                    }
+
+                    doughnutGraph('cnProductoDemandado', nombreproducto, totalproducto, 'Productos', colorFondo, colorFuente)
+
+                } else {
+                    //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+                    document.getElementById('cnProductoDemandado').className = 'd-none';
+                    document.getElementById('noProductos').className = 'd-flex flex-column justify-content-center align-items-center';
 
                 }
             });

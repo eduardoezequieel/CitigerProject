@@ -18,7 +18,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
             <div class="row justify-content-center">
                 <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
                     <!-- Inicio de Tarjeta -->
-                    <div class="tarjetaDashboard animate__animated animate__backInDown">
+                    <div class="tarjetaDashboard animate__animated animate__fadeInDown">
                         <!-- Boton de opciones -->
                         <div class="row">
                             <div class="col-12">
@@ -53,7 +53,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
 
                 <!-- Inicio de Tarjeta (Se repite el mismo formato) -->
                 <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
-                    <div class="tarjetaDashboard animate__animated animate__backInDown">
+                    <div class="tarjetaDashboard animate__animated animate__fadeInDown">
                         <div class="row">
                             <div class="col-12">
                             <div class="dropdown">
@@ -84,7 +84,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
 
                 <!-- Inicio de Tarjeta (Se repite el mismo formato) -->
                 <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
-                    <div class="tarjetaDashboard animate__animated animate__backInDown">
+                    <div class="tarjetaDashboard animate__animated animate__fadeInDown">
                         <div class="row">
                             <div class="col-12">
                             <div class="dropdown">
@@ -122,11 +122,11 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
             </div>
 
             <!--  Graficas de Visitas y Denuncias -->
-            <div class="row justify-content-center align-items-center animate__animated animate__backInUp" id="rowGraficaVisitas">
+            <div class="row justify-content-center align-items-center animate__animated animate__fadeInUp" id="rowGraficaVisitas">
                 <div class="margenGraficas d-flex justify-content-center align-items-center">
                     <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
                         <div class="tarjetaDashboardGrafica" id="graficaVisitas">
-                            <canvas class="#" id="cnVisitas6Meses" width="1000px"></canvas>
+                            <canvas class="#" id="cnVisitas6Meses" width="450px"></canvas>
                             <div id="noVisitas" class="d-none">
                                 <i class="fas fa-sad-tear icono4"></i>
                                 <h1 class="tituloTarjetaDashboard text-center my-4">No hay visitas</h1>
@@ -135,7 +135,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                     </div>
                     <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center mtResponsive">
                         <div class="tarjetaDashboardGrafica" id="graficaDenuncias">
-                            <canvas class="#" id="cnEstadoDenuncia" width="540"></canvas>
+                            <canvas class="#" id="cnEstadoDenuncia" width="230"></canvas>
                             <div id="noDenuncias" class="d-none">
                                 <i class="fas fa-sad-tear icono4"></i>
                                 <h1 class="tituloTarjetaDashboard text-center my-4">No hay denuncias</h1>
@@ -152,9 +152,20 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
             </div>
 
             <div class="collapse" id="graficasCollapse">
-                <div class="row mt-5">
-                    <div class="col-12">
-                        <h1 class="tituloTarjetaDashboard text-center">Que pedo puto</h1>
+                <div class="row justify-content-center align-items-center mt-4">
+                    <div class="margenGraficas d-flex justify-content-center align-items-center">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
+                            <div class="tarjetaDashboardGrafica" id="graficaProducto">
+                                <canvas class="#" id="cnProductoDemandado" width="250"></canvas>
+                                <div id="noProductos" class="d-none">
+                                    <i class="fas fa-sad-tear icono4"></i>
+                                    <h1 class="tituloTarjetaDashboard text-center my-4">No hay productos</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -166,7 +177,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                 </div>
             </div>
             <!-- Tabla-->
-            <div class="row justify-content-center table-responsive animate__animated animate__backInUp tablaResponsive" id="tablaDashboard">
+            <div class="row justify-content-center table-responsive animate__animated animate__fadeInUp tablaResponsive" id="tablaDashboard">
                 <div class="col-12 justify-content-center align-items-center text-center">
                     <table class="table table-borderless citigerTable" id="data-table2">
                         <thead>

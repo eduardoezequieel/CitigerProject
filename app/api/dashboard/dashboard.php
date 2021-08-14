@@ -4,6 +4,8 @@ require_once('../../helpers/validator.php');
 require_once('../../models/dashboard.php');
 require_once('../../models/visitas.php');
 require_once('../../models/denuncias.php');
+require_once('../../models/inventario.php');
+
 
 if (isset($_GET['action'])) {
     //Reanudando la sesion
@@ -15,6 +17,8 @@ if (isset($_GET['action'])) {
     $visita = new Visitas();
     //Objeto para instanciar la clase
     $denuncia = new Denuncias();
+    //Objeto para instanciar la clase
+    $inventario = new Inventario();
 
     //Arreglo para guardar respuestas de la API
     $result = array('status' => 0, 'error' => 0, 'message' => null, 'exception' => null);
@@ -94,6 +98,18 @@ if (isset($_GET['action'])) {
                         $result['exception'] = Database::getException();
                     } else {
                         $result['exception'] = 'No hay denuncias.';
+                    }
+                }
+                break;
+            //Caso para obtener los productos mas demandados.
+            case 'topProducts':
+                if ($result['dataset'] = $inventario->topProducts()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay productos.';
                     }
                 }
                 break;
