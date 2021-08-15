@@ -17,6 +17,8 @@ class Residentes extends Validator
     private $contrasenia = null;
     private $idCasa = null;
     private $modo = null;
+    private $idtipoDenuncia = null;
+
 
 
     //Metodos set para todas las variables del modelo.
@@ -171,6 +173,16 @@ class Residentes extends Validator
         }
     }
 
+    public function setIdtipoDenuncia($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idtipoDenuncia = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //Metodos get para las variables del modelo
 
     public function getIdResidente()
@@ -252,6 +264,11 @@ class Residentes extends Validator
     public function getContrasenia()
     {
         return $this->contrasenia;
+    }
+
+    public function getIdTipoDenuncia()
+    {
+        return $this->idtipoDenuncia;
     }
 
     //Sentencias SQL a la tabla residente.
@@ -540,11 +557,19 @@ class Residentes extends Validator
     public function readReport()
     {
         $sql = 'SELECT d.iddenuncia, t.tipodenuncia, e.estadodenuncia, d.fecha, d.descripcion  from denuncia d
-        INNER JOIN tipodenuncia t on t.idtipodenuncia=d.idtipodenuncia
-        INNER JOIN estadodenuncia e on e.idestadodenuncia=d.idestadodenuncia 
-        WHERE idresidente=?';
-        $params = array($_SESSION['idresidente']);
+        INNER JOIN tipodenuncia t USING(idtipodenuncia)
+        INNER JOIN estadodenuncia e USING(idestadodenuncia)
+        WHERE idresidente=? AND idtipodenuncia = ?';
+        $params = array($_SESSION['idresidente'],$this->idtipoDenuncia);
         return Database::getRows($sql, $params);
+    }
+
+    public function readTipodenuncia(){
+
+        $sql="SELECT idtipodenuncia, tipodenuncia
+        FROM tipodenuncia";
+        $params=null;
+        return Database::getRows($sql,$params);
     }
 
 }

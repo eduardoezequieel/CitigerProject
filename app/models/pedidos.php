@@ -343,10 +343,11 @@
         $params = array($_SESSION['idpedido']);
         if ($data = Database::getRow($sql, $params)) {
             $_SESSION['preciototal'] = $data['precio'];
-            $sql2 = "SELECT iddetallematerial,CONCAT(p.nombreproducto,' ',m.marca) as nombreproducto,costo,d.cantidadmaterial ,costo*d.cantidadmaterial as total
+            $sql2 = "SELECT iddetallematerial,CONCAT(p.nombreproducto,' ',m.marca) as nombreproducto,costo,d.cantidadmaterial,
+            costo*d.cantidadmaterial as subtotal
             FROM detallematerial d
-            INNER JOIN material p ON p.idmaterial = d.idmaterial
-            INNER JOIN marca m ON p.idmarca = m.idmarca
+            INNER JOIN material p USING(idmaterial)
+            INNER JOIN marca m USING(idmarca)
             WHERE idpedido = ?
             ORDER BY costo desc";
             $params2 = array($_SESSION['idpedido']);
@@ -370,4 +371,3 @@
 
     
  }
-?>

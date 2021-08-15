@@ -74,7 +74,7 @@ if ($dataProductos2 = $categoria->readReportCabecera()) {
             $pdf->Cell(76, 10, utf8_decode($rowProducto['nombreproducto']), 1, 0,'C');
             $pdf->Cell(35, 10, utf8_decode('$'.$rowProducto['costo']), 1, 0,'C');
             $pdf->Cell(30, 10, utf8_decode($rowProducto['cantidadmaterial']), 1, 0,'C');
-            $pdf->Cell(45, 10, utf8_decode('$'.$rowProducto['total']), 1, 1,'C');
+            $pdf->Cell(45, 10, utf8_decode('$'.$rowProducto['subtotal']), 1, 1,'C');
         }
         $pdf->Ln(5);
         $pdf->Cell(20);
@@ -83,7 +83,7 @@ if ($dataProductos2 = $categoria->readReportCabecera()) {
     } else {
         $pdf->SetFont('Roboto-Bold', 'B', 11);
         $pdf->SetTextColor(9,9,9);
-        $pdf->Cell(0, 10, utf8_decode('No hay clientes para mostrar'), 1, 1);
+        $pdf->Cell(0, 10, utf8_decode('No hay productos para mostrar'), 1, 1);
     }
 // Se envía el documento al navegador y se llama al método Footer()
 $pdf->Output();

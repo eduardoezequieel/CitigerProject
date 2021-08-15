@@ -44,6 +44,9 @@ if ($dataCategorias = $categoria->readCategoria2()) {
                     $pdf->Cell(40, 10, utf8_decode($rowProducto['unidadmedida']), 1, 0,'C');
                     $pdf->Cell(46, 10, '$'.$rowProducto['costo'], 1, 1,'C');
                 }
+
+                $pdf->Ln(10);    
+
             } else {
                 $pdf->SetFont('Roboto-Bold', 'B', 11);
                 $pdf->SetTextColor(9,9,9);

@@ -55,6 +55,8 @@ function fillTable(dataset){
                                 <div class="col-12">
                                     <a href="#" onclick="readDataOnModal(${row.idespacio}) " data-toggle="modal" data-target="#administrarEspacio" class="btn btnTabla"><span class="fas fa-edit"></span></a>
                                     <a href="#" onclick="deleteRow(${row.idespacio})" class="btn btnTabla2"><span class="fas fa-trash" ></span></a>
+                                    <a href="#" onclick="openModal(${row.idespacio})"  data-toggle="modal" data-target="#alquileresFecha" class="btn btnTabla2"><span class="fas fa-file-alt" ></span></a>
+
                                 </div>
                             </div>
 
@@ -86,6 +88,8 @@ function fillTable(dataset){
                                 <div class="col-12">
                                     <a href="#" onclick="readDataOnModal(${row.idespacio}) " data-toggle="modal" data-target="#administrarEspacio" class="btn btnTabla"><span class="fas fa-edit"></span></a>
                                     <a href="#" onclick="deleteRow(${row.idespacio})" class="btn btnTabla2"><span class="fas fa-trash" ></span></a>
+                                    <a href="#" onclick="deleteRow(${row.idespacio})" class="btn btnTabla2"><span class="fas fa-ile-alt" ></span></a>
+
                                 </div>
                             </div>
 
