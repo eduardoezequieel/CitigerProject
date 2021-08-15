@@ -167,6 +167,10 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                         <!-- Grafica de historial de inventario -->
                         <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
                             <div class="tarjetaDashboardGrafica" id="graficaHistorialInventario">
+                                <form method="post" id="historialInventario-form" class="d-">
+                                    <input type="text" id="txtIdMaterial" value="1">
+                                    <button type="submit" id="btnFormHistorial"></button>
+                                </form>
                                 <button data-toggle="modal" data-target="#historialInventario" id="btnModalInventario" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
                                 <canvas class="#" id="cnHistorialInventario" width="450"></canvas>
                                 <div id="noInventario" class="d-none">
