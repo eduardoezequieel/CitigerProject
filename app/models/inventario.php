@@ -199,13 +199,39 @@ class Inventario extends Validator
     {
         return $this->ruta;
     }
+     //Metodo para cargar los movimientos del stock de un producto
+     public function readMovements()
+     {
+         $sql = 'SELECT idmaterial, nombreproducto, COUNT(idmaterial) as movimientos FROM historialInventario
+                 INNER JOIN material USING(idmaterial)
+                 GROUP BY idmaterial, nombreproducto
+                 ORDER BY movimientos DESC';
+         $params = null;
+         return Database::getRows($sql, $params);
+     }
+
+     //Metodo para buscar los movimientos del stock de un producto
+     public function searchMovements($value)
+     {
+         $sql = 'SELECT idmaterial, nombreproducto, COUNT(idmaterial) as movimientos FROM historialInventario
+                 INNER JOIN material USING(idmaterial)
+                 WHERE nombreproducto ILIKE ?
+                 GROUP BY idmaterial, nombreproducto
+                 ORDER BY movimientos DESC';
+         $params = array("%$value%");
+         return Database::getRows($sql, $params);
+     }
+
 
     //Consulta para ver los productos mas demandados
     public function topProducts(){
-        $sql = 'SELECT nombreproducto, sum(cantidadmaterial) as totalProducto FROM detallematerial
-                INNER JOIN material USING (idmaterial)
+        $sql = 'SELECT nombreproducto, SUM(cantidadmaterial) AS total
+                FROM detallematerial
+                INNER JOIN pedido USING(idpedido)
+                INNER JOIN material USING(idmaterial) 
+                WHERE idestadopedido != 4
                 GROUP BY nombreproducto
-                ORDER BY totalProducto DESC
+                ORDER BY total DESC
                 LIMIT 5';
         $params = null;
         return Database::getRows($sql, $params);

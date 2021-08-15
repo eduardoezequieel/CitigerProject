@@ -140,6 +140,20 @@
             return $this->ruta;
         }
 
+        //Top 5 espacios mas alquilados
+        public function topSpaces()
+        {
+            $sql = 'SELECT nombre, COUNT(idalquiler) AS total
+                    FROM alquiler
+                    INNER JOIN espacio USING(idespacio)
+                    WHERE idestadoespacio != 3
+                    GROUP BY nombre
+                    ORDER BY total DESC
+                    LIMIT 5';
+            $params = null;
+            return Database::getRows($sql, $params);
+        }
+
         //Método para leer todos los datos de la tabla
         public function readAll()
         {

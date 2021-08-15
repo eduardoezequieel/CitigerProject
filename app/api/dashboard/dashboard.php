@@ -5,6 +5,8 @@ require_once('../../models/dashboard.php');
 require_once('../../models/visitas.php');
 require_once('../../models/denuncias.php');
 require_once('../../models/inventario.php');
+require_once('../../models/espacios.php');
+
 
 
 if (isset($_GET['action'])) {
@@ -19,6 +21,8 @@ if (isset($_GET['action'])) {
     $denuncia = new Denuncias();
     //Objeto para instanciar la clase
     $inventario = new Inventario();
+    //Objeto para instanciar la clase
+    $espacio = new Espacios();
 
     //Arreglo para guardar respuestas de la API
     $result = array('status' => 0, 'error' => 0, 'message' => null, 'exception' => null);
@@ -111,6 +115,53 @@ if (isset($_GET['action'])) {
                     } else {
                         $result['exception'] = 'No hay productos.';
                     }
+                }
+                break;
+            //Caso para obtener los espacios mas demandados.
+            case 'topSpaces':
+                if ($result['dataset'] = $espacio->topSpaces()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay espacios.';
+                    }
+                }
+                break;
+            //Caso para obtener los productos con movimientos.
+            case 'readMovements':
+                if ($result['dataset'] = $inventario->readMovements()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay productos con movimientos.';
+                    }
+                }
+                break;
+            //Caso para realizar busquedas
+            case 'searchMovements':
+                $_POST = $inventario->validateForm($_POST);
+                if($_POST['search-historialInventario'] != ''){
+                    if($result['dataset'] = $inventario->searchMovements($_POST['search-historialInventario'])){
+                        $result['status'] = 1;
+                        $row = count($result['dataset']);
+                        if($row > 0){
+                            $result['message'] = 'Se han encontrado '.$row .' coincidencias';
+                        } else{
+                            $result['message'] = 'Se ha encontrado una coincidencia';
+                        }
+                    } else{
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay coincidencias';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Campo vacio';
                 }
                 break;
         }

@@ -19,7 +19,106 @@ document.addEventListener('DOMContentLoaded',function(){
 //Se ejecuta al desplegar el collapse
 document.getElementById('btnCollapseGraficas').addEventListener('click',function(){
     graficaDonaProductos();
+    graficaAreaEspacios();
+});
+
+
+
+//Se ejecuta al presionar el boton para seleccionar un producto con historial de movimientos de stock
+document.getElementById('btnModalInventario').addEventListener('click',function(){
+    //Se cargan los datos a la tabla
+    readMovements();
+});
+
+//Para reiniciar busquedas
+document.getElementById('btnReiniciarMovimientos').addEventListener('click',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Ejecutamos el metodo default
+    readMovements();
 })
+
+//Busca los movimientos de un producto
+document.getElementById('search-form-historialInventario').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Realizamos el fetch
+    fetch(API_DASHBOARD + 'searchMovements', {
+        method: 'post',
+        body: new FormData(document.getElementById('search-form-historialInventario'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                    fillMovements(response.dataset);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log("error");
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+})
+
+//Carga la tabla de movimientos de un producto
+function readMovements(api) {
+    fetch(API_DASHBOARD + 'readMovements', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    closeModal('historialInventario');
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillMovements(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function fillMovements(dataset){
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+        <tr>
+            <!-- Datos-->
+            <td>${row.nombreproducto}</td>
+            <td>${row.movimientos}</td>
+            <!-- Boton-->
+            <th scope="row">
+                <div class="row paddingBotones">
+                    <div class="col-12">
+                        <a href="#" data-toggle="modal" onclick="#" class="btn btnTabla"><i class="fas fa-eye"></i></a>
+                    </div>
+                </div>
+            </th>
+        </tr>
+        `; 
+    });
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('tbody-rows2').innerHTML = content;
+}
 
 //Genera una grafica de lineas acerca de las visitas de los ultimos 6 meses
 function graficaLineaVisitas() {
@@ -150,7 +249,7 @@ function graficaPastelDenuncia(){
     });
 }
 
-//Funcion para crear una grafica de pastel acerca de las denuncias por estado
+//Funcion para crear una grafica de dona de los productos mas demandados
 function graficaDonaProductos(){
     fetch(API_DASHBOARD + 'topProducts', {
         method: 'get'
@@ -166,7 +265,7 @@ function graficaDonaProductos(){
                     response.dataset.map(function(row){
                         //Se asignan a los arreglos creados previamente
                         nombreproducto.push(row.nombreproducto);
-                        totalproducto.push(row.totalproducto);
+                        totalproducto.push(row.total);
                     });
 
                     //Se destruye el grafico actual para poder hacer otro
@@ -176,7 +275,7 @@ function graficaDonaProductos(){
                     //Asignamos el mismo id
                     graph.id = 'cnProductoDemandado';
                     //Aplicamos el mismo tamaño
-                    graph.width = '250';
+                    graph.width = '230';
                     //Añadimos el elemento al div 
                     document.getElementById('graficaProducto').appendChild(graph);
                     //Se establece el color para las fuentes de chartJS en base al modo del sistema
@@ -213,6 +312,68 @@ function graficaDonaProductos(){
     });
 }
 
+//Funcion para crear una grafica de area acerca de los espacios mas demandados
+function graficaAreaEspacios(){
+    fetch(API_DASHBOARD + 'topSpaces', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let nombre = [];
+                let total = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Se recorre el arreglo de datos
+                    response.dataset.map(function(row){
+                        //Se asignan a los arreglos creados previamente
+                        nombre.push(row.nombre);
+                        total.push(row.total);
+                    });
+
+                    //Se destruye el grafico actual para poder hacer otro
+                    document.getElementById('graficaEspacios').removeChild(document.getElementById('cnEspacioDemandado'));
+                    //Creamos un nuevo canvas
+                    var graph = document.createElement('canvas');
+                    //Asignamos el mismo id
+                    graph.id = 'cnEspacioDemandado';
+                    //Aplicamos el mismo tamaño
+                    graph.width = '230';
+                    //Añadimos el elemento al div 
+                    document.getElementById('graficaEspacios').appendChild(graph);
+                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                    var modo = document.getElementById('txtModo').value;
+                    var colorFuente;
+                    var colorFondo;
+
+                    if (modo == 'light') {
+                        colorFuente = 'rgb(0,0,0)';
+                    } else if (modo == 'dark') {
+                        colorFuente = 'rgb(255,255,255)';
+                    }
+
+                    if (modo == 'light') {
+                        colorFondo = '#F1F4F9';
+                    } else if (modo == 'dark') {
+                        colorFondo = '#121212';
+                    }
+
+                    polarAreaGraph('cnEspacioDemandado', nombre, total, 'Espacios', colorFondo, colorFuente)
+
+                } else {
+                    //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+                    document.getElementById('cnEspacioDemandado').className = 'd-none';
+                    document.getElementById('noEspacio').className = 'd-flex flex-column justify-content-center align-items-center';
+
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 
 function fillTable(dataset){
     let content = '';

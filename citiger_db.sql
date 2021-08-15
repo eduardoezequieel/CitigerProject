@@ -367,3 +367,25 @@ INSERT INTO estadopedido(estadopedido) VALUES ('Realizado');
 INSERT INTO estadopedido(estadopedido) VALUES ('Recibido'),('Cancelado');
 
 ALTER TABLE detallematerial RENAME COLUMN cantidad TO cantidadmaterial;
+
+--Cambios 14/8/2021
+CREATE TABLE historialInventario(
+	idHistorialInventario SERIAL NOT NULL PRIMARY KEY,
+	idMaterial INTEGER NOT NULL REFERENCES material(idMaterial),
+	cantidad NUMERIC NOT NULL, 
+	fecha DATE NOT NULL
+);
+
+CREATE FUNCTION SP_historialInventario() RETURNS TRIGGER 
+AS
+$$
+BEGIN
+INSERT INTO historialInventario(idMaterial, cantidad, fecha) VALUES(old.idMaterial, old.cantidad, current_date);
+RETURN NEW;
+END
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER TR_historialInventario BEFORE UPDATE ON material
+FOR EACH ROW
+EXECUTE PROCEDURE SP_historialInventario();

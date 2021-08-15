@@ -1230,6 +1230,27 @@ var coloresDefaultDark = ['rgb(84, 148, 245)',
 *   Retorno: ninguno.
 */
 function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
+    /* Creamos un arreglo que contiene numeros correspondientes a las posiciones de los arreglos declarados 
+    globalmente con colores preestablecidos en base a la paleta de colores del sistema*/
+    var posiciones = [0,1,2,3,4,5];
+    //Revolvemos los datos del arreglo posiciones
+    posiciones = shuffle(posiciones);
+    //Creamos una arreglo que guardara colores en base al numero de datos enviados.
+    var colores = [];
+    //Evaluamos el modo del sistema (claro u oscuro) para elegir una paleta de colores para las graficas
+    if (colorFuente == 'rgb(0,0,0)') {
+        //Modo claro
+        //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
+        for (let index = 0; index < yAxis.length; index++) {
+            colores[index] = coloresDefaultLight[posiciones[index]];
+        }
+    } else if (colorFuente == 'rgb(255,255,255)') {
+        //Modo oscuro
+        //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
+        for (let index = 0; index < yAxis.length; index++) {
+            colores[index] = coloresDefaultDark[posiciones[index]];
+        }
+    }
     //Se obtiene el canvas
     var ctx = document.getElementById(id).getContext('2d');
     //Chart js
@@ -1243,7 +1264,7 @@ function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
                 label: variable,
                 data: yAxis,
                 fill: false,
-                borderColor: 'rgb(84, 150, 245)',
+                borderColor: colores[0],
                 tension: 0
               }]
         },
@@ -1491,17 +1512,26 @@ function doughnutGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
 */
 
 function polarAreaGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
-    //Creamos un arreglo que guardara colores preestablecidos.
-    var coloresDefault = ['rgb(125, 131, 253)','rgb(150, 186, 255)', 'rgb(126, 237, 255)', 'rgb(136, 255, 247)', 'rgb(84, 148, 245)'];
-    //Creamos un arreglo que contiene numeros correspondientes a las posiciones del arreglo anterior
-    var posiciones = [0,1,2,3,4];
+    /* Creamos un arreglo que contiene numeros correspondientes a las posiciones de los arreglos declarados 
+    globalmente con colores preestablecidos en base a la paleta de colores del sistema*/
+    var posiciones = [0,1,2,3,4,5];
     //Revolvemos los datos del arreglo posiciones
     posiciones = shuffle(posiciones);
     //Creamos una arreglo que guardara colores en base al numero de datos enviados.
     var colores = [];
-    //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
-    for (let index = 0; index < yAxis.length; index++) {
-        colores[index] = coloresDefault[posiciones[index]];
+    //Evaluamos el modo del sistema (claro u oscuro) para elegir una paleta de colores para las graficas
+    if (colorFuente == 'rgb(0,0,0)') {
+        //Modo claro
+        //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
+        for (let index = 0; index < yAxis.length; index++) {
+            colores[index] = coloresDefaultLight[posiciones[index]];
+        }
+    } else if (colorFuente == 'rgb(255,255,255)') {
+        //Modo oscuro
+        //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
+        for (let index = 0; index < yAxis.length; index++) {
+            colores[index] = coloresDefaultDark[posiciones[index]];
+        }
     }
     //Se obtiene el canvas
     var ctx = document.getElementById(id).getContext('2d');
@@ -1522,24 +1552,25 @@ function polarAreaGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
         options: {
             scales: {
                 r: {
-                    display: false,
-                    title: {
-                        display: false
-                    }
+                    display: false
                 }
             },
             responsive: true,
             plugins: {
-                //Personalizando la fuente
-                legend: {
-                    labels: {
-                        color: colorFuente,
+                title: {
+                    display: true,
+                    text: variable,
+                    color: colorFuente,
                         font: {
                             family: "'Quicksand', sans-serif",
                             weight: 700,
-                            size: 12
+                            size: 14
                         }
-                    }
+                },
+                //Personalizando la fuente
+                legend: {
+                    display: false,
+
                 }
             }
         }
