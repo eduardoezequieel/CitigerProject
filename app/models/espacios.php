@@ -328,5 +328,28 @@
         return Database::executeRow($sql, $params);
         }
 
+        
+        public function readReportCabecera()
+        {
+            $sql = "SELECT nombre, capacidad, estadoespacio from espacio
+            INNER JOIN estadoespacio using(idestadoespacio) where idespacio=?";
+            $params = array($_SESSION['idespacio']);
+            return Database::getRows($sql, $params);  
+        }
+
+        public function readReport()
+        {
+            $sql = "SELECT CONCAT(residente.apellido, ', ', residente.nombre) AS residente, fecha, horainicio, horafin, estadoalquiler
+            FROM alquiler
+            INNER JOIN residente USING(idresidente)
+            INNER JOIN estadoalquiler USING(idestadoalquiler)
+            WHERE fecha BETWEEN ? AND ? AND idespacio = ?
+            ORDER BY fecha";
+            $params = array($_SESSION['fecha1'],$_SESSION['fecha2'],$_SESSION['idespacio']);
+            return Database::getRows($sql, $params);
+       }
+
+        
+
     }
 ?>
