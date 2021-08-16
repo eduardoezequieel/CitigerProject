@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded',function(){
     //Graficas
     graficaLineaVisitas();
     graficaPastelDenuncia();
+    graficaDonaProductos();
+    graficaAreaEspacios();
+    graficaLineaHistorialInventario();
 
     //Carga los contadores
     contadorDenuncias();
@@ -20,9 +23,8 @@ document.addEventListener('DOMContentLoaded',function(){
 document.getElementById('btnCollapseGraficas').addEventListener('click',function(){
     graficaDonaProductos();
     graficaAreaEspacios();
+    graficaLineaHistorialInventario();
 });
-
-
 
 //Se ejecuta al presionar el boton para seleccionar un producto con historial de movimientos de stock
 document.getElementById('btnModalInventario').addEventListener('click',function(){
@@ -109,7 +111,7 @@ function fillMovements(dataset){
             <th scope="row">
                 <div class="row paddingBotones">
                     <div class="col-12">
-                        <a href="#" data-toggle="modal" onclick="#" class="btn btnTabla"><i class="fas fa-eye"></i></a>
+                        <a href="#" data-toggle="modal" onclick="setIdMaterial(${row.idmaterial})" class="btn btnTabla"><i class="fas fa-eye"></i></a>
                     </div>
                 </div>
             </th>
@@ -118,6 +120,16 @@ function fillMovements(dataset){
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows2').innerHTML = content;
+}
+
+//Setea el id de un registro al input y posteriormente se ejecuta el evento submit del formulario
+function setIdMaterial(id){
+    //Se asigna el id al input
+    document.getElementById('txtIdMaterial').value = id;
+    //Se cierra el modal
+    closeModal('historialInventario');
+    //Se ejecuta la función de la grafica
+    graficaLineaHistorialInventario();
 }
 
 //Genera una grafica de lineas acerca de las visitas de los ultimos 6 meses
@@ -195,6 +207,75 @@ function graficaLineaVisitas() {
         console.log(error);
     });
 }
+
+//Genera una grafica de lineas del historial de movimientos de un productó
+function graficaLineaHistorialInventario(){
+    //Se presiona el boton del formulario invisible para activar el evento submit
+    document.getElementById('btnFormHistorial').click();
+}
+
+//Al accionar el evento submit de historialInventario-form
+document.getElementById('historialInventario-form').addEventListener('submit',function(event){
+    //evitamos recargar la pagina
+    event.preventDefault();
+    //fetch
+    fetch(API_DASHBOARD + 'getMovement', {
+        method: 'post',
+        body: new FormData(document.getElementById('historialInventario-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Creamos arreglos para guardar la informacion
+                    let nombreproducto = [];
+                    let cantidad = [];
+                    let fecha = [];
+
+                    //recorremos los registros obtenidos y lo sagregamos a los arreglos
+                    response.dataset.map(function(row){
+                        ///Asignamos
+                        nombreproducto.push(row.nombreproducto);
+                        cantidad.push(row.cantidad);
+                        fecha.push(row.fecha);
+                    });
+
+                    //Se destruye el elemento actual para poder crear otro
+                    document.getElementById('graficaHistorialInventario').removeChild(document.getElementById('cnHistorialInventario'));
+                    //Creamos un nuevo canvas
+                    var graph = document.createElement('canvas');
+                    //Asignamos el mismo id
+                    graph.id = 'cnHistorialInventario';   
+                    //Asignamos tamaños
+                    graph.width = '400';
+                    //Agregamos el elemento al div
+                    document.getElementById('graficaHistorialInventario').appendChild(graph);
+                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                    var modo = document.getElementById('txtModo').value;
+                    var colorFuente;
+
+                    if (modo == 'light') {
+                        colorFuente = 'rgb(0,0,0)';
+                    } else if (modo == 'dark') {
+                        colorFuente = 'rgb(255,255,255)';
+                    }
+                    //lineGraph
+                    lineGraph('cnHistorialInventario', fecha, cantidad, 'asd', 'Cantidad en el inventario: ', nombreproducto[0], colorFuente);
+                } else {
+                    closeModal('historialInventario');
+                    console.log('error')
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+
+})
 
 //Funcion para crear una grafica de pastel acerca de las denuncias por estado
 function graficaPastelDenuncia(){
@@ -275,7 +356,7 @@ function graficaDonaProductos(){
                     //Asignamos el mismo id
                     graph.id = 'cnProductoDemandado';
                     //Aplicamos el mismo tamaño
-                    graph.width = '230';
+                    graph.width = '235';
                     //Añadimos el elemento al div 
                     document.getElementById('graficaProducto').appendChild(graph);
                     //Se establece el color para las fuentes de chartJS en base al modo del sistema

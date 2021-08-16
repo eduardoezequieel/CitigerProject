@@ -153,7 +153,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
 
             <div class="collapse" id="graficasCollapse">
                 <div class="row justify-content-center align-items-center mt-4">
-                    <div class="d-flex justify-content-center align-items-center">
+                    <div class="margenGraficas margenGraficas2 d-flex justify-content-center align-items-center">
                         <!-- Grafica de productos demandados -->
                         <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
                             <div class="tarjetaDashboardGrafica" id="graficaProducto">
@@ -167,11 +167,12 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                         <!-- Grafica de historial de inventario -->
                         <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
                             <div class="tarjetaDashboardGrafica" id="graficaHistorialInventario">
-                                <form method="post" id="historialInventario-form" class="d-">
-                                    <input type="text" id="txtIdMaterial" value="1">
+                                <form method="post" id="historialInventario-form" class="d-none">
+                                    <input type="number" id="txtIdMaterial" name="txtIdMaterial" value="1">
                                     <button type="submit" id="btnFormHistorial"></button>
                                 </form>
                                 <button data-toggle="modal" data-target="#historialInventario" id="btnModalInventario" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
+                                <h1 class="tituloGrafica text-center">Historial de Inventario por Producto</h1>
                                 <canvas class="#" id="cnHistorialInventario" width="450"></canvas>
                                 <div id="noInventario" class="d-none">
                                     <i class="fas fa-sad-tear icono4"></i>

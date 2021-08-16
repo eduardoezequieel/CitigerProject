@@ -61,8 +61,21 @@
   }
 
 
-.margenGraficas{
+.margenGraficas {
   margin-left: 100px !important;
+}
+
+.margenGraficas2 {
+  margin-right: 150px !important;
+}
+
+.tituloGrafica {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-tipografia);
+  margin-top: 10px;
+  padding-left: 40px;
 }
 
 #cbCasaResidente {

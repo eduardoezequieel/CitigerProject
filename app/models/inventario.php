@@ -199,7 +199,18 @@ class Inventario extends Validator
     {
         return $this->ruta;
     }
+
      //Metodo para cargar los movimientos del stock de un producto
+     public function getMovement()
+     {
+        $sql = 'SELECT nombreproducto, historialinventario.cantidad, fecha 
+                FROM historialinventario
+                INNER JOIN material USING(idmaterial)
+                WHERE idmaterial = ?';
+        $params = array($this->idmaterial);
+        return Database::getRows($sql, $params);
+     }
+     //Metodo para cargar los movimientos de los productos
      public function readMovements()
      {
          $sql = 'SELECT idmaterial, nombreproducto, COUNT(idmaterial) as movimientos FROM historialInventario

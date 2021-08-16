@@ -1230,6 +1230,7 @@ var coloresDefaultDark = ['rgb(84, 148, 245)',
 *   Retorno: ninguno.
 */
 function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
+    console.log(xAxis);
     /* Creamos un arreglo que contiene numeros correspondientes a las posiciones de los arreglos declarados 
     globalmente con colores preestablecidos en base a la paleta de colores del sistema*/
     var posiciones = [0,1,2,3,4,5];

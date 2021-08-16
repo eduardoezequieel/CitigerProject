@@ -164,6 +164,23 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Campo vacio';
                 }
                 break;
+            //Caso para cargar los movimientos del stock de un producto
+            case 'getMovement':
+                $_POST = $inventario->validateForm($_POST);
+                if ($inventario->setIdMaterial($_POST['txtIdMaterial'])) {
+                    if ($result['dataset'] = $inventario->getMovement()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay historial.';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto';
+                }
+                break;
         }
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('content-type: application/json; charset=utf-8');
