@@ -572,4 +572,17 @@ class Residentes extends Validator
         return Database::getRows($sql,$params);
     }
 
+    public function residentesMora(){
+        $sql ="SELECT CONCAT(residente.apellido, ', ', residente.nombre) AS residente, 
+        CONCAT('#',casa.numerocasa,' ',casa.direccion) AS casa, fechapago
+        FROM aportacion
+        INNER JOIN casa USING(idcasa)
+        INNER JOIN residenteCasa USING(idcasa)
+        INNER JOIN residente USING(idresidente)
+        WHERE fechapago < current_date AND idestadoaportacion = 1
+        ORDER BY fechapago DESC";
+        $params=null;
+        return Database::getRows($sql, $params);
+    }
+
 }

@@ -220,18 +220,18 @@ class Aportaciones extends Validator
     {
 
         $sql = "INSERT into aportacion(idcasa,idestadoaportacion,monto,idmespago,fechapago,descripcion)VALUES
-        (?,1,20,1,'2021-06-12','Pago usado para mantenimiento de la residencial'),
-        (?,1,20,2,'2021-06-12','Pago usado para mantenimiento de la residencial'),
-        (?,1,20,3,'2021-06-12','Pago usado para mantenimiento de la residencial'),
-        (?,1,20,4,'2021-06-12','Pago usado para mantenimiento de la residencial'),
-        (?,1,20,5,'2021-06-12','Pago usado para mantenimiento de la residencial'),
-        (?,1,20,6,'2021-06-12','Pago usado para mantenimiento de la residencial'),
-        (?,1,20,7,'2021-06-12','Pago usado para mantenimiento de la residencial'),
-        (?,1,20,8,'2021-06-12','Pago usado para mantenimiento de la residencial'),
-        (?,1,20,9,'2021-06-12','Pago usado para mantenimiento de la residencial'),
-        (?,1,20,10,'2021-06-12','Pago usado para mantenimiento de la residencial'),
-        (?,1,20,11,'2021-06-12','Pago usado para mantenimiento de la residencial'),
-        (?,1,20,12,'2021-06-12','Pago usado para mantenimiento de la residencial')";
+        (?,1,20,1,'2021-01-31','Pago usado para mantenimiento de la residencial'),
+        (?,1,20,2,'2021-02-28','Pago usado para mantenimiento de la residencial'),
+        (?,1,20,3,'2021-03-31','Pago usado para mantenimiento de la residencial'),
+        (?,1,20,4,'2021-04-30','Pago usado para mantenimiento de la residencial'),
+        (?,1,20,5,'2021-05-31','Pago usado para mantenimiento de la residencial'),
+        (?,1,20,6,'2021-06-30','Pago usado para mantenimiento de la residencial'),
+        (?,1,20,7,'2021-07-31','Pago usado para mantenimiento de la residencial'),
+        (?,1,20,8,'2021-08-31','Pago usado para mantenimiento de la residencial'),
+        (?,1,20,9,'2021-09-30','Pago usado para mantenimiento de la residencial'),
+        (?,1,20,10,'2021-10-31','Pago usado para mantenimiento de la residencial'),
+        (?,1,20,11,'2021-11-30','Pago usado para mantenimiento de la residencial'),
+        (?,1,20,12,'2021-12-31','Pago usado para mantenimiento de la residencial')";
         $params = array($this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa);
         return Database::executeRow($sql, $params);
     }
