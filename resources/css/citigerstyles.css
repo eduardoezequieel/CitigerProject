@@ -38,11 +38,17 @@
   *
   */
 
-  @media (max-width:992px) {
+  @media (max-width:1230px) {
     .margenGraficas{
       flex-direction: column;
       margin-left: 0px !important;
       margin-right: 100px !important;
+    }
+
+    .margenGraficas2{
+      flex-direction: column;
+      margin-left: 200px !important;
+      margin-right: 0px !important;
     }
 
     .mtResponsive{
@@ -57,16 +63,41 @@
       justify-content: center;
       align-items: center;
     }
+
+    #graficaHistorialInventario2{
+      width: 300px !important;
+      height: 300px !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #contenedorVisitas {
+      width: 290px !important;
+    }
+
+    #graficaHistorialInventario {
+      width: 290px !important;
+    }
+
+    .tituloGrafica{
+      padding-left: 0 !important;
+    }
+
+    .graficasCuadradas {
+      width: 240px !important;
+    }
   
   }
-
 
 .margenGraficas {
   margin-left: 100px !important;
 }
 
 .margenGraficas2 {
-  margin-right: 150px !important;
+  margin-right: 200px !important;
+  margin-left: 100px;
 }
 
 .tituloGrafica {
@@ -76,6 +107,18 @@
   color: var(--color-tipografia);
   margin-top: 10px;
   padding-left: 40px;
+}
+
+.graficasCuadradas {
+  width: 270px;
+}
+
+#contenedorVisitas {
+  width: 540px;
+}
+
+#graficaHistorialInventario {
+  width: 460px;
 }
 
 #cbCasaResidente {

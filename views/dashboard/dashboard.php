@@ -126,7 +126,9 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                 <div class="margenGraficas d-flex justify-content-center align-items-center">
                     <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
                         <div class="tarjetaDashboardGrafica" id="graficaVisitas">
-                            <canvas class="#" id="cnVisitas6Meses" width="450px"></canvas>
+                            <div id="contenedorVisitas">
+                                <canvas class="#" id="cnVisitas6Meses"></canvas>
+                            </div>
                             <div id="noVisitas" class="d-none">
                                 <i class="fas fa-sad-tear icono4"></i>
                                 <h1 class="tituloTarjetaDashboard text-center my-4">No hay visitas</h1>
@@ -135,7 +137,9 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                     </div>
                     <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center mtResponsive">
                         <div class="tarjetaDashboardGrafica" id="graficaDenuncias">
-                            <canvas class="#" id="cnEstadoDenuncia" width="230"></canvas>
+                            <div class="graficasCuadradas">
+                                <canvas class="#" id="cnEstadoDenuncia"></canvas>
+                            </div>
                             <div id="noDenuncias" class="d-none">
                                 <i class="fas fa-sad-tear icono4"></i>
                                 <h1 class="tituloTarjetaDashboard text-center my-4">No hay denuncias</h1>
@@ -153,11 +157,13 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
 
             <div class="collapse" id="graficasCollapse">
                 <div class="row justify-content-center align-items-center mt-4">
-                    <div class="margenGraficas margenGraficas2 d-flex justify-content-center align-items-center">
+                    <div class="margenGraficas2 d-flex justify-content-center align-items-center">
                         <!-- Grafica de productos demandados -->
                         <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
-                            <div class="tarjetaDashboardGrafica" id="graficaProducto">
-                                <canvas class="#" id="cnProductoDemandado" width="230"></canvas>
+                            <div class="tarjetaDashboardGrafica">
+                                <div id="graficaProducto" class="graficasCuadradas">
+                                    <canvas class="#" id="cnProductoDemandado"></canvas>
+                                </div>
                                 <div id="noProductos" class="d-none">
                                     <i class="fas fa-sad-tear icono4"></i>
                                     <h1 class="tituloTarjetaDashboard text-center my-4">No hay productos</h1>
@@ -165,15 +171,17 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                             </div>
                         </div>
                         <!-- Grafica de historial de inventario -->
-                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
-                            <div class="tarjetaDashboardGrafica" id="graficaHistorialInventario">
+                        <div class="mtResponsive col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
+                            <div class="tarjetaDashboardGrafica" id="graficaHistorialInventario2">
                                 <form method="post" id="historialInventario-form" class="d-none">
                                     <input type="number" id="txtIdMaterial" name="txtIdMaterial" value="1">
                                     <button type="submit" id="btnFormHistorial"></button>
                                 </form>
                                 <button data-toggle="modal" data-target="#historialInventario" id="btnModalInventario" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
                                 <h1 class="tituloGrafica text-center">Historial de Inventario por Producto</h1>
-                                <canvas class="#" id="cnHistorialInventario" width="450"></canvas>
+                                <div id="graficaHistorialInventario">
+                                    <canvas class="#" id="cnHistorialInventario"></canvas>
+                                </div>
                                 <div id="noInventario" class="d-none">
                                     <i class="fas fa-sad-tear icono4"></i>
                                     <h1 class="tituloTarjetaDashboard text-center my-4">No hay productos :(</h1>
@@ -186,8 +194,10 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                     <div class="margenGraficas d-flex justify-content-center align-items-center">
                         <!-- Grafica de espacios demandados -->
                         <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
-                            <div class="tarjetaDashboardGrafica" id="graficaEspacios">
-                                <canvas class="#" id="cnEspacioDemandado" width="230"></canvas>
+                            <div class="tarjetaDashboardGrafica">
+                                <div class="graficasCuadradas" id="graficaEspacios">
+                                    <canvas class="#" id="cnEspacioDemandado" width="230"></canvas>
+                                </div>
                                 <div id="noEspacio" class="d-none">
                                     <i class="fas fa-sad-tear icono4"></i>
                                     <h1 class="tituloTarjetaDashboard text-center my-4">No hay espacios</h1>
