@@ -168,8 +168,9 @@
         //Método para leer un dato de la tabla
         public function readOne()
         {
-            $sql = 'SELECT idEspacio, idestadoespacio, nombre, descripcion, capacidad, imagenprincipal
+            $sql = 'SELECT idEspacio, espacio.idestadoespacio, estadoEspacio, nombre, descripcion, capacidad, imagenprincipal
                     FROM espacio 
+                    INNER JOIN estadoEspacio ON estadoEspacio.idEstadoEspacio = espacio.idEstadoEspacio 
                     WHERE idEspacio = ?
                     ORDER BY nombre';
             $params =  array($this->idEspacio);

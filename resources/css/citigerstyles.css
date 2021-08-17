@@ -1774,7 +1774,11 @@ hr {
 
 /*Controles de Formularios*/
 
-
+.imagenEspacio:hover {
+  filter: grayscale(50%);
+  transition-property: filter;
+  transform: scale(1.01); 
+}
 
 .botonesListadoInventario {
   background-color: var(--color-citiger-claro) !important;

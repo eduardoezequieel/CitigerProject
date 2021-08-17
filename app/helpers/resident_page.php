@@ -20,6 +20,7 @@
                     <link rel="stylesheet" href="../../resources/css/all.min.css">
                     <link rel="stylesheet" href="../../resources/css/fontawesome.min.css">
                     <link rel="stylesheet" href="../../resources/css/animate.min.css">
+                    <link href="../../resources/css/lightbox.min.css" rel="stylesheet">
                 
                     <!-- Fuentes -->
                     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -83,7 +84,7 @@
                         <!-- Botones de Navegación -->
                         <ul class="nav flex-column colorCitiger mt-4">
                         <li class="nav-item">
-                            <a href="alquileres.php" class="nav-link categoriasFuente">
+                            <a href="menu_alquileres.php" class="nav-link categoriasFuente">
                             <i class="fas fa-home mr-3 tamañoIconos"></i>
                             Alquileres
                             </a>
@@ -128,11 +129,13 @@
         }
         public static function footerTemplate($controller){
             print('
+                    <script src="../../resources/js/lightbox-plus-jquery.min.js"></script>
                     <script src="../../resources/js/jquery-3.5.1.slim.min.js"></script>
                     <script src="../../resources/js/bootstrap.bundle.min.js"></script>
-                    <script src="../../app/controllers/dashboard/'.$controller.'"></script>
+                    <script src="../../app/controllers/residente/'.$controller.'"></script>
                     <script src="../../resources/js/datatables.min.js"></script>
                     <script src="../../resources/js/sweetalert.min.js"></script>
+                    
                     <script src="../../app/helpers/components.js"></script>
                 </body>
                 </html> 
