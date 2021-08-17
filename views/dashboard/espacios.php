@@ -108,7 +108,7 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                                     </div>
 
                                     <button id="btnAgregarFoto1" class="btn btnCargarFoto2 mx-2 mb-3"><span class="fas fa-plus"></span></button>
-                                    <button href="#" id="btnInsertDialogImagen" data-toggle="modal" data-target="#administrarImagenes" class="btn botonesListado mt-3"><span class="fas fa-camera mr-3 tamañoIconosBotones"></span>Fotografias</button>
+                                    <a id="btnInsertDialogImagen" data-toggle="modal" data-target="#administrarImagenes" class="btn botonesListado mt-3"><span class="fas fa-camera mr-3 tamañoIconosBotones"></span>Fotografías</a>
                                 </div>
                                 <!-- Final Cargar Fotografia -->
 
@@ -212,7 +212,7 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                     <!-- Desde aqui comienza la tabla -->
                     <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaAlquileres">
                         <div class="col-12 justify-content-center align-items-center text-center">
-                            <a href="#" id="agregar" data-toggle="modal" data-target="#administrarImagen" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a><br>
+                            <a href="#" id="agregar" data-toggle="modal" data-target="#administrarImagen" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
                             <table class="table table-borderless citigerTable">
                                 <thead>
                                     <!-- Columnas-->
