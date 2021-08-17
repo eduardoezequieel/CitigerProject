@@ -5,7 +5,7 @@ require('../../models/espacios.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Alquileres en un lapso de fechas');
+$pdf->startReport('Alquileres por espacio');
 // Se instancia el módelo Categorías para obtener los datos.
 $categoria = new Espacios;
 
@@ -24,7 +24,7 @@ if ($dataProductos2 = $categoria->readReportCabecera()) {
     // Se imprime una celda con el nombre de la categoría.
     $pdf->Cell(0, 10, utf8_decode($rowProducto2['nombre']), 1, 1, 'C', 1);
     // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
-    if ($dataProductos = $categoria->readReport()) {
+    if ($dataProductos = $categoria->readReport2()) {
         // Se establece un color de relleno para los encabezados.
         $pdf->SetFillColor(225);
         // Se establece la fuente para los encabezados.

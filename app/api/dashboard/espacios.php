@@ -425,6 +425,15 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'La Fecha de inicio no puede ser igual o menor a la Fecha de fin.';
                 }
                 break;
+
+            case 'readOne3':
+                $_SESSION['idespacio'] = $_POST['txtEspacio2'];
+                if ($_SESSION['idespacio'] != null) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'Factura inexistente';
+                }
+                break;
                 //Caso por defecto
             default:
                 $result['exception'] = 'La acción solicitada no está disponible dentro de la sesión.';

@@ -245,9 +245,10 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                 <!-- Titulo -->
                 <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Espacios</h5>
                 <!-- Boton para Cerrar -->
-                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close closeModalButton lead" data-toggle="modal" data-target="#modalReporte" data-dismiss="modal">
+                    <span class="fas fa-chevron-left" aria-hidden="true"></span>
                 </button>
+
             </div>
             <br>
             <!-- Contenido del Modal -->
@@ -259,12 +260,10 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                         <div class="d-flex flex-column justify-content-center align-items-center col-xl-12 col-md-12 col-sm-12 col-xs-12  centrarColumnas">
                             <div class="form-group">
                                 <label class="tituloCajaTextoFormulario mt-2" for="txtFecha1">Fecha de inicio:</label>
-                                <input type="date" class="form-control cajaTextoFormulario" id="txtFecha1" name="txtFecha1" onchange="checkInput('txtFecha')"
-                                    placeholder="AAAA-MM-DD" Required>
+                                <input type="date" class="form-control cajaTextoFormulario" id="txtFecha1" name="txtFecha1" onchange="checkInput('txtFecha1')" placeholder="AAAA-MM-DD" Required>
 
                                 <label class="tituloCajaTextoFormulario mt-2" for="txtFecha2">Fecha de fin:</label>
-                                <input type="date" class="form-control cajaTextoFormulario" id="txtFecha2" name="txtFecha2" onchange="checkInput('txtFecha')"
-                                    placeholder="AAAA-MM-DD" Required>
+                                <input type="date" class="form-control cajaTextoFormulario" id="txtFecha2" name="txtFecha2" onchange="checkInput('txtFecha2')" placeholder="AAAA-MM-DD" Required>
                             </div>
                         </div>
                     </div>
@@ -281,6 +280,53 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
     </div>
 </div>
 
+<!-- Modal para tipo de reporte -->
+<div class="modal fade" id="modalReporte" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Reportes</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <form method="post" id="report-form">
+                <input type="number" name="txtEspacio2" id="txtEspacio2" class="d-none">
+                <div class="textoModal px-3 pb-4 mt-2">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h1 class="tituloDato2 text-center">¿Qué reporte desea generar?</h1>
+                        </div>
+                    </div>
+                    <!-- Menú -->
+                    <div class="row">
+                        <!-- Opción "alquiler" de menú -->
+                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
+                            <button href="#" class="btn botonMenu1" type="submit" id="btnReporte2" name="btnReporte2">
+                                <i class="fas fa-file-alt iconosBotonesMenu"></i>
+                                <label class="textoBotonesMenu">Alquileres en un espacio</label>
+                            </button>
+                        </div>
+
+                        <!-- Opción "espacios" de menú -->
+                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
+                            <a href="#" data-toggle="modal" data-dismiss="modal" id="btnNo" data-target="#alquileresFecha" class="btn botonMenu2">
+                                <i class="fas fa-calendar iconosBotonesMenu"></i>
+                                <label class="textoBotonesMenu">Alquileres en un lapso de fechas</label>
+                            </a>
+                        </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!-- Fin del Modal -->
 
 <?php
 //Se imprimen los JS necesarios

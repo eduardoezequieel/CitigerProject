@@ -349,6 +349,19 @@
             return Database::getRows($sql, $params);
        }
 
+
+        public function readReport2()
+        {
+            $sql = "SELECT CONCAT(residente.apellido, ', ', residente.nombre) AS residente, fecha, horainicio, horafin, estadoalquiler
+            FROM alquiler
+            INNER JOIN residente USING(idresidente)
+            INNER JOIN estadoalquiler USING(idestadoalquiler)
+            WHERE idespacio = ?
+            ORDER BY fecha";
+            $params = array($_SESSION['idespacio']);
+            return Database::getRows($sql, $params);
+       }
+
         
 
     }

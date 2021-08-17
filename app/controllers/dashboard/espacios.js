@@ -55,7 +55,7 @@ function fillTable(dataset) {
                                 <div class="col-12">
                                     <a href="#" onclick="readDataOnModal(${row.idespacio}) " data-toggle="modal" data-target="#administrarEspacio" class="btn btnTabla"><span class="fas fa-edit"></span></a>
                                     <a href="#" onclick="deleteRow(${row.idespacio})" class="btn btnTabla2"><span class="fas fa-trash" ></span></a>
-                                    <a href="#" onclick="readDataOnModal(${row.idespacio})"  data-toggle="modal" data-target="#alquileresFecha" class="btn btnTabla2"><span class="fas fa-file-alt" ></span></a>
+                                    <a href="#" onclick="readDataOnModal(${row.idespacio})"  data-toggle="modal" data-target="#modalReporte" class="btn btnTabla2"><span class="fas fa-file-alt" ></span></a>
 
                                 </div>
                             </div>
@@ -88,7 +88,7 @@ function fillTable(dataset) {
                                 <div class="col-12">
                                     <a href="#" onclick="readDataOnModal(${row.idespacio}) " data-toggle="modal" data-target="#administrarEspacio" class="btn btnTabla"><span class="fas fa-edit"></span></a>
                                     <a href="#" onclick="deleteRow(${row.idespacio})" class="btn btnTabla2"><span class="fas fa-trash" ></span></a>
-                                    <a href="#" onclick="readDataOnModal(${row.idespacio})"  data-toggle="modal" data-target="#alquileresFecha" class="btn btnTabla2"><span class="fas fa-file-alt" ></span></a>
+                                    <a href="#" onclick="readDataOnModal(${row.idespacio})"  data-toggle="modal" data-target="#modalReporte" class="btn btnTabla2"><span class="fas fa-file-alt" ></span></a>
 
                                 </div>
                             </div>
@@ -166,6 +166,7 @@ function readDataOnModal(id) {
                     document.getElementById('idEspacio3').value = response.dataset.idespacio;
                     document.getElementById('txtNombre').value = response.dataset.nombre;
                     document.getElementById('txtEspacio').value = response.dataset.idespacio;
+                    document.getElementById('txtEspacio2').value = response.dataset.idespacio;
                     document.getElementById('txtDescripcion').value = response.dataset.descripcion;
                     document.getElementById('txtCapacidad').value = response.dataset.capacidad;
                     document.getElementById('idEstadoEspacio1').value = response.dataset.idestadoespacio;
@@ -487,6 +488,34 @@ document.getElementById('fecha-form').addEventListener('submit', function (event
                 if (response.status) {
                     // Abrimos el reporte mediante su URL 
                     window.open("../../app/reports/dashboard/alquileres.php", "");
+                } else {
+                    sweetAlert(3, response.exception, null);
+                    console.log(response.status + ' ' + response.statusText);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+})
+
+document.getElementById('btnReporte2').addEventListener('click', function (event) {
+    //Evento para evitar que recargué la pagina
+    event.preventDefault();
+    // Realizamos una peticion a la API indicando el caso a utilizar y enviando la direccion de la API como parametro
+    fetch(API_ESPACIO + 'readOne3', {
+        method: 'post',
+        body: new FormData(document.getElementById('report-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Abrimos el reporte mediante su URL 
+                    window.open("../../app/reports/dashboard/alquileres_espacio.php", "");
                 } else {
                     sweetAlert(3, response.exception, null);
                     console.log(response.status + ' ' + response.statusText);
