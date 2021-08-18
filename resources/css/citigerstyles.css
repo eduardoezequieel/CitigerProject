@@ -81,6 +81,19 @@
       width: 290px !important;
     }
 
+    #graficaVisitasResidente{
+      width: 300px !important;
+      height: 300px !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #contenedorGraficaVisitasResidente {
+      width: 240px !important;
+    }
+
     .tituloGrafica{
       padding-left: 0 !important;
     }
@@ -115,6 +128,10 @@
 
 #contenedorVisitas {
   width: 540px;
+}
+
+#contenedorGraficaVisitasResidente {
+  width: 820px;
 }
 
 #graficaHistorialInventario {

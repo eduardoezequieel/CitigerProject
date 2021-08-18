@@ -7,8 +7,6 @@ require_once('../../models/denuncias.php');
 require_once('../../models/inventario.php');
 require_once('../../models/espacios.php');
 
-
-
 if (isset($_GET['action'])) {
     //Reanudando la sesion
     session_start();
@@ -175,6 +173,34 @@ if (isset($_GET['action'])) {
                             $result['exception'] = Database::getException();
                         } else {
                             $result['exception'] = 'No hay historial.';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto';
+                }
+                break;
+            //Caso para cargar cantidad de visitas por residente
+            case 'visitsByResident':
+                if ($result['dataset'] = $visita->visitsByResident()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay visitas :(';
+                    }
+                }
+                break;
+            //Caso para cargar las visitas de los ultimos 6 meses de un residente
+            case 'visitsOfAResident':
+                if ($visita->setIdResidente($_POST['idresidente'])) {
+                    if ($result['dataset'] = $visita->visitsOfAResident()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay visitas para este residente.';
                         }
                     }
                 } else {

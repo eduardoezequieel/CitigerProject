@@ -1210,14 +1210,17 @@ var coloresDefaultLight = ['rgb(84, 148, 245)',
                             'rgb(117, 172, 255)', 
                             'rgb(143, 187, 255)', 
                             'rgb(36, 123, 255)', 
-                            'rgb(146, 183, 240)'];
+                            'rgb(146, 183, 240)',
+                            'rgb(107, 135, 179)'];
 
 var coloresDefaultDark = ['rgb(84, 148, 245)',
                             'rgb(56, 123, 224)',
                             'rgb(79, 123, 189)',
                             'rgb(8, 82, 194)',
                             'rgb(17, 68, 145)', 
-                            'rgb(26, 53, 94)'];
+                            'rgb(189, 215, 255)'];
+
+var posiciones = [0,1,2,3,4,5];
 //Metodos para graficas
 
 /*
@@ -1230,9 +1233,6 @@ var coloresDefaultDark = ['rgb(84, 148, 245)',
 *   Retorno: ninguno.
 */
 function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
-    /* Creamos un arreglo que contiene numeros correspondientes a las posiciones de los arreglos declarados 
-    globalmente con colores preestablecidos en base a la paleta de colores del sistema*/
-    var posiciones = [0,1,2,3,4,5];
     //Revolvemos los datos del arreglo posiciones
     posiciones = shuffle(posiciones);
     //Creamos una arreglo que guardara colores en base al numero de datos enviados.
@@ -1354,9 +1354,6 @@ function lineGraph(id, xAxis, yAxis, variable, mensaje, titulo, colorFuente){
 */
 
 function pieGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
-    /* Creamos un arreglo que contiene numeros correspondientes a las posiciones de los arreglos declarados 
-    globalmente con colores preestablecidos en base a la paleta de colores del sistema*/
-    var posiciones = [0,1,2,3,4,5];
     //Revolvemos los datos del arreglo posiciones
     posiciones = shuffle(posiciones);
     //Creamos una arreglo que guardara colores en base al numero de datos enviados.
@@ -1439,9 +1436,6 @@ function pieGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
 */
 
 function doughnutGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
-    /* Creamos un arreglo que contiene numeros correspondientes a las posiciones de los arreglos declarados 
-    globalmente con colores preestablecidos en base a la paleta de colores del sistema*/
-    var posiciones = [0,1,2,3,4,5];
     //Revolvemos los datos del arreglo posiciones
     posiciones = shuffle(posiciones);
     //Creamos una arreglo que guardara colores en base al numero de datos enviados.
@@ -1515,9 +1509,6 @@ function doughnutGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
 */
 
 function polarAreaGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
-    /* Creamos un arreglo que contiene numeros correspondientes a las posiciones de los arreglos declarados 
-    globalmente con colores preestablecidos en base a la paleta de colores del sistema*/
-    var posiciones = [0,1,2,3,4,5];
     //Revolvemos los datos del arreglo posiciones
     posiciones = shuffle(posiciones);
     //Creamos una arreglo que guardara colores en base al numero de datos enviados.
@@ -1580,4 +1571,127 @@ function polarAreaGraph(id, xAxis, yAxis, variable, colorFondo, colorFuente){
         }
         
     });
+}
+
+/*
+*   Función para generar una gráfica de barras. Requiere el archivo chart.js para funcionar.
+*
+*   Parámetros: 
+    id (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), Variable (Para indicar que se esta evaluando), 
+    mensaje (El mensaje que se antepone en el tooltip) y titulo (titulo de la gráfica).
+*
+*   Retorno: ninguno.
+*/
+
+function barGraph(id, xAxis, yAxis, titulo, colorFondo, colorFuente, mensaje){
+    //Revolvemos los datos del arreglo posiciones
+    posiciones = shuffle(posiciones);
+    //Creamos una arreglo que guardara colores en base al numero de datos enviados.
+    var colores = [];
+    //Evaluamos el modo del sistema (claro u oscuro) para elegir una paleta de colores para las graficas
+    if (colorFuente == 'rgb(0,0,0)') {
+        //Modo claro
+        //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
+        for (let index = 0; index < yAxis.length; index++) {
+            colores[index] = coloresDefaultLight[posiciones[index]];
+        }
+    } else if (colorFuente == 'rgb(255,255,255)') {
+        //Modo oscuro
+        //Recorremos los valores obtenidos para ingresar colores de forma aleatoria al arreglo
+        for (let index = 0; index < yAxis.length; index++) {
+            colores[index] = coloresDefaultDark[posiciones[index]];
+        }
+    }
+
+    console.log(colores);
+    //Se obtiene el canvas
+    var ctx = document.getElementById(id).getContext('2d');
+    //Chart js
+    var myChart = new Chart (ctx, {
+        //Se indica el tipo de grafica
+        type: 'bar',
+        //Asignamos la data para la grafica y demás personalización.
+        data: data = {
+            labels: xAxis,
+            datasets: [{
+                data: yAxis,
+                backgroundColor: colores,
+                borderColor: colorFondo,
+                borderWidth: 1
+              }]
+        },
+        //Opciones adicionales
+        options:{
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+                y: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: colorFuente,
+                        padding: 10,
+                        font: {
+                            family: "'Quicksand', sans-serif",
+                            size: 14,
+                            weight: 700
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: colorFuente,
+                        padding: 10,
+                        font: {
+                            family: "'Quicksand', sans-serif",
+                            size: 12,
+                            weight: 700
+                        }
+                    }
+                }
+            },
+            plugins:{
+                //Titulo
+                title:{
+                    display: true,
+                    text: titulo,
+                    color: colorFuente,
+                    font: {
+                        family: "'Quicksand', sans-serif",
+                        size: 14
+                    }
+                },
+                //Personalizando el tooltip
+                tooltip:{
+                    displayColors: false,
+                    callbacks: {
+                        //De tooltipItem obtenemos el index seleccionado al momento de hacer hover para darle formato.
+                        label: function(tooltipItem) {
+                            var value = myChart.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.dataIndex];
+                            return mensaje + value;    
+
+                            }
+                    }
+                },
+                //Personalizando la fuente
+                legend: {
+                    display: false,
+                    labels: {
+                        color: colorFuente,
+                        font: {
+                            family: "'Quicksand', sans-serif",
+                            weight: 700,
+                            size: 14
+                        }
+                    }
+                }
+            }
+        }
+        
+    });
+
 }

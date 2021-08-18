@@ -177,10 +177,12 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                     <input type="number" id="txtIdMaterial" name="txtIdMaterial" value="1">
                                     <button type="submit" id="btnFormHistorial"></button>
                                 </form>
-                                <button data-toggle="modal" data-target="#historialInventario" id="btnModalInventario" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
-                                <h1 class="tituloGrafica text-center">Historial de Inventario por Producto</h1>
-                                <div id="graficaHistorialInventario">
-                                    <canvas class="#" id="cnHistorialInventario"></canvas>
+                                <div id="graficaInventario" class=#>
+                                    <button data-toggle="modal" data-target="#historialInventario" id="btnModalInventario" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
+                                    <h1 class="tituloGrafica text-center">Historial de Inventario por Producto</h1>
+                                    <div id="graficaHistorialInventario">
+                                        <canvas class="#" id="cnHistorialInventario"></canvas>
+                                    </div>
                                 </div>
                                 <div id="noInventario" class="d-none">
                                     <i class="fas fa-sad-tear icono4"></i>
@@ -188,6 +190,29 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center align-items-center mt-4">
+                    <div class="mtResponsive col-12 d-flex justify-content-center align-items-center">
+                        <!-- Grafica de visitas por residente -->
+                        <div class="tarjetaDashboardGrafica" id="graficaVisitasResidente">
+                            <form class="d-none" method="post" id="residenteVisita-form">
+                                <input type="number" value="1" id="idresidente" name="idresidente">
+                                <button type="submit" id="btnResidenteVisita"></button>
+                            </form>
+                            <div id="graficaResidente">
+                                <button data-toggle="modal" data-target="#residenteVisita" id="btnModalResidente" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
+                                <h1 class="tituloGrafica text-center">Historial de Visitas por Residente</h1>
+                                <div id="contenedorGraficaVisitasResidente">
+                                    <canvas class=# id="cnVisitasResidente"></canvas>
+                                </div>
+                            </div>
+                            <div id="noVisitasResidente" class="d-none">
+                                <i class="fas fa-sad-tear icono4"></i>
+                                <h1 class="tituloTarjetaDashboard text-center my-4">No hay visitas para este residente :(</h1>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="row justify-content-center align-items-center mt-4">
@@ -315,7 +340,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                     <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                         <form class="mx-3 mb-2" method="post" id="search-form-historialInventario">
                             <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
-                            <input type="text" class="form-control buscador" id="search-historialInventario" name="search-historialInventario" aria-describedby="emailHelp" placeholder="{ Material, Movimientos }">
+                            <input type="text" class="form-control buscador" id="search-historialInventario" name="search-historialInventario" aria-describedby="emailHelp" placeholder="{ Material }">
                         </form>   
 
                         <div class="mt-4 mx-3 mb-3">
@@ -336,6 +361,60 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 </tr>
                             </thead>
                             <tbody id="tbody-rows2">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Desde aqui termina la tabla --><br>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
+
+
+<!-- Modal para seleccionar un residente -->
+<div class="modal fade" id="residenteVisita" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Seleccione un residente</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <!-- Busqueda -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
+                        <form class="mx-3 mb-2" method="post" id="search-form-residenteVisita">
+                            <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
+                            <input type="text" class="form-control buscador" id="search-residenteVisita" name="search-residenteVisita" aria-describedby="emailHelp" placeholder="{ Residente }">
+                        </form>   
+
+                        <div class="mt-4 mx-3 mb-3">
+                            <a href="#" id="btnReiniciarResidentes" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Desde aqui comienza la tabla -->
+                <div class="row mt-3 justify-content-center table-responsive tablaResponsive">
+                    <div class="col-12 justify-content-center align-items-center text-center">
+                        <table class="table table-borderless citigerTable">
+                            <thead>
+                                <!-- Columnas-->
+                                <tr>
+                                    <th scope="col">Residente</th>
+                                    <th scope="col">Visitas</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-rows3">
                                 
                             </tbody>
                         </table>

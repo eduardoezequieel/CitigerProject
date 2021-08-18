@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded',function(){
     graficaDonaProductos();
     graficaAreaEspacios();
     graficaLineaHistorialInventario();
+    graficaBarrasResidente();
 
     //Carga los contadores
     contadorDenuncias();
@@ -24,6 +25,7 @@ document.getElementById('btnCollapseGraficas').addEventListener('click',function
     graficaDonaProductos();
     graficaAreaEspacios();
     graficaLineaHistorialInventario();
+    graficaBarrasResidente();
 });
 
 //Se ejecuta al presionar el boton para seleccionar un producto con historial de movimientos de stock
@@ -31,6 +33,12 @@ document.getElementById('btnModalInventario').addEventListener('click',function(
     //Se cargan los datos a la tabla
     readMovements();
 });
+
+//Se ejecuta al presionar el boton para seleccionar un residente con visitas
+document.getElementById('btnModalResidente').addEventListener('click',function(){
+    //Se cargan los datos a la tabla
+    readResidents();
+})
 
 //Para reiniciar busquedas
 document.getElementById('btnReiniciarMovimientos').addEventListener('click',function(event){
@@ -71,7 +79,7 @@ document.getElementById('search-form-historialInventario').addEventListener('sub
 })
 
 //Carga la tabla de movimientos de un producto
-function readMovements(api) {
+function readMovements() {
     fetch(API_DASHBOARD + 'readMovements', {
         method: 'get'
     }).then(function (request) {
@@ -88,6 +96,33 @@ function readMovements(api) {
                 }
                 // Se envían los datos a la función del controlador para que llene la tabla en la vista.
                 fillMovements(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Carga la tabla de residentes con visitas
+function readResidents() {
+    fetch(API_DASHBOARD + 'visitsByResident', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    closeModal('residenteVisita');
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillResidents(data);
             });
         } else {
             console.log(request.status + ' ' + request.statusText);
@@ -122,6 +157,31 @@ function fillMovements(dataset){
     document.getElementById('tbody-rows2').innerHTML = content;
 }
 
+function fillResidents(dataset){
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+        <tr>
+            <!-- Datos-->
+            <td>${row.residente}</td>
+            <td>${row.visitas}</td>
+            <!-- Boton-->
+            <th scope="row">
+                <div class="row paddingBotones">
+                    <div class="col-12">
+                        <a href="#" data-toggle="modal" onclick="setIdResidente(${row.idresidente})" class="btn btnTabla"><i class="fas fa-eye"></i></a>
+                    </div>
+                </div>
+            </th>
+        </tr>
+        `; 
+    });
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('tbody-rows3').innerHTML = content;
+}
+
 //Setea el id de un registro al input y posteriormente se ejecuta el evento submit del formulario
 function setIdMaterial(id){
     //Se asigna el id al input
@@ -130,6 +190,16 @@ function setIdMaterial(id){
     closeModal('historialInventario');
     //Se ejecuta la función de la grafica
     graficaLineaHistorialInventario();
+}
+
+//Setea el id del residente al input y posteriormente se ejecuta el evento submit del formulario
+function setIdResidente(id){
+    //Se asigna el id al input
+    document.getElementById('idresidente').value = id;
+    //Se cierra el modal
+    closeModal('residenteVisita');
+    //Se ejecuta la funcion de la grafica
+    graficaBarrasResidente();
 }
 
 //Genera una grafica de lineas acerca de las visitas de los ultimos 6 meses
@@ -263,9 +333,9 @@ document.getElementById('historialInventario-form').addEventListener('submit',fu
                     //lineGraph
                     lineGraph('cnHistorialInventario', fecha, cantidad, 'asd', 'Cantidad en el inventario: ', nombreproducto[0], colorFuente);
                 } else {
-                    closeModal('historialInventario');
-                    console.log('error')
-                    sweetAlert(4, response.exception, null);
+                    //se oculta el canvas
+                    document.getElementById('graficaInventario').className = 'd-none';
+                    document.getElementById('noInventario').className = 'd-flex flex-column justify-content-center align-items-center'; 
                 }
             });
         } else {
@@ -275,6 +345,109 @@ document.getElementById('historialInventario-form').addEventListener('submit',fu
         console.log(error);
     });
 
+});
+
+//Genera una grafica de barras de las visitas de un residente
+function graficaBarrasResidente(){
+    //Se presiona el boton del formulario invisible para activar el evento submit
+    document.getElementById('btnResidenteVisita').click();
+}
+
+//Al activar el evento submit del formulario residenteVisita-form
+document.getElementById('residenteVisita-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //fetch
+    fetch(API_DASHBOARD + 'visitsOfAResident', {
+        method: 'post',
+        body: new FormData(document.getElementById('residenteVisita-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Creamos arreglos para guardar la informacion
+                    let residente = [];
+                    let visitas = [];
+                    let mes = [];
+
+                    //recorremos los registros obtenidos y lo sagregamos a los arreglos
+                    response.dataset.map(function(row){
+                        ///Asignamos
+                        residente.push(row.residente);
+                        visitas.push(row.visitas);
+                        mes.push(row.mes);
+                    });
+
+                    //Se destruye el elemento actual para poder crear otro
+                    document.getElementById('contenedorGraficaVisitasResidente').removeChild(document.getElementById('cnVisitasResidente'));
+                    //Creamos un nuevo canvas
+                    var graph = document.createElement('canvas');
+                    //Asignamos el mismo id
+                    graph.id = 'cnVisitasResidente';   
+                    //Agregamos el elemento al div
+                    document.getElementById('contenedorGraficaVisitasResidente').appendChild(graph);
+                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                    var modo = document.getElementById('txtModo').value;
+                    var colorFuente;
+                    var colorFondo;
+
+                    if (modo == 'light') {
+                        colorFuente = 'rgb(0,0,0)';
+                    } else if (modo == 'dark') {
+                        colorFuente = 'rgb(255,255,255)';
+                    }
+
+                    if (modo == 'light') {
+                        colorFondo = '#F1F4F9';
+                    } else if (modo == 'dark') {
+                        colorFondo = '#121212';
+                    }
+
+                    //Creamos un arreglo para guardar los meses de forma textual
+                    let meses = [];
+                    //Recorremos el arreglo de meses uno por uno y evaluamos su valor 
+                    for (let index = 0; index < mes.length; index++) {
+                        if (mes[index] == 1) {
+                            meses[index] = 'Enero';
+                        } else if(mes[index] == 2) {
+                            meses[index] = 'Febrero';
+                        } else if(mes[index] == 3) {
+                            meses[index] = 'Marzo';
+                        } else if(mes[index] == 4) {
+                            meses[index] = 'Abril';
+                        } else if(mes[index] == 5) {
+                            meses[index] = 'Mayo';
+                        } else if(mes[index] == 6) {
+                            meses[index] = 'Junio';
+                        } else if(mes[index] == 7) {
+                            meses[index] = 'Julio';
+                        } else if(mes[index] == 8) {
+                            meses[index] = 'Agosto';
+                        } else if(mes[index] == 9) {
+                            meses[index] = 'Septiembre';
+                        } else if(mes[index] == 10) {
+                            meses[index] = 'Octubre';
+                        } else if(mes[index] == 11) {
+                            meses[index] = 'Noviembre';
+                        } else if(mes[index] == 2) {
+                            meses[index] = 'Diciembre';
+                        }
+                    }
+                    //barGraph
+                    barGraph('cnVisitasResidente', meses, visitas, residente[0], colorFondo, colorFuente, 'Visitas: ');
+                } else {
+                    document.getElementById('graficaResidente').className = 'd-none';
+                    document.getElementById('noVisitasResidente').className = 'd-flex flex-column justify-content-center align-items-center';
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 })
 
 //Funcion para crear una grafica de pastel acerca de las denuncias por estado

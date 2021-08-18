@@ -206,6 +206,32 @@ class Visitas extends Validator
 
     //Sentencias SQL a la tabla visita.
 
+    //visitas por un residente
+    public function visitsOfAResident()
+    {
+        $sql = 'SELECT CONCAT(nombre,\' \',apellido) as residente, COUNT(idvisita) as visitas, EXTRACT(MONTH FROM fecha) as mes 
+                FROM visita 
+                INNER JOIN residente USING (idresidente)
+                WHERE EXTRACT(MONTH FROM fecha) <= (SELECT EXTRACT(MONTH FROM current_date)) 
+                AND EXTRACT(MONTH FROM fecha) > (SELECT EXTRACT(MONTH FROM current_date)- 6) 
+                AND idestadovisita = 1 AND idresidente = ?
+                GROUP BY mes, residente
+                LIMIT 6';
+        $params = array($this->idResidente);
+        return Database::getRows($sql, $params);
+    }
+
+    //Cantidad de visitas por residete
+    public function visitsByResident()
+    {
+        $sql = 'SELECT idresidente, CONCAT(nombre,\' \',apellido) as residente, COUNT(idvisita) FILTER (WHERE idestadovisita = 1) as visitas FROM visita
+                INNER JOIN residente USING (idresidente)
+                GROUP BY idresidente, residente
+                ORDER BY visitas DESC';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
     //Cantidad de visitas de los ultimos 6 meses (Grafica)
     public function last6MonthsOfVisits()
     {
@@ -213,7 +239,7 @@ class Visitas extends Validator
                 FROM visita 
                 WHERE EXTRACT(MONTH FROM fecha) <= (SELECT EXTRACT(MONTH FROM current_date)) 
                 AND EXTRACT(MONTH FROM fecha) > (SELECT EXTRACT(MONTH FROM current_date)- 6) 
-                AND idestadovisita = 3 
+                AND idestadovisita = 1
                 GROUP BY mes
                 ORDER BY mes ASC';
         $params = null;
