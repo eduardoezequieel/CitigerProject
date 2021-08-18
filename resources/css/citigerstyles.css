@@ -81,6 +81,16 @@
       width: 290px !important;
     }
 
+    #graficaResidente {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #graficaInventario {
+      display: flex;
+      flex-direction: column;
+    }
+
     #graficaVisitasResidente{
       width: 300px !important;
       height: 300px !important;

@@ -1603,7 +1603,6 @@ function barGraph(id, xAxis, yAxis, titulo, colorFondo, colorFuente, mensaje){
         }
     }
 
-    console.log(colores);
     //Se obtiene el canvas
     var ctx = document.getElementById(id).getContext('2d');
     //Chart js
