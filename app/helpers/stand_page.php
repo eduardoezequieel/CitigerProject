@@ -122,7 +122,7 @@
             print('
                     <script src="../../resources/js/jquery-3.5.1.slim.min.js"></script>
                     <script src="../../resources/js/bootstrap.bundle.min.js"></script>
-                    <script src="../../app/controllers/dashboard/'.$controller.'"></script>
+                    <script src="../../app/controllers/caseta/'.$controller.'"></script>
                     <script src="../../resources/js/datatables.min.js"></script>
                     <script src="../../resources/js/sweetalert.min.js"></script>
                     <script src="../../app/helpers/components.js"></script>

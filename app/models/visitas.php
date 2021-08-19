@@ -455,12 +455,12 @@ class Visitas extends Validator
     {
         $sql = 'SELECT COUNT(idvisita) as visitas 
                 FROM visita 
-                WHERE idestadovisita = 1';
+                WHERE idestadovisita = 4';
         $params = null;
         return Database::getRow($sql, $params);
     }
 
-    //Función para verificar visita por el dui
+    //Función para verificar visita por el dui y con estado activa
     public function checkVisitDui()
     {
         $sql = 'SELECT CONCAT(residente.apellido, \' \', residente.nombre) as residente, fecha, 
@@ -469,7 +469,7 @@ class Visitas extends Validator
                 INNER JOIN visitante ON visitante.idvisitante = detallevisita.idvisitante
                 INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
                 INNER JOIN residente ON residente.idresidente = visita.idresidente
-                WHERE visitante.dui = ? AND visita.idestadovisita = 1';
+                WHERE visitante.dui = ? AND visita.idestadovisita = 4';
         $params = array($this->dui);
         return Database::getRow($sql, $params);
     }
@@ -483,16 +483,16 @@ class Visitas extends Validator
                 INNER JOIN visitante ON visitante.idvisitante = detallevisita.idvisitante
                 INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
                 INNER JOIN residente ON residente.idresidente = visita.idresidente
-                WHERE visitante.placa = ? AND visita.idestadovisita = 1';
+                WHERE visitante.placa = ? AND visita.idestadovisita = 4';
         $params = array($this->placa);
         return Database::getRow($sql, $params);
     }
 
-    //Función para cambiar estado de visita
+    //Función para cambiar estado de visita a finalizada cuando la visita esté verificada
     public function updateVisita()
     {
         $sql = 'UPDATE visita 
-                SET idestadovisita = 2
+                SET idestadovisita = 3
                 WHERE idvisita = ?';
         $params = array($this->idVisita);
         return Database::executeRow($sql, $params);
