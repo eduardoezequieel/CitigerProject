@@ -111,6 +111,22 @@
     .graficasCuadradas {
       width: 240px !important;
     }
+
+    #graficaEspacio {
+      width: 300px !important;
+      height: 300px !important;
+    }
+
+    #graficaEspacioVeces{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #contenedorGraficaEspacio {
+      width: 240px !important;
+    }
   
   }
 
@@ -133,7 +149,7 @@
 }
 
 .graficasCuadradas {
-  width: 270px;
+  width: 273px;
 }
 
 #contenedorVisitas {
@@ -142,6 +158,10 @@
 
 #contenedorGraficaVisitasResidente {
   width: 820px;
+}
+
+#contenedorGraficaEspacio {
+  width: 456px;
 }
 
 #graficaHistorialInventario {

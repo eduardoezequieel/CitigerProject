@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded',function(){
     graficaAreaEspacios();
     graficaLineaHistorialInventario();
     graficaBarrasResidente();
+    graficaLineasEspacioUsos();
 
     //Carga los contadores
     contadorDenuncias();
@@ -26,6 +27,7 @@ document.getElementById('btnCollapseGraficas').addEventListener('click',function
     graficaAreaEspacios();
     graficaLineaHistorialInventario();
     graficaBarrasResidente();
+    graficaLineasEspacioUsos();
 });
 
 //Se ejecuta al presionar el boton para seleccionar un producto con historial de movimientos de stock
@@ -38,6 +40,12 @@ document.getElementById('btnModalInventario').addEventListener('click',function(
 document.getElementById('btnModalResidente').addEventListener('click',function(){
     //Se cargan los datos a la tabla
     readResidents();
+})
+
+//Se ejecuta al presionar el boton para seleccionar un espacio con usos
+document.getElementById('btnModalEspacio').addEventListener('click',function(){
+    //Se cargan los datos a la tabla
+    readSpaces();
 })
 
 //Para reiniciar busquedas
@@ -132,6 +140,33 @@ function readResidents() {
     });
 }
 
+//Carga la tabla de espacios con usos
+function readSpaces() {
+    fetch(API_DASHBOARD + 'spacesUses', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    closeModal('espacioVeces');
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillSpaces(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
 function fillMovements(dataset){
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -182,6 +217,31 @@ function fillResidents(dataset){
     document.getElementById('tbody-rows3').innerHTML = content;
 }
 
+function fillSpaces(dataset){
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+        <tr>
+            <!-- Datos-->
+            <td>${row.nombre}</td>
+            <td>${row.usos}</td>
+            <!-- Boton-->
+            <th scope="row">
+                <div class="row paddingBotones">
+                    <div class="col-12">
+                        <a href="#" data-toggle="modal" onclick="setIdEspacio(${row.idespacio})" class="btn btnTabla"><i class="fas fa-eye"></i></a>
+                    </div>
+                </div>
+            </th>
+        </tr>
+        `; 
+    });
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('tbody-rows4').innerHTML = content;
+}
+
 //Setea el id de un registro al input y posteriormente se ejecuta el evento submit del formulario
 function setIdMaterial(id){
     //Se asigna el id al input
@@ -200,6 +260,16 @@ function setIdResidente(id){
     closeModal('residenteVisita');
     //Se ejecuta la funcion de la grafica
     graficaBarrasResidente();
+}
+
+//Setea el id del espacip al input y posteriormente se ejecuta el evento submit del formulario
+function setIdEspacio(id){
+    //Se asigna el id al input
+    document.getElementById('idespacio').value = id;
+    //Se cierra el modal
+    closeModal('espacioVeces');
+    //Se ejecuta la funcion de la grafica
+    graficaLineasEspacioUsos();
 }
 
 //Genera una grafica de lineas acerca de las visitas de los ultimos 6 meses
@@ -277,6 +347,104 @@ function graficaLineaVisitas() {
         console.log(error);
     });
 }
+
+//Genera una grafica de lineas del historial de usos de un espacio
+function graficaLineasEspacioUsos(){
+    //Se presiona el boton del formulario invisible para activar el evento submit
+    document.getElementById('btnEspacio').click();
+}
+
+//Al accionar el evento submit de historialInventario-form
+document.getElementById('espacioVeces-form').addEventListener('submit',function(event){
+    //evitamos recargar la pagina
+    event.preventDefault();
+    //fetch
+    fetch(API_DASHBOARD + 'spaces6Months', {
+        method: 'post',
+        body: new FormData(document.getElementById('espacioVeces-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Creamos arreglos para guardar la informacion
+                    let mes = [];
+                    let totalusos = [];
+                    let nombre = [];
+
+                    //recorremos los registros obtenidos y lo sagregamos a los arreglos
+                    response.dataset.map(function(row){
+                        ///Asignamos
+                        mes.push(row.mes);
+                        totalusos.push(row.totaluso);
+                        nombre.push(row.nombre);
+                    });
+
+                    //Se destruye el elemento actual para poder crear otro
+                    document.getElementById('contenedorGraficaEspacio').removeChild(document.getElementById('cnEspacioVeces'));
+                    //Creamos un nuevo canvas
+                    var graph = document.createElement('canvas');
+                    //Asignamos el mismo id
+                    graph.id = 'cnEspacioVeces';   
+                    //Agregamos el elemento al div
+                    document.getElementById('contenedorGraficaEspacio').appendChild(graph);
+                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                    var modo = document.getElementById('txtModo').value;
+                    var colorFuente;
+
+                    if (modo == 'light') {
+                        colorFuente = 'rgb(0,0,0)';
+                    } else if (modo == 'dark') {
+                        colorFuente = 'rgb(255,255,255)';
+                    }
+
+                    //Creamos un arreglo para guardar los meses de forma textual
+                    let meses = [];
+                    //Recorremos el arreglo de meses uno por uno y evaluamos su valor 
+                    for (let index = 0; index < mes.length; index++) {
+                        if (mes[index] == 1) {
+                            meses[index] = 'Enero';
+                        } else if(mes[index] == 2) {
+                            meses[index] = 'Febrero';
+                        } else if(mes[index] == 3) {
+                            meses[index] = 'Marzo';
+                        } else if(mes[index] == 4) {
+                            meses[index] = 'Abril';
+                        } else if(mes[index] == 5) {
+                            meses[index] = 'Mayo';
+                        } else if(mes[index] == 6) {
+                            meses[index] = 'Junio';
+                        } else if(mes[index] == 7) {
+                            meses[index] = 'Julio';
+                        } else if(mes[index] == 8) {
+                            meses[index] = 'Agosto';
+                        } else if(mes[index] == 9) {
+                            meses[index] = 'Septiembre';
+                        } else if(mes[index] == 10) {
+                            meses[index] = 'Octubre';
+                        } else if(mes[index] == 11) {
+                            meses[index] = 'Noviembre';
+                        } else if(mes[index] == 2) {
+                            meses[index] = 'Diciembre';
+                        }
+                    }
+                    //lineGraph
+                    lineGraph('cnEspacioVeces', meses, totalusos, 'asd', 'Usos: ', nombre[0], colorFuente);
+                } else {
+                    //se oculta el canvas
+                    document.getElementById('graficaEspacioVeces').className = 'd-none';
+                    document.getElementById('noEspacioVeces').className = 'd-flex flex-column justify-content-center align-items-center'; 
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
 
 //Genera una grafica de lineas del historial de movimientos de un productó
 function graficaLineaHistorialInventario(){

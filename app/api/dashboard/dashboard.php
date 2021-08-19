@@ -207,6 +207,35 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Id incorrecto';
                 }
                 break;
+            //Caso para obtener la cantidad de veces mensuales que un espacio ha sido utilizado en los ultimos 6 meses
+            case 'spaces6Months':
+                if ($espacio->setIdEspacio($_POST['idespacio'])) {
+                    if ($result['dataset'] = $espacio->spaces6Months()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay alquileres para este espacio :(';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto';
+                }
+                break;
+            //Caso para ver los espacios y su cantidad de usos
+            case 'spacesUses':
+                if ($result['dataset'] = $espacio->spacesUses()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No ningun espacio utilizado :(';
+                    }
+                }
+                break;
+
         }
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('content-type: application/json; charset=utf-8');

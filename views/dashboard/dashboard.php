@@ -217,8 +217,28 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                 </div>
                 <div class="row justify-content-center align-items-center mt-4">
                     <div class="margenGraficas d-flex justify-content-center align-items-center">
+                        <!-- Grafica de la cantidad de veces que un espacio ha sido usado -->
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center"">
+                            <div class="tarjetaDashboardGrafica" id="graficaEspacio">
+                                <form method="post" class="d-none" id="espacioVeces-form">
+                                    <input type="number" value="3" id="idespacio" name="idespacio">
+                                    <button type="submit" id="btnEspacio"></button>
+                                </form>
+                                <div id="graficaEspacioVeces">
+                                    <button data-toggle="modal" data-target="#espacioVeces" id="btnModalEspacio" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
+                                    <h1 class="tituloGrafica text-center">Historial de Usos por Espacio</h1>
+                                    <div id="contenedorGraficaEspacio">
+                                        <canvas id="cnEspacioVeces"></canvas>
+                                    </div>
+                                </div>
+                                <div id="noEspacioVeces" class="d-none">
+                                    <i class="fas fa-sad-tear icono4"></i>
+                                    <h1 class="tituloTarjetaDashboard text-center my-4">No hay usos para este espacio :(</h1>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Grafica de espacios demandados -->
-                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
+                        <div class="mtResponsive col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
                             <div class="tarjetaDashboardGrafica">
                                 <div class="graficasCuadradas" id="graficaEspacios">
                                     <canvas class="#" id="cnEspacioDemandado" width="230"></canvas>
@@ -415,6 +435,59 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 </tr>
                             </thead>
                             <tbody id="tbody-rows3">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Desde aqui termina la tabla --><br>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
+
+<!-- Modal para seleccionar un espacio -->
+<div class="modal fade" id="espacioVeces" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Seleccione un espacio</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <!-- Busqueda -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
+                        <form class="mx-3 mb-2" method="post" id="search-form-espacioVeces">
+                            <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
+                            <input type="text" class="form-control buscador" id="search-espacioVeces" name="search-espacioVeces" aria-describedby="emailHelp" placeholder="{ Espacio }">
+                        </form>   
+
+                        <div class="mt-4 mx-3 mb-3">
+                            <a href="#" id="btnReiniciarEspacios" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Desde aqui comienza la tabla -->
+                <div class="row mt-3 justify-content-center table-responsive tablaResponsive">
+                    <div class="col-12 justify-content-center align-items-center text-center">
+                        <table class="table table-borderless citigerTable">
+                            <thead>
+                                <!-- Columnas-->
+                                <tr>
+                                    <th scope="col">Espacios</th>
+                                    <th scope="col">Usos</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-rows4">
                                 
                             </tbody>
                         </table>
