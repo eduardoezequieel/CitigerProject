@@ -218,7 +218,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                 <div class="row justify-content-center align-items-center mt-4">
                     <div class="margenGraficas d-flex justify-content-center align-items-center">
                         <!-- Grafica de la cantidad de veces que un espacio ha sido usado -->
-                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center"">
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
                             <div class="tarjetaDashboardGrafica" id="graficaEspacio">
                                 <form method="post" class="d-none" id="espacioVeces-form">
                                     <input type="number" value="3" id="idespacio" name="idespacio">
@@ -246,6 +246,30 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 <div id="noEspacio" class="d-none">
                                     <i class="fas fa-sad-tear icono4"></i>
                                     <h1 class="tituloTarjetaDashboard text-center my-4">No hay espacios</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center align-items-center mt-4">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <!-- Grafica de aportaciones por estado por mes y año -->
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <div class="tarjetaDashboardGrafica">
+                                <form method="post" class="d-none" id="aportacionesEstado-form">
+                                    <input type="number" id="idmespago" name="idmespago" value="1">
+                                    <button type="submit" id="btnMesPago"></button>
+                                </form>
+                                <div id="graficaAportaciones">
+                                    <button data-toggle="modal" data-target="#aportacionesEstado" id="btnModalAportaciones" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
+                                    <h1 class="tituloGrafica text-center">Aportaciones por Estado</h1>
+                                    <div id="contenedorGraficaAportaciones">
+                                        <canvas id="cnAportaciones"></canvas>
+                                    </div>
+                                </div>
+                                <div id="noAportaciones" class="d-none">
+                                    <i class="fas fa-sad-tear icono4"></i>
+                                    <h1 class="tituloTarjetaDashboard text-center my-4">No hay aportaciones en este mes:    (</h1>
                                 </div>
                             </div>
                         </div>

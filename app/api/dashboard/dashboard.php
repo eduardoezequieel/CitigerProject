@@ -6,6 +6,8 @@ require_once('../../models/visitas.php');
 require_once('../../models/denuncias.php');
 require_once('../../models/inventario.php');
 require_once('../../models/espacios.php');
+require_once('../../models/aportaciones.php');
+
 
 if (isset($_GET['action'])) {
     //Reanudando la sesion
@@ -21,6 +23,8 @@ if (isset($_GET['action'])) {
     $inventario = new Inventario();
     //Objeto para instanciar la clase
     $espacio = new Espacios();
+    //Objeto para instanciar la clase
+    $aportacion = new Aportaciones();
 
     //Arreglo para guardar respuestas de la API
     $result = array('status' => 0, 'error' => 0, 'message' => null, 'exception' => null);
@@ -235,6 +239,26 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
+            //Caso para obtener el porcentaje de aportaciones por estado (De forma mensual);
+            case 'stateContributions':
+                if ($aportacion->setIdMespago($_POST['idmespago'])) {
+                    if ($result['dataset'] = $aportacion->stateContributions()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+
+                        } else {
+                            $result['exception'] = 'No hay aportaciones en este mes.';
+                        }
+                        
+                    }
+                    
+                } else {
+                    $result['exception'] = 'Id incorrecto :(';
+                }
+                break;
+
 
         }
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.

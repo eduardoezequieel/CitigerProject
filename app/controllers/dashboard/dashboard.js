@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded',function(){
     graficaLineaHistorialInventario();
     graficaBarrasResidente();
     graficaLineasEspacioUsos();
+    graficaPastelAportaciones();
 
     //Carga los contadores
     contadorDenuncias();
@@ -28,6 +29,7 @@ document.getElementById('btnCollapseGraficas').addEventListener('click',function
     graficaLineaHistorialInventario();
     graficaBarrasResidente();
     graficaLineasEspacioUsos();
+    graficaPastelAportaciones();
 });
 
 //Se ejecuta al presionar el boton para seleccionar un producto con historial de movimientos de stock
@@ -348,6 +350,86 @@ function graficaLineaVisitas() {
     });
 }
 
+//Genera una grafica de pastel con el porcentaje de aportaciones por estado por mes
+function graficaPastelAportaciones(){
+    //Se presiona el boton del formulario invisible para activar el evento submit
+    document.getElementById('btnMesPago').click();
+}
+
+//Al accionar el evento submit de aportacionesEstado-form
+document.getElementById('aportacionesEstado-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //fetch
+    fetch(API_DASHBOARD + 'stateContributions', {
+        method: 'post',
+        body: new FormData(document.getElementById('aportacionesEstado-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //Creamos arreglos para guardar la informacion
+                    let estadoaportacion = [];
+                    let porcentajestados = [];
+                    let mespago = [];
+
+                    //recorremos los registros obtenidos y lo sagregamos a los arreglos
+                    response.dataset.map(function(row){
+                        ///Asignamos
+                        estadoaportacion.push(row.estadoaportacion);
+                        porcentajestados.push(row.porcentajestados);
+                        mespago.push(row.mespago);
+                    });
+
+                    //Se destruye el elemento actual para poder crear otro
+                    document.getElementById('contenedorGraficaAportaciones').removeChild(document.getElementById('cnAportaciones'));
+                    //Creamos un nuevo canvas
+                    var graph = document.createElement('canvas');
+                    //Asignamos el mismo id
+                    graph.id = 'cnAportaciones';   
+                    //Agregamos el elemento al div
+                    document.getElementById('contenedorGraficaAportaciones').appendChild(graph);
+                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                    var modo = document.getElementById('txtModo').value;
+                    var colorFuente;
+                    var colorFondo;
+
+                    if (modo == 'light') {
+                        colorFuente = 'rgb(0,0,0)';
+                    } else if (modo == 'dark') {
+                        colorFuente = 'rgb(255,255,255)';
+                    }
+
+                    if (modo == 'light') {
+                        colorFondo = '#F1F4F9';
+                    } else if (modo == 'dark') {
+                        colorFondo = '#121212';
+                    }
+
+                    //Recorremos el arreglo para limitar los decimales
+                    for (let index = 0; index < porcentajestados.length; index++) {
+                        var num = parseInt(porcentajestados[index]);
+                        porcentajestados[index] = num.toFixed(2);   
+                    }
+
+                    //pieGraph
+                    pieGraph('cnAportaciones', estadoaportacion, porcentajestados, mespago[0], colorFondo, colorFuente);
+                } else {
+                    /*se oculta el canvas
+                    document.getElementById('graficaEspacioVeces').className = 'd-none';
+                    document.getElementById('noEspacioVeces').className = 'd-flex flex-column justify-content-center align-items-center'; */
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+})
+
 //Genera una grafica de lineas del historial de usos de un espacio
 function graficaLineasEspacioUsos(){
     //Se presiona el boton del formulario invisible para activar el evento submit
@@ -652,6 +734,12 @@ function graficaPastelDenuncia(){
                         colorFondo = '#F1F4F9';
                     } else if (modo == 'dark') {
                         colorFondo = '#121212';
+                    }
+
+                    //Recorremos el arreglo para limitar los decimales
+                    for (let index = 0; index < porcentajedenuncia.length; index++) {
+                        var num = parseInt(porcentajedenuncia[index]);
+                        porcentajedenuncia[index] = num.toFixed(2);   
                     }
 
                     pieGraph('cnEstadoDenuncia', estadodenuncia, porcentajedenuncia, 'Denuncias', colorFondo, colorFuente)

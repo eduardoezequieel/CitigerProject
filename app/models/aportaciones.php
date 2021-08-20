@@ -120,6 +120,20 @@ class Aportaciones extends Validator
         return $this->direccion;
     }
 
+    //Funcion para obtener el porcentaje de aportaciones por estado (De forma mensual);
+    public function stateContributions()
+    {
+        $sql = 'SELECT CONCAT(mes,\' \', ano) as mespago, estadoaportacion, (COUNT(idaportacion) * 100.0) / (SELECT COUNT(idaportacion) FROM aportacion WHERE idmespago = ?) 
+                AS porcentajestados
+                FROM aportacion
+                INNER JOIN estadoaportacion USING(idestadoaportacion)
+                INNER JOIN mespago USING (idmespago)
+                WHERE idmespago = ?
+                GROUP BY mespago, estadoaportacion';
+        $params = array($this->idMesPago, $this->idMesPago);
+        return Database::getRows($sql, $params);
+    }
+
     public function createRow()
     {
         $sql = 'INSERT INTO casa(idestadocasa, numerocasa, direccion)
