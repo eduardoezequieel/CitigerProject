@@ -325,6 +325,24 @@
             $params = array($_SESSION['idusuario'],$action, $desc);
             return Database::executeRow($sql, $params);
         }
+
+        public function readTipoEmpleado2()
+        {
+            $sql = 'SELECT idtipoempleado, tipoempleado FROM tipoempleado';
+            $params = null;
+            return Database::getRows($sql, $params);
+        }
+
+        public function empleadoTipo()
+        {
+            $sql="SELECT CONCAT(apellido,', ', nombre) AS nombre, dui, telefono, estadoempleado.estadoempleado
+            FROM empleado 
+            INNER JOIN estadoempleado USING(idestadoempleado)
+            WHERE idtipoempleado = ?
+            ORDER BY nombre";
+            $params = array($this->idTipoEmpleado);
+            return Database::getRows($sql, $params);
+        }
     }
     
 ?>

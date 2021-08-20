@@ -274,11 +274,6 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                                 <div class="cbCitiger">
                                     <select class="custom-select" id="cbAnio2" name="cbAnio2">
                                         <option selected="">Seleccionar...</option>
-                                        <option value="2022">2022</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2025">2025</option>
-                                    </select>
                                     <input type="number" name="anio2" id="anio2" class="d-none">
 
                                 </div>

@@ -48,6 +48,10 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                 </form>
 
                 <div class="mt-4 mx-3 mb-3">
+                    <a href="../../app/reports/dashboard/empleados.php" id="btnReporte" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
+                </div>
+
+                <div class="mt-4 mx-3 mb-3">
                     <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
                 </div>
             </div>
