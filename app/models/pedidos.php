@@ -368,6 +368,25 @@
         return Database::getRows($sql, $params);  
     }
 
+    public function readPedidosEstado()
+    {
+        $sql = "SELECT CONCAT(empleado.apellido,', ', empleado.nombre) AS empleado, CONCAT(usuario.apellido,', ', usuario.nombre)
+        AS usuario_encargado, fechapedido FROM pedido
+        INNER JOIN empleado USING(idempleado)
+        INNER JOIN usuario USING(idusuario)
+        WHERE idestadopedido = ?
+        ORDER BY fechapedido DESC";
+        $params = array($this->idEstadoPedido);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readEstadoPedido2()
+    {
+        $sql = 'SELECT idestadopedido, estadopedido FROM estadopedido';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
 
     
  }
