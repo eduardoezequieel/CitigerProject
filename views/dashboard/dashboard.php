@@ -261,7 +261,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                     <button type="submit" id="btnMesPago"></button>
                                 </form>
                                 <div id="graficaAportaciones">
-                                    <button data-toggle="modal" data-target="#aportacionesEstado" id="btnModalAportaciones" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
+                                    <button data-toggle="modal" data-target="#mesAño" id="btnModalAportaciones" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
                                     <h1 class="tituloGrafica text-center">Aportaciones por Estado</h1>
                                     <div id="contenedorGraficaAportaciones">
                                         <canvas id="cnAportaciones"></canvas>
@@ -508,6 +508,71 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 <tr>
                                     <th scope="col">Espacios</th>
                                     <th scope="col">Usos</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-rows4">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Desde aqui termina la tabla --><br>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
+
+<!-- Modal para seleccionar un mes y año -->
+<div class="modal fade" id="mesAño" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Seleccione un mes</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <!-- Busqueda -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
+                        <form class="mx-3 mb-2" method="post" id="search-form-espacioVeces">
+                            <h1 class="tituloCajaTextoFormulario">Año:</h1>
+                            <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                            cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                            deseado en el combobox  -->
+                            <div class="cbCitiger">
+                                <select class="custom-select" id="cbAnio">
+                                    <option selected="">Seleccionar...</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                            </div>
+                        </form>   
+
+                        <div class="mt-4 mx-3 mb-3">
+                            <a href="#" id="btnReiniciarEspacios" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Desde aqui comienza la tabla -->
+                <div class="row mt-3 justify-content-center table-responsive tablaResponsive">
+                    <div class="col-12 justify-content-center align-items-center text-center">
+                        <table class="table table-borderless citigerTable">
+                            <thead>
+                                <!-- Columnas-->
+                                <tr>
+                                    <th scope="col">Mes</th>
+                                    <th scope="col">Aportaciones</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
