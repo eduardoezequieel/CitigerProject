@@ -1,5 +1,7 @@
 const API_CASAS = '../../app/api/dashboard/aportaciones.php?action=';
 const ENDPOINT_TIPOS = '../../app/api/dashboard/aportaciones.php?action=readEmployeeTypes';
+const ENDPOINT_ANIO = '../../app/api/dashboard/aportaciones.php?action=readAnio';
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -17,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se declara e inicializa una variable para establecer el formato de la fecha.
     let date = `${year}-${month}-${day}`;
     document.getElementById('lblFecha').textContent = date;
+    fillSelect2(ENDPOINT_ANIO, 'cbAnio2', null);
+
 
 
 })
@@ -304,19 +308,32 @@ function fillTableParam(dataset) {
         <td>${row.fechapago}</td>
         <td>${row.estadoaportacion}</td>
         <!-- Boton-->
-        <th scope="row">
-            <div class="row paddingBotones">
-                <div class="col-12">
-                    <a href="#" onclick="aceptarAportacion(${row.idaportacion})" class="btn btnTabla"><i class="fas fa-check"></i></a>
-                    <a href="#" onclick="aportacionPendiente(${row.idaportacion})" class="btn btnTabla2"><i class="fas fa-times"></i></a>
-                </div>
-            </div>
-        </th>
-    </tr>
         `;
+
+        if (row.estadoaportacion == "Pendiente") {
+            content += `
+                    <th scope="row">
+                    <div class="row paddingBotones">
+                        <div class="col-12">
+                            <a href="#" onclick="aceptarAportacion(${row.idaportacion})" class="btn btnTabla"><i class="fas fa-check"></i></a>
+
+                        </div>
+                    </div>
+                </th>
+            </tr> `
+        } else if(row.estadoaportacion == "Cancelada") {
+            content += `
+                    <th scope="row">
+                    <div class="row paddingBotones">
+                        <div class="col-12">
+                            <a href="#" onclick="aportacionPendiente(${row.idaportacion})" class="btn btnTabla2"><i class="fas fa-times"></i></a>
+                        </div>
+                    </div>
+                </th>
+            </tr> `
+        } 
     });
     document.getElementById('tbody-rows2').innerHTML = content;
-
 }
 
 // Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
@@ -388,6 +405,7 @@ document.getElementById('filtrarAportacion-form').addEventListener('submit', fun
 
 function agregarAportacion(id) {
 
+    fillSelect2(ENDPOINT_ANIO, 'cbAnio2', null);
     document.getElementById('Casa').value = ' ';
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
@@ -420,6 +438,47 @@ function agregarAportacion(id) {
 
     document.getElementById('Casa').value = id;
 
+}
+
+function fillSelect2(endpoint, select, selected) {
+    fetch(endpoint, {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let content = '';
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Si no existe un valor para seleccionar, se muestra una opción para indicarlo.
+                    if (!selected) {
+                        content += '<option disabled selected>Seleccionar...</option>';
+                    }
+                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                    response.dataset.map(function (row) {
+                        // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
+                        value = Object.values(row)[0];
+                        // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
+                        text = Object.values(row)[0];
+                        // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
+                        if (value != selected) {
+                            content += `<option value="${value}">${text}</option>`;
+                        } else {
+                            content += `<option value="${value}" selected>${text}</option>`;
+                        }
+                    });
+                } else {
+                    content += '<option>Sin opciones.</option>';
+                }
+                // Se agregan las opciones a la etiqueta select mediante su id.
+                document.getElementById(select).innerHTML = content;
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 }
 
 

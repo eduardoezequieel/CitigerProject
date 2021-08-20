@@ -230,6 +230,14 @@ class Aportaciones extends Validator
     }
 
 
+    //Métodos para obtener valores
+    public function readAnio()
+    {
+        $sql = 'SELECT DISTINCT ano FROM mespago where ano<>2021 ORDER BY ano ASC';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
     public function crearAportacion()
     {
 
@@ -373,5 +381,4 @@ class Aportaciones extends Validator
         $params = array($this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa, $this->idCasa);
         return Database::executeRow($sql, $params);
     }
-    
 }

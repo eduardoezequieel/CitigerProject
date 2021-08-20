@@ -28,6 +28,18 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
+            case 'readAnio':
+                if ($result['dataset'] = $aportaciones->readAnio()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha encontrado al menos un año.';
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No existen años.';
+                    }
+                }
+                break;
 
             case 'readOne':
                 $_POST = $aportaciones->validateForm($_POST);
