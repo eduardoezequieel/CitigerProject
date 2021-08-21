@@ -124,6 +124,13 @@
       align-items: center;
     }
 
+    #graficaAportaciones{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
     #contenedorGraficaEspacio {
       width: 240px !important;
     }
@@ -162,6 +169,10 @@
 
 #contenedorGraficaEspacio {
   width: 456px;
+}
+
+#contenedorGraficaAportaciones {
+  width: 240px;
 }
 
 #graficaHistorialInventario {

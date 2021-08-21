@@ -542,7 +542,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                 <!-- Busqueda -->
                 <div class="row justify-content-center">
                     <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
-                        <form class="mx-3 mb-2" method="post" id="search-form-espacioVeces">
+                        <form class="mx-3 mb-2" method="post" id="search-form-anoMes">
                             <h1 class="tituloCajaTextoFormulario">Año:</h1>
                             <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                             cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
@@ -557,10 +557,12 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                     <option value="2025">2025</option>
                                 </select>
                             </div>
+                            <input type="number" id="ano" name="ano" class="d-none">
+                            <button type="submit" class="d-none" id="btnSetAño"></button>
                         </form>   
 
                         <div class="mt-4 mx-3 mb-3">
-                            <a href="#" id="btnReiniciarEspacios" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
+                            <a href="#" id="btnReiniciarAños" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
                         </div>
                     </div>
                 </div>
@@ -576,7 +578,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody id="tbody-rows4">
+                            <tbody id="tbody-rows5">
                                 
                             </tbody>
                         </table>

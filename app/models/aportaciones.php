@@ -10,6 +10,7 @@ class Aportaciones extends Validator
     private $direccion = null;
     private $mes = null;
     private $idMesPago = null;
+    private $ano = null;
     private $idAportacion = null;
 
 
@@ -29,6 +30,16 @@ class Aportaciones extends Validator
     {
         if ($this->validateNaturalNumber($value)) {
             $this->idAportacion = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setAno($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->ano = $value;
             return true;
         } else {
             return false;
@@ -118,6 +129,23 @@ class Aportaciones extends Validator
     public function getDireccion()
     {
         return $this->direccion;
+    }
+
+    public function getAno()
+    {
+        return $this->ano;
+    }
+
+    //Funcion para obtener los meses con sus aportaciones por año
+    public function contributionsByYear()
+    {
+        $sql = 'SELECT idmespago, CONCAT(mes,\' \',ano) as mespago, count(idaportacion) as aportaciones FROM aportacion
+                INNER JOIN mespago USING (idmespago)
+                WHERE ano = ?
+                GROUP BY idmespago, mespago
+                ORDER BY idmespago ASC';
+        $params = array($this->ano);
+        return Database::getRows($sql, $params);
     }
 
     //Funcion para obtener el porcentaje de aportaciones por estado (De forma mensual);

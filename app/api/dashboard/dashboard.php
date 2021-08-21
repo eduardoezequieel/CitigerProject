@@ -258,6 +258,23 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Id incorrecto :(';
                 }
                 break;
+            //Caso para obtener los meses con sus aportaciones por año
+            case 'contributionsByYear':
+                if ($aportacion->setAno($_POST['ano'])) {
+                    if ($result['dataset'] = $aportacion->contributionsByYear()) {
+                        $result['status'] = 1;   
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay aportaciones en este año aún.';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Año inexistente :(';
+                }
+                
+                break;
 
 
         }

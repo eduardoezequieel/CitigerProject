@@ -50,6 +50,15 @@ document.getElementById('btnModalEspacio').addEventListener('click',function(){
     readSpaces();
 })
 
+//Se ejecuta al presionar el boton para seleccionar un mes y un año de aportaciones
+document.getElementById('btnModalAportaciones').addEventListener('click',function(){
+    //Se asigna el año actual a la funcion
+    var date = new Date();
+    var año = date.getFullYear();
+    //Se cargan los datos a la tabla
+    readYears(año);
+})
+
 //Para reiniciar busquedas
 document.getElementById('btnReiniciarMovimientos').addEventListener('click',function(event){
     //Evitamos recargar la pagina
@@ -169,6 +178,63 @@ function readSpaces() {
     });
 }
 
+//Carga la tabla de años y meses para aportaciones
+function readYears(año) {
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('ano', año);
+    
+    fetch(API_DASHBOARD + 'contributionsByYear', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    closeModal('mesAño');
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillYears(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function fillYears(dataset){
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+        <tr>
+            <!-- Datos-->
+            <td>${row.mespago}</td>
+            <td>${row.aportaciones}</td>
+            <!-- Boton-->
+            <th scope="row">
+                <div class="row paddingBotones">
+                    <div class="col-12">
+                        <a href="#" data-toggle="modal" onclick="setIdMespago(${row.idmespago})" class="btn btnTabla"><i class="fas fa-eye"></i></a>
+                    </div>
+                </div>
+            </th>
+        </tr>
+        `; 
+    });
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('tbody-rows5').innerHTML = content;
+}
+
 function fillMovements(dataset){
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -274,6 +340,16 @@ function setIdEspacio(id){
     graficaLineasEspacioUsos();
 }
 
+//Setea el id del espacip al input y posteriormente se ejecuta el evento submit del formulario
+function setIdMespago(id){
+    //Se asigna el id al input
+    document.getElementById('idmespago').value = id;
+    //Se cierra el modal
+    closeModal('mesAño');
+    //Se ejecuta la funcion de la grafica
+    graficaPastelAportaciones();
+}
+
 //Genera una grafica de lineas acerca de las visitas de los ultimos 6 meses
 function graficaLineaVisitas() {
     fetch(API_DASHBOARD + 'last6MonthsOfVisits', {
@@ -349,6 +425,7 @@ function graficaLineaVisitas() {
         console.log(error);
     });
 }
+
 
 //Genera una grafica de pastel con el porcentaje de aportaciones por estado por mes
 function graficaPastelAportaciones(){
