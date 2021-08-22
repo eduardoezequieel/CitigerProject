@@ -143,11 +143,57 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-            //Caso para realizar busquedas
+            //Caso para realizar busquedas de movimientos de productos
             case 'searchMovements':
                 $_POST = $inventario->validateForm($_POST);
                 if($_POST['search-historialInventario'] != ''){
                     if($result['dataset'] = $inventario->searchMovements($_POST['search-historialInventario'])){
+                        $result['status'] = 1;
+                        $row = count($result['dataset']);
+                        if($row > 0){
+                            $result['message'] = 'Se han encontrado '.$row .' coincidencias';
+                        } else{
+                            $result['message'] = 'Se ha encontrado una coincidencia';
+                        }
+                    } else{
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay coincidencias';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Campo vacio';
+                }
+                break;
+            //Caso para realizar busquedas de residentes de sus visitas
+            case 'searchVisitsByResident':
+                $_POST = $visita->validateForm($_POST);
+                if($_POST['search-residenteVisita'] != ''){
+                    if($result['dataset'] = $visita->searchVisitsByResident($_POST['search-residenteVisita'])){
+                        $result['status'] = 1;
+                        $row = count($result['dataset']);
+                        if($row > 0){
+                            $result['message'] = 'Se han encontrado '.$row .' coincidencias';
+                        } else{
+                            $result['message'] = 'Se ha encontrado una coincidencia';
+                        }
+                    } else{
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay coincidencias';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Campo vacio';
+                }
+                break;
+            //Caso para realizar espacios y sus usos
+            case 'searchSpacesUses':
+                $_POST = $espacio->validateForm($_POST);
+                if($_POST['search-espacioVeces'] != ''){
+                    if($result['dataset'] = $espacio->searchSpacesUses($_POST['search-espacioVeces'])){
                         $result['status'] = 1;
                         $row = count($result['dataset']);
                         if($row > 0){
@@ -272,6 +318,18 @@ if (isset($_GET['action'])) {
                     }
                 } else {
                     $result['exception'] = 'Año inexistente :(';
+                }
+                break;
+            //Caso para cargar los años de aportaciones disponibles
+            case 'readAnios':
+                if ($result['dataset'] = $aportacion->readAnios()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay años';
+                    }
                 }
                 
                 break;

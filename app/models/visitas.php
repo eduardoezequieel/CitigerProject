@@ -221,7 +221,7 @@ class Visitas extends Validator
         return Database::getRows($sql, $params);
     }
 
-    //Cantidad de visitas por residete
+    //Cantidad de visitas por residente
     public function visitsByResident()
     {
         $sql = 'SELECT idresidente, CONCAT(nombre,\' \',apellido) as residente, COUNT(idvisita) FILTER (WHERE idestadovisita = 1) as visitas FROM visita
@@ -229,6 +229,18 @@ class Visitas extends Validator
                 GROUP BY idresidente, residente
                 ORDER BY visitas DESC';
         $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    //Cantidad de visitas por residente (Busqueda)
+    public function searchVisitsByResident($value)
+    {
+        $sql = 'SELECT idresidente, CONCAT(nombre,\' \',apellido) as residente, COUNT(idvisita) FILTER (WHERE idestadovisita = 1) as visitas FROM visita
+                INNER JOIN residente USING (idresidente)
+                WHERE nombre ILIKE ? OR apellido ILIKE ?
+                GROUP BY idresidente, residente
+                ORDER BY visitas DESC';
+        $params = array("%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
 

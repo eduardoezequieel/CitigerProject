@@ -440,48 +440,6 @@ function agregarAportacion(id) {
 
 }
 
-function fillSelect2(endpoint, select, selected) {
-    fetch(endpoint, {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                let content = '';
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    // Si no existe un valor para seleccionar, se muestra una opción para indicarlo.
-                    if (!selected) {
-                        content += '<option disabled selected>Seleccionar...</option>';
-                    }
-                    // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
-                    response.dataset.map(function (row) {
-                        // Se obtiene el dato del primer campo de la sentencia SQL (valor para cada opción).
-                        value = Object.values(row)[0];
-                        // Se obtiene el dato del segundo campo de la sentencia SQL (texto para cada opción).
-                        text = Object.values(row)[0];
-                        // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
-                        if (value != selected) {
-                            content += `<option value="${value}">${text}</option>`;
-                        } else {
-                            content += `<option value="${value}" selected>${text}</option>`;
-                        }
-                    });
-                } else {
-                    content += '<option>Sin opciones.</option>';
-                }
-                // Se agregan las opciones a la etiqueta select mediante su id.
-                document.getElementById(select).innerHTML = content;
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(function (error) {
-        console.log(error);
-    });
-}
-
-
 document.getElementById('cbAnio2').addEventListener('change', function () {
     //Guardando el valor del select en un input
     document.getElementById('anio2').value = document.getElementById('cbAnio2').value;

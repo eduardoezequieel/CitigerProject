@@ -266,6 +266,13 @@ class Aportaciones extends Validator
         return Database::getRows($sql, $params);
     }
 
+    public function readAnios(){
+        $sql = 'SELECT DISTINCT ano FROM mespago ORDER BY ano ASC';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+    
+
     public function crearAportacion()
     {
 

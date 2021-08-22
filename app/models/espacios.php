@@ -151,6 +151,18 @@
             return Database::getRows($sql, $params);
         }
 
+        //Funcion para ver los espacios y su cantidad de usos (busqueda)
+        public function searchSpacesUses($value)
+        {
+            $sql = 'SELECT idespacio, nombre, COUNT(idalquiler) as usos 
+                    FROM alquiler 
+                    INNER JOIN espacio USING (idespacio) 
+                    WHERE nombre ILIKE ?
+                    GROUP BY idespacio, nombre';
+            $params = array("%$value%");
+            return Database::getRows($sql, $params);
+        }
+
         //Funcion para obtener la cantidad de veces mensuales que un espacio ha sido utilizado en los ultimos 6 meses
         public function spaces6Months()
         {

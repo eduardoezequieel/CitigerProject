@@ -549,21 +549,9 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                             deseado en el combobox  -->
                             <div class="cbCitiger">
                                 <select class="custom-select" id="cbAnio">
-                                    <option selected="">Seleccionar...</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
                                 </select>
                             </div>
-                            <input type="number" id="ano" name="ano" class="d-none">
-                            <button type="submit" class="d-none" id="btnSetAño"></button>
                         </form>   
-
-                        <div class="mt-4 mx-3 mb-3">
-                            <a href="#" id="btnReiniciarAños" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
-                        </div>
                     </div>
                 </div>
                 <!-- Desde aqui comienza la tabla -->

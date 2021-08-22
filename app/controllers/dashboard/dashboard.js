@@ -1,5 +1,6 @@
 //Constante para la direccion de la API
 const API_DASHBOARD = '../../app/api/dashboard/dashboard.php?action=';
+const ENDPOINT_ANIO2 = '../../app/api/dashboard/dashboard.php?action=readAnios';
 
 document.addEventListener('DOMContentLoaded',function(){
     //Carga la bitacora
@@ -56,8 +57,9 @@ document.getElementById('btnModalAportaciones').addEventListener('click',functio
     var date = new Date();
     var año = date.getFullYear();
     //Se cargan los datos a la tabla
+    fillSelect2(ENDPOINT_ANIO2, 'cbAnio', null);
     readYears(año);
-})
+});
 
 //Para reiniciar busquedas
 document.getElementById('btnReiniciarMovimientos').addEventListener('click',function(event){
@@ -65,6 +67,20 @@ document.getElementById('btnReiniciarMovimientos').addEventListener('click',func
     event.preventDefault();
     //Ejecutamos el metodo default
     readMovements();
+})
+
+document.getElementById('btnReiniciarResidentes').addEventListener('click',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Ejecutamos el metodo default
+    readResidents();
+})
+
+document.getElementById('btnReiniciarEspacios').addEventListener('click',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Ejecutamos el metodo default
+    readSpaces();
 })
 
 //Busca los movimientos de un producto
@@ -96,6 +112,66 @@ document.getElementById('search-form-historialInventario').addEventListener('sub
         console.log(error);
     });
 })
+
+//Busca los residentes y sus visitas
+document.getElementById('search-form-residenteVisita').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Realizamos el fetch
+    fetch(API_DASHBOARD + 'searchVisitsByResident', {
+        method: 'post',
+        body: new FormData(document.getElementById('search-form-residenteVisita'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                    fillResidents(response.dataset);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log("error");
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
+//Busca los espacios y sus usos
+document.getElementById('search-form-espacioVeces').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Realizamos el fetch
+    fetch(API_DASHBOARD + 'searchSpacesUses', {
+        method: 'post',
+        body: new FormData(document.getElementById('search-form-espacioVeces'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                    fillSpaces(response.dataset);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log("error");
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
 
 //Carga la tabla de movimientos de un producto
 function readMovements() {
@@ -196,7 +272,7 @@ function readYears(año) {
                 if (response.status) {
                     data = response.dataset;
                 } else {
-                    closeModal('mesAño');
+                    //closeModal('mesAño');
                     sweetAlert(4, response.exception, null);
                 }
                 // Se envían los datos a la función del controlador para que llene la tabla en la vista.
@@ -426,6 +502,12 @@ function graficaLineaVisitas() {
     });
 }
 
+//Se acciona al cambiar de valor el select
+document.getElementById('cbAnio').addEventListener('change',function(){
+    //Asignamos el valor del select a un input invisible
+    var num = document.getElementById('cbAnio').value;
+    readYears(num);
+})
 
 //Genera una grafica de pastel con el porcentaje de aportaciones por estado por mes
 function graficaPastelAportaciones(){
