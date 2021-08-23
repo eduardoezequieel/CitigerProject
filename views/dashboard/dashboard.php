@@ -179,7 +179,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 </form>
                                 <div id="graficaInventario" class=#>
                                     <button data-toggle="modal" data-target="#historialInventario" id="btnModalInventario" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
-                                    <h1 class="tituloGrafica text-center">Historial de Inventario por Producto</h1>
+                                    <h1 class="tituloGrafica text-center">Historial de Inventario por Material</h1>
                                     <div id="graficaHistorialInventario">
                                         <canvas class="#" id="cnHistorialInventario"></canvas>
                                     </div>
@@ -226,7 +226,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 </form>
                                 <div id="graficaEspacioVeces">
                                     <button data-toggle="modal" data-target="#espacioVeces" id="btnModalEspacio" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
-                                    <h1 class="tituloGrafica text-center">Historial de Usos por Espacio</h1>
+                                    <h1 class="tituloGrafica text-center">Historial de Usos por Espacio del Último Semestre</h1>
                                     <div id="contenedorGraficaEspacio">
                                         <canvas id="cnEspacioVeces"></canvas>
                                     </div>
@@ -255,14 +255,14 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                     <div class="d-flex justify-content-center align-items-center">
                         <!-- Grafica de aportaciones por estado por mes y año -->
                         <div class="col-12 d-flex justify-content-center align-items-center">
-                            <div class="tarjetaDashboardGrafica">
+                            <div class="tarjetaDashboardGrafica" id="graficaAportacionesInicio">
                                 <form method="post" class="d-none" id="aportacionesEstado-form">
                                     <input type="number" id="idmespago" name="idmespago" value="1">
                                     <button type="submit" id="btnMesPago"></button>
                                 </form>
                                 <div id="graficaAportaciones">
                                     <button data-toggle="modal" data-target="#mesAño" id="btnModalAportaciones" class="btn bg-darken float-right"><i class="fas fa-edit"></i></button>
-                                    <h1 class="tituloGrafica text-center">Aportaciones por Estado</h1>
+                                    <h1 class="tituloGrafica text-center">Porcentaje Mensual de Aportaciones por Estado</h1>
                                     <div id="contenedorGraficaAportaciones">
                                         <canvas id="cnAportaciones"></canvas>
                                     </div>

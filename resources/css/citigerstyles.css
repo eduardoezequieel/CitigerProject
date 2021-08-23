@@ -175,6 +175,10 @@
   width: 240px;
 }
 
+#graficaAportacionesInicio {
+  width: 300px;
+}
+
 #graficaHistorialInventario {
   width: 460px;
 }

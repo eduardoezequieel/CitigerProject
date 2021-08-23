@@ -486,7 +486,7 @@ function graficaLineaVisitas() {
                         }
                     }
 
-                    lineGraph('cnVisitas6Meses', meses, cantidad, 'Visitas', 'Cantidad de visitas: ', 'Visitas', colorFuente);
+                    lineGraph('cnVisitas6Meses', meses, cantidad, 'Visitas', 'Cantidad de visitas: ', 'Visitas Mensuales del Último Semestre', colorFuente);
                 } else {
                     //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
                     document.getElementById('cnVisitas6Meses').className = 'd-none';
@@ -901,7 +901,7 @@ function graficaPastelDenuncia(){
                         porcentajedenuncia[index] = num.toFixed(2);   
                     }
 
-                    pieGraph('cnEstadoDenuncia', estadodenuncia, porcentajedenuncia, 'Denuncias', colorFondo, colorFuente)
+                    pieGraph('cnEstadoDenuncia', estadodenuncia, porcentajedenuncia, 'Porcentaje de Denuncias por Estado', colorFondo, colorFuente)
 
                 } else {
                     //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
@@ -964,7 +964,7 @@ function graficaDonaProductos(){
                         colorFondo = '#121212';
                     }
 
-                    doughnutGraph('cnProductoDemandado', nombreproducto, totalproducto, 'Productos', colorFondo, colorFuente)
+                    doughnutGraph('cnProductoDemandado', nombreproducto, totalproducto, 'Top 5 Materiales más Demandados', colorFondo, colorFuente)
 
                 } else {
                     //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
@@ -1027,7 +1027,7 @@ function graficaAreaEspacios(){
                         colorFondo = '#121212';
                     }
 
-                    polarAreaGraph('cnEspacioDemandado', nombre, total, 'Espacios', colorFondo, colorFuente)
+                    polarAreaGraph('cnEspacioDemandado', nombre, total, 'Top 5 Espacios más Alquilados', colorFondo, colorFuente)
 
                 } else {
                     //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
