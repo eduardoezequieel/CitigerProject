@@ -182,7 +182,7 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
             <!-- Cabecera del Modal -->
             <div class="modal-header p-3">
                 <!-- Titulo -->
-                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Espacios</h5>
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Alquileres</h5>
                 <!-- Boton para Cerrar -->
                 <a type="button" class="close closeModalButton lead" data-toggle="modal" data-target="#modalReporte" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>

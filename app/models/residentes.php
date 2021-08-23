@@ -572,6 +572,13 @@ class Residentes extends Validator
         return Database::getRows($sql,$params);
     }
 
+    public function readMes(){
+
+        $sql="SELECT EXTRACT (month from fechapago) as mes from aportacion where idestadoaportacion=1 group by mes order by mes asc LIMIT 12";
+        $params=null;
+        return Database::getRows($sql,$params);
+    }
+
     public function residentesMora(){
         $sql ="SELECT CONCAT(residente.apellido, ', ', residente.nombre) AS residente, 
         CONCAT('#',casa.numerocasa) AS casa, fechapago
@@ -579,9 +586,8 @@ class Residentes extends Validator
         INNER JOIN casa USING(idcasa)
         INNER JOIN residenteCasa USING(idcasa)
         INNER JOIN residente USING(idresidente)
-        WHERE fechapago < current_date AND idestadoaportacion = 1
-        ORDER BY fechapago DESC";
-        $params=null;
+        WHERE fechapago < current_date AND idestadoaportacion = 1 and EXTRACT(month from fechapago)=?";
+        $params = array($this->idResidente);
         return Database::getRows($sql, $params);
     }
 
