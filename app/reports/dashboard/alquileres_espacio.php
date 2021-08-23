@@ -31,22 +31,22 @@ if ($dataProductos2 = $categoria->readReportCabecera()) {
         $pdf->SetFont('Roboto-Bold', 'B', 11);
         $pdf->SetTextColor(9,9,9);
         // Se imprimen las celdas con los encabezados.
-        $pdf->Cell(50, 10, utf8_decode('Residente'), 1, 0, 'C', 1);
-        $pdf->Cell(40, 10, utf8_decode('Fecha de alquiler'), 1, 0, 'C', 1);
-        $pdf->Cell(35, 10, utf8_decode('Hora inicio'), 1, 0, 'C', 1);
-        $pdf->Cell(30, 10, utf8_decode('Hora fin'), 1, 0, 'C', 1);
-        $pdf->Cell(30.9, 10, utf8_decode('Estado'), 1, 1, 'C', 1);
+        $pdf->Cell(75, 10, utf8_decode('Residente'), 1, 0, 'C', 1);
+        $pdf->Cell(35, 10, utf8_decode('Fecha de alquiler'), 1, 0, 'C', 1);
+        $pdf->Cell(25, 10, utf8_decode('Hora inicio'), 1, 0, 'C', 1);
+        $pdf->Cell(25, 10, utf8_decode('Hora fin'), 1, 0, 'C', 1);
+        $pdf->Cell(25.9, 10, utf8_decode('Estado'), 1, 1, 'C', 1);
         // Se establece la fuente para los datos de los productos.
         $pdf->SetFont('Roboto-Regular', '', 11);
         // Se recorren los registros ($dataProductos) fila por fila ($rowProducto).
         foreach ($dataProductos as $rowProducto) {
             // Se imprimen las celdas con los datos de los productos.
             $pdf->SetTextColor(9,9,9);
-            $pdf->Cell(50, 10, utf8_decode($rowProducto['residente']), 1, 0,'C');
-            $pdf->Cell(40, 10, utf8_decode($rowProducto['fecha']), 1, 0,'C');
-            $pdf->Cell(35, 10, utf8_decode($rowProducto['horainicio']), 1, 0,'C');
-            $pdf->Cell(30, 10, utf8_decode($rowProducto['horafin']), 1, 0,'C');
-            $pdf->Cell(30.9, 10, utf8_decode($rowProducto['estadoalquiler']), 1, 1,'C');
+            $pdf->Cell(75, 10, utf8_decode($rowProducto['residente']), 1, 0,'C');
+            $pdf->Cell(35, 10, utf8_decode($rowProducto['fecha']), 1, 0,'C');
+            $pdf->Cell(25, 10, utf8_decode($rowProducto['horainicio']), 1, 0,'C');
+            $pdf->Cell(25, 10, utf8_decode($rowProducto['horafin']), 1, 0,'C');
+            $pdf->Cell(25.9, 10, utf8_decode($rowProducto['estadoalquiler']), 1, 1,'C');
         }
        
     } else {

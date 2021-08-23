@@ -382,7 +382,7 @@
             INNER JOIN residente USING(idresidente)
             INNER JOIN estadoalquiler USING(idestadoalquiler)
             WHERE fecha BETWEEN ? AND ? AND idespacio = ?
-            ORDER BY fecha";
+            ORDER BY fecha desc";
             $params = array($_SESSION['fecha1'],$_SESSION['fecha2'],$_SESSION['idespacio']);
             return Database::getRows($sql, $params);
        }
@@ -395,7 +395,7 @@
             INNER JOIN residente USING(idresidente)
             INNER JOIN estadoalquiler USING(idestadoalquiler)
             WHERE idespacio = ?
-            ORDER BY fecha";
+            ORDER BY fecha desc";
             $params = array($_SESSION['idespacio']);
             return Database::getRows($sql, $params);
        }

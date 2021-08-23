@@ -574,7 +574,7 @@ class Residentes extends Validator
 
     public function residentesMora(){
         $sql ="SELECT CONCAT(residente.apellido, ', ', residente.nombre) AS residente, 
-        CONCAT('#',casa.numerocasa,' ',casa.direccion) AS casa, fechapago
+        CONCAT('#',casa.numerocasa) AS casa, fechapago
         FROM aportacion
         INNER JOIN casa USING(idcasa)
         INNER JOIN residenteCasa USING(idcasa)
