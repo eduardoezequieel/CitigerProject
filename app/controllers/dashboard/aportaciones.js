@@ -21,7 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('lblFecha').textContent = date;
     fillSelect2(ENDPOINT_ANIO, 'cbAnio2', null);
 
-
+    //Se inicializan los tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
 
 })
 

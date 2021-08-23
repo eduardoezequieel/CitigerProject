@@ -159,6 +159,7 @@
                     <script src="../../resources/js/datatables.min.js"></script>
                     <script src="../../resources/js/sweetalert.min.js"></script>
                     <script src="../../resources/js/chart.min.js"></script>
+                    <script src="../../resources/js/popper.min.js"></script>
                     <script src="../../app/helpers/components.js"></script>
                 </body>
                 </html> 

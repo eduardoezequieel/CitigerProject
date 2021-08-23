@@ -50,10 +50,10 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                 </div>
 
             </div>
-            <div class="row">
-                <div class="col-12">
+            <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
+                <div class="col-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                     <div>
-                        <a href="../../app/reports/dashboard/residentes_mora.php" id="btnReporte" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
+                        <a type="button" href="../../app/reports/dashboard/residentes_mora.php" id="btnReporte" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Reporte de casas en mora" class="btn botonesListado"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
                     </div>
                 </div>
             </div>
