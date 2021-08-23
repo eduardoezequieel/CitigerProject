@@ -365,6 +365,24 @@
                         $result['exception'] = 'Hubo un problema al seleccionar el estado del alquiler.';
                     }
                     break;
+
+                    case 'readOne2':
+                        $_POST = $alquiler->validateForm($_POST);
+                        $_SESSION['fecha1'] = $_POST['txtFecha1'];
+                        $_SESSION['fecha2'] = $_POST['txtFecha2'];
+                        if (
+                            $_POST['txtFecha1'] != $_POST['txtFecha2'] &&
+                            $_POST['txtFecha1'] < $_POST['txtFecha2']
+                        ) {
+                            if ($_POST['txtFecha1'] != null && $_POST['txtFecha1']!=null) {
+                                $result['status'] = 1;
+                            } else {
+                                $result['exception'] = 'No ha ingresado fechas';
+                            }
+                        } else {
+                            $result['exception'] = 'La fecha de inicio no puede ser igual o menor a la fecha de fin.';
+                        }
+                        break;
                 default:
                     $result['exception'] = 'La acción solicitada no está disponible dentro de la sesión';
             } 
@@ -378,4 +396,3 @@
     } else {
         print(json_encode('Recurso no disponible'));
     }
-?>
