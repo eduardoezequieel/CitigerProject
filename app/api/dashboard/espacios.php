@@ -407,27 +407,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Hubo problemas al seleccionar el registro.';
                 }
                 break;
-            case 'readOne2':
-                $_POST = $espacio->validateForm($_POST);
-                $_SESSION['idespacio'] = $_POST['txtEspacio'];
-                $_SESSION['fecha1'] = $_POST['txtFecha1'];
-                $_SESSION['fecha2'] = $_POST['txtFecha2'];
-                if (
-                    $_POST['txtFecha1'] != $_POST['txtFecha2'] &&
-                    $_POST['txtFecha1'] < $_POST['txtFecha2']
-                ) {
-                    if ($_POST['txtEspacio'] != null) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'Espacio inexistente';
-                    }
-                } else {
-                    $result['exception'] = 'La Fecha de inicio no puede ser igual o menor a la Fecha de fin.';
-                }
-                break;
-
             case 'readOne3':
-                $_SESSION['idespacio'] = $_POST['txtEspacio2'];
+                $_SESSION['idespacio'] = $_POST['txtId'];
                 if ($_SESSION['idespacio'] != null) {
                     $result['status'] = 1;
                 } else {

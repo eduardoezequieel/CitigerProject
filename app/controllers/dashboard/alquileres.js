@@ -346,3 +346,32 @@ function fillSelectSpace(endpoint, select, selected) {
         console.log(error);
     });
 }
+
+
+document.getElementById('fecha-form').addEventListener('submit', function (event) {
+    //Evento para evitar que recargué la pagina
+    event.preventDefault();
+    // Realizamos una peticion a la API indicando el caso a utilizar y enviando la direccion de la API como parametro
+    fetch(API_ALQUILER + 'readOne2', {
+        method: 'post',
+        body: new FormData(document.getElementById('fecha-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Abrimos el reporte mediante su URL 
+                    window.open("../../app/reports/dashboard/alquileres.php", "");
+                } else {
+                    sweetAlert(3, response.exception, null);
+                    console.log(response.status + ' ' + response.statusText);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+})

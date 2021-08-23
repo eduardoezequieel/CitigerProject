@@ -391,5 +391,27 @@
              $params = array($this->idEstadoAlquiler,$_SESSION['idresidente']);
              return Database::getRows($sql, $params);
          }
+
+         public function readReportCabecera()
+         {
+             $sql = "SELECT idespacio, nombre from espacio";
+             $params = null;
+             return Database::getRows($sql, $params);  
+         }
+ 
+         public function readReport()
+         {
+             $sql = "SELECT CONCAT(residente.apellido, ', ', residente.nombre) AS residente, fecha, horainicio, horafin, estadoalquiler
+             FROM alquiler
+             INNER JOIN residente USING(idresidente)
+             INNER JOIN estadoalquiler USING(idestadoalquiler)
+             WHERE fecha BETWEEN ? AND ? AND idespacio = ?
+             ORDER BY fecha desc";
+             $params = array($_SESSION['fecha1'],$_SESSION['fecha2'],$this->idEspacio);
+             return Database::getRows($sql, $params);
+        }
     }
+
+
+    
 ?>
