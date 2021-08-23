@@ -18,6 +18,7 @@ Citiger es un Sistema de Gestión para Residenciales diseñado para cubrir todas
 -[Dashboard - R] 
     *Por alguna razón se repiten las aportaciones, supongo que se debe al cambiarle de casa a un residente
 -[Agregar residente - D] Validar que el nombre de usuario no pueda ser menor a 4 caracteres
+-[Alquileres - D] Arreglar responsive de modal
 
 
 ------------------------Posibles mejoras---------------------------

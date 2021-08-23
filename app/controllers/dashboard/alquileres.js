@@ -346,3 +346,10 @@ function fillSelectSpace(endpoint, select, selected) {
         console.log(error);
     });
 }
+
+//Función para validar la hora del lado del cliente
+document.getElementById('txtHoraInicio').addEventListener('change', function () {
+    //Se obtienen los dos input de la hora
+    document.getElementById('txtHoraFin').setAttribute('min',document.getElementById('txtHoraInicio').value)
+})
+

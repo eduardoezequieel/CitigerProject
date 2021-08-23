@@ -149,7 +149,7 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
 
                                 <label class="tituloCajaTextoFormulario" for="txtHoraFin">Hora Fin:</label>
                                 <input type="time" class="form-control cajaTextoFormularioHora" id="txtHoraFin" name="txtHoraFin"
-                                    min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraFin')" Required>
+                                     max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraFin')" Required>
 
                                 <label class="tituloCajaTextoFormulario" for="txtPrecio">Precio:</label>
                                 <input type="number" class="form-control cajaTextoFormularioPrecio" id="txtPrecio" name="txtPrecio"
