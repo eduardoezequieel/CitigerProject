@@ -16,7 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     readRows(API_MATERIAL);
 
-
+    //Se inicializan los tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
 })
 
 document.getElementById('cbTipo').addEventListener('change',function(){

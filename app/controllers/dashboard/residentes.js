@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('txtFechaNacimiento').setAttribute('value', date);
     readRows(API_RESIDENTE);
 
+    //Se inicializan los tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
 })
 
 //Llenado de tabla
@@ -51,7 +55,7 @@ function fillTable(dataset) {
 
                             <a href="#" onclick="deleteRow(${row.idresidente})" class="btn btnTabla2 mx-2"><i class="fas fa-trash"></i></a>
 
-                            <a href="#" onclick="openReport(${row.idresidente})" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
+                            <a href="#" onclick="openReport(${row.idresidente})" type="button" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Reporte de denuncias realizadas por un residente" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
 
                         </div>
                     </div>

@@ -41,7 +41,7 @@ admin_Page::sidebarTemplate('Pedidos | Citiger');
                 </form>
 
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="../../app/reports/dashboard/pedidos.php" id="btnReporte" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
+                    <a href="../../app/reports/dashboard/pedidos.php" id="btnReporte" type="button" data-target="#" class="btn botonesListado" data-toggle="tooltip" data-placement="bottom" title="Reporte de pedidos por estado"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
                 </div>
 
                 <div class="mt-4 mx-3 mb-3">

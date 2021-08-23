@@ -20,6 +20,11 @@ document.addEventListener('DOMContentLoaded', function(){
     fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado', null);
     fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado2', null);
     readRows(API_EMPLEADO);
+
+    //Se inicializan los tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
 })
 
 //Llenado de tabla

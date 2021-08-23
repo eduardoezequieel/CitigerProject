@@ -60,7 +60,8 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                 </div>
 
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="../../app/reports/dashboard/materiales.php" id="btnReporte" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
+                    <a href="../../app/reports/dashboard/materiales.php" id="btnReporte" type="button" data-target="#" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Reporte de materiales por categoría"  
+                    class="btn botonesListado"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
                 </div>
             </div>
         </div><br>

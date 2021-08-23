@@ -4,6 +4,11 @@ const ENDPOINT_ESTADOS = '../../app/api/dashboard/pedidos.php?action=readStates'
 document.addEventListener('DOMContentLoaded',function(){
     readRows(API_PEDIDOS);
     fillSelect(ENDPOINT_ESTADOS, 'cbEstadoPedido', null);
+
+    //Se inicializan los tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
 });
 
 document.getElementById('btnReiniciar').addEventListener('click',function(event){
@@ -28,7 +33,7 @@ function fillTable(dataset){
                 <div class="row paddingBotones">
                     <div class="col-12">
                         <a href="#" onclick="readInfo(${row.idpedido})" data-toggle="modal" data-target="#administrarPedido" class="btn btnTabla"><i class="fas fa-cog"></i></a>
-                        <a href="#" onclick="openReport(${row.idpedido})" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
+                        <a href="#" type="button" onclick="openReport(${row.idpedido})" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Reporte de factura" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
 
                     </div>
                 </div>
