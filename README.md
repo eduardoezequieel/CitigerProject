@@ -17,12 +17,15 @@ Citiger es un Sistema de Gestión para Residenciales diseñado para cubrir todas
 -[Visitas - D] Revisar el actualizar (No llena el select con el visitante del registro)
 -[Dashboard - R] 
     *Por alguna razón se repiten las aportaciones, supongo que se debe al cambiarle de casa a un residente
+-[Agregar residente - D] Validar que el nombre de usuario no pueda ser menor a 4 caracteres
 
 
 ------------------------Posibles mejoras---------------------------
 
 -[Alquileres - D] validar la hora del lado del cliente
--[Espacios - D] Mostrar las fotografias del espacio en tarjetas y no en tabla
+-[Espacios - D] 
+    *Mostrar las fotografias del espacio en tarjetas y no en tabla (HECHO)
+    *Ocultar botón de fotografias si no tiene registradas
 -[Denuncias - R] Quitar mensaje de que se encontraron coincidencias en el search
 -[Visitas - R] Limitar el campo de observación
 -[Denuncias - D] Quitar mensaje de que se encontraron coincidencias en el search

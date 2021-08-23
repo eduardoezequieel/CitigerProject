@@ -110,33 +110,30 @@ function fillTableImage(dataset) {
     dataset.map(function (row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
-            <tr class="animate__animated animate__fadeIn">
-                <!-- Fotografia-->
-                <th scope="row">
-                    <div class="row paddingTh">
-                        <div class="col-12">
-                            <img src="../../resources/img/dashboard_img/espacios_fotos/${row.imagen}" alt="#"
-                                class="fit-images" width="100px" height="70px">
-                        </div>
-                    </div>
-                </th>
-                <!-- Datos-->
-                <td>${row.nombre}</td>
-                <!-- Boton-->
-                <th scope="row">
-                    <div class="row paddingBotones">
-                        <div class="col-12">
-                            <a href="#" onclick="readDataOnModalImage(${row.idimagenesespacio}) "data-toggle="modal" data-target="#administrarImagen" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
+                    <div class="animate__animated animate__bounceIn col-xl-4 col-md-4 col-sm-12 col-xs-12 mt-2 d-flex margenTarjetas justify-content-center align-items-center text-center">
+                        <!-- Inicio de Tarjeta -->
+                        <div class="tarjetaImage">
+                        <!-- Fila para Imagen -->
+                            <div class="row">
+                                <div class="col-12">
+                                <img src="../../resources/img/dashboard_img/espacios_fotos/${row.imagen}" alt="#" class="img-fluid fit-images fotoEspacioMultiple imagenTarjeta">
+                                </div>
+                            </div>
+                            <!-- Fila para Boton -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <a href="#"  onclick="readDataOnModalImage(${row.idimagenesespacio})" data-toggle="modal" data-target="#administrarEspacio" class="btn btnTabla"><span class="fas fa-edit"></span></a>
+                                    <a href="#" onclick="deleteRowImage(${row.idimagenesespacio})"  class="btn btnTabla2"><span class="fas fa-trash" ></span></a>
+                                </div>
+                            </div>
 
-                            <a href="#" onclick="deleteRowImage(${row.idimagenesespacio})" class="btn btnTabla2 mx-2"><i class="fas fa-trash"></i></a>
+                        <!-- Fin de Tarjeta -->
                         </div>
                     </div>
-                </th>
-            </tr>
-        `;
+            `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
-    document.getElementById('tbody-rows').innerHTML = content;
+    document.getElementById('show-tarjetaImage').innerHTML = content;
 }
 
 //Carga de datos del registro seleccionado del espacio

@@ -354,6 +354,12 @@ option[selected] {
   border-radius: 5px;
 }
 
+.fotoEspacioMultiple {
+  width: 250px;
+  height: 195px;
+  border-radius: 5px;
+}
+
 .vertical-nav {
   min-width: 17rem;
   width: 17rem;
@@ -985,6 +991,15 @@ textarea :-ms-input-placeholder {
   height: 310px !important;
   border-radius: 15px;
   padding: 15px;
+}
+
+.tarjetaImage {
+  content: "";
+  background-color: var(--color-fondo-opaco);
+  width: 255px;
+  height: 198px !important;
+  border-radius: 15px;
+  padding: 10px;
 }
 
 

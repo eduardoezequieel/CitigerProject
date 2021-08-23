@@ -213,19 +213,11 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                     <div class="row mt-4 justify-content-center table-responsive animate__animated animate__bounceInUp tablaResponsive" id="tablaAlquileres">
                         <div class="col-12 justify-content-center align-items-center text-center">
                             <a href="#" id="agregar" data-toggle="modal" data-target="#administrarImagen" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
-                            <table class="table table-borderless citigerTable">
-                                <thead>
-                                    <!-- Columnas-->
-                                    <tr>
-                                        <th scope="col"></th>
-                                        <th scope="col">Espacio</th>
-                                        <th scope="col">Opciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody-rows">
+                            <!-- Fila de Tarjetas -->
+                            <div class="row justify-content-center animate__animated animate__backInUp" id="show-tarjetaImage">
 
-                                </tbody>
-                            </table>
+
+                            </div>
                         </div>
                     </div><br>
                 </form>
