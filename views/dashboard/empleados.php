@@ -53,7 +53,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
             <div class="row">
                 <div class="col-12">
                     <div>
-                        <a href="../../app/reports/dashboard/empleados.php" id="btnReporte" type="button" data-target="#" class="btn botonesListado" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Reporte de empleados por tipo"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
+                        <a href="../../app/reports/dashboard/empleados.php" target="_blank" id="btnReporte" type="button" data-target="#" class="btn botonesListado" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Reporte de empleados por tipo"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
                     </div>
                 </div>
             </div>

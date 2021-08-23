@@ -5,7 +5,7 @@ require('../../models/espacios.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Alquileres por espacio');
+$pdf->startReport('Alquileres por Espacio');
 // Se instancia el módelo Categorías para obtener los datos.
 $categoria = new Espacios;
 

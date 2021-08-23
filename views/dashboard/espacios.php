@@ -308,7 +308,7 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones">
                             <button href="#" class="btn botonMenu1" type="submit" id="btnReporte2" name="btnReporte2">
                                 <i class="fas fa-file-alt iconosBotonesMenu"></i>
-                                <label class="textoBotonesMenu">Alquileres en un espacio</label>
+                                <label class="textoBotonesMenu">Alquileres por espacio</label>
                             </button>
                         </div>
 
