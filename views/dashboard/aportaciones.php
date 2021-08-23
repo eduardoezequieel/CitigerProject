@@ -46,13 +46,16 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                 </form>
 
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="../../app/reports/dashboard/residentes_mora.php" id="btnReporte" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
-                </div>
-
-                <div class="mt-4 mx-3 mb-3">
                     <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
                 </div>
 
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div>
+                        <a href="../../app/reports/dashboard/residentes_mora.php" id="btnReporte" data-toggle="#" data-target="#" class="btn botonesListado"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
+                    </div>
+                </div>
             </div>
 
         </div><br>

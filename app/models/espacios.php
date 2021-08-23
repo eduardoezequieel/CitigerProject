@@ -171,7 +171,7 @@
                     INNER JOIN espacio USING (idespacio)
                     WHERE idespacio = ?
                     GROUP BY nombre, mes
-                    ORDER BY mes DESC 
+                    ORDER BY mes ASC 
                     LIMIT 6';
             $params = array($this->idEspacio);
             return Database::getRows($sql, $params);
