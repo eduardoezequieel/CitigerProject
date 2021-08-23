@@ -15,6 +15,8 @@ Citiger es un Sistema de Gestión para Residenciales diseñado para cubrir todas
     *Arreglar estilos del modal
     *Cambiar a alfanumerico el campo
 -[Visitas - D] Revisar el actualizar (No llena el select con el visitante del registro)
+-[Dashboard - R] 
+    *Por alguna razón se repiten las aportaciones, supongo que se debe al cambiarle de casa a un residente
 
 
 ------------------------Posibles mejoras---------------------------
@@ -27,5 +29,6 @@ Citiger es un Sistema de Gestión para Residenciales diseñado para cubrir todas
 -[Visitas - D] 
     *Quitar mensaje de que se encontraron coincidencias en el search
     *Limpiar el campo de buscar cuando se reinicia
+-[Dashboard - R] Añadir paginación a la tabla de aportaciones
 
 
