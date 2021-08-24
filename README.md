@@ -34,5 +34,7 @@ Citiger es un Sistema de Gestión para Residenciales diseñado para cubrir todas
     *Quitar mensaje de que se encontraron coincidencias en el search
     *Limpiar el campo de buscar cuando se reinicia
 -[Dashboard - R] Añadir paginación a la tabla de aportaciones
+-[Espacios - D] Crear un modal para poder agregar stock sin hacer operaciones matematicas
+
 
 
