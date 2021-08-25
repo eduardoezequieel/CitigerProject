@@ -173,7 +173,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                             value="2000-01-01">
 
                                         <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
-                                        <textarea onchange="checkInput('txtDireccion')" class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="4"></textarea>
+                                        <textarea onchange="checkInput('txtDireccion')" class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="5"></textarea>
                                     </div>
                                 </div>
                             </div>

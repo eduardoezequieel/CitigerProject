@@ -74,7 +74,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                         <form method="post" id="administrarResidente-form">
                             <input type="number" name="idResidente" id="idResidente" class="d-none">
                             <input class="d-none" type="text" id="txtContrasenia" name="txtContrasenia" />
-                            <div class="row justify-content-center animate__animated animate__bounceIn" >
+                            <div class="row justify-content-center" >
                                 <!-- Primera columna de controles -->
                                 <div class="d-flex justify-content-center col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                                     <div class="form-group" id="ResidentesColumna1">

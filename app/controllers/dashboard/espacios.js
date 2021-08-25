@@ -55,7 +55,7 @@ function fillTable(dataset) {
                                 <div class="col-12">
                                     <a href="#" onclick="readDataOnModal(${row.idespacio}) " data-toggle="modal" data-target="#administrarEspacio" class="btn btnTabla"><span class="fas fa-edit"></span></a>
                                     <a href="#" onclick="deleteRow(${row.idespacio})" class="btn btnTabla2"><span class="fas fa-trash" ></span></a>
-                                    <a href="#" onclick="openReport(${row.idespacio})" class="btn btnTabla2"><span class="fas fa-file-alt" ></span></a>
+                                    <a href="#" onclick="openReport(${row.idespacio})" class="btn btnTabla3"><span class="fas fa-file-alt" ></span></a>
 
                                 </div>
                             </div>

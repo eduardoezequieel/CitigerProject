@@ -182,7 +182,7 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                                 <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento" placeholder="01-01-2000" Required>
 
                                 <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
-                                <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="4"Required ></textarea>
+                                <textarea class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="9"Required ></textarea>
                             </div>
                         </div>
                     </div>

@@ -82,39 +82,45 @@ admin_Page::sidebarTemplate('Visitantes | Citiger');
                         <form method="post" id="administrarVisitante-form">
                             <input type="number" name="idVisitante" id="idVisitante" class="d-none">
                             <div class="row">
-                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                                    <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
-                                    <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre"
-                                        name="txtNombre" placeholder="">
+                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-xl-end justify-content-md-center">
+                                    <div class="form-group">
+                                        <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
+                                        <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario mb-3" id="txtNombre"
+                                            name="txtNombre" placeholder="">
 
-                                    <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
-                                    <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario" id="txtApellido"
-                                        name="txtApellido" placeholder="">
+                                        <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
+                                        <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario" id="txtApellido"
+                                            name="txtApellido" placeholder="">
+                                    </div>
                                 </div>
-                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                                    <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                    <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario" id="txtDUI"
-                                        name="txtDUI" placeholder="12345678-9">
+                                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-xl-start justify-content-md-center">
+                                    <div class="form-group">
+                                        <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
+                                        <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario mb-3" id="txtDUI"
+                                            name="txtDUI" placeholder="12345678-9">
 
-                                    <!-- RadioButtonGroup Género -->
-                                    <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
-                                    <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                        deseado en el combobox  -->
-                                    <div class="cbCitiger">
-                                        <select class="custom-select" id="cbGenero" name="cbGenero">
-                                            <option selected="default">Seleccionar...</option>
-                                            <option value="M">Masculino</option>
-                                            <option value="F">Femenino</option>
-                                        </select>
+                                        <label class="tituloCajaTextoFormulario" for="txtPlaca">Placa:</label>
+                                        <input type="text" class="form-control cajaTextoFormulario" id="txtPlaca"
+                                            name="txtPlaca" placeholder="P123 456">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12">
-                                    <label class="tituloCajaTextoFormulario" for="txtPlaca">Placa:</label>
-                                    <input type="text" class="form-control cajaTextoFormulario" id="txtPlaca"
-                                        name="txtPlaca" placeholder="P123 456">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <div class="form-group">
+                                        <!-- RadioButtonGroup Género -->
+                                        <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
+                                        <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
+                                            cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
+                                            deseado en el combobox  -->
+                                        <div class="cbCitiger">
+                                            <select class="custom-select" id="cbGenero" name="cbGenero">
+                                                <option selected="default">Seleccionar...</option>
+                                                <option value="M">Masculino</option>
+                                                <option value="F">Femenino</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row justify-content-center mt-3">

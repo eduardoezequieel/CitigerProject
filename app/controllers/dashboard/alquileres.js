@@ -9,6 +9,11 @@ const BOTONES =  document.getElementsByTagName('button');
 
 //Evento al terminar de cargar la pagina
 document.addEventListener('DOMContentLoaded', function () {
+    //Inicializando tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+      
     //Llenando los combobox necesarios
     fillSelect(ENDPOINT_ESTADO_ALQUILER,'cbEstadoAlquiler',null);
     fillSelect(ENDPOINT_RES_ALQUILER,'cbResidente',null);
