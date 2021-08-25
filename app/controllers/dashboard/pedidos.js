@@ -322,7 +322,7 @@ function openReport(id) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
         if (request.ok) {
             // Abrimos el reporte mediante su URL 
-            window.open("../../app/reports/dashboard/factura.php","");
+            window.open("../../app/reports/dashboard/factura.php");
         } else {
             console.log(request.status + ' ' + request.statusText);
         }
