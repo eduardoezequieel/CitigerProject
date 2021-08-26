@@ -46,30 +46,30 @@ function fillTable(dataset) {
         retrieve: true,
         searching: false,
         language:
-            {
-                "decimal":        "",
-                "emptyTable":     "No hay información disponible en la tabla.",
-                "info":           "Mostrando _START_ de _END_ de _TOTAL_ registros.",
-                "infoEmpty":      "Mostrando 0 de 0 de 0 registros",
-                "infoFiltered":   "(filtered from _MAX_ total entries)",
-                "infoPostFix":    "",
-                "thousands":      ",",
-                "lengthMenu":     "Mostrar _MENU_ registros",
-                "loadingRecords": "Loading...",
-                "processing":     "Processing...",
-                "search":         "Search:",
-                "zeroRecords":    "No matching records found",
-                "paginate": {
-                    "first":      "AAA",
-                    "last":       "Ultimo",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "aria": {
-                    "sortAscending":  ": activate to sort column ascending",
-                    "sortDescending": ": activate to sort column descending"
-                }
+        {
+            "decimal": "",
+            "emptyTable": "No hay información disponible en la tabla.",
+            "info": "Mostrando _START_ de _END_ de _TOTAL_ registros.",
+            "infoEmpty": "Mostrando 0 de 0 de 0 registros",
+            "infoFiltered": "(filtered from _MAX_ total entries)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "loadingRecords": "Loading...",
+            "processing": "Processing...",
+            "search": "Search:",
+            "zeroRecords": "No matching records found",
+            "paginate": {
+                "first": "AAA",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+            "aria": {
+                "sortAscending": ": activate to sort column ascending",
+                "sortDescending": ": activate to sort column descending"
             }
+        }
     });
 }
 
@@ -202,9 +202,28 @@ function readDataOnModal(id) {
                     fillSelect(ENDPOINT_TIPO, 'cbTipo', response.dataset.idtipodenuncia);
                     document.getElementById('txtDescripcion').value = response.dataset.descripcion;
                     if (response.dataset.idestadodenuncia == 1) {
+                        document.getElementById('lblResp2').className = "d-none";
+
+                    } else if (response.dataset.idestadodenuncia == 2) {
                         document.getElementById('btnActualizar').className = "d-none";
 
+                    } else if (response.dataset.idestadodenuncia == 3) {
+                        document.getElementById('btnActualizar').className = "d-none";
+                        document.getElementById('lblResp2').className = "d-none";
+
+
+                    } else if (response.dataset.idestadodenuncia == 4) {
+                        document.getElementById('btnActualizar').className = "d-none";
+                        document.getElementById('lblResp2').className = "d-none";
+
+
+                    } else if (response.dataset.idestadodenuncia == 5) {
+                        document.getElementById('btnActualizar').className = "d-none";
+                        document.getElementById('lblResp2').className = "d-none";
+
+
                     }
+
 
                     document.getElementById('lblResp').textContent = (response.dataset.respuesta);
 
