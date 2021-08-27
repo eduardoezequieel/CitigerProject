@@ -193,7 +193,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
 
                             <label class="tituloCajaTextoFormulario mt-2" for="txtFecha">Fecha:</label>
-                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha" placeholder="">
+                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha"  placeholder="AAAA-MM-DD" Required>
 
                             <h1 class="tituloCajaTextoFormulario mb-2">Visita Recurrente</h1>
                             <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
