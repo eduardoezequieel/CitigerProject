@@ -15,7 +15,7 @@ admin_Page::sidebarTemplate('Verificar | Citiger');
         <!-- Desde aqui comienza el contenido -->
         <div class="row justify-content-center mb-3">
             <div class="col-12 d-flex justify-content-center align-items-center">
-                <h1 class="tituloPagina text-center">Verificar datos por DUI</h1>
+                <h1 class="tituloPagina text-center">Verificar datos por placa</h1>
             </div>
         </div>
 
@@ -24,8 +24,8 @@ admin_Page::sidebarTemplate('Verificar | Citiger');
             <form id="dui-form" method="post">
                 <!-- Primera columna de controles -->
                 <div class=" justify-content-center col-xl-12 col-md-12 col-sm-12 col-xs-12  centrarColumnas">
-                        <label class="tituloCajaTextoFormulario" for="txtPlaca">DUI del visitante:</label>
-                        <input type="text" class="form-control cajaTextoDUI" id="txtPlaca" name="txtPlaca" placeholder="P000000" Required onchange="checkInput('txtPlaca')">
+                        <label class="tituloCajaTextoFormulario" for="txtPlaca">Placa del visitante:</label>
+                        <input type="text" class="form-control cajaTextoDUI" id="txtPlaca" name="txtPlaca" placeholder="P000 000" Required onchange="checkInput('txtPlaca')">
                         <input type="number" class="form-control cajaTextoDUI d-none" id="txtVisita" name="txtVisita">
                 </div>
                 <!-- Segunda columna de controles -->

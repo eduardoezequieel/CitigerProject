@@ -25,7 +25,7 @@ admin_Page::sidebarTemplate('Verificar | Citiger');
                 <!-- Primera columna de controles -->
                 <div class=" justify-content-center col-xl-12 col-md-12 col-sm-12 col-xs-12  centrarColumnas">
                         <label class="tituloCajaTextoFormulario" for="txtDui">DUI del visitante:</label>
-                        <input type="text" class="form-control cajaTextoDUI" id="txtDui" name="txtDui" placeholder="0089532-9" Required onchange="checkDui('txtDui')">
+                        <input type="text" class="form-control cajaTextoDUI" id="txtDui" name="txtDui" placeholder="00000000-0" Required onchange="checkDui('txtDui')">
                         <input type="number" class="form-control cajaTextoDUI d-none" id="txtVisita" name="txtVisita">
                 </div>
                 <!-- Segunda columna de controles -->
