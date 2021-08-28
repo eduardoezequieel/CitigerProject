@@ -104,6 +104,14 @@
 
         //Sentencias SQL a la tabla visitante.
 
+        //Funcion para verificar DUI de un visitante (Si es existente o no);
+        public function checkVisitor()
+        {
+            $sql = 'SELECT*FROM visitante WHERE dui = ?';
+            $params = array($this->dui);
+            return Database::getRow($sql, $params);
+        }
+
         //Lee todos los registros de la tabla
         public function readAll()
         {

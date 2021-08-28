@@ -2,6 +2,7 @@
 require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/visitas.php');
+require_once('../../models/visitantes.php');
 
 
 //Verificando si existe alguna acción
@@ -10,7 +11,8 @@ if (isset($_GET['action'])) {
     session_start();
     //Instanciando clases
     $visita = new Visitas;
-
+    //Instanciando clases
+    $visitante = new Visitantes;
     //Array para respuesta de la API
     $result = array('status' => 0, 'error' => 0, 'message' => null, 'exception' => null);
     //Verificando si hay una sesion iniciada
@@ -170,8 +172,25 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Campo vacio';
                 }
                 break;
+                //Caso para verificar el dui de un visitante (Si existe o no)
+                case 'checkVisitor':
+                    $_POST = $visitante->validateForm($_POST);
+                    if ($visitante->setDui($_POST['txtDuiVerificar'])) {
+                        if ($result['dataset'] = $visitante->checkVisitor()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se ha encontrado al visitante.';
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No existe ningún visitante con este DUI.';
+                            }
+                        }
+                    } else {
+                        $result['exception'] = 'Dui incorrecto.';
+                    }
 
-
+                    break;
                 //Caso de default del switch
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';

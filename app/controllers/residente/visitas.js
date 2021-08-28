@@ -3,14 +3,60 @@ const ENDPOINT_VISITANTE = '../../app/api/residente/visitas.php?action=readVisit
 
 
 document.addEventListener('DOMContentLoaded', function () {
-
     fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
     readRows(API_VISITA);
 
-
-
+    let today = new Date();
+    // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
+    let day = ('0' + today.getDate()).slice(-2);
+    // Se declara e inicializa una variable para guardar el mes en formato de 2 dígitos.
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    // Se declara e inicializa una variable para guardar el año con la mayoría de edad.
+    let year = today.getFullYear();
+    // Se declara e inicializa una variable para establecer el formato de la fecha.
+    let date = `${year}-${month}-${day}`;
+    // Se asigna la fecha como valor máximo en el campo del formulario.
+    document.getElementById('txtFecha').setAttribute('min', date);
 })
 
+
+//Al activar el evento submit del formulario verificarDui-form
+document.getElementById('verificarDui-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //fetch para verificar la informacion
+    fetch(API_VISITA + 'checkVisitor', {
+        method: 'post',
+        body: new FormData(document.getElementById('verificarDui-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Sucede si se encuentra el visitante
+                    console.log('El visitante existe.');
+                } else {
+                    // Se evalua la causa de que no se hayan recuperado datos
+                    if (response.exception == 'No existe ningún visitante con este DUI.') {
+                        // Nos notifica de que el visitante no existe, por lo tanto procedera al modal para crearlo
+                        //Cerramos el modal actual
+                        closeModal('verificarDui');
+                        //Abrimos el nuevo modal
+                        openModal('administrarVisitante');
+                    } else {
+                        // Se evalua si el response.exception es un mensaje de que el DUI es incorrecto o un error de la base
+                        sweetAlert(2, response.exception, null);
+                    }
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
 
 document.getElementById('btnInsertDialog').addEventListener('click', function () {
 
@@ -19,7 +65,6 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     document.getElementById('txtFecha').value = '';
     document.getElementById('txtObservacion').value = '';
     fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
-
 
 });
 
@@ -34,19 +79,6 @@ document.getElementById('administrarVisita-form').addEventListener('submit', fun
 
 
 });
-
-let today = new Date();
-// Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
-let day = ('0' + today.getDate()).slice(-2);
-// Se declara e inicializa una variable para guardar el mes en formato de 2 dígitos.
-var month = ('0' + (today.getMonth() + 1)).slice(-2);
-// Se declara e inicializa una variable para guardar el año con la mayoría de edad.
-let year = today.getFullYear();
-// Se declara e inicializa una variable para establecer el formato de la fecha.
-let date = `${year}-${month}-${day}`;
-// Se asigna la fecha como valor máximo en el campo del formulario.
-document.getElementById('txtFecha').setAttribute('min', date);
-
 
 document.getElementById('btnNo').addEventListener('click', function () {
 

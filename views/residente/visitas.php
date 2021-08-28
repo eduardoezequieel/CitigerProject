@@ -19,7 +19,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
         <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
             <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#modal1" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Nuevo</a>
+                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#verificarDui" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Nuevo</a>
                 </div>
                 <form class="mx-3 mb-2" method="post" id="search-form">
                     <h1 class="tituloCajaTextoFormulario">Busqueda:</h1>
@@ -114,7 +114,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                 <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Visitante</h5>
 
                 <!-- Boton para Cerrar -->
-                <button type="button" class="close closeModalButton lead" data-toggle="modal" data-target="#modal1" data-dismiss="modal">
+                <button type="button" class="close closeModalButton lead" data-toggle="modal" data-target="#verificarDui" data-dismiss="modal">
                     <span class="fas fa-chevron-left" aria-hidden="true"></span>
                 </button>
             </div>
@@ -123,7 +123,13 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                 <form method="post" id="Visitante-form">
                     <div class="row">
                         <div class="col-12">
-                            <h1 class="tituloDato2 text-center">Complete el formulario para registrar al visitante en el sistema.</h1>
+                            <div class="alert warningAlert alert-dismissible fade show" role="alert">
+                                <strong>Importante.</strong> No hemos encontrado registro con este DUI, por lo tanto, puedes registrarlo. Si crees 
+                                que se trata de un error, puedes regresar y colocarlo nuevamente.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -153,13 +159,10 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                             <label class="tituloCajaTextoFormulario mt-2" for="txtPlaca">Placa:</label>
                             <input type="text" class="form-control cajaTextoFormulario2" id="txtPlaca" name="txtPlaca" placeholder="P123 456">
                         </div>
-                        <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12">
-
-                        </div>
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                            <button id="btnAgregar" data-toggle="modal" data-target="#crearVisita" name="btnAgregar" type="submit" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
+                            <button id="btnAgregar" name="btnAgregar" type="submit" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
                         </div>
                     </div>
                 </form>
@@ -300,6 +303,48 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
     </div>
 </div>
 <!-- Fin del Modal -->
+
+<!-- Modal para verificar DUI para poder crear una visita -->
+<div class="modal fade" id="verificarDui" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Verificar DUI</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="tituloDato2  ">Ingrese el DUI del visitante para verificar la información.</h1>
+                    </div>
+                </div>
+                <form method="post" id="verificarDui-form">
+                    <div class="row mt-2">
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="form-group">
+                                <label class="tituloCajaTextoFormulario" for="txtDuiVerificar">DUI:</label>
+                                <input type="text" onchange="checkDui('txtDuiVerificar')" class="form-control cajaTextoFormulario" id="txtDuiVerificar" name="txtDuiVerificar" placeholder="12345678-9" Required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center">
+                            <button type="submit" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Verificar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
+
 
 
 

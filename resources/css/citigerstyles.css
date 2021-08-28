@@ -30,6 +30,12 @@
   --color-citiger-claro: #;
 }
 
+/**  Alertas  **/
+.warningAlert {
+  background-color: var(--color-rojo) !important;
+  color: var(--color-rojo-hover) !important;
+}
+
  /* 
   *
   *
