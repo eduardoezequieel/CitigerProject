@@ -52,32 +52,28 @@ if (isset($_GET['action'])) {
 
             case 'createRow':
                 $_POST = $visita->validateForm($_POST);
-                $visita->setIdEstadoVisita(4);
+                $visita->setIdEstadoVisita(1);
                     if ($visita->setIdResidente($_SESSION['idresidente'])) {
                         if ($visita->setFecha($_POST['txtFecha'])) {
                             if (isset($_POST['cbVisitaR'])) {
                                 if ($visita->setVisitaR($_POST['cbVisitaR'])) {
                                     if ($visita->setObservacion($_POST['txtObservacion'])) {
                                         if ($visita->createRow()) {
-                                            if (isset($_POST['cbVisitante'])) {
-                                                if ($visita->setIdVisitante($_POST['cbVisitante'])) {
-                                                    if ($data = $visita->getLastId()) {
-                                                        if ($visita->setIdVisita($data['idvisita'])) {
-                                                            if ($visita->insertDetalleVisita()) {
-                                                                $result['status'] = 1;
-                                                                $result['message'] = 'Visita registrada correctamente.';
-                                                            } else {
-
-                                                                $result['exception'] = 'Visitante invalido.';
-                                                            }
+                                            if ($visita->setIdVisitante($_POST['idVisitante'])) {
+                                                if ($data = $visita->getLastId()) {
+                                                    if ($visita->setIdVisita($data['idvisita'])) {
+                                                        if ($visita->insertDetalleVisita()) {
+                                                            $result['status'] = 1;
+                                                            $result['message'] = 'Visita registrada correctamente.';
                                                         } else {
-                                                            $result['exception'] = 'Visita invalida.';
+
+                                                            $result['exception'] = 'Visitante invalido.';
                                                         }
                                                     } else {
-                                                        $result['exception'] = 'No id.';
+                                                        $result['exception'] = 'Visita invalida.';
                                                     }
                                                 } else {
-                                                    $result['exception'] = 'Visitante invalido.';
+                                                    $result['exception'] = 'No id.';
                                                 }
                                             } else {
                                                 $result['exception'] = 'Visitante invalido.';

@@ -141,7 +141,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                             <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario2" id="txtApellido" name="txtApellido" placeholder="">
 
                             <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                            <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario2" id="txtDUI" name="txtDUI" placeholder="12345678-9">
+                            <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario2" id="txtDUI" name="txtDUI" placeholder="12345678-9" readonly>
 
                             <!-- RadioButtonGroup Género -->
                             <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
@@ -184,7 +184,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                 <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Visita</h5>
 
                 <!-- Boton para Cerrar -->
-                <button type="button" class="close closeModalButton lead" data-toggle="modal" data-target="#modal1" data-dismiss="modal">
+                <button type="button" class="close closeModalButton lead" data-toggle="modal" data-target="#verificarDui" data-dismiss="modal">
                     <span class="fas fa-chevron-left" aria-hidden="true"></span>
                 </button>
             </div>
@@ -216,23 +216,30 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
 
                         </div>
                     </div>
-                    <div class="row justify-content-center mt-2">
+                    <div class="row justify-content-center">
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 mt-2 d-flex justify-content-center">
                             <div class="form-group">
-                                <label class="tituloCajaTextoFormulario" for="cbVisitante">Visitante:</label>
-                                <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
-                                        cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
-                                        deseado en el combobox  -->
-                                <div class="cbCitiger">
-                                    <select class="custom-select" id="cbVisitante" name="cbVisitante">
-                                        <option selected="default">Seleccionar...</option>
-
-                                    </select>
-                                </div>
+                                <input class="d-none" type="number" id="idVisitante" name="idVisitante">
+                                <h1 class="tituloDato2 text-center">Visitante:</h1>                                
+                                <h1 class="campoDato text-center" id="lblVisitante2">Eduardo Rivera</h1>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 mt-2 d-flex justify-content-center">
+                            <div class="form-group">
+                                <h1 class="tituloDato2 text-center">DUI:</h1>                                
+                                <h1 class="campoDato text-center" id="lblDui">12345678-9</h1>
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-center mt-3">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12 mt-2 d-flex justify-content-center">
+                            <div class="form-group">
+                                <h1 class="tituloDato2 text-center">Placa:</h1>                                
+                                <h1 class="campoDato text-center" id="lblPlaca2">P123-456</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-2">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
                             <button id="btnAgregar2" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
                         </div>

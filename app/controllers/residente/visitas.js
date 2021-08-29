@@ -1,11 +1,11 @@
+//Constantes para las api
 const API_VISITA = '../../app/api/residente/visitas.php?action=';
 const ENDPOINT_VISITANTE = '../../app/api/residente/visitas.php?action=readVisitante';
 
-
+//Al cargar la pagina
 document.addEventListener('DOMContentLoaded', function () {
     fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
     readRows(API_VISITA);
-
     let today = new Date();
     // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
     let day = ('0' + today.getDate()).slice(-2);
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se asigna la fecha como valor máximo en el campo del formulario.
     document.getElementById('txtFecha').setAttribute('min', date);
 })
-
 
 //Al activar el evento submit del formulario verificarDui-form
 document.getElementById('verificarDui-form').addEventListener('submit',function(event){
@@ -36,10 +35,20 @@ document.getElementById('verificarDui-form').addEventListener('submit',function(
                 if (response.status) {
                     // Sucede si se encuentra el visitante
                     console.log('El visitante existe.');
+                    //Cerramos el modal actual
+                    closeModal('verificarDui');
+                    //Mandamos la informacion al nuevo modal
+                    var num = document.getElementById('txtDuiVerificar').value;
+                    console.log(num);
+                    getVisitorData(num);
+                    //Abrimos el nuevo modal
+                    openModal('crearVisita');
                 } else {
                     // Se evalua la causa de que no se hayan recuperado datos
                     if (response.exception == 'No existe ningún visitante con este DUI.') {
                         // Nos notifica de que el visitante no existe, por lo tanto procedera al modal para crearlo
+                        //Asignamos el dui a la caja de texto del modal que se abrira
+                        document.getElementById('txtDUI').value = document.getElementById('txtDuiVerificar').value;
                         //Cerramos el modal actual
                         closeModal('verificarDui');
                         //Abrimos el nuevo modal
@@ -58,14 +67,10 @@ document.getElementById('verificarDui-form').addEventListener('submit',function(
     });
 });
 
+//Al presionar en el boton
 document.getElementById('btnInsertDialog').addEventListener('click', function () {
-
     // Se reinician los campos del formulario
-    document.getElementById('idVisita').value = '';
-    document.getElementById('txtFecha').value = '';
-    document.getElementById('txtObservacion').value = '';
-    fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
-
+    document.getElementById('txtDuiVerificar').value = '';
 });
 
 //Agregar y actualizar información
@@ -76,18 +81,14 @@ document.getElementById('administrarVisita-form').addEventListener('submit', fun
     fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
     saveRow(API_VISITA, 'createRow', 'administrarVisita-form', 'crearVisita');
     readRows(API_VISITA);
-
-
 });
 
 document.getElementById('btnNo').addEventListener('click', function () {
-
     // Se reinician los campos del formulario
     document.getElementById('txtApellido').value = '';
     document.getElementById('txtPlaca').value = '';
     document.getElementById('txtNombre').value = '';
     document.getElementById('txtDUI').value = '';
-
 });
 
 //Agregar y actualizar información
@@ -95,12 +96,65 @@ document.getElementById('Visitante-form').addEventListener('submit', function (e
     //Se evita que se recargue la pagina
     event.preventDefault();
 
-    saveRow(API_VISITA, 'createVisitante', 'Visitante-form', 'administrarVisitante');
+    fetch(API_VISITA + 'createVisitante', {
+        method: 'post',
+        body: new FormData(document.getElementById('Visitante-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
+                    //sweetAlert(1, response.message, closeModal(modal));
+                    closeModal('administrarVisitante');
+                    getVisitorData(document.getElementById('txtDUI').value);
+                    openModal('crearVisita');
+                    clearForm('Visitante-form');
 
-
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 });
 
-
+//Funcion para obtener la informacion del visitante
+function getVisitorData(dui){
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('txtDuiVerificar', dui);
+    console.log(dui);
+    fetch(API_VISITA + 'checkVisitor', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    document.getElementById('lblVisitante2').textContent = response.dataset.nombre + ' ' + response.dataset.apellido;
+                    document.getElementById('lblDui').textContent = response.dataset.dui;
+                    document.getElementById('lblPlaca2').textContent = response.dataset.placa;
+                    document.getElementById('idVisitante').value = response.dataset.idvisitante;
+                } else {
+                    console.log(response.exception);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 
 //Llenado de tabla
 function fillTable(dataset) {
@@ -160,14 +214,11 @@ function fillTable(dataset) {
     });
 }
 
-
 function readOne(id) {
-
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idDetalle', id);
     console.log(id);
-
 
     fetch(API_VISITA + 'readOne', {
         method: 'post',
@@ -198,10 +249,9 @@ function readOne(id) {
     }).catch(function (error) {
         console.log(error);
     });
-
 }
 
-
+//Busqueda
 function searchRows2(API_VISITA, form) {
     fetch(API_VISITA + 'search', {
         method: 'post',
@@ -228,6 +278,7 @@ function searchRows2(API_VISITA, form) {
     });
 }
 
+//Busqueda
 document.getElementById('search-form').addEventListener('submit', function (event) {
     //Evitamos recargar la pagina
     event.preventDefault();
