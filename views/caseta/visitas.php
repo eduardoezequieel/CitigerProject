@@ -41,6 +41,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                     <th scope="col">Residente</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Visitante</th>
+                    <th scope="col">Estado</th>
                     <th scope="col"></th>
                 </tr>
             </thead>

@@ -24,6 +24,7 @@ function fillTable(dataset) {
                 <td>${row.residente}</td>
                 <td>${row.fecha}</td>
                 <td>${row.visitante}</td>
+                <td>${row.estadovisita}</td>
                 <!-- Boton-->
                 <th scope="row">
                     <div class="row paddingBotones">

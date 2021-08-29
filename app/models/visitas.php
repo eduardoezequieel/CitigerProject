@@ -523,10 +523,11 @@ class Visitas extends Validator
     {
         $sql = 'SELECT CONCAT(residente.apellido, \' \', residente.nombre) as residente, fecha, 
                 CONCAT(visitante.apellido, \' \', visitante.nombre) as visitante, observacion,
-                detallevisita.idvisita,residente.foto
+                detallevisita.idvisita,residente.foto, estadovisita
                 FROM detallevisita
                 INNER JOIN visitante ON visitante.idvisitante = detallevisita.idvisitante
                 INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
+                INNER JOIN estadoVisita USING(idestadovisita)
                 INNER JOIN residente ON residente.idresidente = visita.idresidente
                 ORDER BY fecha ASC';
         $params = null;
