@@ -29,15 +29,70 @@ function fillTable(dataset) {
                 <td>${row.estadodenuncia}</td>
                 <td>${row.fecha}</td>
                 <!-- Boton-->
-                <th scope="row">
-                    <div class="row paddingBotones">
-                        <div class="col-12">
-                            <a href="#" onclick="readDataOnModal(${row.iddenuncia}) "data-toggle="modal" data-target="#administrarDenuncia" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
-                        </div>
-                    </div>
-                </th>
-            </tr>
+                
         `;
+
+        if (row.estadodenuncia == "Pendiente") {
+            content += `
+            <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" onclick="readDataOnModal(${row.iddenuncia}) "data-toggle="modal" data-target="#administrarDenuncia" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
+                </div>
+            </div>
+        </th>
+        </tr>
+        `
+        } 
+        else if (row.estadodenuncia == "Rechazada") {
+            content += `
+            <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" onclick="readDataOnModal(${row.iddenuncia}) "data-toggle="modal" data-target="#verDenuncias" class="btn btnTabla mx-2"><i class="fas fa-ban"></i></a>
+                </div>
+            </div>
+        </th> 
+        </tr>
+        `
+        } 
+        else if (row.estadodenuncia == "Solucionada") {
+            content += `
+            <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" onclick="readDataOnModal(${row.iddenuncia}) "data-toggle="modal" data-target="#verDenuncias" class="btn btnTabla mx-2"><i class="fas fa-info-circle"></i></a>
+                </div>
+            </div>
+        </th> 
+        </tr>
+        `
+        }
+        else if (row.estadodenuncia == "En proceso") {
+            content += `
+            <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" onclick="readDataOnModal(${row.iddenuncia}) "data-toggle="modal" data-target="#verDenuncias" class="btn btnTabla mx-2"><i class="fas fa-briefcase"></i></a>
+                </div>
+            </div>
+        </th> 
+        </tr>
+        `
+        }  
+        else if (row.estadodenuncia == "Revisión") {
+            content += `
+            <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" onclick="readDataOnModal(${row.iddenuncia}) "data-toggle="modal" data-target="#verDenuncias" class="btn btnTabla mx-2"><i class="fas fa-question"></i></a>
+                </div>
+            </div>
+        </th> 
+        </tr>
+        `
+        }  
+        
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
@@ -183,6 +238,8 @@ function readDataOnModal(id) {
     document.getElementById('btnActualizar').className = "btn btnAgregarFormulario mr-2";
     document.getElementById('lblResp').className = "campoDato text-center";
     document.getElementById('lblResp2').className = "tituloDato2 text-center";
+    document.getElementById('lblRespuesta').className = "campoDato text-center";
+    document.getElementById('lblRespuesta2').className = "tituloDato text-center";
 
 
 
@@ -199,6 +256,7 @@ function readDataOnModal(id) {
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('idDenuncia').value = response.dataset.iddenuncia;
+                    document.getElementById('idDenuncia2').value = response.dataset.iddenuncia;
                     fillSelect(ENDPOINT_TIPO, 'cbTipo', response.dataset.idtipodenuncia);
                     document.getElementById('txtDescripcion').value = response.dataset.descripcion;
                     if (response.dataset.idestadodenuncia == 1) {
@@ -210,22 +268,44 @@ function readDataOnModal(id) {
                     } else if (response.dataset.idestadodenuncia == 3) {
                         document.getElementById('btnActualizar').className = "d-none";
                         document.getElementById('lblResp2').className = "d-none";
+                        document.getElementById('lblRespuesta2').className = "d-none";
+                        document.getElementById('lblRespuesta').className = "d-none";
+
+                        
+
 
 
                     } else if (response.dataset.idestadodenuncia == 4) {
                         document.getElementById('btnActualizar').className = "d-none";
                         document.getElementById('lblResp2').className = "d-none";
+                        document.getElementById('lblRespuesta2').className = "d-none";
+                        document.getElementById('lblRespuesta').className = "d-none";
+
+
 
 
                     } else if (response.dataset.idestadodenuncia == 5) {
                         document.getElementById('btnActualizar').className = "d-none";
                         document.getElementById('lblResp2').className = "d-none";
+                        document.getElementById('lblRespuesta2').className = "d-none";
+                        document.getElementById('lblRespuesta').className = "d-none";
+
+
 
 
                     }
 
 
                     document.getElementById('lblResp').textContent = (response.dataset.respuesta);
+                    document.getElementById('lblRespuesta').textContent = (response.dataset.respuesta);
+
+                    document.getElementById('lblTipoDenuncia').textContent = (response.dataset.tipodenuncia);
+                    document.getElementById('lblFecha').textContent = (response.dataset.fecha);
+                    document.getElementById('lblEstado').textContent = (response.dataset.estadodenuncia);
+                    document.getElementById('lblDesc').textContent = (response.dataset.descripcion);
+
+
+
 
 
 

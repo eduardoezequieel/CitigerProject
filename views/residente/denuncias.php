@@ -127,9 +127,9 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                                 <textarea class="form-control cajaTextoFormulario2" placeholder="Escriba su descripcion..." id="txtDescripcion" name="txtDescripcion" rows="4"></textarea>
 
                             </div>
-                        
-                                <h1 class="tituloDato2 text-center" id="lblResp2">Respuesta:</h1>
-                                <h1 class="campoDato text-center" id="lblResp"></h1>
+
+                            <h1 class="tituloDato2 text-center" id="lblResp2">Respuesta:</h1>
+                            <h1 class="campoDato text-center" id="lblResp"></h1>
                         </div>
                         <br>
                     </div>
@@ -146,6 +146,54 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
 </div>
 <!-- Fin del Modal -->
 
+
+<!-- Modal para ver denuncias-->
+<div class="modal fade" id="verDenuncias" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Denuncias</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                <form method="post" id="administrarDenunciaEnSolucion-form">
+                    <input type="number" class="d-none" id="idDenuncia2" name="idDenuncia2">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12">
+
+                            <h1 class="tituloDato text-center">Tipo de Denuncia</h1>
+                            <h1 class="campoDato text-center mb-3" id="lblTipoDenuncia">Mantenimiento</h1>
+
+                            <h1 class="tituloDato text-center">Fecha</h1>
+                            <h1 class="campoDato text-center mb-3" id="lblFecha">11/6/2021</h1>
+
+                            <h1 class="tituloDato text-center">Descripción</h1>
+                            <h1 class="campoDato text-center mb-3" id="lblDesc">11/6/2021</h1>
+
+                            <h1 class="tituloDato text-center">Estado</h1>
+                            <h1 class="campoDato text-center mb-3" id="lblEstado">Pendiente</h1>
+
+                            <h1 class="tituloDato text-center" id="lblRespuesta2">Respuesta</h1>
+                            <h1 class="campoDato text-center mb-3" id="lblRespuesta">Pendiente</h1>
+
+
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <!-- Fin del Contenido del Modal -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
 <?php
 //Se imprimen los JS necesarios
 admin_Page::footerTemplate('denuncia.js');

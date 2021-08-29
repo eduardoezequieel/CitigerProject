@@ -349,7 +349,10 @@ class Denuncias extends Validator
     public function readOne2()
     {
 
-        $sql = "SELECT iddenuncia,idtipodenuncia,descripcion, idestadodenuncia,respuesta from denuncia where iddenuncia=?";
+        $sql = "SELECT iddenuncia,idtipodenuncia,descripcion, idestadodenuncia,respuesta,fecha, estadodenuncia,tipodenuncia from denuncia
+        inner join estadodenuncia using(idestadodenuncia)
+        inner join tipodenuncia using(idtipodenuncia)
+        where iddenuncia=?";
         $params = array($this->idDenuncia);
         return Database::getRow($sql, $params);
     }
