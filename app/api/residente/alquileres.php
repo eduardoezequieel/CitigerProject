@@ -111,6 +111,126 @@
                         $result['exception'] = 'Hubo un problema al seleccionar el estado del alquiler.';
                     }
                     break;
+                //Caso para agregar un registro
+                case 'createRow':
+                    $_POST = $alquiler->validateForm($_POST);
+                    if (isset($_POST['cbEspacio'])) {
+                        if ($alquiler->setIdEspacio($_POST['cbEspacio'])) {
+                            if ($alquiler->setFecha($_POST['txtFecha'])) {
+                                if ($_POST['txtHoraInicio'] != $_POST['txtHoraFin'] && 
+                                    $_POST['txtHoraInicio'] < $_POST['txtHoraFin']) {
+                                    if ($alquiler->setHoraInicio($_POST['txtHoraInicio'])) {
+                                        if ($alquiler->setHoraFin($_POST['txtHoraFin'])) {
+                                            $alquiler->setPrecio(00.00);
+                                            $alquiler->setIdEstadoAlquiler(1);
+                                            $alquiler->setIdUsuario(1);
+                                            if ($alquiler->requestRow()) {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Se ha solicitado el alquiler correctamente.';
+                                            } else {
+                                                if (Database::getException()) {
+                                                    $result['exception'] = Database::getException();
+                                                } else {
+                                                    $result['exception'] = 'No se ha agregado el alquiler correctamente.';
+                                                }
+                                            }
+                                        } else {    
+                                            $result['exception'] = 'La hora de fin ingresada no es válida.';
+                                        }  
+                                    } else {    
+                                        $result['exception'] = 'La hora de inicio ingresada no es válida.';
+                                    }
+                                } else {
+                                    $result['exception'] = 'La hora de inicio no puede ser igual o menor a la hora de fin.';
+                                }
+                            } else {
+                                $result['exception'] = 'La fecha ingresada no es válida.';
+                            }
+                        } else {    
+                            $result['exception'] = 'El espacio seleccionado no es válido.';
+                        }
+                    } else {
+                        $result['exception'] =  'Seleccione un espacio.';
+                    }
+                    break;
+                //Caso para actualizar un registro
+                case 'updateRow':
+                    $_POST = $alquiler->validateForm($_POST);
+                    if ($alquiler->setIdAlquiler($_POST['idAlquiler'])) {
+                        if ($alquiler->readOne()) {
+                            if (isset($_POST['cbEspacio'])) {
+                                if ($alquiler->setIdEspacio($_POST['cbEspacio'])) {
+                                    if ($alquiler->setFecha($_POST['txtFecha'])) {
+                                        if ($_POST['txtHoraInicio'] != $_POST['txtHoraFin'] &&
+                                            $_POST['txtHoraInicio'] < $_POST['txtHoraFin']) {
+                                            if ($alquiler->setHoraInicio($_POST['txtHoraInicio'])) {
+                                                if ($alquiler->setHoraFin($_POST['txtHoraFin'])) {
+                                                    $alquiler->setPrecio(00.00);
+                                                        $alquiler->setIdEstadoAlquiler(1);
+                                                        $alquiler->setIdUsuario(1);
+                                                        if ($alquiler->updateRequestRow()) {
+                                                            $result['status'] = 1;
+                                                            $result['message'] = 'Se ha actualizado el alquiler correctamente.';
+                                                        } else {
+                                                            if (Database::getException()) {
+                                                                $result['exception'] = Database::getException();
+                                                            } else {
+                                                                $result['exception'] = 'No se ha actualizado el alquiler correctamente.';
+                                                            }
+                                                        }
+                                                } else {    
+                                                    $result['exception'] = 'La hora de fin ingresada no es válida.';
+                                                }  
+                                            } else {    
+                                                $result['exception'] = 'La hora de inicio ingresada no es válida.';
+                                            }
+                                        } else {
+                                            $result['exception'] = 'La hora de inicio no puede ser igual o mayor a la hora de fin.';
+                                        }
+                                    } else {
+                                        $result['exception'] = 'La fecha ingresada no es válida.';
+                                    }
+                                } else {    
+                                    $result['exception'] = 'El espacio seleccionado no es válido.';
+                                }
+                            } else {
+                                $result['exception'] =  'Seleccione un espacio.';
+                            }
+                        } else {
+                            $result['exception'] = 'No se encontró el resgitro de este alquiler.';
+                        }
+                    } else {
+                        $result['exception'] = 'Hubo un problema al seleccionar el alquiler.';
+                    }
+                    break;
+                    //Caso para eliminar el registro de la base
+                    case 'delete':
+                        $_POST = $alquiler->validateForm($_POST);
+                        if ($alquiler->setIdAlquiler($_POST['idAlquiler'])) {
+                            if ($alquiler->setIdEspacio($_POST['idEspacio'])) {
+                                if ($alquiler->deleteRow()) {
+                                    $result['status'] = 1;
+                                    if ($alquiler->checkSpaceStatus()) {
+                                        $result['message'] = 'Se ha cancelado el alquiler correctamente';
+                                    } else {
+                                        $alquiler->setIdEstadoEspacio(1);
+                                        $alquiler->changeSpaceStatus();
+                                        $result['message'] = 'Se ha cancelado el alquiler correctamente.';
+                                    }
+                                } else {
+                                    if (Database::getException()) {
+                                        $result['exception'] = Database::getException();
+                                    } else {
+                                        $result['exception'] = 'No se ha cancelado el alquiler correctamente.';
+                                    }
+                                }
+                            } else {
+                                $result['exception'] = 'Hubo problemas al seleccionar el espacio.';
+                            }
+                        } else {
+                            $result['exception'] = 'Problemas al seleccionar el alquiler.';
+                        }
+                        break;
                 default:
                     $result['exception'] = 'La acción solicitada no está disponible dentro de la sesión';
             } 

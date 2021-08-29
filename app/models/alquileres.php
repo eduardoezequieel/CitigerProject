@@ -249,6 +249,29 @@
             return Database::executeRow($sql,$params);
         }
 
+        //Función para agregar un nuevo registro a la base
+        public function requestRow()
+        {
+            $sql = 'INSERT INTO alquiler(idestadoalquiler, idespacio, precio, idusuario, idresidente, fecha,
+                    horaInicio, horaFin)
+                    VALUES(?,?,?,?,?,?,?,?)';
+            $params = array($this->idEstadoAlquiler, $this->idEspacio, $this->precio,$this->idUsuario,$_SESSION['idresidente'],
+                            $this->fecha, $this->horaInicio, $this->horaFin);
+            return Database::executeRow($sql,$params);
+        }
+
+        //Función para agregar un nuevo registro a la base
+        public function updateRequestRow()
+        {
+            $sql = 'UPDATE alquiler 
+                    SET idestadoalquiler = ?, idespacio = ?, precio = ?, idusuario = ?, idresidente = ?,
+                    fecha = ?, horainicio = ?, horafin = ?
+                    WHERE idalquiler = ?';
+            $params = array($this->idEstadoAlquiler, $this->idEspacio, $this->precio,$this->idUsuario,$_SESSION['idresidente'],
+                $this->fecha, $this->horaInicio, $this->horaFin,$this->idAlquiler);
+            return Database::executeRow($sql,$params);
+        }
+
         //Función para cambiar el estado del espacio
         public function changeSpaceStatus()
         {
