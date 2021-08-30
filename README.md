@@ -36,7 +36,7 @@ Citiger es un Sistema de Gestión para Residenciales diseñado para cubrir todas
 -[Dashboard - R] Añadir paginación a la tabla de aportaciones
 -[Espacios - D] Crear un modal para poder agregar stock sin hacer operaciones matematicas
 Capturar el año actual para el reporte de residentes en mora
-
+- Crear comprobante de alquiler
 
 
 
