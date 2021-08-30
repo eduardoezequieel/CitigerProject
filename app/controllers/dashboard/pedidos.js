@@ -33,7 +33,7 @@ function fillTable(dataset){
                 <div class="row paddingBotones">
                     <div class="col-12">
                         <a href="#" onclick="readInfo(${row.idpedido})" data-toggle="modal" data-target="#administrarPedido" class="btn btnTabla"><i class="fas fa-cog"></i></a>
-                        <a href="#" type="button" onclick="openReport(${row.idpedido})" target="_blank" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Reporte de factura" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
+                        <a href="#" type="button" onclick="openReport(${row.idpedido})" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Reporte de factura" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
 
                     </div>
                 </div>
@@ -322,7 +322,7 @@ function openReport(id) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
         if (request.ok) {
             // Abrimos el reporte mediante su URL 
-            window.open("../../app/reports/dashboard/factura.php");
+            window.open("../../app/reports/dashboard/factura.php","");
         } else {
             console.log(request.status + ' ' + request.statusText);
         }
