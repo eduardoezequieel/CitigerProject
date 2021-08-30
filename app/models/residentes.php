@@ -586,7 +586,7 @@ class Residentes extends Validator
         INNER JOIN casa USING(idcasa)
         INNER JOIN residenteCasa USING(idcasa)
         INNER JOIN residente USING(idresidente)
-        WHERE fechapago < current_date AND idestadoaportacion = 1 and EXTRACT(month from fechapago)=?";
+        WHERE fechapago < current_date AND idestadoaportacion = 1 and EXTRACT(YEAR FROM fechapago) = (SELECT EXTRACT(YEAR FROM current_date))  and EXTRACT(month from fechapago)=?";
         $params = array($this->idResidente);
         return Database::getRows($sql, $params);
     }

@@ -1290,6 +1290,24 @@ textarea :-ms-input-placeholder {
   box-shadow: 0px 4px 10px 0px var(--color-citiger) !important;
 }
 
+.btnAgregarFormularioResident {
+  background-color: var(--color-rojo) !important;
+  color: var(--color-rojo-hover) !important;
+  font-family: 'Quicksand', 'sans-serif';
+  font-size: 13px;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.btnAgregarFormularioResident:hover  {
+  background-color: var(--color-rojo) !important;
+  color: var(--color-rojo-hover) !important;
+  box-shadow: 0px 4px 10px 0px var(--color-rojo) !important;
+}
+
 .btnEditarFormulario {
   background-color: var(--color-citiger-claro) !important;
   color: var(--color-citiger) !important;
@@ -2213,6 +2231,10 @@ textarea[placeholder],
   }
 
   .btnAgregarFormulario {
+    font-size: 0px !important;
+  }
+
+  .btnAgregarFormularioResident {
     font-size: 0px !important;
   }
 
