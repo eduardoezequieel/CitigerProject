@@ -65,7 +65,7 @@ class Dashboard extends Validator
     {
         $sql = 'SELECT COUNT(idvisita) as visitas 
                     FROM visita
-                    where idestadovisita=4 and idresidente=?';
+                    where idestadovisita=1 and idresidente=?';
         $params = array($_SESSION['idresidente']);
         return Database::getRow($sql, $params);
     }
@@ -74,7 +74,7 @@ class Dashboard extends Validator
     public function contadorAportaciones()
     {
         $sql = 'SELECT COUNT(idaportacion) as aportaciones from aportacion a, casa c, residente r,residentecasa rc where rc.idcasa=c.idcasa and rc.idresidente=r.idresidente
-            and a.idestadoaportacion=1 and r.idresidente=? ';
+            and a.idestadoaportacion=1 and a.idcasa=c.idcasa and fechapago < current_date and EXTRACT(YEAR FROM fechapago) = (SELECT EXTRACT(YEAR FROM current_date)) and r.idresidente=? ';
         $params = array($_SESSION['idresidente']);
         return Database::getRow($sql, $params);
     }
@@ -84,7 +84,7 @@ class Dashboard extends Validator
 
         $sql = "SELECT a.idaportacion, CONCAT(m.mes,' ',m.ano) as mespago,a.monto,fechapago,e.estadoaportacion from aportacion a, casa c, residente r,residentecasa rc, mespago m,
         estadoaportacion e where a.idmespago=m.idmespago and rc.idcasa=c.idcasa and rc.idresidente=r.idresidente and a.idestadoaportacion=e.idestadoaportacion and
-        r.idresidente=?
+         a.idcasa=c.idcasa and EXTRACT(YEAR FROM fechapago) = (SELECT EXTRACT(YEAR FROM current_date)) and  fechapago < current_date and rc.idresidente=?
              ";
         $params = array($_SESSION['idresidente']);
         return Database::getRows($sql, $params);
@@ -95,7 +95,7 @@ class Dashboard extends Validator
     {
         $sql = 'SELECT COUNT(idvisita) as visitas 
                     FROM visita
-                    where idestadovisita=4';
+                    where idestadovisita=1';
         $params = null;
         return Database::getRow($sql, $params);
     }
@@ -103,7 +103,7 @@ class Dashboard extends Validator
 
     public function contadorAportaciones2()
     {
-        $sql = 'SELECT COUNT(idaportacion) as aportaciones from aportacion where idestadoaportacion=1';
+        $sql = 'SELECT COUNT(idaportacion) as aportaciones from aportacion where idestadoaportacion=1 and EXTRACT(YEAR FROM fechapago) = (SELECT EXTRACT(YEAR FROM current_date)) and  fechapago < current_date';
         $params = null;
         return Database::getRow($sql, $params);
     }

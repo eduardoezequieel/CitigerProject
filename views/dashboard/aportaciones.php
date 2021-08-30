@@ -173,7 +173,7 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                             deseado en el combobox  -->
                             <div class="cbCitiger">
                                 <select class="custom-select" id="cbAnio">
-                                    <option selected="">Seleccionar...</option>
+                                    <option  disabled selected="">Seleccionar...</option>
                                     <option value="2021">2021</option>
                                     <option value="2022">2022</option>
                                     <option value="2023">2023</option>
