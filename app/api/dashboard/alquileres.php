@@ -380,8 +380,17 @@
                                 $result['exception'] = 'No ha ingresado fechas';
                             }
                         } else {
-                            $result['exception'] = 'La fecha de inicio no puede ser igual o menor a la fecha de fin.';
+                            $result['exception'] = 'La fecha de inicio no puede ser  menor a la fecha de fin.';
                         }
+                        break;
+
+                        case 'readOne3': 
+                            $_SESSION['idalquiler'] = $_POST['txtId'];
+                            if ($_SESSION['idalquiler'] != null) {       
+                                $result['status'] = 1;
+                            } else {   
+                                $result['exception'] = 'Factura inexistente';                  
+                            }
                         break;
                 default:
                     $result['exception'] = 'La acción solicitada no está disponible dentro de la sesión';

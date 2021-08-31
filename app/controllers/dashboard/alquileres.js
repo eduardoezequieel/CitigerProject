@@ -55,6 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }).catch(error=>console.log(error));
 
+    $(function () {
+        $("input[type=date]").value("");
+    })
+
+
 })
 
 //Llenado de tabla
@@ -86,6 +91,9 @@ function fillTable(dataset){
 
                                 <a href="#" onclick="deleteRow(${row.idalquiler})" class="btn btnTabla2 mx-2"><i
                                 class="fas fa-trash"></i></a>
+
+                                <a href="#" onclick="openReport(${row.idalquiler})" type="button" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Comprobante de alquiler" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
+
                             </div>
                         </div>
                     </th>
@@ -380,3 +388,26 @@ document.getElementById('fecha-form').addEventListener('submit', function (event
         console.log(error);
     });
 })
+
+
+function openReport(id) {
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('txtId', id);
+    // Realizamos una peticion a la API indicando el caso a utilizar y enviando la direccion de la API como parametro
+    fetch(API_ALQUILER + 'readOne3', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            // Abrimos el reporte mediante su URL 
+            window.open("../../app/reports/dashboard/comprobante_alquiler.php","");
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+
+}

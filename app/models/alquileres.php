@@ -433,7 +433,36 @@
              $params = array($_SESSION['fecha1'],$_SESSION['fecha2'],$this->idEspacio);
              return Database::getRows($sql, $params);
         }
+
+        public function readAlquilerDatos()
+        {
+            $sql = " SELECT idalquiler, concat(r.nombre,' ',r.apellido) as residente, concat(u.nombre,'',u.apellido) as usuario, e.nombre
+            from alquiler
+            inner join residente r using(idresidente)
+            inner join espacio e using(idespacio)
+            inner join usuario u using(idusuario) where idalquiler=?";
+            $params = array( $_SESSION['idalquiler']);
+            return Database::getRows($sql, $params);  
+        }
+
+        public function readReportAlquiler()
+        {
+            $sql = "SELECT idalquiler, concat(r.nombre,' ',r.apellido) as residente, concat(u.nombre,'',u.apellido) as usuario, e.estadoalquiler,
+            horainicio,horafin, fecha, precio
+            from alquiler
+            inner join residente r using(idresidente)
+            inner join estadoalquiler e using(idestadoalquiler)
+            inner join usuario u using(idusuario) where idalquiler=?";
+            $params = array( $_SESSION['idalquiler']);
+            return Database::getRows($sql, $params);
+       }
+
+    
     }
+
+
+
+    
 
 
     

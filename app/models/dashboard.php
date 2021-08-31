@@ -103,7 +103,8 @@ class Dashboard extends Validator
 
     public function contadorAportaciones2()
     {
-        $sql = 'SELECT COUNT(idaportacion) as aportaciones from aportacion where idestadoaportacion=1 and EXTRACT(YEAR FROM fechapago) = (SELECT EXTRACT(YEAR FROM current_date)) and  fechapago < current_date';
+        $sql = 'SELECT COUNT(idaportacion) as aportaciones from aportacion where idestadoaportacion=1 and EXTRACT(YEAR FROM fechapago) = (SELECT EXTRACT(YEAR FROM current_date)) 
+        and EXTRACT(MONTH FROM fechapago) = (SELECT EXTRACT(MONTH FROM current_date)) ';
         $params = null;
         return Database::getRow($sql, $params);
     }

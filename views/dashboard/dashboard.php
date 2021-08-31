@@ -27,7 +27,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
                                             class="fas fa-ellipsis-v"></span></button>
                                     <div class="dropdown-menu animate__animated animate__bounceIn mt-5" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="listado_denuncias.php">Denuncias</a>
+                                        <a class="dropdown-item" href="denuncias.php">Denuncias</a>
                                         <a class="dropdown-item" href="#">Generar Reporte</a>
                                         
                                     </div>
@@ -61,7 +61,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
                                             class="fas fa-ellipsis-v"></span></button>
                                     <div class="dropdown-menu animate__animated animate__bounceIn mt-5" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="listado_visitas.php">Visitas</a>
+                                        <a class="dropdown-item" href="visitas.php">Visitas</a>
                                         <a class="dropdown-item" href="#">Generar Reporte</a>
                                         
                                     </div>
@@ -92,7 +92,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
                                             class="fas fa-ellipsis-v"></span></button>
                                     <div class="dropdown-menu animate__animated animate__bounceIn mt-5" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="listado_denuncias.php">Aportaciones</a>
+                                        <a class="dropdown-item" href="aportaciones.php">Aportaciones</a>
                                         <a class="dropdown-item" href="#">Generar Reporte</a>
                                         
                                     </div>
@@ -106,7 +106,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                         </div>
                         <div class="row justify-content-center mt-4">
                             <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
-                                <h1 class="tituloTarjetaDashboard">Aportaciones Pendientes</h1>
+                                <h1 class="tituloTarjetaDashboard">Aportaciones Pendientes del mes</h1>
                                 <h1 class="contadorTarjetaDashboard mt-1" id="txtAportaciones">0</h1>
                             </div>
                         </div>
