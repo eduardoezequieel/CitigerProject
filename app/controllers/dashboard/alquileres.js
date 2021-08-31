@@ -5,19 +5,19 @@ const ENDPOINT_ESPACIO_ALQUILER = '../../app/api/dashboard/alquileres.php?action
 const ENDPOINT_ESPACIO_ALQUILER_UPDATE = '../../app/api/dashboard/alquileres.php?action=readSpaceUpdate';
 const ENDPOINT_RES_ALQUILER = '../../app/api/dashboard/alquileres.php?action=readResident';
 //Declarando constante para manipular botones
-const BOTONES =  document.getElementsByTagName('button');
+const BOTONES = document.getElementsByTagName('button');
 
 //Evento al terminar de cargar la pagina
 document.addEventListener('DOMContentLoaded', function () {
     //Inicializando tooltips
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
-      })
-      
+    });
+
     //Llenando los combobox necesarios
-    fillSelect(ENDPOINT_ESTADO_ALQUILER,'cbEstadoAlquiler',null);
-    fillSelect(ENDPOINT_RES_ALQUILER,'cbResidente',null);
-   
+    fillSelect(ENDPOINT_ESTADO_ALQUILER, 'cbEstadoAlquiler', null);
+    fillSelect(ENDPOINT_RES_ALQUILER, 'cbResidente', null);
+
     // Se declara e inicializa un objeto para obtener la fecha y hora actual.
     let today = new Date();
     // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
@@ -31,15 +31,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se asigna la fecha como valor máximo en el campo del formulario.
     document.getElementById('txtFecha').setAttribute('min', date);
 
-     //Se ocultan los botones necesarios del formulario.
-     for (let i = 3; i < BOTONES.length; i++) {
+    //Se ocultan los botones necesarios del formulario.
+    for (let i = 3; i < BOTONES.length; i++) {
         if (i != 3) {
             BOTONES[i].className = 'd-none';
         }
     }
 
     //Verificando si existen registros
-    fetch (API_ALQUILER + 'readAll').then(request => {
+    fetch(API_ALQUILER + 'readAll').then(request => {
         //verificando si la petición fue correcta
         if (request.ok) {
             request.json().then(response => {
@@ -47,23 +47,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (response.status) {
                     readRows(API_ALQUILER);
                 } else {
-                    sweetAlert(4,response.exception, null);
+                    sweetAlert(4, response.exception, null);
                 }
             })
         } else {
             console.log(request.status + ' ' + request.statusText);
         }
-    }).catch(error=>console.log(error));
-
-    $(function () {
-        $("input[type=date]").value("");
-    })
+    }).catch(error => console.log(error));
 
 
 })
 
 //Llenado de tabla
-function fillTable(dataset){
+function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.map(function (row) {
@@ -84,21 +80,73 @@ function fillTable(dataset){
                     <td>${row.fecha}</td>
                     <td>${row.estadoalquiler}</td>
                     <!-- Boton-->
-                    <th scope="row">
-                        <div class="row paddingBotones">
-                            <div class="col-12">
-                                <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#administrarAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+        `;
+        if (row.estadoalquiler == "Activo") {
+            content += `
+            <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#administrarAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
 
-                                <a href="#" onclick="deleteRow(${row.idalquiler})" class="btn btnTabla2 mx-2"><i
-                                class="fas fa-trash"></i></a>
+                    <a href="#" onclick="deleteRow(${row.idalquiler})" class="btn btnTabla2 mx-2"><i
+                    class="fas fa-trash"></i></a>
 
-                                <a href="#" onclick="openReport(${row.idalquiler})" type="button" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Comprobante de alquiler" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
+                    <a href="#" onclick="openReport(${row.idalquiler})" type="button" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Comprobante de alquiler" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
 
-                            </div>
-                        </div>
-                    </th>
-                </tr>
-        `; 
+                </div>
+            </div>
+        </th>
+            </tr> `
+        }else if (row.estadoalquiler == "Revisión") {
+            content += `
+            <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#administrarAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+
+                    <a href="#" onclick="deleteRow(${row.idalquiler})" class="btn btnTabla2 mx-2"><i
+                    class="fas fa-trash"></i></a>
+
+
+                </div>
+            </div>
+        </th>
+            </tr> `
+        }else if (row.estadoalquiler == "Denegado") {
+            content += `
+            <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#administrarAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+
+                    <a href="#" onclick="deleteRow(${row.idalquiler})" class="btn btnTabla2 mx-2"><i
+                    class="fas fa-trash"></i></a>
+
+
+                </div>
+            </div>
+        </th>
+            </tr> `
+        }
+        else if (row.estadoalquiler == "Finalizado") {
+            content += `
+            <th scope="row">
+            <div class="row paddingBotones">
+                <div class="col-12">
+                    <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#verAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-eye"></i></a>
+
+                    <a href="#" onclick="deleteRow(${row.idalquiler})" class="btn btnTabla2 mx-2"><i
+                    class="fas fa-trash"></i></a>
+
+                    <a href="#" onclick="openReport(${row.idalquiler})" type="button" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Comprobante de alquiler" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
+
+
+
+                </div>
+            </div>
+        </th>
+            </tr> `
+        }
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('tbody-rows').innerHTML = content;
@@ -107,35 +155,35 @@ function fillTable(dataset){
         retrieve: true,
         searching: false,
         language:
-            {
-                "decimal":        "",
-                "emptyTable":     "No hay información disponible en la tabla.",
-                "info":           "Mostrando _START_ de _END_ de _TOTAL_ registros.",
-                "infoEmpty":      "Mostrando 0 de 0 de 0 registros",
-                "infoFiltered":   "(filtered from _MAX_ total entries)",
-                "infoPostFix":    "",
-                "thousands":      ",",
-                "lengthMenu":     "Mostrar _MENU_ registros",
-                "loadingRecords": "Loading...",
-                "processing":     "Processing...",
-                "search":         "Search:",
-                "zeroRecords":    "No matching records found",
-                "paginate": {
-                    "first":      "AAA",
-                    "last":       "Ultimo",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "aria": {
-                    "sortAscending":  ": activate to sort column ascending",
-                    "sortDescending": ": activate to sort column descending"
-                }
+        {
+            "decimal": "",
+            "emptyTable": "No hay información disponible en la tabla.",
+            "info": "Mostrando _START_ de _END_ de _TOTAL_ registros.",
+            "infoEmpty": "Mostrando 0 de 0 de 0 registros",
+            "infoFiltered": "(filtered from _MAX_ total entries)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "loadingRecords": "Loading...",
+            "processing": "Processing...",
+            "search": "Search:",
+            "zeroRecords": "No matching records found",
+            "paginate": {
+                "first": "AAA",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+            "aria": {
+                "sortAscending": ": activate to sort column ascending",
+                "sortDescending": ": activate to sort column descending"
             }
+        }
     });
 }
 
 //Carga de datos del registro seleccionado
-function readDataOnModal(id){
+function readDataOnModal(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idAlquiler', id);
@@ -154,31 +202,42 @@ function readDataOnModal(id){
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('idAlquiler').value = response.dataset.idalquiler;
+                    document.getElementById('idAlquiler2').value = response.dataset.idalquiler;
                     document.getElementById('idEspacio').value = response.dataset.idespacio;
                     document.getElementById('txtFecha').value = response.dataset.fecha;
                     document.getElementById('txtHoraInicio').value = response.dataset.horainicio;
                     document.getElementById('txtHoraFin').value = response.dataset.horafin;
                     document.getElementById('txtPrecio').value = response.dataset.precio;
-                    fillSelectSpace(ENDPOINT_ESPACIO_ALQUILER_UPDATE,'cbEspacio',response.dataset.idespacio);
-                    fillSelect(ENDPOINT_RES_ALQUILER,'cbResidente',response.dataset.idresidente);
+                    fillSelectSpace(ENDPOINT_ESPACIO_ALQUILER_UPDATE, 'cbEspacio', response.dataset.idespacio);
+                    fillSelect(ENDPOINT_RES_ALQUILER, 'cbResidente', response.dataset.idresidente);
                     if (response.dataset.estadoalquiler == 'Revisión') {
-                        BOTONES[5].className="d-none";
-                        BOTONES[6].className="btn btnAgregarFormulario mr-2";
-                        BOTONES[7].className="btn btnAgregarFormulario mr-2";
-                    } else if (response.dataset.estadoalquiler == 'Activo'){
-                        BOTONES[5].className="btn btnAgregarFormulario mr-2";
-                        BOTONES[6].className="d-none";
-                        BOTONES[7].className="btn btnAgregarFormulario mr-2";
-                    } else if (response.dataset.estadoalquiler == 'Denegado'){
-                        BOTONES[5].className="d-none";
-                        BOTONES[6].className="btn btnAgregarFormulario mr-2";
-                        BOTONES[7].className="d-none";
+                        BOTONES[5].className = "d-none";
+                        BOTONES[6].className = "btn btnAgregarFormulario mr-2";
+                        BOTONES[7].className = "btn btnAgregarFormulario mr-2";
+                    } else if (response.dataset.estadoalquiler == 'Activo') {
+                        BOTONES[5].className = "btn btnAgregarFormulario mr-2";
+                        BOTONES[6].className = "d-none";
+                        BOTONES[7].className = "btn btnAgregarFormulario mr-2";
+                    } else if (response.dataset.estadoalquiler == 'Denegado') {
+                        BOTONES[5].className = "d-none";
+                        BOTONES[6].className = "btn btnAgregarFormulario mr-2";
+                        BOTONES[7].className = "d-none";
                     } else {
                         //Se ocultan los botones necesarios del formulario.
                         for (let i = 3; i < BOTONES.length; i++) {
                             BOTONES[i].className = 'd-none';
                         }
                     }
+
+                    document.getElementById('lblFecha').textContent = (response.dataset.fecha);
+                    document.getElementById('lblResidente').textContent = (response.dataset.residente);
+                    document.getElementById('lblEspacio').textContent = (response.dataset.nombre);
+                    document.getElementById('lblInicio').textContent = (response.dataset.horainicio);
+                    document.getElementById('lblFin').textContent = (response.dataset.horafin);
+                    document.getElementById('lblPrecio').textContent = (response.dataset.precio);
+
+
+
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -193,18 +252,18 @@ function readDataOnModal(id){
   Se verifica si se muestra el botón agregar se hace un createRow, de lo contrario un updateRow*/
 document.getElementById('alquiler-form').addEventListener('submit', function (event) {
     //Evento para evitar que recargué la pagina
-     event.preventDefault();
+    event.preventDefault();
     //Verificando la acción que se va a realizar
-    if(document.getElementById('btnAgregar').className != 'd-none') {
+    if (document.getElementById('btnAgregar').className != 'd-none') {
         //Agregando el registro
-        saveRow(API_ALQUILER, 'createRow','alquiler-form','administrarAlquiler');
+        saveRow(API_ALQUILER, 'createRow', 'alquiler-form', 'administrarAlquiler');
     } else {
-        saveRow(API_ALQUILER, 'updateRow','alquiler-form','administrarAlquiler');
-   }
+        saveRow(API_ALQUILER, 'updateRow', 'alquiler-form', 'administrarAlquiler');
+    }
 })
 
 //Eliminar registros de la tabla empleado.
-function deleteRow(id){
+function deleteRow(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idAlquiler', id);
@@ -217,7 +276,7 @@ document.getElementById('btnDenegar').addEventListener('click', function (event)
     //Evento para evitar que recargué la pagina
     event.preventDefault();
     //Se suspende el registro seleccionado
-    suspendRow(API_ALQUILER,'alquiler-form','administrarAlquiler');
+    suspendRow(API_ALQUILER, 'alquiler-form', 'administrarAlquiler');
 })
 
 //Activando el registro de la tabla
@@ -225,7 +284,7 @@ document.getElementById('btnAutorizar').addEventListener('click', function (even
     //Evento para evitar que recargué la pagina
     event.preventDefault();
     //Se suspende el registro seleccionado
-    activateRow(API_ALQUILER,'alquiler-form','administrarAlquiler');
+    activateRow(API_ALQUILER, 'alquiler-form', 'administrarAlquiler');
 })
 
 //Finalizando el registro
@@ -267,7 +326,7 @@ document.getElementById('btnFinalizar').addEventListener('click', function (even
 })
 
 //Buscando registros
-document.getElementById('search-form').addEventListener('submit',function (event) {
+document.getElementById('search-form').addEventListener('submit', function (event) {
     //Evitamos recargar la pagina
     event.preventDefault();
     //Llamamos la funcion
@@ -281,33 +340,33 @@ presionara un boton invisible para poder activar el evento submit del form*/
 document.getElementById('cbEstadoAlquiler').addEventListener('change', function (event) {
     //Se evita recargar la pagina
     event.preventDefault();
-   //Guardando el valor del select en un input
-   document.getElementById('idEstadoAlquiler').value = document.getElementById('cbEstadoAlquiler').value;
-   //Presionando el boton invisible
-   document.getElementById('btnFiltrarAlquiler').click();   
+    //Guardando el valor del select en un input
+    document.getElementById('idEstadoAlquiler').value = document.getElementById('cbEstadoAlquiler').value;
+    //Presionando el boton invisible
+    document.getElementById('btnFiltrarAlquiler').click();
 })
 
 //Una vez presionado el boton invisible, se hace un fetch con la información del form.
 document.getElementById('filtrarEstadoAlquiler-form').addEventListener('submit', function (event) {
-   //Se evita recargar la pagina
-   event.preventDefault();
-   //Se realiza el filtro
-   filter(API_ALQUILER,'filterRentalStatus','filtrarEstadoAlquiler-form');
+    //Se evita recargar la pagina
+    event.preventDefault();
+    //Se realiza el filtro
+    filter(API_ALQUILER, 'filterRentalStatus', 'filtrarEstadoAlquiler-form');
 })
 
 //Método para resetear botones
 document.getElementById('btnInsertDialog').addEventListener('click', function () {
     clearForm('alquiler-form');
-    resetButtons(BOTONES,3);
-    fillSelect(ENDPOINT_ESPACIO_ALQUILER,'cbEspacio',null);
+    resetButtons(BOTONES, 3);
+    fillSelect(ENDPOINT_ESPACIO_ALQUILER, 'cbEspacio', null);
     document.getElementById('idEspacio').value = 0;
 })
 
 //Método para resetear busqueda
 document.getElementById('btnReiniciar').addEventListener('click', function () {
     readRows(API_ALQUILER);
-    document.getElementById('search').value='';
-    fillSelect(ENDPOINT_ESTADO_ALQUILER,'cbEstadoAlquiler',null);
+    document.getElementById('search').value = '';
+    fillSelect(ENDPOINT_ESTADO_ALQUILER, 'cbEstadoAlquiler', null);
 });
 
 
@@ -402,7 +461,7 @@ function openReport(id) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
         if (request.ok) {
             // Abrimos el reporte mediante su URL 
-            window.open("../../app/reports/dashboard/comprobante_alquiler.php","");
+            window.open("../../app/reports/dashboard/comprobante_alquiler.php", "");
         } else {
             console.log(request.status + ' ' + request.statusText);
         }
