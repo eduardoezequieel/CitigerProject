@@ -48,7 +48,7 @@
                     <div class="vertical-nav colorCitiger" id="sidebar">
                         <div class="py-3 px-3 colorCitiger">
                         <div class="media d-flex">
-                        <a href="dashboard.php" class="btn btnInicio2"><img src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
+                        <a href="dashboard.php" class="btn btnInicio2"><img id="imgDashboard" src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
                         </div>
                         </div>
                         
@@ -79,10 +79,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-
-                                <a href="#" class="nav-link" id="lightMode"
+                                <a href="#" class="nav-link" id="lightModeCaseta"
                                 onclick="lightMode()"><i class="fas fa-sun mr-3 tamañoIconos"></i>Dia</a>
-                                <a href="#" class="nav-link" id="darkMode"
+                                <a href="#" class="nav-link" id="darkModeCaseta"
                                 onclick="darkMode()"><i class="fas fa-moon mr-3 tamañoIconos"></i>Nocturno</a>
                             </li>
                             <li class="nav-item">
@@ -127,10 +126,16 @@
                     <script src="../../resources/js/datatables.min.js"></script>
                     <script src="../../resources/js/sweetalert.min.js"></script>
                     <script src="../../app/helpers/components.js"></script>
-                    <script>document.addEventListener(\'DOMContentLoaded\', function () {
-                        //Mostrando dark o light mood
-                        modeCaseta();
-                    })</script>
+                    <script>
+                        var modo = document.getElementById(\'txtModo\').value;
+                        if (modo == \'light\') {
+                            document.getElementById(\'lightModeCaseta\').className = \'d-none\';
+                            document.getElementById(\'darkModeCaseta\').className = \'nav-link\';
+                        } else if (modo == \'dark\') {
+                            document.getElementById(\'lightModeCaseta\').className = \'nav-link\';
+                            document.getElementById(\'darkModeCaseta\').className = \'d-none\';
+                        }
+                    </script>
                 </body>
                 </html> 
             ');

@@ -42,6 +42,7 @@ function loadPage(){
         //Se ocultan/muestran los botones indicados para cambiar de modo posteriormente
         document.getElementById('lightMode').className = 'd-none';
         document.getElementById('darkMode').className = 'btn fas fa-moon botonesPerfil';
+      
     } else if (modo == 'dark') {
         //Modo oscuro
         //Se cambian los colores de las variables declaradas en el archivo estilos.css
@@ -67,6 +68,8 @@ function loadPage(){
         console.log('error');
     }
 };
+
+
 
 function lightMode(){
     //Modo claro
@@ -176,14 +179,6 @@ function setLightValue(){
     }).catch(error => console.log(error))
 }
 
-//Función para mostrar dark/light mode en caseta
-function modeCaseta() {
-    if (document.getElementById('txtModo').value == 'light') {
-        document.getElementById('lightMode').className = 'd-none';
-    } else {
-        document.getElementById('darkMode').className = 'd-none';
-    }
-}
 
 //Funciones para cambiar entre modo oscuro y claro en los residentes
 
