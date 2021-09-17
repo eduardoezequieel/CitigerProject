@@ -5,19 +5,40 @@ const API_USUARIO = '../../app/api/dashboard/usuarios.php?action=';
 document.addEventListener('DOMContentLoaded', function () {
     //Verificando si hay usuarios registrados 
     fetch(API_USUARIO + 'readAll')
-    .then(request => {
-        //Se verifica si la petición fue correcta
-        if (request.ok) {
-            request.json().then(response => {
-                //Se verifica si la respuesta no es correcta para redireccionar al primer uso
-                if (!response.status) {
-                    sweetAlert(3, response.exception, 'primer_uso.php');
-                }
-            })
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(error => console.log(error))
+        .then(request => {
+            //Se verifica si la petición fue correcta
+            if (request.ok) {
+                request.json().then(response => {
+                    //Se verifica si la respuesta no es correcta para redireccionar al primer uso
+                    if (!response.status) {
+                        sweetAlert(3, response.exception, 'primer_uso.php');
+                    } else {
+                        //Verificando si hay una sesión iniciada
+                        fetch(API_USUARIO + 'validateSession')
+                            .then(request => {
+                                //Se verifica si la petición fue correcta
+                                if (request.ok) {
+                                    request.json().then(response => {
+                                        //Se verifica si la respuesta no es correcta para redireccionar al primer uso
+                                        if (response.status) {
+                                            console.log('Posee una sesión activa');
+                                            window.location.href = 'dashboard.php';
+                                        } else {
+                                            console.log('No posee una sesión activa');
+                                        }
+                                    })
+                                } else {
+                                    console.log(request.status + ' ' + request.statusText);
+                                }
+                            }).catch(error => console.log(error))
+                    }
+                })
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(error => console.log(error));
+
+
 })
 
 //Método para iniciar sesion

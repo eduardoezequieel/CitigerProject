@@ -10,12 +10,16 @@ if (isset($_GET['action'])) {
     //Instanciando clases
     $usuarios = new Usuarios;
     //Array para respuesta de la API
-    $result = array('status' => 0, 'recaptcha' => 0, 'error' => 0, 'message' => null, 'exception' => null);
+    $result = array('status' => 0, 
+                    'recaptcha' => 0, 
+                    'error' => 0, 
+                    'message' => null, 
+                    'exception' => null);
     //Verificando si hay una sesion iniciada
     if (isset($_SESSION['idusuario'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
-                //Caso para leer todos los datos de la tabla
+            //Caso para leer todos los datos de la tabla
             case 'readAll':
                 if ($result['dataset'] = $usuarios->readAll()) {
                     $result['status'] = 1;
@@ -28,7 +32,7 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-                //Caso para cerrar la sesión
+            //Caso para cerrar la sesión
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
@@ -36,6 +40,11 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Ocurrió un problema al cerrar sesión';
                 }
+                break;
+            //Redirige al dashboard
+            case 'validateSession':
+                $result['status'] = 1;
+                $result['message'] = 'Posee una sesión activa.';
                 break;
             case 'setLightMode':
                 if ($usuarios->setLightMode()) {
@@ -159,10 +168,11 @@ if (isset($_GET['action'])) {
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';
         }
+
     } else {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
-                //Caso para leer todos los datos de la tabla
+            //Caso para leer todos los datos de la tabla
             case 'readAll':
                 if ($result['dataset'] = $usuarios->readAll()) {
                     $result['status'] = 1;

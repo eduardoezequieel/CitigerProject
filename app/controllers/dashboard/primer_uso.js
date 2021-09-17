@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
             request.json().then(response => {
                 //Se verifica si la respuesta fue satisfactoria, de ser asi se redirecciona al login
                 if (response.status) {
-                    sweetAlert(3, response.message, 'index.php');
+                    //sweetAlert(3, response.message, 'index.php');
+                    window.location.href = 'index.php';
                 }
             })
         } else {
