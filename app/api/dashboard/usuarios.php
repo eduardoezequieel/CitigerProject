@@ -70,15 +70,20 @@ if (isset($_GET['action'])) {
                 
                 break;
             case 'readProfile2':
-                if ($result['dataset'] = $usuarios->readProfile2()) {
-                    $result['status'] = 1;
-                } else {
-                    if (Database::getException()) {
-                        $result['exception'] = Database::getException();
+                if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
+                    if ($result['dataset'] = $usuarios->readProfile2()) {
+                        $result['status'] = 1;
                     } else {
-                        $result['exception'] = 'Usuario inexistente';
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Usuario inexistente';
+                        }
                     }
+                } else {
+                    $result['exception'] = 'Id incorrecto.';
                 }
+                
                 break;
             case 'editProfile':
                 $_POST = $usuarios->validateForm($_POST);

@@ -359,7 +359,7 @@ class Usuarios extends Validator
         $sql = "SELECT idUsuario, nombre, apellido, CONCAT(nombre,' ',apellido) as nombres,dui, genero, correo, foto, fechaNacimiento, telefonofijo, telefonocelular, direccion, username, contrasena, idEstadoUsuario, idTipoUsuario
         FROM usuario
         WHERE idusuario = ?";
-        $params = array($_SESSION['idusuario_caseta']);
+        $params = array($this->idUsuario);
         return Database::getRow($sql, $params);
     }
 
