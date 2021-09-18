@@ -178,7 +178,8 @@ document.getElementById('img-form').addEventListener('submit', function (event) 
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-
+                    window.location.href = 'ajustes_cuenta.php';
+                    console.log('Foto actualizada');
                     // Se muestra un mensaje y se direcciona a la página web de bienvenida para actualizar los datos en el menú.
                     //sweetAlert(1, response.message, 'ajustes_cuenta.php');
                 } else {

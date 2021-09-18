@@ -535,7 +535,13 @@ class Residentes extends Validator
                 SET foto = ?
                 WHERE idresidente = ?';
         $params = array($this->foto, $_SESSION['idresidente']);
-        return Database::executeRow($sql, $params);
+        if (Database::executeRow($sql, $params)) {
+            $_SESSION['foto_residente'] = $this->foto;
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
     public function updateInfo()

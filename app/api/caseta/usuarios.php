@@ -130,7 +130,7 @@ if (isset($_GET['action'])) {
                 if ($usuarios->setId($_SESSION['idusuario_caseta'])) {
                     if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
                         if ($data = $usuarios->readProfile2()) {
-                            if ($usuarios->updateFoto($data['foto'])) {
+                            if ($usuarios->updateFoto2($data['foto'])) {
                                 $result['status'] = 1;
                                 $_SESSION['foto'] = $usuarios->getFoto();
                                 if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {

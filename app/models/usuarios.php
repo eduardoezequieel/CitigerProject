@@ -372,7 +372,29 @@ class Usuarios extends Validator
                 SET foto = ?
                 WHERE idusuario = ?';
         $params = array($this->foto, $this->idUsuario);
-        return Database::executeRow($sql, $params);
+        if (Database::executeRow($sql, $params)) {
+            $_SESSION['foto_dashboard'] = $this->foto;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateFoto2($current_image)
+    {
+        // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
+        ($this->foto) ? $this->deleteFile($this->getRuta(), $current_image) : $this->foto = $current_image;
+
+        $sql = 'UPDATE usuario
+                SET foto = ?
+                WHERE idusuario = ?';
+        $params = array($this->foto, $this->idUsuario);
+        if (Database::executeRow($sql, $params)) {
+            $_SESSION['foto_caseta'] = $this->foto;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function updateInfo()

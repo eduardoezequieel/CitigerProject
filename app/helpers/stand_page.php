@@ -47,9 +47,11 @@
                     <!-- Inicio del Sidebar -->
                     <div class="vertical-nav colorCitiger" id="sidebar">
                         <div class="py-3 px-3 colorCitiger">
-                        <div class="media d-flex">
-                        <a href="dashboard.php" class="btn btnInicio2"><img id="imgDashboard" src="../../resources/img/citigerDarkLogo2.png" alt="" class="img-fluid" width="140px"></a>
-                        </div>
+                            <div class="media d-flex">
+                                <a href="dashboard.php" id="btnDashboard" class="btn btnInicio"><img
+                                        src="../../resources/img/citigerDarkLogo2.png" alt="#" id="imgDashboard"
+                                        class="img-fluid" width="140px"></a>
+                            </div>
                         </div>
                         
                         <!-- Perfil -->
