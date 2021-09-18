@@ -1,6 +1,28 @@
 //Constante para la ruta API
 const API_USUARIO = '../../app/api/residente/index.php?action=';
 
+//Al cargar la pagina
+document.addEventListener('DOMContentLoaded',function(){
+    //Verificando si hay una sesión iniciada
+    fetch(API_USUARIO + 'validateSession')
+    .then(request => {
+        //Se verifica si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Se verifica si la respuesta no es correcta para redireccionar al primer uso
+                if (response.status) {
+                    console.log('Posee una sesión activa');
+                    window.location.href = 'dashboard.php';
+                } else {
+                    console.log('No posee una sesión activa');
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(error => console.log(error))
+});
+
 //Método para iniciar sesion
 document.getElementById('login-form').addEventListener('submit', function (event) {
     //Evento para que no recargue la pagina
@@ -21,7 +43,7 @@ document.getElementById('login-form').addEventListener('submit', function (event
                     if (response.error) {
                         sweetAlert(3, response.message, 'cambiar_contrasena.php');
                     } else {
-                        sweetAlert(2, response.exception, clearPassword('txtContrasenia'));
+                        sweetAlert(2, response.exception, null);
                     }
                 }
             })

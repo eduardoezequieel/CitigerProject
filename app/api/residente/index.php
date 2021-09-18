@@ -17,14 +17,15 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
                 //Caso para cerrar la sesión
             case 'logOut':
-                if (session_destroy()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Sesión eliminada correctamente';
-                } else {
-                    $result['exception'] = 'Ocurrió un problema al cerrar sesión';
-                }
+                unset($_SESSION['idresidente']);
+                $result['status'] = 1;
+                $result['message'] = 'Sesión eliminada correctamente';
                 break;
-
+            //Redirige al dashboard
+            case 'validateSession':
+                $result['status'] = 1;
+                $result['message'] = 'Posee una sesión activa.';
+                break;
             case 'setLightMode':
                 if ($usuarios->setLightMode()) {
                     $result['status'] = 1;
@@ -158,8 +159,8 @@ if (isset($_GET['action'])) {
                         if ($usuarios->checkPassword($_POST['txtContrasenia'])) {
                             $_SESSION['idresidente'] = $usuarios->getIdResidente();
                             $_SESSION['username'] = $usuarios->getUsername();
-                            $_SESSION['foto'] = $usuarios->getFoto();
-                            $_SESSION['modo'] = $usuarios->getModo();
+                            $_SESSION['foto_residente'] = $usuarios->getFoto();
+                            $_SESSION['modo_residente'] = $usuarios->getModo();
                             if ($_POST['txtContrasenia'] != 'newResident') {
                                 $result['status'] = 1;
                                 $result['message'] = 'Sesión iniciada correctamente.';

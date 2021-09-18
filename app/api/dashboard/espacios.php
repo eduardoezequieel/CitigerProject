@@ -12,7 +12,7 @@ if (isset($_GET['action'])) {
     //Se crea el array para guardar la respuesta
     $result = array('status' => 0, 'error' => 0, 'message' => null, 'exception' => null);
     //Se verifica si hay una sesion iniciada
-    if (isset($_SESSION['idusuario'])) {
+    if (isset($_SESSION['idusuario_dashboard'])) {
         //Se evalua cual acción es la que se va a ejecutar
         switch ($_GET['action']) {
                 //Caso para leer todos los datos de la tabla

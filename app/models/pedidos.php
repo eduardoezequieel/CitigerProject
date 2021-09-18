@@ -231,7 +231,7 @@
 
     public function checkIfThereIsAnActiveOrder(){
         $sql = 'SELECT*FROM pedido WHERE idestadopedido = 1 AND idusuario = ?';
-        $params = array($_SESSION['idusuario']);
+        $params = array($_SESSION['idusuario_dashboard']);
         return Database::getRow($sql, $params);
     }
 
@@ -255,7 +255,7 @@
     {
         $sql = 'INSERT INTO pedido (idestadopedido, idusuario, fechapedido) 
                 VALUES (1, ?, current_date)';
-        $params = array($_SESSION['idusuario']);
+        $params = array($_SESSION['idusuario_dashboard']);
         return Database::executeRow($sql, $params);
     }
 
@@ -328,7 +328,7 @@
     public function registerAction($action, $desc)
     {
         $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
-        $params = array($_SESSION['idusuario'],$action, $desc);
+        $params = array($_SESSION['idusuario_dashboard'],$action, $desc);
         return Database::executeRow($sql, $params);
     }
 

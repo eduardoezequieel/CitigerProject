@@ -374,7 +374,7 @@ class Visitas extends Validator
     public function registerAction($action, $desc)
     {
         $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
-        $params = array($_SESSION['idusuario'], $action, $desc);
+        $params = array($_SESSION['idusuario_dashboard'], $action, $desc);
         return Database::executeRow($sql, $params);
     }
 

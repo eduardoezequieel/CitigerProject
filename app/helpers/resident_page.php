@@ -58,13 +58,13 @@
                             <div id="tarjetaPerfil" class="p-3">
                                 <div class="row">
                                     <div class="col-3">
-                                    <img src="../../resources/img/dashboard_img/residentes_fotos/' . $_SESSION['foto'] . '"
+                                    <img src="../../resources/img/dashboard_img/residentes_fotos/' . $_SESSION['foto_residente'] . '"
                                     id="fotoPerfil" alt="" class="rounded-circle fit-images" width="60px"
                                     height="60px">                                </div>
                                 <div class="col-9">
                                     <label for="ajustes" class="pl-4 pt-2" id="usuario">' . $_SESSION['username'] . '</label>
                                     <label for="ajustes" class="pl-4" id="tipoUsuario">Residente</label>
-                                    <input type="text" id="txtModo" class="d-none" value="'. $_SESSION['modo'].'">
+                                    <input type="text" id="txtModo" class="d-none" value="'. $_SESSION['modo_residente'].'">
                                     </div>
                                 </div>
                                 <div class="row mt-2">

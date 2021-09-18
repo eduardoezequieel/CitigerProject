@@ -12,7 +12,7 @@ if (isset($_GET['action'])) {
     //Array para respuesta de la API
     $result = array('status'=>0, 'error'=>0, 'message'=>null, 'exception'=>null);        
     //Verificando si hay una sesion iniciada
-    if(isset($_SESSION['idusuario'])){
+    if(isset($_SESSION['idusuario_dashboard'])){
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
             //Caso para leer todos los registros de la tabla

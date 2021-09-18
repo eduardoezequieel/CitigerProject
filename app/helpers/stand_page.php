@@ -39,7 +39,7 @@
             // Se obtiene el nombre del archivo de la página web actual.
             $filename = basename($_SERVER['PHP_SELF']);
             // Se comprueba si existe una sesión de administrador para mostrar el menú de opciones, de lo contrario se muestra un menú vacío.
-            if (isset($_SESSION['idusuario'])) {
+            if (isset($_SESSION['idusuario_caseta'])) {
                 // Se verifica si la página web actual es diferente a index.php (Iniciar sesión) y a 'primer_uso.php (Crear primer usuario) para no iniciar sesión otra vez, de lo contrario se direcciona a index.php
                 if ($filename != 'index.php' && $filename != 'primer_usuario.php') {
                     // Se imprime el código HTML para el encabezado del documento con el menú de opciones.
@@ -57,14 +57,14 @@
                                 <div id="tarjetaPerfil" class="p-3">
                                     <div class="row">
                                         <div class="col-3">
-                                            <img src="../../resources/img/dashboard_img/usuarios_fotos/' . $_SESSION['foto'] . '"
+                                            <img src="../../resources/img/dashboard_img/usuarios_fotos/' . $_SESSION['foto_caseta'] . '"
                                                 id="fotoPerfil" alt="" class="rounded-circle fit-images" width="60px"
                                                 height="60px">
                                         </div>
                                         <div class="col-9">
-                                            <label for="ajustes" class="pl-4 pt-2" id="usuario">'. $_SESSION['usuario'].'</label><br>
-                                            <label for="ajustes" class="pl-4" id="tipoUsuario">'. $_SESSION['tipousuario'].'</label>
-                                            <input type="text" id="txtModo" class="d-none" value="'. $_SESSION['modo'].'">
+                                            <label for="ajustes" class="pl-4 pt-2" id="usuario">'. $_SESSION['usuario_caseta'].'</label><br>
+                                            <label for="ajustes" class="pl-4" id="tipoUsuario">'. $_SESSION['tipousuario_caseta'].'</label>
+                                            <input type="text" id="txtModo" class="d-none" value="'. $_SESSION['modo_caseta'].'">
                                             </div>
                                     </div>
                                 </div>
@@ -80,12 +80,12 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link" id="lightModeCaseta"
-                                onclick="lightMode()"><i class="fas fa-sun mr-3 tamañoIconos"></i>Dia</a>
+                                onclick="lightMode3()"><i class="fas fa-sun mr-3 tamañoIconos"></i>Dia</a>
                                 <a href="#" class="nav-link" id="darkModeCaseta"
-                                onclick="darkMode()"><i class="fas fa-moon mr-3 tamañoIconos"></i>Nocturno</a>
+                                onclick="darkMode3()"><i class="fas fa-moon mr-3 tamañoIconos"></i>Nocturno</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" onclick="logOut()" class="nav-link ">
+                                <a href="#" onclick="logOut3()" class="nav-link ">
                                 <i class="fas fa-sign-out-alt mr-3 tamañoIconos"></i>
                                 Cerrar Sesión
                                 </a>
@@ -110,7 +110,7 @@
             print('
                 <div class="row my-4">
                     <div class="col-12">
-                        <h1 class="tituloDashboard">¡Bienvenido '.$_SESSION['usuario'].'!</h1>
+                        <h1 class="tituloDashboard">¡Bienvenido '.$_SESSION['usuario_caseta'].'!</h1>
                     </div>
                 </div>
             '                

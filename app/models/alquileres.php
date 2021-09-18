@@ -244,7 +244,7 @@
             $sql = 'INSERT INTO alquiler(idestadoalquiler, idespacio, precio, idusuario, idresidente, fecha,
                     horaInicio, horaFin)
                     VALUES(?,?,?,?,?,?,?,?)';
-            $params = array($this->idEstadoAlquiler, $this->idEspacio, $this->precio,$_SESSION['idusuario'], $this->idResidente,
+            $params = array($this->idEstadoAlquiler, $this->idEspacio, $this->precio,$_SESSION['idusuario_dashboard'], $this->idResidente,
                             $this->fecha, $this->horaInicio, $this->horaFin);
             return Database::executeRow($sql,$params);
         }
@@ -296,7 +296,7 @@
                     SET idestadoalquiler = ?, idespacio = ?, precio = ?, idusuario = ?, idresidente = ?,
                     fecha = ?, horainicio = ?, horafin = ?
                     WHERE idalquiler = ?';
-            $params = array($this->idEstadoAlquiler,$this->idEspacio,$this->precio,$_SESSION['idusuario'], $this->idResidente,
+            $params = array($this->idEstadoAlquiler,$this->idEspacio,$this->precio,$_SESSION['idusuario_dashboard'], $this->idResidente,
                             $this->fecha, $this->horaInicio, $this->horaFin, $this->idAlquiler);
             return Database::executeRow($sql,$params);
         }
@@ -363,7 +363,7 @@
         public function registerAction($action, $desc)
         {
         $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
-        $params = array($_SESSION['idusuario'], $action, $desc);
+        $params = array($_SESSION['idusuario_dashboard'], $action, $desc);
         return Database::executeRow($sql, $params);
         }
 

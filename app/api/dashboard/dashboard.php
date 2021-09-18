@@ -30,7 +30,7 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'error' => 0, 'message' => null, 'exception' => null);
 
     //Acciones a ejecutar permitidas con la sesion iniciada
-    if (isset($_SESSION['idusuario'])) {
+    if (isset($_SESSION['idusuario_dashboard'])) {
         switch ($_GET['action']) {
             case 'readAll':
                 if ($result['dataset'] = $dashboard->readAllBitacora()) {

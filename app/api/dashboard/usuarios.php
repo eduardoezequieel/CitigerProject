@@ -16,7 +16,7 @@ if (isset($_GET['action'])) {
                     'message' => null, 
                     'exception' => null);
     //Verificando si hay una sesion iniciada
-    if (isset($_SESSION['idusuario'])) {
+    if (isset($_SESSION['idusuario_dashboard'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
             //Caso para leer todos los datos de la tabla
@@ -34,12 +34,9 @@ if (isset($_GET['action'])) {
                 break;
             //Caso para cerrar la sesión
             case 'logOut':
-                if (session_destroy()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Sesión eliminada correctamente';
-                } else {
-                    $result['exception'] = 'Ocurrió un problema al cerrar sesión';
-                }
+                unset($_SESSION['idusuario_dashboard']);
+                $result['status'] = 1;
+                $result['message'] = 'Sesión eliminada correctamente';
                 break;
             //Redirige al dashboard
             case 'validateSession':
@@ -47,20 +44,30 @@ if (isset($_GET['action'])) {
                 $result['message'] = 'Posee una sesión activa.';
                 break;
             case 'setLightMode':
-                if ($usuarios->setLightMode()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Modo claro activado correctamente.';
+                if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
+                    if ($usuarios->setLightMode()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Modo claro activado correctamente.';
+                    } else {
+                        $result['exception'] = 'Ocurrio un problema-';
+                    }
                 } else {
-                    $result['exception'] = 'Ocurrio un problema-';
+                    $result['exception'] = 'Id incorrecto.';
                 }
+                
                 break;
             case 'setDarkMode':
-                if ($usuarios->setDarkMode()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Modo oscuro activado correctamente.';
+                if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
+                    if ($usuarios->setDarkMode()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Modo oscuro activado correctamente.';
+                    } else {
+                        $result['exception'] = 'Ocurrio un problema-';
+                    }
                 } else {
-                    $result['exception'] = 'Ocurrio un problema-';
+                    $result['exception'] = 'Id incorrecto.';
                 }
+                
                 break;
             case 'readProfile2':
                 if ($result['dataset'] = $usuarios->readProfile2()) {
@@ -83,12 +90,15 @@ if (isset($_GET['action'])) {
                                     if ($usuarios->setApellidos($_POST['txtApellidos'])) {
                                         if (isset($_POST['cbGenero'])) {
                                             if ($usuarios->setGenero($_POST['cbGenero'])) {
-
-                                                if ($usuarios->updateInfo()) {
-                                                    $result['status'] = 1;
-                                                    $result['message'] = 'Perfil modificado correctamente';
+                                                if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
+                                                    if ($usuarios->updateInfo()) {
+                                                        $result['status'] = 1;
+                                                        $result['message'] = 'Perfil modificado correctamente';
+                                                    } else {
+                                                        $result['exception'] = Database::getException();
+                                                    }
                                                 } else {
-                                                    $result['exception'] = Database::getException();
+                                                    $result['exception'] = 'Id incorrecto';
                                                 }
                                             } else {
                                                 $result['exception'] = 'Seleccione una opción';
@@ -118,25 +128,30 @@ if (isset($_GET['action'])) {
             //Caso para actualizar la foto
             case 'updateFoto':
                 $_POST = $usuarios->validateForm($_POST);
-                if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
-                    if ($data = $usuarios->readProfile2()) {
-                        if ($usuarios->updateFoto($data['foto'])) {
-                            $result['status'] = 1;
-                            $_SESSION['foto'] = $usuarios->getFoto();
-                            if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
-                                $result['message'] = 'Foto modificada correctamente';
+                if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
+                    if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
+                        if ($data = $usuarios->readProfile2()) {
+                            if ($usuarios->updateFoto($data['foto'])) {
+                                $result['status'] = 1;
+                                $_SESSION['foto'] = $usuarios->getFoto();
+                                if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
+                                    $result['message'] = 'Foto modificada correctamente';
+                                } else {
+                                    $result['exception'] = 'Foto no actualiza';
+                                }
                             } else {
-                                $result['exception'] = 'Foto no actualiza';
+                                $result['exception'] = Database::getException();
                             }
                         } else {
-                            $result['exception'] = Database::getException();
+                            $result['exception'] = $usuarios->getImageError();
                         }
-                    } else {
-                        $result['exception'] = $usuarios->getImageError();
+                    }else{
+                        $result['exception'] = 'Usuario inválido';
                     }
-                }else{
-                    $result['exception'] = 'Usuario inválido';
+                } else {
+                    $result['exception'] = 'Id incorrecto';
                 }
+                
                 break;
             //Caso para actualizar la contraseña
             case 'changePassword':
@@ -192,11 +207,11 @@ if (isset($_GET['action'])) {
                     if ($usuarios->checkUserType(2)) {
                         if ($usuarios->checkEstado()) {
                             if ($usuarios->checkPassword($_POST['txtContrasenia'])) {  
-                                $_SESSION['idusuario'] = $usuarios->getId();
-                                $_SESSION['usuario'] = $usuarios->getUsername();
-                                $_SESSION['foto'] = $usuarios->getFoto();
-                                $_SESSION['tipousuario'] = $usuarios->getIdTipoUsuario();
-                                $_SESSION['modo'] = $usuarios->getModo();
+                                $_SESSION['idusuario_dashboard'] = $usuarios->getId();
+                                $_SESSION['usuario_dashboard'] = $usuarios->getUsername();
+                                $_SESSION['foto_dashboard'] = $usuarios->getFoto();
+                                $_SESSION['tipousuario_dashboard'] = $usuarios->getIdTipoUsuario();
+                                $_SESSION['modo_dashboard'] = $usuarios->getModo();
                                 if ($_POST['txtContrasenia'] != 'newUser') {
                                     $result['status'] = 1;
                                     $result['message'] = 'Sesión iniciada correctamente.';
