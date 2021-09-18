@@ -27,6 +27,8 @@
   --color-rojo-hover: #;
   --color-verde: #;
   --color-verde-hover: #;
+  --color-amarillo: #;
+  --color-amarillo-hover: #;
   --color-citiger-claro: #;
 }
 
@@ -34,6 +36,11 @@
 .warningAlert {
   background-color: var(--color-rojo) !important;
   color: var(--color-rojo-hover) !important;
+}
+
+.yellowAlert {
+  background-color: var(--color-amarillo) !important;
+  color: var(--color-amarillo-hover) !important;
 }
 
  /* 
@@ -238,7 +245,7 @@ option[selected] {
 
 .cajaTextoLogin {
   background-color: transparent;
-  border: 0.01rem solid var(--bordes-inputs);
+  border: 2px solid var(--bordes-inputs);
   color: var(--color-tipografia);
   border-radius: 16px;
   padding: 10px;
@@ -249,7 +256,7 @@ option[selected] {
 
 .cajaTextoLogin:focus {
   background-color: transparent;
-  border: 0.01rem solid var(--bordes-inputs);
+  border: 2px solid var(--bordes-inputs);
   color: var(--color-tipografia);
 }
 
@@ -823,7 +830,7 @@ option[selected] {
 
 .cajaTextoModal {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 2px solid var(--bordes-inputs) !important;
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -834,7 +841,7 @@ option[selected] {
 
 .cajaTextoModal:focus {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 2px solid var(--bordes-inputs) !important;
   color: var(--color-tipografia) !important;
 }
 
@@ -853,6 +860,40 @@ option[selected] {
 }
 
 .cajaTextoModal:-ms-input-placeholder {
+  color: var(--bordes-inputs) !important;
+}
+
+.cajaTextoModal2 {
+  background-color: transparent !important;
+  border: 2px solid var(--bordes-inputs) !important;
+  color: var(--color-tipografia) !important;
+  border-radius: 16px;
+  padding: 10px;
+  height: 40px;
+
+}
+
+.cajaTextoModal2:focus {
+  background-color: transparent !important;
+  border: 2px solid var(--bordes-inputs) !important;
+  color: var(--color-tipografia) !important;
+}
+
+.cajaTextoModal2::-webkit-input-placeholder {
+  color: var(--bordes-inputs) !important;
+}
+
+.cajaTextoModal2:-moz-placeholder {
+  /* Firefox 18- */
+  color: var(--bordes-inputs) !important;
+}
+
+.cajaTextoModal2::-moz-placeholder {
+  /* Firefox 19+ */
+  color: var(--bordes-inputs) !important;
+}
+
+.cajaTextoModal2:-ms-input-placeholder {
   color: var(--bordes-inputs) !important;
 }
 
@@ -911,10 +952,10 @@ textarea :-ms-input-placeholder {
 }
 
 .cbCitiger {
-  border: 1px solid var(--bordes-inputs) !important;
-  padding: 4px;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  border: 2px solid var(--bordes-inputs) !important;
+  padding: 1px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   border-radius: 15px;
   background-color: var(--color-fondo) !important;
   margin: 0 !important;
@@ -1078,7 +1119,7 @@ textarea :-ms-input-placeholder {
 
 .buscador {
   background-color: transparent;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 2px solid var(--bordes-inputs) !important;
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -1097,7 +1138,7 @@ textarea :-ms-input-placeholder {
 
 .buscador:focus {
   background-color: transparent;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 2px solid var(--bordes-inputs) !important;
   color: var(--color-tipografia) !important;
 }
 
@@ -1129,7 +1170,7 @@ textarea :-ms-input-placeholder {
 
 .cajaTextoFormulario {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs);
+  border: 2px solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -1140,7 +1181,7 @@ textarea :-ms-input-placeholder {
 
 .cajaTextoFormulario2 {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs);
+  border: 2px solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -1162,7 +1203,7 @@ textarea :-ms-input-placeholder {
 
 .cajaTextoFormularioTelefono {
   background-color: var(--color-fondo) !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 2px solid var(--bordes-inputs) !important;
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -1177,13 +1218,13 @@ textarea :-ms-input-placeholder {
 
 .cajaTextoFormularioTelefono:focus {
   background-color: var(--color-fondo) !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 2px solid var(--bordes-inputs) !important;
   color: var(--color-tipografia) !important;
 }
 
 .cajaTextoFormulario:focus {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 2px solid var(--bordes-inputs) !important;
   color: var(--color-tipografia) !important;
 }
 
@@ -1221,9 +1262,45 @@ textarea :-ms-input-placeholder {
   padding-left: 15px;
 }
 
+.custom-control-label{
+  font-family: 'Manrope', sans-serif !important;
+  color: var(--color-tipografia-titulos) !important;
+
+  font-size: 14px !important;
+  padding-top: 1px !important;
+}
+
+.custom-control-label::before{
+  border-color: var(--bordes-inputs) !important;
+  background-color: var(--color-fondo-opaco) !important;
+}
+.custom-control-input:focus~.custom-control-label::before {
+  border-color: var(--color-citiger) !important;
+  background-color: var(--color-fondo-opaco) !important;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+  border-color: var(--bordes-inputs) !important;
+  background-color: var(--color-citiger) !important;
+}
+
+.custom-control-input:active~.custom-control-label::before {
+  background-color: var(--color-citiger) !important;
+  border-color: var(--bordes-inputs) !important;
+}
+
+.custom-control-input:focus:not(:checked)~.custom-control-label::before {
+  border-color: var(--bordes-inputs) !important;
+}
+
+.custom-control-input-green:not(:disabled):active~.custom-control-label::before {
+  background-color: var(--color-citiger) !important;
+  border-color: var(--bordes-inputs) !important;
+}
+
 .cajaTextoFormularioHora {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs);
+  border: 2px solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -1234,13 +1311,13 @@ textarea :-ms-input-placeholder {
 
 .cajaTextoFormularioHora:focus {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs);
+  border: 2px solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
 }
 
 .cajaTextoFormularioMarcas {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs);
+  border: 2px solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -1251,13 +1328,13 @@ textarea :-ms-input-placeholder {
 
 .cajaTextoFormularioMarcas:focus {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs);
+  border: 2px solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
 }
 
 .cajaTextoFormularioPrecio {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs);
+  border: 2px solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -1268,7 +1345,7 @@ textarea :-ms-input-placeholder {
 
 .cajaTextoFormularioPrecio:focus {
   background-color: transparent !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 2px solid var(--bordes-inputs) !important;
   color: var(--color-tipografia) !important;
 }
 
@@ -1925,7 +2002,7 @@ hr {
 
 .cajaTextoDUI {
   background-color: var(--color-fondo) !important;
-  border: 0.01rem solid var(--bordes-inputs);
+  border: 2px solid var(--bordes-inputs);
   color: var(--color-tipografia) !important;
   border-radius: 16px;
   padding: 10px;
@@ -1953,14 +2030,14 @@ hr {
 
 .cajaTextoDUI:focus {
   background-color: var(--color-fondo) !important;
-  border: 0.01rem solid var(--bordes-inputs) !important;
+  border: 2px solid var(--bordes-inputs) !important;
   color: var(--color-tipografia) !important;
 }
 
 
 .cajaTextoFormulario1 {
   background-color: #202427;
-  border: 0.01rem solid #41464b;
+  border: 2px solid #41464b;
   color: white;
   border-radius: 16px;
   padding: 10px;
@@ -1973,7 +2050,7 @@ hr {
 
 .cajaTextoFormulario1:focus {
   background-color: #202427;
-  border: 0.01rem solid #41464b;
+  border: 2px solid #41464b;
   color: white;
 }
 
@@ -2344,19 +2421,19 @@ textarea[placeholder],
 }
 
 input.error {
-  border: 1px solid red;
+  border: 2px dashed var(--color-rojo-hover) !important; 
 }
 
 input.success {
-  border: 1px solid green;
+  border: 2px solid var(--color-verde-hover) !important;
 }
 
 textarea.error {
-  border: 1px solid red;
+  border: 2px dashed var(--color-rojo-hover) !important; 
 }
 
 textarea.success {
-  border: 1px solid green;
+  border: 2px solid var(--color-verde-hover) !important;
 }
 
 table.dataTable {

@@ -34,6 +34,8 @@ function loadPage(){
         document.documentElement.style.setProperty('--color-rojo-hover', 'rgb(255, 72, 72)');
         document.documentElement.style.setProperty('--color-verde', 'rgb(176, 255, 197)');
         document.documentElement.style.setProperty('--color-verde-hover', 'rgb(63, 209, 63)');
+        document.documentElement.style.setProperty('--color-amarillo', 'rgb(255, 246, 186)');
+        document.documentElement.style.setProperty('--color-amarillo-hover', 'rgb(112, 98, 2)');
         document.documentElement.style.setProperty('--color-citiger-claro', '#c5dcff');
 
         //Se cambia la imagen del boton de inicio para que coincida con el modo
@@ -57,6 +59,8 @@ function loadPage(){
         document.documentElement.style.setProperty('--color-rojo-hover', 'rgb(255, 72, 72)');
         document.documentElement.style.setProperty('--color-verde', 'rgb(14, 61, 14)');
         document.documentElement.style.setProperty('--color-verde-hover', 'rgb(63, 209, 63)');
+        document.documentElement.style.setProperty('--color-amarillo', 'rgb(41, 36, 3)');
+        document.documentElement.style.setProperty('--color-amarillo-hover', 'rgb(255, 221, 0)');
         document.documentElement.style.setProperty('--color-citiger-claro', '#0b1d35');
 
         //Se cambia la imagen del boton de inicio para que coincida con el modo
@@ -1245,6 +1249,20 @@ function checkInputLetras(input) {
         }
     }
 
+}
+
+function checkContrasena(i){
+    document.getElementById(i).classList.remove("success");
+    document.getElementById(i).classList.add("error");
+    var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/;
+
+    if (document.getElementById(i).value.match(regex)) {
+        document.getElementById(i).classList.remove("error");
+        document.getElementById(i).classList.add("success");
+    } else {
+        document.getElementById(i).classList.remove("sucess");
+        document.getElementById(i).classList.add("error");
+    }
 }
 
 function checkCorreo(input) {

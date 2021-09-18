@@ -327,7 +327,7 @@ class Usuarios extends Validator
     {
         $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
         $sql = 'UPDATE usuario SET contrasena = ? WHERE idusuario = ?';
-        $params = array($hash, $_SESSION['idusuario_dashboard']);
+        $params = array($hash, $this->idUsuario);
         return Database::executeRow($sql, $params);
     }
 

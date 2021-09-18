@@ -119,6 +119,38 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Usuario inválido';
                 }
                 break;
+            //Caso para actualizar la contraseña (Dentro del sistema)
+            case 'updatePassword':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
+                    if ($usuarios->checkPassword($_POST['txtContrasenaActual'])) {
+                        if ($_POST['txtNuevaContrasena'] == $_POST['txtConfirmarContrasena']) {
+                            if ($_POST['txtNuevaContrasena'] != $_POST['txtContrasenaActual'] ||
+                                $_POST['txtConfirmarContrasena'] != $_POST['txtContrasenaActual']) {
+                                if ($usuarios->setContrasenia($_POST['txtNuevaContrasena'])) {
+                                    if ($usuarios->changePassword()) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Contraseña actualizada correctamente.';
+                                    } else {
+                                        $result['exception'] = Database::getException();
+                                    }
+                                } else {
+                                    $result['exception'] = 'Su contraseña no cumple con los requisitos especificados.';
+                                }
+                            } else {
+                                $result['exception'] = 'Su nueva contraseña no puede ser igual a la actual.';
+                            }
+                        } else {
+                            $result['exception'] = 'Las contraseñas no coinciden.';
+                        }
+                    } else {
+                        $result['exception'] = 'La contraseña ingresada es incorrecta.';
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto.';
+                }
+                
+                break;
             //Caso para actualizar la contraseña
             case 'changePassword':
                 $_POST = $usuarios->validateForm($_POST);

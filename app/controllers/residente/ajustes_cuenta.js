@@ -50,7 +50,53 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(error);
     });
 
+});
+
+//Al accionar el evento submit del formulario para cambiar contraseña
+document.getElementById('password-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //fetch 
+    fetch(API_USUARIOS + 'updatePassword', {
+        method: 'post',
+        body: new FormData(document.getElementById('password-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    closeModal('administrarContrasena');
+                    sweetAlert(1, response.message, 'ajustes_cuenta');
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
 })
+
+//Función para mostrar contraseña
+function showHidePassword2(checkbox, pass1, pass2, pass3) {
+    var check = document.getElementById(checkbox);
+    var password1 = document.getElementById(pass1);
+    var password2 = document.getElementById(pass2);
+    var password3 = document.getElementById(pass3);
+    //Verificando el estado del check
+    if (check.checked == true) {
+        password1.type = 'text';
+        password2.type = 'text';
+        password3.type = 'text';
+    } else {
+        password1.type = 'password';
+        password2.type = 'password';
+        password3.type = 'password';
+    }
+}
 
 function readDataOnModal() {
     // Se abre la caja de dialogo (modal) que contiene el formulario para editar perfil, ubicado en el archivo de las
