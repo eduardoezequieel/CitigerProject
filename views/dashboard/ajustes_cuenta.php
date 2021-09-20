@@ -135,7 +135,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                         <h2 class="informacion" id="lblUser"></h2>
                                     </div>
                                     <div class="col-6">
-                                        <button class="btn botonesAjustes">Editar</button>
+                                        <button class="btn botonesAjustes">Cambiar</button>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
@@ -144,9 +144,20 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                         <h2 class="informacion" id="lblCorreo"></h2>
                                     </div>
                                     <div class="col-6">
-                                        <a href="#" class="btn botonesAjustes">Editar</a>
+                                        <a href="#" class="btn botonesAjustes">Cambiar</a>
                                     </div>
                                 </div>
+
+                                <div class="row mt-2">
+                                    <div class="col-6">
+                                        <h1 class="tituloInformacion">Factor de Doble Autenticación</h1>
+                                        <h2 class="informacion" id="lblAuth">No</h2>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="#" class="btn botonesAjustes">Cambiar</a>
+                                    </div>
+                                </div>
+
                                 <div class="row mt-2">
                                     <div class="col-6">
                                         <h1 class="tituloInformacion">Contraseña</h1>
@@ -156,6 +167,8 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                         <button data-toggle="modal" data-target="#administrarContrasena" class="btn botonesAjustes">Cambiar</button>
                                     </div>
                                 </div>
+
+                                
 
                             </div>
                         </div>
