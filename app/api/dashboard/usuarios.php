@@ -290,81 +290,85 @@ if (isset($_GET['action'])) {
                 //Caso para registrar el primer usuario del sistema
             case 'register':
                 $_POST = $usuarios->validateForm($_POST);
-                if ($usuarios->setNombres($_POST['txtNombre'])) {
-                    if ($usuarios->setApellidos($_POST['txtApellido'])) {
-                        if ($usuarios->setTelefonoFijo($_POST['txtFijo'])) {
-                            if ($usuarios->setTelefonoCelular($_POST['txtCelular'])) {
-                                if (is_uploaded_file($_FILES['archivo_usuario']['tmp_name'])) {
-                                    if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
-                                        if ($_POST['txtCorreo'] == $_POST['txtCorreoConfirmar']) {
-                                            if ($usuarios->setCorreo($_POST['txtCorreo'])) {
-                                                if ($usuarios->setNacimiento($_POST['txtNacimiento'])) {
-                                                    if (isset($_POST['txtGenero'])) {
-                                                        if ($usuarios->setGenero($_POST['txtGenero'])) {
-                                                            if ($usuarios->setDui($_POST['txtDui'])) {
-                                                                if ($usuarios->setUsername($_POST['txtUsuario'])) {
-                                                                    if ($_POST['txtContrasenia'] == $_POST['txtContraseniaConfirmar']) {
-                                                                        if ($usuarios->setContrasenia($_POST['txtContrasenia'])) {
-                                                                            if ($usuarios->setDireccion($_POST['txtDireccion'])) {
-                                                                                $usuarios->setIdEstadoUsuario(1);
-                                                                                $usuarios->setIdTipoUsuario(1);
-                                                                                if ($usuarios->createRow()) {
-                                                                                    $result['status'] = 1;
-                                                                                    if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
-                                                                                        $result['message'] = 'Primer usuario registrado correctamente';
+                if (isset($_SESSION['idusuario_dashboard'])) {
+                    $result['exception'] = 'Ya existen usuarios agregados en la base.';
+                } else {
+                    if ($usuarios->setNombres($_POST['txtNombre'])) {
+                        if ($usuarios->setApellidos($_POST['txtApellido'])) {
+                            if ($usuarios->setTelefonoFijo($_POST['txtFijo'])) {
+                                if ($usuarios->setTelefonoCelular($_POST['txtCelular'])) {
+                                    if (is_uploaded_file($_FILES['archivo_usuario']['tmp_name'])) {
+                                        if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
+                                            if ($_POST['txtCorreo'] == $_POST['txtCorreoConfirmar']) {
+                                                if ($usuarios->setCorreo($_POST['txtCorreo'])) {
+                                                    if ($usuarios->setNacimiento($_POST['txtNacimiento'])) {
+                                                        if (isset($_POST['txtGenero'])) {
+                                                            if ($usuarios->setGenero($_POST['txtGenero'])) {
+                                                                if ($usuarios->setDui($_POST['txtDui'])) {
+                                                                    if ($usuarios->setUsername($_POST['txtUsuario'])) {
+                                                                        if ($_POST['txtContrasenia'] == $_POST['txtContraseniaConfirmar']) {
+                                                                            if ($usuarios->setContrasenia($_POST['txtContrasenia'])) {
+                                                                                if ($usuarios->setDireccion($_POST['txtDireccion'])) {
+                                                                                    $usuarios->setIdEstadoUsuario(1);
+                                                                                    $usuarios->setIdTipoUsuario(1);
+                                                                                    if ($usuarios->createRow()) {
+                                                                                        $result['status'] = 1;
+                                                                                        if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
+                                                                                            $result['message'] = 'Primer usuario registrado correctamente';
+                                                                                        } else {
+                                                                                            $result['message'] = 'Primer usuario registrado pero no se guardó la imagen';
+                                                                                        }
                                                                                     } else {
-                                                                                        $result['message'] = 'Primer usuario registrado pero no se guardó la imagen';
+                                                                                        $result['exception'] = Database::getException();;
                                                                                     }
                                                                                 } else {
-                                                                                    $result['exception'] = Database::getException();;
+                                                                                    $result['exception'] = 'La dirección ingresada no es válida';
                                                                                 }
                                                                             } else {
-                                                                                $result['exception'] = 'La dirección ingresada no es válida';
+                                                                                $result['exception'] = 'La contraseña ingresado no es válida';
                                                                             }
                                                                         } else {
-                                                                            $result['exception'] = 'La contraseña ingresado no es válida';
+                                                                            $result['exception'] = 'Las contraseñas no coinciden.';
                                                                         }
                                                                     } else {
-                                                                        $result['exception'] = 'Las contraseñas no coinciden.';
+                                                                        $result['exception'] = 'El username ingresado no es válido.';
                                                                     }
                                                                 } else {
-                                                                    $result['exception'] = 'El username ingresado no es válido.';
+                                                                    $result['exception'] = 'El DUI ingresado no es válido.';
                                                                 }
                                                             } else {
-                                                                $result['exception'] = 'El DUI ingresado no es válido.';
+                                                                $result['exception'] = 'El género ingresado no es válido.';
                                                             }
                                                         } else {
-                                                            $result['exception'] = 'El género ingresado no es válido.';
+                                                            $result['exception'] = 'Seleccione un género.';
                                                         }
                                                     } else {
-                                                        $result['exception'] = 'Seleccione un género.';
+                                                        $result['exception'] = 'La fecha de nacimiento ingresada no es válida.';
                                                     }
                                                 } else {
-                                                    $result['exception'] = 'La fecha de nacimiento ingresada no es válida.';
+                                                    $result['exception'] = 'El correo ingresado no es válido.';
                                                 }
                                             } else {
-                                                $result['exception'] = 'El correo ingresado no es válido.';
+                                                $result['exception'] = 'Los correos no coinciden.';
                                             }
                                         } else {
-                                            $result['exception'] = 'Los correos no coinciden.';
+                                            $result['exception'] = 'La foto ingresada no es válida.';
                                         }
                                     } else {
-                                        $result['exception'] = 'La foto ingresada no es válida.';
+                                        $result['exception'] =  'Selecciona una foto de perfil.';
                                     }
                                 } else {
-                                    $result['exception'] =  'Selecciona una foto de perfil.';
+                                    $result['exception'] = 'El teléfono celular ingresado no es válido.';
                                 }
                             } else {
-                                $result['exception'] = 'El teléfono celular ingresado no es válido.';
+                                $result['exception'] = 'El teléfono fijo ingresado no es válido.';
                             }
                         } else {
-                            $result['exception'] = 'El teléfono fijo ingresado no es válido.';
+                            $result['exception'] = 'El apellido ingresado no es válido.';
                         }
                     } else {
-                        $result['exception'] = 'El apellido ingresado no es válido.';
+                        $result['exception'] = 'El nombre ingresado no es válido.';
                     }
-                } else {
-                    $result['exception'] = 'El nombre ingresado no es válido.';
                 }
                 break;
             //Caso para verificar si hay usuarios que desbloquear
