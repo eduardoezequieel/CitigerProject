@@ -42,6 +42,8 @@
                 <!-- Contenido -->
                 <div class="d-flex justify-content-center align-items-center col-xl-6 col-md-12 col-sm-12 col-xs-12">
                     <form method="post" id="login-form">
+                        <input type="number" name="txtId" id="txtId" class="d-none">
+                        <input type="number" name="txtBitacora" id="txtBitacora" class="d-none">
                         <div class="row my-2">
                             <div class="col-12">
                                 <img id="CitigerLogo" src="../../resources/img/CitigerWhiteLogo.png" alt="" class="img-fluid animate__animated animate__bounceIn animate__slow">

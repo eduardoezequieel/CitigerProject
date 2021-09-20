@@ -21,6 +21,7 @@ class Usuarios extends Validator
     private $direccion = null;
     private $ruta = '../../../resources/img/dashboard_img/usuarios_fotos/';
     private $modo = null;
+    private $bitacora = null;
 
     /*
         Creando métodos set
@@ -29,6 +30,16 @@ class Usuarios extends Validator
     {
         if ($this->validateNaturalNumber($value)) {
             $this->idUsuario = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdBitacora($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->bitacora = $value;
             return true;
         } else {
             return false;
@@ -192,6 +203,11 @@ class Usuarios extends Validator
     public function getId()
     {
         return $this->idUsuario;
+    }
+
+    public function getBitacora()
+    {
+        return $this->bitacora;
     }
 
     public function getNombres()
@@ -578,6 +594,24 @@ class Usuarios extends Validator
     {
         $sql = 'UPDATE usuario SET intentos = ? WHERE idusuario = ?';
         $params = array($intentos, $this->idUsuario);
+        return Database::executeRow($sql,$params);
+    }
+
+    //Función para verificar usuarios bloqueados
+    public function checkBlockUsers()
+    {
+        $sql = 'SELECT idbitacora, idusuario FROM bitacora 
+                WHERE accion = \'Bloqueo\' AND
+                fecha = current_date - 1 AND current_time >= hora
+                OR accion = \'Bloqueo\' AND fecha <= current_date - 2';
+        $params = null;
+        return Database::getRows($sql,$params);
+    }
+
+    public function updateBitacoraOut($act)
+    {
+        $sql = 'UPDATE bitacora SET accion = ? WHERE idbitacora = ?';
+        $params = array($act,$this->bitacora);
         return Database::executeRow($sql,$params);
     }
 }

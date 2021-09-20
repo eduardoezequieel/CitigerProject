@@ -271,7 +271,7 @@ if (isset($_GET['action'])) {
                                         if ($usuarios->suspend()) {
                                             $result['exception'] = 'Has superado el máximo de intentos, el usuario se ha bloquedo
                                                                     por 24 horas.';
-                                            $usuarios->registerActionOut('Bloqueado','Intento N° 3. Usuario bloqueado por intentos fallidos');
+                                            $usuarios->registerActionOut('Bloqueo','Intento N° 3. Usuario bloqueado por intentos fallidos');
                                         }
                                     }
                                 }
@@ -365,6 +365,27 @@ if (isset($_GET['action'])) {
                     }
                 } else {
                     $result['exception'] = 'El nombre ingresado no es válido.';
+                }
+                break;
+            //Caso para verificar si hay usuarios que desbloquear
+            case 'checkBlockUsers':
+                if ($result['dataset'] = $usuarios->checkBlockUsers()) {
+                    $result['status'] = 1;
+                } 
+                break;
+            //Caso para activar los usuarios que ya cumplieron con su tiempo de penalización
+            case 'activateBlockUsers':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setId($_POST['txtId'])) {
+                    if ($usuarios->setIdBitacora($_POST['txtBitacora'])){
+                        if ($usuarios->activar()) {
+                            if ($usuarios->updateBitacoraOut('Bloqueo (Cumplido)')) {
+                                if ($usuarios->increaseIntentos(0)){
+                                    $result['status'] = 1;
+                                }
+                            }
+                        }
+                    } 
                 }
                 break;
             default:
