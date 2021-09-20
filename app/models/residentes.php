@@ -18,14 +18,28 @@ class Residentes extends Validator
     private $idCasa = null;
     private $modo = null;
     private $idtipoDenuncia = null;
+    private $bitacora = null;
 
 
 
-    //Metodos set para todas las variables del modelo.
+    /*
+        Metodos set para todas las variables del modelo.
+    */
+
     public function setIdResidente($value)
     {
         if ($this->validateNaturalNumber($value)) {
             $this->idResidente = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdBitacora($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->bitacora = $value;
             return true;
         } else {
             return false;
@@ -190,6 +204,12 @@ class Residentes extends Validator
         return $this->idResidente;
     }
 
+    public function getBitacora()
+    {
+        return $this->bitacora;
+    }
+
+
     public function getModo()
     {
         return $this->modo;
@@ -314,9 +334,9 @@ class Residentes extends Validator
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
         $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
         $sql = 'INSERT INTO residente(idestadoresidente, nombre, apellido, telefonofijo, telefonocelular, foto, 
-            correo, fechanacimiento, genero, dui, username, contrasena, modo) 
+            correo, fechanacimiento, genero, dui, username, contrasena, modo,intentos) 
             VALUES
-            (?,?,?,?,?,?,?,?,?,?,?,?,\'light\')';
+            (?,?,?,?,?,?,?,?,?,?,?,?,\'light\',?)';
         $params = array(
             $this->idEstadoResidente,
             $this->nombre,
@@ -329,7 +349,7 @@ class Residentes extends Validator
             $this->genero,
             $this->dui,
             $this->username,
-            $hash
+            $hash,0
         );
         return Database::executeRow($sql, $params);
     }
@@ -388,8 +408,7 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
-
-
+    //Función para obtener la casa del residente
     public function getCasaResidente()
     {
 
@@ -400,6 +419,7 @@ class Residentes extends Validator
         return Database::getRow($sql, $params);
     }
 
+    //Función para leer la información de todas las casas
     public function cargarCasas()
     {
 
@@ -408,6 +428,7 @@ class Residentes extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para buscar casas por su #
     public function searchCasa($value)
     {
         $sql = "SELECT idcasa, numerocasa, direccion from casa where
@@ -417,7 +438,7 @@ class Residentes extends Validator
         return Database::getRows($sql, $params);
     }
 
-
+    //Función para asignar una casa a un residente
     public function ingresarResidenteCasa()
     {
 
@@ -426,6 +447,7 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para actualizar la casa del residente
     public function updateResidenteCasa()
     {
         $sql = 'UPDATE residentecasa
@@ -435,6 +457,7 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para llenar bitacora
     public function registerAction($action, $desc)
     {
         $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
@@ -442,6 +465,7 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para verificar el residente por su email
     public function checkUser($email)
     {
         $sql = 'SELECT idresidente,foto,idestadoresidente,modo, username FROM residente 
@@ -471,6 +495,7 @@ class Residentes extends Validator
         }
     }
 
+    //Función para verificar la contraseña
     public function checkPassword($password)
     {
         $sql = 'SELECT contrasena FROM residente WHERE idresidente = ?';
@@ -483,7 +508,7 @@ class Residentes extends Validator
         }
     }
 
-
+    //Función para setear el dark mode
     public function setDarkMode()
     {
         $sql = 'UPDATE residente SET modo = \'dark\' WHERE idresidente = ?';
@@ -491,6 +516,7 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para setear el light mode
     public function setLightMode()
     {
         $sql = 'UPDATE residente SET modo = \'light\' WHERE idresidente = ?';
@@ -507,7 +533,7 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
-
+    //Función para leer la info del usuario logueado
     public function readProfile()
     {
         $sql = "SELECT idresidente, nombre, apellido, CONCAT(nombre,' ',apellido) as nombres,dui, genero, correo, foto, fechaNacimiento, telefonofijo, telefonocelular, username, contrasena
@@ -517,6 +543,7 @@ class Residentes extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para leer la info del usuario logueado
     public function readProfile2()
     {
         $sql = "SELECT idresidente, nombre, apellido, CONCAT(nombre,' ',apellido) as nombres,dui, genero, correo, foto, fechaNacimiento, telefonofijo, telefonocelular, username, contrasena
@@ -526,6 +553,7 @@ class Residentes extends Validator
         return Database::getRow($sql, $params);
     }
 
+    //Función para actualizar la foto
     public function updateFoto($current_image)
     {
         // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
@@ -544,6 +572,7 @@ class Residentes extends Validator
         
     }
 
+    //Función para actualizar la información del usuario logueado
     public function updateInfo()
     {
         $sql = 'UPDATE residente
@@ -553,6 +582,7 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para setear la cabecera del reporte
     public function readReportCabecera()
     {
         $sql = "SELECT Concat(nombre,' ',apellido) as residente, telefonofijo, telefonocelular, idresidente from residente where idresidente=? ";
@@ -560,6 +590,7 @@ class Residentes extends Validator
         return Database::getRows($sql, $params);  
     }
 
+    //Función para leer los datos del reporte
     public function readReport()
     {
         $sql = 'SELECT d.iddenuncia, t.tipodenuncia, e.estadodenuncia, d.fecha, d.descripcion  from denuncia d
@@ -570,6 +601,7 @@ class Residentes extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para leer todos los tipo de denuncia
     public function readTipodenuncia(){
 
         $sql="SELECT idtipodenuncia, tipodenuncia
@@ -578,6 +610,7 @@ class Residentes extends Validator
         return Database::getRows($sql,$params);
     }
 
+    //Función para leer el mes del pago
     public function readMes(){
 
         $sql="SELECT EXTRACT (month from fechapago) as mes from aportacion where idestadoaportacion=1 group by mes order by mes asc LIMIT 12";
@@ -585,6 +618,7 @@ class Residentes extends Validator
         return Database::getRows($sql,$params);
     }
 
+    //Función para obtener la información de los residentes que tienen mora
     public function residentesMora(){
         $sql ="SELECT CONCAT(residente.apellido, ', ', residente.nombre) AS residente, 
         CONCAT('#',casa.numerocasa) AS casa, fechapago
@@ -595,6 +629,48 @@ class Residentes extends Validator
         WHERE fechapago < current_date AND idestadoaportacion = 1 and EXTRACT(YEAR FROM fechapago) = (SELECT EXTRACT(YEAR FROM current_date))  and EXTRACT(month from fechapago)=?";
         $params = array($this->idResidente);
         return Database::getRows($sql, $params);
+    }
+
+    //Función para verificar los intentos fallidos
+    public function checkIntentos() 
+    {
+        $sql = 'SELECT intentos FROM residente WHERE idresidente = ?';
+        $params = array($this->idResidente);
+        return Database::getRow($sql,$params);
+    }
+
+    //Función para registrar la acción de un usuario no logueado
+    public function registerActionOut($action,$desc) 
+    {
+        $sql = 'INSERT INTO bitacoraResidente VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
+        $params = array($this->idResidente,$action,$desc);
+        return Database::executeRow($sql,$params);
+    }
+
+    //Función para aumentar el valor de los intentos fallidos
+    public function increaseIntentos($intentos)
+    {
+        $sql = 'UPDATE residente SET intentos = ? WHERE idresidente = ?';
+        $params = array($intentos, $this->idResidente);
+        return Database::executeRow($sql,$params);
+    }
+
+    //Función para verificar usuarios bloqueados
+    public function checkBlockUsers()
+    {
+        $sql = 'SELECT idbitacora, idresidente FROM bitacoraResidente 
+                WHERE accion = \'Bloqueo\' AND
+                fecha = current_date - 1 AND current_time >= hora
+                OR accion = \'Bloqueo\' AND fecha <= current_date - 2';
+        $params = null;
+        return Database::getRows($sql,$params);
+    }
+
+    public function updateBitacoraOut($act)
+    {
+        $sql = 'UPDATE bitacoraResidente SET accion = ? WHERE idbitacora = ?';
+        $params = array($act,$this->bitacora);
+        return Database::executeRow($sql,$params);
     }
 
 }

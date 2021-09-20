@@ -390,9 +390,18 @@ CREATE TRIGGER TR_historialInventario BEFORE UPDATE ON material
 FOR EACH ROW
 EXECUTE PROCEDURE SP_historialInventario();
 
+--Cambios base 20/09/2021
 ALTER TABLE usuario ADD COLUMN intentos INT;
 UPDATE usuario SET intentos = 0;
 ALTER TABLE usuario ALTER COLUMN intentos SET NOT NULL;
 ALTER TABLE residente ADD COLUMN intentos INT;
 UPDATE residente SET intentos = 0;
 ALTER TABLE residente ALTER COLUMN intentos SET NOT NULL;
+CREATE TABLE bitacoraResidente(
+	idBitacora SERIAL NOT NULL PRIMARY KEY,
+	idResidente INTEGER NOT NULL REFERENCES residente(idResidente),
+	hora TIME NOT NULL,
+	fecha DATE NOT NULL,
+	accion VARCHAR(20) NOT NULL,
+	descripcion VARCHAR(200) NOT NULL
+);

@@ -3,6 +3,8 @@ const API_USUARIO = '../../app/api/residente/index.php?action=';
 
 //Al cargar la pagina
 document.addEventListener('DOMContentLoaded',function(){
+    //Método para activar usuario después de 24 horas
+    checkBlockUsers();
     //Verificando si hay una sesión iniciada
     fetch(API_USUARIO + 'validateSession')
     .then(request => {
@@ -11,10 +13,8 @@ document.addEventListener('DOMContentLoaded',function(){
             request.json().then(response => {
                 //Se verifica si la respuesta no es correcta para redireccionar al primer uso
                 if (response.status) {
-                    console.log('Posee una sesión activa');
                     window.location.href = 'dashboard.php';
                 } else {
-                    console.log('No posee una sesión activa');
                 }
             })
         } else {
@@ -52,3 +52,39 @@ document.getElementById('login-form').addEventListener('submit', function (event
         }
     }).catch(error => console.log(error));
 })
+
+function checkBlockUsers(){
+    //Verificando si hay usuarios bloqueados que ya cumplieron su penalización
+    fetch(API_USUARIO + 'checkBlockUsers').then(request => {
+        //Verificando si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
+                if (response.status) {
+                    response.dataset.map(function (row){
+                        document.getElementById('txtId').value = row.idresidente;
+                        document.getElementById('txtBitacora').value = row.idbitacora;
+                        //Activando los usuarios que ya cumplieron con su penalización
+                        fetch(API_USUARIO + 'activateBlockUsers', {
+                            method: 'post',
+                            body: new FormData(document.getElementById('login-form'))
+                        }).then(request => {
+                            //Verificando si la petición fue correcta
+                            if (request.ok) {
+                                request.json().then(response => {
+                                    //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
+                                    if (response.status) {
+                                    }
+                                })
+                            } else {
+                                console.log(request.status + ' ' + request.statusText);
+                            }
+                        }).catch(error => console.log(error));
+                    })
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(error => console.log(error));
+}
