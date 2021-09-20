@@ -103,7 +103,8 @@ Class Database{
 
     //Método para excepciones
     public static function setException($code, $message){
-        self::$error = $message;
+        // Se asigna el mensaje del error original por si se necesita.
+        self::$error = utf8_encode($message);
         // Establecer un error personalizado.
         switch ($code) {
             case '7':
@@ -122,8 +123,7 @@ Class Database{
                 self::$error = 'Registro ocupado, no se puede eliminar';
                 break;
             default:
-                //self::$error = 'Ocurrió un problema en la base de datos';
-                self::$error = $message;
+                self::$error = 'Ocurrió un problema en la base de datos';
         }
     }
 
