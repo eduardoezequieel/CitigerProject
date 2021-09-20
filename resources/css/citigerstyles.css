@@ -32,6 +32,14 @@
   --color-citiger-claro: #;
 }
 
+/**Paginas de error**/
+.tituloError{
+  font-family: 'Quicksand', 'sans-serif';
+  color: #4174c2 !important;
+  font-size: 24px !important;
+  text-align: center;
+}
+
 /**  Alertas  **/
 .warningAlert {
   background-color: var(--color-rojo) !important;
