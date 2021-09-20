@@ -46,7 +46,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                     </div>
 
                     <!-- Sección para cambiar información personal -->
-                    <div class="row mt-3">
+                    <div class="row mt-4">
                         <div class="col-12">
                             <h1 class="tituloTarjetaAjustes">Información Personal</h1>
 
@@ -157,6 +157,41 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                     </div>
                                 </div>
 
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección para administrar ver dispositivos registrados -->
+                    <div class="row mt-4">
+                        <div class="col">
+                            <h1 class="tituloTarjetaAjustes">Dispositivos Registrados</h1>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center animate__animated animate__zoomIn">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <div class="informacionPersonal">
+                                <div class="d-flex mt-2">
+                                    <div class=" ml-4 mr-5 justify-content-end align-items-center d-flex">
+                                        <i class="fas fa-desktop h1"></i>
+                                    </div>
+                                    <div class="row w-100">
+                                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                                            <h1 class="tituloInformacion">Sistema:</h1>
+                                            <h2 class="informacion">Windows 10</h2>
+
+                                            <h1 class="tituloInformacion">Localización:</h1>
+                                            <h2 class="informacion">San Salvador</h2>
+                                        </div>
+                                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                                            <h1 class="tituloInformacion">Fecha:</h1>
+                                            <h2 class="informacion">20/09/2021</h2>
+
+                                            <h1 class="tituloInformacion">Hora:</h1>
+                                            <h2 class="informacion">12:57</h2>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
