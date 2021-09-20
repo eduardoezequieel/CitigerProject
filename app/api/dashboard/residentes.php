@@ -4,6 +4,16 @@ require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/residentes.php');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require '../../../libraries/phpmailer65/src/Exception.php';
+require '../../../libraries/phpmailer65/src/PHPMailer.php';
+require '../../../libraries/phpmailer65/src/SMTP.php';
+
+//Creando instancia para mandar correo
+$mail = new PHPMailer(true);
+
 if (isset($_GET['action'])) {
     //Se crea una sesion o se reanuda la actual
     session_start();
@@ -117,15 +127,14 @@ if (isset($_GET['action'])) {
                                                     if ($residente->setGenero($_POST['cbGenero'])) {
                                                         if ($residente->setDui($_POST['txtDUI'])) {
                                                             if ($residente->setUsername($_POST['txtUser'])) {
-                                                                $residente->setContrasenia('newResident');
+                                                                $contraseña = random_bytes(5);
+                                                                $residente->setContrasenia(bin2hex($contraseña));
                                                                 if ($residente->createRow()) {
                                                                     $result['status'] = 1;
                                                                     if ($residente->saveFile($_FILES['archivo_residente'], $residente->getRuta(), $residente->getFoto())) {
-                                                                        $result['message'] = 'Residente registrado correctamente, la contraseña por defecto es: '
-                                                                            . $residente->getContrasenia();
+                                                                        $result['message'] = 'Residente registrado correctamente';
                                                                     } else {
-                                                                        $result['message'] = 'Residente registrado pero no se guardó la imagen, la contraseña por defecto es: '
-                                                                            . $residente->getContrasenia();;
+                                                                        $result['message'] = 'Residente registrado pero no se guardó la imagen';
                                                                     }
                                                                 } else {
                                                                     $result['exception'] = Database::getException();

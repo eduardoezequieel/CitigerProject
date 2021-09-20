@@ -1,7 +1,18 @@
 <?php
+
 require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/usuarios.php');
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require '../../../libraries/phpmailer65/src/Exception.php';
+require '../../../libraries/phpmailer65/src/PHPMailer.php';
+require '../../../libraries/phpmailer65/src/SMTP.php';
+
+//Creando instancia para mandar correo
+$mail = new PHPMailer(true);
 
 //Verificando si existe alguna acción
 if (isset($_GET['action'])) {
@@ -15,7 +26,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idusuario_dashboard'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
-                //Caso para leer todos los datos de la tabla
+            //Caso registrar a un nuevo usuario
             case 'register':
                 $_POST = $usuarios->validateForm($_POST);
                 if (isset($_POST['cbTipoEmpleado2'])) {
@@ -32,18 +43,45 @@ if (isset($_GET['action'])) {
                                                             if ($usuarios->setGenero($_POST['cbGenero'])) {
                                                                 if ($usuarios->setDui($_POST['txtDUI'])) {
                                                                     if ($usuarios->setUsername($_POST['txtUsuario'])) {
-                                                                        if ($usuarios->setContrasenia('newUser')) {
+                                                                        $contraseña = random_bytes(5);
+                                                                        if ($usuarios->setContrasenia(bin2hex($contraseña))) {
                                                                             if ($usuarios->setDireccion($_POST['txtDireccion'])) {
                                                                                 $usuarios->setIdEstadoUsuario(1);
                                                                                 if ($usuarios->createRow()) {
-                                                                                    $result['status'] = 1;
                                                                                     if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
-                                                                                        $result['message'] = 'Usuario registrado correctamente, la contraseña por defecto es: '
-                                                                                                                .$usuarios->getContrasenia();
+                                                                                        $result['message'] = 'Usuario registrado correctamente';
                                                                                         $usuarios->registerAction('Registrar', 'El usuario registró un registro en la tabla de usuarios.');
                                                                                     } else {
-                                                                                        $result['message'] = 'Usuario registrado pero no se guardó la imagen, la contraseña por defecto es: ' 
-                                                                                                                .$usuarios->getContrasenia();
+                                                                                        $result['message'] = 'Usuario registrado pero no se guardó la imagen';
+                                                                                    }
+                                                                                    try {
+                            
+                                                                                        //Ajustes del servidor
+                                                                                        $mail->SMTPDebug = 0;                   
+                                                                                        $mail->isSMTP();                                            
+                                                                                        $mail->Host       = 'smtp.gmail.com';                     
+                                                                                        $mail->SMTPAuth   = true;                                   
+                                                                                        $mail->Username   = 'polusmarket2021@gmail.com';                     
+                                                                                        $mail->Password   = 'polus123';                               
+                                                                                        $mail->SMTPSecure = 'tls';            
+                                                                                        $mail->Port       = 587;                                    
+                                                                                    
+                                                                                        //Receptores
+                                                                                        $mail->setFrom('polusmarket2021@gmail.com', 'Polus Support');
+                                                                                        $mail->addAddress($usuarios->getCorreo());    
+                                                                                    
+                                                                                        //Contenido
+                                                                                        $mail->isHTML(true);                                  //Set email format to HTML
+                                                                                        $mail->Subject = 'Bienvenido a Citiger';
+                                                                                        $mail->Body    = 'Se ha creado un registro con tu cuenta de correo
+                                                                                                        en Citiger. Para que puedas iniciar sesión tu contraseña es: <b>' . $usuarios->getContrasenia(). '</b>.';
+                                                                                        $mail->AltBody = 'Tu contraseña es: ' . $usuarios->getContrasenia() . '.';
+                                                                                    
+                                                                                        if($mail->send()){
+                                                                                            $result['status'] = 1;
+                                                                                        }
+                                                                                    } catch (Exception $e) {
+                                                                                        $result['exception'] = $mail->ErrorInfo;
                                                                                     }
                                                                                 } else {
                                                                                     $result['exception'] = Database::getException();
