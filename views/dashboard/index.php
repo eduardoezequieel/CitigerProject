@@ -51,7 +51,7 @@
                         <!-- Input Correo -->
                         <div class="form-group mb-4 animate__animated animate__bounceIn animate__slow">
                             <h1 class="tituloCajasLogin">Correo Electrónico:</h1>
-                            <input type="email" class="form-control cajaTextoLogin" id="txtCorreo" name="txtCorreo" aria-describedby="emailHelp" onChange="checkCorreo('txtCorreo')" placeholder="Ingrese su correo electrónico..." Required>
+                            <input type="email" autocomplete="off" class="form-control cajaTextoLogin" id="txtCorreo" name="txtCorreo" aria-describedby="emailHelp" onChange="checkCorreo('txtCorreo')" placeholder="Ingrese su correo electrónico..." Required>
                         </div>
                         <!-- Input Contraseña -->
                         <div class="form-group mb-1 animate__animated animate__bounceIn animate__slow">

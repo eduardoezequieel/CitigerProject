@@ -389,3 +389,10 @@ LANGUAGE plpgsql;
 CREATE TRIGGER TR_historialInventario BEFORE UPDATE ON material
 FOR EACH ROW
 EXECUTE PROCEDURE SP_historialInventario();
+
+ALTER TABLE usuario ADD COLUMN intentos INT;
+UPDATE usuario SET intentos = 0;
+ALTER TABLE usuario ALTER COLUMN intentos SET NOT NULL;
+ALTER TABLE residente ADD COLUMN intentos INT;
+UPDATE residente SET intentos = 0;
+ALTER TABLE residente ALTER COLUMN intentos SET NOT NULL;

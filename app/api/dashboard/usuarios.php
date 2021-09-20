@@ -251,15 +251,30 @@ if (isset($_GET['action'])) {
                                 $_SESSION['foto_dashboard'] = $usuarios->getFoto();
                                 $_SESSION['tipousuario_dashboard'] = $usuarios->getIdTipoUsuario();
                                 $_SESSION['modo_dashboard'] = $usuarios->getModo();
-                                if ($_POST['txtContrasenia'] != 'newUser') {
+                                //Se reinicia el conteo de intentos fallidos
+                                if ($usuarios->increaseIntentos(0)){
                                     $result['status'] = 1;
                                     $result['message'] = 'Sesión iniciada correctamente.';
-                                } else {
-                                    $result['error'] = 1;
-                                    $result['message'] = 'Contraseña por defecto, para mayor seguridad actualizar la clave.';
                                 }
                             } else {
-                                $result['exception'] = 'La contraseña ingresada es incorrecta.';
+                                //Se verifica los intentos que tiene guardado el usuario
+                                if ($data = $usuarios->checkIntentos()){
+                                    //Se evalúa si ya el usuario ya realizó dos intentos
+                                    if ($data['intentos'] < 2) {
+                                        //Se aumenta la cantidad de intentos
+                                        if ($usuarios->increaseIntentos($data['intentos']+1)) {
+                                            $result['exception'] = 'La contraseña ingresada es incorrecta';
+                                            $usuarios->registerActionOut('Intento Fallido','Intento Fallido N° '.$data['intentos']+1.);
+                                        }
+                                    } else {
+                                        //Se bloquea el usuario
+                                        if ($usuarios->suspend()) {
+                                            $result['exception'] = 'Has superado el máximo de intentos, el usuario se ha bloquedo
+                                                                    por 24 horas.';
+                                            $usuarios->registerActionOut('Bloqueado','Intento N° 3. Usuario bloqueado por intentos fallidos');
+                                        }
+                                    }
+                                }
                             }
                         } else {
                             $result['exception'] = 'El usuario está inactivo. Contacte con el administrador.';

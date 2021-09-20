@@ -22,6 +22,9 @@ class Usuarios extends Validator
     private $ruta = '../../../resources/img/dashboard_img/usuarios_fotos/';
     private $modo = null;
 
+    /*
+        Creando métodos set
+    */
     public function setId($value)
     {
         if ($this->validateNaturalNumber($value)) {
@@ -182,7 +185,9 @@ class Usuarios extends Validator
         }
     }
 
-    //Metodos get
+    /*
+        Creando métodos get
+    */    
 
     public function getId()
     {
@@ -286,6 +291,7 @@ class Usuarios extends Validator
         }
     }
 
+    //Función para verificar el tipo de usuario que quiere ingresar
     public function checkUserType($num)
     {
         if ($num == 1) {
@@ -311,6 +317,7 @@ class Usuarios extends Validator
         }
     }
 
+    //Función para verificar si la contraseña es correcta
     public function checkPassword($password)
     {
         $sql = 'SELECT contrasena FROM usuario WHERE idUsuario = ?';
@@ -323,6 +330,7 @@ class Usuarios extends Validator
         }
     }
 
+    //Función para cambiar la contraseña
     public function changePassword()
     {
         $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
@@ -331,6 +339,7 @@ class Usuarios extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para setear el dark mode
     public function setDarkMode()
     {
         $sql = 'UPDATE usuario SET modo = \'dark\' WHERE idUsuario = ?';
@@ -345,6 +354,7 @@ class Usuarios extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para leer la información de usuario logueado
     public function readProfile()
     {
         $sql = "SELECT idUsuario, nombre, apellido, CONCAT(nombre,' ',apellido) as nombres,dui, genero, correo, foto, fechaNacimiento, telefonofijo, telefonocelular, direccion, username, contrasena, idEstadoUsuario, idTipoUsuario
@@ -354,6 +364,7 @@ class Usuarios extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para leer la información de usuario logueado
     public function readProfile2()
     {
         $sql = "SELECT idUsuario, nombre, apellido, CONCAT(nombre,' ',apellido) as nombres,dui, genero, correo, foto, fechaNacimiento, telefonofijo, telefonocelular, direccion, username, contrasena, idEstadoUsuario, idTipoUsuario
@@ -363,6 +374,7 @@ class Usuarios extends Validator
         return Database::getRow($sql, $params);
     }
 
+    //Función para cambiar la foto
     public function updateFoto($current_image)
     {
         // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
@@ -380,6 +392,7 @@ class Usuarios extends Validator
         }
     }
 
+    //Función para cambiar la foto cuando el usuario es tipo caseta
     public function updateFoto2($current_image)
     {
         // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
@@ -397,6 +410,7 @@ class Usuarios extends Validator
         }
     }
 
+    //Función para actualizar la información del usuario logueado
     public function updateInfo()
     {
         $sql = 'UPDATE usuario
@@ -413,12 +427,12 @@ class Usuarios extends Validator
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
         $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
         $sql = 'INSERT INTO usuario(idEstadoUsuario, idTipoUsuario, nombre, apellido, telefonoFijo, 
-                telefonoCelular, foto,correo, fechaNacimiento, genero, dui,username, contrasena,direccion,modo)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,\'light\')';
+                telefonoCelular, foto,correo, fechaNacimiento, genero, dui,username, contrasena,direccion,modo,intentos)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,\'light\',?)';
         $params = array(
             $this->idEstadoUsuario, $this->idTipoUsuario, $this->nombre, $this->apellido, $this->telefonoFijo,
             $this->telefonoCelular, $this->foto, $this->correo, $this->fechaNacimiento, $this->genero,
-            $this->dui, $this->username, $hash, $this->direccion
+            $this->dui, $this->username, $hash, $this->direccion,0
         );
         return Database::executeRow($sql, $params);
     }
@@ -439,6 +453,7 @@ class Usuarios extends Validator
         return Database::getRow($sql, $params);
     }
 
+    //Función para leer todos los registros de la tabla usuario
     public function readAll()
     {
         $sql = 'SELECT*FROM usuario';
@@ -446,6 +461,7 @@ class Usuarios extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para leer los datos del usuario logueado cuando es diferente a caseta
     public function readAllSCRUD()
     {
         $sql = "SELECT u.idusuario, u.foto, Concat(u.nombre,' ',u.apellido) as nombre, u.dui, u.telefonofijo,e.estadousuario
@@ -456,6 +472,7 @@ class Usuarios extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para buscar tabla
     public function searchRows($value)
     {
         $sql = "SELECT u.idusuario, u.foto, Concat(u.nombre,' ',u.apellido) as nombre, u.dui, u.telefonofijo,e.estadousuario
@@ -467,6 +484,7 @@ class Usuarios extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para leer los datos de un usuario
     public function readOne()
     {
         $sql = "SELECT idusuario, idestadousuario, idtipousuario, nombre, apellido, telefonofijo, telefonocelular, foto, correo, fechanacimiento, genero, dui, username, contrasena, direccion
@@ -475,6 +493,7 @@ class Usuarios extends Validator
         return Database::getRow($sql, $params);
     }
 
+    //Función para actualizar un registro
     public function updateRow($current_image)
     {
 
@@ -517,7 +536,7 @@ class Usuarios extends Validator
         return Database::executeRow($sql, $params);
     }
 
-
+    //Función para buscar usuario por tipo
     public function filterByEmployeeType()
     {
         $sql = "SELECT u.idusuario, u.foto, Concat(u.nombre,' ',u.apellido) as nombre, u.dui, u.telefonofijo,e.estadousuario, t.tipousuario
@@ -530,10 +549,35 @@ class Usuarios extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para registrar la acción de un usuario
     public function registerAction($action, $desc)
     {
         $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
         $params = array($_SESSION['idusuario_dashboard'], $action, $desc);
         return Database::executeRow($sql, $params);
+    }
+
+    //Función para verificar los intentos fallidos
+    public function checkIntentos() 
+    {
+        $sql = 'SELECT intentos FROM usuario WHERE idusuario = ?';
+        $params = array($this->idUsuario);
+        return Database::getRow($sql,$params);
+    }
+
+    //Función para registrar la acción de un usuario no logueado
+    public function registerActionOut($action,$desc) 
+    {
+        $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
+        $params = array($this->idUsuario,$action,$desc);
+        return Database::executeRow($sql,$params);
+    }
+
+    //Función para aumentar el valor de los intentos fallidos
+    public function increaseIntentos($intentos)
+    {
+        $sql = 'UPDATE usuario SET intentos = ? WHERE idusuario = ?';
+        $params = array($intentos, $this->idUsuario);
+        return Database::executeRow($sql,$params);
     }
 }
