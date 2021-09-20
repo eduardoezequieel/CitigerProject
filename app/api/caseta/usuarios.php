@@ -241,15 +241,30 @@ if (isset($_GET['action'])) {
                                 $_SESSION['foto_caseta'] = $usuarios->getFoto();
                                 $_SESSION['tipousuario_caseta'] = $usuarios->getIdTipoUsuario();
                                 $_SESSION['modo_caseta'] = $usuarios->getModo();
-                                if ($_POST['txtContrasenia'] != 'newUser') {
+                                //Se reinicia el conteo de intentos fallidos
+                                if ($usuarios->increaseIntentos(0)){
                                     $result['status'] = 1;
                                     $result['message'] = 'Sesión iniciada correctamente.';
-                                } else {
-                                    $result['error'] = 1;
-                                    $result['message'] = 'Contraseña por defecto, para mayor seguridad actualizar la clave.';
                                 }
                             } else {
-                                $result['exception'] = 'La contraseña ingresada es incorrecta.';
+                                //Se verifica los intentos que tiene guardado el usuario
+                                if ($data = $usuarios->checkIntentos()){
+                                    //Se evalúa si ya el usuario ya realizó dos intentos
+                                    if ($data['intentos'] < 2) {
+                                        //Se aumenta la cantidad de intentos
+                                        if ($usuarios->increaseIntentos($data['intentos']+1)) {
+                                            $result['exception'] = 'La contraseña ingresada es incorrecta';
+                                            $usuarios->registerActionOut('Intento Fallido','Intento Fallido N° '.$data['intentos']+1.);
+                                        }
+                                    } else {
+                                        //Se bloquea el usuario
+                                        if ($usuarios->suspend()) {
+                                            $result['exception'] = 'Has superado el máximo de intentos, el usuario se ha bloquedo
+                                                                    por 24 horas.';
+                                            $usuarios->registerActionOut('Bloqueo','Intento N° 3. Usuario bloqueado por intentos fallidos');
+                                        }
+                                    }
+                                }
                             }
                         } else {
                             $result['exception'] = 'El usuario está inactivo. Contacte con el administrador.';
@@ -261,6 +276,27 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'El correo ingresado es incorrecto.';
                 }
                 
+                break;
+            //Caso para verificar si hay usuarios que desbloquear
+            case 'checkBlockUsers':
+                if ($result['dataset'] = $usuarios->checkBlockUsers()) {
+                    $result['status'] = 1;
+                } 
+                break;
+            //Caso para activar los usuarios que ya cumplieron con su tiempo de penalización
+            case 'activateBlockUsers':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setId($_POST['txtId'])) {
+                    if ($usuarios->setIdBitacora($_POST['txtBitacora'])){
+                        if ($usuarios->activar()) {
+                            if ($usuarios->updateBitacoraOut('Bloqueo (Cumplido)')) {
+                                if ($usuarios->increaseIntentos(0)){
+                                    $result['status'] = 1;
+                                }
+                            }
+                        }
+                    } 
+                }
                 break;
             default:
                 $result['exception'] = 'La acción no está disponible afuera de la sesión';
