@@ -20,6 +20,8 @@
                     <link rel="stylesheet" href="../../resources/css/all.min.css">
                     <link rel="stylesheet" href="../../resources/css/fontawesome.min.css">
                     <link rel="stylesheet" href="../../resources/css/animate.min.css">
+                    <link rel="icon" type="image/png" href="../../resources/img/iconocitiger.png" />
+
 
                 
                     <!-- Fuentes -->

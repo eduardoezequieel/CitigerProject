@@ -21,6 +21,8 @@
                     <link rel="stylesheet" href="../../resources/css/fontawesome.min.css">
                     <link rel="stylesheet" href="../../resources/css/animate.min.css">
                     <link href="../../resources/css/lightbox.min.css" rel="stylesheet">
+                    <link rel="icon" type="image/png" href="../../resources/img/iconocitiger.png" />
+
                 
                     <!-- Fuentes -->
                     <link rel="preconnect" href="https://fonts.gstatic.com">
