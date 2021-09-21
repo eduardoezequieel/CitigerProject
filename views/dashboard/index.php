@@ -113,7 +113,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <br>
+               
                 <!-- Contenido del Modal -->
                 <div class="modal-body textoModal px-3 pb-4 mt-2">
                     <div class="row">
@@ -171,7 +171,7 @@
                         de Verificación</h5>
 
                 </div>
-                <br>
+              
                 <!-- Contenido del Modal -->
                 <div class="modal-body textoModal px-3 pb-4 mt-2">
                     <div class="row">
@@ -229,12 +229,7 @@
                     <!-- Titulo -->
                     <h5 class="modal-title tituloModal" id="labelCambiarContraseña"><span
                             class="fas fa-info-circle mr-4 iconoModal"></span>Cambiar Contraseña</h5>
-                    <!-- Boton para Cerrar -->
-                    <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
-                <br>
                 <!-- Contenido del Modal -->
                 <div class="modal-body textoModal px-3 pb-4 mt-2">
                     <div class="row">
@@ -277,6 +272,12 @@
                                             id="txtContrasenia" name="txtContrasenia"
                                             onChange="checkInput('txtContrasenia')"
                                             placeholder="Ingrese su contraseña..." Required>
+                                    </div>
+                                </div>
+                                <div class="mb-4 d-flex justify-content-center align-items-center">
+                                    <div class="custom-control custom-switch">
+                                        <input onchange="showHidePassword2('cbMostrarContraseña', 'txtContrasenaActual', 'txtNuevaContrasena', 'txtConfirmarContrasena')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña">
+                                        <label class="p-0 custom-control-label" for="cbMostrarContraseña">Mostrar Contraseña</label>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center">
