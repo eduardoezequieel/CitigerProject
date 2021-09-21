@@ -19,6 +19,18 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idusuario_dashboard'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
+            //Caso para obtener todos los tipos de usuario
+            case 'readTypesOfUser':
+                if ($result['dataset'] = $usuarios->readTypesOfUser()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay tipos de usuario.';
+                    }
+                }
+                break;
             //Caso para leer todos los datos de la tabla
             case 'readAll':
                 if ($result['dataset'] = $usuarios->readAll()) {

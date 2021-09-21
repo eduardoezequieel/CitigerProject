@@ -307,6 +307,14 @@ class Usuarios extends Validator
         }
     }
 
+    //Obtener tipos de usuario
+    public function readTypesOfUser()
+    {
+        $sql = 'SELECT*FROM tipousuario';
+        $params = null;
+        return Database::getRows($sql, $params);    
+    }
+
     //Función para verificar el tipo de usuario que quiere ingresar
     public function checkUserType($num)
     {
