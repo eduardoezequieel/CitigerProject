@@ -33,11 +33,17 @@ admin_Page::sidebarTemplate('Usuarios | Citiger');
                     </div>
                 </div>
 
-                <div class="row justify-content-center mt-4">
-                    <div class="col d-flex justify-content-center align-items-center animate__animated animate__bounceIn">
-                        <a href="residentes.php" class="btn botonMenu3">
+                <div class="row mt-4">
+                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
+                        <a href="residentes.php" class="btn float-right botonMenu3">
                             <i class="fas fa-user iconosBotonesMenu"></i>
                             <label class="textoBotonesMenu">Residentes</label>
+                        </a>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 centrarBotones animate__animated animate__bounceIn">
+                        <a href="permisos.php" class="btn botonMenu4">
+                            <i class="fas fa-cogs iconosBotonesMenu"></i>
+                            <label class="textoBotonesMenu">Permisos</label>
                         </a>
                     </div>
                 </div>
