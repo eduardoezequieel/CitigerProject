@@ -232,7 +232,7 @@ class Validator
         if (preg_match('/^\S*(?=\S{8,16})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/', $value)) {
             return true;
         } else {
-            $this->passwordError = 'Su contraseña no cumple con los requisitos especificados.';
+            $this->passwordError = 'Su contraseña no cumple con los requisitos especificados.'; 
             return false;
         }
     }

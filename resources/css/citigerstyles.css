@@ -293,6 +293,51 @@ option[selected] {
 
 }
 
+.cajaCodigo {
+  background-color: transparent;
+  border: 2px solid var(--bordes-inputs);
+  color: var(--color-tipografia);
+  border-radius: 16px;
+  padding: 10px;
+  height: 50px;
+  width: 40px !important;
+  margin: 3px !important;
+  text-align: center !important;
+}
+
+
+
+.cajaCodigo:focus {
+  background-color: transparent;
+  border: 2px solid var(--bordes-inputs);
+  color: var(--color-tipografia);
+}
+
+.cajaCodigo input[placeholder],
+[placeholder],
+*[placeholder] {
+  font-family: FontAwesome, 'Manrope', sans-serif;
+  font-size: 15px;
+  padding-left: 15px;
+}
+
+.cajaCodigo::-webkit-input-placeholder {
+  font-family: FontAwesome, 'Manrope', sans-serif;
+  font-size: 15px;
+}
+
+.cajaCodigo::-moz-placeholder {
+  font-family: FontAwesome, 'Manrope', sans-serif;
+  font-size: 15px;
+
+}
+
+.cajaCodigo:-ms-input-placeholder {
+  font-family: FontAwesome, 'Manrope', sans-serif;
+  font-size: 15px;
+
+}
+
 .centrarColumnas6 {
   display: flex;
   justify-content: center;

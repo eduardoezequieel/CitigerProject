@@ -166,10 +166,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                     <div class="col-6">
                                         <button data-toggle="modal" data-target="#administrarContrasena" class="btn botonesAjustes">Cambiar</button>
                                     </div>
-                                </div>
-
-                                
-
+                                </div>                                
                             </div>
                         </div>
                     </div>
