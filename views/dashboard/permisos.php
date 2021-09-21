@@ -20,7 +20,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
         <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
             <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarAdmin" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarTipoUsuario" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
 
                 </div>
 
@@ -48,19 +48,39 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                         </tr>
                     </thead>
                     <tbody id="tbody-rows">
-
-
                     </tbody>
                 </table>
             </div>
         </div>
         <!-- Desde aqui termina la tabla -->
         <!-- Desde aqui finaliza el contenido -->
-
     </div>
-
 </div>
 <!-- Final del contenido -->
+
+<!-- Modal para verificar el codigo de verificación en la recuperación de contraseña -->
+<div class="modal fade" id="administrarTipoUsuario" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title"><span class="fas fa-info-circle mr-4 iconoModal"></span><span id="tituloModal" class="tituloModal"></span></h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <!-- Contenido del Modal -->
+            <div class="modal-body textoModal px-3 pb-4 mt-2">
+                
+                <!-- Fin del Contenido del Modal -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
 
 
 <?php

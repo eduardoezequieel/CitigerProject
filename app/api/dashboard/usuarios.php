@@ -31,6 +31,29 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
+            //Realizar busquedas de tipos de usuario
+            case 'searchTypesOfUser':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($_POST['search'] != '') {
+                    if ($result['dataset'] = $usuarios->searchTypesOfUser($_POST['search'])) {
+                        $result['status'] = 1;
+                        $rows = count($result['dataset']);
+                        if ($rows > 1) {
+                            $result['message'] = 'Se encontraron ' . $rows . ' coincidencias';
+                        } else {
+                            $result['message'] = 'Solo existe una coincidencia';
+                        }
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay coincidencias';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Ingrese un valor para buscar';
+                }
+                break;
             //Caso para leer todos los datos de la tabla
             case 'readAll':
                 if ($result['dataset'] = $usuarios->readAll()) {

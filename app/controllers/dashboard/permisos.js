@@ -43,7 +43,7 @@ function fillTable(dataset){
             <tr class="animate__animated animate__fadeIn">
                 <!-- Datos-->
                 <td>${row.tipousuario}</td>
-                <td>1</td>
+                <td>${row.permisos}</td>
                 <!-- Boton-->
                 <th scope="row">
                     <div class="row paddingBotones">
@@ -96,5 +96,41 @@ document.getElementById('search-form').addEventListener('submit',function(event)
     //Evitamos recargar la página
     event.preventDefault();
     //fetch
-    
+    fetch(API_USUARIO + 'searchTypesOfUser', {
+        method: 'post',
+        body: new FormData(document.getElementById('search-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                    fillTable(response.dataset);
+                    sweetAlert(1, response.message, null);
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log("error");
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
+//Al presionar el boton de reiniciar
+document.getElementById('btnReiniciar').addEventListener('click',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault
+    //Ejecutamos el metodo por default de cargar tablas
+    readTypes();
+});
+
+//Al abrir el modal de insertar
+document.getElementById('btnInsertDialog').addEventListener('click',function(){
+    //Cambiamos el titulo del modal y limpiamos el formulario
+    document.getElementById('tituloModal').textContent = 'Crear Nuevo Tipo de Usuario';
 })
