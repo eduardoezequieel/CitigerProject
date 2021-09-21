@@ -115,13 +115,13 @@
                 </div>
                 <br>
                 <!-- Contenido del Modal -->
-                <div class="textoModal px-3 pb-4 mt-2">
+                <div class="modal-body textoModal px-3 pb-4 mt-2">
                     <div class="row">
-                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
                             <img src="../../resources/img/undraw_my_password_d6kg.png" class="img-fluid">
                         </div>
                         <div
-                            class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
+                            class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
                             <form autocomplete="off" action="/form" id="checkMail-form">
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <div class="alert w-75 yellowAlert alert-dismissible fade show" role="alert">
@@ -173,13 +173,13 @@
                 </div>
                 <br>
                 <!-- Contenido del Modal -->
-                <div class="textoModal px-3 pb-4 mt-2">
+                <div class="modal-body textoModal px-3 pb-4 mt-2">
                     <div class="row">
-                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
                             <img src="../../resources/img/undraw_Envelope_re_f5j4.png" class="img-fluid">
                         </div>
                         <div
-                            class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
+                            class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
                             <form autocomplete="off" action="/form" id="checkMail-form">
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <div class="alert w-75 yellowAlert alert-dismissible fade show" role="alert">
@@ -221,13 +221,13 @@
 
     <!-- Modal para cambiar la contraseña despues de haber verificado el código-->
     <div class="modal fade" data-backdrop="static" data-keyboard="false" id="cambiarContraseña" tabindex="-1"
-        aria-hidden="true">
+        aria-labelledby="labelCambiarContraseña" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
             <div class="modal-content justify-content-center px-3 py-2">
                 <!-- Cabecera del Modal -->
                 <div class="modal-header">
                     <!-- Titulo -->
-                    <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+                    <h5 class="modal-title tituloModal" id="labelCambiarContraseña"><span
                             class="fas fa-info-circle mr-4 iconoModal"></span>Cambiar Contraseña</h5>
                     <!-- Boton para Cerrar -->
                     <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
@@ -236,13 +236,13 @@
                 </div>
                 <br>
                 <!-- Contenido del Modal -->
-                <div class="textoModal px-3 pb-4 mt-2">
+                <div class="modal-body textoModal px-3 pb-4 mt-2">
                     <div class="row">
-                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
                             <img src="../../resources/img/undraw_Forgot_password_re_hxwm.png" class="img-fluid">
                         </div>
                         <div
-                            class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
+                            class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
                             <form autocomplete="off" action="/form" id="checkMail-form">
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <div class="alert w-75 yellowAlert alert-dismissible fade show" role="alert">
@@ -283,8 +283,7 @@
                                     <button data-dismiss="modal" data-toggle="modal"
                                         data-target="#verificarCodigoRecuperacion" id="btnVerificar" type="submit"
                                         name="btnVerificar" href="#" class="btn btnAgregarFormulario mr-2"><span
-                                            class="fas fa-check mr-3 tamañoIconosBotones"></span>Verificar
-                                        Correo</button>
+                                            class="fas fa-check mr-3 tamañoIconosBotones"></span>Cambiar Contraseña</button>
                                 </div>
                             </form>
                         </div>
