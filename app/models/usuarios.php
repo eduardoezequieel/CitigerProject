@@ -631,10 +631,20 @@ class Usuarios extends Validator
         return Database::getRows($sql,$params);
     }
 
+    //Función para actualizar la bitacora con el id
     public function updateBitacoraOut($act)
     {
         $sql = 'UPDATE bitacora SET accion = ? WHERE idbitacora = ?';
         $params = array($act,$this->bitacora);
         return Database::executeRow($sql,$params);
+    }
+
+    //Función para generara contraseña
+    public function generatePassword() 
+    {
+        $contraseña = random_bytes(4);
+        $contraseña = bin2hex($contraseña);
+        $contraseñaFinal ='CS'.$contraseña.'*';
+        return $contraseñaFinal;
     }
 }

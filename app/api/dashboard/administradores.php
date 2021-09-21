@@ -43,8 +43,7 @@ if (isset($_GET['action'])) {
                                                             if ($usuarios->setGenero($_POST['cbGenero'])) {
                                                                 if ($usuarios->setDui($_POST['txtDUI'])) {
                                                                     if ($usuarios->setUsername($_POST['txtUsuario'])) {
-                                                                        $contraseña = random_bytes(5);
-                                                                        if ($usuarios->setContrasenia(bin2hex($contraseña))) {
+                                                                        if ($usuarios->setContrasenia($usuarios->generatePassword())) {
                                                                             if ($usuarios->setDireccion($_POST['txtDireccion'])) {
                                                                                 $usuarios->setIdEstadoUsuario(1);
                                                                                 if ($usuarios->createRow()) {
@@ -61,21 +60,21 @@ if (isset($_GET['action'])) {
                                                                                         $mail->isSMTP();                                            
                                                                                         $mail->Host       = 'smtp.gmail.com';                     
                                                                                         $mail->SMTPAuth   = true;                                   
-                                                                                        $mail->Username   = 'polusmarket2021@gmail.com';                     
-                                                                                        $mail->Password   = 'polus123';                               
+                                                                                        $mail->Username   = 'citigersystem@gmail.com';                     
+                                                                                        $mail->Password   = 'citiger123';                               
                                                                                         $mail->SMTPSecure = 'tls';            
                                                                                         $mail->Port       = 587;                                    
                                                                                     
                                                                                         //Receptores
-                                                                                        $mail->setFrom('polusmarket2021@gmail.com', 'Polus Support');
+                                                                                        $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
                                                                                         $mail->addAddress($usuarios->getCorreo());    
                                                                                     
                                                                                         //Contenido
-                                                                                        $mail->isHTML(true);                                  //Set email format to HTML
-                                                                                        $mail->Subject = 'Bienvenido a Citiger';
+                                                                                        $mail->isHTML(true);                                  
+                                                                                        $mail->Subject = 'Bienvenido a Citiger '.$usuarios->getUsername();
                                                                                         $mail->Body    = 'Se ha creado un registro con tu cuenta de correo
                                                                                                         en Citiger. Para que puedas iniciar sesión tu contraseña es: <b>' . $usuarios->getContrasenia(). '</b>.';
-                                                                                        $mail->AltBody = 'Tu contraseña es: ' . $usuarios->getContrasenia() . '.';
+                                                                                        $mail->AltBody = 'Tu contraseña es: ' . $usuarios->getContrasenia();
                                                                                     
                                                                                         if($mail->send()){
                                                                                             $result['status'] = 1;
