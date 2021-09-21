@@ -405,3 +405,30 @@ CREATE TABLE bitacoraResidente(
 	accion VARCHAR(20) NOT NULL,
 	descripcion VARCHAR(200) NOT NULL
 );
+
+--Cambios base 21/9/2021
+CREATE TABLE permiso(
+	idPermiso SERIAL NOT NULL PRIMARY KEY,
+	permiso VARCHAR(30) NOT NULL
+);
+
+INSERT INTO permiso(permiso) VALUES
+('Alquileres'),
+('Aportaciones'),
+('Denuncias'),
+('Materiales'),
+('Usuarios'),
+('Visitas');
+
+CREATE TABLE permisoUsuario(
+	idPermisoUsuario SERIAL NOT NULL PRIMARY KEY,
+	idtipousuario INTEGER NOT NULL REFERENCES tipousuario(idtipousuario),
+	idpermiso INTEGER NOT NULL REFERENCES permiso(idpermiso)
+);
+
+INSERT INTO permisoUsuario(idtipousuario, idpermiso) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5);

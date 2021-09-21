@@ -315,6 +315,14 @@ class Usuarios extends Validator
         return Database::getRows($sql, $params);    
     }
 
+     //Función para buscar tipos de usuario
+     public function searchTypesOfUser($value)
+     {
+         $sql = "SELECT*FROM tipousuario WHERE tipousuario ILIKE ?";
+         $params = array("%$value%", "%$value%", $_SESSION['idusuario_dashboard']);
+         return Database::getRows($sql, $params);
+     }
+
     //Función para verificar el tipo de usuario que quiere ingresar
     public function checkUserType($num)
     {

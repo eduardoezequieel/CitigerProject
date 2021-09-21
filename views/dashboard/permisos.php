@@ -42,7 +42,6 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                     <thead>
                         <!-- Columnas-->
                         <tr>
-                            <th scope="col"></th>
                             <th scope="col">Tipo de Usuario</th>
                             <th scope="col">Permisos</th>
                             <th scope="col"></th>
