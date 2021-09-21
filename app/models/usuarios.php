@@ -310,7 +310,10 @@ class Usuarios extends Validator
     //Obtener tipos de usuario
     public function readTypesOfUser()
     {
-        $sql = 'SELECT*FROM tipousuario';
+        $sql = 'SELECT tipousuario, COUNT(idpermiso) AS permisos 
+                FROM permisousuario 
+                INNER JOIN tipousuario USING (idtipousuario)
+                GROUP BY tipousuario';
         $params = null;
         return Database::getRows($sql, $params);    
     }
@@ -318,8 +321,12 @@ class Usuarios extends Validator
      //Función para buscar tipos de usuario
      public function searchTypesOfUser($value)
      {
-         $sql = "SELECT*FROM tipousuario WHERE tipousuario ILIKE ?";
-         $params = array("%$value%", "%$value%", $_SESSION['idusuario_dashboard']);
+         $sql = 'SELECT tipousuario, COUNT(idpermiso) AS permisos 
+                FROM permisousuario 
+                INNER JOIN tipousuario USING (idtipousuario)
+                WHERE tipousuario ILIKE ?
+                GROUP BY tipousuario';
+         $params = array("%$value%");
          return Database::getRows($sql, $params);
      }
 
