@@ -78,7 +78,7 @@
                         </div>
                         <div class="row justify-content-center animate__animated animate__bounceIn animate__slow">
                             <div class="col-12 d-flex justify-content-center align-items-center">
-                                <a class="btn botonLogin2 my-2">Olvide mi contraseña →</a>
+                            <button type="button" data-toggle="modal" data-target="#recuperarContraseña" class="btn botonLogin2 my-2">Olvidé mi contraseña →</button>
                             </div>
                         </div>
                     </form>
@@ -167,6 +167,181 @@
     </div>
 </div>
 <!-- Fin del Modal -->
+
+
+<!-- Modal para recuperar la contraseña -->
+<div class="modal fade" id="recuperarContraseña" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content justify-content-center px-3 py-2">
+                <!-- Cabecera del Modal -->
+                <div class="modal-header">
+                    <!-- Titulo -->
+                    <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Recuperar Contraseña</h5>
+                    <!-- Boton para Cerrar -->
+                    <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!-- Contenido del Modal -->
+                <div class="modal-body textoModal px-3 pb-4 mt-2">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                            <img src="../../resources/img/undraw_my_password_d6kg.png" class="img-fluid">
+                        </div>
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
+                            <form autocomplete="off" action="/form" id="checkMail-form">
+                                <div class="d-flex justify-content-center align-items-center mb-2">
+                                    <div class="alert w-75 yellowAlert alert-dismissible fade show" role="alert">
+                                        <strong>Importante.</strong> Ingresa tu correo electrónico para poder recuperar
+                                        tu contraseña. <br>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center mb-2">
+                                    <!-- Input Correo -->
+                                    <div class="form-group mb-4" style="width: 300px;">
+                                        <h1 class="tituloCajasLogin">Correo Electrónico:</h1>
+                                        <input type="email" autocomplete="off" class="form-control cajaTextoLogin" id="txtCorreoRecu" name="txtCorreoRecu" aria-describedby="emailHelp" onChange="checkCorreo('txtCorreoRecu')" placeholder="Ingrese su correo electrónico..." Required>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button type="submit" id="btnVerificar" name="btnVerificar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Verificar
+                                        Correo</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Fin del Contenido del Modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del Modal -->
+
+    <!-- Modal para verificar el codigo de verificación en la recuperación de contraseña -->
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" id="verificarCodigoRecuperacion" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content justify-content-center px-3 py-2">
+                <!-- Cabecera del Modal -->
+                <div class="modal-header">
+                    <!-- Titulo -->
+                    <h5 class="modal-title tituloModal"><span class="fas fa-info-circle mr-4 iconoModal"></span>Código
+                        de Verificación</h5>
+
+                </div>
+
+                <!-- Contenido del Modal -->
+                <div class="modal-body textoModal px-3 pb-4 mt-2">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                            <img src="../../resources/img/undraw_Envelope_re_f5j4.png" class="img-fluid">
+                        </div>
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
+                            <form autocomplete="off" action="/form" id="checkCode-form">
+                                <div class="d-flex justify-content-center align-items-center mb-2">
+                                    <div class="alert w-75 yellowAlert alert-dismissible fade show" role="alert">
+                                        <strong>Importante.</strong> Ingresa el código de verificación enviado a tu
+                                        correo.<br>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center mb-2">
+                                    <!-- Input Correo -->
+                                    <div class="form-group mb-4" style="width: 300px;">
+                                        <h1 class="tituloCajasLogin">Código de Verificación:</h1>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <input type="text" id="1" name="1" onKeyup="autotab(this, document.getElementById('2'),document.getElementById('1'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="2" name="2" onKeyup="autotab(this, document.getElementById('3'),document.getElementById('1'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required  maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="3" name="3" onKeyup="autotab(this, document.getElementById('4'),document.getElementById('2'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required  maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="4" name="4" onKeyup="autotab(this, document.getElementById('5'),document.getElementById('3'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="5" name="5" onKeyup="autotab(this, document.getElementById('6'),document.getElementById('4'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required  maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="6" name="6" onKeyup="autotab(this, document.getElementById('6'),document.getElementById('5'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" class="d-none" id="codigo" name="codigo">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button type="submit" href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Verificar
+                                        Código</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Fin del Contenido del Modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del Modal -->
+
+    <!-- Modal para cambiar la contraseña despues de haber verificado el código-->
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="cambiarContraseña" tabindex="-1" aria-labelledby="labelCambiarContraseña" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
+            <div class="modal-content justify-content-center px-3 py-2">
+                <!-- Cabecera del Modal -->
+                <div class="modal-header">
+                    <!-- Titulo -->
+                    <h5 class="modal-title tituloModal" id="labelCambiarContraseña"><span class="fas fa-info-circle mr-4 iconoModal"></span>Cambiar Contraseña</h5>
+                </div>
+                <!-- Contenido del Modal -->
+                <div class="modal-body textoModal px-3 pb-4 mt-2">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                            <img src="../../resources/img/undraw_Forgot_password_re_hxwm.png" class="img-fluid">
+                        </div>
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
+                            <form autocomplete="off" action="/form" id="update-form">
+                                <div class="d-flex justify-content-center align-items-center mb-2">
+                                    <div class="alert w-75 yellowAlert alert-dismissible fade show" role="alert">
+                                        <strong>Importante.</strong> Tu contraseña debe de cumplir con los siguientes
+                                        requisitos: <br>
+                                        <br>
+                                        - Mínimo 8 caracteres <br>
+                                        - Máximo 15 <br>
+                                        - Al menos una letra mayúscula <br>
+                                        - Al menos una letra minúscula <br>
+                                        - Al menos un dígito <br>
+                                        - No espacios en blanco <br>
+                                        - Al menos 1 carácter especial
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center mb-2">
+                                    <!-- Input Contraseña -->
+                                    <div class="form-group mx-2">
+                                        <h1 class="tituloCajasLogin">Nueva Contraseña:</h1>
+                                        <input type="password" class="form-control cajaTextoLogin  mb-1" id="txtContrasenia1" name="txtContrasenia1" onChange="checkInput('txtContrasenia')" placeholder="Ingrese su contraseña..." Required>
+                                    </div>
+                                    <!-- Input Contraseña -->
+                                    <div class="form-group mx-2">
+                                        <h1 class="tituloCajasLogin">Confirmar Contraseña:</h1>
+                                        <input type="password" class="form-control cajaTextoLogin  mb-1" id="txtContrasenia2" name="txtContrasenia2" onChange="checkInput('txtContrasenia')" placeholder="Ingrese su contraseña..." Required>
+                                    </div>
+                                </div>
+                                <div class="mb-4 d-flex justify-content-center align-items-center">
+                                    <div class="custom-control custom-switch">
+                                        <input onchange="showHidePassword2('cbMostrarContraseña', 'txtContrasenia1', 'txtContrasenia2')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña">
+                                        <label class="p-0 custom-control-label" for="cbMostrarContraseña">Mostrar Contraseña</label>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button id="btnUpdate" type="submit" name="btnUpdate" href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Cambiar Contraseña</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Fin del Contenido del Modal -->
+                </div>
+            </div>
+        </div>
+    </div>
    
     <!-- JS -->
     <script src="../../resources/js/jquery-3.5.1.slim.min.js"></script>

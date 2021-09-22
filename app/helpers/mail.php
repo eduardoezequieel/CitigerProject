@@ -64,6 +64,16 @@ class Correo extends Validator
         return Database::getRow($sql, $params);
     }
 
+     // Metodo para actualizar el codigo de confirmacion de un residente
+     public function validarCodigoResidente($table,$id)
+     {
+         // Declaramos la sentencia que enviaremos a la base con el parametro del nombre de la tabla (dinamico)
+         $sql = "SELECT correo from $table where codigo = ? and idresidente = ?";
+         // Enviamos los parametros
+         $params = array($this->codigo,$id);
+         return Database::getRow($sql, $params);
+     }
+
     // Metodo para actualizar el codigo de confirmacion de un usuario
     public function actualizarCodigo($table,$codigo)
     {
@@ -90,6 +100,21 @@ class Correo extends Validator
         }
     }
 
+    public function obtenerResidente($correo)
+    {
+        // Creamos la sentencia SQL que contiene la consulta que mandaremos a la base
+        $sql = 'SELECT nombre,idresidente FROM residente WHERE correo = ?';
+        $params = array($correo);
+        if ($data = Database::getRow($sql, $params)) {
+            $_SESSION['residente'] = $data['nombre']; 
+            $_SESSION['idresidenterecu'] = $data['idresidente'];                                                                                      
+                                                                                     
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     // Metodo para actualizar el codigo de confirmacion de un usuario
     public function cleanCode($id)
@@ -100,6 +125,17 @@ class Correo extends Validator
         $params = array($id);
         return Database::executeRow($sql, $params);
     }
+
+    // Metodo para actualizar el codigo de confirmacion de un usuario
+    public function cleanCodeResidente($id)
+    {
+        // Declaramos la sentencia que enviaremos a la base con el parametro del nombre de la tabla (dinamico)
+        $sql = "UPDATE residente set codigo = null where idresidente = ?";
+        // Enviamos los parametros
+        $params = array($id);
+        return Database::executeRow($sql, $params);
+    }
+
 
 }
 

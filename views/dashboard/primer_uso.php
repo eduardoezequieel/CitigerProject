@@ -23,6 +23,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Quicksand&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet"> 
+    <link rel="icon" type="image/png" href="../../resources/img/iconocitiger.png" />
+
 
     <title>Primer Uso | Citiger</title>
   </head>

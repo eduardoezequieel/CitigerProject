@@ -82,7 +82,7 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                         </div>
                         <div class="row justify-content-center animate__animated animate__bounceIn animate__slow">
                             <div class="col-12 d-flex justify-content-center align-items-center">
-                                <button type="button" data-toggle="modal" data-target="#recuperarContraseña" class="btn botonLogin2 my-2">Olvide mi contraseña →</button>
+                                <button type="button" data-toggle="modal" data-target="#recuperarContraseña" class="btn botonLogin2 my-2">Olvidé mi contraseña →</button>
                             </div>
                         </div>
                     </form>

@@ -70,7 +70,7 @@ document.getElementById('login-form').addEventListener('submit', function (event
     }).catch(error => console.log(error));
 })
 
-function checkBlockUsers(){
+function checkBlockUsers() {
     //Verificando si hay usuarios bloqueados que ya cumplieron su penalización
     fetch(API_USUARIO + 'checkBlockUsers').then(request => {
         //Verificando si la petición fue correcta
@@ -78,7 +78,7 @@ function checkBlockUsers(){
             request.json().then(response => {
                 //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
                 if (response.status) {
-                    response.dataset.map(function (row){
+                    response.dataset.map(function (row) {
                         document.getElementById('txtId').value = row.idusuario;
                         document.getElementById('txtBitacora').value = row.idbitacora;
                         //Activando los usuarios que ya cumplieron con su penalización
@@ -107,7 +107,7 @@ function checkBlockUsers(){
 }
 
 //Actualizando contraseña por obligación después de 90 días
-document.getElementById('90password-form').addEventListener('submit',function(event){
+document.getElementById('90password-form').addEventListener('submit', function (event) {
     event.preventDefault();
     //Verificando las credenciales del usuario
     fetch(API_USUARIO + 'changePassword', {
@@ -146,4 +146,170 @@ function showHidePassword3(checkbox, pass1, pass2, pass3) {
         password2.type = 'password';
         password3.type = 'password';
     }
+}
+
+
+
+//Función para enviar el email
+document.getElementById('checkMail-form').addEventListener('submit', function (event) {
+    //Se evita que se recargue la pagina
+    const boton = document.getElementById('btnVerificar');
+    boton.disabled = true;
+
+    event.preventDefault();
+    fetch(API_USUARIO + 'sendMail', {
+        method: 'post',
+        body: new FormData(document.getElementById('checkMail-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                document.getElementById('txtCorreoRecu').disabled = true;
+
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Mostramos mensaje de exito
+                    sweetAlert(1, response.message, null);
+
+                    closeModal('recuperarContraseña');
+                    openModal('verificarCodigoRecuperacion');
+                    const boton = document.getElementById('btnVerificar');
+                    boton.disabled = false;
+                    document.getElementById('txtCorreoRecu').disabled = false;
+
+
+
+
+
+                } else {
+                    sweetAlert(4, response.exception, null);
+                    const boton = document.getElementById('btnVerificar');
+                    boton.disabled = false;
+                    document.getElementById('txtCorreoRecu').disabled = false;
+
+
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
+
+//Función para enviar el email
+document.getElementById('checkCode-form').addEventListener('submit', function (event) {
+    //Se evita que se recargue la pagina
+    var uno = document.getElementById('1').value;
+    var dos = document.getElementById('2').value;
+    var tres = document.getElementById('3').value;
+    var cuatro = document.getElementById('4').value;
+    var cinco = document.getElementById('5').value;
+    var seis = document.getElementById('6').value;
+    document.getElementById('codigo').value = uno + dos + tres + cuatro + cinco + seis;
+
+    event.preventDefault();
+    fetch(API_USUARIO + 'verifyCode', {
+        method: 'post',
+        body: new FormData(document.getElementById('checkCode-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Mostramos mensaje de exito
+                    sweetAlert(1, response.message, null);
+
+                    closeModal('verificarCodigoRecuperacion');
+                    openModal('cambiarContraseña');
+
+
+
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
+//Función para mostrar o ocultar contraseñas
+function showHidePassword2(checkbox, pass1, pass2) {
+    var check = document.getElementById(checkbox);
+    var password1 = document.getElementById(pass1);
+    var password2 = document.getElementById(pass2);
+    //Verificando el estado del check
+    if (check.checked == true) {
+        password1.type = 'text';
+        password2.type = 'text';
+    } else {
+        password1.type = 'password';
+        password2.type = 'password';
+    }
+}
+
+//Función para cambiar clave
+document.getElementById('update-form').addEventListener('submit', function (event) {
+    //Se evita que se recargue la pagina
+    event.preventDefault();
+    if (document.getElementById("txtContrasenia1").value == '') {
+        sweetAlert(3, 'Ingrese su nueva contraseña', null);
+    } else {
+        // Validamos que el campo de clave no este vacio
+        if (document.getElementById("txtContrasenia2").value == '') {
+            sweetAlert(3, 'Ingrese la confirmación de la contraseña', null);
+        } else {
+            if (document.getElementById("txtContrasenia1").value != document.getElementById("txtContrasenia2").value) {
+                sweetAlert(3, 'Las claves ingresadas deben ser iguales', null);
+            } else {
+                // Realizamos peticion a la API de clientes con el caso changePass y method post para dar acceso al valor de los campos del form
+                fetch(API_USUARIO + 'changePass', {
+                    method: 'post',
+                    body: new FormData(document.getElementById('update-form'))
+                }).then(function (request) {
+                    // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                    if (request.ok) {
+                        request.json().then(function (response) {
+                            // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                            if (response.status) {
+                                // En caso de iniciar sesion correctamente mostrar mensaje y redirigir al menu
+                                sweetAlert(1, response.message, null);
+                                closeModal('cambiarContraseña');
+
+                            } else {
+                                sweetAlert(3, response.exception, null);
+                            }
+                        });
+                    } else {
+                        console.log(request.status + ' ' + request.statusText);
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+
+            }
+
+        }
+    }
+});
+
+function autotab(current, to, prev) {
+    if (current.getAttribute &&
+        current.value.length == current.getAttribute("maxlength")) {
+        to.focus()
+
+    } else {
+        prev.focus()
+
+
+    }
+
+
 }

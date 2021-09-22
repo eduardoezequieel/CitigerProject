@@ -442,3 +442,8 @@ ALTER TABLE residente ADD CONSTRAINT UQ_residente_username UNIQUE (username);
 ALTER TABLE permisousuario ADD COLUMN permitido CHAR(2) NULL
 UPDATE permisousuario SET permitido = 'No';
 ALTER TABLE permisousuario ALTER COLUMN permitido SET NOT NULL;
+
+--Cambios 22/09/2021
+
+alter table usuario add column codigo int
+alter table residente add column codigo int

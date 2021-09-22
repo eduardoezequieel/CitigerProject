@@ -542,7 +542,7 @@ if (isset($_GET['action'])) {
                             }
                         } else {
     
-                            $result['exception'] = 'El correo ingresado no esta registrado';
+                            $result['exception'] = 'El correo ingresado no está registrado';
                         }
                     } else {
     
