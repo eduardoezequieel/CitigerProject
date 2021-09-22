@@ -653,7 +653,7 @@ class Usuarios extends Validator
     {
         $sql = 'SELECT idbitacora FROM bitacora
                 WHERE accion = ?
-                AND fecha >= current_date - 90
+                AND fecha < current_date - 90
                 AND idusuario = ?';
         $params = array('Cambio de clave',$this->idUsuario);
         return Database::getRow($sql,$params);
