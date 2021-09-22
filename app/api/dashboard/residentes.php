@@ -134,6 +134,9 @@ if (isset($_GET['action'])) {
                                                                     } else {
                                                                         $result['message'] = 'Residente registrado pero no se guardó la imagen';
                                                                     }
+                                                                    $data = $residente->readOneId();
+                                                                    $residente->setIdResidente($data['idresidente']);
+                                                                    $residente->registerActionOut('Cambio de clave','Se ha creado la clave');
                                                                     try {
                             
                                                                         //Ajustes del servidor

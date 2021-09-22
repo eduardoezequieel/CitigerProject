@@ -373,13 +373,12 @@ if (isset($_GET['action'])) {
                                                                                         $result['status'] = 1;
                                                                                         if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
                                                                                             $result['message'] = 'Primer usuario registrado correctamente';
-                                                                                            $usuarios->setId($usuarios->readOneId());
-                                                                                            $usuarios->registerActionOut('Cambio de clave','Se ha creado la clave');
                                                                                         } else {
                                                                                             $result['message'] = 'Primer usuario registrado pero no se guardó la imagen';
-                                                                                            $usuarios->setId($usuarios->readOneId());
-                                                                                            $usuarios->registerActionOut('Cambio de clave','Se ha creado la clave');
                                                                                         }
+                                                                                        $data = $usuarios->readOneId();
+                                                                                        $usuarios->setId($data['idusuario']);
+                                                                                        $usuarios->registerActionOut('Cambio de clave','Se ha creado la clave');
                                                                                     } else {
                                                                                         $result['exception'] = Database::getException();;
                                                                                     }

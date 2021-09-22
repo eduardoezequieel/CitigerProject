@@ -55,7 +55,8 @@ if (isset($_GET['action'])) {
                                                                                         $usuarios->registerAction('Registrar', 'El usuario registró un registro en la tabla de usuarios.');
                                                                                         
                                                                                     }
-                                                                                    $usuarios->setId($usuarios->readOneId());
+                                                                                    $data = $usuarios->readOneId();
+                                                                                    $usuarios->setId($data['idusuario']);
                                                                                     $usuarios->registerActionOut('Cambio de clave','Se ha creado la clave');
                                                                                     try {
                             
