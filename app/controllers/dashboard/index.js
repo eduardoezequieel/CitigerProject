@@ -106,3 +106,51 @@ function checkBlockUsers(){
         }
     }).catch(error => console.log(error));
 }
+
+
+
+document.getElementById('checkMail-form').addEventListener('submit',function(event){
+    //Se evita que se recargue la pagina
+    event.preventDefault();
+    fetch(API_USUARIO+ 'sendMail', {
+        method: 'post',
+        body: new FormData(document.getElementById('checkMail-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Mostramos mensaje de exito
+                    sweetAlert(1, response.message, null);
+
+                    closeModal('recuperarContraseña');
+                    openModal('verificarCodigoRecuperacion');
+
+
+
+                } else {
+                    sweetAlert(4, response.exception, null);      
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    }); 
+});
+
+function showHidePassword2(checkbox, pass1, pass2) {
+    var check = document.getElementById(checkbox);
+    var password1 = document.getElementById(pass1);
+    var password2 = document.getElementById(pass2);
+    //Verificando el estado del check
+    if (check.checked == true) {
+        password1.type = 'text';
+        password2.type = 'text';
+    } else {
+        password1.type = 'password';
+        password2.type = 'password';
+    }
+}
