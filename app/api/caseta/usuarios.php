@@ -243,8 +243,16 @@ if (isset($_GET['action'])) {
                                 $_SESSION['modo_caseta'] = $usuarios->getModo();
                                 //Se reinicia el conteo de intentos fallidos
                                 if ($usuarios->increaseIntentos(0)){
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Sesión iniciada correctamente.';
+                                    if ($result['dataset'] = $usuarios->checkLastPasswordUpdate()) {
+                                        $result['error'] = 1;
+                                        $result['message'] = 'Se ha detectado que debes actualizar
+                                                                tu contraseña por seguridad.';
+                                        $_SESSION['idusuario_caseta_tmp'] = $_SESSION['idusuario_caseta'];
+                                        unset($_SESSION['idusuario_caseta']);
+                                    } else {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Sesión iniciada correctamente.';
+                                    }
                                 }
                             } else {
                                 //Se verifica los intentos que tiene guardado el usuario
@@ -296,6 +304,44 @@ if (isset($_GET['action'])) {
                             }
                         }
                     } 
+                }
+                break;
+            //Caso para cambiar la contraseña obligatorio
+            case 'changePassword':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setId($_SESSION['idusuario_caseta_tmp'])) {
+                    if ($usuarios->checkPassword($_POST['txtContrasenaActual1'])) {
+                        if ($_POST['txtNuevaContrasena1'] == $_POST['txtConfirmarContrasena1']) {
+                            if ($_POST['txtNuevaContrasena1'] != $_POST['txtContrasenaActual1'] ||
+                                $_POST['txtConfirmarContrasena1'] != $_POST['txtContrasenaActual1']) {
+                                if ($usuarios->setContrasenia($_POST['txtNuevaContrasena1'])) {
+                                    if ($usuarios->changePassword()) {
+                                        $usuarios->setIdBitacora($_POST['txtBitacoraPassword']);
+                                        if ($usuarios->updateBitacoraOut('Cambio de clave')) {
+                                            $result['status'] = 1;
+                                            $result['message'] = 'Contraseña actualizada correctamente.';
+                                            $_SESSION['idusuario_caseta'] =$_SESSION['idusuario_caseta_tmp'];
+                                            unset($_SESSION['idusuario_caseta_tmp']);
+                                        } else {
+                                            $result['exception'] = 'Hubo un error al registrar la bitacora';
+                                        }
+                                    } else {
+                                        $result['exception'] = Database::getException();
+                                    }
+                                } else {
+                                    $result['exception'] = 'Su contraseña no cumple con los requisitos especificados.';
+                                }
+                            } else {
+                                $result['exception'] = 'Su nueva contraseña no puede ser igual a la actual.';
+                            }
+                        } else {
+                            $result['exception'] = 'Las contraseñas no coinciden.';
+                        }
+                    } else {
+                        $result['exception'] = 'La contraseña ingresada es incorrecta.';
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto.';
                 }
                 break;
             default:

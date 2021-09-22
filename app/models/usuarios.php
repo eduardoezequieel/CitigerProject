@@ -668,4 +668,12 @@ class Usuarios extends Validator
         $params = array($this->correo);
         return Database::getRow($sql, $params);
     }
+
+    //Función para obtener el id de la bitacora
+    public function getIdBitacora() {
+        $sql = "SELECT idbitacora
+                FROM bitacora where idusuario=?";
+        $params = array($this->idUsuario);
+        return Database::getRow($sql, $params);
+    }
 }
