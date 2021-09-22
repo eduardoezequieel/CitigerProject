@@ -17,7 +17,7 @@ Class Marcas extends Validator{
     }
 
     public function setNombreMarca($value){
-        if ($this -> validateAlphabetic($value, 1, 25)) {
+        if ($this -> validateAlphanumeric($value, 1, 25)) {
             $this -> nombreMarca = $value;
             return true;
         }
