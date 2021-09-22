@@ -97,7 +97,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                     </div>
                     <!-- Contenido del Modal -->
                     <div class="textoModal px-3 pb-4 mt-2">
-                        <form method="post" id="administrarEmpleado-form">
+                        <form method="post" id="administrarEmpleado-form"  autocomplete="off">
                             <input type="number" name="idEmpleado" id="idEmpleado" class="d-none">
                             <div class="row">
                                 <!-- Primera columna de controles -->

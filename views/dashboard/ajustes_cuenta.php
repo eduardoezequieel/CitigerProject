@@ -231,7 +231,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
             <br>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
-                <form method="post" id="admin-form">
+                <form method="post" id="admin-form" autocomplete="off">
 
                     <div class="row">
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">

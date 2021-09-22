@@ -43,7 +43,7 @@
                 </div>
                 <!-- Contenido -->
                 <div class="d-flex justify-content-center align-items-center col-xl-6 col-md-12 col-sm-12 col-xs-12">
-                    <form method="post" id="login-form">
+                    <form method="post" id="login-form"  autocomplete="off">
                         <input type="number" name="txtId" id="txtId" class="d-none">
                         <input type="number" name="txtBitacora" id="txtBitacora" class="d-none">
                         <div class="row my-2">
@@ -120,7 +120,7 @@
                             </div>
                         </div>
                     </div>
-                <form method="post" id="90password-form">
+                <form method="post" id="90password-form"  autocomplete="off">
                     <input type="number" name="txtBitacoraPassword" id="txtBitacoraPassword" class="d-none">
                     <div class="row">
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">

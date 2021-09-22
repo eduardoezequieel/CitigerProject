@@ -193,7 +193,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
             </div>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
-                <form method="post" id="actualizarCantidades-form">
+                <form method="post" id="actualizarCantidades-form"  autocomplete="off">
                     <div class="row">
                         <div class="col-12">
                             <h1 id="lblProductoCant" class="tituloModal2 text-center">Producto</h1>

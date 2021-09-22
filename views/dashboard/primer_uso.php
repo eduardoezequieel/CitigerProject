@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <form id="primeruso-form" method="post">
+        <form id="primeruso-form" method="post" autocomplete="off">
             <div class="row justify-content-center">
                 <div class="col-xl-3 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
                     <div class="form-group">

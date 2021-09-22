@@ -96,7 +96,7 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
             </div>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
-                <form method="post" id="administrarEmpleado-form">
+                <form method="post" id="administrarEmpleado-form" autocomplete="off">
                     <input class="d-none" type="number" id="txtId" name="txtId" />
                     <input class="d-none" type="text" id="txtContrasenia" name="txtContrasenia" />
                     <div class="row animate__animated animate__bounceIn">

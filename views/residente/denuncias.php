@@ -103,7 +103,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                         <h1 class="tituloDato2 text-center" id="texto">Rellene el siguiente formulario:</h1>
                     </div>
                 </div>
-                <form method="post" id="administrarDenuncia-form">
+                <form method="post" id="administrarDenuncia-form"  autocomplete="off">
                     <input type="number" name="idDenuncia" id="idDenuncia" class="d-none">
                     <div class="row">
                         <div class="col-12">
@@ -163,7 +163,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
             <br>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
-                <form method="post" id="administrarDenunciaEnSolucion-form">
+                <form method="post" id="administrarDenunciaEnSolucion-form"  autocomplete="off">
                     <input type="number" class="d-none" id="idDenuncia2" name="idDenuncia2">
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12">

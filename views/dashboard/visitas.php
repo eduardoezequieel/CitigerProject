@@ -98,7 +98,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             <br>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4">
-                <form method="post" id="administrarVisita-form">
+                <form method="post" id="administrarVisita-form" autocomplete="off">
                     <input type="number" name="idVisita" id="idVisita" class="d-none">
                     <div class="row">
                         <div class="d-flex justify-content-center col-xl-6 col-md-12 col-sm-12 col-xs-12 ">

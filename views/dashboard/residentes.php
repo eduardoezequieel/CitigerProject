@@ -71,7 +71,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                     </div>
                     <!-- Contenido del Modal -->
                     <div class="textoModal px-3 pb-4 mt-2">
-                        <form method="post" id="administrarResidente-form">
+                        <form method="post" id="administrarResidente-form"  autocomplete="off">
                             <input type="number" name="idResidente" id="idResidente" class="d-none">
                             <input class="d-none" type="text" id="txtContrasenia" name="txtContrasenia" />
                             <div class="row justify-content-center" >

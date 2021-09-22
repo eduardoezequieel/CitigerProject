@@ -79,7 +79,7 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                     <br>
                     <!-- Contenido del Modal -->
                     <div class="textoModal px-5 pb-5"> 
-                        <form method="post" id="espacio-form">
+                        <form method="post" id="espacio-form" autocomplete="off">
                             <div class="row justify-content-center">
                                 <!-- Primera columna de controles -->
                                 <div class="d-flex flex-column justify-content-center align-items-center col-xl-6 col-md-12 col-sm-12 col-xs-12  centrarColumnas">

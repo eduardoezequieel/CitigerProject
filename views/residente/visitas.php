@@ -120,7 +120,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             </div>
             <!--Contenido del Modal-->
             <div class="textoModal px-3 pb-4 mt-2">
-                <form method="post" id="Visitante-form">
+                <form method="post" id="Visitante-form" autocomplete="off">
                     <div class="row">
                         <div class="col-12">
                             <div class="alert warningAlert alert-dismissible fade show" role="alert">
@@ -190,7 +190,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
             </div>
             <!--Contenido del Modal-->
             <div class="textoModal px-3 pb-4 mt-2">
-                <form method="post" id="administrarVisita-form">
+                <form method="post" id="administrarVisita-form"  autocomplete="off">
                     <input type="number" name="idVisita" id="idVisita" class="d-none">
                     <div class="row">
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
@@ -331,7 +331,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         <h1 class="tituloDato2  ">Ingrese el DUI del visitante para verificar la información.</h1>
                     </div>
                 </div>
-                <form method="post" id="verificarDui-form">
+                <form method="post" id="verificarDui-form"  autocomplete="off">
                     <div class="row mt-2">
                         <div class="col-12 d-flex justify-content-center">
                             <div class="form-group">
