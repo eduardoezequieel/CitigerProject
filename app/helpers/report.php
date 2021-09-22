@@ -27,7 +27,7 @@ class Report extends FPDF
         // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en los reportes.
         session_start();
         // Se verifica si un administrador ha iniciado sesión para generar el documento, de lo contrario se direcciona a main.php
-        if (isset($_SESSION['idusuario'])) {
+        if (isset($_SESSION['idusuario_dashboard'])) {
             // Agregando fuentes
             $this->AddFont('Roboto-Regular','','Roboto-Regular.php');
             $this->AddFont('Roboto-Bold','B','Roboto-Bold.php');
@@ -71,7 +71,7 @@ class Report extends FPDF
             // Se setea el usuario de la sesión en el reporte.
             $this->Cell(20);
             $this->SetFont('Roboto-Regular', '', 11);
-            $this->Cell(166, 10, ('Usuario solicitante: '. $_SESSION['usuario']), 0, 1, 'C');
+            $this->Cell(166, 10, ('Usuario solicitante: '. $_SESSION['usuario_dashboard']), 0, 1, 'C');
             // Se agrega un salto de línea para mostrar el contenido principal del documento.
             $this->Ln(10);
         }       
