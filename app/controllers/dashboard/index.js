@@ -113,7 +113,7 @@ function checkBlockUsers(){
 document.getElementById('checkMail-form').addEventListener('submit',function(event){
     //Se evita que se recargue la pagina
     event.preventDefault();
-    fetch(API_USUARIO+ 'sendMail', {
+    fetch(API_USUARIO + 'sendMail', {
         method: 'post',
         body: new FormData(document.getElementById('checkMail-form'))
     }).then(function (request) {
@@ -127,6 +127,48 @@ document.getElementById('checkMail-form').addEventListener('submit',function(eve
 
                     closeModal('recuperarContraseña');
                     openModal('verificarCodigoRecuperacion');
+
+
+
+                } else {
+                    sweetAlert(4, response.exception, null);      
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    }); 
+});
+
+
+//Función para enviar el email
+document.getElementById('checkCode-form').addEventListener('submit',function(event){
+    //Se evita que se recargue la pagina
+    var uno=document.getElementById('1').value;
+    var dos=document.getElementById('2').value;
+    var tres=document.getElementById('3').value;
+    var cuatro=document.getElementById('4').value;
+    var cinco=document.getElementById('5').value;
+    var seis=document.getElementById('6').value;
+    document.getElementById('codigo').value=uno+dos+tres+cuatro+cinco+seis;
+
+    event.preventDefault();
+    fetch(API_USUARIO + 'verifyCode', {
+        method: 'post',
+        body: new FormData(document.getElementById('checkCode-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Mostramos mensaje de exito
+                    sweetAlert(1, response.message, null);
+
+                    closeModal('verificarCodigoRecuperacion');
+                    openModal('cambiarContraseña');
 
 
 
@@ -198,3 +240,49 @@ function showHidePassword3(checkbox, pass1, pass2, pass3) {
         password3.type = 'password';
     }
 }
+
+//Función para cambiar clave
+document.getElementById('update-form').addEventListener('submit',function(event){
+    //Se evita que se recargue la pagina
+    event.preventDefault();
+    if(document.getElementById("txtContrasenia1").value == '') {
+        sweetAlert(3, 'Ingrese su nueva contraseña', null);
+    } else {
+        // Validamos que el campo de clave no este vacio
+        if(document.getElementById("txtContrasenia2").value == '') {
+            sweetAlert(3, 'Ingrese la confirmación de la contraseña', null);
+        } else {
+            if (document.getElementById("txtContrasenia1").value != document.getElementById("txtContrasenia2").value) {
+                sweetAlert(3, 'Las claves ingresadas deben ser iguales', null);
+            } else {
+                    // Realizamos peticion a la API de clientes con el caso changePass y method post para dar acceso al valor de los campos del form
+                    fetch(API_USUARIO + 'changePass', {
+                        method: 'post',
+                        body: new FormData(document.getElementById('update-form'))       
+                    }).then(function (request) {
+                        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                        if (request.ok) {
+                            request.json().then(function (response) {
+                                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                                if (response.status) {
+                                    // En caso de iniciar sesion correctamente mostrar mensaje y redirigir al menu
+                                    sweetAlert(1, response.message, null);
+                                    closeModal('cambiarContraseña');
+
+                                } else {
+                                    sweetAlert(3, response.exception, null);
+                                }
+                            });
+                        } else {
+                            console.log(request.status + ' ' + request.statusText);
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                
+            }
+            
+        }
+    }   
+});
+

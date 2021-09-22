@@ -556,7 +556,7 @@ if (isset($_GET['action'])) {
                     // Validmos el formato del mensaje que se enviara en el correo
                     if ($correo->setCodigo($_POST['codigo'])) {
                         // Ejecutamos la funcion para validar el codigo de seguridad
-                        if ($correo->validarCodigo('usuario')) {
+                        if ($correo->validarCodigo('usuario',$_SESSION['idusuario'])) {
                             $result['status'] = 1;
                             // Colocamos el mensaje de exito 
                             $result['message'] = 'El código ingresado es correcto';
@@ -568,6 +568,33 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Mensaje incorrecto';
                     }
                     break;
+
+                    case 'changePass':
+                        // Obtenemos el form con los inputs para obtener los datos
+                        $_POST = $usuarios->validateForm($_POST);
+                        if ($usuarios->setId($_SESSION['idusuario'])) {
+                            if ($usuarios->setContrasenia($_POST['txtContrasenia2'])) {
+                                // Ejecutamos la funcion para actualizar al usuario
+                                if ($usuarios->changePassword()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Clave actualizada correctamente';
+                                    $correo->cleanCode('usuario', $_SESSION['idusuario']);
+                                    unset($_SESSION['idusuario']);
+                                    unset($_SESSION['mail']);
+
+                                    
+
+
+                                } else {
+                                    $result['exception'] = Database::getException();
+                                }
+                            } else {
+                                $result['exception'] = $usuarios->getPasswordError();
+                            }
+                        } else {
+                            $result['exception'] = 'Correo incorrecto';
+                        }
+                        break;
     
             default:
                 $result['exception'] = 'La acción no está disponible afuera de la sesión';

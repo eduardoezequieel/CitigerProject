@@ -183,6 +183,7 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                                             <input type="text" id="4" name="4" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required maxlength="1" class="form-control cajaCodigo" Required>
                                             <input type="text" id="5" name="5" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required  maxlength="1" class="form-control cajaCodigo" Required>
                                             <input type="text" id="6" name="6" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" class="" id="codigo" name="codigo">
                                         </div>
                                     </div>
                                 </div>
@@ -248,16 +249,12 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                                 </div>
                                 <div class="mb-4 d-flex justify-content-center align-items-center">
                                     <div class="custom-control custom-switch">
-<<<<<<< Updated upstream
                                         <input onchange="showHidePassword2('cbMostrarContraseña', 'txtContrasenia1', 'txtContrasenia2')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña">
-=======
-                                        <input onchange="showHidePassword3('cbMostrarContraseña', 'txtContrasenaActual', 'txtNuevaContrasena', 'txtConfirmarContrasena')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña">
->>>>>>> Stashed changes
                                         <label class="p-0 custom-control-label" for="cbMostrarContraseña">Mostrar Contraseña</label>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <button data-dismiss="modal" data-toggle="modal" data-target="#verificarCodigoRecuperacion" id="btnUpdate" type="submit" name="btnUpdate" href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Cambiar Contraseña</button>
+                                    <button id="btnUpdate" type="submit" name="btnUpdate" href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Cambiar Contraseña</button>
                                 </div>
                             </form>
                         </div>

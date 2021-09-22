@@ -16,7 +16,7 @@ Class Database{
         $server = 'localhost';
         $database = 'citiger_db';
         $username = 'postgres';
-        $password = 'katflowxD';
+        $password = '1234';
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
