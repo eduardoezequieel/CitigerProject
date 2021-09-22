@@ -673,4 +673,12 @@ class Residentes extends Validator
         return Database::executeRow($sql,$params);
     }
 
+    //Función para generara contraseña
+    public function generatePassword() 
+    {
+        $contraseña = random_bytes(4);
+        $contraseña = bin2hex($contraseña);
+        $contraseñaFinal ='CS'.$contraseña.'*';
+        return $contraseñaFinal;
+    }
 }

@@ -127,14 +127,41 @@ if (isset($_GET['action'])) {
                                                     if ($residente->setGenero($_POST['cbGenero'])) {
                                                         if ($residente->setDui($_POST['txtDUI'])) {
                                                             if ($residente->setUsername($_POST['txtUser'])) {
-                                                                $contraseña = random_bytes(5);
-                                                                $residente->setContrasenia(bin2hex($contraseña));
+                                                                $residente->setContrasenia($residente->generatePassword());
                                                                 if ($residente->createRow()) {
-                                                                    $result['status'] = 1;
                                                                     if ($residente->saveFile($_FILES['archivo_residente'], $residente->getRuta(), $residente->getFoto())) {
                                                                         $result['message'] = 'Residente registrado correctamente';
                                                                     } else {
                                                                         $result['message'] = 'Residente registrado pero no se guardó la imagen';
+                                                                    }
+                                                                    try {
+                            
+                                                                        //Ajustes del servidor
+                                                                        $mail->SMTPDebug = 0;                   
+                                                                        $mail->isSMTP();                                            
+                                                                        $mail->Host       = 'smtp.gmail.com';                     
+                                                                        $mail->SMTPAuth   = true;                                   
+                                                                        $mail->Username   = 'citigersystem@gmail.com';                     
+                                                                        $mail->Password   = 'citiger123';                               
+                                                                        $mail->SMTPSecure = 'tls';            
+                                                                        $mail->Port       = 587;                                    
+                                                                    
+                                                                        //Receptores
+                                                                        $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
+                                                                        $mail->addAddress($residente->getCorreo());    
+                                                                    
+                                                                        //Contenido
+                                                                        $mail->isHTML(true);                                  
+                                                                        $mail->Subject = 'Bienvenido a Citiger '.$residente->getUsername();
+                                                                        $mail->Body    = 'Se ha creado un registro con tu cuenta de correo
+                                                                                        en Citiger. Para que puedas iniciar sesión tu contraseña es: <b>' . $residente->getContrasenia(). '</b>';
+                                                                        $mail->AltBody = 'Tu contraseña es: ' . $residente->getContrasenia();
+                                                                    
+                                                                        if($mail->send()){
+                                                                            $result['status'] = 1;
+                                                                        }
+                                                                    } catch (Exception $e) {
+                                                                        $result['exception'] = $mail->ErrorInfo;
                                                                     }
                                                                 } else {
                                                                     $result['exception'] = Database::getException();
