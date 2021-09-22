@@ -1171,8 +1171,8 @@ textarea :-ms-input-placeholder {
 }
 
 .botonesCheckbox {
-  background-color: var(--color-rojo) !important;
-  color: var(--color-rojo-hover) !important;
+  background-color: var(--color-fondo-opaco) !important;
+  color: var(--color-tipografia) !important;
   font-family: 'Quicksand', 'sans-serif';
   font-size: 13px;
   font-weight: 700;

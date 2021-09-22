@@ -22,6 +22,7 @@ class Usuarios extends Validator
     private $ruta = '../../../resources/img/dashboard_img/usuarios_fotos/';
     private $modo = null;
     private $bitacora = null;
+    private $tipousuario = null;
 
     /*
         Creando métodos set
@@ -50,6 +51,16 @@ class Usuarios extends Validator
     {
         if ($this->validateAlphabetic($value, 1, 25)) {
             $this->nombre = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setTipoUsuario($value)
+    {
+        if ($this->validateAlphabetic($value, 1, 15)) {
+            $this->tipousuario = $value;
             return true;
         } else {
             return false;
@@ -447,6 +458,14 @@ class Usuarios extends Validator
         } else {
             return false;
         }
+    }
+
+    //Funcion para insertar tipos de usuario
+    public function addType()
+    {
+        $sql = 'INSERT INTO tipousuario(tipousuario) VALUES(?)';
+        $params = array($this->tipousuario);
+        return Database::executeRow($sql, $params);
     }
 
     //Función para actualizar la información del usuario logueado
