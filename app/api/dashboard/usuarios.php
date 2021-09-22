@@ -282,7 +282,7 @@ if (isset($_GET['action'])) {
                                     if ($usuarios->changePassword()) {
                                         $result['status'] = 1;
                                         $result['message'] = 'Contraseña actualizada correctamente.';
-                                        $data = $usuarios->getIdBitacora();
+                                        $data = $usuarios->getIdBitacora('Cambio de clave');
                                         $usuarios->setIdBitacora($data['idbitacora']);
                                         $usuarios->updateBitacoraOut('Cambio de clave');
                                     } else {

@@ -752,10 +752,10 @@ class Usuarios extends Validator
     }
 
     //Función para obtener el id de la bitacora
-    public function getIdBitacora() {
+    public function getIdBitacora($act) {
         $sql = "SELECT idbitacora
-                FROM bitacora where idusuario=?";
-        $params = array($this->idUsuario);
+                FROM bitacora where idusuario=? AND accion = ?";
+        $params = array($this->idUsuario,$act);
         return Database::getRow($sql, $params);
     }
 }

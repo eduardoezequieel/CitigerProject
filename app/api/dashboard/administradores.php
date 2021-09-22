@@ -344,14 +344,22 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Error id select';
                 }
                 break;
-                //Caso para suspender empleados
+            //Caso para activar un registro
             case 'activateRow':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_POST['txtId'])) {
                     if ($usuarios->activar()) {
+                        $usuarios->registerAction('Activar', 'El usuario activó un registro en la tabla de usuarios.');
                         $result['status'] = 1;
                         $result['message'] = 'Se ha activado al usuario correctamente.';
-                        $usuarios->registerAction('Activar', 'El usuario activó un registro en la tabla de usuarios.');
+                        //Se verifica si fue bloqueado por intentos fallidos
+                        //de ser asi actualiza la información y reinicia los campos
+                        if ($data = $usuarios->getIdBitacora('Bloqueo')) {
+                            $usuarios->setIdBitacora($data['idbitacora']);
+                            $usuarios->updateBitacoraOut('Bloqueo (Activado)'); 
+                            $usuarios->increaseIntentos(0);   
+                        }
+                        
                     } else {
                         $result['exception'] = Database::getException();
                     }

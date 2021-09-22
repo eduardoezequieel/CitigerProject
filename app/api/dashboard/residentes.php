@@ -103,6 +103,13 @@ if (isset($_GET['action'])) {
                     if ($residente->activate()) {
                         $result['status'] = 1;
                         $result['message'] = 'Se ha activado al residente correctamente.';
+                        //Se verifica si fue bloqueado por intentos fallidos
+                        //de ser asi actualiza la información y reinicia los campos
+                        if ($data = $residente->getIdBitacora('Bloqueo')) {
+                            $residente->setIdBitacora($data['idbitacora']);
+                            $residente->updateBitacoraOut('Bloqueo (Activado)'); 
+                            $residente->increaseIntentos(0);   
+                        }
                     } else {
                         $result['exception'] = Database::getException();
                     }

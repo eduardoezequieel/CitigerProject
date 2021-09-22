@@ -713,10 +713,10 @@ class Residentes extends Validator
     }
     
     //Función para obtener el id de la bitacora
-    public function getIdBitacora() {
+    public function getIdBitacora($act) {
         $sql = "SELECT idbitacora
-                FROM bitacoraresidente where idresidente=?";
-        $params = array($this->idResidente);
+                FROM bitacoraresidente where idresidente=? AND accion = ?";
+        $params = array($this->idResidente,$act);
         return Database::getRow($sql, $params);
     }
 }
