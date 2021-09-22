@@ -177,13 +177,13 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                                     <div class="form-group mb-4" style="width: 300px;">
                                         <h1 class="tituloCajasLogin">Código de Verificación:</h1>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <input type="text" id="1" name="1" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required maxlength="1" class="form-control cajaCodigo" Required>
-                                            <input type="text" id="2" name="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required  maxlength="1" class="form-control cajaCodigo" Required>
-                                            <input type="text" id="3" name="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required  maxlength="1" class="form-control cajaCodigo" Required>
-                                            <input type="text" id="4" name="4" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required maxlength="1" class="form-control cajaCodigo" Required>
-                                            <input type="text" id="5" name="5" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required  maxlength="1" class="form-control cajaCodigo" Required>
-                                            <input type="text" id="6" name="6" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required maxlength="1" class="form-control cajaCodigo" Required>
-                                            <input type="text" class="" id="codigo" name="codigo">
+                                            <input type="text" id="1" name="1" onKeyup="autotab(this, document.getElementById('2'),document.getElementById('1'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="2" name="2" onKeyup="autotab(this, document.getElementById('3'),document.getElementById('1'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required  maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="3" name="3" onKeyup="autotab(this, document.getElementById('4'),document.getElementById('2'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required  maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="4" name="4" onKeyup="autotab(this, document.getElementById('5'),document.getElementById('3'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="5" name="5" onKeyup="autotab(this, document.getElementById('6'),document.getElementById('4'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required  maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="6" name="6" onKeyup="autotab(this, document.getElementById('6'),document.getElementById('5'))" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" class="d-none" id="codigo" name="codigo">
                                         </div>
                                     </div>
                                 </div>

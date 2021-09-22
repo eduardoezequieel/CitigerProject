@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }).catch(error => console.log(error));
 
-
 })
 
 //Método para iniciar sesion
@@ -286,3 +285,16 @@ document.getElementById('update-form').addEventListener('submit',function(event)
     }   
 });
 
+function autotab(current,to,prev){
+    if (current.getAttribute && 
+      current.value.length==current.getAttribute("maxlength")) {
+      to.focus() 
+
+}  else{
+    prev.focus() 
+
+
+}
+
+
+}
