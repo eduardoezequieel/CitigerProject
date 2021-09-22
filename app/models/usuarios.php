@@ -634,7 +634,8 @@ class Usuarios extends Validator
     //Función para actualizar la bitacora con el id
     public function updateBitacoraOut($act)
     {
-        $sql = 'UPDATE bitacora SET accion = ?, fecha = current_date WHERE idbitacora = ?';
+        $sql = 'UPDATE bitacora SET accion = ?, fecha = current_date, hora = current_time 
+                WHERE idbitacora = ?';
         $params = array($act,$this->bitacora);
         return Database::executeRow($sql,$params);
     }
@@ -657,5 +658,14 @@ class Usuarios extends Validator
                 AND idusuario = ?';
         $params = array('Cambio de clave',$this->idUsuario);
         return Database::getRow($sql,$params);
+    }
+
+    //Función para leer los datos de un usuario
+    public function readOneId()
+    {
+        $sql = "SELECT idusuario
+                FROM usuario where correo=?";
+        $params = array($this->correo);
+        return Database::getRow($sql, $params);
     }
 }

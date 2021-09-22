@@ -373,8 +373,12 @@ if (isset($_GET['action'])) {
                                                                                         $result['status'] = 1;
                                                                                         if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
                                                                                             $result['message'] = 'Primer usuario registrado correctamente';
+                                                                                            $usuarios->setId($usuarios->readOneId());
+                                                                                            $usuarios->registerActionOut('Cambio de clave','Se ha creado la clave');
                                                                                         } else {
                                                                                             $result['message'] = 'Primer usuario registrado pero no se guardó la imagen';
+                                                                                            $usuarios->setId($usuarios->readOneId());
+                                                                                            $usuarios->registerActionOut('Cambio de clave','Se ha creado la clave');
                                                                                         }
                                                                                     } else {
                                                                                         $result['exception'] = Database::getException();;
@@ -454,17 +458,18 @@ if (isset($_GET['action'])) {
             case 'changePassword':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_SESSION['idusuario_dashboard_tmp'])) {
-                    if ($usuarios->checkPassword($_POST['txtContrasenaActual'])) {
+                    if ($usuarios->checkPassword($_POST['txtContrasenaActual1'])) {
                         if ($_POST['txtNuevaContrasena1'] == $_POST['txtConfirmarContrasena1']) {
-                            if ($_POST['txtNuevaContrasena1'] != $_POST['txtContrasenaActual'] ||
-                                $_POST['txtConfirmarContrasena1'] != $_POST['txtContrasenaActual']) {
+                            if ($_POST['txtNuevaContrasena1'] != $_POST['txtContrasenaActual1'] ||
+                                $_POST['txtConfirmarContrasena1'] != $_POST['txtContrasenaActual1']) {
                                 if ($usuarios->setContrasenia($_POST['txtNuevaContrasena1'])) {
                                     if ($usuarios->changePassword()) {
                                         $usuarios->setIdBitacora($_POST['txtBitacoraPassword']);
                                         if ($usuarios->updateBitacoraOut('Cambio de clave')) {
                                             $result['status'] = 1;
                                             $result['message'] = 'Contraseña actualizada correctamente.';
-                                            $_SESSION['idusuario_dashboard'];
+                                            $_SESSION['idusuario_dashboard'] =$_SESSION['idusuario_dashboard_tmp'];
+                                            unset($_SESSION['idusuario_dashboard_tmp']);
                                         } else {
                                             $result['exception'] = 'Hubo un error al registrar la bitacora';
                                         }

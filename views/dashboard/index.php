@@ -302,19 +302,19 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                             </div>
                         </div>
                     </div>
-                <form method="post" action="/form" autocomplete="off" id="90password-form">
+                <form method="post" id="90password-form">
                     <input type="number" name="txtBitacoraPassword" id="txtBitacoraPassword" class="d-none">
                     <div class="row">
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
                             <div class="form-group">
                                 <label class="tituloCajaTextoFormulario" for="txtNuevaContrasena1">Nueva Contraseña:</label>
-                                <input onChange="checkContrasena('txtNuevaContrasena1')" type="password" class="form-control cajaTextoModal2" id="txtNuevaContrasena1" name="txtNuevaContrasena1" placeholder="">
+                                <input autocomplete="off" onChange="checkContrasena('txtNuevaContrasena1')" type="password" class="form-control cajaTextoModal2" id="txtNuevaContrasena1" name="txtNuevaContrasena1" placeholder="">
                             </div>
                         </div>
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
                             <div class="form-group">
                                 <label class="tituloCajaTextoFormulario" for="txtConfirmarContrasena">Confirmar Contraseña:</label>
-                                <input onChange="checkContrasena('txtConfirmarContrasena1')" type="password" class="form-control cajaTextoModal2" id="txtConfirmarContrasena1" name="txtConfirmarContrasena1" placeholder="">
+                                <input autocomplete="off" onChange="checkContrasena('txtConfirmarContrasena1')" type="password" class="form-control cajaTextoModal2" id="txtConfirmarContrasena1" name="txtConfirmarContrasena1" placeholder="">
                             </div>
                         </div>
                         
@@ -323,7 +323,7 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                         <div class="col-12 d-flex flex-column justify-content-center align-items-center">
                             <div class="form-group w-xl-50 w-md-50">
                                 <label class="tituloCajaTextoFormulario" for="txtContrasenaActual1">Contraseña Actual:</label>
-                                <input onChange="checkContrasena('txtContrasenaActual1')" type="password" class="form-control cajaTextoModal2" id="txtContrasenaActual1" name="txtContrasenaActual1" placeholder="">
+                                <input autocomplete="off" onChange="checkContrasena('txtContrasenaActual1')" type="password" class="form-control cajaTextoModal2" id="txtContrasenaActual1" name="txtContrasenaActual1" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -332,7 +332,7 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                         <div class="col-12 d-flex justify-content-center align-items-center">
                             <div class="custom-control custom-switch">
                                 <input onchange="showHidePassword3('cbMostrarContraseña1', 'txtContrasenaActual1', 'txtNuevaContrasena1', 'txtConfirmarContrasena1')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña1">
-                                <label class="p-0 custom-control-label" for="cbMostrarContraseña">Mostrar Contraseña</label>
+                                <label class="p-0 custom-control-label" for="cbMostrarContraseña1">Mostrar Contraseña</label>
                             </div>
                         </div>
                     </div>

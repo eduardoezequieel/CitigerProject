@@ -52,7 +52,11 @@ if (isset($_GET['action'])) {
                                                                                         $usuarios->registerAction('Registrar', 'El usuario registró un registro en la tabla de usuarios.');
                                                                                     } else {
                                                                                         $result['message'] = 'Usuario registrado pero no se guardó la imagen';
+                                                                                        $usuarios->registerAction('Registrar', 'El usuario registró un registro en la tabla de usuarios.');
+                                                                                        
                                                                                     }
+                                                                                    $usuarios->setId($usuarios->readOneId());
+                                                                                    $usuarios->registerActionOut('Cambio de clave','Se ha creado la clave');
                                                                                     try {
                             
                                                                                         //Ajustes del servidor
