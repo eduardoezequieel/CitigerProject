@@ -533,6 +533,15 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para cambiar contraseña por defecto
+    public function changePasswordOut()
+    {
+        $hash = password_hash($this->contrasenia, PASSWORD_DEFAULT);
+        $sql = 'UPDATE residente SET contrasena = ? WHERE idresidente = ?';
+        $params = array($hash, $this->idResidente);
+        return Database::executeRow($sql, $params);
+    }
+
     //Función para leer la info del usuario logueado
     public function readProfile()
     {
@@ -686,19 +695,19 @@ class Residentes extends Validator
     //Función para verificar 90 días desde la ultima actualización
     public function checkLastPasswordUpdate()
     {
-        $sql = 'SELECT idbitacora FROM bitacora
+        $sql = 'SELECT idbitacora FROM bitacoraResidente
                 WHERE accion = ?
                 AND fecha < current_date - 90
-                AND idusuario = ?';
-        $params = array('Cambio de clave',$this->idUsuario);
+                AND idresidente = ?';
+        $params = array('Cambio de clave',$this->idResidente);
         return Database::getRow($sql,$params);
     }
 
     //Función para leer los datos de un usuario
     public function readOneId()
     {
-        $sql = "SELECT idusuario
-                FROM usuario where correo=?";
+        $sql = "SELECT idresidente
+                FROM residente where correo=?";
         $params = array($this->correo);
         return Database::getRow($sql, $params);
     }

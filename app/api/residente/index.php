@@ -266,7 +266,7 @@ if (isset($_GET['action'])) {
                             if ($_POST['txtNuevaContrasena1'] != $_POST['txtContrasenaActual1'] ||
                                 $_POST['txtConfirmarContrasena1'] != $_POST['txtContrasenaActual1']) {
                                 if ($usuarios->setContrasenia($_POST['txtNuevaContrasena1'])) {
-                                    if ($usuarios->changePassword()) {
+                                    if ($usuarios->changePasswordOut()) {
                                         $usuarios->setIdBitacora($_POST['txtBitacoraPassword']);
                                         if ($usuarios->updateBitacoraOut('Cambio de clave')) {
                                             $result['status'] = 1;

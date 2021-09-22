@@ -41,7 +41,8 @@ document.getElementById('login-form').addEventListener('submit', function (event
                     sweetAlert(1, response.message, 'dashboard.php');
                 } else {
                     if (response.error) {
-                        sweetAlert(3, response.message, 'cambiar_contrasena.php');
+                        document.getElementById('txtBitacoraPassword').value = response.dataset.idbitacora;
+                        openModal('obligatorioContrasena');
                     } else {
                         sweetAlert(2, response.exception, null);
                     }
