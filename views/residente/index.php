@@ -86,6 +86,88 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="obligatorioContrasena" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Actualizar Contraseña por seguridad</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+            <!-- Contenido del Modal -->
+            <div class="textoModal px-3 pb-4 mt-2">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert yellowAlert alert-dismissible fade show" role="alert">
+                                <strong>Importante.</strong> Tu contraseña debe de cumplir con los siguientes requisitos: <br>
+                                <br>
+                                - Mínimo 8 caracteres <br>
+                                - Máximo 15 <br>
+                                - Al menos una letra mayúscula <br>
+                                - Al menos una letra minúscula <br>
+                                - Al menos un dígito <br>
+                                - No espacios en blanco <br>
+                                - Al menos 1 carácter especial	
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <form method="post" id="90password-form">
+                    <input type="number" name="txtBitacoraPassword" id="txtBitacoraPassword" class="d-none">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
+                            <div class="form-group">
+                                <label class="tituloCajaTextoFormulario" for="txtNuevaContrasena1">Nueva Contraseña:</label>
+                                <input autocomplete="off" onChange="checkContrasena('txtNuevaContrasena1')" type="password" class="form-control cajaTextoModal2" id="txtNuevaContrasena1" name="txtNuevaContrasena1" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
+                            <div class="form-group">
+                                <label class="tituloCajaTextoFormulario" for="txtConfirmarContrasena">Confirmar Contraseña:</label>
+                                <input autocomplete="off" onChange="checkContrasena('txtConfirmarContrasena1')" type="password" class="form-control cajaTextoModal2" id="txtConfirmarContrasena1" name="txtConfirmarContrasena1" placeholder="">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                            <div class="form-group w-xl-50 w-md-50">
+                                <label class="tituloCajaTextoFormulario" for="txtContrasenaActual1">Contraseña Actual:</label>
+                                <input autocomplete="off" onChange="checkContrasena('txtContrasenaActual1')" type="password" class="form-control cajaTextoModal2" id="txtContrasenaActual1" name="txtContrasenaActual1" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <div class="custom-control custom-switch">
+                                <input onchange="showHidePassword3('cbMostrarContraseña1', 'txtContrasenaActual1', 'txtNuevaContrasena1', 'txtConfirmarContrasena1')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña1">
+                                <label class="p-0 custom-control-label" for="cbMostrarContraseña1">Mostrar Contraseña</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botones de Acción del Formulario -->
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                            <button id="btnActualizarContrasenaObligatorio" type="submit" name="btnActualizar" href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Cambiar Contraseña</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Fin del Contenido del Modal -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
    
     <!-- JS -->
     <script src="../../resources/js/jquery-3.5.1.slim.min.js"></script>

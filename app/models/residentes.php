@@ -668,7 +668,8 @@ class Residentes extends Validator
 
     public function updateBitacoraOut($act)
     {
-        $sql = 'UPDATE bitacoraResidente SET accion = ? WHERE idbitacora = ?';
+        $sql = 'UPDATE bitacoraResidente SET accion = ?, fecha = current_date, hora = current_time
+                WHERE idbitacora = ?';
         $params = array($act,$this->bitacora);
         return Database::executeRow($sql,$params);
     }
@@ -680,5 +681,25 @@ class Residentes extends Validator
         $contraseña = bin2hex($contraseña);
         $contraseñaFinal ='CS'.$contraseña.'*';
         return $contraseñaFinal;
+    }
+
+    //Función para verificar 90 días desde la ultima actualización
+    public function checkLastPasswordUpdate()
+    {
+        $sql = 'SELECT idbitacora FROM bitacora
+                WHERE accion = ?
+                AND fecha < current_date - 90
+                AND idusuario = ?';
+        $params = array('Cambio de clave',$this->idUsuario);
+        return Database::getRow($sql,$params);
+    }
+
+    //Función para leer los datos de un usuario
+    public function readOneId()
+    {
+        $sql = "SELECT idusuario
+                FROM usuario where correo=?";
+        $params = array($this->correo);
+        return Database::getRow($sql, $params);
     }
 }
