@@ -2,6 +2,20 @@
 require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/usuarios.php');
+require_once('../../helpers/mail.php');
+
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../../../libraries/phpmailer65/src/Exception.php';
+require '../../../libraries/phpmailer65/src/PHPMailer.php';
+require '../../../libraries/phpmailer65/src/SMTP.php';
+
+//Creando instancia para mandar correo
+$mail = new PHPMailer(true);
 
 //Verificando si existe alguna acción
 if (isset($_GET['action'])) {
@@ -9,6 +23,7 @@ if (isset($_GET['action'])) {
     session_start();
     //Instanciando clases
     $usuarios = new Usuarios;
+    $correo = new Correo;
     //Array para respuesta de la API
     $result = array('status' => 0, 
                     'recaptcha' => 0, 
@@ -471,6 +486,84 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id incorrecto.';
                 }
+                break;
+
+                case 'sendMail':
+
+                    $_POST = $usuarios->validateForm($_POST);
+                    // Generamos el codigo de seguridad 
+                    $code = rand(999999, 111111);
+                    if ($correo->setCorreo($_POST['txtCorreoRecu'])) {
+                        if ($correo->validarCorreo('usuario')) {
+    
+                            // Ejecutamos funcion para obtener el usuario del correo ingresado\
+                            $_SESSION['mail'] = $correo->getCorreo();
+    
+                            $correo->obtenerUsuario($_SESSION['mail']);
+    
+    
+                            try {
+    
+                                //Ajustes del servidor
+                                $mail->SMTPDebug = 0;
+                                $mail->isSMTP();
+                                $mail->Host       = 'smtp.gmail.com';
+                                $mail->SMTPAuth   = true;
+                                $mail->Username   = 'citigersystem@gmail.com';
+                                $mail->Password   = 'citiger123';
+                                $mail->SMTPSecure = 'tls';
+                                $mail->Port       = 587;
+                                $mail->CharSet = 'UTF-8';
+    
+    
+                                //Receptores
+                                $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
+                                $mail->addAddress($correo->getCorreo());
+    
+                                //Contenido
+                                $mail->isHTML(true);
+                                $mail->Subject = 'Recuperación de contraseña';
+                                $mail->Body    = 'Hola ' . $_SESSION['usuario'] . ', hemos enviado este correo para que recuperes tu contraseña, tu código de seguridad es: <b>' . $code . '</b>';
+    
+                                if ($mail->send()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Código enviado correctamente, ' . $_SESSION['usuario'] . ' ';
+                                    $correo->actualizarCodigo('usuario', $code);
+                                }
+                            } catch (Exception $e) {
+                                $result['exception'] = $mail->ErrorInfo;
+                            }
+                        } else {
+    
+                            $result['exception'] = 'El correo ingresado no esta registrado';
+                        }
+                    } else {
+    
+                        $result['exception'] = 'Correo incorrecto';
+                    }
+    
+    
+    
+                    break;
+    
+                case 'verifyCode':
+                    $_POST = $usuarios->validateForm($_POST);
+                    // Validmos el formato del mensaje que se enviara en el correo
+                    if ($correo->setCodigo($_POST['codigo'])) {
+                        // Ejecutamos la funcion para validar el codigo de seguridad
+                        if ($correo->validarCodigo('usuario')) {
+                            $result['status'] = 1;
+                            // Colocamos el mensaje de exito 
+                            $result['message'] = 'El código ingresado es correcto';
+                        } else {
+                            // En caso que el correo no se envie mostramos el error
+                            $result['exception'] = 'El código ingresado no es correcto';
+                        }
+                    } else {
+                        $result['exception'] = 'Mensaje incorrecto';
+                    }
+                    break;
+    
             default:
                 $result['exception'] = 'La acción no está disponible afuera de la sesión';
         }
