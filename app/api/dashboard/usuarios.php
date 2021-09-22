@@ -578,7 +578,7 @@ if (isset($_GET['action'])) {
                                 if ($usuarios->changePassword()) {
                                     $result['status'] = 1;
                                     $result['message'] = 'Clave actualizada correctamente';
-                                    $correo->cleanCode('usuario', $_SESSION['idusuario']);
+                                    $correo->cleanCode($_SESSION['idusuario']);
                                     unset($_SESSION['idusuario']);
                                     unset($_SESSION['mail']);
 
