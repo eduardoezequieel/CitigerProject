@@ -432,3 +432,9 @@ INSERT INTO permisoUsuario(idtipousuario, idpermiso) VALUES
 (1, 3),
 (1, 4),
 (1, 5);
+
+ALTER TABLE residente ADD CONSTRAINT UQ_residente_dui UNIQUE (dui);
+ALTER TABLE residente ADD CONSTRAINT UQ_residente_telefono_fijo UNIQUE (telefonofijo);
+ALTER TABLE residente ADD CONSTRAINT UQ_residente_telefono_celular UNIQUE (telefonocelular);
+ALTER TABLE residente ADD CONSTRAINT UQ_residente_correo UNIQUE (correo);
+ALTER TABLE residente ADD CONSTRAINT UQ_residente_username UNIQUE (username);
