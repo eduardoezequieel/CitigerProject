@@ -445,5 +445,12 @@ ALTER TABLE permisousuario ALTER COLUMN permitido SET NOT NULL;
 
 --Cambios 22/09/2021
 
-alter table usuario add column codigo int
-alter table residente add column codigo int
+alter table usuario add column codigo int;
+alter table residente add column codigo int;
+
+ALTER TABLE tipousuario ADD CONSTRAINT UQ_tipousuario UNIQUE (tipousuario);
+ALTER TABLE permisoUsuario DROP COLUMN permitido;
+
+ALTER TABLE permisoUsuario ADD COLUMN permitido CHAR(1) NULL;
+UPDATE permisoUsuario SET permitido = 0;
+ALTER TABLE permisoUsuario ALTER COLUMN permitido SET NOT NULL;

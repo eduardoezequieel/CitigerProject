@@ -97,7 +97,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                         Alquileres <br>
                                         Administra los alquileres y espacios de la residencial. <br>
                                         <span id="lblAlquileresValue" class="float-right mt-1">Desactivado.</span>
-                                    <input id="alquileresValue" type="hidden" value="Desactivado">
+                                    <input id="alquileresValue" name="alquileresValue" type="hidden" value="0">
                                 </label>
                             </div>
                             <div class="btn-group-toggle" data-toggle="buttons">
@@ -107,7 +107,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                         Aportaciones <br>
                                         Mantiene un control de las casas y sus respectivas aportaciones. <br>
                                         <span id="lblAportacionesValue" class="float-right mt-1">Desactivado.</span>
-                                    <input id="aportacionesValue" type="hidden" value="Desactivado">
+                                    <input id="aportacionesValue" name="aportacionesValue" type="hidden" value="0">
                                 </label>
                             </div>
                             <div class="btn-group-toggle" data-toggle="buttons">
@@ -117,7 +117,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                         Denuncias <br>
                                         Administra las denuncias para solucionarlas o denegarlas. <br>
                                         <span id="lblDenunciaValue" class="float-right mt-1">Desactivado.</span>
-                                    <input id="denunciaValue" type="hidden" value="Desactivado">
+                                    <input id="denunciaValue" name="denunciaValue" type="hidden" value="0">
                                 </label>
                             </div>
                             
@@ -130,7 +130,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                         Materiales <br>
                                         Agrega materiales al inventario y crea registros de materiales utilizados. <br>
                                         <span id="lblMaterialesValue" class="float-right mt-1">Desactivado.</span>
-                                    <input id="materialesValue" type="hidden" value="Desactivado">
+                                    <input id="materialesValue" name="materialesValue" type="hidden" value="0">
                                 </label>
                             </div>
                             <div class="btn-group-toggle" data-toggle="buttons">
@@ -140,7 +140,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                         Usuarios <br>
                                         Crea y administra las entidades que manejan el sistema. <br>
                                         <span id="lblUsuariosValue" class="float-right mt-1">Desactivado.</span>
-                                    <input id="usuariosValue" type="hidden" value="Desactivado">
+                                    <input id="usuariosValue" name="usuariosValue" type="hidden" value="0">
                                 </label>
                             </div>
                             <div class="btn-group-toggle" data-toggle="buttons">
@@ -150,7 +150,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                         Visitas <br>
                                         Crea y administra registros de todas las personas que ingresan a la residencial. <br>
                                         <span id="lblVisitasValue" class="float-right mt-1">Desactivado.</span>
-                                    <input id="visitasValue" type="hidden" value="Desactivado">
+                                    <input id="visitasValue" name="visitasValue" type="hidden" value="0">
                                 </label>
                             </div>
                         </div>

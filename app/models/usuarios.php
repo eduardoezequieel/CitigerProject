@@ -6,6 +6,7 @@ class Usuarios extends Validator
     //Declarando atributos
     private $idUsuario = null;
     private $idEstadoUsuario = null;
+    private $idPermiso = null;
     private $idTipoUsuario = null;
     private $nombre = null;
     private $apellido = null;
@@ -31,6 +32,16 @@ class Usuarios extends Validator
     {
         if ($this->validateNaturalNumber($value)) {
             $this->idUsuario = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdPermiso($value)
+    {
+        if ($this->validateNaturalNumber($value)) {
+            $this->idPermiso = $value;
             return true;
         } else {
             return false;
@@ -466,6 +477,58 @@ class Usuarios extends Validator
         $sql = 'INSERT INTO tipousuario(tipousuario) VALUES(?)';
         $params = array($this->tipousuario);
         return Database::executeRow($sql, $params);
+    }
+
+    //Función para obtener la información de un tipo de usuario previamente ingresado
+    public function getType($value)
+    {
+        $sql = 'SELECT*FROM tipousuario WHERE tipousuario = ?';
+        $params = array($value);
+        return Database::getRow($sql, $params);
+    }
+
+    //Funcion para insertar los permisos al momento de crear un tipo de usuario
+    public function createPermissions()
+    {   $retorno = null;
+        for ($i=1; $i <= 6; $i++) { 
+            $sql = 'INSERT INTO permisousuario(idtipousuario, idpermiso, permitido)
+                    VALUES (?,?,?)';
+            $params = array($this->idTipoUsuario, $i, 0);
+
+            if (Database::executeRow($sql, $params)) {
+                $retorno = true;
+            } else {
+                $retorno = Database::getException();
+            }
+        }
+        return $retorno;
+    }
+
+    //Función para obtener los id de los permisos
+    public function getPermissions()
+    {
+        $sql = 'SELECT idpermiso FROM permiso';
+        $params = null;
+        return Database::getRows($sql, $params);    
+    }
+
+    //Funcion para actualizar los permisos de un tipo de usuario
+    public function updatePermission($array, $permisos)
+    {
+        $retorno = null;
+        for ($i=0; $i <= 5 ; $i++) { 
+            $idpermiso = (int)$permisos[$i];
+            $permitido = (int)$array[$i];
+            $sql = 'UPDATE permisousuario SET permitido = ? WHERE idtipousuario = ? AND idpermiso = ?';
+            $params = array($permitido, $this->idTipoUsuario, $idpermiso);
+            if (Database::executeRow($sql, $params)) {
+                $retorno = true;
+            } else {
+                $retorno = Database::getException();
+            }
+        }
+
+        return $retorno;
     }
 
     //Función para actualizar la información del usuario logueado

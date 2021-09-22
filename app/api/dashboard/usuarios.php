@@ -34,6 +34,73 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idusuario_dashboard'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
+            //Crear nuevo tipo de usuario y asignar permisos
+            case 'createType':
+                $_POST = $usuarios->validateForm($_POST);
+                //Validamos que la contraseña sea correcta
+                if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
+                    if ($usuarios->checkPassword($_POST['txtContrasenaActual'])) {
+                        //Validamos que el tipo de usuario ingresado cumpla con que sea alfabetico.
+                        if ($usuarios->setTipoUsuario($_POST['txtTipoUsuario'])) {
+                            //Creamos el tipo de usuario
+                            if ($usuarios->addType()) {
+                                //Guardamos la información del tipo de usuario
+                                if ($data = $usuarios->getType($_POST['txtTipoUsuario'])) {
+                                    //Seteamos a la variable idTipoUsuario el id obtenido anteriormente.
+                                    if ($usuarios->setIdTipoUsuario($data['idtipousuario'])) {
+                                        //Creamos los permisos del usuario por defecto (Todos en 'No')
+                                        if ($usuarios->createPermissions()) {
+                                            //Guardamos en un arreglo los seleccionados por el usuario
+                                            $array = array($_POST['alquileresValue'],
+                                                    $_POST['aportacionesValue'],
+                                                    $_POST['denunciaValue'],
+                                                    $_POST['materialesValue'],
+                                                    $_POST['usuariosValue'],
+                                                    $_POST['visitasValue']);
+                                
+                                            if ($permissions = $usuarios->getPermissions()) {
+                                                //Mandamos el arreglo a la funcion que se encarga de ingresar los datos
+                                                if ($usuarios->updatePermission($array, $permissions)) {
+                                                    $result['status'] = 1;
+                                                    $result['dataset'] = $array;
+                                                    $result['message'] = 'Tipo de usuario creado correctamente.';
+                                                } else {
+                                                    $result['exception'] = Database::getException();
+                                                }
+                                            } else {
+                                                if (Database::getException()) {
+                                                    $result['exception'] = Database::getException();
+                                                } else {
+                                                    $result['exception'] = 'No hay permisos.';
+                                                }
+                                            }
+                                        } else {
+                                            $result['exception'] = Database::getException();
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Tipo de usuario invalido.';
+                                    }
+                                } else {
+                                    if (Database::getException()) {
+                                        $result['exception'] = Database::getException();
+                                    } else {
+                                        $result['exception'] = 'No hay ninguna coincidencia con el ingresado.';
+                                    }
+                                }
+                            } else {
+                                $result['exception'] = Database::getException();
+                            } 
+                        } else {
+                            $result['exception'] = 'Nombre para el tipo de usuario invalido.';
+                        }
+                    } else {
+                        $result['exception'] = 'Contraseña incorrecta.';
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto.';
+                }
+                
+                break;
             //Caso para obtener todos los tipos de usuario
             case 'readTypesOfUser':
                 if ($result['dataset'] = $usuarios->readTypesOfUser()) {
