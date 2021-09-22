@@ -189,7 +189,8 @@ document.getElementById('create-form').addEventListener('submit',function(event)
                     readTypes();
                     closeModal('administrarTipoUsuario');
                     sweetAlert(1, response.message, null);
-                    console.log(response.dataset)
+                    console.log(response.dataset);
+                    console.log(response.dataset2);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }

@@ -57,22 +57,15 @@ if (isset($_GET['action'])) {
                                                     $_POST['materialesValue'],
                                                     $_POST['usuariosValue'],
                                                     $_POST['visitasValue']);
-                                
-                                            if ($permissions = $usuarios->getPermissions()) {
-                                                //Mandamos el arreglo a la funcion que se encarga de ingresar los datos
-                                                if ($usuarios->updatePermission($array, $permissions)) {
-                                                    $result['status'] = 1;
-                                                    $result['dataset'] = $array;
-                                                    $result['message'] = 'Tipo de usuario creado correctamente.';
-                                                } else {
-                                                    $result['exception'] = Database::getException();
-                                                }
+                                            $permissions = array(1,2,3,4,5,6);
+                                            //Mandamos el arreglo a la funcion que se encarga de ingresar los datos
+                                            if ($usuarios->updatePermission($array, $permissions)) {
+                                                $result['status'] = 1;
+                                                $result['dataset'] = $array;
+                                                $result['dataset2'] = $permissions;
+                                                $result['message'] = 'Tipo de usuario creado correctamente.';
                                             } else {
-                                                if (Database::getException()) {
-                                                    $result['exception'] = Database::getException();
-                                                } else {
-                                                    $result['exception'] = 'No hay permisos.';
-                                                }
+                                                $result['exception'] = Database::getException();
                                             }
                                         } else {
                                             $result['exception'] = Database::getException();
