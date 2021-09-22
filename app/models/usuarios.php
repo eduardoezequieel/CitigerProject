@@ -634,7 +634,7 @@ class Usuarios extends Validator
     //Función para actualizar la bitacora con el id
     public function updateBitacoraOut($act)
     {
-        $sql = 'UPDATE bitacora SET accion = ? WHERE idbitacora = ?';
+        $sql = 'UPDATE bitacora SET accion = ?, fecha = current_date WHERE idbitacora = ?';
         $params = array($act,$this->bitacora);
         return Database::executeRow($sql,$params);
     }
@@ -646,5 +646,16 @@ class Usuarios extends Validator
         $contraseña = bin2hex($contraseña);
         $contraseñaFinal ='CS'.$contraseña.'*';
         return $contraseñaFinal;
+    }
+
+    //Función para verificar 90 días desde la ultima actualización
+    public function checkLastPasswordUpdate()
+    {
+        $sql = 'SELECT idbitacora FROM bitacora
+                WHERE accion = ?
+                AND fecha >= current_date - 90
+                AND idusuario = ?';
+        $params = array('Cambio de clave',$this->idUsuario);
+        return Database::getRow($sql,$params);
     }
 }

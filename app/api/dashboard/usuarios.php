@@ -288,8 +288,16 @@ if (isset($_GET['action'])) {
                                 $_SESSION['modo_dashboard'] = $usuarios->getModo();
                                 //Se reinicia el conteo de intentos fallidos
                                 if ($usuarios->increaseIntentos(0)){
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Sesión iniciada correctamente.';
+                                    if ($usuarios->checkLastPasswordUpdate()) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Sesión iniciada correctamente.';
+                                    } else {
+                                        $result['error'] = 1;
+                                        $result['exception'] = 'Se ha detectado que debes actualizar
+                                                                tu contraseña por seguridad.';
+                                        $_SESSION['idusuario_dashboard_tmp'] = $_SESSION['idusuario_dashboard'];
+                                        unset($_SESSION['idusuario_dashboard']);
+                                    }
                                 }
                             } else {
                                 //Se verifica los intentos que tiene guardado el usuario
@@ -425,6 +433,31 @@ if (isset($_GET['action'])) {
                             }
                         }
                     } 
+                }
+                break;
+            //Caso para cambiar la contraseña
+            case 'changePassword':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setId($_SESSION['idusuario_dashboard_tmp'])) {
+                    if ($_POST['txtNuevaContrasena'] == $_POST['txtConfirmarContrasena']) {
+                        if ($usuarios->setContrasenia($_POST['txtNuevaContrasena'])) {
+                            if ($usuarios->changePassword()) {
+                                if ($usuarios->updateBitacoraOut('Cambio de clave')) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Contraseña actualizada correctamente.';
+                                    $_SESSION['idusuario_dashboard'];
+                                }
+                            } else {
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'Su contraseña no cumple con los requisitos especificados.';
+                        }
+                    } else {
+                        $result['exception'] = 'Las contraseñas no coinciden.';
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto.';
                 }
                 break;
             default:
