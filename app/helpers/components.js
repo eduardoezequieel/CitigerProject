@@ -30,9 +30,9 @@ function loadPage(){
         document.documentElement.style.setProperty('--bordes-inputs', '#999999');
         document.documentElement.style.setProperty('--color-citiger', '#5496F5');
         document.documentElement.style.setProperty('--color-citiger-hover', '#4174c2');
-        document.documentElement.style.setProperty('--color-rojo', 'rgb(255, 183, 183)');
+        document.documentElement.style.setProperty('--color-rojo', 'rgb(255, 207, 207)');
         document.documentElement.style.setProperty('--color-rojo-hover', 'rgb(255, 72, 72)');
-        document.documentElement.style.setProperty('--color-verde', 'rgb(176, 255, 197)');
+        document.documentElement.style.setProperty('--color-verde', 'rgb(213, 255, 228)');
         document.documentElement.style.setProperty('--color-verde-hover', 'rgb(63, 209, 63)');
         document.documentElement.style.setProperty('--color-amarillo', 'rgb(255, 246, 186)');
         document.documentElement.style.setProperty('--color-amarillo-hover', 'rgb(112, 98, 2)');

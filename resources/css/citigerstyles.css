@@ -1170,6 +1170,84 @@ textarea :-ms-input-placeholder {
   box-shadow: 0px 4px 10px 0px var(--color-citiger) !important;
 }
 
+.botonesCheckbox {
+  background-color: var(--color-rojo) !important;
+  color: var(--color-rojo-hover) !important;
+  font-family: 'Quicksand', 'sans-serif';
+  font-size: 13px;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: start;
+  width: 350px;
+  height: 110px;
+  margin-top: 25px;
+}
+
+.botonesCheckbox:hover {
+  background-color: var(--color-rojo-hover) !important;
+  color: var(--color-fondo) !important;
+  font-family: 'Quicksand', 'sans-serif';
+  font-size: 13px;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-shadow: 0px 4px 10px 0px var(--color-rojo) !important;
+  text-align: start;
+  width: 350px;
+  height: 110px;
+  margin-top: 25px;
+}
+
+.botonesCheckboxChecked {
+  background-color: var(--color-verde) !important;
+  color: var(--color-verde-hover) !important;
+  font-family: 'Quicksand', 'sans-serif';
+  font-size: 13px;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: start;
+  width: 350px;
+  height: 110px;
+  margin-top: 25px;
+}
+
+.botonesCheckboxChecked:hover {
+  background-color: var(--color-verde-hover) !important;
+  color: var(--color-fondo) !important;
+  font-family: 'Quicksand', 'sans-serif';
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: start;
+  box-shadow: 0px 4px 10px 0px var(--color-verde) !important;
+  width: 350px;
+  height: 110px;
+}
+
+@media screen and (max-width: 500px){
+  .botonesCheckbox{
+    width: 280px !important;
+    height: 110px !important;
+  }
+
+  .botonesCheckboxChecked{
+    width: 280px !important;
+    height: 110px !important;
+  }
+}
+
 .buscador {
   background-color: transparent;
   border: 2px solid var(--bordes-inputs) !important;

@@ -438,3 +438,7 @@ ALTER TABLE residente ADD CONSTRAINT UQ_residente_telefono_fijo UNIQUE (telefono
 ALTER TABLE residente ADD CONSTRAINT UQ_residente_telefono_celular UNIQUE (telefonocelular);
 ALTER TABLE residente ADD CONSTRAINT UQ_residente_correo UNIQUE (correo);
 ALTER TABLE residente ADD CONSTRAINT UQ_residente_username UNIQUE (username);
+
+ALTER TABLE permisousuario ADD COLUMN permitido CHAR(2) NULL
+UPDATE permisousuario SET permitido = 'No';
+ALTER TABLE permisousuario ALTER COLUMN permitido SET NOT NULL;

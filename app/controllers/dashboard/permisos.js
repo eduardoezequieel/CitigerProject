@@ -133,4 +133,38 @@ document.getElementById('btnReiniciar').addEventListener('click',function(event)
 document.getElementById('btnInsertDialog').addEventListener('click',function(){
     //Cambiamos el titulo del modal y limpiamos el formulario
     document.getElementById('tituloModal').textContent = 'Crear Nuevo Tipo de Usuario';
-})
+});
+
+//Cambiar estilo y valor a los botones al momento de hacer click
+function changeStyle(label, input, span){
+    //Se captura el boton para cambiar sus propiedades
+    var label2 = document.getElementById(label);
+    //Se captura el input que contiene su valor
+    var input2 = document.getElementById(input);
+    //Se captura el span que hace visible el valor del input
+    var span2 = document.getElementById(span);
+    //Se comprueba si posee una clase en especifico para removerla y poner otra o viceversa
+    if (label2.classList.contains('botonesCheckbox')) {
+        label2.classList.remove('botonesCheckbox');
+        label2.classList.add('botonesCheckboxChecked');
+        input2.value = 1;
+        span2.textContent = 'Activado';
+    } else {
+        label2.classList.remove('botonesCheckboxChecked');
+        label2.classList.add('botonesCheckbox');
+        input2.value = 0;
+        span2.textContent = 'Desactivado';
+    }
+}
+
+//Función para mostrar contraseña
+function showHidePassword2(checkbox, pass1) {
+    var check = document.getElementById(checkbox);
+    var password1 = document.getElementById(pass1);
+    //Verificando el estado del check
+    if (check.checked == true) {
+        password1.type = 'text';
+    } else {
+        password1.type = 'password';
+    }
+}
