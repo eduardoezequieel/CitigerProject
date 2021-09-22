@@ -321,7 +321,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Casa incorrecta';
                 }
                 break;
-
+            //Caso para leer los datos de las casas
             case 'readCasas':
 
                 if ($result['dataset'] = $residente->cargarCasas()) {
@@ -334,7 +334,7 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-
+            //Caso para buscar una casa
             case 'searchCasa':
                 $_POST = $residente->validateForm($_POST);
                 if ($_POST['search2'] != '') {
@@ -357,7 +357,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ingrese un valor para buscar';
                 }
                 break;
-
+            //Caso para asignar una casa
             case 'createResidenteCasa':
                 $_POST = $residente->validateForm($_POST);
                 if ($residente->setIdResidente($_POST['txtIdx'])) {
@@ -377,7 +377,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Número inválido.';
                 }
                 break;
-
+            //Caso para residente casa
             case 'updateResidenteCasa':
                 $_POST = $residente->validateForm($_POST);
                 if ($residente->setIdResidente($_POST['txtIdx'])) {
@@ -400,32 +400,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Residente incorrecto';
                 }
                 break;
-                //Caso para actualizar la contraseña de primer uso 
-            case 'changePassword':
-                $_POST = $residente->validateForm($_POST);
-                if ($_POST['txtContrasena'] == $_POST['txtConfirmarContra']) {
-                    if ($_POST['txtContrasena'] != 'newResident') {
-                        if ($residente->setContrasenia($_POST['txtContrasena'])) {
-                            if ($residente->changePassword()) {
-                                $result['status'] = 1;
-                                $result['message'] = 'Se ha actualizado la contraseña correctamente.';
-                            } else {
-                                if (Database::getException()) {
-                                    $result['exception'] = Database::getException();
-                                } else {
-                                    $result['exception'] = 'No se ha actualizado la contraseña correctamente.';
-                                }
-                            }
-                        } else {
-                            $result['exception'] = 'La contraseña no es válida.';
-                        }
-                    } else {
-                        $result['exception'] = 'La contraseña no puede ser igual a la contraseña por defecto.';
-                    }
-                } else {
-                    $result['exception'] = 'Las contraseñas no coinciden.';
-                }
-                break;
+            //Caso para leer un registro
             case 'readOne2':
                 $_SESSION['idresidente'] = $_POST['txtId'];
                 if ($_SESSION['idresidente'] != null) {
