@@ -50,7 +50,7 @@ function fillTable(dataset){
                         <div class="col-12">
                             <a href="#" onclick="readDataOnModal(${row.idusuario}) "data-toggle="modal" data-target="#administrarAdmin" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
 
-                            <a href="#" onclick="deleteRow(${row.idusuario})" class="btn btnTabla2 mx-2"><i class="fas fa-trash"></i></a>
+                            <a href="#" onclick="deleteType(${row.idtipousuario})" class="btn btnTabla2 mx-2"><i class="fas fa-trash"></i></a>
                         </div>
                     </div>
                 </th>
@@ -189,8 +189,6 @@ document.getElementById('create-form').addEventListener('submit',function(event)
                     readTypes();
                     closeModal('administrarTipoUsuario');
                     sweetAlert(1, response.message, null);
-                    console.log(response.dataset);
-                    console.log(response.dataset2);
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -203,4 +201,46 @@ document.getElementById('create-form').addEventListener('submit',function(event)
     })
 });
 
-//Se ponen las clases que los controles tenian por defecto
+//Función para eliminar registros
+function deleteType(id){
+    // Se guarda en un form el id
+    data = new FormData();
+    data.append('idTipoUsuario', id);
+
+    //Sweet Alert
+    swal({
+        title: 'Advertencia',
+        text: '¿Desea eliminar el tipo de usuario?',
+        icon: 'warning',
+        buttons: ['No', 'Sí'],
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(function (value) {
+        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
+        if (value) {
+            fetch(API_USUARIO + 'deleteType', {
+                method: 'post',
+                body: data
+            }).then(function (request) {
+                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                if (request.ok) {
+                    request.json().then(function (response) {
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (response.status) {
+                            // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                            readTypes();
+                            sweetAlert(1, response.message, null);
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                            console.log(response.status + ' ' + response.statusText);
+                        }
+                    });
+                } else {
+                    console.log(request.status + ' ' + request.statusText);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    });
+}

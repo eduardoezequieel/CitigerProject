@@ -89,7 +89,7 @@ class Validator
         // Se verifica si el archivo existe, de lo contrario se establece un número de error.
         if ($file) {
             // Se comprueba si el archivo tiene un tamaño menor o igual a 2MB, de lo contrario se establece un número de error.
-            if ($file['size'] <= 2097152) {
+            if ($file['size'] <= 5242880) {
                 // Se obtienen las dimensiones de la imagen y su tipo.
                 list($width, $height, $type) = getimagesize($file['tmp_name']);
                 // Se verifica si la imagen cumple con las dimensiones máximas, de lo contrario se establece un número de error.
@@ -110,7 +110,7 @@ class Validator
                     return false;
                 }
              } else {
-                $this->imageError = 'El tamaño de la imagen debe ser menor a 2MB';
+                $this->imageError = 'El tamaño de la imagen debe ser menor a 5MB';
                 return false;
              }
         } else {

@@ -120,7 +120,7 @@ class Usuarios extends Validator
 
     public function setFoto($file)
     {
-        if ($this->validateImageFile($file, 4000, 4000)) {
+        if ($this->validateImageFile($file, 5000, 5000)) {
             $this->foto = $this->getImageName();
             return true;
         } else {
@@ -332,10 +332,11 @@ class Usuarios extends Validator
     //Obtener tipos de usuario
     public function readTypesOfUser()
     {
-        $sql = 'SELECT tipousuario, COUNT(idpermiso) AS permisos 
-                FROM permisousuario 
-                INNER JOIN tipousuario USING (idtipousuario)
-                GROUP BY tipousuario';
+            $sql = 'SELECT idtipousuario, tipousuario, COUNT(permitido) FILTER (WHERE permitido = \'1\') AS permisos 
+                    FROM permisousuario 
+                    INNER JOIN tipousuario USING (idtipousuario)
+                    WHERE idtipousuario <> 1
+                    GROUP BY tipousuario, idtipousuario';
         $params = null;
         return Database::getRows($sql, $params);    
     }
@@ -343,11 +344,11 @@ class Usuarios extends Validator
      //Función para buscar tipos de usuario
      public function searchTypesOfUser($value)
      {
-         $sql = 'SELECT tipousuario, COUNT(idpermiso) AS permisos 
+         $sql = 'SELECT idtipousuario, tipousuario, COUNT(permitido) FILTER (WHERE permitido = \'1\') AS permisos 
                 FROM permisousuario 
                 INNER JOIN tipousuario USING (idtipousuario)
-                WHERE tipousuario ILIKE ?
-                GROUP BY tipousuario';
+                WHERE tipousuario ILIKE ? AND idtipousuario <> 1
+                GROUP BY tipousuario, idtipousuario';
          $params = array("%$value%");
          return Database::getRows($sql, $params);
      }
@@ -529,6 +530,22 @@ class Usuarios extends Validator
         }
 
         return $retorno;
+    }
+
+    //Metodo para eliminar los permisos de un tipo de usuario
+    public function deletePermissions()
+    {
+        $sql = 'DELETE FROM permisousuario WHERE idtipousuario = ?';
+        $params = array($this->idTipoUsuario);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Metodo para eliminar un tipo de usuario
+    public function deleteType()
+    {
+        $sql = 'DELETE FROM tipousuario WHERE idtipousuario = ?';
+        $params = array($this->idTipoUsuario);
+        return Database::executeRow($sql, $params);
     }
 
     //Función para actualizar la información del usuario logueado

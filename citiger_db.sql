@@ -454,3 +454,6 @@ ALTER TABLE permisoUsuario DROP COLUMN permitido;
 ALTER TABLE permisoUsuario ADD COLUMN permitido CHAR(1) NULL;
 UPDATE permisoUsuario SET permitido = 0;
 ALTER TABLE permisoUsuario ALTER COLUMN permitido SET NOT NULL;
+
+--Cambios 23/9/2021
+UPDATE permisousuario SET permitido = '1'

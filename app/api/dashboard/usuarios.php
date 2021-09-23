@@ -94,6 +94,24 @@ if (isset($_GET['action'])) {
                 }
                 
                 break;
+            //Caso para eliminar un tipo de usuario y sus permisos
+            case 'deleteType':
+                if ($usuarios->setIdTipoUsuario($_POST['idTipoUsuario'])) {
+                    if ($usuarios->deletePermissions()) {
+                        if ($usuarios->deleteType()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Tipo de usuario eliminado correctamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                            $usuarios->createPermissions();
+                        }
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                } else {
+                    $result['exception'] = 'Dato incorrecto.';
+                }
+                break;
             //Caso para obtener todos los tipos de usuario
             case 'readTypesOfUser':
                 if ($result['dataset'] = $usuarios->readTypesOfUser()) {
@@ -263,7 +281,7 @@ if (isset($_GET['action'])) {
                             $result['exception'] = $usuarios->getImageError();
                         }
                     }else{
-                        $result['exception'] = 'Usuario inválido';
+                        $result['exception'] = $usuarios->getImageError();
                     }
                 } else {
                     $result['exception'] = 'Id incorrecto';
