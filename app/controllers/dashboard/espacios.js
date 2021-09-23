@@ -162,8 +162,6 @@ function readDataOnModal(id) {
                     document.getElementById('idEspacio1').value = response.dataset.idespacio;
                     document.getElementById('idEspacio3').value = response.dataset.idespacio;
                     document.getElementById('txtNombre').value = response.dataset.nombre;
-                    document.getElementById('txtEspacio').value = response.dataset.idespacio;
-                    document.getElementById('txtEspacio2').value = response.dataset.idespacio;
                     document.getElementById('txtDescripcion').value = response.dataset.descripcion;
                     document.getElementById('txtCapacidad').value = response.dataset.capacidad;
                     document.getElementById('idEstadoEspacio1').value = response.dataset.idestadoespacio;
