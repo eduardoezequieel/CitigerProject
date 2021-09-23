@@ -1186,6 +1186,21 @@ textarea :-ms-input-placeholder {
   margin-top: 25px;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  border: 1px solid var(--color-citiger) !important;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 24px;
+  background: var(--color-fondo) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 24px;
+  background: var(--color-fondo-opaco) !important;
+}
+
 .botonesCheckbox:hover {
   background-color: var(--color-rojo-hover) !important;
   color: var(--color-fondo) !important;
