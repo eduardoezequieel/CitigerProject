@@ -75,6 +75,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
             <!-- Contenido del Modal -->
             <div class="modal-body textoModal px-3 pb-4 mt-2">
                 <form action="/form" autocomplete="off" method="post" id="create-form">
+                    <input type="hidden" id="idTipoUsuario" name="idTipoUsuario">
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center align-items-center">
                             <div class="form-group">
@@ -96,7 +97,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                     <i class="fas fa-home mr-2"></i>
                                         Alquileres <br>
                                         Administra los alquileres y espacios de la residencial. <br>
-                                        <span id="lblAlquileresValue" class="float-right mt-1">Desactivado.</span>
+                                        <span id="lblAlquileresValue" class="float-right mt-1">Desactivado</span>
                                     <input id="alquileresValue" name="alquileresValue" type="hidden" value="0">
                                 </label>
                             </div>
@@ -106,7 +107,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                     <i class="fas fa-coins mr-2"></i>
                                         Aportaciones <br>
                                         Mantiene un control de las casas y sus respectivas aportaciones. <br>
-                                        <span id="lblAportacionesValue" class="float-right mt-1">Desactivado.</span>
+                                        <span id="lblAportacionesValue" class="float-right mt-1">Desactivado</span>
                                     <input id="aportacionesValue" name="aportacionesValue" type="hidden" value="0">
                                 </label>
                             </div>
@@ -116,7 +117,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                     <i class="fas fa-exclamation-triangle mr-2"></i>
                                         Denuncias <br>
                                         Administra las denuncias para solucionarlas o denegarlas. <br>
-                                        <span id="lblDenunciaValue" class="float-right mt-1">Desactivado.</span>
+                                        <span id="lblDenunciaValue" class="float-right mt-1">Desactivado</span>
                                     <input id="denunciaValue" name="denunciaValue" type="hidden" value="0">
                                 </label>
                             </div>
@@ -129,7 +130,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                     <i class="fas fa-boxes mr-2"></i>
                                         Materiales <br>
                                         Agrega materiales al inventario y crea registros de materiales utilizados. <br>
-                                        <span id="lblMaterialesValue" class="float-right mt-1">Desactivado.</span>
+                                        <span id="lblMaterialesValue" class="float-right mt-1">Desactivado</span>
                                     <input id="materialesValue" name="materialesValue" type="hidden" value="0">
                                 </label>
                             </div>
@@ -139,7 +140,7 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                     <i class="fas fa-user-cog mr-2"></i>
                                         Usuarios <br>
                                         Crea y administra las entidades que manejan el sistema. <br>
-                                        <span id="lblUsuariosValue" class="float-right mt-1">Desactivado.</span>
+                                        <span id="lblUsuariosValue" class="float-right mt-1">Desactivado</span>
                                     <input id="usuariosValue" name="usuariosValue" type="hidden" value="0">
                                 </label>
                             </div>
@@ -149,31 +150,34 @@ admin_Page::sidebarTemplate('Permisos | Citiger');
                                     <i class="fas fa-car mr-2"></i>
                                         Visitas <br>
                                         Crea y administra registros de todas las personas que ingresan a la residencial. <br>
-                                        <span id="lblVisitasValue" class="float-right mt-1">Desactivado.</span>
+                                        <span id="lblVisitasValue" class="float-right mt-1">Desactivado</span>
                                     <input id="visitasValue" name="visitasValue" type="hidden" value="0">
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4">
-                        <div class="col-12 d-flex justify-content-center align-items-center">
-                            <div class="form-group">
-                                <label class="tituloCajaTextoFormulario" for="txtContrasenaActual">Contraseña Actual:</label>
-                                <input onChange="checkContrasena('txtContrasenaActual')" type="password" class="form-control cajaTextoModal2" id="txtContrasenaActual" name="txtContrasenaActual" placeholder="">
+                    <div id="password-div" class="form-group">
+                        <div class="row mt-4">
+                            <div class="col-12 d-flex justify-content-center align-items-center">
+                                <div class="form-group">
+                                    <label class="tituloCajaTextoFormulario" for="txtContrasenaActual">Contraseña Actual:</label>
+                                    <input onChange="checkContrasena('txtContrasenaActual')" type="password" class="form-control cajaTextoModal2" id="txtContrasenaActual" name="txtContrasenaActual" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-12 d-flex justify-content-center align-items-center">
+                                <div class="custom-control custom-switch">
+                                    <input onchange="showHidePassword2('cbMostrarContraseña', 'txtContrasenaActual')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña">
+                                    <label class="p-0 custom-control-label" for="cbMostrarContraseña">Mostrar Contraseña</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-center">
-                        <div class="col-12 d-flex justify-content-center align-items-center">
-                            <div class="custom-control custom-switch">
-                                <input onchange="showHidePassword2('cbMostrarContraseña', 'txtContrasenaActual')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña">
-                                <label class="p-0 custom-control-label" for="cbMostrarContraseña">Mostrar Contraseña</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
+                    <div class="row" id="rowBtn">
                         <div class="col-12 d-flex justify-content-end align-items-end">
-                            <button type="submit" class="btn botonesListado"><span class="fas fa-check tamañoIconosBotones mr-3"></span>Agregar</button>
+                            <button id="btnAgregar" type="submit" class="btn botonesListado"><span class="fas fa-check tamañoIconosBotones mr-3"></span>Agregar</button>
+                            <button id="btnActualizar" type="submit" class="btn botonesListado"><span class="fas fa-check tamañoIconosBotones mr-3"></span>Actualizar</button>
                         </div>
                     </div>
                 </form>

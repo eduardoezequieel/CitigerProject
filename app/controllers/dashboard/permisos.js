@@ -48,7 +48,7 @@ function fillTable(dataset){
                 <th scope="row">
                     <div class="row paddingBotones">
                         <div class="col-12">
-                            <a href="#" onclick="readDataOnModal(${row.idusuario}) "data-toggle="modal" data-target="#administrarAdmin" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
+                            <a href="#" onclick="editPermissions(${row.idtipousuario}, '${row.tipousuario}')" class="btn btnTabla mx-2"><i class="fas fa-edit"></i></a>
 
                             <a href="#" onclick="deleteType(${row.idtipousuario})" class="btn btnTabla2 mx-2"><i class="fas fa-trash"></i></a>
                         </div>
@@ -133,6 +133,65 @@ document.getElementById('btnReiniciar').addEventListener('click',function(event)
 document.getElementById('btnInsertDialog').addEventListener('click',function(){
     //Cambiamos el titulo del modal y limpiamos el formulario
     document.getElementById('tituloModal').textContent = 'Crear Nuevo Tipo de Usuario';
+    //Arreglo que contiene los span de los botones
+    let spans = [
+        document.getElementById('lblAlquileresValue'),
+        document.getElementById('lblAportacionesValue'),
+        document.getElementById('lblDenunciaValue'),
+        document.getElementById('lblMaterialesValue'),
+        document.getElementById('lblUsuariosValue'),
+        document.getElementById('lblVisitasValue'),    
+    ]
+    //Arreglo que contiene los inputs de los botones
+    let inputs = [
+        document.getElementById('alquileresValue'),
+        document.getElementById('aportacionesValue'),
+        document.getElementById('denunciaValue'),
+        document.getElementById('materialesValue'),
+        document.getElementById('usuariosValue'),
+        document.getElementById('visitasValue'),
+    ]
+    //Arreglo que contiene los label de los botones
+    let labels = [
+        document.getElementById('btnAlquileres'),
+        document.getElementById('btnAportaciones'),
+        document.getElementById('btnDenuncia'),
+        document.getElementById('btnMateriales'),
+        document.getElementById('btnUsuarios'),
+        document.getElementById('btnVisitas'),
+    ]
+
+    //Se recorre cada una de las posiciones de los arreglos
+    for (let i = 0; i < labels.length; i++) {
+        //Se guarda cada posicion del arreglo en una variable a parte
+        var label = labels[i];
+        var input = inputs[i];
+        var span = spans[i];
+        //Se asigna la clase por defecto
+        label.className = 'btn shadow-none botonesCheckbox';
+        //Se asigna el valor a los inputs por defecto
+        input.value = 0;
+        //Se asigna a los span la etiqueta por defecto.
+        span.textContent = 'Desactivado';
+    }
+
+    //Se limpia el input de tipo de usuario
+    document.getElementById('txtTipoUsuario').value = '';
+    document.getElementById('txtTipoUsuario').classList.remove('error');
+    document.getElementById('txtTipoUsuario').classList.remove('success');
+
+    //Se limpia el input de contraseña
+    document.getElementById('password-div').className = 'form-group';
+    document.getElementById('txtContrasenaActual').value = '';
+    document.getElementById('txtContrasenaActual').classList.remove('error');
+    document.getElementById('txtContrasenaActual').classList.remove('success');
+
+    //Se oculta el boton de actualizar y se muestra el de insertar
+    document.getElementById('btnAgregar').className = 'btn botonesListado';
+    document.getElementById('btnActualizar').className = 'd-none';
+
+    //Se elimina margen
+    document.getElementById('rowBtn').classList.remove('mt-5');
 });
 
 //Cambiar estilo y valor a los botones al momento de hacer click
@@ -171,34 +230,38 @@ function showHidePassword2(checkbox, pass1) {
 
 //Al accionar el formulario de crear tipo de usuario y sus permisos
 document.getElementById('create-form').addEventListener('submit',function(event){
-    //Evitamos recargar el formulario
-    event.preventDefault();
-    data = new FormData(document.getElementById('create-form'));
-    console.log(data);
-    //fetch
-    fetch(API_USUARIO + 'createType', {
-        method: 'post',
-        body: new FormData(document.getElementById('create-form'))
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
-                    readTypes();
-                    closeModal('administrarTipoUsuario');
-                    sweetAlert(1, response.message, null);
-                } else {
-                    sweetAlert(2, response.exception, null);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(function (error) {
-        console.log(error);
-    })
+    if (document.getElementById('btnAgregar').classList.contains('botonesListado')) {
+        //Evitamos recargar el formulario
+        event.preventDefault();
+        data = new FormData(document.getElementById('create-form'));
+        console.log(data);
+        //fetch
+        fetch(API_USUARIO + 'createType', {
+            method: 'post',
+            body: new FormData(document.getElementById('create-form'))
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+            if (request.ok) {
+                request.json().then(function (response) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
+                        readTypes();
+                        closeModal('administrarTipoUsuario');
+                        sweetAlert(1, response.message, null);
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(function (error) {
+            console.log(error);
+        })
+    } else {
+        
+    }
 });
 
 //Función para eliminar registros
@@ -242,5 +305,87 @@ function deleteType(id){
                 console.log(error);
             });
         }
+    });
+}
+
+//Funcion que carga los permisos de un tipo de usario
+function editPermissions(id, type){
+    // Se guarda en un form el id
+    data = new FormData();
+    data.append('idTipoUsuario', id);
+    document.getElementById('idTipoUsuario').value = id;
+    //Abrimos el modal
+    openModal('administrarTipoUsuario');
+    document.getElementById('txtTipoUsuario').value = type;
+    //Cambiamos el titulo del modal
+    document.getElementById('tituloModal').textContent = 'Editar Tipo de Usuario';
+    //Se limpia el input de contraseña
+    document.getElementById('txtContrasenaActual').value = '';
+    //Se oculta el boton de actualizar y se muestra el de insertar
+    document.getElementById('btnAgregar').className = 'd-none';
+    document.getElementById('btnActualizar').className = 'btn botonesListado';
+    //Arreglo que contiene los span de los botones
+    let spans = [
+        document.getElementById('lblAlquileresValue'),
+        document.getElementById('lblAportacionesValue'),
+        document.getElementById('lblDenunciaValue'),
+        document.getElementById('lblMaterialesValue'),
+        document.getElementById('lblUsuariosValue'),
+        document.getElementById('lblVisitasValue'),    
+    ]
+    //Arreglo que contiene los inputs de los botones
+    let inputs = [
+        document.getElementById('alquileresValue'),
+        document.getElementById('aportacionesValue'),
+        document.getElementById('denunciaValue'),
+        document.getElementById('materialesValue'),
+        document.getElementById('usuariosValue'),
+        document.getElementById('visitasValue'),
+    ]
+    //Arreglo que contiene los label de los botones
+    let labels = [
+        document.getElementById('btnAlquileres'),
+        document.getElementById('btnAportaciones'),
+        document.getElementById('btnDenuncia'),
+        document.getElementById('btnMateriales'),
+        document.getElementById('btnUsuarios'),
+        document.getElementById('btnVisitas'),
+    ]
+    //fetch
+    fetch(API_USUARIO + 'getPermissionsOfAType', {
+        method: 'post',
+        body: data
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    i = 0;
+                    response.dataset.map(function(row){
+                        if (row.permitido == '1') {
+                            labels[i].classList.remove('botonesCheckbox');
+                            labels[i].classList.add('botonesCheckboxChecked');
+                            inputs[i].value = 1;
+                            spans[i].textContent = 'Activado';
+                        } else {
+                            labels[i].classList.add('botonesCheckbox');
+                            labels[i].classList.remove('botonesCheckboxChecked');
+                            inputs[i].value = 0;
+                            spans[i].textContent = 'Desactivado';
+                        }
+                        i = i+1; 
+
+                    });
+                } else {
+                    sweetAlert(2, response.exception, null);
+                    console.log(response.status + ' ' + response.statusText);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
     });
 }

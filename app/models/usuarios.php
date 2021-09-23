@@ -341,6 +341,14 @@ class Usuarios extends Validator
         return Database::getRows($sql, $params);    
     }
 
+    //Obtener los permisos de un tipo de usuario
+    public function getPermissionsOfAType()
+    {
+        $sql = 'SELECT*FROM permisousuario WHERE idtipousuario = ?';
+        $params = array($this->idTipoUsuario);
+        return Database::getRows($sql, $params);
+    }
+
      //Función para buscar tipos de usuario
      public function searchTypesOfUser($value)
      {

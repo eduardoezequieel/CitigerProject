@@ -124,6 +124,23 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
+            //Caso para obtener los permisos de un usuario
+            case 'getPermissionsOfAType':
+                if ($usuarios->setIdTipoUsuario($_POST['idTipoUsuario'])) {
+                    if ($result['dataset'] = $usuarios->getPermissionsOfAType()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Este tipo de usuario no posee permisos.';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Id invalido.';
+                }
+             
+                break;
             //Realizar busquedas de tipos de usuario
             case 'searchTypesOfUser':
                 $_POST = $usuarios->validateForm($_POST);
@@ -661,10 +678,6 @@ if (isset($_GET['action'])) {
                                     $correo->cleanCode($_SESSION['idusuario']);
                                     unset($_SESSION['idusuario']);
                                     unset($_SESSION['mail']);
-
-                                    
-
-
                                 } else {
                                     $result['exception'] = Database::getException();
                                 }
