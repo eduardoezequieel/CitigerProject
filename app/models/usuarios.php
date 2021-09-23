@@ -488,6 +488,14 @@ class Usuarios extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Funcion para actualizar un tipo de usuario
+    public function updateType()
+    {
+        $sql = 'UPDATE tipousuario SET tipousuario = ? WHERE idtipousuario = ?';
+        $params = array($this->tipousuario, $this->idTipoUsuario);
+        return Database::executeRow($sql, $params);
+    }
+
     //Función para obtener la información de un tipo de usuario previamente ingresado
     public function getType($value)
     {

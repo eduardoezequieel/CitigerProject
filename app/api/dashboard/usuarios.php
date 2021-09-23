@@ -94,6 +94,48 @@ if (isset($_GET['action'])) {
                 }
                 
                 break;
+            //Caso para actualizar tipo de usuario y sus permisos
+            case 'updateType':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
+                    if ($usuarios->checkPassword($_POST['txtContrasenaActual'])) {
+                        if ($usuarios->setId($_POST['idTipoUsuario'])) {
+                            if ($usuarios->setTipoUsuario($_POST['txtTipoUsuario'])) {
+                                if ($usuarios->updateType()) {
+                                    //Guardamos en un arreglo los seleccionados por el usuario
+                                    $array = array($_POST['alquileresValue'],
+                                    $_POST['aportacionesValue'],
+                                    $_POST['denunciaValue'],
+                                    $_POST['materialesValue'],
+                                    $_POST['usuariosValue'],
+                                    $_POST['visitasValue']);
+                                    $permissions = array(1,2,3,4,5,6);
+                                    //Mandamos el arreglo a la funcion que se encarga de ingresar los datos
+                                    if ($usuarios->updatePermission($array, $permissions)) {
+                                        $result['status'] = 1;
+                                        $result['dataset'] = $array;
+                                        $result['dataset2'] = $permissions;
+                                        $result['message'] = 'Permisos actualizados correctamente.';
+                                    } else {
+                                        $result['exception'] = Database::getException();
+                                    }
+                                } else {
+                                    $result['exception'] = Database::getException();
+                                }
+                            } else {
+                                $result['exception'] = 'Nombre para el tipo de usuario invalido..';
+                            }
+                        } else {
+                            $result['exception'] = 'Id incorrecto.';
+                        }
+                    } else {
+                        $result['exception'] = 'Contraseña incorrecta.';
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto.';
+                }
+                
+                break;
             //Caso para eliminar un tipo de usuario y sus permisos
             case 'deleteType':
                 if ($usuarios->setIdTipoUsuario($_POST['idTipoUsuario'])) {

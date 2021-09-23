@@ -233,8 +233,7 @@ document.getElementById('create-form').addEventListener('submit',function(event)
     if (document.getElementById('btnAgregar').classList.contains('botonesListado')) {
         //Evitamos recargar el formulario
         event.preventDefault();
-        data = new FormData(document.getElementById('create-form'));
-        console.log(data);
+        console.log('Agregar');
         //fetch
         fetch(API_USUARIO + 'createType', {
             method: 'post',
@@ -258,9 +257,37 @@ document.getElementById('create-form').addEventListener('submit',function(event)
             }
         }).catch(function (error) {
             console.log(error);
-        })
+        });
     } else {
-        
+        //Evitamos recargar el formulario
+        event.preventDefault();
+        console.log('Actualizar');
+        //fetch
+        fetch(API_USUARIO + 'updateType', {
+            method: 'post',
+            body: new FormData(document.getElementById('create-form'))
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+            if (request.ok) {
+                request.json().then(function (response) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
+                        readTypes();
+                        closeModal('administrarTipoUsuario');
+                        console.log(response.dataset);
+                        console.log(response.dataset2);
+                        sweetAlert(1, response.message, null);
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 });
 
