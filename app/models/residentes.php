@@ -398,6 +398,22 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Funcion para obtener la preferencia del usuario con la autenticacion
+    public function getAuthMode()
+    {
+        $sql = 'SELECT autenticacion FROM residente WHERE idresidente = ?';
+        $params = array($this->idResidente);
+        return Database::getRow($sql, $params);
+    }
+
+    //Funcion para actualizar la preferencia del usuario con la autenticacion.
+    public function updateAuthMode($auth)
+    {
+        $sql = 'UPDATE residente SET autenticacion = ? WHERE idresidente = ?';
+        $params = array($auth, $this->idResidente);
+        return Database::executeRow($sql, $params);
+    }
+
 
     //Eliminar registro de empleado
     public function deleteRow()

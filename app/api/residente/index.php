@@ -51,7 +51,7 @@ if (isset($_GET['action'])) {
                 break;
             //Caso para actualizar la preferencia del modo de autenticacion del usuario
             case 'updateAuthMode':
-                if ($usuarios->setIdResidente($_SESSION['idusuario_caseta'])) {
+                if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
                     if ($usuarios->checkPassword($_POST['txtContrasenaActualAuth'])) {
                         if ($_POST['switchValue'] == 'Si' || $_POST['switchValue'] == 'No') {
                             if ($usuarios->updateAuthMode($_POST['switchValue'])) {
