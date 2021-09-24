@@ -101,6 +101,85 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
         </div>
     </div>
 
+    <!-- Modal para verificar el codigo de verificación en la doble autenticación -->
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" id="verificarCodigoAuth"
+        tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content justify-content-center px-3 py-2">
+                <!-- Cabecera del Modal -->
+                <div class="modal-header">
+                    <!-- Titulo -->
+                    <h5 class="modal-title tituloModal"><span class="fas fa-info-circle mr-4 iconoModal"></span>Código
+                        de Verificación</h5>
+
+                </div>
+
+                <!-- Contenido del Modal -->
+                <div class="modal-body textoModal px-3 pb-4 mt-2">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                            <img src="../../resources/img/undraw_Newsletter_re_wrob.png" class="img-fluid">
+                        </div>
+                        <div
+                            class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
+                            <form autocomplete="off" action="/form" id="checkCodeAuth-form">
+                                <div class="d-flex justify-content-center align-items-center mb-2">
+                                    <div class="alert w-75 yellowAlert alert-dismissible fade show" role="alert">
+                                        <strong>Factor de Autenticación en dos pasos.</strong> Ingresa el código de verificación enviado a tu
+                                        correo.<br>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center mb-2">
+                                    <!-- Input Correo -->
+                                    <div class="form-group mb-4" style="width: 300px;">
+                                        <h1 class="tituloCajasLogin">Código de Verificación:</h1>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <input type="text" id="1a" name="1a"
+                                                onKeyup="autotab(this, document.getElementById('2a'),document.getElementById('1a'))"
+                                                onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+                                                Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="2a" name="2a"
+                                                onKeyup="autotab(this, document.getElementById('3a'),document.getElementById('1a'))"
+                                                onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+                                                Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="3a" name="3a"
+                                                onKeyup="autotab(this, document.getElementById('4a'),document.getElementById('2a'))"
+                                                onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+                                                Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="4a" name="4a"
+                                                onKeyup="autotab(this, document.getElementById('5a'),document.getElementById('3a'))"
+                                                onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+                                                Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="5a" name="5a"
+                                                onKeyup="autotab(this, document.getElementById('6a'),document.getElementById('4a'))"
+                                                onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+                                                Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" id="6a" name="6a"
+                                                onKeyup="autotab(this, document.getElementById('6a'),document.getElementById('5a'))"
+                                                onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+                                                Required maxlength="1" class="form-control cajaCodigo" Required>
+                                            <input type="text" class="d-none" id="codigoAuth" name="codigoAuth">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <button type="submit" href="#" class="btn btnAgregarFormulario mr-2"><span
+                                            class="fas fa-check mr-3 tamañoIconosBotones"></span>Verificar
+                                        Código</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Fin del Contenido del Modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del Modal -->
+
     <!-- Modal para recuperar la contraseña -->
     <div class="modal fade" id="recuperarContraseña" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">

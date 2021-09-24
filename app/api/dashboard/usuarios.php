@@ -27,7 +27,8 @@ if (isset($_GET['action'])) {
     //Array para respuesta de la API
     $result = array('status' => 0, 
                     'recaptcha' => 0, 
-                    'error' => 0, 
+                    'error' => 0,
+                    'auth' => 0, 
                     'message' => null, 
                     'exception' => null);
     //Verificando si hay una sesion iniciada
@@ -480,6 +481,7 @@ if (isset($_GET['action'])) {
                                 $_SESSION['foto_dashboard'] = $usuarios->getFoto();
                                 $_SESSION['tipousuario_dashboard'] = $usuarios->getIdTipoUsuario();
                                 $_SESSION['modo_dashboard'] = $usuarios->getModo();
+                                $_SESSION['correo_dashboard'] = $usuarios->getCorreo();
                                 //Se reinicia el conteo de intentos fallidos
                                 if ($usuarios->increaseIntentos(0)){
                                     if ($result['dataset'] = $usuarios->checkLastPasswordUpdate()) {
@@ -489,8 +491,26 @@ if (isset($_GET['action'])) {
                                         $_SESSION['idusuario_dashboard_tmp'] = $_SESSION['idusuario_dashboard'];
                                         unset($_SESSION['idusuario_dashboard']);
                                     } else {
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Sesión iniciada correctamente.';
+                                        if ($autenticacion = $usuarios->getAuthMode()) {
+                                            if ($autenticacion['autenticacion'] == 'Si') {
+                                                $result['auth'] = 1;
+                                                $result['status'] = 1;
+                                                $_SESSION['idusuario_temp'] = $usuarios->getId();
+                                                unset($_SESSION['idusuario_dashboard']);
+                                            } else {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Sesión iniciada correctamente.';
+                                            }
+                                            
+                                        } else {
+                                            if (Database::getException()) {
+                                                $result['exception'] = Database::getException();
+                                            } else {
+                                                $result['exception'] = 'El usuario no posee ninguna preferencia.';
+                                            }
+                                            
+                                        }
+                                        
                                     }
                                 }
                             } else {
@@ -524,7 +544,70 @@ if (isset($_GET['action'])) {
                 }
                 
                 break;
-                //Caso para registrar el primer usuario del sistema
+            case 'sendVerificationCode':
+                // Generamos el codigo de seguridad 
+                $code = rand(999999, 111111);
+                if ($correo->setCorreo($_SESSION['correo_dashboard'])) {
+                    // Ejecutamos funcion para obtener el usuario del correo ingresado\
+                    $correo->obtenerUsuario($_SESSION['correo_dashboard']);
+
+                    try {
+
+                        //Ajustes del servidor
+                        $mail->SMTPDebug = 0;
+                        $mail->isSMTP();
+                        $mail->Host       = 'smtp.gmail.com';
+                        $mail->SMTPAuth   = true;
+                        $mail->Username   = 'citigersystem@gmail.com';
+                        $mail->Password   = 'citiger123';
+                        $mail->SMTPSecure = 'tls';
+                        $mail->Port       = 587;
+                        $mail->CharSet    = 'UTF-8';
+
+
+                        //Receptores
+                        $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
+                        $mail->addAddress($correo->getCorreo());
+
+                        //Contenido
+                        $mail->isHTML(true);
+                        $mail->Subject = 'Código de Verificación';
+                        $mail->Body    = 'Hola ' . $_SESSION['usuario'] . ', tu código de seguridad para el factor de doble autenticación es: <b>' . $code . '</b>';
+
+                        if ($mail->send()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Código enviado correctamente, ' . $_SESSION['usuario'] . ' ';
+                            $correo->actualizarCodigo('usuario', $code);
+                        }
+                    } catch (Exception $e) {
+                        $result['exception'] = $mail->ErrorInfo;
+                    }
+                } else {
+                    $result['exception'] = 'Correo incorrecto';
+                }
+
+                break;
+            //Caso para verificar el código con el factor de autenticación en dos pasos.
+            case 'verifyCodeAuth':
+                $_POST = $usuarios->validateForm($_POST);
+                // Validmos el formato del mensaje que se enviara en el correo
+                if ($correo->setCodigo($_POST['codigoAuth'])) {
+                    // Ejecutamos la funcion para validar el codigo de seguridad
+                    if ($correo->validarCodigo('usuario',$_SESSION['idusuario_temp'])) {
+                        $_SESSION['idusuario_dashboard'] = $_SESSION['idusuario_temp'];
+                        unset($_SESSION['idusuario_temp']);
+                        $result['status'] = 1;
+                        // Colocamos el mensaje de exito 
+                        $result['message'] = 'Sesión iniciada correctamente.';
+                    } else {
+                        // En caso que el correo no se envie mostramos el error
+                        $result['exception'] = 'El código ingresado no es correcto.';
+                    }
+                } else {
+                    $result['exception'] = 'Mensaje incorrecto';
+                }
+                break;
+            //Caso para registrar el primer usuario del sistema
             case 'register':
                 $_POST = $usuarios->validateForm($_POST);
                 if (isset($_SESSION['idusuario_dashboard'])) {
@@ -672,7 +755,6 @@ if (isset($_GET['action'])) {
                 break;
 
                 case 'sendMail':
-
                     $_POST = $usuarios->validateForm($_POST);
                     // Generamos el codigo de seguridad 
                     $code = rand(999999, 111111);
