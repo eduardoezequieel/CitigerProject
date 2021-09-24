@@ -373,7 +373,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
 </div>
 <!-- Fin del Modal -->
 
-<!-- Modal para Cambiar Contraseña -->
+<!-- Modal para Cambiar Autenticación -->
 <div class="modal fade" id="administrarAuth" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content justify-content-center px-3 py-2">
