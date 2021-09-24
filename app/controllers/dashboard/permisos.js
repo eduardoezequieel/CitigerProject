@@ -279,8 +279,6 @@ function updateRow(){
                     // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
                     readTypes();
                     closeModal('administrarTipoUsuario');
-                    console.log(response.dataset);
-                    console.log(response.dataset2);
                     sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(2, response.exception, null);

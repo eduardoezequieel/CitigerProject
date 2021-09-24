@@ -99,7 +99,7 @@ if (isset($_GET['action'])) {
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($usuarios->checkPassword($_POST['txtContrasenaActual'])) {
-                        if ($usuarios->setId($_POST['idTipoUsuario'])) {
+                        if ($usuarios->setIdTipoUsuario($_POST['idTipoUsuario'])) {
                             if ($usuarios->setTipoUsuario($_POST['txtTipoUsuario'])) {
                                 if ($usuarios->updateType()) {
                                     //Guardamos en un arreglo los seleccionados por el usuario
