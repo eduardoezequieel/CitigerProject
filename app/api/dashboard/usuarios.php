@@ -34,6 +34,45 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idusuario_dashboard'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
+            //Obtener el modo de autenticación de un usuario
+            case 'getAuthMode':
+                if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
+                    if ($result['dataset'] = $usuarios->getAuthMode()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Este usuario no tiene ninguna preferencia.';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto.';
+                }
+                
+                break;
+            //Caso para actualizar la preferencia del modo de autenticacion del usuario
+            case 'updateAuthMode':
+                if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
+                    if ($usuarios->checkPassword($_POST['txtContrasenaActualAuth'])) {
+                        if ($_POST['switchValue'] == 'Si' || $_POST['switchValue'] == 'No') {
+                            if ($usuarios->updateAuthMode($_POST['switchValue'])) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Exito.';
+                            } else {
+                                $result['exception'] = Database::getException();
+                            }
+                        } else {
+                            $result['exception'] = 'Valor incorrecto.';
+                        }
+                    } else {
+                        $result['exception'] = 'Contraseña incorrecta.';
+                    }
+                } else {
+                    $result['exception'] = 'Sesión invalida.';
+                }
+                
+                break;
             //Crear nuevo tipo de usuario y asignar permisos
             case 'createType':
                 $_POST = $usuarios->validateForm($_POST);

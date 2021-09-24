@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-
                     previewSavePicture('divFoto', response.dataset.foto, 1);
                     document.getElementById('nombres').textContent = (response.dataset.nombres);
                     document.getElementById('lblNombres').textContent = (response.dataset.nombre);
@@ -39,6 +38,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+
+    fetch(API_USUARIOS + 'getAuthMode', {
+        method: 'get',
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                    document.getElementById('lblAuth').textContent = response.dataset.autenticacion;
+                    document.getElementById('switchValue').value = response.dataset.autenticacion;
+                    if (response.dataset.autenticacion == 'Si') {
+                        document.getElementById('cbDobleAuth').setAttribute('checked', true);
+                    } else {
+        
+                    }
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -240,6 +266,38 @@ document.getElementById('img-form').addEventListener('submit', function (event) 
     });
 
 });
+
+//Al accionar el evento submit del formulario
+document.getElementById('auth-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //fetch
+    fetch(API_USUARIOS + 'updateAuthMode', {
+        method: 'post',
+        body: new FormData(document.getElementById('auth-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    closeModal('administrarAuth');
+                    if (document.getElementById('switchValue').value == 'Si') {
+                        sweetAlert(1, 'Usted ha activado el factor de autenticación en dos pasos. Notará los cambios la proxima vez que inicié sesión.', 'ajustes_cuenta.php');
+                    } else {
+                        sweetAlert(1, 'Usted ha desactivado el factor de autenticación en dos pasos. Notará los cambios la proxima vez que inicié sesión.', 'ajustes_cuenta.php');
+                    }
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+})
 
 //Al mover el switch
 function changeInputValue(input){

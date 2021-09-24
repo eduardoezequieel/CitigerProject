@@ -151,7 +151,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                 <div class="row mt-2">
                                     <div class="col-6">
                                         <h1 class="tituloInformacion">Factor de Doble Autenticación</h1>
-                                        <h2 class="informacion" id="lblAuth">No</h2>
+                                        <h2 class="informacion" id="lblAuth"></h2>
                                     </div>
                                     <div class="col-6">
                                         <button data-target="#administrarAuth" data-toggle="modal" class="btn botonesAjustes">Cambiar</button>
@@ -228,7 +228,6 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <br>
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
                 <form method="post" id="admin-form" autocomplete="off">
@@ -305,7 +304,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <br>
+        
             <!-- Contenido del Modal -->
             <div class="textoModal px-3 pb-4 mt-2">
                     <div class="row">
@@ -387,9 +386,8 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <br>
             <!-- Contenido del Modal -->
-            <div class="modal-body textoModal px-3 pb-4 mt-2">
+            <div class="modal-body textoModal px-3 pb-4">
                 <div class="row">
                     <div class="col-12">
                         <div class="alert yellowAlert alert-dismissible fade show" role="alert">
@@ -418,7 +416,14 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="row justify-content-center">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <div class="custom-control custom-switch">
+                                <input onchange="showHidePassword('cbMostrarContraseña2', 'txtContrasenaActualAuth')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña2">
+                                <label class="p-0 custom-control-label" for="cbMostrarContraseña2">Mostrar Contraseña</label>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Botones de Acción del Formulario -->
                     <div class="row justify-content-center mt-4">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">

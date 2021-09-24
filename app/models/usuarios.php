@@ -361,7 +361,21 @@ class Usuarios extends Validator
         return Database::getRows($sql, $params);
     }
 
-    //Funcion para obtener la preferencia del usuario en autenticación
+    //Funcion para obtener la preferencia del usuario con la autenticacion
+    public function getAuthMode()
+    {
+        $sql = 'SELECT autenticacion FROM usuario WHERE idusuario = ?';
+        $params = array($this->idUsuario);
+        return Database::getRow($sql, $params);
+    }
+
+    //Funcion para actualizar la preferencia del usuario con la autenticacion.
+    public function updateAuthMode($auth)
+    {
+        $sql = 'UPDATE usuario SET autenticacion = ? WHERE idusuario = ?';
+        $params = array($auth, $this->idUsuario);
+        return Database::executeRow($sql, $params);
+    }
 
     //Función para verificar el tipo de usuario que quiere ingresar
     public function checkUserType($num)
