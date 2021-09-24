@@ -154,7 +154,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                         <h2 class="informacion" id="lblAuth">No</h2>
                                     </div>
                                     <div class="col-6">
-                                        <a href="#" class="btn botonesAjustes">Cambiar</a>
+                                        <button data-target="#administrarAuth" data-toggle="modal" class="btn botonesAjustes">Cambiar</button>
                                     </div>
                                 </div>
 
@@ -364,6 +364,65 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                     <div class="row justify-content-center mt-4">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
                             <button id="btnActualizarContrasena" type="submit" name="btnActualizar" href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Cambiar Contraseña</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Fin del Contenido del Modal -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
+
+<!-- Modal para Cambiar Contraseña -->
+<div class="modal fade" id="administrarAuth" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Factor de Doble Autenticación</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <br>
+            <!-- Contenido del Modal -->
+            <div class="modal-body textoModal px-3 pb-4 mt-2">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert yellowAlert alert-dismissible fade show" role="alert">
+                            <strong>Importante.</strong> Debes ingresar tu contraseña para poder actualizar estos ajustes.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <form method="post" action="/form" autocomplete="off" id="auth-form">
+                    <div class="row my-3">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <div class="custom-control custom-switch">
+                                <input onchange="changeInputValue('switchValue')" type="checkbox" class="p-0 custom-control-input" id="cbDobleAuth">
+                                <label class="p-0 custom-control-label" for="cbDobleAuth">Factor de Doble Autenticación</label>
+                            </div>
+                            <input type="hidden" name="switchValue" id="switchValue" value="No">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                            <div class="form-group w-xl-50 w-md-50">
+                                <label class="tituloCajaTextoFormulario" for="txtContrasenaActualAuth">Contraseña Actual:</label>
+                                <input onChange="checkContrasena('txtContrasenaActualAuth')" type="password" class="form-control cajaTextoModal2" id="txtContrasenaActualAuth" name="txtContrasenaActualAuth" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botones de Acción del Formulario -->
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                            <button id="btnActualizarAuth" type="submit" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Actualizar</button>
                         </div>
                     </div>
                 </form>

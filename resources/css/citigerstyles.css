@@ -1412,7 +1412,7 @@ textarea :-ms-input-placeholder {
   font-family: 'Manrope', sans-serif !important;
   color: var(--color-tipografia-titulos) !important;
 
-  font-size: 14px !important;
+  font-size: 13px !important;
   padding-top: 1px !important;
 }
 

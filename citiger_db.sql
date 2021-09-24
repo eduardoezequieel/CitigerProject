@@ -457,3 +457,11 @@ ALTER TABLE permisoUsuario ALTER COLUMN permitido SET NOT NULL;
 
 --Cambios 23/9/2021
 UPDATE permisousuario SET permitido = '1'
+
+ALTER TABLE usuario ADD COLUMN autenticacion CHAR(2) NULL;
+UPDATE usuario SET autenticacion = 'No';
+ALTER TABLE usuario ALTER COLUMN autenticacion SET NOT NULL;
+
+ALTER TABLE residente ADD COLUMN autenticacion CHAR(2) NULL;
+UPDATE residente SET autenticacion = 'No';
+ALTER TABLE usuario ALTER COLUMN autenticacion SET NOT NULL;

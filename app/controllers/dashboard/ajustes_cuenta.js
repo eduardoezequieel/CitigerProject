@@ -240,3 +240,13 @@ document.getElementById('img-form').addEventListener('submit', function (event) 
     });
 
 });
+
+//Al mover el switch
+function changeInputValue(input){
+    //Asignamos el valor al input invisible
+    if (document.getElementById(input).value == 'No') {
+        document.getElementById(input).value = 'Si';
+    } else {
+        document.getElementById(input).value = 'No';
+    }
+}

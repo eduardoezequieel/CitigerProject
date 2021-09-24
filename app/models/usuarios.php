@@ -349,17 +349,19 @@ class Usuarios extends Validator
         return Database::getRows($sql, $params);
     }
 
-     //Función para buscar tipos de usuario
-     public function searchTypesOfUser($value)
-     {
-         $sql = 'SELECT idtipousuario, tipousuario, COUNT(permitido) FILTER (WHERE permitido = \'1\') AS permisos 
-                FROM permisousuario 
-                INNER JOIN tipousuario USING (idtipousuario)
-                WHERE tipousuario ILIKE ? AND idtipousuario <> 1
-                GROUP BY tipousuario, idtipousuario';
-         $params = array("%$value%");
-         return Database::getRows($sql, $params);
-     }
+    //Función para buscar tipos de usuario
+    public function searchTypesOfUser($value)
+    {
+        $sql = 'SELECT idtipousuario, tipousuario, COUNT(permitido) FILTER (WHERE permitido = \'1\') AS permisos 
+            FROM permisousuario 
+            INNER JOIN tipousuario USING (idtipousuario)
+            WHERE tipousuario ILIKE ? AND idtipousuario <> 1
+            GROUP BY tipousuario, idtipousuario';
+        $params = array("%$value%");
+        return Database::getRows($sql, $params);
+    }
+
+    //Funcion para obtener la preferencia del usuario en autenticación
 
     //Función para verificar el tipo de usuario que quiere ingresar
     public function checkUserType($num)
