@@ -387,7 +387,7 @@ class Usuarios extends Validator
         } else {
             $sql = 'SELECT idUsuario,foto,idEstadoUsuario, username,tipoUsuario, modo FROM usuario 
             INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = usuario.idTipoUsuario
-            WHERE correo = ? AND tipoUsuario != ? OR correo=? AND tipoUsuario = \'Administrador\'';
+            WHERE correo = ? AND tipoUsuario != ? OR correo=? AND tipoUsuario <> \'caseta\'';
         }
         $params = array($this->correo,$this->idTipoUsuario,$this->correo);
         return Database::getRow($sql, $params);
@@ -810,11 +810,11 @@ class Usuarios extends Validator
 
     //Función para obtener los permisos del usuario logueado
     public function checkUserLoggedPermissions() {
-        $sql = "SELECT tipousuario, permiso, permitido FROM permisousuario
+        $sql = 'SELECT tipousuario, permiso, permitido FROM permisousuario
                 INNER JOIN tipousuario USING(idtipousuario)
                 INNER JOIN permiso USING(idpermiso)
                 WHERE idtipousuario = (SELECT idtipousuario FROM usuario WHERE idusuario = ?)
-                AND permitido = '1'";
+                AND permitido = \'1\'';
         $params = array($_SESSION['idusuario_dashboard']);
         return Database::getRows($sql, $params);
     }

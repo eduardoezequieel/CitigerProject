@@ -452,7 +452,9 @@ if (isset($_GET['action'])) {
             case 'checkUserLoggedPermissions':
                 if ($result['dataset'] = $usuarios->checkUserLoggedPermissions()) {
                     $result['status'] = 1;
-                } 
+                } else {
+                    $result['exception'] = $_SESSION['idusuario_dashboard'];
+                }
                 break;
                 //Caso de default del switch
             default:
