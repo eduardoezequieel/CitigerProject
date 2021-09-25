@@ -667,6 +667,32 @@ function saveRow(api, action, form, modal) {
     });
 }
 
+//Función para redireccionar según permisos
+function checkPermissions(pagina){
+    // Se define un objeto con los datos del registro seleccionado.
+    const data = new FormData();
+    data.append('txtPagina', pagina);
+    //Verificando las credenciales del usuario
+    fetch('../../app/api/dashboard/usuarios.php?action=checkUserLoggedPermissions',{
+        method: 'post',
+        body: data
+    }).then(request => {
+        //Verificando si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
+                if (response.status) {
+                   console.log('yeah')
+                } else {
+                    window.location.href = 'dashboard.php';
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(error => console.log(error));
+}
+
 function saveRowBoolean(api, action, form, modal) {
     fetch(api + action, {
         method: 'post',

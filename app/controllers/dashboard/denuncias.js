@@ -7,6 +7,7 @@ const ENDPOINT_EMPLOYEEBYTYPES = '../../app/api/dashboard/denuncias.php?action=r
 document.addEventListener('DOMContentLoaded', function(){
     readRows(API_DENUNCIAS);
     fillSelect(ENDPOINT_STATES, 'cbEstadoDenuncia', null);
+    checkPermissions('Denuncias');
 })
 
 //Llenado de tabla

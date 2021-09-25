@@ -21,22 +21,6 @@ document.addEventListener('DOMContentLoaded',function(){
     contadorVisitas();
     contadorAportacion(); 
 
-    //Verificando las credenciales del usuario
-    fetch('../../app/api/dashboard/usuarios.php?action=checkUserLoggedPermissions').then(request => {
-        //Verificando si la petición fue correcta
-        if (request.ok) {
-            request.json().then(response => {
-                //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
-                if (response.status) {
-                    console.log(response.dataset);
-                } else {
-                    console.log(response.exception)
-                }
-            })
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(error => console.log(error));
 
 });
 

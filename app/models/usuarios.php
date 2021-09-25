@@ -24,6 +24,7 @@ class Usuarios extends Validator
     private $modo = null;
     private $bitacora = null;
     private $tipousuario = null;
+    private $permiso = null;
 
     /*
         Creando métodos set
@@ -62,6 +63,15 @@ class Usuarios extends Validator
     {
         if ($this->validateAlphabetic($value, 1, 25)) {
             $this->nombre = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function setPermiso($value)
+    {
+        if ($this->validateAlphabetic($value, 1, 25)) {
+            $this->permiso = $value;
             return true;
         } else {
             return false;
@@ -225,6 +235,11 @@ class Usuarios extends Validator
     public function getId()
     {
         return $this->idUsuario;
+    }
+
+    public function getPermiso()
+    {
+        return $this->permiso;
     }
 
     public function getBitacora()
@@ -816,6 +831,17 @@ class Usuarios extends Validator
                 WHERE idtipousuario = (SELECT idtipousuario FROM usuario WHERE idusuario = ?)
                 AND permitido = \'1\'';
         $params = array($_SESSION['idusuario_dashboard']);
+        return Database::getRows($sql, $params);
+    }
+
+    //Función para obtener los permisos del usuario logueado
+    public function checkPermissionsPerPage() {
+        $sql = 'SELECT tipousuario, permiso, permitido FROM permisousuario
+                INNER JOIN tipousuario USING(idtipousuario)
+                INNER JOIN permiso USING(idpermiso)
+                WHERE idtipousuario = (SELECT idtipousuario FROM usuario WHERE idusuario = ?)
+                AND permitido = \'1\' AND permiso = ?';
+        $params = array($_SESSION['idusuario_dashboard'],$this->permiso);
         return Database::getRows($sql, $params);
     }
 }
