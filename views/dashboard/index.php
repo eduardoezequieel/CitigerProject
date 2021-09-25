@@ -122,7 +122,7 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                         </div>
                         <div
                             class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center flex-column">
-                            <form autocomplete="off" action="/form" id="checkCodeAuth-form">
+                            <form autocomplete="off" action="/form" method="post" id="checkCodeAuth-form">
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <div class="alert w-75 yellowAlert alert-dismissible fade show" role="alert">
                                         <strong>Factor de Autenticación en dos pasos.</strong> Ingresa el código de verificación enviado a tu
@@ -161,7 +161,7 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                                                 onKeyup="autotab(this, document.getElementById('6a'),document.getElementById('5a'))"
                                                 onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
                                                 Required maxlength="1" class="form-control cajaCodigo" Required>
-                                            <input type="text" class="d-none" id="codigoAuth" name="codigoAuth">
+                                            <input type="number" class="d-none" id="codigoAuth" name="codigoAuth">
                                         </div>
                                     </div>
                                 </div>

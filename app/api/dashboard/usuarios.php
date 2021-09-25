@@ -597,6 +597,7 @@ if (isset($_GET['action'])) {
                         $_SESSION['idusuario_dashboard'] = $_SESSION['idusuario_temp'];
                         unset($_SESSION['idusuario_temp']);
                         $result['status'] = 1;
+                        $correo->cleanCode($_SESSION['idusuario_dashboard']);
                         // Colocamos el mensaje de exito 
                         $result['message'] = 'Sesión iniciada correctamente.';
                     } else {

@@ -70,11 +70,12 @@ document.getElementById('checkCodeAuth-form').addEventListener('submit', functio
     var cinco = document.getElementById('5a').value;
     var seis = document.getElementById('6a').value;
     document.getElementById('codigoAuth').value = uno + dos + tres + cuatro + cinco + seis;
+    console.log(document.getElementById('codigoAuth').value);
 
     event.preventDefault();
     fetch(API_USUARIO + 'verifyCodeAuth', {
         method: 'post',
-        body: new FormData(document.getElementById('checkCode-form'))
+        body: new FormData(document.getElementById('checkCodeAuth-form'))
     }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
         if (request.ok) {
@@ -82,7 +83,7 @@ document.getElementById('checkCodeAuth-form').addEventListener('submit', functio
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Mostramos mensaje de exito
-                    closeModal('verificarCodigoRecuperacion');
+                    closeModal('verificarCodigoAuth');
                     sweetAlert(1, response.message, 'dashboard.php');
                 } else {
                     sweetAlert(4, response.exception, null);

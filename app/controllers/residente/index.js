@@ -38,7 +38,12 @@ document.getElementById('login-form').addEventListener('submit', function (event
             request.json().then(response => {
                 //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
                 if (response.status) {
-                    sweetAlert(1, response.message, 'dashboard.php');
+                    if (response.auth) {
+                        sendVerificationCodeAuth();
+                        openModal('verificarCodigoAuth')
+                    } else {
+                        sweetAlert(1, response.message, 'dashboard.php');
+                    }
                 } else {
                     if (response.error) {
                         document.getElementById('txtBitacoraPassword').value = response.dataset.idbitacora;
@@ -52,7 +57,65 @@ document.getElementById('login-form').addEventListener('submit', function (event
             console.log(request.status + ' ' + request.statusText);
         }
     }).catch(error => console.log(error));
-})
+});
+
+//Enviar código de verificación
+function sendVerificationCodeAuth(){
+    fetch(API_USUARIO + 'sendVerificationCode')
+        .then(request => {
+            //Se verifica si la petición fue correcta
+            if (request.ok) {
+                request.json().then(response => {
+                    //Se verifica si la respuesta no es correcta para redireccionar al primer uso
+                    if (response.status) {
+                        console.log('Correo enviado.');
+                    } else {
+                        //Verificando si hay una sesión iniciada
+                        console.log(response.exception);
+                    }
+                })
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(error => console.log(error));
+}
+
+//Función para verificar el codigo
+document.getElementById('checkCodeAuth-form').addEventListener('submit', function (event) {
+    //Se evita que se recargue la pagina
+    var uno = document.getElementById('1a').value;
+    var dos = document.getElementById('2a').value;
+    var tres = document.getElementById('3a').value;
+    var cuatro = document.getElementById('4a').value;
+    var cinco = document.getElementById('5a').value;
+    var seis = document.getElementById('6a').value;
+    document.getElementById('codigoAuth').value = uno + dos + tres + cuatro + cinco + seis;
+    console.log(document.getElementById('codigoAuth').value);
+
+    event.preventDefault();
+    fetch(API_USUARIO + 'verifyCodeAuth', {
+        method: 'post',
+        body: new FormData(document.getElementById('checkCodeAuth-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Mostramos mensaje de exito
+                    closeModal('verificarCodigoAuth');
+                    sweetAlert(1, response.message, 'dashboard.php');
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
 
 function checkBlockUsers() {
     //Verificando si hay usuarios bloqueados que ya cumplieron su penalización
