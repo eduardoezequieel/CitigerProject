@@ -448,6 +448,12 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Las contraseñas no coinciden.';
                 }
                 break;
+            //Caso para verificar los permisos permitidos del usuario logueado
+            case 'checkUserLoggedPermissions':
+                if ($result['dataset'] = $usuarios->checkUserLoggedPermissions()) {
+                    $result['status'] = 1;
+                } 
+                break;
                 //Caso de default del switch
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';
@@ -754,104 +760,104 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Id incorrecto.';
                 }
                 break;
+            //Caso para enviar un email
+            case 'sendMail':
+                $_POST = $usuarios->validateForm($_POST);
+                // Generamos el codigo de seguridad 
+                $code = rand(999999, 111111);
+                if ($correo->setCorreo($_POST['txtCorreoRecu'])) {
+                    if ($correo->validarCorreo('usuario')) {
 
-                case 'sendMail':
-                    $_POST = $usuarios->validateForm($_POST);
-                    // Generamos el codigo de seguridad 
-                    $code = rand(999999, 111111);
-                    if ($correo->setCorreo($_POST['txtCorreoRecu'])) {
-                        if ($correo->validarCorreo('usuario')) {
-    
-                            // Ejecutamos funcion para obtener el usuario del correo ingresado\
-                            $_SESSION['mail'] = $correo->getCorreo();
-    
-                            $correo->obtenerUsuario($_SESSION['mail']);
-    
-    
-                            try {
-    
-                                //Ajustes del servidor
-                                $mail->SMTPDebug = 0;
-                                $mail->isSMTP();
-                                $mail->Host       = 'smtp.gmail.com';
-                                $mail->SMTPAuth   = true;
-                                $mail->Username   = 'citigersystem@gmail.com';
-                                $mail->Password   = 'citiger123';
-                                $mail->SMTPSecure = 'tls';
-                                $mail->Port       = 587;
-                                $mail->CharSet = 'UTF-8';
-    
-    
-                                //Receptores
-                                $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
-                                $mail->addAddress($correo->getCorreo());
-    
-                                //Contenido
-                                $mail->isHTML(true);
-                                $mail->Subject = 'Recuperación de contraseña';
-                                $mail->Body    = 'Hola ' . $_SESSION['usuario'] . ', hemos enviado este correo para que recuperes tu contraseña, tu código de seguridad es: <b>' . $code . '</b>';
-    
-                                if ($mail->send()) {
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Código enviado correctamente, ' . $_SESSION['usuario'] . ' ';
-                                    $correo->actualizarCodigo('usuario', $code);
-                                }
-                            } catch (Exception $e) {
-                                $result['exception'] = $mail->ErrorInfo;
+                        // Ejecutamos funcion para obtener el usuario del correo ingresado\
+                        $_SESSION['mail'] = $correo->getCorreo();
+
+                        $correo->obtenerUsuario($_SESSION['mail']);
+
+
+                        try {
+
+                            //Ajustes del servidor
+                            $mail->SMTPDebug = 0;
+                            $mail->isSMTP();
+                            $mail->Host       = 'smtp.gmail.com';
+                            $mail->SMTPAuth   = true;
+                            $mail->Username   = 'citigersystem@gmail.com';
+                            $mail->Password   = 'citiger123';
+                            $mail->SMTPSecure = 'tls';
+                            $mail->Port       = 587;
+                            $mail->CharSet = 'UTF-8';
+
+
+                            //Receptores
+                            $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
+                            $mail->addAddress($correo->getCorreo());
+
+                            //Contenido
+                            $mail->isHTML(true);
+                            $mail->Subject = 'Recuperación de contraseña';
+                            $mail->Body    = 'Hola ' . $_SESSION['usuario'] . ', hemos enviado este correo para que recuperes tu contraseña, tu código de seguridad es: <b>' . $code . '</b>';
+
+                            if ($mail->send()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Código enviado correctamente, ' . $_SESSION['usuario'] . ' ';
+                                $correo->actualizarCodigo('usuario', $code);
                             }
-                        } else {
-    
-                            $result['exception'] = 'El correo ingresado no está registrado';
+                        } catch (Exception $e) {
+                            $result['exception'] = $mail->ErrorInfo;
                         }
                     } else {
-    
-                        $result['exception'] = 'Correo incorrecto';
+
+                        $result['exception'] = 'El correo ingresado no está registrado';
                     }
-    
-    
-    
-                    break;
-    
-                case 'verifyCode':
-                    $_POST = $usuarios->validateForm($_POST);
-                    // Validmos el formato del mensaje que se enviara en el correo
-                    if ($correo->setCodigo($_POST['codigo'])) {
-                        // Ejecutamos la funcion para validar el codigo de seguridad
-                        if ($correo->validarCodigo('usuario',$_SESSION['idusuario'])) {
+                } else {
+
+                    $result['exception'] = 'Correo incorrecto';
+                }
+
+
+
+                break;
+            //Caso para verificar el codigo enviado al correo
+            case 'verifyCode':
+                $_POST = $usuarios->validateForm($_POST);
+                // Validmos el formato del mensaje que se enviara en el correo
+                if ($correo->setCodigo($_POST['codigo'])) {
+                    // Ejecutamos la funcion para validar el codigo de seguridad
+                    if ($correo->validarCodigo('usuario',$_SESSION['idusuario'])) {
+                        $result['status'] = 1;
+                        // Colocamos el mensaje de exito 
+                        $result['message'] = 'El código ingresado es correcto';
+                    } else {
+                        // En caso que el correo no se envie mostramos el error
+                        $result['exception'] = 'El código ingresado no es correcto';
+                    }
+                } else {
+                    $result['exception'] = 'Mensaje incorrecto';
+                }
+                break;
+            //Caso para cambiar la contraseña
+            case 'changePass':
+                // Obtenemos el form con los inputs para obtener los datos
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setId($_SESSION['idusuario'])) {
+                    if ($usuarios->setContrasenia($_POST['txtContrasenia2'])) {
+                        // Ejecutamos la funcion para actualizar al usuario
+                        if ($usuarios->changePassword()) {
                             $result['status'] = 1;
-                            // Colocamos el mensaje de exito 
-                            $result['message'] = 'El código ingresado es correcto';
+                            $result['message'] = 'Clave actualizada correctamente';
+                            $correo->cleanCode($_SESSION['idusuario']);
+                            unset($_SESSION['idusuario']);
+                            unset($_SESSION['mail']);
                         } else {
-                            // En caso que el correo no se envie mostramos el error
-                            $result['exception'] = 'El código ingresado no es correcto';
+                            $result['exception'] = Database::getException();
                         }
                     } else {
-                        $result['exception'] = 'Mensaje incorrecto';
+                        $result['exception'] = $usuarios->getPasswordError();
                     }
-                    break;
-
-                    case 'changePass':
-                        // Obtenemos el form con los inputs para obtener los datos
-                        $_POST = $usuarios->validateForm($_POST);
-                        if ($usuarios->setId($_SESSION['idusuario'])) {
-                            if ($usuarios->setContrasenia($_POST['txtContrasenia2'])) {
-                                // Ejecutamos la funcion para actualizar al usuario
-                                if ($usuarios->changePassword()) {
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Clave actualizada correctamente';
-                                    $correo->cleanCode($_SESSION['idusuario']);
-                                    unset($_SESSION['idusuario']);
-                                    unset($_SESSION['mail']);
-                                } else {
-                                    $result['exception'] = Database::getException();
-                                }
-                            } else {
-                                $result['exception'] = $usuarios->getPasswordError();
-                            }
-                        } else {
-                            $result['exception'] = 'Correo incorrecto';
-                        }
-                        break;
+                } else {
+                    $result['exception'] = 'Correo incorrecto';
+                }
+                break;
     
             default:
                 $result['exception'] = 'La acción no está disponible afuera de la sesión';
