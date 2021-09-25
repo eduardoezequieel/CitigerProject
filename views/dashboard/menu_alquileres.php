@@ -47,5 +47,5 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
 
 <?php
 //Se imprimen los JS necesarios
-Admin_Page::footerTemplate('');
+Admin_Page::footerTemplate('menu_alquileres.js');
 ?>

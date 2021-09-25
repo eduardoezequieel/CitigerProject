@@ -673,7 +673,7 @@ function checkPermissions(pagina){
     const data = new FormData();
     data.append('txtPagina', pagina);
     //Verificando las credenciales del usuario
-    fetch('../../app/api/dashboard/usuarios.php?action=checkUserLoggedPermissions',{
+    fetch('../../app/api/dashboard/usuarios.php?action=checkPermissionsPerPage',{
         method: 'post',
         body: data
     }).then(request => {
@@ -681,9 +681,7 @@ function checkPermissions(pagina){
         if (request.ok) {
             request.json().then(response => {
                 //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
-                if (response.status) {
-                   console.log('yeah')
-                } else {
+                if (!response.status) {
                     window.location.href = 'dashboard.php';
                 }
             })

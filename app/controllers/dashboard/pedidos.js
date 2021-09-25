@@ -2,6 +2,8 @@ const API_PEDIDOS = '../../app/api/dashboard/pedidos.php?action=';
 const ENDPOINT_ESTADOS = '../../app/api/dashboard/pedidos.php?action=readStates';
 
 document.addEventListener('DOMContentLoaded',function(){
+    //Función para verificar permiso 
+    checkPermissions('Materiales');
     readRows(API_PEDIDOS);
     fillSelect(ENDPOINT_ESTADOS, 'cbEstadoPedido', null);
 

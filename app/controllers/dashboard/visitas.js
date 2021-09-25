@@ -5,7 +5,8 @@ const ENDPOINT_VISITANTE = '../../app/api/dashboard/visitas.php?action=readVisit
 
 
 document.addEventListener('DOMContentLoaded', function () {
-
+    //Función para verificar permiso 
+    checkPermissions('Visitas');
     fillSelect(ENDPOINT_ESTADO, 'cbEstadoVisita', null);
     fillSelect(ENDPOINT_RESIDENTE, 'cbResidente', null);
     fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);

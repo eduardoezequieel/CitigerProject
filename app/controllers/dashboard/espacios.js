@@ -5,6 +5,8 @@ const ENDPOINT_ESTADO = '../../app/api/dashboard/espacios.php?action=readSpaceSt
 
 //Evento que se ejecuta al cargar la pag
 document.addEventListener('DOMContentLoaded', function () {
+    //Función para verificar permiso 
+    checkPermissions('Alquileres');
     //Llenando combobox de estado espacio
     fillSelect(ENDPOINT_ESTADO, 'cbEstadoEspacio', null);
     //Verificar si hay espacios registrados en la base

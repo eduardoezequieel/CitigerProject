@@ -3,6 +3,8 @@ const API_USUARIO = '../../app/api/dashboard/usuarios.php?action=';
 
 //Al cargar al pagina
 document.addEventListener('DOMContentLoaded',function(){
+    //Función para verificar permiso 
+    checkPermissions('Usuarios');
     //Carga los datos
     readTypes();
 });

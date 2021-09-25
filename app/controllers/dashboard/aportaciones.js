@@ -6,7 +6,8 @@ const ENDPOINT_ANIO = '../../app/api/dashboard/aportaciones.php?action=readAnio'
 
 document.addEventListener('DOMContentLoaded', function () {
 
-
+    //Función para verificar permiso 
+    checkPermissions('Aportaciones');
     fillSelect(ENDPOINT_TIPOS, 'cbTipoEmpleado', null);
     readRows(API_CASAS);
     let today = new Date();

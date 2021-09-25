@@ -2,6 +2,8 @@
 const API_RESIDENTE = '../../app/api/dashboard/residentes.php?action=';
 
 document.addEventListener('DOMContentLoaded', function () {
+    //Función para verificar permiso 
+    checkPermissions('Usuarios');
     // Se declara e inicializa un objeto para obtener la fecha y hora actual.
     let today = new Date();
     // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.

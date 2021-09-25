@@ -7,7 +7,8 @@ const ENDPOINT_CATEGORIAS = '../../app/api/dashboard/inventario.php?action=readC
 
 
 document.addEventListener('DOMContentLoaded', function () {
-
+    //Función para verificar permiso 
+    checkPermissions('Materiales');
     fillSelect(ENDPOINT_TIPOS, 'cbTipo', 1);
     fillSelect(ENDPOINT_MARCAS, 'cbMarca', null);
     fillSelect(ENDPOINT_CATEGORIAS, 'cbCategoria', null);

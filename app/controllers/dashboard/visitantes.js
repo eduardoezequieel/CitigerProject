@@ -2,6 +2,8 @@
 const API_VISITANTE = '../../app/api/dashboard/visitantes.php?action=';
 
 document.addEventListener('DOMContentLoaded', function(){
+    //Función para verificar permiso 
+    checkPermissions('Visitas');
     readRows(API_VISITANTE);
 })
 

@@ -5,6 +5,8 @@ const API_PEDIDOS = '../../app/api/dashboard/pedidos.php?action=';
 let cantidad = '';
 
 document.addEventListener('DOMContentLoaded',function(){
+    //Función para verificar permiso 
+    checkPermissions('Materiales');
     //Cargando productos del inventario listos para añadir a un pedido
     readMaterials(API_PEDIDOS);
 });

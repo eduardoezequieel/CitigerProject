@@ -456,6 +456,19 @@ if (isset($_GET['action'])) {
                     $result['exception'] = $_SESSION['idusuario_dashboard'];
                 }
                 break;
+            //Caso para verificar los permisos permitidos del usuario logueado
+            case 'checkPermissionsPerPage':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setPermiso($_POST['txtPagina'])) {
+                    if ($usuarios->checkPermissionsPerPage()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'El usuario no tiene los permisos necesarios para acceder.';
+                    }
+                    break;
+                } else {
+                    $result['exception'] = 'Hubo un error al describir el permiso';
+                }
                 //Caso de default del switch
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';

@@ -4,6 +4,8 @@ const API_MARCAS = '../../app/api/dashboard/marcas.php?action=';
 
 //Cuando se carga la pagina web
 document.addEventListener('DOMContentLoaded', function(){
+    //Función para verificar permiso 
+    checkPermissions('Materiales');
     readRows(API_MARCAS);
 });
 

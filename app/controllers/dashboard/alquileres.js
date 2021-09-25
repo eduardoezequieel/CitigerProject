@@ -9,6 +9,8 @@ const BOTONES = document.getElementsByTagName('button');
 
 //Evento al terminar de cargar la pagina
 document.addEventListener('DOMContentLoaded', function () {
+    //Función para verificar permiso 
+    checkPermissions('Alquileres');
     //Inicializando tooltips
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
