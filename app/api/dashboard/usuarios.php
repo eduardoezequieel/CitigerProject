@@ -465,6 +465,10 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Las contraseñas no coinciden.';
                 }
                 break;
+            case 'checkUserLoggedPermissions':
+                $result['dataset'] = $_SESSION['permisos'];
+                $result['status'] = 1;
+                break;
             //Caso para verificar los permisos permitidos del usuario logueado
             case 'checkPermissionsPerPage':
                 $_POST = $usuarios->validateForm($_POST);
@@ -474,10 +478,10 @@ if (isset($_GET['action'])) {
                     } else {
                         $result['exception'] = 'El usuario no tiene los permisos necesarios para acceder.';
                     }
-                    break;
                 } else {
                     $result['exception'] = 'Hubo un error al describir el permiso';
                 }
+                break;
                 //Caso de default del switch
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';

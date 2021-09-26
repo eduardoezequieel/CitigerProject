@@ -141,29 +141,29 @@
                         }
                         //Evaluando que permisos tiene permitido para imprimir la opción
                         if ($permiso['permitido'] == '1') {
-                            switch($contador) {
+                            switch($permiso['permiso']) {
                                 //Opción de alquileres
-                                case 1:
+                                case 'Alquileres':
                                     echo $opcion1;
                                     break;
                                 //Opción de aportaciones
-                                case 2:
+                                case 'Aportaciones':
                                     echo $opcion2;
                                     break;
                                 //Opción de denuncias
-                                case 3:
+                                case 'Denuncias':
                                     echo $opcion3;
                                     break;
                                 //Opción de materiales
-                                case 4:
+                                case 'Materiales':
                                     echo $opcion4;
                                     break;
                                 //Opción de usuarios
-                                case 5:
+                                case 'Usuarios':
                                     echo $opcion5;
                                     break;
                                 //Opción de visitas
-                                case 6:
+                                case 'Visitas':
                                     echo $opcion6;
                                     break;
                             }
