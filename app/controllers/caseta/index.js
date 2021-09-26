@@ -231,8 +231,6 @@ document.getElementById('checkMail-form').addEventListener('submit', function (e
 
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    // Mostramos mensaje de exito
-                    sweetAlert(1, response.message, null);
 
                     closeModal('recuperarContraseña');
                     openModal('verificarCodigoRecuperacion');
@@ -284,7 +282,6 @@ document.getElementById('checkCode-form').addEventListener('submit', function (e
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Mostramos mensaje de exito
-                    sweetAlert(1, response.message, null);
 
                     closeModal('verificarCodigoRecuperacion');
                     openModal('cambiarContraseña');
@@ -343,8 +340,9 @@ document.getElementById('update-form').addEventListener('submit', function (even
                             // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                             if (response.status) {
                                 // En caso de iniciar sesion correctamente mostrar mensaje y redirigir al menu
-                                sweetAlert(1, response.message, null);
                                 closeModal('cambiarContraseña');
+                                sweetAlert(1, response.message, null);
+
 
                             } else {
                                 sweetAlert(3, response.exception, null);
