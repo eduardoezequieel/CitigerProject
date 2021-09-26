@@ -45,6 +45,9 @@
             if (isset($_SESSION['idusuario_dashboard'])) {
                 // Se verifica si la página web actual es diferente a index.php (Iniciar sesión) y a 'primer_uso.php (Crear primer usuario) para no iniciar sesión otra vez, de lo contrario se direcciona a index.php
                 if ($filename != 'index.php' && $filename != 'primer_usuario.php') {
+                    /*
+                        Declarando variables con las partes del sidebar
+                    */
                     $inicio_sidebar = '
                         <!-- Inicio del Sidebar -->
                         <div class="vertical-nav colorCitiger" id="sidebar">
@@ -127,34 +130,45 @@
                     $fin_sidebar = '</ul>
                                 </div>
                                 <!-- Fin del sidebar -->';
+                    //Declarando contador para evaluar que opción imprimir
                     $contador = 1;
+                    //Creación de array para evaluar todos los permisos
                     $permisos = $_SESSION['permisos'];
                     foreach($permisos as $permiso){
+                        //Imprimiendo el inicio del sidebar
                         if ($contador == 1){
                             echo $inicio_sidebar;
                         }
+                        //Evaluando que permisos tiene permitido para imprimir la opción
                         if ($permiso['permitido'] == '1') {
                             switch($contador) {
+                                //Opción de alquileres
                                 case 1:
                                     echo $opcion1;
                                     break;
+                                //Opción de aportaciones
                                 case 2:
                                     echo $opcion2;
                                     break;
+                                //Opción de denuncias
                                 case 3:
                                     echo $opcion3;
                                     break;
+                                //Opción de materiales
                                 case 4:
                                     echo $opcion4;
                                     break;
+                                //Opción de usuarios
                                 case 5:
                                     echo $opcion5;
                                     break;
+                                //Opción de visitas
                                 case 6:
                                     echo $opcion6;
                                     break;
                             }
                         }
+                        //Imprimiendo el final del sidebar
                         if($contador == 6) {
                             echo $fin_sidebar;
                         }
