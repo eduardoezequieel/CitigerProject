@@ -3,62 +3,14 @@ const API_DASHBOARD = '../../app/api/dashboard/dashboard.php?action=';
 const ENDPOINT_ANIO2 = '../../app/api/dashboard/dashboard.php?action=readAnios';
 
 document.addEventListener('DOMContentLoaded',function(){
-    //Verificando las credenciales del usuario
-    fetch('../../app/api/dashboard/usuarios.php?action=checkUserLoggedPermissions').then(request => {
-        //Verificando si la petición fue correcta
-        if (request.ok) {
-            request.json().then(response => {
-                //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
-                if (response.status) {
-                    response.dataset.map(function(row){
-                        //Verificar los permisos permitidos
-                        if(row.permitido == 1) {
-                            //Verificar los permisos
-                            switch(row.permiso){
-                                case 'Alquileres':
-                                    graficaAreaEspacios();
-                                    graficaLineasEspacioUsos();
-                                    break;
-                                case 'Aportaciones':
-                                    graficaPastelAportaciones();
-                                    contadorAportacion();
-                                    break;
-                                case 'Denuncias':
-                                    contadorDenuncias();
-                                    graficaPastelDenuncia();
-                                    break;
-                                case 'Materiales':
-                                    graficaDonaProductos();
-                                    graficaLineaHistorialInventario();
-                                    break;
-                                case 'Usuarios':
-                                    graficaBarrasResidente();
-                                    break;
-                                case 'Visitas':
-                                    graficaLineaVisitas();
-                                    contadorVisitas();
-                                    break;
-                            }
-                        }
-                    })
-                }
-            })
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(error => console.log(error));
-    //Carga la bitacora
-    readRows(API_DASHBOARD);
+    //Función para mostrar graficos
+    showCharts();
 });
 
 //Se ejecuta al desplegar el collapse
 document.getElementById('btnCollapseGraficas').addEventListener('click',function(){
-    graficaDonaProductos();
-    graficaAreaEspacios();
-    graficaLineaHistorialInventario();
-    graficaBarrasResidente();
-    graficaLineasEspacioUsos();
-    graficaPastelAportaciones();
+    //Función para mostrar graficos
+    showCharts();
 });
 
 //Se ejecuta al presionar el boton para seleccionar un producto con historial de movimientos de stock

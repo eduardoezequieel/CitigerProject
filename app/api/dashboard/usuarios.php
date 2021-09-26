@@ -468,6 +468,7 @@ if (isset($_GET['action'])) {
             case 'checkUserLoggedPermissions':
                 $result['dataset'] = $_SESSION['permisos'];
                 $result['status'] = 1;
+                $result['tipo'] = $_SESSION['tipousuario_dashboard'];
                 break;
             //Caso para verificar los permisos permitidos del usuario logueado
             case 'checkPermissionsPerPage':

@@ -16,7 +16,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
 
             <!-- Desde aqui comienza el contenido -->
             <div class="row justify-content-center">
-                <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
+                <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas" id="tarjeta_denuncia">
                     <!-- Inicio de Tarjeta -->
                     <div class="tarjetaDashboard animate__animated animate__fadeInDown">
                         <!-- Boton de opciones -->
@@ -52,7 +52,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                 </div>
 
                 <!-- Inicio de Tarjeta (Se repite el mismo formato) -->
-                <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
+                <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas" id="tarjeta_visita">
                     <div class="tarjetaDashboard animate__animated animate__fadeInDown">
                         <div class="row">
                             <div class="col-12">
@@ -83,7 +83,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                 </div>
 
                 <!-- Inicio de Tarjeta (Se repite el mismo formato) -->
-                <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas">
+                <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas" id="tarjeta_aportacion">
                     <div class="tarjetaDashboard animate__animated animate__fadeInDown">
                         <div class="row">
                             <div class="col-12">
@@ -157,7 +157,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
 
             <div class="collapse" id="graficasCollapse">
                 <div class="row justify-content-center align-items-center mt-4">
-                    <div class="margenGraficas2 d-flex justify-content-center align-items-center">
+                    <div class="margenGraficas2 d-flex justify-content-center align-items-center" id="grafica_materiales">
                         <!-- Grafica de productos demandados -->
                         <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
                             <div class="tarjetaDashboardGrafica">
@@ -278,7 +278,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
             </div>
 
             <!-- Tabla de Actividad Reciente -->
-            <div class="row my-4">
+            <div class="row my-4" id="titulo_tabla">
                 <div class="col-12">
                     <h1 class="tituloDashboard">Actividad Reciente</h1>
                 </div>
