@@ -37,6 +37,23 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idresidente'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
+            //Caso para cargar los historiales de sesión fallidos de un usuario
+            case 'readFailedSessions':
+                if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
+                    if ($result['dataset'] = $usuarios->readFailedSessions()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No se han encontrado registros de sesiones fallídas.';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Id invalido.';
+                }
+                
+                break;
             //Obtener el modo de autenticación de un usuario
             case 'getAuthMode':
                 if ($usuarios->setIdResidente($_SESSION['idresidente'])) {

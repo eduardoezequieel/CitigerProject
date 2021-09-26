@@ -758,6 +758,18 @@ class Usuarios extends Validator
         return Database::executeRow($sql,$params);
     }
 
+    //Función para cargar los historiales de sesión fallidos de un usuario
+    public function readFailedSessions()
+    {
+        $sql = 'SELECT hora, fecha, accion 
+                FROM bitacora 
+                WHERE accion = \'Intento Fallido\' OR accion = \'Bloqueo\' AND idusuario = ?
+                ORDER BY fecha DESC, hora DESC   
+                LIMIT 5';
+        $params = array($this->idUsuario);
+        return Database::getRows($sql, $params);
+    }
+
     //Función para aumentar el valor de los intentos fallidos
     public function increaseIntentos($intentos)
     {

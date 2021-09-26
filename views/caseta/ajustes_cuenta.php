@@ -154,7 +154,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                         <h2 class="informacion" id="lblAuth"></h2>
                                     </div>
                                     <div class="col-6">
-                                        <button data-target="#administrarAuth" data-toggle="modal" class="btn botonesAjustes">Cambiar</button>
+                                        <button onclick="readFailedSessions()" data-target="#administrarAuth" data-toggle="modal" class="btn botonesAjustes">Cambiar</button>
                                     </div>
                                 </div>
 
@@ -392,8 +392,33 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-4 mb-2">
+                        <div class="col-12">
+                            <h1 class="text-center tituloInformacion">Registro de sesiones fallidas (Últimas 5):</h1>
+                        </div>
+                    </div>
+                    <!-- Tabla-->
+                    <div class="row justify-content-center">
+                        <div class="col-12 justify-content-center align-items-center text-center">
+                            <table class="table table-borderless citigerTable" id="data-table2">
+                                <thead>
+                                    <!-- Columnas-->
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Hora</th>
+                                        <th scope="col">Acción</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-rows">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <!-- Botones de Acción del Formulario -->
-                    <div class="row justify-content-center mt-4">
+                    <div class="row justify-content-center">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
                             <button id="btnActualizarAuth" type="submit" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Actualizar</button>
                         </div>

@@ -699,6 +699,18 @@ class Residentes extends Validator
         return Database::executeRow($sql,$params);
     }
 
+     //Función para cargar los historiales de sesión fallidos de un usuario
+     public function readFailedSessions()
+     {
+         $sql = 'SELECT hora, fecha, accion 
+                 FROM bitacoraResidente 
+                 WHERE accion = \'Intento Fallido\' OR accion = \'Bloqueo\' AND idresidente = ?
+                 ORDER BY fecha DESC, hora DESC   
+                 LIMIT 5';
+         $params = array($this->idResidente);
+         return Database::getRows($sql, $params);
+     }
+
     //Función para generara contraseña
     public function generatePassword() 
     {

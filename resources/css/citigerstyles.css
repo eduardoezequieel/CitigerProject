@@ -703,6 +703,10 @@ option[selected] {
   padding-top: 15px !important;
 }
 
+.paddingTh2 {
+  padding-top: 19px !important;
+}
+
 .paddingCheckbox {
   width: 20px !important;
   padding-top: 19px;
@@ -741,6 +745,7 @@ option[selected] {
   background-color: var(--color-verde) !important;
   color: var(--color-verde-hover) !important;
 }
+
 
 .tamañoIconosTabla {
   font-size: 50px !important;
@@ -2423,9 +2428,13 @@ textarea[placeholder],
   color: #5494F5;
 }
 
+.icono11 {
+  color: #FDB85A;
+}
 
-
-
+.icono22 {
+  color: #EE786C;
+}
 
 .icono1 {
   color: #FDB85A;
@@ -2446,13 +2455,6 @@ textarea[placeholder],
   color: #6B44BC;
   font-size: 50px;
 }
-
-
-
-
-
-
-
 
 /*Responsive*/
 @media screen and (max-width:1200px) {
