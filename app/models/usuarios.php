@@ -837,11 +837,9 @@ class Usuarios extends Validator
 
     //Función para obtener los permisos del usuario logueado
     public function checkUserLoggedPermissions() {
-        $sql = 'SELECT tipousuario, permiso, permitido FROM permisousuario
-                INNER JOIN tipousuario USING(idtipousuario)
+        $sql = 'SELECT permiso,permitido FROM permisousuario
                 INNER JOIN permiso USING(idpermiso)
-                WHERE idtipousuario = (SELECT idtipousuario FROM usuario WHERE idusuario = ?)
-                AND permitido = \'1\'';
+                WHERE idtipousuario = (SELECT idtipousuario FROM usuario WHERE idusuario = ?)';
         $params = array($_SESSION['idusuario_dashboard']);
         return Database::getRows($sql, $params);
     }

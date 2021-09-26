@@ -466,14 +466,6 @@ if (isset($_GET['action'])) {
                 }
                 break;
             //Caso para verificar los permisos permitidos del usuario logueado
-            case 'checkUserLoggedPermissions':
-                if ($result['dataset'] = $usuarios->checkUserLoggedPermissions()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = $_SESSION['idusuario_dashboard'];
-                }
-                break;
-            //Caso para verificar los permisos permitidos del usuario logueado
             case 'checkPermissionsPerPage':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setPermiso($_POST['txtPagina'])) {
@@ -520,6 +512,7 @@ if (isset($_GET['action'])) {
                                 $_SESSION['tipousuario_dashboard'] = $usuarios->getIdTipoUsuario();
                                 $_SESSION['modo_dashboard'] = $usuarios->getModo();
                                 $_SESSION['correo_dashboard'] = $usuarios->getCorreo();
+                                $_SESSION['permisos'] = $usuarios->checkUserLoggedPermissions();
                                 //Se reinicia el conteo de intentos fallidos
                                 if ($usuarios->increaseIntentos(0)){
                                     if ($result['dataset'] = $usuarios->checkLastPasswordUpdate()) {

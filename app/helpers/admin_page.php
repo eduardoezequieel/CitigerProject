@@ -38,15 +38,14 @@
                 </head>
                 <body>
             ');
-
+            
             // Se obtiene el nombre del archivo de la página web actual.
             $filename = basename($_SERVER['PHP_SELF']);
             // Se comprueba si existe una sesión de administrador para mostrar el menú de opciones, de lo contrario se muestra un menú vacío.
             if (isset($_SESSION['idusuario_dashboard'])) {
                 // Se verifica si la página web actual es diferente a index.php (Iniciar sesión) y a 'primer_uso.php (Crear primer usuario) para no iniciar sesión otra vez, de lo contrario se direcciona a index.php
                 if ($filename != 'index.php' && $filename != 'primer_usuario.php') {
-                    // Se imprime el código HTML para el encabezado del documento con el menú de opciones.
-                    print('
+                    $inicio_sidebar = '
                         <!-- Inicio del Sidebar -->
                         <div class="vertical-nav colorCitiger" id="sidebar">
                             <div class="py-3 px-3 colorCitiger">
@@ -88,48 +87,80 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Botones de Navegación -->
-                            <ul class="nav flex-column colorCitiger mt-4">
-                            <li class="nav-item">
-                                <a href="menu_alquileres.php" class="nav-link ">
-                                <i class="fas fa-home mr-3 tamañoIconos"></i>
-                                Alquileres
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="aportaciones.php" class="nav-link ">
-                                <i class="fas fa-coins mr-3 tamañoIconos"></i>
-                                Aportaciones
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="denuncias.php" class="nav-link ">
-                                <i class="fas fa-exclamation-triangle mr-3 tamañoIconos"></i>
-                                Denuncias
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="menu_materiales.php" class="nav-link ">
-                                <i class="fas fa-boxes mr-3 tamañoIconos"></i>
-                                Materiales
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="menu_usuarios.php" class="nav-link ">
-                                <i class="fas fa-users-cog mr-3 tamañoIconos"></i>
-                                Usuarios
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="menu_visitas.php" class="nav-link ">
-                                <i class="fas fa-car mr-3 tamañoIconos"></i>
-                                Visitas
-                                </a>
-                            </li>
-                            </ul>
-                        </div>
-                        <!-- Fin del sidebar -->
-                    ');
+                            <ul class="nav flex-column colorCitiger mt-4">';
+                    $opcion1 = '<li class="nav-item">
+                                    <a href="menu_alquileres.php" class="nav-link ">
+                                    <i class="fas fa-home mr-3 tamañoIconos"></i>
+                                    Alquileres
+                                    </a>
+                                </li>';
+                    $opcion2 = '<li class="nav-item">
+                                    <a href="aportaciones.php" class="nav-link ">
+                                    <i class="fas fa-coins mr-3 tamañoIconos"></i>
+                                    Aportaciones
+                                    </a>
+                                </li>';
+                    $opcion3 = '<li class="nav-item">
+                                    <a href="denuncias.php" class="nav-link ">
+                                    <i class="fas fa-exclamation-triangle mr-3 tamañoIconos"></i>
+                                    Denuncias
+                                    </a>
+                                </li>';
+                    $opcion4 = '<li class="nav-item">
+                                    <a href="menu_materiales.php" class="nav-link ">
+                                    <i class="fas fa-boxes mr-3 tamañoIconos"></i>
+                                    Materiales
+                                    </a>
+                                </li>';
+                    $opcion5 = '<li class="nav-item">
+                                    <a href="menu_usuarios.php" class="nav-link ">
+                                    <i class="fas fa-users-cog mr-3 tamañoIconos"></i>
+                                    Usuarios
+                                    </a>
+                                </li>';
+                    $opcion6 = ' <li class="nav-item">
+                                    <a href="menu_visitas.php" class="nav-link ">
+                                    <i class="fas fa-car mr-3 tamañoIconos"></i>
+                                    Visitas
+                                    </a>
+                                </li>';
+                    $fin_sidebar = '</ul>
+                                </div>
+                                <!-- Fin del sidebar -->';
+                    $contador = 1;
+                    $permisos = $_SESSION['permisos'];
+                    foreach($permisos as $permiso){
+                        if ($contador == 1){
+                            echo $inicio_sidebar;
+                        }
+                        if ($permiso['permitido'] == '1') {
+                            switch($contador) {
+                                case 1:
+                                    echo $opcion1;
+                                    break;
+                                case 2:
+                                    echo $opcion2;
+                                    break;
+                                case 3:
+                                    echo $opcion3;
+                                    break;
+                                case 4:
+                                    echo $opcion4;
+                                    break;
+                                case 5:
+                                    echo $opcion5;
+                                    break;
+                                case 6:
+                                    echo $opcion6;
+                                    break;
+                            }
+                        }
+                        if($contador == 6) {
+                            echo $fin_sidebar;
+                        }
+                        $contador++;
+                    }
+                    
                 } else {
                     header('location: index.php');
                 }
