@@ -262,7 +262,7 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                         </div>
 
                     </div>
-                    <div class="row animate__animated animate__bounceIn">
+                    <div class="row">
                         <!-- Primera columna de controles -->
                         <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12  centrarColumnas">
                             <div class="#" id="EmpleadosColumna1">

@@ -101,13 +101,13 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                                 <div class="col-6 ">
                                                     <label class="tituloCajaTextoFormulario" for="txtTelefonofijo">Teléfono
                                                         Fijo:</label>
-                                                    <input type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000" Required>
+                                                    <input onchange="checkTelefono('txtTelefonofijo')" type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000" Required>
 
                                                 </div>
                                                 <div class="col-6 ">
                                                     <label class="tituloCajaTextoFormulario" for="txtTelefonomovil">Teléfono
                                                         Movil:</label>
-                                                    <input type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="0000-0000" Required>
+                                                    <input type="text" onchange="checkTelefono('txtTelefonomovil')" class="form-control cajaTextoFormularioTelefono" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="0000-0000" Required>
                                                 </div>
                                             </div>
                                         </div>
@@ -139,7 +139,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                         <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento" value="2000-01-01">
 
                                         <label class="tituloCajaTextoFormulario" for="txtUser">Nombre de Usuario:</label>
-                                        <input type="text" onchange="checkInputLetras('txtUser')" class="form-control cajaTextoFormulario" id="txtUser" name="txtUser" placeholder="Escriba su nombre de usuario..." Required>
+                                        <input type="text" onchange="checkAlfanumerico('txtUser')" class="form-control cajaTextoFormulario" id="txtUser" name="txtUser" placeholder="Escriba su nombre de usuario..." Required>
 
                                         <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
                                         <input type="text" onchange="checkDui('txtDUI')" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9" Required>

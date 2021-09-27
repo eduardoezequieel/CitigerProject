@@ -82,9 +82,9 @@ function fillTable(dataset) {
             <div class="row paddingBotones">
                 <div class="col-12">
                     <a href="#" onclick="readDataOnModal(${row.idcasa})" data-toggle="modal" data-target="#administrarCasa" class="btn btnTabla"><i class="fas fa-edit"></i></a>
-                    <a href="#"  onclick="readAportacion(${row.idcasa})" data-toggle="modal" data-target="#administrarPago" class="btn btnTabla3"><i class="fas fa-comment-dollar"></i></a>
+                    <a href="#"  onclick="readAportacion(${row.idcasa})" class="btn btnTabla3"><i class="fas fa-comment-dollar"></i></a>
                     <a href="#" onclick="deleteRow(${row.idcasa})" class="btn btnTabla2"><i class="fas fa-trash"></i></a>
-                    <a href="#" onclick="agregarAportacion(${row.idcasa})" data-toggle="modal" data-target="#agregarPago" class="btn btnTabla"><i class="fas fa-plus"></i></a>
+                    <a href="#" onclick="agregarAportacion(${row.idcasa})" class="btn btnTabla"><i class="fas fa-plus"></i></a>
 
                 </div>
             </div>
@@ -267,10 +267,8 @@ function readAportacion(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('txtIdx', id);
-    console.log(id);
 
-
-    fetch(API_CASAS + 'readAportacion', {
+    fetch(API_CASAS + 'readResidentHouse', {
         method: 'post',
         body: data
     }).then(function (request) {
@@ -279,12 +277,35 @@ function readAportacion(id) {
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('txtIdx').value = response.dataset.idcasa;
-                    document.getElementById('casa').textContent = (response.dataset.casa);
-                    document.getElementById('txtId2').value = response.dataset.idcasa;
-
-
+                    fetch(API_CASAS + 'readAportacion', {
+                        method: 'post',
+                        body: data
+                    }).then(function (request) {
+                        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                        if (request.ok) {
+                            request.json().then(function (response) {
+                                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                                if (response.status) {
+                                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                                    openModal('administrarPago');
+                                    document.getElementById('txtIdx').value = response.dataset.idcasa;
+                                    document.getElementById('casa').textContent = (response.dataset.casa);
+                                    document.getElementById('txtId2').value = response.dataset.idcasa;
+                
+                
+                                } else {
+                                    sweetAlert(2, response.exception, null);
+                                }
+                            });
+                        } else {
+                            console.log(request.status + ' ' + request.statusText);
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                
+                    document.getElementById('txtIdx').value = id;
+                    readRows2(API_CASAS, 'casa-form');
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -296,8 +317,7 @@ function readAportacion(id) {
         console.log(error);
     });
 
-    document.getElementById('txtIdx').value = id;
-    readRows2(API_CASAS, 'casa-form');
+    
 
 }
 
@@ -414,21 +434,46 @@ function agregarAportacion(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('Casa', id);
-    console.log(id);
-    fetch(API_CASAS + 'readAportacion2', {
+
+    const data2 = new FormData();
+    data2.append('txtIdx', id);
+
+    fetch(API_CASAS + 'readResidentHouse', {
         method: 'post',
-        body: data
+        body: data2
     }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
         if (request.ok) {
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
-                    document.getElementById('Casa').value = response.dataset.idcasa;
-                    document.getElementById('casa2').textContent = (response.dataset.casa);
-
-
+                    fetch(API_CASAS + 'readAportacion2', {
+                        method: 'post',
+                        body: data
+                    }).then(function (request) {
+                        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                        if (request.ok) {
+                            request.json().then(function (response) {
+                                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                                if (response.status) {
+                                    // Se inicializan los campos del formulario con los datos del registro seleccionado.
+                                    openModal('agregarPago');
+                                    document.getElementById('Casa').value = response.dataset.idcasa;
+                                    document.getElementById('casa2').textContent = (response.dataset.casa);
+                
+                
+                                } else {
+                                    sweetAlert(2, response.exception, null);
+                                }
+                            });
+                        } else {
+                            console.log(request.status + ' ' + request.statusText);
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                
+                    document.getElementById('Casa').value = id;
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
@@ -439,8 +484,7 @@ function agregarAportacion(id) {
     }).catch(function (error) {
         console.log(error);
     });
-
-    document.getElementById('Casa').value = id;
+    
 
 }
 

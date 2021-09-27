@@ -16,6 +16,24 @@ if (isset($_GET['action'])) {
     //Acciones a ejecutar permitidas con la sesion iniciada
     if (isset($_SESSION['idusuario_dashboard'])) {
         switch ($_GET['action']) {
+            //Caso para verificar si una casa posee un residente asignado
+            case 'readResidentHouse':
+                if ($aportaciones->setIdCasa($_POST['txtIdx'])) {
+                    if ($result['dataset'] = $aportaciones->readResidentHouse()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'Esta casa no tiene ningún residente asignado.';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'id incorrecto.';
+                }
+                
+                
+                break;
             case 'readAll':
                 if ($result['dataset'] = $aportaciones->readAll()) {
                     $result['status'] = 1;

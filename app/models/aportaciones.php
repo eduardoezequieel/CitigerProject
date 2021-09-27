@@ -241,6 +241,13 @@ class Aportaciones extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Verificar que una casa tenga un residente asignado
+    public function readResidentHouse()
+    {
+        $sql = 'SELECT*FROM residentecasa WHERE idcasa = ?';
+        $params = array($this->idCasa);
+        return Database::getRow($sql, $params);
+    }
 
     //Métodos para obtener valores
     public function readEstados()
