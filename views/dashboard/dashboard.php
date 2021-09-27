@@ -124,25 +124,25 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
             <!--  Graficas de Visitas y Denuncias -->
             <div class="row justify-content-center align-items-center animate__animated animate__fadeInUp" id="rowGraficaVisitas">
                 <div class="margenGraficas d-flex justify-content-center align-items-center">
-                    <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
+                    <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center" id="graficaVisitas1">
                         <div class="tarjetaDashboardGrafica" id="graficaVisitas">
                             <div id="contenedorVisitas">
                                 <canvas class="#" id="cnVisitas6Meses"></canvas>
                             </div>
                             <div id="noVisitas" class="d-none">
                                 <i class="fas fa-sad-tear icono4"></i>
-                                <h1 class="tituloTarjetaDashboard text-center my-4">No hay visitas</h1>
+                                <h1 id="mensaje" class="tituloTarjetaDashboard text-center my-4">No hay visitas</h1>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center mtResponsive">
+                    <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center mtResponsive" id="graficaDenuncias1">
                         <div class="tarjetaDashboardGrafica" id="graficaDenuncias">
                             <div class="graficasCuadradas">
                                 <canvas class="#" id="cnEstadoDenuncia"></canvas>
                             </div>
                             <div id="noDenuncias" class="d-none">
                                 <i class="fas fa-sad-tear icono4"></i>
-                                <h1 class="tituloTarjetaDashboard text-center my-4">No hay denuncias</h1>
+                                <h1 id="mensaje" class="tituloTarjetaDashboard text-center my-4">No hay denuncias</h1>
                             </div>
                         </div>
                     </div>
@@ -166,7 +166,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 </div>
                                 <div id="noProductos" class="d-none">
                                     <i class="fas fa-sad-tear icono4"></i>
-                                    <h1 class="tituloTarjetaDashboard text-center my-4">No hay productos</h1>
+                                    <h1 id="mensaje" class="tituloTarjetaDashboard text-center my-4">No hay productos</h1>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +186,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 </div>
                                 <div id="noInventario" class="d-none">
                                     <i class="fas fa-sad-tear icono4"></i>
-                                    <h1 class="tituloTarjetaDashboard text-center my-4">No hay productos :(</h1>
+                                    <h1 id="mensaje" class="tituloTarjetaDashboard text-center my-4">No hay productos :(</h1>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +209,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                             </div>
                             <div id="noVisitasResidente" class="d-none">
                                 <i class="fas fa-sad-tear icono4"></i>
-                                <h1 class="tituloTarjetaDashboard text-center my-4">No hay visitas para este residente :(</h1>
+                                <h1 id="mensaje" class="tituloTarjetaDashboard text-center my-4">No hay visitas para este residente :(</h1>
                             </div>
                         </div>
 
@@ -233,7 +233,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 </div>
                                 <div id="noEspacioVeces" class="d-none">
                                     <i class="fas fa-sad-tear icono4"></i>
-                                    <h1 class="tituloTarjetaDashboard text-center my-4">No hay usos para este espacio :(</h1>
+                                    <h1 id="mensaje" class="tituloTarjetaDashboard text-center my-4">No hay usos para este espacio :(</h1>
                                 </div>
                             </div>
                         </div>
@@ -245,7 +245,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 </div>
                                 <div id="noEspacio" class="d-none">
                                     <i class="fas fa-sad-tear icono4"></i>
-                                    <h1 class="tituloTarjetaDashboard text-center my-4">No hay espacios</h1>
+                                    <h1 id="mensaje" class="tituloTarjetaDashboard text-center my-4">No hay espacios</h1>
                                 </div>
                             </div>
                         </div>
@@ -269,7 +269,7 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                 </div>
                                 <div id="noAportaciones" class="d-none">
                                     <i class="fas fa-sad-tear icono4"></i>
-                                    <h1 class="tituloTarjetaDashboard text-center my-4">No hay aportaciones en este mes:    (</h1>
+                                    <h1 id="mensaje" class="tituloTarjetaDashboard text-center my-4">No hay aportaciones en este mes:    (</h1>
                                 </div>
                             </div>
                         </div>

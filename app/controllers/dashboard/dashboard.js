@@ -407,79 +407,86 @@ function setIdMespago(id){
 }
 
 //Genera una grafica de lineas acerca de las visitas de los ultimos 6 meses
-function graficaLineaVisitas() {
-    fetch(API_DASHBOARD + 'last6MonthsOfVisits', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                let cantidad = [];
-                let mes = [];
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    //Se recorre el arreglo de datos
-                    response.dataset.map(function(row){
-                        //Se asignan a los arreglos creados previamente
-                        cantidad.push(row.visitas);
-                        mes.push(row.mes);
-                    });
-
-                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
-                    var modo = document.getElementById('txtModo').value;
-                    var colorFuente;
-
-                    if (modo == 'light') {
-                        colorFuente = 'rgb(0,0,0)';
-                    } else if (modo == 'dark') {
-                        colorFuente = 'rgb(255,255,255)';
-                    }
-
-                    //Creamos un arreglo para guardar los meses de forma textual
-                    let meses = [];
-                    //Recorremos el arreglo de meses uno por uno y evaluamos su valor 
-                    for (let index = 0; index < mes.length; index++) {
-                        if (mes[index] == 1) {
-                            meses[index] = 'Enero';
-                        } else if(mes[index] == 2) {
-                            meses[index] = 'Febrero';
-                        } else if(mes[index] == 3) {
-                            meses[index] = 'Marzo';
-                        } else if(mes[index] == 4) {
-                            meses[index] = 'Abril';
-                        } else if(mes[index] == 5) {
-                            meses[index] = 'Mayo';
-                        } else if(mes[index] == 6) {
-                            meses[index] = 'Junio';
-                        } else if(mes[index] == 7) {
-                            meses[index] = 'Julio';
-                        } else if(mes[index] == 8) {
-                            meses[index] = 'Agosto';
-                        } else if(mes[index] == 9) {
-                            meses[index] = 'Septiembre';
-                        } else if(mes[index] == 10) {
-                            meses[index] = 'Octubre';
-                        } else if(mes[index] == 11) {
-                            meses[index] = 'Noviembre';
-                        } else if(mes[index] == 2) {
-                            meses[index] = 'Diciembre';
+function graficaLineaVisitas(permiso) {
+    if (permiso == 1) {
+        fetch(API_DASHBOARD + 'last6MonthsOfVisits', {
+            method: 'get'
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+            if (request.ok) {
+                request.json().then(function (response) {
+                    let cantidad = [];
+                    let mes = [];
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        //Se recorre el arreglo de datos
+                        response.dataset.map(function(row){
+                            //Se asignan a los arreglos creados previamente
+                            cantidad.push(row.visitas);
+                            mes.push(row.mes);
+                        });
+    
+                        //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                        var modo = document.getElementById('txtModo').value;
+                        var colorFuente;
+    
+                        if (modo == 'light') {
+                            colorFuente = 'rgb(0,0,0)';
+                        } else if (modo == 'dark') {
+                            colorFuente = 'rgb(255,255,255)';
                         }
+    
+                        //Creamos un arreglo para guardar los meses de forma textual
+                        let meses = [];
+                        //Recorremos el arreglo de meses uno por uno y evaluamos su valor 
+                        for (let index = 0; index < mes.length; index++) {
+                            if (mes[index] == 1) {
+                                meses[index] = 'Enero';
+                            } else if(mes[index] == 2) {
+                                meses[index] = 'Febrero';
+                            } else if(mes[index] == 3) {
+                                meses[index] = 'Marzo';
+                            } else if(mes[index] == 4) {
+                                meses[index] = 'Abril';
+                            } else if(mes[index] == 5) {
+                                meses[index] = 'Mayo';
+                            } else if(mes[index] == 6) {
+                                meses[index] = 'Junio';
+                            } else if(mes[index] == 7) {
+                                meses[index] = 'Julio';
+                            } else if(mes[index] == 8) {
+                                meses[index] = 'Agosto';
+                            } else if(mes[index] == 9) {
+                                meses[index] = 'Septiembre';
+                            } else if(mes[index] == 10) {
+                                meses[index] = 'Octubre';
+                            } else if(mes[index] == 11) {
+                                meses[index] = 'Noviembre';
+                            } else if(mes[index] == 2) {
+                                meses[index] = 'Diciembre';
+                            }
+                        }
+    
+                        lineGraph('cnVisitas6Meses', meses, cantidad, 'Visitas', 'Cantidad de visitas: ', 'Visitas Mensuales del Último Semestre', colorFuente);
+                    } else {
+                        //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+                        document.getElementById('cnVisitas6Meses').className = 'd-none';
+                        document.getElementById('noVisitas').className = 'd-flex flex-column justify-content-center align-items-center';
+    
                     }
-
-                    lineGraph('cnVisitas6Meses', meses, cantidad, 'Visitas', 'Cantidad de visitas: ', 'Visitas Mensuales del Último Semestre', colorFuente);
-                } else {
-                    //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
-                    document.getElementById('cnVisitas6Meses').className = 'd-none';
-                    document.getElementById('noVisitas').className = 'd-flex flex-column justify-content-center align-items-center';
-
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(function (error) {
-        console.log(error);
-    });
+                });
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    } else {
+        //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+        document.getElementById('cnVisitas6Meses').className = 'd-none';
+        document.getElementById('noVisitas').className = 'd-flex flex-column justify-content-center align-items-center';
+        document.getElementById('mensaje').textContent = 'Información no disponible.';
+    }
 }
 
 //Se acciona al cambiar de valor el select
@@ -840,188 +847,209 @@ document.getElementById('residenteVisita-form').addEventListener('submit',functi
 })
 
 //Funcion para crear una grafica de pastel acerca de las denuncias por estado
-function graficaPastelDenuncia(){
-    fetch(API_DASHBOARD + 'complaintPercentage', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                let estadodenuncia = [];
-                let porcentajedenuncia = [];
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    //Se recorre el arreglo de datos
-                    response.dataset.map(function(row){
-                        //Se asignan a los arreglos creados previamente
-                        estadodenuncia.push(row.estadodenuncia);
-                        porcentajedenuncia.push(row.porcentajedenuncia);
-                    });
-
-                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
-                    var modo = document.getElementById('txtModo').value;
-                    var colorFuente;
-                    var colorFondo;
-
-                    if (modo == 'light') {
-                        colorFuente = 'rgb(0,0,0)';
-                    } else if (modo == 'dark') {
-                        colorFuente = 'rgb(255,255,255)';
+function graficaPastelDenuncia(permiso){
+    if (permiso == 1) {
+        fetch(API_DASHBOARD + 'complaintPercentage', {
+            method: 'get'
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+            if (request.ok) {
+                request.json().then(function (response) {
+                    let estadodenuncia = [];
+                    let porcentajedenuncia = [];
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        //Se recorre el arreglo de datos
+                        response.dataset.map(function(row){
+                            //Se asignan a los arreglos creados previamente
+                            estadodenuncia.push(row.estadodenuncia);
+                            porcentajedenuncia.push(row.porcentajedenuncia);
+                        });
+    
+                        //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                        var modo = document.getElementById('txtModo').value;
+                        var colorFuente;
+                        var colorFondo;
+    
+                        if (modo == 'light') {
+                            colorFuente = 'rgb(0,0,0)';
+                        } else if (modo == 'dark') {
+                            colorFuente = 'rgb(255,255,255)';
+                        }
+    
+                        if (modo == 'light') {
+                            colorFondo = '#F1F4F9';
+                        } else if (modo == 'dark') {
+                            colorFondo = '#121212';
+                        }
+    
+                        //Recorremos el arreglo para limitar los decimales
+                        for (let index = 0; index < porcentajedenuncia.length; index++) {
+                            var num = parseInt(porcentajedenuncia[index]);
+                            porcentajedenuncia[index] = num.toFixed(2);   
+                        }
+    
+                        pieGraph('cnEstadoDenuncia', estadodenuncia, porcentajedenuncia, 'Porcentaje de Denuncias por Estado', colorFondo, colorFuente)
+    
+                    } else {
+                        //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+                        document.getElementById('cnEstadoDenuncia').className = 'd-none';
+                        document.getElementById('noDenuncias').className = 'd-flex flex-column justify-content-center align-items-center';
+    
                     }
-
-                    if (modo == 'light') {
-                        colorFondo = '#F1F4F9';
-                    } else if (modo == 'dark') {
-                        colorFondo = '#121212';
-                    }
-
-                    //Recorremos el arreglo para limitar los decimales
-                    for (let index = 0; index < porcentajedenuncia.length; index++) {
-                        var num = parseInt(porcentajedenuncia[index]);
-                        porcentajedenuncia[index] = num.toFixed(2);   
-                    }
-
-                    pieGraph('cnEstadoDenuncia', estadodenuncia, porcentajedenuncia, 'Porcentaje de Denuncias por Estado', colorFondo, colorFuente)
-
-                } else {
-                    //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
-                    document.getElementById('cnEstadoDenuncia').className = 'd-none';
-                    document.getElementById('noDenuncias').className = 'd-flex flex-column justify-content-center align-items-center';
-
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(function (error) {
-        console.log(error);
-    });
+                });
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    } else {
+         //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+         document.getElementById('cnEstadoDenuncia').className = 'd-none';
+         document.getElementById('noDenuncias').className = 'd-flex flex-column justify-content-center align-items-center';
+         document.getElementById('mensaje').textContent = 'Información no disponible.';
+    }
 }
 
 //Funcion para crear una grafica de dona de los productos mas demandados
-function graficaDonaProductos(){
-    fetch(API_DASHBOARD + 'topProducts', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                let nombreproducto = [];
-                let totalproducto = [];
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    //Se recorre el arreglo de datos
-                    response.dataset.map(function(row){
-                        //Se asignan a los arreglos creados previamente
-                        nombreproducto.push(row.nombreproducto);
-                        totalproducto.push(row.total);
-                    });
-
-                    //Se destruye el grafico actual para poder hacer otro
-                    document.getElementById('graficaProducto').removeChild(document.getElementById('cnProductoDemandado'));
-                    //Creamos un nuevo canvas
-                    var graph = document.createElement('canvas');
-                    //Asignamos el mismo id
-                    graph.id = 'cnProductoDemandado';
-                    //Aplicamos el mismo tamaño
-                    graph.width = '235';
-                    //Añadimos el elemento al div 
-                    document.getElementById('graficaProducto').appendChild(graph);
-                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
-                    var modo = document.getElementById('txtModo').value;
-                    var colorFuente;
-                    var colorFondo;
-
-                    if (modo == 'light') {
-                        colorFuente = 'rgb(0,0,0)';
-                    } else if (modo == 'dark') {
-                        colorFuente = 'rgb(255,255,255)';
+function graficaDonaProductos(permiso){
+    if (permiso == 1) {
+        fetch(API_DASHBOARD + 'topProducts', {
+            method: 'get'
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+            if (request.ok) {
+                request.json().then(function (response) {
+                    let nombreproducto = [];
+                    let totalproducto = [];
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        //Se recorre el arreglo de datos
+                        response.dataset.map(function(row){
+                            //Se asignan a los arreglos creados previamente
+                            nombreproducto.push(row.nombreproducto);
+                            totalproducto.push(row.total);
+                        });
+    
+                        //Se destruye el grafico actual para poder hacer otro
+                        document.getElementById('graficaProducto').removeChild(document.getElementById('cnProductoDemandado'));
+                        //Creamos un nuevo canvas
+                        var graph = document.createElement('canvas');
+                        //Asignamos el mismo id
+                        graph.id = 'cnProductoDemandado';
+                        //Aplicamos el mismo tamaño
+                        graph.width = '235';
+                        //Añadimos el elemento al div 
+                        document.getElementById('graficaProducto').appendChild(graph);
+                        //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                        var modo = document.getElementById('txtModo').value;
+                        var colorFuente;
+                        var colorFondo;
+    
+                        if (modo == 'light') {
+                            colorFuente = 'rgb(0,0,0)';
+                        } else if (modo == 'dark') {
+                            colorFuente = 'rgb(255,255,255)';
+                        }
+    
+                        if (modo == 'light') {
+                            colorFondo = '#F1F4F9';
+                        } else if (modo == 'dark') {
+                            colorFondo = '#121212';
+                        }
+    
+                        doughnutGraph('cnProductoDemandado', nombreproducto, totalproducto, 'Top 5 Materiales más Demandados', colorFondo, colorFuente)
+    
+                    } else {
+                        //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+                        document.getElementById('cnProductoDemandado').className = 'd-none';
+                        document.getElementById('noProductos').className = 'd-flex flex-column justify-content-center align-items-center';
+    
                     }
-
-                    if (modo == 'light') {
-                        colorFondo = '#F1F4F9';
-                    } else if (modo == 'dark') {
-                        colorFondo = '#121212';
-                    }
-
-                    doughnutGraph('cnProductoDemandado', nombreproducto, totalproducto, 'Top 5 Materiales más Demandados', colorFondo, colorFuente)
-
-                } else {
-                    //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
-                    document.getElementById('cnProductoDemandado').className = 'd-none';
-                    document.getElementById('noProductos').className = 'd-flex flex-column justify-content-center align-items-center';
-
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(function (error) {
-        console.log(error);
-    });
+                });
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    } else {
+        //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+        document.getElementById('cnProductoDemandado').className = 'd-none';
+        document.getElementById('noProductos').className = 'd-flex flex-column justify-content-center align-items-center';
+        document.getElementById('mensaje').textContent = 'Información no disponible.';
+    }
 }
 
 //Funcion para crear una grafica de area acerca de los espacios mas demandados
-function graficaAreaEspacios(){
-    fetch(API_DASHBOARD + 'topSpaces', {
-        method: 'get'
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
-        if (request.ok) {
-            request.json().then(function (response) {
-                let nombre = [];
-                let total = [];
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    //Se recorre el arreglo de datos
-                    response.dataset.map(function(row){
-                        //Se asignan a los arreglos creados previamente
-                        nombre.push(row.nombre);
-                        total.push(row.total);
-                    });
-
-                    //Se destruye el grafico actual para poder hacer otro
-                    document.getElementById('graficaEspacios').removeChild(document.getElementById('cnEspacioDemandado'));
-                    //Creamos un nuevo canvas
-                    var graph = document.createElement('canvas');
-                    //Asignamos el mismo id
-                    graph.id = 'cnEspacioDemandado';
-                    //Aplicamos el mismo tamaño
-                    graph.width = '230';
-                    //Añadimos el elemento al div 
-                    document.getElementById('graficaEspacios').appendChild(graph);
-                    //Se establece el color para las fuentes de chartJS en base al modo del sistema
-                    var modo = document.getElementById('txtModo').value;
-                    var colorFuente;
-                    var colorFondo;
-
-                    if (modo == 'light') {
-                        colorFuente = 'rgb(0,0,0)';
-                    } else if (modo == 'dark') {
-                        colorFuente = 'rgb(255,255,255)';
+function graficaAreaEspacios(permiso){
+    if (permiso == 1) {
+        fetch(API_DASHBOARD + 'topSpaces', {
+            method: 'get'
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+            if (request.ok) {
+                request.json().then(function (response) {
+                    let nombre = [];
+                    let total = [];
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        //Se recorre el arreglo de datos
+                        response.dataset.map(function(row){
+                            //Se asignan a los arreglos creados previamente
+                            nombre.push(row.nombre);
+                            total.push(row.total);
+                        });
+    
+                        //Se destruye el grafico actual para poder hacer otro
+                        document.getElementById('graficaEspacios').removeChild(document.getElementById('cnEspacioDemandado'));
+                        //Creamos un nuevo canvas
+                        var graph = document.createElement('canvas');
+                        //Asignamos el mismo id
+                        graph.id = 'cnEspacioDemandado';
+                        //Aplicamos el mismo tamaño
+                        graph.width = '230';
+                        //Añadimos el elemento al div 
+                        document.getElementById('graficaEspacios').appendChild(graph);
+                        //Se establece el color para las fuentes de chartJS en base al modo del sistema
+                        var modo = document.getElementById('txtModo').value;
+                        var colorFuente;
+                        var colorFondo;
+    
+                        if (modo == 'light') {
+                            colorFuente = 'rgb(0,0,0)';
+                        } else if (modo == 'dark') {
+                            colorFuente = 'rgb(255,255,255)';
+                        }
+    
+                        if (modo == 'light') {
+                            colorFondo = '#F1F4F9';
+                        } else if (modo == 'dark') {
+                            colorFondo = '#121212';
+                        }
+    
+                        polarAreaGraph('cnEspacioDemandado', nombre, total, 'Top 5 Espacios más Alquilados', colorFondo, colorFuente)
+    
+                    } else {
+                        //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+                        document.getElementById('cnEspacioDemandado').className = 'd-none';
+                        document.getElementById('noEspacio').className = 'd-flex flex-column justify-content-center align-items-center';
+    
                     }
-
-                    if (modo == 'light') {
-                        colorFondo = '#F1F4F9';
-                    } else if (modo == 'dark') {
-                        colorFondo = '#121212';
-                    }
-
-                    polarAreaGraph('cnEspacioDemandado', nombre, total, 'Top 5 Espacios más Alquilados', colorFondo, colorFuente)
-
-                } else {
-                    //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
-                    document.getElementById('cnEspacioDemandado').className = 'd-none';
-                    document.getElementById('noEspacio').className = 'd-flex flex-column justify-content-center align-items-center';
-
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(function (error) {
-        console.log(error);
-    });
+                });
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    } else {
+        //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
+        document.getElementById('cnEspacioDemandado').className = 'd-none';
+        document.getElementById('noEspacio').className = 'd-flex flex-column justify-content-center align-items-center';
+            document.getElementById('mensaje').textContent = 'Información no disponible.';
+    }
 }
 
 function fillTable(dataset){

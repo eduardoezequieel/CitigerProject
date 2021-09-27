@@ -709,53 +709,64 @@ function showCharts(){
                         document.getElementById('titulo_tabla').className = 'row my-4'
                         document.getElementById('data-table2').className = 'table table-borderless citigerTable'
                     }
-                    //Ocultando graficas
                     document.getElementById('tarjeta_denuncia').className = 'd-none'
                     document.getElementById('tarjeta_visita').className = 'd-none'
                     document.getElementById('tarjeta_aportacion').className = 'd-none'
-                    document.getElementById('graficaVisitas').className = 'd-none'
-                    document.getElementById('graficaDenuncias').className = 'd-none'
-                    document.getElementById('graficaVisitasResidente').className = 'd-none'
-                    document.getElementById('graficaEspacio').className = 'd-none'
-                    document.getElementById('graficaAportacionesInicio').className = 'd-none'
-                    document.getElementById('grafica_materiales').className = 'd-none'
+                    
                     response.dataset.map(function(row){
                         //Verificar los permisos permitidos
                         if(row.permitido == 1) {
                             //Verificar los permisos
                             switch(row.permiso){
                                 case 'Alquileres':
-                                    document.getElementById('graficaEspacio').className = 'tarjetaDashboardGrafica'
-                                    graficaAreaEspacios();
-                                    graficaLineasEspacioUsos();
+                                    graficaAreaEspacios(1);
+                                    graficaLineasEspacioUsos(1);
                                     break;
                                 case 'Aportaciones':
-                                    document.getElementById('graficaAportacionesInicio').className = 'tarjetaDashboardGrafica'
                                     document.getElementById('tarjeta_aportacion').className = 'col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas';
-                                    graficaPastelAportaciones();
+                                    graficaPastelAportaciones(1);
                                     contadorAportacion();
                                     break;
                                 case 'Denuncias':
-                                    document.getElementById('graficaDenuncias').className = 'tarjetaDashboardGrafica'
                                     document.getElementById('tarjeta_denuncia').className = 'col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas';
                                     contadorDenuncias();
-                                    graficaPastelDenuncia();
+                                    graficaPastelDenuncia(1);
                                     break;
                                 case 'Materiales':
-                                    document.getElementById('grafica_materiales').className = 'margenGraficas2 d-flex justify-content-center align-items-center'
-                                    graficaDonaProductos();
-                                    graficaLineaHistorialInventario();
+                                    graficaDonaProductos(1);
+                                    graficaLineaHistorialInventario(1);
                                     break;
                                 case 'Usuarios':
-                                    document.getElementById('graficaVisitasResidente').className = 'tarjetaDashboardGrafica';
-                                    
                                     break;
                                 case 'Visitas':
-                                    document.getElementById('graficaVisitas').className = 'tarjetaDashboardGrafica'
                                     document.getElementById('tarjeta_visita').className = 'col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas';
-                                    graficaLineaVisitas();
+                                    graficaLineaVisitas(1);
                                     contadorVisitas();
-                                    graficaBarrasResidente();
+                                    graficaBarrasResidente(1);
+                                    break;
+                            }
+                        } else {
+                            //Verificar los permisos
+                            switch(row.permiso){
+                                case 'Alquileres':
+                                    graficaAreaEspacios(0);
+                                    graficaLineasEspacioUsos(0);
+                                    break;
+                                case 'Aportaciones':
+                                    graficaPastelAportaciones(0);
+                                    break;
+                                case 'Denuncias':
+                                    graficaPastelDenuncia(0);
+                                    break;
+                                case 'Materiales':
+                                    graficaDonaProductos(0);
+                                    graficaLineaHistorialInventario(0);
+                                    break;
+                                case 'Usuarios':
+                                    break;
+                                case 'Visitas':
+                                    graficaLineaVisitas(0);
+                                    graficaBarrasResidente(0);
                                     break;
                             }
                         }
