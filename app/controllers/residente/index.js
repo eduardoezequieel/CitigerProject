@@ -20,7 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 console.log(request.status + ' ' + request.statusText);
             }
-        }).catch(error => console.log(error))
+        }).catch(error => console.log(error));
+        
+        getOS();
 });
 
 //Método para iniciar sesion
@@ -352,5 +354,30 @@ function autotab(current, to, prev) {
 
     }
 
+
+}
+
+
+
+function getOS()
+{
+    var OSName="Unknown OS";
+    if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+    if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+    if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+    if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+    console.log(OSName);
+    document.getElementById('txtOS').value=OSName;
+
+
+    
+    fetch("https://ipinfo.io/json?token=ad64e8ae6d2ca9").then(
+        (response) => response.json()
+      ).then(
+        (jsonResponse) =>
+        (document.getElementById('txtLoc').value=jsonResponse.region,
+        document.getElementById('txtIP').value=jsonResponse.ip)
+        
+      )
 
 }

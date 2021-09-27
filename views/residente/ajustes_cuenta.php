@@ -169,6 +169,15 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <h1 class="tituloTarjetaAjustes">Dispositivos Registrados</h1>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center animate__animated animate__zoomIn" id="dispositivo">
+                        
+                    </div>
 
                 </div>
             </div>

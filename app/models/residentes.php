@@ -747,4 +747,34 @@ class Residentes extends Validator
         $params = array($this->idResidente,$act);
         return Database::getRow($sql, $params);
     }
+
+    
+    public function historialUsuario()
+    {
+        $sql = 'INSERT INTO historialresidente(
+            idhistorial, idresidente, ip, region, sistema, fecha)
+            VALUES (default, ?, ?, ?, ?, default)';
+        // Creamos la sentencia SQL que contiene la consulta que mandaremos a la base        
+        $params = array($_SESSION['idresidente'], $_SESSION['ip_residente'], $_SESSION['region_residente'], $_SESSION['sistema_residente']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function checkDevices()
+    {
+        $sql = 'SELECT * from historialresidente where ip=? and idresidente=?';
+        // Creamos la sentencia SQL que contiene la consulta que mandaremos a la base        
+        $params = array($_SESSION['ip_residente'], $_SESSION['idresidente']);
+        if (Database::getRow($sql, $params)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getSesionHistory()
+    {
+        $sql = 'SELECT*FROM historialresidente WHERE idresidente = ?';
+        $params = array($_SESSION['idresidente']);
+        return Database::getRows($sql, $params);
+    }
 }

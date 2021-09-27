@@ -481,7 +481,7 @@ idhistorial serial primary key,
 )
 
 --Cambios 26/9/2021
-create table historialCliente(
+create table historialresidente(
 idhistorial serial primary key,
 	idresidente int,
 	ip varchar(40),

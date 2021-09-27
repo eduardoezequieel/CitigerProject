@@ -261,6 +261,32 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Las contraseñas no coinciden.';
                 }
                 break;
+                case 'createSesionHistory':
+                    if ($usuarios->checkDevices()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Sesión ya registrada en la base de datos.';
+                    } else {
+                        if ($usuarios->historialUsuario()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Sesión registrada correctamente.';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                    }
+                    break;
+                    case 'readDevices':
+                        // Ejecutamos la funcion del modelo
+                        if ($result['dataset'] = $usuarios->getSesionHistory()) {
+                            $result['status'] = 1;
+                        } else {
+                            // Se ejecuta si existe algun error en la base de datos 
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No hay dispositivos registrados';
+                            }
+                        }
+                        break;
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';
         }
@@ -278,6 +304,9 @@ if (isset($_GET['action'])) {
                             $_SESSION['foto_residente'] = $usuarios->getFoto();
                             $_SESSION['modo_residente'] = $usuarios->getModo();
                             $_SESSION['correo_residente'] = $usuarios->getCorreo();
+                            $_SESSION['ip_residente'] = $_POST['txtIP'];
+                            $_SESSION['region_residente'] = $_POST['txtLoc'];
+                            $_SESSION['sistema_residente'] = $_POST['txtOS'];
                              //Se reinicia el conteo de intentos fallidos
                              if ($usuarios->increaseIntentos(0)) {
                                 if ($result['dataset'] = $usuarios->checkLastPasswordUpdate()) {

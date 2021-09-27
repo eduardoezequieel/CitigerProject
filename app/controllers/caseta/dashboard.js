@@ -1,8 +1,11 @@
 //Constante para la ruta API
 const API_VISITA = '../../app/api/caseta/visitas.php?action=';
+const API_USUARIOS = '../../app/api/caseta/usuarios.php?action=';
+
 
 document.addEventListener('DOMContentLoaded', function () {
     contadorVisitas();
+    createSesionHistory();
 })
 
 function contadorVisitas(){
@@ -133,3 +136,27 @@ document.getElementById('info-form').addEventListener('submit', function (event)
     })
     .catch(error => console.log(error))
 })
+
+
+
+function createSesionHistory(){
+    fetch(API_USUARIOS + 'createSesionHistory', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    //console.log(response.message);
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}

@@ -937,4 +937,33 @@ class Usuarios extends Validator
         $params = array($_SESSION['idusuario_dashboard']);
         return Database::getRows($sql, $params);
     }
+
+    public function historialUsuario2()
+    {
+        $sql = 'INSERT INTO historialusuario(
+            idhistorial, idusuario, ip, region, sistema, fecha)
+            VALUES (default, ?, ?, ?, ?, default)';
+        // Creamos la sentencia SQL que contiene la consulta que mandaremos a la base        
+        $params = array($_SESSION['idusuario_caseta'], $_SESSION['ipusuario_caseta'], $_SESSION['regionusuario_caseta'], $_SESSION['sistemausuario_caseta']);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function checkDevices2()
+    {
+        $sql = 'SELECT * from historialusuario where ip=? and idusuario=?';
+        // Creamos la sentencia SQL que contiene la consulta que mandaremos a la base        
+        $params = array($_SESSION['ipusuario_caseta'], $_SESSION['idusuario_caseta']);
+        if (Database::getRow($sql, $params)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getSesionHistory2()
+    {
+        $sql = 'SELECT*FROM historialusuario WHERE idusuario = ?';
+        $params = array($_SESSION['idusuario_caseta']);
+        return Database::getRows($sql, $params);
+    }
 }
