@@ -265,7 +265,7 @@ class Usuarios extends Validator
 
     /*
         Creando métodos get
-    */    
+    */
 
     public function getId()
     {
@@ -397,13 +397,13 @@ class Usuarios extends Validator
     //Obtener tipos de usuario
     public function readTypesOfUser()
     {
-            $sql = 'SELECT idtipousuario, tipousuario, COUNT(permitido) FILTER (WHERE permitido = \'1\') AS permisos 
+        $sql = 'SELECT idtipousuario, tipousuario, COUNT(permitido) FILTER (WHERE permitido = \'1\') AS permisos 
                     FROM permisousuario 
                     INNER JOIN tipousuario USING (idtipousuario)
                     WHERE idtipousuario <> 1
                     GROUP BY tipousuario, idtipousuario';
         $params = null;
-        return Database::getRows($sql, $params);    
+        return Database::getRows($sql, $params);
     }
 
     //Obtener los permisos de un tipo de usuario
@@ -454,7 +454,7 @@ class Usuarios extends Validator
             INNER JOIN tipoUsuario ON tipoUsuario.idTipoUsuario = usuario.idTipoUsuario
             WHERE correo = ? AND tipoUsuario != ? OR correo=? AND tipoUsuario <> \'caseta\'';
         }
-        $params = array($this->correo,$this->idTipoUsuario,$this->correo);
+        $params = array($this->correo, $this->idTipoUsuario, $this->correo);
         return Database::getRow($sql, $params);
     }
 
@@ -587,8 +587,9 @@ class Usuarios extends Validator
 
     //Funcion para insertar los permisos al momento de crear un tipo de usuario
     public function createPermissions()
-    {   $retorno = null;
-        for ($i=1; $i <= 6; $i++) { 
+    {
+        $retorno = null;
+        for ($i = 1; $i <= 6; $i++) {
             $sql = 'INSERT INTO permisousuario(idtipousuario, idpermiso, permitido)
                     VALUES (?,?,?)';
             $params = array($this->idTipoUsuario, $i, 0);
@@ -607,14 +608,14 @@ class Usuarios extends Validator
     {
         $sql = 'SELECT idpermiso FROM permiso';
         $params = null;
-        return Database::getRows($sql, $params);    
+        return Database::getRows($sql, $params);
     }
 
     //Funcion para actualizar los permisos de un tipo de usuario
     public function updatePermission($array, $permisos)
     {
         $retorno = null;
-        for ($i=0; $i <= 5 ; $i++) { 
+        for ($i = 0; $i <= 5; $i++) {
             $idpermiso = (int)$permisos[$i];
             $permitido = (int)$array[$i];
             $sql = 'UPDATE permisousuario SET permitido = ? WHERE idtipousuario = ? AND idpermiso = ?';
@@ -667,7 +668,7 @@ class Usuarios extends Validator
         $params = array(
             $this->idEstadoUsuario, $this->idTipoUsuario, $this->nombre, $this->apellido, $this->telefonoFijo,
             $this->telefonoCelular, $this->foto, $this->correo, $this->fechaNacimiento, $this->genero,
-            $this->dui, $this->username, $hash, $this->direccion,0
+            $this->dui, $this->username, $hash, $this->direccion, 0
         );
         return Database::executeRow($sql, $params);
     }
@@ -793,19 +794,19 @@ class Usuarios extends Validator
     }
 
     //Función para verificar los intentos fallidos
-    public function checkIntentos() 
+    public function checkIntentos()
     {
         $sql = 'SELECT intentos FROM usuario WHERE idusuario = ?';
         $params = array($this->idUsuario);
-        return Database::getRow($sql,$params);
+        return Database::getRow($sql, $params);
     }
 
     //Función para registrar la acción de un usuario no logueado
-    public function registerActionOut($action,$desc) 
+    public function registerActionOut($action, $desc)
     {
         $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
-        $params = array($this->idUsuario,$action,$desc);
-        return Database::executeRow($sql,$params);
+        $params = array($this->idUsuario, $action, $desc);
+        return Database::executeRow($sql, $params);
     }
 
     //Función para cargar los historiales de sesión fallidos de un usuario
@@ -825,7 +826,7 @@ class Usuarios extends Validator
     {
         $sql = 'UPDATE usuario SET intentos = ? WHERE idusuario = ?';
         $params = array($intentos, $this->idUsuario);
-        return Database::executeRow($sql,$params);
+        return Database::executeRow($sql, $params);
     }
 
     //Función para verificar usuarios bloqueados
@@ -836,7 +837,7 @@ class Usuarios extends Validator
                 fecha = current_date - 1 AND current_time >= hora
                 OR accion = \'Bloqueo\' AND fecha <= current_date - 2';
         $params = null;
-        return Database::getRows($sql,$params);
+        return Database::getRows($sql, $params);
     }
 
     //Función para actualizar la bitacora con el id
@@ -844,16 +845,16 @@ class Usuarios extends Validator
     {
         $sql = 'UPDATE bitacora SET accion = ?, fecha = current_date, hora = current_time 
                 WHERE idbitacora = ?';
-        $params = array($act,$this->bitacora);
-        return Database::executeRow($sql,$params);
+        $params = array($act, $this->bitacora);
+        return Database::executeRow($sql, $params);
     }
 
     //Función para generara contraseña
-    public function generatePassword() 
+    public function generatePassword()
     {
         $contraseña = random_bytes(4);
         $contraseña = bin2hex($contraseña);
-        $contraseñaFinal ='CS'.$contraseña.'*';
+        $contraseñaFinal = 'CS' . $contraseña . '*';
         return $contraseñaFinal;
     }
 
@@ -864,8 +865,8 @@ class Usuarios extends Validator
                 WHERE accion = ?
                 AND fecha < current_date - 90
                 AND idusuario = ?';
-        $params = array('Cambio de clave',$this->idUsuario);
-        return Database::getRow($sql,$params);
+        $params = array('Cambio de clave', $this->idUsuario);
+        return Database::getRow($sql, $params);
     }
 
     //Función para leer los datos de un usuario
@@ -878,15 +879,17 @@ class Usuarios extends Validator
     }
 
     //Función para obtener el id de la bitacora
-    public function getIdBitacora($act) {
+    public function getIdBitacora($act)
+    {
         $sql = "SELECT idbitacora
                 FROM bitacora where idusuario=? AND accion = ?";
-        $params = array($this->idUsuario,$act);
+        $params = array($this->idUsuario, $act);
         return Database::getRow($sql, $params);
     }
 
     //Función para obtener los permisos del usuario logueado
-    public function checkUserLoggedPermissions() {
+    public function checkUserLoggedPermissions()
+    {
         $sql = 'SELECT permiso,permitido FROM permisousuario
                 INNER JOIN permiso USING(idpermiso)
                 WHERE idtipousuario = (SELECT idtipousuario FROM usuario WHERE idusuario = ?)';
@@ -895,13 +898,14 @@ class Usuarios extends Validator
     }
 
     //Función para obtener los permisos del usuario logueado
-    public function checkPermissionsPerPage() {
+    public function checkPermissionsPerPage()
+    {
         $sql = 'SELECT tipousuario, permiso, permitido FROM permisousuario
                 INNER JOIN tipousuario USING(idtipousuario)
                 INNER JOIN permiso USING(idpermiso)
                 WHERE idtipousuario = (SELECT idtipousuario FROM usuario WHERE idusuario = ?)
                 AND permitido = \'1\' AND permiso = ?';
-        $params = array($_SESSION['idusuario_dashboard'],$this->permiso);
+        $params = array($_SESSION['idusuario_dashboard'], $this->permiso);
         return Database::getRows($sql, $params);
     }
 
@@ -911,7 +915,7 @@ class Usuarios extends Validator
             idhistorial, idusuario, ip, region, sistema, fecha)
             VALUES (default, ?, ?, ?, ?, default)';
         // Creamos la sentencia SQL que contiene la consulta que mandaremos a la base        
-        $params = array($this->idUsuario, $this->ip,$this->region,$this->sistema);
+        $params = array($_SESSION['idusuario_dashboard'], $_SESSION['ipusuario_dashboard'], $_SESSION['regionusuario_dashboard'], $_SESSION['sistemausuario_dashboard']);
         return Database::executeRow($sql, $params);
     }
 
@@ -919,8 +923,18 @@ class Usuarios extends Validator
     {
         $sql = 'SELECT * from historialusuario where ip=? and idusuario=?';
         // Creamos la sentencia SQL que contiene la consulta que mandaremos a la base        
-        $params = array($this->ip,$this->idUsuario);
-        return Database::executeRow($sql, $params);
+        $params = array($_SESSION['ipusuario_dashboard'], $_SESSION['idusuario_dashboard']);
+        if (Database::getRow($sql, $params)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
+    public function getSesionHistory()
+    {
+        $sql = 'SELECT*FROM historialusuario WHERE idusuario = ?';
+        $params = array($_SESSION['idusuario_dashboard']);
+        return Database::getRows($sql, $params);
+    }
 }

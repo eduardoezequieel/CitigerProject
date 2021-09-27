@@ -389,7 +389,7 @@ function getOS()
       ).then(
         (jsonResponse) =>
         (document.getElementById('txtLoc').value=jsonResponse.region,
-        document.getElementById('txtIP').value=jsonResponse.ip,console.log(jsonResponse))
+        document.getElementById('txtIP').value=jsonResponse.ip)
         
       )
 

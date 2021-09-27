@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se asigna la fecha como valor máximo en el campo del formulario.
     document.getElementById('txtFechaNacimiento').setAttribute('max', date);
     document.getElementById('txtFechaNacimiento').setAttribute('value', date);
+    readRows3(API_USUARIOS);
+
 
     fetch(API_USUARIOS + 'readProfile2', {
         method: 'get',
@@ -375,4 +377,68 @@ function changeInputValue(input){
     } else {
         document.getElementById(input).value = 'No';
     }
+}
+
+
+function readRows3(api) {
+    fetch(api + 'readDevices', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                let data = [];
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    data = response.dataset;
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillTable4(data);
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+// Función para llenar la tabla con los datos de los registros. Se manda a llamar en la función readRows().
+function fillTable4(dataset) {
+    let content = '';
+    // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+    dataset.map(function (row) {
+        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        content += `
+        <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="informacionPersonal">
+            <div class="d-flex mt-2">
+                <div class=" ml-4 mr-5 justify-content-end align-items-center d-flex">
+                    <i class="fas fa-desktop h1"></i>
+                </div>
+                <div class="row w-100">
+                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <h1 class="tituloInformacion">Sistema:</h1>
+                        <h2 class="informacion">${row.sistema}</h2>
+
+                        <h1 class="tituloInformacion">Localización:</h1>
+                        <h2 class="informacion">${row.region}</h2>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                        <h1 class="tituloInformacion">Fecha:</h1>
+                        <h2 class="informacion">${row.fecha.substring(0,10)}</h2>
+
+                        <h1 class="tituloInformacion">Hora:</h1>
+                        <h2 class="informacion">${row.fecha.substring(11,16)}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        `;
+    });
+    // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
+    document.getElementById('dispositivo').innerHTML = content;
 }

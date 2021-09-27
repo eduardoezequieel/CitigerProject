@@ -480,5 +480,18 @@ idhistorial serial primary key,
 	
 )
 
+--Cambios 26/9/2021
+create table historialCliente(
+idhistorial serial primary key,
+	idresidente int,
+	ip varchar(40),
+	region varchar(40),
+	sistema varchar(40),
+	fecha timestamp default current_timestamp,
+	foreign key (idresidente)
+	references residente(idresidente)
+	
+)
+
 
 

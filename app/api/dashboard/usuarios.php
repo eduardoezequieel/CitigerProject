@@ -282,6 +282,36 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
+                //Caso para registrar el dispositivo de un usuario
+            case 'createSesionHistory':
+                if ($usuarios->checkDevices()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Sesión ya registrada en la base de datos.';
+                } else {
+                    if ($usuarios->historialUsuario()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Sesión registrada correctamente.';
+                    } else {
+                        $result['exception'] = Database::getException();
+                    }
+                }
+                break;
+                //Caso para mostrar el dispositivo del usuario
+                case 'readDevices':
+                    // Ejecutamos la funcion del modelo
+                    if ($result['dataset'] = $usuarios->getSesionHistory()) {
+                        $result['status'] = 1;
+                    } else {
+                        // Se ejecuta si existe algun error en la base de datos 
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No hay dispositivos registrados';
+                        }
+                    }
+                    break;
+    
+
                 //Caso para cerrar la sesión
             case 'logOut':
                 unset($_SESSION['idusuario_dashboard']);
@@ -525,6 +555,10 @@ if (isset($_GET['action'])) {
                                 $_SESSION['modo_dashboard'] = $usuarios->getModo();
                                 $_SESSION['correo_dashboard'] = $usuarios->getCorreo();
                                 $_SESSION['permisos'] = $usuarios->checkUserLoggedPermissions();
+                                $_SESSION['ipusuario_dashboard'] = $_POST['txtIP'];
+                                $_SESSION['regionusuario_dashboard'] = $_POST['txtLoc'];
+                                $_SESSION['sistemausuario_dashboard'] = $_POST['txtOS'];
+
                                 //Se reinicia el conteo de intentos fallidos
                                 if ($usuarios->increaseIntentos(0)) {
                                     if ($result['dataset'] = $usuarios->checkLastPasswordUpdate()) {
@@ -542,31 +576,8 @@ if (isset($_GET['action'])) {
                                                 unset($_SESSION['idusuario_dashboard']);
                                             } else {
 
-                                                if ($usuarios->setIP($_POST['txtIP'])) {
-                                                    if ($usuarios->setRegion($_POST['txtLoc'])) {
-                                                        if ($usuarios->setSistema($_POST['txtOS'])) {
-                                                            if ($usuarios->checkDevices()) {
-                                                                $result['status'] = 1;
-                                                                $result['message'] = 'Sesión iniciada correctamente.';
-                                                            } else {
-
-                                                                $result['status'] = 1;
-                                                                $result['message'] = 'Sesión iniciada correctamente.';
-                                                                $usuarios->historialUsuario();
-
-                                                            }
-                                                        } else {
-
-                                                            $result['exception'] = 'SO incorrecto.';
-                                                        }
-                                                    } else {
-
-                                                        $result['exception'] = 'Región incorrecta.';
-                                                    }
-                                                } else {
-
-                                                    $result['exception'] = 'IP incorrecto.';
-                                                }
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Sesión iniciada correctamente.';
                                             }
                                         } else {
                                             if (Database::getException()) {
