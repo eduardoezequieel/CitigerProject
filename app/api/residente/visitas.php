@@ -82,13 +82,13 @@ if (isset($_GET['action'])) {
                                             $result['exception'] = Database::getException();
                                         }
                                     } else {
-                                        $result['exception'] = 'Onservacion invalido.';
+                                        $result['exception'] = 'Observación invalida.';
                                     }
                                 } else {
                                     $result['exception'] = 'Visita Recurrente invalida.';
                                 }
                             } else {
-                                $result['exception'] = 'Visita Recurrente invalido.';
+                                $result['exception'] = 'Por favor seleccione si es una visita recurrente o no.';
                             }
                         } else {
                             $result['exception'] = 'Fecha invalida.';

@@ -162,7 +162,7 @@ class Visitas extends Validator
 
     public function setObservacion($value)
     {
-        if ($this->validateAlphabetic($value, 1, 200)) {
+        if ($this->validateAlphanumeric($value, 1, 200)) {
             $this->observacion = $value;
             return true;
         } else {

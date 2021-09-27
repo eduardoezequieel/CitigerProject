@@ -2428,14 +2428,6 @@ textarea[placeholder],
   color: #5494F5;
 }
 
-.icono11 {
-  color: #FDB85A;
-}
-
-.icono22 {
-  color: #EE786C;
-}
-
 .icono1 {
   color: #FDB85A;
   font-size: 50px;
@@ -2454,6 +2446,11 @@ textarea[placeholder],
 .icono4 {
   color: #6B44BC;
   font-size: 50px;
+}
+
+.icono5 {
+  color: var(--color-citiger) !important;
+  font-size: 70px;
 }
 
 /*Responsive*/
