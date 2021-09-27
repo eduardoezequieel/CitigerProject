@@ -29,7 +29,7 @@ function fillTable(dataset) {
                 <th scope="row">
                     <div class="row paddingBotones">
                         <div class="col-12">
-                            <a href="#" onclick="readDataOnModal(${row.idvisita}) "data-toggle="modal" data-target="#modalVisitas" class="btn btnTabla mx-2"><i class="fas fa-eye"></i></a>
+                            <a href="#" onclick="readDataOnModal(${row.idvisita}) "data-toggle="modal" data-target="#infoVisita" class="btn btnTabla mx-2"><i class="fas fa-eye"></i></a>
                         </div>
                     </div>
                 </th>
@@ -99,10 +99,11 @@ function readDataOnModal(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     document.getElementById('txtVisita').value = response.dataset.idvisita;
-                    document.getElementById('residente').textContent = 'Residente: ' + response.dataset.residente;
-                    document.getElementById('fecha').textContent = 'Fecha: ' + response.dataset.fecha;
-                    document.getElementById('visitante').textContent = 'Visitante: ' + response.dataset.visitante;
-                    document.getElementById('observacion').textContent = 'Observación: ' + response.dataset.observacion;
+                    document.getElementById('lblResidente').textContent = response.dataset.residente;
+                    document.getElementById('lblFecha').textContent =response.dataset.fecha;
+                    document.getElementById('lblVisitante').textContent = response.dataset.visitante;
+                    document.getElementById('lblCasa').textContent =response.dataset.numerocasa;
+                    document.getElementById('lblObservacion').textContent =response.dataset.observacion;
                 } else {
                     sweetAlert(2, response.exception, null);
                 }

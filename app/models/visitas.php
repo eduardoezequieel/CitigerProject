@@ -545,11 +545,13 @@ class Visitas extends Validator
     {
         $sql = 'SELECT CONCAT(residente.apellido, \' \', residente.nombre) as residente, fecha, 
                 CONCAT(visitante.apellido, \' \', visitante.nombre) as visitante, observacion,
-                detallevisita.idvisita,residente.foto
+                detallevisita.idvisita,residente.foto,numerocasa
                 FROM detallevisita
-                INNER JOIN visitante ON visitante.idvisitante = detallevisita.idvisitante
-                INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
-                INNER JOIN residente ON residente.idresidente = visita.idresidente
+                INNER JOIN visitante USING(idvisitante)
+                INNER JOIN visita USING(idvisita)
+                INNER JOIN residente USING(idresidente)
+                INNER JOIN residentecasa USING(idresidente)
+                INNER JOIN casa USING(idcasa)
                 WHERE detallevisita.idvisita = ?';
         $params = array($this->idVisita);
         return Database::getRow($sql, $params);

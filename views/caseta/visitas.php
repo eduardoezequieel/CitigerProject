@@ -52,37 +52,74 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
     </div>
 </div>
 <!-- Desde aqui termina la tabla --><br>
-<!-- Modal -->
-<div class="modal fade" id="modalVisitas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <input type="number" class="form-control cajaTextoDUI d-none" id="txtVisita" name="txtVisita">
-                        <h5 class="subTituloPagina1" id="exampleModalLabel">Detalles de la visita</h5>
-                        <button type="button" class="close text-light lead" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<!-- Modal que muestra la info de la visita -->
+<div class="modal fade" id="infoVisita" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content justify-content-center px-3 py-2">
+                <!-- Cabecera del Modal -->
+                <div class="modal-header">
+                    <!-- Titulo -->
+                    <h5 class="modal-title tituloModal" id="exampleModalLabel"><span
+                            class="fas fa-info-circle mr-4 iconoModal"></span>Información de la Visita</h5>
+                    <!-- Boton para Cerrar -->
+                    <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Contenido del Modal -->
+                <div class="textoModal modal-body px-3 pb-4">
+                    <div class="row mb-4">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <i class="fas fa-calendar-day icono5"></i>
+                        </div>
                     </div>
-                    <br>
-                    <ul class="textoModal">
-                            <li id="residente">Residente:</li>
-                            <br>
-                            <li id="fecha">Fecha:</li>
-                            <br>
-                            <li id="visitante">Visitante:</li>
-                            <br>
-                            <li id="observacion">Observación:</li>
-                            <br>
-                        </ul>
+                    <div class="row">
+                        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                            <h1 class="tituloDato2">El registro corresponde a: </h1>
+                        </div>
+                    </div>
+                    <form id="info-form" autocomplete="off">
+                        <input type="number" class="form-control cajaTextoDUI d-none" id="txtVisita" name="txtVisita">
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <!-- Titulo -->
+                                    <h1 class="tituloInformacion">Residente</h1>
+                                    <!-- Información -->
+                                    <h2 class="informacion" id="lblResidente">Eduardo Rivera</h2>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Titulo -->
+                                    <h1 class="tituloInformacion">Fecha</h1>
+                                    <!-- Información -->
+                                    <h2 class="informacion" id="lblFecha">27/9/2021</h2>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Titulo -->
+                                    <h1 class="tituloInformacion">Visitante</h1>
+                                    <!-- Información -->
+                                    <h2 class="informacion" id="lblVisitante">Katherine Gonzalez</h2>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Titulo -->
+                                    <h1 class="tituloInformacion">Casa</h1>
+                                    <!-- Información -->
+                                    <h2 class="informacion" id="lblCasa">#1</h2>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Titulo -->
+                                    <h1 class="tituloInformacion">Observación</h1>
+                                    <!-- Información -->
+                                    <h2 class="informacion" id="lblObservacion">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ducimus cupiditate, asperiores non praesentium doloribus suscipit cum hic culpa sint laudantium enim debitis unde. Mollitia sunt expedita aperiam ducimus consectetur.</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- Fin de modal -->
-<!-- Desde aqui finaliza el contenido -->
     </div>
-
-</div>
-<!-- Final del contenido -->
+    <!-- Fin del Modal -->
 
 <?php
 //Se imprimen los JS necesarios

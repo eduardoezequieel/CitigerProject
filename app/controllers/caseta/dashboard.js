@@ -102,11 +102,6 @@ function fillInformation(dataset){
     document.getElementById('lblObservacion').textContent =dataset.observacion;
 }
 
-//Función para finalizar la visita
-function confirmVisit(){
-    
-}
-
 //Función para que se confirme la visita
 document.getElementById('info-form').addEventListener('submit', function (event) {
     //Evento para evitar que recargue la pagina
