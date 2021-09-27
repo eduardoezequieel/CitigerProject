@@ -485,7 +485,7 @@ function graficaLineaVisitas(permiso) {
         //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
         document.getElementById('cnVisitas6Meses').className = 'd-none';
         document.getElementById('noVisitas').className = 'd-flex flex-column justify-content-center align-items-center';
-        document.getElementById('mensaje').textContent = 'Información no disponible.';
+        document.getElementById('mensaje5').textContent = 'Información no disponible.';
     }
 }
 
@@ -908,7 +908,7 @@ function graficaPastelDenuncia(permiso){
          //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
          document.getElementById('cnEstadoDenuncia').className = 'd-none';
          document.getElementById('noDenuncias').className = 'd-flex flex-column justify-content-center align-items-center';
-         document.getElementById('mensaje').textContent = 'Información no disponible.';
+         document.getElementById('mensaje6').textContent = 'Información no disponible.';
     }
 }
 
@@ -978,7 +978,7 @@ function graficaDonaProductos(permiso){
         //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
         document.getElementById('cnProductoDemandado').className = 'd-none';
         document.getElementById('noProductos').className = 'd-flex flex-column justify-content-center align-items-center';
-        document.getElementById('mensaje').textContent = 'Información no disponible.';
+        document.getElementById('mensaje7').textContent = 'Información no disponible.';
     }
 }
 
@@ -1048,7 +1048,7 @@ function graficaAreaEspacios(permiso){
         //Si no hay visitas, se oculta el canvas y se muestra un div con un mensaje.
         document.getElementById('cnEspacioDemandado').className = 'd-none';
         document.getElementById('noEspacio').className = 'd-flex flex-column justify-content-center align-items-center';
-            document.getElementById('mensaje').textContent = 'Información no disponible.';
+            document.getElementById('mensaje8').textContent = 'Información no disponible.';
     }
 }
 

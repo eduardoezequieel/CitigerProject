@@ -724,8 +724,9 @@ function showCharts(){
                                     break;
                                 case 'Aportaciones':
                                     document.getElementById('tarjeta_aportacion').className = 'col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas';
-                                    graficaPastelAportaciones(1);
+                                    graficaPastelAportaciones();
                                     contadorAportacion();
+                                    console.log('nop')
                                     break;
                                 case 'Denuncias':
                                     document.getElementById('tarjeta_denuncia').className = 'col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas';
@@ -750,23 +751,31 @@ function showCharts(){
                             switch(row.permiso){
                                 case 'Alquileres':
                                     graficaAreaEspacios(0);
-                                    graficaLineasEspacioUsos(0);
+                                    document.getElementById('mensaje2').textContent = 'Información no disponible.';
+                                    document.getElementById('graficaEspacioVeces').className = 'd-none';
+                                    document.getElementById('noEspacioVeces').className = 'd-flex flex-column justify-content-center align-items-center'; 
                                     break;
                                 case 'Aportaciones':
-                                    graficaPastelAportaciones(0);
+                                    document.getElementById('graficaAportaciones').className = 'd-none';
+                                    document.getElementById('noAportaciones').className = 'd-flex flex-column justify-content-center align-items-center';
+                                    document.getElementById('mensaje1').textContent = 'Información no disponible.';
                                     break;
                                 case 'Denuncias':
                                     graficaPastelDenuncia(0);
                                     break;
                                 case 'Materiales':
                                     graficaDonaProductos(0);
-                                    graficaLineaHistorialInventario(0);
+                                    document.getElementById('graficaInventario').className = 'd-none';
+                                    document.getElementById('noInventario').className = 'd-flex flex-column justify-content-center align-items-center';
+                                    document.getElementById('mensaje4').textContent = 'Información no disponible.';
                                     break;
                                 case 'Usuarios':
                                     break;
                                 case 'Visitas':
                                     graficaLineaVisitas(0);
-                                    graficaBarrasResidente(0);
+                                    document.getElementById('graficaResidente').className = 'd-none';
+                                    document.getElementById('noVisitasResidente').className = 'd-flex flex-column justify-content-center align-items-center';
+                                    document.getElementById('mensaje3').textContent = 'Información no disponible.';
                                     break;
                             }
                         }
