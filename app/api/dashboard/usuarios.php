@@ -25,17 +25,19 @@ if (isset($_GET['action'])) {
     $usuarios = new Usuarios;
     $correo = new Correo;
     //Array para respuesta de la API
-    $result = array('status' => 0, 
-                    'recaptcha' => 0, 
-                    'error' => 0,
-                    'auth' => 0, 
-                    'message' => null, 
-                    'exception' => null);
+    $result = array(
+        'status' => 0,
+        'recaptcha' => 0,
+        'error' => 0,
+        'auth' => 0,
+        'message' => null,
+        'exception' => null
+    );
     //Verificando si hay una sesion iniciada
     if (isset($_SESSION['idusuario_dashboard'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
-            //Caso para cargar los historiales de sesión fallidos de un usuario
+                //Caso para cargar los historiales de sesión fallidos de un usuario
             case 'readFailedSessions':
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($result['dataset'] = $usuarios->readFailedSessions()) {
@@ -50,9 +52,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id invalido.';
                 }
-                
+
                 break;
-            //Obtener el modo de autenticación de un usuario
+                //Obtener el modo de autenticación de un usuario
             case 'getAuthMode':
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($result['dataset'] = $usuarios->getAuthMode()) {
@@ -67,9 +69,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id incorrecto.';
                 }
-                
+
                 break;
-            //Caso para actualizar la preferencia del modo de autenticacion del usuario
+                //Caso para actualizar la preferencia del modo de autenticacion del usuario
             case 'updateAuthMode':
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($usuarios->checkPassword($_POST['txtContrasenaActualAuth'])) {
@@ -89,9 +91,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Sesión invalida.';
                 }
-                
+
                 break;
-            //Crear nuevo tipo de usuario y asignar permisos
+                //Crear nuevo tipo de usuario y asignar permisos
             case 'createType':
                 $_POST = $usuarios->validateForm($_POST);
                 //Validamos que la contraseña sea correcta
@@ -108,13 +110,15 @@ if (isset($_GET['action'])) {
                                         //Creamos los permisos del usuario por defecto (Todos en 'No')
                                         if ($usuarios->createPermissions()) {
                                             //Guardamos en un arreglo los seleccionados por el usuario
-                                            $array = array($_POST['alquileresValue'],
-                                                    $_POST['aportacionesValue'],
-                                                    $_POST['denunciaValue'],
-                                                    $_POST['materialesValue'],
-                                                    $_POST['usuariosValue'],
-                                                    $_POST['visitasValue']);
-                                            $permissions = array(1,2,3,4,5,6);
+                                            $array = array(
+                                                $_POST['alquileresValue'],
+                                                $_POST['aportacionesValue'],
+                                                $_POST['denunciaValue'],
+                                                $_POST['materialesValue'],
+                                                $_POST['usuariosValue'],
+                                                $_POST['visitasValue']
+                                            );
+                                            $permissions = array(1, 2, 3, 4, 5, 6);
                                             //Mandamos el arreglo a la funcion que se encarga de ingresar los datos
                                             if ($usuarios->updatePermission($array, $permissions)) {
                                                 $result['status'] = 1;
@@ -139,7 +143,7 @@ if (isset($_GET['action'])) {
                                 }
                             } else {
                                 $result['exception'] = Database::getException();
-                            } 
+                            }
                         } else {
                             $result['exception'] = 'Nombre para el tipo de usuario invalido.';
                         }
@@ -149,9 +153,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id incorrecto.';
                 }
-                
+
                 break;
-            //Caso para actualizar tipo de usuario y sus permisos
+                //Caso para actualizar tipo de usuario y sus permisos
             case 'updateType':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
@@ -160,13 +164,15 @@ if (isset($_GET['action'])) {
                             if ($usuarios->setTipoUsuario($_POST['txtTipoUsuario'])) {
                                 if ($usuarios->updateType()) {
                                     //Guardamos en un arreglo los seleccionados por el usuario
-                                    $array = array($_POST['alquileresValue'],
-                                    $_POST['aportacionesValue'],
-                                    $_POST['denunciaValue'],
-                                    $_POST['materialesValue'],
-                                    $_POST['usuariosValue'],
-                                    $_POST['visitasValue']);
-                                    $permissions = array(1,2,3,4,5,6);
+                                    $array = array(
+                                        $_POST['alquileresValue'],
+                                        $_POST['aportacionesValue'],
+                                        $_POST['denunciaValue'],
+                                        $_POST['materialesValue'],
+                                        $_POST['usuariosValue'],
+                                        $_POST['visitasValue']
+                                    );
+                                    $permissions = array(1, 2, 3, 4, 5, 6);
                                     //Mandamos el arreglo a la funcion que se encarga de ingresar los datos
                                     if ($usuarios->updatePermission($array, $permissions)) {
                                         $result['status'] = 1;
@@ -191,9 +197,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id incorrecto.';
                 }
-                
+
                 break;
-            //Caso para eliminar un tipo de usuario y sus permisos
+                //Caso para eliminar un tipo de usuario y sus permisos
             case 'deleteType':
                 if ($usuarios->setIdTipoUsuario($_POST['idTipoUsuario'])) {
                     if ($usuarios->deletePermissions()) {
@@ -211,7 +217,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Dato incorrecto.';
                 }
                 break;
-            //Caso para obtener todos los tipos de usuario
+                //Caso para obtener todos los tipos de usuario
             case 'readTypesOfUser':
                 if ($result['dataset'] = $usuarios->readTypesOfUser()) {
                     $result['status'] = 1;
@@ -223,7 +229,7 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-            //Caso para obtener los permisos de un usuario
+                //Caso para obtener los permisos de un usuario
             case 'getPermissionsOfAType':
                 if ($usuarios->setIdTipoUsuario($_POST['idTipoUsuario'])) {
                     if ($result['dataset'] = $usuarios->getPermissionsOfAType()) {
@@ -238,9 +244,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id invalido.';
                 }
-             
+
                 break;
-            //Realizar busquedas de tipos de usuario
+                //Realizar busquedas de tipos de usuario
             case 'searchTypesOfUser':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($_POST['search'] != '') {
@@ -263,7 +269,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ingrese un valor para buscar';
                 }
                 break;
-            //Caso para leer todos los datos de la tabla
+                //Caso para leer todos los datos de la tabla
             case 'readAll':
                 if ($result['dataset'] = $usuarios->readAll()) {
                     $result['status'] = 1;
@@ -276,18 +282,18 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-            //Caso para cerrar la sesión
+                //Caso para cerrar la sesión
             case 'logOut':
                 unset($_SESSION['idusuario_dashboard']);
                 $result['status'] = 1;
                 $result['message'] = 'Sesión eliminada correctamente';
                 break;
-            //Redirige al dashboard
+                //Redirige al dashboard
             case 'validateSession':
                 $result['status'] = 1;
                 $result['message'] = 'Posee una sesión activa.';
                 break;
-            //Caso para setear light mode
+                //Caso para setear light mode
             case 'setLightMode':
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($usuarios->setLightMode()) {
@@ -300,7 +306,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Id incorrecto.';
                 }
                 break;
-            //Caso para setear dark mode
+                //Caso para setear dark mode
             case 'setDarkMode':
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($usuarios->setDarkMode()) {
@@ -313,7 +319,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Id incorrecto.';
                 }
                 break;
-            //Caso para leer la información de un usuario
+                //Caso para leer la información de un usuario
             case 'readProfile2':
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($result['dataset'] = $usuarios->readProfile2()) {
@@ -328,9 +334,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id incorrecto.';
                 }
-                
+
                 break;
-            //Caso para editar el perfil de un usuario
+                //Caso para editar el perfil de un usuario
             case 'editProfile':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setDui($_POST['txtDUI'])) {
@@ -376,7 +382,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'DUI invalido';
                 }
                 break;
-            //Caso para actualizar la foto
+                //Caso para actualizar la foto
             case 'updateFoto':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
@@ -396,22 +402,24 @@ if (isset($_GET['action'])) {
                         } else {
                             $result['exception'] = $usuarios->getImageError();
                         }
-                    }else{
+                    } else {
                         $result['exception'] = $usuarios->getImageError();
                     }
                 } else {
                     $result['exception'] = 'Id incorrecto';
                 }
-                
+
                 break;
-            //Caso para actualizar la contraseña (Dentro del sistema)
+                //Caso para actualizar la contraseña (Dentro del sistema)
             case 'updatePassword':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($usuarios->checkPassword($_POST['txtContrasenaActual'])) {
                         if ($_POST['txtNuevaContrasena'] == $_POST['txtConfirmarContrasena']) {
-                            if ($_POST['txtNuevaContrasena'] != $_POST['txtContrasenaActual'] ||
-                                $_POST['txtConfirmarContrasena'] != $_POST['txtContrasenaActual']) {
+                            if (
+                                $_POST['txtNuevaContrasena'] != $_POST['txtContrasenaActual'] ||
+                                $_POST['txtConfirmarContrasena'] != $_POST['txtContrasenaActual']
+                            ) {
                                 if ($usuarios->setContrasenia($_POST['txtNuevaContrasena'])) {
                                     if ($usuarios->changePassword()) {
                                         $result['status'] = 1;
@@ -437,9 +445,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id incorrecto.';
                 }
-                
+
                 break;
-            //Caso para actualizar la contraseña
+                //Caso para actualizar la contraseña
             case 'changePassword':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($_POST['txtContrasena'] == $_POST['txtConfirmarContra']) {
@@ -470,7 +478,7 @@ if (isset($_GET['action'])) {
                 $result['status'] = 1;
                 $result['tipo'] = $_SESSION['tipousuario_dashboard'];
                 break;
-            //Caso para verificar los permisos permitidos del usuario logueado
+                //Caso para verificar los permisos permitidos del usuario logueado
             case 'checkPermissionsPerPage':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setPermiso($_POST['txtPagina'])) {
@@ -487,11 +495,10 @@ if (isset($_GET['action'])) {
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';
         }
-
     } else {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
-            //Caso para leer todos los datos de la tabla
+                //Caso para leer todos los datos de la tabla
             case 'readAll':
                 if ($result['dataset'] = $usuarios->readAll()) {
                     $result['status'] = 1;
@@ -504,13 +511,13 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-            //Caso para iniciar sesion
+                //Caso para iniciar sesion
             case 'logIn':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->checkUser($_POST['txtCorreo'])) {
                     if ($usuarios->checkUserType(2)) {
                         if ($usuarios->checkEstado()) {
-                            if ($usuarios->checkPassword($_POST['txtContrasenia'])) {  
+                            if ($usuarios->checkPassword($_POST['txtContrasenia'])) {
                                 $_SESSION['idusuario_dashboard'] = $usuarios->getId();
                                 $_SESSION['usuario_dashboard'] = $usuarios->getUsername();
                                 $_SESSION['foto_dashboard'] = $usuarios->getFoto();
@@ -519,7 +526,7 @@ if (isset($_GET['action'])) {
                                 $_SESSION['correo_dashboard'] = $usuarios->getCorreo();
                                 $_SESSION['permisos'] = $usuarios->checkUserLoggedPermissions();
                                 //Se reinicia el conteo de intentos fallidos
-                                if ($usuarios->increaseIntentos(0)){
+                                if ($usuarios->increaseIntentos(0)) {
                                     if ($result['dataset'] = $usuarios->checkLastPasswordUpdate()) {
                                         $result['error'] = 1;
                                         $result['message'] = 'Se ha detectado que debes actualizar
@@ -534,37 +541,58 @@ if (isset($_GET['action'])) {
                                                 $_SESSION['idusuario_temp'] = $usuarios->getId();
                                                 unset($_SESSION['idusuario_dashboard']);
                                             } else {
-                                                $result['status'] = 1;
-                                                $result['message'] = 'Sesión iniciada correctamente.';
+
+                                                if ($usuarios->setIP($_POST['txtIP'])) {
+                                                    if ($usuarios->setRegion($_POST['txtLoc'])) {
+                                                        if ($usuarios->setSistema($_POST['txtOS'])) {
+                                                            if ($usuarios->checkDevices()) {
+                                                                $result['status'] = 1;
+                                                                $result['message'] = 'Sesión iniciada correctamente.';
+                                                            } else {
+
+                                                                $result['status'] = 1;
+                                                                $result['message'] = 'Sesión iniciada correctamente.';
+                                                                $usuarios->historialUsuario();
+
+                                                            }
+                                                        } else {
+
+                                                            $result['exception'] = 'SO incorrecto.';
+                                                        }
+                                                    } else {
+
+                                                        $result['exception'] = 'Región incorrecta.';
+                                                    }
+                                                } else {
+
+                                                    $result['exception'] = 'IP incorrecto.';
+                                                }
                                             }
-                                            
                                         } else {
                                             if (Database::getException()) {
                                                 $result['exception'] = Database::getException();
                                             } else {
                                                 $result['exception'] = 'El usuario no posee ninguna preferencia.';
                                             }
-                                            
                                         }
-                                        
                                     }
                                 }
                             } else {
                                 //Se verifica los intentos que tiene guardado el usuario
-                                if ($data = $usuarios->checkIntentos()){
+                                if ($data = $usuarios->checkIntentos()) {
                                     //Se evalúa si ya el usuario ya realizó dos intentos
                                     if ($data['intentos'] < 2) {
                                         //Se aumenta la cantidad de intentos
-                                        if ($usuarios->increaseIntentos($data['intentos']+1)) {
+                                        if ($usuarios->increaseIntentos($data['intentos'] + 1)) {
                                             $result['exception'] = 'La contraseña ingresada es incorrecta';
-                                            $usuarios->registerActionOut('Intento Fallido','Intento Fallido N° '.$data['intentos']+1.);
+                                            $usuarios->registerActionOut('Intento Fallido', 'Intento Fallido N° ' . $data['intentos'] + 1.);
                                         }
                                     } else {
                                         //Se bloquea el usuario
                                         if ($usuarios->suspend()) {
                                             $result['exception'] = 'Has superado el máximo de intentos, el usuario se ha bloquedo
                                                                     por 24 horas.';
-                                            $usuarios->registerActionOut('Bloqueo','Intento N° 3. Usuario bloqueado por intentos fallidos');
+                                            $usuarios->registerActionOut('Bloqueo', 'Intento N° 3. Usuario bloqueado por intentos fallidos');
                                         }
                                     }
                                 }
@@ -578,7 +606,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'El correo ingresado es incorrecto.';
                 }
-                
+
                 break;
             case 'sendVerificationCode':
                 // Generamos el codigo de seguridad 
@@ -623,13 +651,13 @@ if (isset($_GET['action'])) {
                 }
 
                 break;
-            //Caso para verificar el código con el factor de autenticación en dos pasos.
+                //Caso para verificar el código con el factor de autenticación en dos pasos.
             case 'verifyCodeAuth':
                 $_POST = $usuarios->validateForm($_POST);
                 // Validmos el formato del mensaje que se enviara en el correo
                 if ($correo->setCodigo($_POST['codigoAuth'])) {
                     // Ejecutamos la funcion para validar el codigo de seguridad
-                    if ($correo->validarCodigo('usuario',$_SESSION['idusuario_temp'])) {
+                    if ($correo->validarCodigo('usuario', $_SESSION['idusuario_temp'])) {
                         $_SESSION['idusuario_dashboard'] = $_SESSION['idusuario_temp'];
                         unset($_SESSION['idusuario_temp']);
                         $result['status'] = 1;
@@ -644,7 +672,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Mensaje incorrecto';
                 }
                 break;
-            //Caso para registrar el primer usuario del sistema
+                //Caso para registrar el primer usuario del sistema
             case 'register':
                 $_POST = $usuarios->validateForm($_POST);
                 if (isset($_SESSION['idusuario_dashboard'])) {
@@ -677,7 +705,7 @@ if (isset($_GET['action'])) {
                                                                                         }
                                                                                         $data = $usuarios->readOneId();
                                                                                         $usuarios->setId($data['idusuario']);
-                                                                                        $usuarios->registerActionOut('Cambio de clave','Se ha creado la clave');
+                                                                                        $usuarios->registerActionOut('Cambio de clave', 'Se ha creado la clave');
                                                                                     } else {
                                                                                         $result['exception'] = Database::getException();;
                                                                                     }
@@ -731,42 +759,44 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-            //Caso para verificar si hay usuarios que desbloquear
+                //Caso para verificar si hay usuarios que desbloquear
             case 'checkBlockUsers':
                 if ($result['dataset'] = $usuarios->checkBlockUsers()) {
                     $result['status'] = 1;
-                } 
+                }
                 break;
-            //Caso para activar los usuarios que ya cumplieron con su tiempo de penalización
+                //Caso para activar los usuarios que ya cumplieron con su tiempo de penalización
             case 'activateBlockUsers':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_POST['txtId'])) {
-                    if ($usuarios->setIdBitacora($_POST['txtBitacora'])){
+                    if ($usuarios->setIdBitacora($_POST['txtBitacora'])) {
                         if ($usuarios->activar()) {
                             if ($usuarios->updateBitacoraOut('Bloqueo (Cumplido)')) {
-                                if ($usuarios->increaseIntentos(0)){
+                                if ($usuarios->increaseIntentos(0)) {
                                     $result['status'] = 1;
                                 }
                             }
                         }
-                    } 
+                    }
                 }
                 break;
-            //Caso para cambiar la contraseña
+                //Caso para cambiar la contraseña
             case 'changePassword':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setId($_SESSION['idusuario_dashboard_tmp'])) {
                     if ($usuarios->checkPassword($_POST['txtContrasenaActual1'])) {
                         if ($_POST['txtNuevaContrasena1'] == $_POST['txtConfirmarContrasena1']) {
-                            if ($_POST['txtNuevaContrasena1'] != $_POST['txtContrasenaActual1'] ||
-                                $_POST['txtConfirmarContrasena1'] != $_POST['txtContrasenaActual1']) {
+                            if (
+                                $_POST['txtNuevaContrasena1'] != $_POST['txtContrasenaActual1'] ||
+                                $_POST['txtConfirmarContrasena1'] != $_POST['txtContrasenaActual1']
+                            ) {
                                 if ($usuarios->setContrasenia($_POST['txtNuevaContrasena1'])) {
                                     if ($usuarios->changePassword()) {
                                         $usuarios->setIdBitacora($_POST['txtBitacoraPassword']);
                                         if ($usuarios->updateBitacoraOut('Cambio de clave')) {
                                             $result['status'] = 1;
                                             $result['message'] = 'Contraseña actualizada correctamente.';
-                                            $_SESSION['idusuario_dashboard'] =$_SESSION['idusuario_dashboard_tmp'];
+                                            $_SESSION['idusuario_dashboard'] = $_SESSION['idusuario_dashboard_tmp'];
                                             unset($_SESSION['idusuario_dashboard_tmp']);
                                         } else {
                                             $result['exception'] = 'Hubo un error al registrar la bitacora';
@@ -790,7 +820,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Id incorrecto.';
                 }
                 break;
-            //Caso para enviar un email
+                //Caso para enviar un email
             case 'sendMail':
                 $_POST = $usuarios->validateForm($_POST);
                 // Generamos el codigo de seguridad 
@@ -847,13 +877,13 @@ if (isset($_GET['action'])) {
 
 
                 break;
-            //Caso para verificar el codigo enviado al correo
+                //Caso para verificar el codigo enviado al correo
             case 'verifyCode':
                 $_POST = $usuarios->validateForm($_POST);
                 // Validmos el formato del mensaje que se enviara en el correo
                 if ($correo->setCodigo($_POST['codigo'])) {
                     // Ejecutamos la funcion para validar el codigo de seguridad
-                    if ($correo->validarCodigo('usuario',$_SESSION['idusuario'])) {
+                    if ($correo->validarCodigo('usuario', $_SESSION['idusuario'])) {
                         $result['status'] = 1;
                         // Colocamos el mensaje de exito 
                         $result['message'] = 'El código ingresado es correcto';
@@ -865,7 +895,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Mensaje incorrecto';
                 }
                 break;
-            //Caso para cambiar la contraseña
+                //Caso para cambiar la contraseña
             case 'changePass':
                 // Obtenemos el form con los inputs para obtener los datos
                 $_POST = $usuarios->validateForm($_POST);
@@ -888,7 +918,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Correo incorrecto';
                 }
                 break;
-    
+
             default:
                 $result['exception'] = 'La acción no está disponible afuera de la sesión';
         }

@@ -25,6 +25,9 @@ class Usuarios extends Validator
     private $bitacora = null;
     private $tipousuario = null;
     private $permiso = null;
+    private $ip = null;
+    private $sistema = null;
+    private $region = null;
 
     /*
         Creando métodos set
@@ -228,6 +231,38 @@ class Usuarios extends Validator
         }
     }
 
+    public function setIP($value)
+    {
+        if ($this->validateText($value)) {
+            $this->ip = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setSistema($value)
+    {
+        if ($this->validateAlphanumeric($value, 1, 25)) {
+            $this->sistema = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setRegion($value)
+    {
+        if ($this->validateAlphabetic($value, 1, 25)) {
+            $this->region = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
     /*
         Creando métodos get
     */    
@@ -319,6 +354,21 @@ class Usuarios extends Validator
     public function getIdTipoUsuario()
     {
         return $this->idTipoUsuario;
+    }
+
+    public function getIp()
+    {
+        return $this->ip;
+    }
+
+    public function getSistema()
+    {
+        return $this->sistema;
+    }
+
+    public function getRegion()
+    {
+        return $this->region;
     }
 
     //***Métodos para administrar cuenta del usuario***
@@ -854,4 +904,23 @@ class Usuarios extends Validator
         $params = array($_SESSION['idusuario_dashboard'],$this->permiso);
         return Database::getRows($sql, $params);
     }
+
+    public function historialUsuario()
+    {
+        $sql = 'INSERT INTO historialusuario(
+            idhistorial, idusuario, ip, region, sistema, fecha)
+            VALUES (default, ?, ?, ?, ?, default)';
+        // Creamos la sentencia SQL que contiene la consulta que mandaremos a la base        
+        $params = array($this->idUsuario, $this->ip,$this->region,$this->sistema);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function checkDevices()
+    {
+        $sql = 'SELECT * from historialusuario where ip=? and idusuario=?';
+        // Creamos la sentencia SQL que contiene la consulta que mandaremos a la base        
+        $params = array($this->ip,$this->idUsuario);
+        return Database::executeRow($sql, $params);
+    }
+
 }

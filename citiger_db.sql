@@ -467,4 +467,18 @@ UPDATE residente SET autenticacion = 'No';
 ALTER TABLE usuario ALTER COLUMN autenticacion SET NOT NULL;
 
 --Cambios 26/9/2021
-ALTER TABLE casa ADD CONSTRAINT UQ_casa_numero UNIQUE (numerocasa);
+
+create table historialusuario(
+idhistorial serial primary key,
+	idusuario int,
+	ip varchar(40),
+	region varchar(40),
+	sistema varchar(40),
+	fecha timestamp default current_timestamp,
+	foreign key (idusuario)
+	references usuario(idusuario)
+	
+)
+
+
+

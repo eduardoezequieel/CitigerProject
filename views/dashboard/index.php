@@ -50,6 +50,11 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                     <form method="post" id="login-form" autocomplete="off">
                         <input type="number" name="txtId" id="txtId" class="d-none">
                         <input type="number" name="txtBitacora" id="txtBitacora" class="d-none">
+                        <input type="text" name="txtIP" id="txtIP" class="d-none">
+                        <input type="text" name="txtLoc" id="txtLoc" class="d-none">
+                        <input type="text" name="txtOS" id="txtOS" class="d-none">
+
+
                         <div class="row my-2">
                             <div class="col-12">
                                 <img id="CitigerLogo" src="../../resources/img/CitigerWhiteLogo.png" alt=""

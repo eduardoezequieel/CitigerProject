@@ -337,5 +337,15 @@ class Validator
             return false;
         }
     }
+
+    public function validateText($value)
+    {
+        // Se verifica el contenido y la longitud de acuerdo con la base de datos.
+        if ($value) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 ?>
