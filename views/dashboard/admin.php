@@ -99,7 +99,7 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                 <form method="post" id="administrarEmpleado-form" autocomplete="off">
                     <input class="d-none" type="number" id="txtId" name="txtId" />
                     <input class="d-none" type="text" id="txtContrasenia" name="txtContrasenia" />
-                    <div class="row animate__animated animate__bounceIn">
+                    <div class="row">
                         <!-- Primera columna de controles -->
                         <div class="col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                             <div class="#" id="EmpleadosColumna1">
@@ -110,7 +110,7 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                                 <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido" placeholder="Escriba sus apellidos..." Required>
 
                                 <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9" Required>
+                                <input onchange="checkDui('txtDUI')" maxlength="10" type="text" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9" Required>
 
                                 <div class="row">
                                     <div class="col-6 ">
@@ -132,8 +132,8 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                                 <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
                                 <input onchange="checkCorreo('txtCorreo')" type="text" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo" placeholder="ejemplo@mail.com" Required>
 
-                                <label class="tituloCajaTextoFormulario" for="txtUsuario">Nombre de usuario:</label>
-                                <input type="text" class="form-control cajaTextoFormulario" id="txtUsuario" name="txtUsuario" placeholder="Escriba su nombre de usuario" Required>
+                                <label class="tituloCajaTextoFormulario" for="txtUsuario">Usuario:</label>
+                                <input onchange="checkInput('txtUsuario')" type="text" class="form-control cajaTextoFormulario" id="txtUsuario" name="txtUsuario" placeholder="Escriba su nombre de usuario" Required>
 
                                 <!-- RadioButtonGroup Género -->
                                 <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>

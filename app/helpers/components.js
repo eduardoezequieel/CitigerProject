@@ -1431,6 +1431,20 @@ function checkTelefono(input) {
 
 }
 
+function checkAlfanumerico(i){
+    document.getElementById(i).classList.remove("success");
+    document.getElementById(i).classList.add("error");
+    var regex = /^[a-z0-9.]+$/i;
+
+    if (document.getElementById(i).value.match(regex)) {
+        document.getElementById(i).classList.remove("error");
+        document.getElementById(i).classList.add("success");
+    } else {
+        document.getElementById(i).classList.remove("sucess");
+        document.getElementById(i).classList.add("error");
+    }
+}
+
 //Método para verificar el dui
 function checkDui(input) {
     var field = document.getElementById(input);

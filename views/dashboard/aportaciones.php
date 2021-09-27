@@ -76,8 +76,6 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                     </thead>
                     <tbody id="tbody-rows">
 
-
-
                     </tbody>
                 </table>
             </div>
@@ -92,7 +90,7 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
 
 <!-- Modal para Administrar Casa -->
 <div class="modal fade" id="administrarCasa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content justify-content-center px-3 py-2">
             <!-- Cabecera del Modal -->
             <div class="modal-header">
@@ -111,10 +109,10 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                         <input class="d-none" type="number" id="txtId" name="txtId" />
                         <div class="col-12">
                             <label class="tituloCajaTextoFormulario" for="txtNum">Número de Casa:</label>
-                            <input type="text" class="form-control cajaTextoModal" id="txtNum" name="txtNum" placeholder="Escriba el número de casa..." required>
+                            <input onchange="checkTelefono('txtNum')" type="text" class="form-control cajaTextoModal" id="txtNum" name="txtNum" placeholder="Escriba el número de casa..." required>
 
                             <label class="tituloCajaTextoFormulario" for="txtUbicacion">Ubicación:</label>
-                            <textarea class="form-control cajaTextoModal" id="txtUbicacion" name="txtUbicacion" rows="3" placeholder="Escriba los detallles de la ubicación de la casa..."></textarea>
+                            <textarea onchange="checkAlfanumerico('txtUbicacion')" class="form-control cajaTextoModal" id="txtUbicacion" name="txtUbicacion" rows="3" placeholder="Escriba los detallles de la ubicación de la casa..."></textarea>
                         </div>
                     </div>
 

@@ -174,7 +174,7 @@ class Aportaciones extends Validator
 
     public function readAll()
     {
-        $sql = "SELECT c.idcasa, CONCAT('#',c.numerocasa,' ',c.direccion) AS casa ,e.estadocasa from casa c, estadocasa e where c.idestadocasa=e.idestadocasa  ORDER BY numerocasa ASC";
+        $sql = "SELECT c.idcasa, CONCAT('#',c.numerocasa) AS casa ,e.estadocasa from casa c, estadocasa e where c.idestadocasa=e.idestadocasa  ORDER BY numerocasa ASC";
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -225,7 +225,7 @@ class Aportaciones extends Validator
     //Función para buscar
     public function searchRows($value)
     {
-        $sql = "SELECT c.idcasa, CONCAT('#',c.numerocasa,' ',c.direccion) AS casa ,e.estadocasa from casa c, estadocasa e where c.idestadocasa=e.idestadocasa
+        $sql = "SELECT c.idcasa, CONCAT('#',c.numerocasa) AS casa ,e.estadocasa from casa c, estadocasa e where c.idestadocasa=e.idestadocasa
         and CONCAT(c.numerocasa,' ',c.direccion) ILIKE ?
         ORDER BY numerocasa ASC";
         $params = array("%$value%");

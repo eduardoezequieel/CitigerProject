@@ -1803,8 +1803,8 @@ textarea :-ms-input-placeholder {
 }
 
 #tablaCasasPendientes {
-  padding-right: 0px !important;
-  padding-left: 90px !important;
+  padding-right: 250px !important;
+  padding-left: 250px !important;
 }
 
 #tablaVentanaPago {

@@ -465,3 +465,6 @@ ALTER TABLE usuario ALTER COLUMN autenticacion SET NOT NULL;
 ALTER TABLE residente ADD COLUMN autenticacion CHAR(2) NULL;
 UPDATE residente SET autenticacion = 'No';
 ALTER TABLE usuario ALTER COLUMN autenticacion SET NOT NULL;
+
+--Cambios 26/9/2021
+ALTER TABLE casa ADD CONSTRAINT UQ_casa_numero UNIQUE (numerocasa);
