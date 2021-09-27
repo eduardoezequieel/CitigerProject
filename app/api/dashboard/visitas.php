@@ -130,7 +130,7 @@ if (isset($_GET['action'])) {
                 //Caso para crear registros en la tabla visitas
             case 'createRow':
                 $_POST = $visita->validateForm($_POST);
-                $visita->setIdEstadoVisita(4);
+                $visita->setIdEstadoVisita(1);
                 if (isset($_POST['cbResidente'])) {
                     if ($visita->setIdResidente($_POST['cbResidente'])) {
                         if ($visita->setFecha($_POST['txtFecha'])) {

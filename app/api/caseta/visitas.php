@@ -65,12 +65,12 @@
                     if ($visitas->setIdVisita($_POST['txtVisita'])) {
                         if ($result['dataset'] = $visitas->updateVisita()) {
                             $result['status'] = 1;
-                            $result['message'] = 'Se ha finalizado la visita correctamente.';
+                            $result['message'] = 'Se ha confirmado la visita correctamente.';
                         } else {
                             if (Database::getException()) {
                                 $result['exception'] = Database::getException();
                             } else {
-                                $result['exception'] = 'No se ha finalizado la visita correctamente.';
+                                $result['exception'] = 'No se ha confirmado la visita correctamente.';
                             }
                         }
                     } else {

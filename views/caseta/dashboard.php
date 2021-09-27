@@ -111,14 +111,14 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                             <h1 class="tituloDato2">Ingrese el DUI del visitante para verificar la información.</h1>
                         </div>
                     </div>
-                    <form method="post" id="verificarDui-form" autocomplete="off">
+                    <form id="verificarDui-form" autocomplete="off">
                         <div class="row mt-2">
                             <div class="col-12 d-flex justify-content-center">
                                 <div class="form-group">
                                     <label class="tituloCajaTextoFormulario" for="txtDuiVerificar">DUI:</label>
-                                    <input type="text" onchange="checkDui('txtDuiVerificar')"
-                                        class="form-control cajaTextoFormulario" id="txtDuiVerificar"
-                                        name="txtDuiVerificar" placeholder="12345678-9" Required>
+                                    <input type="text" onchange="checkDui('txtDui')"
+                                        class="form-control cajaTextoFormulario" id="txtDui"
+                                        name="txtDui" placeholder="00000000-0" Required>
                                 </div>
                             </div>
                         </div>
@@ -161,20 +161,20 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                             <h1 class="tituloDato2  ">Ingrese la placa del visitante para verificar la información.</h1>
                         </div>
                     </div>
-                    <form method="post" id="verificarPlaca-form" autocomplete="off">
+                    <form id="verificarPlaca-form" autocomplete="off">
                         <div class="row mt-2">
                             <div class="col-12 d-flex justify-content-center">
                                 <div class="form-group">
                                     <label class="tituloCajaTextoFormulario" for="txtPlacaVerificar">Placa:</label>
                                     <input type="text"
-                                        class="form-control cajaTextoFormulario" id="txtPlacaVerificar"
-                                        name="txtPlacaVerificar" placeholder="P123-456" Required>
+                                        class="form-control cajaTextoFormulario" id="txtPlaca"
+                                        name="txtPlaca" placeholder="P000 000" onchange="checkInput('txtPlaca')" Required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 d-flex justify-content-center">
-                                <button data-dismiss="modal" data-toggle="modal" data-target="#infoVisita" class="btn btnAgregarFormulario mr-2"><span
+                                <button  type="submit" class="btn btnAgregarFormulario mr-2"><span
                                         class="fas fa-check mr-3 tamañoIconosBotones"></span>Verificar</button>
                             </div>
                         </div>
@@ -211,7 +211,8 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                             <h1 class="tituloDato2">El registro corresponde a: </h1>
                         </div>
                     </div>
-                    <form method="post" id="info-form" autocomplete="off">
+                    <form id="info-form" autocomplete="off">
+                        <input type="number" class="form-control cajaTextoDUI d-none" id="txtVisita" name="txtVisita">
                         <div class="row mt-2">
                             <div class="col-12">
                                 <div class="form-group">
@@ -249,7 +250,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                         <div class="row">
                             <div class="col-12 d-flex justify-content-center">
                                 <button type="submit" class="btn btnAgregarFormulario mr-2"><span
-                                        class="fas fa-check mr-3 tamañoIconosBotones"></span>Verificar</button>
+                                        class="fas fa-check mr-3 tamañoIconosBotones"></span>Confirmar visita</button>
                             </div>
                         </div>
                     </form>

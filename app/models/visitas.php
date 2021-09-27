@@ -346,7 +346,7 @@ class Visitas extends Validator
     //Suspender visita
     public function suspend()
     {
-        $sql = 'UPDATE visita SET idestadovisita = 5
+        $sql = 'UPDATE visita SET idestadovisita = 2
                     WHERE idvisita = ?';
         $params = array($this->idVisita);
         return Database::executeRow($sql, $params);
@@ -475,12 +475,15 @@ class Visitas extends Validator
     //Función para verificar visita por el dui y con estado activa
     public function checkVisitDui()
     {
-        $sql = 'SELECT CONCAT(residente.apellido, \' \', residente.nombre) as residente, fecha, 
-                CONCAT(visitante.apellido, \' \', visitante.nombre) as visitante, observacion,detallevisita.idvisita
+        $sql = 'SELECT CONCAT(residente.apellido, \', \', residente.nombre) as residente, fecha, 
+                CONCAT(visitante.apellido, \', \', visitante.nombre) as visitante, observacion,detallevisita.idvisita,
+                numerocasa
                 FROM detallevisita
-                INNER JOIN visitante ON visitante.idvisitante = detallevisita.idvisitante
-                INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
-                INNER JOIN residente ON residente.idresidente = visita.idresidente
+                INNER JOIN visitante USING(idvisitante)
+                INNER JOIN visita USING(idvisita)
+                INNER JOIN residente USING(idresidente)
+                INNER JOIN residentecasa USING(idresidente)
+                INNER JOIN casa USING(idcasa)
                 WHERE visitante.dui = ? AND visita.idestadovisita = 1';
         $params = array($this->dui);
         return Database::getRow($sql, $params);
@@ -489,12 +492,15 @@ class Visitas extends Validator
     //Función para verificar visita por la placa
     public function checkVisitPlaca()
     {
-        $sql = 'SELECT CONCAT(residente.apellido, \' \', residente.nombre) as residente, fecha, 
-                CONCAT(visitante.apellido, \' \', visitante.nombre) as visitante, observacion,detallevisita.idvisita
+        $sql = 'SELECT CONCAT(residente.apellido, \', \', residente.nombre) as residente, fecha, 
+                CONCAT(visitante.apellido, \', \', visitante.nombre) as visitante, observacion,detallevisita.idvisita,
+                numerocasa
                 FROM detallevisita
-                INNER JOIN visitante ON visitante.idvisitante = detallevisita.idvisitante
-                INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
-                INNER JOIN residente ON residente.idresidente = visita.idresidente
+                INNER JOIN visitante USING(idvisitante)
+                INNER JOIN visita USING(idvisita)
+                INNER JOIN residente USING(idresidente)
+                INNER JOIN residentecasa USING(idresidente)
+                INNER JOIN casa USING(idcasa)
                 WHERE visitante.placa = ? AND visita.idestadovisita = 1';
         $params = array($this->placa);
         return Database::getRow($sql, $params);
