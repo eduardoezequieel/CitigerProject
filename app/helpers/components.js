@@ -690,7 +690,9 @@ function checkPermissions(pagina){
             request.json().then(response => {
                 //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
                 if (!response.status) {
-                    window.location.href = 'dashboard.php';
+                    window.location.href = '../../resources/error/403.html';
+                } else {
+                    return true;
                 }
             })
         } else {
