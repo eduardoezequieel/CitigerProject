@@ -306,7 +306,7 @@
                             }
                         }
                         //Imprimiendo el final del sidebar
-                        if($contador == 6) {
+                        if($contadorNav == 6) {
                             echo $fin_navbar;
                         }
                         $contadorNav++;
