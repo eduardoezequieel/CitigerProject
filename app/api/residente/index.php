@@ -186,6 +186,34 @@ if (isset($_GET['action'])) {
                 }
                 
                 break;
+            //Caso para actualizar el correo electronico actual
+            case 'updateEmail':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
+                    if ($usuarios->checkPassword($_POST['txtContrasenaActualCorreo'])) {
+                        if ($_POST['txtNuevoCorreo'] == $_POST['txtConfirmarCorreo']) {
+                            if ($usuarios->setCorreo($_POST['txtNuevoCorreo'])) {
+                                if ($usuarios->changeEmail()) {
+                                    $usuarios->emailNotValidated();
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Correo actualizado exitosamente, por favor asegurate de verificarlo.';
+                                } else {
+                                    $result['exception'] = Database::getException();
+                                }
+                            } else {
+                                $result['exception'] = 'Ingrese un correo electrónico valido.';                            
+                            }  
+                        } else {
+                            $result['exception'] = 'Los correos no coinciden.';
+                        }
+                    } else {
+                        $result['exception'] = 'Contraseña incorrecta.';
+                    }
+                } else {
+                    $result['exception'] = 'Id invalido.';
+                }
+                
+                break;
             //Caso para cerrar la sesión
             case 'logOut':
                 unset($_SESSION['idresidente']);

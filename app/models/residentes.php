@@ -557,6 +557,22 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Funcion para cambiar el correo
+    public function changeEmail()
+    {
+        $sql = 'UPDATE residente SET correo = ? WHERE idresidente = ?';
+        $params = array($this->correo, $this->idResidente);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Funcion para poner como no validado un correo
+    public function emailNotValidated()
+    {
+        $sql = 'UPDATE residente SET verificado = \'0\' WHERE idresidente = ?';
+        $params = array($this->idResidente);
+        return Database::executeRow($sql, $params);
+    }
+
     //Función para cambiar contraseña por defecto
     public function changePasswordOut()
     {

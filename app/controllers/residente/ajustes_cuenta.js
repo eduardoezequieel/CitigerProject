@@ -501,3 +501,34 @@ document.getElementById('btnModalAdministrarAuth').addEventListener('click',func
         console.log(error);
     });
 });
+
+//Al accionar el formulario email-form
+document.getElementById('email-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //fetch
+    fetch(API_USUARIOS + 'updateEmail', {
+        method: 'post',
+        data: new FormData(document.getElementById('email-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    if (response.dataset.verificado == '0') {
+                        sweetAlert(2, 'Usted no ha verificado su correo electrónico.', null);
+                    } else {
+                        openModal('administrarAuth')
+                    }
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+})
