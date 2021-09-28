@@ -187,7 +187,53 @@ document.getElementById('administrarEmpleado-form').addEventListener('submit',fu
     event.preventDefault();
     //Se evalua si el usuario esta haciendo una inserción o una actualización
     if (document.getElementById('btnAgregar').className != 'd-none') {
-        saveRow(API_EMPLEADO, 'register','administrarEmpleado-form', 'administrarAdmin');
+        fetch(API_EMPLEADO + 'register', {
+            method: 'post',
+            body: new FormData(document.getElementById('administrarEmpleado-form'))
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+            if (request.ok) {
+                request.json().then(function (response) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
+                        readRows(API_EMPLEADO);
+                        sweetAlert(1, response.message, closeModal('administrarAdmin'));
+                        clearForm('administrarEmpleado-form');
+                        document.getElementById('txtCorreo').value = response.correo;
+                        document.getElementById('txtUsuario').value = response.username;
+                        document.getElementById('txtContrasenia').value = response.contrasenia;
+                        fetch(API_EMPLEADO + 'sendEmail', {
+                            method: 'post',
+                            body: new FormData(document.getElementById('administrarEmpleado-form'))
+                        }).then(function (request) {
+                            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                            if (request.ok) {
+                                request.json().then(function (response) {
+                                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                                    if (response.status) {
+                                        //sweetAlert(1, response.message, null);
+                                        clearForm('administrarEmpleado-form');
+                                    } else {
+                                        sweetAlert(2, response.exception, null);
+                                    }
+                                });
+                            } else {
+                                console.log(request.status + ' ' + request.statusText);
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
     } else {
         saveRow(API_EMPLEADO, 'updateRow','administrarEmpleado-form', 'administrarAdmin');
     }

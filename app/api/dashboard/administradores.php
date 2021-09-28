@@ -47,6 +47,9 @@ if (isset($_GET['action'])) {
                                                                             if ($usuarios->setDireccion($_POST['txtDireccion'])) {
                                                                                 $usuarios->setIdEstadoUsuario(1);
                                                                                 if ($usuarios->createRow()) {
+                                                                                    $result['correo'] = $usuarios->getCorreo();
+                                                                                    $result['username'] = $usuarios->getUsername();
+                                                                                    $result['contrasenia'] = $usuarios->getContrasenia();
                                                                                     $result['status'] = 1;
                                                                                     if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
                                                                                         $result['message'] = 'Usuario registrado correctamente';
@@ -59,33 +62,6 @@ if (isset($_GET['action'])) {
                                                                                     $data = $usuarios->readOneId();
                                                                                     $usuarios->setId($data['idusuario']);
                                                                                     $usuarios->registerActionOut('Cambio de clave','Se ha creado la clave');
-                                                                                    try {
-                            
-                                                                                        //Ajustes del servidor
-                                                                                        $mail->SMTPDebug = 0;                   
-                                                                                        $mail->isSMTP();                                            
-                                                                                        $mail->Host       = 'smtp.gmail.com';                     
-                                                                                        $mail->SMTPAuth   = true;                                   
-                                                                                        $mail->Username   = 'citigersystem@gmail.com';                     
-                                                                                        $mail->Password   = 'citiger123';                               
-                                                                                        $mail->SMTPSecure = 'tls';            
-                                                                                        $mail->Port       = 587;                                    
-                                                                                    
-                                                                                        //Receptores
-                                                                                        $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
-                                                                                        $mail->addAddress($usuarios->getCorreo());    
-                                                                                    
-                                                                                        //Contenido
-                                                                                        $mail->isHTML(true);                                  
-                                                                                        $mail->Subject = 'Bienvenido a Citiger '.$usuarios->getUsername();
-                                                                                        $mail->Body    = 'Se ha creado un registro con tu cuenta de correo
-                                                                                                        en Citiger. Para que puedas iniciar sesión tu contraseña es: <b>' . $usuarios->getContrasenia(). '</b>.';
-                                                                                        $mail->AltBody = 'Tu contraseña es: ' . $usuarios->getContrasenia();
-                                                                                    
-                                                                                        $mail->send();
-                                                                                    } catch (Exception $e) {
-                                                                                        $result['exception'] = $mail->ErrorInfo;
-                                                                                    }
                                                                                 } else {
                                                                                     $result['exception'] = Database::getException();
                                                                                 }
@@ -138,6 +114,52 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Seleccione una opcion.';
                 }
                 break;
+            //Caso para enviar un correo
+            case 'sendEmail':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setCorreo($_POST['txtCorreo'])){
+                    if ($usuarios->setUsername($_POST['txtUsuario'])){
+                        if ($usuarios->setContrasenia($_POST['txtContrasenia'])) {
+                            try {
+                            
+                                //Ajustes del servidor
+                                $mail->SMTPDebug = 0;                   
+                                $mail->isSMTP();                                            
+                                $mail->Host       = 'smtp.gmail.com';                     
+                                $mail->SMTPAuth   = true;                                   
+                                $mail->Username   = 'citigersystem@gmail.com';                     
+                                $mail->Password   = 'citiger123';                               
+                                $mail->SMTPSecure = 'tls';            
+                                $mail->Port       = 587;                                    
+                            
+                                //Receptores
+                                $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
+                                $mail->addAddress($usuarios->getCorreo());    
+                            
+                                //Contenido
+                                $mail->isHTML(true);                                  
+                                $mail->Subject = 'Bienvenido a Citiger '.$usuarios->getUsername();
+                                $mail->Body    = 'Se ha creado un registro con tu cuenta de correo
+                                                en Citiger. Para que puedas iniciar sesión tu contraseña es: <b>' . $usuarios->getContrasenia(). '</b>.';
+                                $mail->AltBody = 'Tu contraseña es: ' . $usuarios->getContrasenia();
+                            
+                                if ($mail->send()) {
+                                    $result['status'] = 1;
+                                }
+                            } catch (Exception $e) {
+                                $result['exception'] = $mail->ErrorInfo;
+                            }
+                        } else {    
+                            $result['exception'] = 'Hubo un error al setear la contraseña.';
+                        }
+                    } else {    
+                        $result['exception'] = 'Hubo un error al setear nombre de usuario.';
+                    }
+                } else {    
+                    $result['exception'] = 'Hubo un error al setear el correo.';
+                }
+                break;
+            //Caso para leer todos los empleados
             case 'readEmployeeTypes':
                 if ($result['dataset'] = $usuarios->readEmployeeTypes()) {
                     $result['status'] = 1;
