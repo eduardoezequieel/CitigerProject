@@ -1,28 +1,30 @@
+//Declarando constantes para la ruta de las api
 const API_MATERIAL = '../../app/api/dashboard/inventario.php?action=';
 const ENDPOINT_TIPOS = '../../app/api/dashboard/inventario.php?action=readTipoUnidad';
 const ENDPOINT_UNIDAD = '../../app/api/dashboard/inventario.php?action=cargarUnidadMedida';
+const ENDPOINT_UNIDAD_UPDATE = '../../app/api/dashboard/inventario.php?action=cargarUnidadMedidaUpdate';
 const ENDPOINT_MARCAS = '../../app/api/dashboard/inventario.php?action=readMarca';
 const ENDPOINT_CATEGORIAS = '../../app/api/dashboard/inventario.php?action=readCategoria';
 
-
-
+//Método que se ejecuta cuando se carga la pagina
 document.addEventListener('DOMContentLoaded', function () {
     //Función para verificar permiso 
     checkPermissions('Materiales');
+    //Función para cargar todos los select
     fillSelect(ENDPOINT_TIPOS, 'cbTipo', 1);
     fillSelect(ENDPOINT_MARCAS, 'cbMarca', null);
     fillSelect(ENDPOINT_CATEGORIAS, 'cbCategoria', null);
     fillSelect(ENDPOINT_CATEGORIAS, 'cbCategoria2', null);
     fillSelectSpace(ENDPOINT_UNIDAD, 'cbUnidad', null);
-
+    //Método para llenar la tabla con los materiales registrados
     readRows(API_MATERIAL);
-
     //Se inicializan los tooltips
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     });
 })
 
+//Función para capturar el valor del tipo de unidad y que se lo pase al select de undiad de medida
 document.getElementById('cbTipo').addEventListener('change',function(){
     document.getElementById('idTipoUnidad').value = document.getElementById('cbTipo').value;
     fillSelectSpace(ENDPOINT_UNIDAD, 'cbUnidad', null);
@@ -172,7 +174,6 @@ function readDataOnModal(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('txtId', id);
-    console.log(id);
 
     //Se ocultan los botones del formulario.
     document.getElementById('btnAgregar').className = "d-none";
@@ -196,7 +197,9 @@ function readDataOnModal(id) {
                     document.getElementById('txtCantidad').value = response.dataset.cantidad;
                     fillSelect(ENDPOINT_MARCAS, 'cbMarca', response.dataset.idmarca);
                     fillSelect(ENDPOINT_CATEGORIAS, 'cbCategoria', response.dataset.idcategoria);
-                    fillSelectSpace(ENDPOINT_UNIDAD, 'cbUnidad', null);
+                    fillSelect(ENDPOINT_TIPOS, 'cbTipo', response.dataset.idtipounidad);
+                    document.getElementById('idTipoUnidad').value = response.dataset.idtipounidad;
+                    fillSelectSpace(ENDPOINT_UNIDAD_UPDATE, 'cbUnidad', response.dataset.idunidadmedida);
                     previewSavePicture('divFoto', response.dataset.imagen, 4);
 
                 } else {

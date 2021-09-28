@@ -28,6 +28,7 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
+            //Caso para leer las categorias
             case 'readCategoria':
                 if ($result['dataset'] = $material->readCategoria()) {
                     $result['status'] = 1;
@@ -40,6 +41,7 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
+            //Caso para leer las marcas
             case 'readMarca':
                 if ($result['dataset'] = $material->readMarca()) {
                     $result['status'] = 1;
@@ -52,6 +54,7 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
+            //Caso para leer la unidad de medida
             case 'cargarUnidadMedida':
                 $_POST = $material->validateForm($_POST);
                 if (isset($_POST['cbTipo'])) {
@@ -73,6 +76,23 @@ if (isset($_GET['action'])) {
                 }
                 
                 break;
+            //Caso para cargar la unidad de medida en el update
+            case 'cargarUnidadMedidaUpdate':
+                $_POST = $material->validateForm($_POST);
+                if ($material->setIdTipo($_POST['idTipoUnidad'])) {
+                    if ($result['dataset'] = $material->readUnidadmedidaUpdate()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No existen tipos registrados.';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'id malo';
+                }
+            //Caso para registrar un material
             case 'createRow':
                 $_POST = $material->validateForm($_POST);
                 if (isset($_POST['cbMarca'])) {
@@ -139,7 +159,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Seleccione una opcion.';
                 }
                 break;
-
+            //Caso apra leer todos los datos del material
             case 'readAll':
                 if ($result['dataset'] = $material->readAll()) {
                     $result['status'] = 1;
@@ -151,6 +171,7 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
+            //Caso para buscar registros
             case 'search':
                 $_POST = $material->validateForm($_POST);
                 if ($_POST['search'] != '') {
@@ -173,6 +194,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Campo vacio';
                 }
                 break;
+            //Caso para buscar registros por categoria
             case 'filterCategorias':
                 $_POST = $material->validateForm($_POST);
                 if ($material->setIdCategoria($_POST['idCategoria'])) {
@@ -195,6 +217,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Error id select';
                 }
                 break;
+            //Caso para leer toda la info de un material
             case 'readOne':
                 $_POST = $material->validateForm($_POST);
                 if ($material->setIdMaterial($_POST['txtId'])) {
@@ -211,6 +234,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Hubo problemas al seleccionar el registro.';
                 }
                 break;
+            //Caso para eliminar un registro
             case 'delete':
                 $_POST = $material->validateForm($_POST);
                 if ($material->setIdMaterial($_POST['txtId'])) {
@@ -233,6 +257,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Material seleccionado incorrecto';
                 }
                 break;
+            //Caso para actualizar un registro
             case 'updateRow':
                 $_POST = $material->validateForm($_POST);
                 if ($material->setIdMaterial($_POST['txtId'])) {

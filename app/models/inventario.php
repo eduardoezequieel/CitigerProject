@@ -3,7 +3,6 @@
 class Inventario extends Validator
 {
     //declarando atributos
-
     private $idmaterial = null;
     private $nombreMaterial = null;
     private $costo = null;
@@ -17,6 +16,9 @@ class Inventario extends Validator
     private $idTipoUnidad = null;
     private $ruta = '../../../resources/img/dashboard_img/materiales_fotos/';
 
+    /*
+        Métodos set
+    */
     public function setIdMaterial($value)
     {
         if ($this->validateNaturalNumber($value)) {
@@ -127,7 +129,9 @@ class Inventario extends Validator
         }
     }
 
-    //metodos get
+    /*
+        Métodos get
+    */
 
     public function getIdmaterial()
     {
@@ -248,7 +252,7 @@ class Inventario extends Validator
         return Database::getRows($sql, $params);
     }
 
-
+    //Función para leer todos los tipos de unidad
     public function readTipoUnidad()
     {
         $sql = 'SELECT*FROM tipounidad';
@@ -256,6 +260,7 @@ class Inventario extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para leer todas las categorias
     public function readCategoria()
     {
         $sql = 'SELECT*FROM categoria';
@@ -263,6 +268,7 @@ class Inventario extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para leer todas las marcas
     public function readMarca()
     {
         $sql = 'SELECT*FROM marca';
@@ -270,7 +276,7 @@ class Inventario extends Validator
         return Database::getRows($sql, $params);
     }
 
-
+    //Función para leer unidades de medida
     public function readUnidadmedida()
     {
 
@@ -279,6 +285,16 @@ class Inventario extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para leer unidades de medida en el actualizar
+    public function readUnidadmedidaUpdate()
+    {
+
+        $sql = 'SELECT idunidadmedida, unidadmedida from unidadmedida where idtipounidad=?';
+        $params = array($this->idTipoUnidad);
+        return Database::getRows($sql, $params);
+    }
+
+    //Función para crear un registro
     public function createRow()
     {
         $sql = 'INSERT INTO material(
@@ -292,6 +308,7 @@ class Inventario extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para leer toda la info
     public function readAll()
     {
         $sql = "SELECT m.idmaterial, m.imagen,concat(b.marca,' ', m.nombreproducto) as producto, m.cantidad  from material m, marca b
@@ -300,6 +317,7 @@ class Inventario extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para buscar registros
     public function searchRows($value)
     {
         $sql = "SELECT m.idmaterial, m.imagen,concat(b.marca,' ', m.nombreproducto) as producto, m.cantidad  from material m, marca b
@@ -308,6 +326,7 @@ class Inventario extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para buscar registros por categoria
     public function filterCategoria()
     {
         $sql = "SELECT m.idmaterial, m.imagen,concat(b.marca,' ', m.nombreproducto) as producto, m.cantidad  from material m, marca b
@@ -316,15 +335,20 @@ class Inventario extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para leer la info de un material
     public function readOne()
     {
 
-        $sql = 'SELECT idmaterial, nombreproducto, costo, imagen, idcategoria, "tamaño", descripcion, cantidad, idmarca, idunidadmedida
-        FROM material where idmaterial=?';
+        $sql = 'SELECT idmaterial, nombreproducto, costo, imagen, idcategoria, "tamaño", descripcion, 
+                cantidad, idmarca, idunidadmedida,idtipounidad
+                FROM material
+                INNER JOIN unidadmedida USING(idunidadmedida)
+                INNER JOIN tipounidad USING(idtipounidad) where idmaterial=?';
         $params = array($this->idmaterial);
         return Database::getRow($sql, $params);
     }
 
+    //Función para eliminar un registro
     public function deleteRow()
     {
         $sql = 'DELETE FROM material WHERE idmaterial = ?';
@@ -332,6 +356,7 @@ class Inventario extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para actualizar un registro
     public function updateRow($current_image)
     {
 
@@ -347,6 +372,7 @@ class Inventario extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para registrar movimientos en la bitacora
     public function registerAction($action, $desc)
     {
         $sql = 'INSERT INTO bitacora VALUES (DEFAULT, ?, current_time, current_date, ?, ?)';
@@ -354,6 +380,7 @@ class Inventario extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para leer todas las categorias 2.0
     public function readCategoria2()
     {
         $sql = 'SELECT idcategoria, categoria FROM categoria';
@@ -361,6 +388,7 @@ class Inventario extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Función para leer todos los materiales de una categoria
     public function readMaterialesCategoria()
     {
         $sql = "SELECT categoria, idmaterial, concat(nombreproducto,' ', marca) as producto, descripcion, costo, cantidad, unidadmedida
