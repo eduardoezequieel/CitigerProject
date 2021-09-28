@@ -84,6 +84,13 @@ class Correo extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Metodo para actualizar el campo de verificacion en la tabla de residentes
+    public function validateResidente($idResidente)
+    {
+        $sql = 'UPDATE residente SET verificado = \'1\' WHERE idresidente = ?';
+        $params = array($idResidente);
+        return Database::executeRow($sql, $params);
+    }
 
     public function obtenerUsuario($correo)
     {

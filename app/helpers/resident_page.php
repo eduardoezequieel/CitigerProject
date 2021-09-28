@@ -185,6 +185,7 @@
                             </ul>
                         </div>
                     </nav>
+                    
                     ');
                 } else {
                     header('location: index.php');

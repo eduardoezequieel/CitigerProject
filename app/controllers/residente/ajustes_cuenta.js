@@ -174,7 +174,7 @@ document.getElementById('password-form').addEventListener('submit',function(even
     }).catch(function (error) {
         console.log(error);
     });
-})
+});
 
 //Función para mostrar contraseña
 function showHidePassword2(checkbox, pass1, pass2, pass3) {
@@ -196,7 +196,6 @@ function showHidePassword2(checkbox, pass1, pass2, pass3) {
 
 function readDataOnModal() {
     // Se abre la caja de dialogo (modal) que contiene el formulario para editar perfil, ubicado en el archivo de las
-
     fetch(API_USUARIOS + 'readProfile2', {
         method: 'get'
     }).then(function (request) {
@@ -442,3 +441,63 @@ function fillTable4(dataset) {
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('dispositivo').innerHTML = content;
 }
+
+//Al hacer click en el boton que abre el modal para abrir la contraseña
+document.getElementById('btnModalContraseña').addEventListener('click',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Verificamos si el usuario tiene validado su correo
+    fetch(API_USUARIOS + 'checkIfEmailIsValidated', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    if (response.dataset.verificado == '0') {
+                        sweetAlert(2, 'Usted no ha verificado su correo electrónico.', null);
+                    } else {
+                        openModal('administrarContrasena')
+                    }
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
+//Al hacer click en el boton que abre el modal para abrir la contraseña
+document.getElementById('btnModalAdministrarAuth').addEventListener('click',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Verificamos si el usuario tiene validado su correo
+    fetch(API_USUARIOS + 'checkIfEmailIsValidated', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    if (response.dataset.verificado == '0') {
+                        sweetAlert(2, 'Usted no ha verificado su correo electrónico.', null);
+                    } else {
+                        openModal('administrarAuth')
+                    }
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});

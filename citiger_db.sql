@@ -496,5 +496,14 @@ idhistorial serial primary key,
 --Cambios 27/9/2021
 ALTER TABLE casa ADD CONSTRAINT UQ_casa_numero UNIQUE (numerocasa);
 
+--Cambios /28/9/2021
+ALTER TABLE residente ADD COLUMN verificado CHAR(1);
+ALTER TABLE residente ALTER COLUMN verificado SET DEFAULT '0'; 
+UPDATE residente SET verificado = '0';
+
+ALTER TABLE usuario ADD COLUMN verificado CHAR(1);
+ALTER TABLE usuario ALTER COLUMN verificado SET DEFAULT '0';
+UPDATE usuario SET verificado = '0';
+
 
 

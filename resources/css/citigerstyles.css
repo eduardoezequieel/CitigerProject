@@ -2487,6 +2487,14 @@ textarea[placeholder],
   font-size: 40px;
 }
 
+.alert-link{
+  color: var(--color-amarillo-hover) !important;
+}
+
+.alert-link:hover{
+  color: var(--color-amarillo-hover) !important;
+}
+
 /*Responsive*/
 @media screen and (max-width:1200px) {
   .botonesListadoTablaIcono {

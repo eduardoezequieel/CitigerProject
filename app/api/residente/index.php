@@ -37,6 +37,87 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idresidente'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
+            //Caso para verificar si el residente posee su correo electronico verificado.
+            case 'checkIfEmailIsValidated':
+                if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
+                    if ($result['dataset'] = $usuarios->checkIfEmailIsValidated()) {
+                        $result['status'] = 1;
+                    } else {
+                        if (Database::getException()) {
+                            $result['exception'] = Database::getException();
+                        } else {
+                            $result['exception'] = 'No sabemos si esta validado o no.';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Id invalido.';
+                }
+
+                break;
+            //Enviar código de verificación para verificar correo electronico
+            case 'sendEmailCode':
+                // Generamos el codigo de seguridad 
+                $code = rand(999999, 111111);
+                if ($correo->setCorreo($_SESSION['correo_residente'])) {
+                    // Ejecutamos funcion para obtener el usuario del correo ingresado\
+                    $correo->obtenerResidente($_SESSION['correo_residente']);
+                    try {
+
+                        //Ajustes del servidor
+                        $mail->SMTPDebug = 0;
+                        $mail->isSMTP();
+                        $mail->Host       = 'smtp.gmail.com';
+                        $mail->SMTPAuth   = true;
+                        $mail->Username   = 'citigersystem@gmail.com';
+                        $mail->Password   = 'citiger123';
+                        $mail->SMTPSecure = 'tls';
+                        $mail->Port       = 587;
+                        $mail->CharSet    = 'UTF-8';
+
+
+                        //Receptores
+                        $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
+                        $mail->addAddress($correo->getCorreo());
+
+                        //Contenido
+                        $mail->isHTML(true);
+                        $mail->Subject = 'Código de Verificación';
+                        $mail->Body    = 'Hola ' . $_SESSION['residente'] . ', tu código de seguridad para la verificación de correo electrónico es: <b>' . $code . '</b>';
+
+                        if ($mail->send()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Código enviado correctamente, ' . $_SESSION['residente'] . ' ';
+                            $correo->actualizarCodigo('residente', $code);
+                        }
+                    } catch (Exception $e) {
+                        $result['exception'] = $mail->ErrorInfo;
+                    }
+                } else {
+                    $result['exception'] = 'Correo incorrecto.';
+                }
+
+                break;
+
+            //Caso para verificar el código y poder verificar el correo electronico.
+            case 'verifyCodeEmail':
+                $_POST = $usuarios->validateForm($_POST);
+                // Validmos el formato del mensaje que se enviara en el correo
+                if ($correo->setCodigo($_POST['codigoAuth'])) {
+                    // Ejecutamos la funcion para validar el codigo de seguridad
+                    if ($correo->validarCodigoResidente('residente',$_SESSION['idresidente'])) {
+                        $result['status'] = 1;
+                        $correo->cleanCode($_SESSION['idresidente']);
+                        $correo->validateResidente($_SESSION['idresidente']);
+                        // Colocamos el mensaje de exito 
+                        $result['message'] = 'Correo verificado correctamente.';
+                    } else {
+                        // En caso que el correo no se envie mostramos el error
+                        $result['exception'] = 'El código ingresado no es correcto.';
+                    }
+                } else {
+                    $result['exception'] = 'Mensaje incorrecto';
+                }
+                break;
             //Caso para cargar los historiales de sesión fallidos de un usuario
             case 'readFailedSessions':
                 if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
@@ -76,11 +157,23 @@ if (isset($_GET['action'])) {
                 if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
                     if ($usuarios->checkPassword($_POST['txtContrasenaActualAuth'])) {
                         if ($_POST['switchValue'] == 'Si' || $_POST['switchValue'] == 'No') {
-                            if ($usuarios->updateAuthMode($_POST['switchValue'])) {
-                                $result['status'] = 1;
-                                $result['message'] = 'Exito.';
+                            if ($verificacion = $usuarios->checkIfEmailIsValidated()) {
+                                if ($verificacion['verificado'] == '1') {
+                                    if ($usuarios->updateAuthMode($_POST['switchValue'])) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Exito.';
+                                    } else {
+                                        $result['exception'] = Database::getException();
+                                    }
+                                } else {
+                                    $result['exception'] = 'No ha verificado su correo electrónico, hacker :)';
+                                }
                             } else {
-                                $result['exception'] = Database::getException();
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No sabemos si esta validado o no.';
+                                }
                             }
                         } else {
                             $result['exception'] = 'Valor incorrecto.';
@@ -209,14 +302,26 @@ if (isset($_GET['action'])) {
                             if ($_POST['txtNuevaContrasena'] != $_POST['txtContrasenaActual'] ||
                                 $_POST['txtConfirmarContrasena'] != $_POST['txtContrasenaActual']) {
                                 if ($usuarios->setContrasenia($_POST['txtNuevaContrasena'])) {
-                                    if ($usuarios->changePassword()) {
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Contraseña actualizada correctamente.';
-                                        $data = $usuarios->getIdBitacora('Cambio de clave');
-                                        $usuarios->setIdBitacora($data['idbitacora']);
-                                        $usuarios->updateBitacoraOut('Cambio de clave');
+                                    if ($verificacion = $usuarios->checkIfEmailIsValidated()) {
+                                        if ($verificacion['verificado'] == '1') {
+                                            if ($usuarios->changePassword()) {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Contraseña actualizada correctamente.';
+                                                $data = $usuarios->getIdBitacora('Cambio de clave');
+                                                $usuarios->setIdBitacora($data['idbitacora']);
+                                                $usuarios->updateBitacoraOut('Cambio de clave');
+                                            } else {
+                                                $result['exception'] = Database::getException();
+                                            }
+                                        } else {
+                                            $result['exception'] = 'Usted no ha verificado su correo electrónico, hacker :)';
+                                        }
                                     } else {
-                                        $result['exception'] = Database::getException();
+                                        if (Database::getException()) {
+                                            $result['exception'] = Database::getException();
+                                        } else {
+                                            $result['exception'] = 'Por alguna razón no se sabe si esta validado o no.';
+                                        }
                                     }
                                 } else {
                                     $result['exception'] = 'Su contraseña no cumple con los requisitos especificados.';

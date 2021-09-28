@@ -10,6 +10,7 @@ Class Database{
     private static $error = null;
 
     //Método para hacer la conexión (Katherine)
+    /*
     private static function connect(){
         
         // Credenciales.
@@ -20,10 +21,10 @@ Class Database{
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
-    }
+    }*/
 
     //Metodo para hacer la conexión (Eduardo)
-    /*private static function connect(){
+    private static function connect(){
 
         // Credenciales.
         $server = 'localhost';
@@ -33,7 +34,7 @@ Class Database{
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
-    }*/
+    }
 
     /*
     //Metodo para hacer la conexión (Samuel)

@@ -389,6 +389,14 @@ class Residentes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Funcion para saber si un residente posee su correo electronico verificado
+    public function checkIfEmailIsValidated()
+    {
+        $sql = 'SELECT verificado FROM residente WHERE idresidente = ?';
+        $params = array($this->idResidente);
+        return Database::getRow($sql, $params);
+    }
+
     //Activar empleado
     public function activate()
     {
