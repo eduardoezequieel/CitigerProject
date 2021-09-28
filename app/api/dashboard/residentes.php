@@ -136,6 +136,10 @@ if (isset($_GET['action'])) {
                                                             if ($residente->setUsername($_POST['txtUser'])) {
                                                                 $residente->setContrasenia($residente->generatePassword());
                                                                 if ($residente->createRow()) {
+                                                                    $result['status'] = 1;
+                                                                    $result['correo'] = $residente->getCorreo();
+                                                                    $result['username'] = $residente->getUsername();
+                                                                    $result['contrasenia'] = $residente->getContrasenia();
                                                                     if ($residente->saveFile($_FILES['archivo_residente'], $residente->getRuta(), $residente->getFoto())) {
                                                                         $result['message'] = 'Residente registrado correctamente';
                                                                     } else {
@@ -144,35 +148,7 @@ if (isset($_GET['action'])) {
                                                                     $data = $residente->readOneId();
                                                                     $residente->setIdResidente($data['idresidente']);
                                                                     $residente->registerActionOut('Cambio de clave','Se ha creado la clave');
-                                                                    try {
-                            
-                                                                        //Ajustes del servidor
-                                                                        $mail->SMTPDebug = 0;                   
-                                                                        $mail->isSMTP();                                            
-                                                                        $mail->Host       = 'smtp.gmail.com';                     
-                                                                        $mail->SMTPAuth   = true;                                   
-                                                                        $mail->Username   = 'citigersystem@gmail.com';                     
-                                                                        $mail->Password   = 'citiger123';                               
-                                                                        $mail->SMTPSecure = 'tls';            
-                                                                        $mail->Port       = 587;                                    
                                                                     
-                                                                        //Receptores
-                                                                        $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
-                                                                        $mail->addAddress($residente->getCorreo());    
-                                                                    
-                                                                        //Contenido
-                                                                        $mail->isHTML(true);                                  
-                                                                        $mail->Subject = 'Bienvenido a Citiger '.$residente->getUsername();
-                                                                        $mail->Body    = 'Se ha creado un registro con tu cuenta de correo
-                                                                                        en Citiger. Para que puedas iniciar sesión tu contraseña es: <b>' . $residente->getContrasenia(). '</b>';
-                                                                        $mail->AltBody = 'Tu contraseña es: ' . $residente->getContrasenia();
-                                                                    
-                                                                        if($mail->send()){
-                                                                            $result['status'] = 1;
-                                                                        }
-                                                                    } catch (Exception $e) {
-                                                                        $result['exception'] = $mail->ErrorInfo;
-                                                                    }
                                                                 } else {
                                                                     $result['exception'] = Database::getException();
                                                                 }
@@ -414,6 +390,50 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = 'Factura inexistente';
+                }
+                break;
+            //Caso para enviar un correo
+            case 'sendEmail':
+                $_POST = $residente->validateForm($_POST);
+                if ($residente->setCorreo($_POST['txtCorreo'])){
+                    if ($residente->setUsername($_POST['txtUser'])){
+                        if ($residente->setContrasenia($_POST['txtContrasenia'])) {
+                            try {
+                                //Ajustes del servidor
+                                $mail->SMTPDebug = 0;                   
+                                $mail->isSMTP();                                            
+                                $mail->Host       = 'smtp.gmail.com';                     
+                                $mail->SMTPAuth   = true;                                   
+                                $mail->Username   = 'citigersystem@gmail.com';                     
+                                $mail->Password   = 'citiger123';                               
+                                $mail->SMTPSecure = 'tls';            
+                                $mail->Port       = 587;                                    
+                            
+                                //Receptores
+                                $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
+                                $mail->addAddress($residente->getCorreo());    
+                            
+                                //Contenido
+                                $mail->isHTML(true);                                  
+                                $mail->Subject = 'Bienvenido a Citiger '.$residente->getUsername();
+                                $mail->Body    = 'Se ha creado un registro con tu cuenta de correo
+                                                en Citiger. Para que puedas iniciar sesión tu contraseña es: <b>' . $residente->getContrasenia(). '</b>';
+                                $mail->AltBody = 'Tu contraseña es: ' . $residente->getContrasenia();
+                            
+                                if ($mail->send()) {
+                                    $result['status'] = 1;
+                                }
+                            } catch (Exception $e) {
+                                $result['exception'] = $mail->ErrorInfo;
+                            }
+                        } else {    
+                            $result['exception'] = 'Hubo un error al setear la contraseña.';
+                        }
+                    } else {    
+                        $result['exception'] = 'Hubo un error al setear nombre de usuario.';
+                    }
+                } else {    
+                    $result['exception'] = 'Hubo un error al setear el correo.';
                 }
                 break;
 

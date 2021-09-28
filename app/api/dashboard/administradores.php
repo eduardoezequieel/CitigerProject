@@ -47,6 +47,7 @@ if (isset($_GET['action'])) {
                                                                             if ($usuarios->setDireccion($_POST['txtDireccion'])) {
                                                                                 $usuarios->setIdEstadoUsuario(1);
                                                                                 if ($usuarios->createRow()) {
+                                                                                    $result['status'] = 1;
                                                                                     if ($usuarios->saveFile($_FILES['archivo_usuario'], $usuarios->getRuta(), $usuarios->getFoto())) {
                                                                                         $result['message'] = 'Usuario registrado correctamente';
                                                                                         $usuarios->registerAction('Registrar', 'El usuario registró un registro en la tabla de usuarios.');
@@ -81,9 +82,7 @@ if (isset($_GET['action'])) {
                                                                                                         en Citiger. Para que puedas iniciar sesión tu contraseña es: <b>' . $usuarios->getContrasenia(). '</b>.';
                                                                                         $mail->AltBody = 'Tu contraseña es: ' . $usuarios->getContrasenia();
                                                                                     
-                                                                                        if($mail->send()){
-                                                                                            $result['status'] = 1;
-                                                                                        }
+                                                                                        $mail->send();
                                                                                     } catch (Exception $e) {
                                                                                         $result['exception'] = $mail->ErrorInfo;
                                                                                     }

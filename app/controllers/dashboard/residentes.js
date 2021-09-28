@@ -132,7 +132,53 @@ document.getElementById('administrarResidente-form').addEventListener('submit', 
 
     //Se evalua si el usuario esta haciendo una inserción o una actualización
     if (document.getElementById('btnAgregar').className != 'd-none') {
-        saveRow(API_RESIDENTE, 'createRow', 'administrarResidente-form', 'administrarResidente');
+        fetch(API_RESIDENTE + 'createRow', {
+            method: 'post',
+            body: new FormData(document.getElementById('administrarResidente-form'))
+        }).then(function (request) {
+            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+            if (request.ok) {
+                request.json().then(function (response) {
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (response.status) {
+                        // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
+                        readRows(API_RESIDENTE);
+                        sweetAlert(1, response.message, closeModal('administrarResidente'));
+                        clearForm('administrarResidente-form');
+                        document.getElementById('txtCorreo').value = response.correo;
+                        document.getElementById('txtUser').value = response.username;
+                        document.getElementById('txtContrasenia').value = response.contrasenia;
+                        fetch(API_RESIDENTE + 'sendEmail', {
+                            method: 'post',
+                            body: new FormData(document.getElementById('administrarResidente-form'))
+                        }).then(function (request) {
+                            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+                            if (request.ok) {
+                                request.json().then(function (response) {
+                                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                                    if (response.status) {
+                                        //sweetAlert(1, response.message, null);
+                                        clearForm('administrarResidente-form');
+                                    } else {
+                                        sweetAlert(2, response.exception, null);
+                                    }
+                                });
+                            } else {
+                                console.log(request.status + ' ' + request.statusText);
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    } else {
+                        sweetAlert(2, response.exception, null);
+                    }
+                });
+            } else {
+                console.log(request.status + ' ' + request.statusText);
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
     } else {
         saveRow(API_RESIDENTE, 'updateRow', 'administrarResidente-form', 'administrarResidente');
     }
