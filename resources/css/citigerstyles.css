@@ -486,10 +486,31 @@ option[selected] {
 
 }
 
-@media (max-width: 768px) {
+.navbar {
+  background-color: var(--color-fondo) !important;
+}
+
+@media (max-width: 800px) {
   #sidebar {
     margin-left: -17rem;
     /*width: rem;*/
+    display: none;
+  }
+
+  #sidebarCollapse {
+    display: none;
+  }
+
+  #navbar {
+    display: block !important;
+  }
+
+  .centrarBotones {
+    order: 2;
+  }
+
+  .botonMenu1 {
+    margin-bottom: 22px;
   }
 
   #container2 {
@@ -546,6 +567,7 @@ option[selected] {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 290px !important;
 }
 
 #tarjetaPerfil {
@@ -639,6 +661,17 @@ option[selected] {
 }
 
 .bg-darken:hover {
+  background-color: var(--color-citiger-claro) !important;
+  color: var(--color-citiger) !important;
+}
+
+.bg-darken2 {
+  background-color: transparent !important;
+  font-size: 20px !important;
+  color: var(--color-tipografia-titulos) !important;
+}
+
+.bg-darken2:hover {
   background-color: var(--color-citiger-claro) !important;
   color: var(--color-citiger) !important;
 }
@@ -1899,10 +1932,6 @@ textarea :-ms-input-placeholder {
     margin-right: 0 !important;
   }
 
-  .botonMenu1 {
-    margin-bottom: 22px;
-  }
-
   .botonMenu3 {
     margin-bottom: 22px;
   }
@@ -2466,10 +2495,7 @@ textarea[placeholder],
 }
 
 @media screen and (max-width:1200px) {
-  .centrarBotones {
-    order: 2;
-
-  }
+  
 
   .flex-column-media {
     flex-direction: column !important;

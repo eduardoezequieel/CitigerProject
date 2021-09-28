@@ -493,5 +493,8 @@ idhistorial serial primary key,
 	
 )
 
+--Cambios 27/9/2021
+ALTER TABLE casa ADD CONSTRAINT UQ_casa_numero UNIQUE (numerocasa);
+
 
 
