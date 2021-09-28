@@ -302,10 +302,12 @@ class Visitas extends Validator
     //Lee un registro de la tabla
     public function readOne()
     {
-        $sql = 'SELECT idVisita, idresidente, fecha, visitarecurrente, observacion, idestadovisita
-            FROM visita
-			WHERE idVisita = ?
-			ORDER BY fecha ASC';
+        $sql = 'SELECT idVisita, idresidente, fecha, visitarecurrente, observacion, 
+                idestadovisita, idvisitante
+                FROM visita
+                INNER JOIN detallevisita USING(idvisita)
+                WHERE idVisita = ?
+                ORDER BY fecha ASC';
         $params = array($this->idVisita);
         return Database::getRow($sql, $params);
     }

@@ -1,20 +1,35 @@
+//Declarando constantes para almacenar la ruta de las apis
 const API_VISITA = '../../app/api/dashboard/visitas.php?action=';
 const ENDPOINT_ESTADO = '../../app/api/dashboard/visitas.php?action=readVisitStatus';
 const ENDPOINT_RESIDENTE = '../../app/api/dashboard/visitas.php?action=readResident';
 const ENDPOINT_VISITANTE = '../../app/api/dashboard/visitas.php?action=readVisitante';
 
-
+//Método que se ejecuta cuando se carga la pagina
 document.addEventListener('DOMContentLoaded', function () {
     //Función para verificar permiso 
     checkPermissions('Visitas');
+    //Llenando todos los select necesarios
     fillSelect(ENDPOINT_ESTADO, 'cbEstadoVisita', null);
     fillSelect(ENDPOINT_RESIDENTE, 'cbResidente', null);
     fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
-
+    //Llenando la tabla con los datos registrados
     readRows(API_VISITA);
+    // Se declara e inicializa un objeto para obtener la fecha y hora actual.
+    let today = new Date();
+    // Se declara e inicializa una variable para guardar el día en formato de 2 dígitos.
+    let day = ('0' + today.getDate()).slice(-2);
+    // Se declara e inicializa una variable para guardar el mes en formato de 2 dígitos.
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    // Se declara e inicializa una variable para guardar el año con la mayoría de edad.
+    let year = today.getFullYear();
+    // Se declara e inicializa una variable para establecer el formato de la fecha.
+    let date = `${year}-${month}-${day}`;
+    // Se asigna la fecha como valor máximo en el campo del formulario.
+    document.getElementById('txtFecha').setAttribute('min', date);
 
 })
 
+//Función para llenar la tabla
 function fillTable(dataset) {
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -94,6 +109,7 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     fillSelect('cbVisitaR', null);
     document.getElementById('txtObservacion').value = '';
     fillSelect(ENDPOINT_RESIDENTE, 'cbResidente', null);
+    fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
 
 });
 
@@ -143,6 +159,7 @@ function readDataOnModal(id) {
                         document.getElementById('btnActivar').className = "btn btnAgregarFormulario mr-2";
                         document.getElementById('btnSuspender').className = "d-none";
                     }
+                    fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', response.dataset.idvisitante);
 
                 } else {
                     sweetAlert(2, response.exception, null);
