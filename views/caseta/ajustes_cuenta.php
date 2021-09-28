@@ -176,7 +176,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                         </div>
                     </div>
 
-                    <div class="row justify-content-center animate__animated animate__zoomIn" id="dispositivo">
+                    <div class="justify-content-center" id="dispositivo">
                         
                     </div>
 

@@ -412,33 +412,37 @@ function fillTable4(dataset) {
     dataset.map(function (row) {
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
-        <div class="col-12 d-flex justify-content-center align-items-center">
-        <div class="informacionPersonal">
-            <div class="d-flex mt-2">
-                <div class=" ml-4 mr-5 justify-content-end align-items-center d-flex">
-                    <i class="fas fa-desktop h1"></i>
-                </div>
-                <div class="row w-100">
-                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                        <h1 class="tituloInformacion">Sistema:</h1>
-                        <h2 class="informacion">${row.sistema}</h2>
+        <div class="row animate__animated animate__zoomIn mb-4">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <div class="informacionPersonal">
+                    <div class="d-flex mt-2">
+                        <div class=" ml-4 mr-5 justify-content-end align-items-center d-flex">
+                            <i class="fas fa-desktop icono6"></i>
+                        </div>
+                        <div class="row w-100">
+                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                                <h1 class="tituloInformacion">Sistema:</h1>
+                                <h2 class="informacion">${row.sistema}</h2>
 
-                        <h1 class="tituloInformacion">Localización:</h1>
-                        <h2 class="informacion">${row.region}</h2>
-                    </div>
-                    <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                        <h1 class="tituloInformacion">Fecha:</h1>
-                        <h2 class="informacion">${row.fecha.substring(0,10)}</h2>
+                                <h1 class="tituloInformacion">Localización:</h1>
+                                <h2 class="informacion">${row.region}</h2>
+                            </div>
+                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                                <h1 class="tituloInformacion">Fecha:</h1>
+                                <h2 class="informacion">${row.fecha.substring(0,10)}</h2>
 
-                        <h1 class="tituloInformacion">Hora:</h1>
-                        <h2 class="informacion">${row.fecha.substring(11,16)}</h2>
+                                <h1 class="tituloInformacion">Hora:</h1>
+                                <h2 class="informacion">${row.fecha.substring(11,16)}</h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
         `;
     });
     // Se agregan las filas al cuerpo de la tabla mediante su id para mostrar los registros.
     document.getElementById('dispositivo').innerHTML = content;
 }
+
+

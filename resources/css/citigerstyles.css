@@ -2482,6 +2482,11 @@ textarea[placeholder],
   font-size: 70px;
 }
 
+.icono6 {
+  color: var(--color-tipografia) !important;
+  font-size: 40px;
+}
+
 /*Responsive*/
 @media screen and (max-width:1200px) {
   .botonesListadoTablaIcono {
