@@ -40,10 +40,14 @@ function loadPage(){
 
         //Se cambia la imagen del boton de inicio para que coincida con el modo
         document.getElementById('imgDashboard').src = '../../resources/img/CitigerWhiteLogo2.png';
+        document.getElementById('imgDashboard2').src = '../../resources/img/CitigerWhiteLogo2.png';
 
         //Se ocultan/muestran los botones indicados para cambiar de modo posteriormente
         document.getElementById('lightMode').className = 'd-none';
         document.getElementById('darkMode').className = 'btn fas fa-moon botonesPerfil';
+
+        document.getElementById('lightMode2').className = 'd-none';
+        document.getElementById('darkMode2').className = 'btn fas fa-moon botonesPerfil';
       
     } else if (modo == 'dark') {
         //Modo oscuro
@@ -65,9 +69,13 @@ function loadPage(){
 
         //Se cambia la imagen del boton de inicio para que coincida con el modo
         document.getElementById('imgDashboard').src = '../../resources/img/citigerDarkLogo2.png';
+        document.getElementById('imgDashboard2').src = '../../resources/img/citigerDarkLogo2.png';
 
         document.getElementById('lightMode').className = 'btn fas fa-sun botonesPerfil';
         document.getElementById('darkMode').className = 'd-none';
+
+        document.getElementById('lightMode2').className = 'btn fas fa-sun botonesPerfil';
+        document.getElementById('darkMode2').className = 'd-none';
     } else {
         console.log('error');
     }

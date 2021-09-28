@@ -4,7 +4,7 @@ include('../../app/helpers/admin_page.php');
 //Se imprime la plantilla del encabezado y se envía el titulo para la página web
 Admin_Page::sidebarTemplate('Alquileres | Citiger');
 ?>
-<link rel="stylesheet" href="../../resources/css/estilos3.css">
+
 <!-- Contenedor de la Pagina -->
 <div class="page-content p-3" id="content">
     <div id="cuadroContenido1">

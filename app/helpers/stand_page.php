@@ -98,9 +98,10 @@
                     </div>
                     <!-- Fin del sidebar -->
 
-                    <nav id="navbar" class="d-none navbar fixed-top navbar-expand-lg">
+                    <!-- Inicio del navbar para dispositivos moviles -->
+                    <nav id="navbar" class="d-none navbar sticky-top navbar-expand-lg">
                         <a class="navbar-brand" href="dashboard.php">
-                            <img src="../../resources/img/citigerWhiteLogo2.png" alt="#" id="imgDashboard"
+                            <img src="../../resources/img/citigerWhiteLogo2.png" alt="#" id="imgDashboard2"
                                 class="img-fluid" width="120px"></a>
                         </a>
                         <button class="btn bg-darken2 mt-2 float-right" type="button" data-toggle="collapse"
@@ -131,25 +132,27 @@
                                     </div>
                                 </div>
                             </div>
-                            <ul class="d-flex flex-column justify-content-center align-items-center navbar-nav mr-auto flex-column colorCitiger mt-4">
-                                <li class="nav-item">
-                                    <a href="../../views/caseta/ajustes_cuenta.php" class="nav-link ">
-                                        <i class="fas fa-cog mr-3 tamañoIconos"></i>
-                                        Ajustes
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link" id="lightModeCaseta" onclick="lightMode3()"><i
-                                            class="fas fa-sun mr-3 tamañoIconos"></i>Dia</a>
-                                    <a href="#" class="nav-link" id="darkModeCaseta" onclick="darkMode3()"><i
-                                            class="fas fa-moon mr-3 tamañoIconos"></i>Nocturno</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" onclick="logOut3()" class="nav-link ">
-                                        <i class="fas fa-sign-out-alt mr-3 tamañoIconos"></i>
-                                        Cerrar Sesión
-                                    </a>
-                                </li>
+                            <ul class="navbar-nav mr-auto d-flex justify-content-center align-items-center colorCitiger mt-4 bg-dark">
+                                <div>
+                                    <li class="nav-item">
+                                        <a href="../../views/caseta/ajustes_cuenta.php" class="nav-link">
+                                            <i class="fas fa-cog mr-3 tamañoIconos"></i>
+                                            Ajustes
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link" id="lightModeCaseta" onclick="lightMode3()"><i
+                                                class="fas fa-sun mr-3 tamañoIconos"></i>Dia</a>
+                                        <a href="#" class="nav-link" id="darkModeCaseta" onclick="darkMode3()"><i
+                                                class="fas fa-moon mr-3 tamañoIconos"></i>Nocturno</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" onclick="logOut3()" class="nav-link ">
+                                            <i class="fas fa-sign-out-alt mr-3 tamañoIconos"></i>
+                                            Cerrar Sesión
+                                        </a>
+                                    </li>
+                                </div>
                             </ul>
                         </div>
                     </nav>

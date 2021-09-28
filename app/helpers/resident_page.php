@@ -60,24 +60,29 @@
                             <div id="tarjetaPerfil" class="p-3">
                                 <div class="row">
                                     <div class="col-3">
-                                    <img src="../../resources/img/dashboard_img/residentes_fotos/' . $_SESSION['foto_residente'] . '"
-                                    id="fotoPerfil" alt="" class="rounded-circle fit-images" width="60px"
-                                    height="60px">                                </div>
-                                <div class="col-9">
-                                    <label for="ajustes" class="pl-4 pt-2" id="usuario">' . $_SESSION['username'] . '</label>
-                                    <label for="ajustes" class="pl-4" id="tipoUsuario">Residente</label>
-                                    <input type="text" id="txtModo" class="d-none" value="'. $_SESSION['modo_residente'].'">
+                                        <img src="../../resources/img/dashboard_img/residentes_fotos/' . $_SESSION['foto_residente'] . '"
+                                            id="fotoPerfil" alt="" class="rounded-circle fit-images" width="60px"
+                                            height="60px"> </div>
+                                    <div class="col-9">
+                                        <label for="ajustes" class="pl-4 pt-2" id="usuario">' . $_SESSION['username'] .
+                                            '</label>
+                                        <label for="ajustes" class="pl-4" id="tipoUsuario">Residente</label>
+                                        <input type="text" id="txtModo" class="d-none"
+                                            value="'. $_SESSION['modo_residente'].'">
                                     </div>
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-12" id="filaBotones">
                                         <div id="botones">
-                                            <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil" id="ajustes"></a>
-                                            <a href="#" onclick="logOut2()" class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
+                                            <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil"
+                                                id="ajustes"></a>
+                                            <a href="#" onclick="logOut2()"
+                                                class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
                                             <a href="#" class="btn fas fa-sun botonesPerfil" id="lightMode"
-                                            onclick="lightMode2()"></a>
-                                        <a href="#" class="btn fas fa-moon botonesPerfil" id="darkMode"
-                                            onclick="darkMode2()"></a>                                        </div>
+                                                onclick="lightMode2()"></a>
+                                            <a href="#" class="btn fas fa-moon botonesPerfil" id="darkMode"
+                                                onclick="darkMode2()"></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -106,6 +111,80 @@
                         </ul>
                     </div>
                     <!-- Fin del sidebar -->
+
+                    <!-- Inicio del navbar para dispositivos moviles -->
+                    <nav id="navbar" class="d-none navbar sticky-top navbar-expand-lg">
+                        <a class="navbar-brand" href="dashboard.php">
+                            <img src="../../resources/img/citigerWhiteLogo2.png" alt="#" id="imgDashboard2"
+                                class="img-fluid" width="120px"></a>
+                        </a>
+                        <button class="btn bg-darken2 mt-2 float-right" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="fas fa-caret-down"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-center align-items-center">
+                                    <!-- Perfil -->
+                                    <div id="tarjeta">
+                                        <div id="tarjetaPerfil" class="p-3">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <img src="../../resources/img/dashboard_img/residentes_fotos/' . $_SESSION['foto_residente'] . '"
+                                                        id="fotoPerfil" alt="" class="rounded-circle fit-images" width="60px"
+                                                        height="60px"> </div>
+                                                <div class="col-9">
+                                                    <label for="ajustes" class="pl-4 pt-2" id="usuario">' . $_SESSION['username'] .
+                                                        '</label>
+                                                    <label for="ajustes" class="pl-4" id="tipoUsuario">Residente</label>
+                                                    <input type="text" id="txtModo" class="d-none"
+                                                        value="'. $_SESSION['modo_residente'].'">
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-12" id="filaBotones">
+                                                    <div id="botones">
+                                                        <a href="ajustes_cuenta.php" class="btn fas fa-cog botonesPerfil"
+                                                            id="ajustes"></a>
+                                                        <a href="#" onclick="logOut2()"
+                                                            class="btn fas fa-sign-out-alt botonesPerfil" id="cerrar"></a>
+                                                        <a href="#" class="btn fas fa-sun botonesPerfil" id="lightMode2"
+                                                            onclick="lightMode2()"></a>
+                                                        <a href="#" class="btn fas fa-moon botonesPerfil" id="darkMode2"
+                                                            onclick="darkMode2()"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="navbar-nav mr-auto d-flex justify-content-center align-items-center colorCitiger mt-4 bg-dark">
+                                <div>
+                                    <li class="nav-item">
+                                        <a href="menu_alquileres.php" class="nav-link categoriasFuente">
+                                        <i class="fas fa-home mr-3 tamañoIconos"></i>
+                                        Alquileres
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="denuncias.php" class="nav-link categoriasFuente">
+                                        <i class="fas fa-exclamation-triangle mr-3 tamañoIconos"></i>
+                                        Denuncias
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="visitas.php" class="nav-link categoriasFuente">
+                                        <i class="fas fa-car mr-3 tamañoIconos"></i>
+                                        Visitas
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                    </nav>
                     ');
                 } else {
                     header('location: index.php');
