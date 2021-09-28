@@ -127,105 +127,105 @@
                                 </li>';
                     $fin_sidebar = '</ul>
                                 </div>
-                                <!-- Fin del sidebar -->
-                                
-                                <!-- Inicio del navbar para dispositivos moviles -->
-                                <nav id="navbar" class="d-none navbar sticky-top navbar-expand-lg">
-                                    <a class="navbar-brand" href="dashboard.php">
-                                        <img src="../../resources/img/citigerWhiteLogo2.png" alt="#" id="imgDashboard2"
-                                            class="img-fluid" width="120px"></a>
-                                    </a>
-                                    <button class="btn bg-darken2 mt-2 float-right" type="button" data-toggle="collapse"
-                                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                        aria-expanded="false" aria-label="Toggle navigation">
-                                        <span class="fas fa-caret-down"></span>
-                                    </button>
+                                <!-- Fin del sidebar -->';
+                    $inicio_navbar = '<!-- Inicio del navbar para dispositivos moviles -->
+                                    <nav id="navbar" class="d-none navbar sticky-top navbar-expand-lg">
+                                        <a class="navbar-brand" href="dashboard.php">
+                                            <img src="../../resources/img/citigerWhiteLogo2.png" alt="#" id="imgDashboard2"
+                                                class="img-fluid" width="120px"></a>
+                                        </a>
+                                        <button class="btn bg-darken2 mt-2 float-right" type="button" data-toggle="collapse"
+                                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                            aria-expanded="false" aria-label="Toggle navigation">
+                                            <span class="fas fa-caret-down"></span>
+                                        </button>
 
-                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <div class="row">
-                                            <div class="col-12 d-flex justify-content-center align-items-center">
-                                                <div id="tarjeta">
-                                                    <div id="tarjetaPerfil" class="p-3">
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <img src="../../resources/img/dashboard_img/usuarios_fotos/' . $_SESSION['foto_dashboard'] . '"
-                                                                    id="fotoPerfil" alt=""
-                                                                    class="rounded-circle fit-images" width="60px"
-                                                                    height="60px">
+                                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                            <div class="row">
+                                                <div class="col-12 d-flex justify-content-center align-items-center">
+                                                    <div id="tarjeta">
+                                                        <div id="tarjetaPerfil" class="p-3">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <img src="../../resources/img/dashboard_img/usuarios_fotos/' . $_SESSION['foto_dashboard'] . '"
+                                                                        id="fotoPerfil" alt=""
+                                                                        class="rounded-circle fit-images" width="60px"
+                                                                        height="60px">
+                                                                </div>
+                                                                <div class="col-9">
+                                                                    <label for="ajustes" class="pl-4 pt-2" id="usuario">'.
+                                                                        $_SESSION['usuario_dashboard'].'</label>
+                                                                    <label for="ajustes" class="pl-4" id="tipoUsuario">'.
+                                                                        $_SESSION['tipousuario_dashboard'].'</label>
+                                                                    <input type="text" id="txtModo" class="d-none"
+                                                                        value="'. $_SESSION['modo_dashboard'].'">
+                                                                </div>
                                                             </div>
-                                                            <div class="col-9">
-                                                                <label for="ajustes" class="pl-4 pt-2" id="usuario">'.
-                                                                    $_SESSION['usuario_dashboard'].'</label>
-                                                                <label for="ajustes" class="pl-4" id="tipoUsuario">'.
-                                                                    $_SESSION['tipousuario_dashboard'].'</label>
-                                                                <input type="text" id="txtModo" class="d-none"
-                                                                    value="'. $_SESSION['modo_dashboard'].'">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12" id="filaBotones">
-                                                                <div id="botones">
-                                                                    <a href="ajustes_cuenta.php"
-                                                                        class="btn fas fa-cog botonesPerfil"
-                                                                        id="ajustes"></a>
-                                                                    <a href="#"
-                                                                        class="btn fas fa-sign-out-alt botonesPerfil"
-                                                                        id="cerrar" onclick="logOut()"></a>
-                                                                    <a href="#" class="btn fas fa-sun botonesPerfil"
-                                                                        id="lightMode2" onclick="lightMode()"></a>
-                                                                    <a href="#" class="btn fas fa-moon botonesPerfil"
-                                                                        id="darkMode2" onclick="darkMode()"></a>
+                                                            <div class="row mt-2">
+                                                                <div class="col-12" id="filaBotones">
+                                                                    <div id="botones">
+                                                                        <a href="ajustes_cuenta.php"
+                                                                            class="btn fas fa-cog botonesPerfil"
+                                                                            id="ajustes"></a>
+                                                                        <a href="#"
+                                                                            class="btn fas fa-sign-out-alt botonesPerfil"
+                                                                            id="cerrar" onclick="logOut()"></a>
+                                                                        <a href="#" class="btn fas fa-sun botonesPerfil"
+                                                                            id="lightMode2" onclick="lightMode()"></a>
+                                                                        <a href="#" class="btn fas fa-moon botonesPerfil"
+                                                                            id="darkMode2" onclick="darkMode()"></a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <ul class="navbar-nav mr-auto d-flex justify-content-center align-items-center colorCitiger mt-4 bg-dark">
-                                            <div>
-                                                <li class="nav-item">
-                                                    <a href="menu_alquileres.php" class="nav-link ">
-                                                        <i class="fas fa-home mr-3 tamañoIconos"></i>
-                                                        Alquileres
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="aportaciones.php" class="nav-link ">
-                                                        <i class="fas fa-coins mr-3 tamañoIconos"></i>
-                                                        Aportaciones
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="denuncias.php" class="nav-link ">
-                                                        <i class="fas fa-exclamation-triangle mr-3 tamañoIconos"></i>
-                                                        Denuncias
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="menu_materiales.php" class="nav-link ">
-                                                        <i class="fas fa-boxes mr-3 tamañoIconos"></i>
-                                                        Materiales
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="menu_usuarios.php" class="nav-link ">
-                                                        <i class="fas fa-users-cog mr-3 tamañoIconos"></i>
-                                                        Usuarios
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="menu_visitas.php" class="nav-link ">
-                                                        <i class="fas fa-car mr-3 tamañoIconos"></i>
-                                                        Visitas
-                                                    </a>
-                                                </li>
-                                            </div>
-                                        </ul>
-                                    </div>
-                                </nav>';
+                                            <ul class="navbar-nav mr-auto d-flex justify-content-center align-items-center colorCitiger mt-4 bg-dark">
+                                            <div>';
+                    $opcion1_nav = '<li class="nav-item">
+                                    <a href="menu_alquileres.php" class="nav-link ">
+                                        <i class="fas fa-home mr-3 tamañoIconos"></i>
+                                        Alquileres
+                                    </a>
+                                </li>';
+                    $opcion2_nav = '<li class="nav-item">
+                                        <a href="aportaciones.php" class="nav-link ">
+                                            <i class="fas fa-coins mr-3 tamañoIconos"></i>
+                                            Aportaciones
+                                        </a>
+                                    </li>';
+                    $opcion3_nav = '<li class="nav-item">
+                                        <a href="denuncias.php" class="nav-link ">
+                                            <i class="fas fa-exclamation-triangle mr-3 tamañoIconos"></i>
+                                            Denuncias
+                                        </a>
+                                    </li>';
+                    $opcion4_nav = '<li class="nav-item">
+                                        <a href="menu_materiales.php" class="nav-link ">
+                                            <i class="fas fa-boxes mr-3 tamañoIconos"></i>
+                                            Materiales
+                                        </a>
+                                    </li>';   
+                    $opcion5_nav = '<li class="nav-item">
+                                        <a href="menu_usuarios.php" class="nav-link ">
+                                            <i class="fas fa-users-cog mr-3 tamañoIconos"></i>
+                                            Usuarios
+                                        </a>
+                                    </li>'; 
+                    $opcion6_nav = '<li class="nav-item">
+                                        <a href="menu_visitas.php" class="nav-link ">
+                                            <i class="fas fa-car mr-3 tamañoIconos"></i>
+                                            Visitas
+                                        </a>
+                                    </li>';
+                    $fin_navbar = '</div>
+                                    </ul>
+                                </div>
+                            </nav>';                        
                     //Declarando contador para evaluar que opción imprimir
                     $contador = 1;
+                    $contadorNav = 1;
                     //Creación de array para evaluar todos los permisos
                     $permisos = $_SESSION['permisos'];
                     foreach($permisos as $permiso){
@@ -267,6 +267,49 @@
                             echo $fin_sidebar;
                         }
                         $contador++;
+                    }
+
+                    //Creación de array para evaluar todos los permisos
+                    $permisosNav = $_SESSION['permisos'];
+                    foreach($permisosNav as $permisoNav){
+                        //Imprimiendo el inicio del sidebar
+                        if ($contadorNav == 1){
+                            echo $inicio_navbar;
+                        }
+                        //Evaluando que permisos tiene permitido para imprimir la opción
+                        if ($permisoNav['permitido'] == '1') {
+                            switch($permisoNav['permiso']) {
+                                //Opción de alquileres
+                                case 'Alquileres':
+                                    echo $opcion1_nav;
+                                    break;
+                                //Opción de aportaciones
+                                case 'Aportaciones':
+                                    echo $opcion2_nav;
+                                    break;
+                                //Opción de denuncias
+                                case 'Denuncias':
+                                    echo $opcion3_nav;
+                                    break;
+                                //Opción de materiales
+                                case 'Materiales':
+                                    echo $opcion4_nav;
+                                    break;
+                                //Opción de usuarios
+                                case 'Usuarios':
+                                    echo $opcion5_nav;
+                                    break;
+                                //Opción de visitas
+                                case 'Visitas':
+                                    echo $opcion6_nav;
+                                    break;
+                            }
+                        }
+                        //Imprimiendo el final del sidebar
+                        if($contador == 6) {
+                            echo $fin_navbar;
+                        }
+                        $contadorNav++;
                     }
                     
                 } else {

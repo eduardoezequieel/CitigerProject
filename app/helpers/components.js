@@ -734,7 +734,6 @@ function showCharts(){
                                     document.getElementById('tarjeta_aportacion').className = 'col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas';
                                     graficaPastelAportaciones();
                                     contadorAportacion();
-                                    console.log('nop')
                                     break;
                                 case 'Denuncias':
                                     document.getElementById('tarjeta_denuncia').className = 'col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas';
