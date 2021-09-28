@@ -505,5 +505,14 @@ ALTER TABLE usuario ADD COLUMN verificado CHAR(1);
 ALTER TABLE usuario ALTER COLUMN verificado SET DEFAULT '0';
 UPDATE usuario SET verificado = '0';
 
+alter table historialusuario alter column ip set default 'No disponible';
+alter table historialusuario alter column sistema set default 'No disponible';
+alter table historialusuario alter column region set default 'No disponible';
+
+
+alter table historialresidente alter column ip set default 'No disponible';
+alter table historialresidente alter column sistema set default 'No disponible';
+alter table historialresidente alter column region set default 'No disponible';
+
 
 

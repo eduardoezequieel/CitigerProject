@@ -420,14 +420,14 @@ function fillTable4(dataset) {
                             <i class="fas fa-desktop icono6"></i>
                         </div>
                         <div class="row w-100">
-                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
                                 <h1 class="tituloInformacion">Sistema:</h1>
                                 <h2 class="informacion">${row.sistema}</h2>
 
                                 <h1 class="tituloInformacion">Localización:</h1>
                                 <h2 class="informacion">${row.region}</h2>
                             </div>
-                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12">
                                 <h1 class="tituloInformacion">Fecha:</h1>
                                 <h2 class="informacion">${row.fecha.substring(0,10)}</h2>
 

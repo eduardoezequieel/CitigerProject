@@ -39,6 +39,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }).catch(error => console.log(error));
 
         getOS();
+        
+        document.getElementById('txtLoc').value='No disponible';
+        document.getElementById('txtIP').value='No disponible';
 
 })
 

@@ -39,6 +39,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         getOS();
 
+        document.getElementById('txtLoc').value='No disponible';
+        document.getElementById('txtIP').value='No disponible';
+
 });
 
 //Enviar código de verificación
