@@ -345,6 +345,7 @@
                     <script src="../../resources/js/sweetalert.min.js"></script>
                     <script src="../../resources/js/chart.min.js"></script>
                     <script src="../../app/helpers/components.js"></script>
+                    <script type="text/javascript" src="../../app/controllers/dashboard/logout.js"></script>
                 </body>
                 </html> 
             ');

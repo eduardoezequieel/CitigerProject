@@ -218,7 +218,7 @@
                     <script src="../../app/controllers/residente/'.$controller.'"></script>
                     <script src="../../resources/js/datatables.min.js"></script>
                     <script src="../../resources/js/sweetalert.min.js"></script>
-                    
+                    <script type="text/javascript" src="../../app/controllers/residente/logout.js"></script>
                     <script src="../../app/helpers/components.js"></script>
                 </body>
                 </html> 
