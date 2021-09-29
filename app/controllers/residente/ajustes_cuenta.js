@@ -505,6 +505,7 @@ document.getElementById('btnModalAdministrarAuth').addEventListener('click',func
 //Al accionar el formulario email-form
 document.getElementById('email-form').addEventListener('submit',function(event){
     //Evitamos recargar la pagina
+    console.log('a');
     event.preventDefault();
     //fetch
     fetch(API_USUARIOS + 'updateEmail', {
@@ -516,11 +517,8 @@ document.getElementById('email-form').addEventListener('submit',function(event){
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    if (response.dataset.verificado == '0') {
-                        sweetAlert(2, 'Usted no ha verificado su correo electrónico.', null);
-                    } else {
-                        openModal('administrarAuth')
-                    }
+                    closeModal('administrarEmail');
+                    sweetAlert(1, response.message, null);
                 } else {
                     sweetAlert(4, response.exception, null);
                 }

@@ -483,8 +483,8 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                     <div class="row">
                         <div class="col-12 d-flex flex-column justify-content-center align-items-center">
                             <div class="form-group w-xl-50 w-md-50">
-                                <label class="tituloCajaTextoFormulario" for="txtContrasenaActualCorreo">Contraseña Actual:</label>
-                                <input onChange="checkContrasena('txtContrasenaActualCorreo')" type="password" class="form-control cajaTextoModal2" id="txtContrasenaActualCorreo" name="txtContrasenaActualCorreo" placeholder="">
+                                <label class="tituloCajaTextoFormulario" for="txtPassword">Contraseña Actual:</label>
+                                <input onChange="checkContrasena('txtPassword')" type="password" class="form-control cajaTextoModal2" id="txtPassword" name="txtPassword" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -501,7 +501,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                     <!-- Botones de Acción del Formulario -->
                     <div class="row justify-content-center mt-4">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                            <button id="btnActualizarContrasena" type="submit" name="btnActualizar" href="#" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Cambiar Contraseña</button>
+                            <button type="submit" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Actualizar Correo Electrónico</button>
                         </div>
                     </div>
                 </form>

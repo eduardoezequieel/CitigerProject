@@ -188,9 +188,9 @@ if (isset($_GET['action'])) {
                 break;
             //Caso para actualizar el correo electronico actual
             case 'updateEmail':
-                $_POST = $usuarios->validateForm($_POST);
+                //  $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
-                    if ($usuarios->checkPassword($_POST['txtContrasenaActualCorreo'])) {
+                    if ($usuarios->checkPassword($_POST['txtPassword'])) {
                         if ($_POST['txtNuevoCorreo'] == $_POST['txtConfirmarCorreo']) {
                             if ($usuarios->setCorreo($_POST['txtNuevoCorreo'])) {
                                 if ($usuarios->changeEmail()) {
