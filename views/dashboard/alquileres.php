@@ -20,7 +20,7 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
         <div class="row justify-content-center mt-3 px-5 animate__animated animate__bounceIn">
             <div class="col-xl-12 d-flex justify-content-center col-md-12 col-sm-12 col-xs-12 centrarBotones">
                 <div class="mt-4 mx-3 mb-3">
-                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#administrarAlquiler" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
+                    <a href="#" id="btnInsertDialog" data-toggle="modal" data-target="#verificarDui" class="btn botonesListado"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</a>
                 </div>
 
                 <form class="mx-3" method="post" id="search-form">
@@ -273,7 +273,104 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
     </div>
 </div>
 <!-- Fin del Modal -->
+
+<!-- Modal para verificar DUI para poder crear un alquiler -->
+<div class="modal fade" id="verificarDui" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Verificar DUI</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal modal-body px-3 pb-4 mt-2">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="tituloDato2  ">Ingrese el DUI del residente.</h1>
+                    </div>
+                </div>
+                <form method="post" id="verificarDui-form"  autocomplete="off">
+                    <div class="row mt-2">
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="form-group">
+                                <label class="tituloCajaTextoFormulario" for="txtDuiVerificar">DUI:</label>
+                                <input type="text" onchange="checkDui('txtDuiVerificar')" class="form-control cajaTextoFormulario" id="txtDuiVerificar" name="txtDuiVerificar" placeholder="12345678-9" Required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center">
+                            <button data-toggle="modal" data-target="#seleccionarEspacio" data-dismiss="modal" class="btn btnAgregarFormulario mr-2"><span class="fas fa-chevron-right mr-3 tamañoIconosBotones"></span>Continuar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
+
+<!-- Modal para seleccionar un lugar de alquiler -->
+<div class="modal fade" id="seleccionarEspacio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content justify-content-center px-3 py-2">
+            <!-- Cabecera del Modal -->
+            <div class="modal-header">
+                <!-- Titulo -->
+                <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Seleccionar espacio</h5>
+                <!-- Boton para Cerrar -->
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Contenido del Modal -->
+            <div class="textoModal modal-body px-3 pb-4 mt-2">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="tituloDato2">Selecciona espacio para el alquiler</h1>
+                    </div>
+                </div>
+                <form method="post" id="seleccionarEspacio-form" autocomplete="off">
+                    <div
+                        class="animate__animated animate__bounceIn col-xl-4 col-md-4 col-sm-12 col-xs-12 mt-4 d-flex margenTarjetas justify-content-center align-items-center text-center">
+                        <!-- Inicio de Tarjeta -->
+                        <div class="tarjeta">
+                            <!-- Fila para Imagen -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <img src="../../resources/img/dashboard_img/espacios_fotos/${row.imagenprincipal}"
+                                        alt="#" class="img-fluid fit-images fotoEspacio imagenTarjeta">
+                                </div>
+                            </div>
+                            <!-- Fila para Información -->
+                            <div class="row mt-2">
+                                <div class="col-12 text-left">
+                                    <h1 class="letraTarjetaTitulo">${row.nombre}</h1>
+                                    <h1 class="letraTarjeta">Capacidad: <span
+                                            class="letraDestacadaTarjeta">${row.capacidad}</span></h1>
+                                </div>
+                            </div>
+                            <!-- Fila para Boton -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="btn botonesTarjeta"><span class="fas fa-plus mr-2"></span>Agregar</button>
+                                </div>
+                            </div>
+                            <!-- Fin de Tarjeta -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del Modal -->
 <?php
 //Se imprimen los JS necesarios
-Admin_Page::footerTemplate('alquileres.js');
+Admin_Page::footerTemplate('alquileresss.js');
 ?>

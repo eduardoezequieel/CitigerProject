@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         $('[data-toggle="tooltip"]').tooltip()
     });
 
-    //Llenando los combobox necesarios
+    /*Llenando los combobox necesarios
     fillSelect(ENDPOINT_ESTADO_ALQUILER, 'cbEstadoAlquiler', null);
     fillSelect(ENDPOINT_RES_ALQUILER, 'cbResidente', null);
 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se asigna la fecha como valor máximo en el campo del formulario.
     document.getElementById('txtFecha').setAttribute('min', date);
 
-    //Se ocultan los botones necesarios del formulario.
+    /*Se ocultan los botones necesarios del formulario.
     for (let i = 3; i < BOTONES.length; i++) {
         if (i != 3) {
             BOTONES[i].className = 'd-none';
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }).catch(error => console.log(error));
 
-
+*/
 })
 
 //Llenado de tabla
