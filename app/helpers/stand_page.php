@@ -26,6 +26,7 @@
                     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"> 
                     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+
                     <meta http-equiv="Expires" content="0">
                     <meta http-equiv="Last-Modified" content="0">
                     <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
@@ -189,6 +190,8 @@
                     <script src="../../resources/js/datatables.min.js"></script>
                     <script src="../../resources/js/sweetalert.min.js"></script>
                     <script src="../../app/helpers/components.js"></script>
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+ 
                     <script>
                         var modo = document.getElementById(\'txtModo\').value;
                         if (modo == \'light\') {

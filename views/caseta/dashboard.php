@@ -118,7 +118,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                                     <label class="tituloCajaTextoFormulario" for="txtDuiVerificar">DUI:</label>
                                     <input type="text" onchange="checkDui('txtDui')"
                                         class="form-control cajaTextoFormulario" id="txtDui"
-                                        name="txtDui" placeholder="00000000-0" Required>
+                                        name="txtDui" data-inputmask="'txtDui': 'phonebe'" placeholder="00000000-0" maxlength="10" Required>
                                 </div>
                             </div>
                         </div>

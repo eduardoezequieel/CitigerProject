@@ -79,7 +79,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         </div>
                     </div>
                     <form id="info-form" autocomplete="off">
-                        <input type="number" class="form-control cajaTextoDUI d-none" id="txtVisita" name="txtVisita">
+                        <input type="number" mask="00000000-0" class="form-control cajaTextoDUI d-none" id="txtVisita" name="txtVisita">
                         <div class="row mt-2">
                             <div class="col-12">
                                 <div class="form-group">
