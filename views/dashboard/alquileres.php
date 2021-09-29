@@ -324,8 +324,8 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                 <!-- Titulo -->
                 <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Seleccionar espacio</h5>
                 <!-- Boton para Cerrar -->
-                <button type="button" class="close closeModalButton lead" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" data-toggle="modal" data-target="#verificarDui" aria-label="Close">
+                    <span aria-hidden="true" class="fas fa-chevron-left"></span>
                 </button>
             </div>
             <!-- Contenido del Modal -->
