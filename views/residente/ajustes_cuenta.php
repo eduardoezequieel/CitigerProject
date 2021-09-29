@@ -464,7 +464,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                             </div>
                         </div>
                     </div>
-                <form method="post" action="/form" autocomplete="off" id="email-form">
+                <form method="post" autocomplete="off" id="email-form">
                     <div class="row">
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
                             <div class="form-group">

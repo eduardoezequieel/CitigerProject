@@ -505,12 +505,11 @@ document.getElementById('btnModalAdministrarAuth').addEventListener('click',func
 //Al accionar el formulario email-form
 document.getElementById('email-form').addEventListener('submit',function(event){
     //Evitamos recargar la pagina
-    console.log('a');
     event.preventDefault();
-    //fetch
-    fetch(API_USUARIOS + 'actualizarCorreo', {
+     //Verificamos si el usuario tiene validado su correo
+     fetch(API_USUARIOS + 'actualizarCorreo', {
         method: 'post',
-        data: new FormData(document.getElementById('email-form'))
+        body: new FormData(document.getElementById('email-form'))
     }).then(function (request) {
         // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
         if (request.ok) {

@@ -189,10 +189,10 @@ if (isset($_GET['action'])) {
             //Caso para actualizar el correo electronico actual
             case 'actualizarCorreo':
                 $_POST = $usuarios->validateForm($_POST);
-                if ($usuarios->setCorreo($_POST['txtNuevoCorreo'])) {
-                    if ($_POST['txtNuevoCorreo'] == $_POST['txtConfirmarCorreo']) {
+                if ($_POST['txtNuevoCorreo'] == $_POST['txtConfirmarCorreo']) {
+                    if ($usuarios->setCorreo($_POST['txtNuevoCorreo'])) {
                         if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
-                            if ($usuarios->changePassword($_POST['txtNuevoCorreo'])) {
+                            if ($usuarios->checkPassword($_POST['txtPassword'])) {
                                 if ($usuarios->changeEmail()) {
                                     if ($usuarios->emailNotValidated()) {
                                         $result['status'] = 1;
@@ -210,10 +210,10 @@ if (isset($_GET['action'])) {
                             $result['exception'] = 'Id incorrecto.';
                         }
                     } else {
-                        $result['exception'] = 'Los correos electrónicos no coinciden.';
-                    }
+                        $result['exception'] = 'Ingrese un correo electrónico valido.';
+                    }       
                 } else {
-                    $result['exception'] = 'Ingrese un correo electrónico valido.';
+                    $result['exception'] = 'Los correos electrónicos no coinciden.';
                 }
                 
                 break;
