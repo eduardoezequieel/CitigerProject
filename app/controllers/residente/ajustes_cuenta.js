@@ -508,7 +508,7 @@ document.getElementById('email-form').addEventListener('submit',function(event){
     console.log('a');
     event.preventDefault();
     //fetch
-    fetch(API_USUARIOS + 'updateEmail', {
+    fetch(API_USUARIOS + 'actualizarCorreo', {
         method: 'post',
         data: new FormData(document.getElementById('email-form'))
     }).then(function (request) {

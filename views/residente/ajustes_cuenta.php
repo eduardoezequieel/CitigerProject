@@ -438,7 +438,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
 </div>
 <!-- Fin del Modal -->
 
-<!-- Modal para Cambiar Contraseña -->
+<!-- Modal para Cambiar Email -->
 <div class="modal fade" id="administrarEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content justify-content-center px-3 py-2">
@@ -492,7 +492,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                     <div class="row justify-content-center">
                         <div class="col-12 d-flex justify-content-center align-items-center">
                             <div class="custom-control custom-switch">
-                                <input onchange="showHidePassword('cbMostrarContraseña4', 'txtContrasenaActualCorreo')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña4">
+                                <input onchange="showHidePassword('cbMostrarContraseña4', 'txtPassword')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña4">
                                 <label class="p-0 custom-control-label" for="cbMostrarContraseña4">Mostrar Contraseña</label>
                             </div>
                         </div>

@@ -187,30 +187,33 @@ if (isset($_GET['action'])) {
                 
                 break;
             //Caso para actualizar el correo electronico actual
-            case 'updateEmail':
-                //  $_POST = $usuarios->validateForm($_POST);
-                if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
-                    if ($usuarios->checkPassword($_POST['txtPassword'])) {
-                        if ($_POST['txtNuevoCorreo'] == $_POST['txtConfirmarCorreo']) {
-                            if ($usuarios->setCorreo($_POST['txtNuevoCorreo'])) {
+            case 'actualizarCorreo':
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setCorreo($_POST['txtNuevoCorreo'])) {
+                    if ($_POST['txtNuevoCorreo'] == $_POST['txtConfirmarCorreo']) {
+                        if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
+                            if ($usuarios->changePassword($_POST['txtNuevoCorreo'])) {
                                 if ($usuarios->changeEmail()) {
-                                    $usuarios->emailNotValidated();
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Correo actualizado exitosamente, por favor asegurate de verificarlo.';
+                                    if ($usuarios->emailNotValidated()) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Correo actualizado correctamente. Por favor asegurate de verificarlo.';
+                                    } else {
+                                        $result['exception'] = Database::getException();
+                                    }
                                 } else {
                                     $result['exception'] = Database::getException();
                                 }
                             } else {
-                                $result['exception'] = 'Ingrese un correo electrónico valido.';                            
-                            }  
+                                $result['exception'] = 'Contraseña incorrecta.';
+                            }
                         } else {
-                            $result['exception'] = 'Los correos no coinciden.';
+                            $result['exception'] = 'Id incorrecto.';
                         }
                     } else {
-                        $result['exception'] = 'Contraseña incorrecta.';
+                        $result['exception'] = 'Los correos electrónicos no coinciden.';
                     }
                 } else {
-                    $result['exception'] = 'Id invalido.';
+                    $result['exception'] = 'Ingrese un correo electrónico valido.';
                 }
                 
                 break;
