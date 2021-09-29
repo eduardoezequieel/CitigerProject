@@ -195,6 +195,7 @@ if (isset($_GET['action'])) {
                             if ($usuarios->checkPassword($_POST['txtPassword'])) {
                                 if ($usuarios->changeEmail()) {
                                     if ($usuarios->emailNotValidated()) {
+                                        $_SESSION['correo_residente'] = $usuarios->getCorreo();
                                         $result['status'] = 1;
                                         $result['message'] = 'Correo actualizado correctamente. Por favor asegurate de verificarlo.';
                                     } else {
@@ -217,6 +218,45 @@ if (isset($_GET['action'])) {
                 }
                 
                 break;
+            //Caso para actualizar el nombre de usuario
+            case 'updateUser':
+                if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
+                    if ($usuarios->checkPassword($_POST['txtPassword2'])) {
+                        if ($usuarios->setUsername($_POST['txtNuevoUsuario'])) {
+                            if ($_POST['txtNuevoUsuario'] == $_POST['txtConfirmarUsuario']) {
+                                if ($verificacion = $usuarios->checkIfEmailIsValidated()) {
+                                    if ($verificacion['verificado'] == '1') {
+                                        if ($usuarios->updateUser()) {
+                                            $_SESSION['username'] = $usuarios->getUsername();
+                                            $result['status'] = 1;
+                                            $result['message'] = 'Usuario actualizado correctamente.';
+                                        } else {
+                                            $result['exception'] = Database::getException();
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Usted no ha verificado su correo, hacker :)';
+                                    }
+                                } else {
+                                    if (Database::getException()) {
+                                        $result['exception'] = Database::getException();
+                                    } else {
+                                        $result['exception'] = 'No sabemos si esta verificado o no.';
+                                    }
+                                }
+                            } else {
+                                $result['exception'] = 'Los usuarios no coinciden.';
+                            }
+                        } else {
+                            $result['exception'] = 'Ingrese un usuario valido.';
+                        }
+                    } else {
+                        $result['exception'] = 'Contraseña incorrecta.';
+                    }
+                } else {
+                    $result['exception'] = 'Id incorrecto.';
+                }
+                
+                break;
             //Caso para cerrar la sesión
             case 'logOut':
                 unset($_SESSION['idresidente']);
@@ -233,6 +273,7 @@ if (isset($_GET['action'])) {
                 if ($usuarios->setLightMode()) {
                     $result['status'] = 1;
                     $result['message'] = 'Modo claro activado correctamente.';
+                    $_SESSION['modo_residente'] = 'light';
                 } else {
                     $result['exception'] = 'Ocurrio un problema-';
                 }
@@ -242,6 +283,7 @@ if (isset($_GET['action'])) {
                 if ($usuarios->setDarkMode()) {
                     $result['status'] = 1;
                     $result['message'] = 'Modo oscuro activado correctamente.';
+                    $_SESSION['modo_residente'] = 'dark';
                 } else {
                     $result['exception'] = 'Ocurrio un problema-';
                 }

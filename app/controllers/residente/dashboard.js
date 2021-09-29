@@ -23,10 +23,10 @@ function checkIfEmailIsValidated() {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     if (response.dataset.verificado == '0') {
-                        console.log('No verificado')
+                        
                         document.getElementById('alerta-verificacion').classList.remove('d-none');
                     } else if (response.dataset.verificado == '1') {
-                        console.log('Si verificado')
+                        
                         document.getElementById('alerta-verificacion').remove();
                     }
                 } else {
@@ -61,7 +61,7 @@ function sendEmailCode(){
             request.json().then(function (response) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
-                    console.log(response.message);
+                    
                 } else {
                     sweetAlert(4, response.exception, null);
                 }
@@ -84,7 +84,6 @@ document.getElementById('verificarCodigo-form').addEventListener('submit', funct
     var cinco = document.getElementById('5a').value;
     var seis = document.getElementById('6a').value;
     document.getElementById('codigoAuth').value = uno + dos + tres + cuatro + cinco + seis;
-    console.log(document.getElementById('codigoAuth').value);
 
     event.preventDefault();
     fetch(API_USUARIOS + 'verifyCodeEmail', {

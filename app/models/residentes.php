@@ -304,6 +304,13 @@ class Residentes extends Validator
         return Database::getRows($sql, $params);
     }
 
+    //Funcion para actualizar usuario
+    public function updateUser()
+    {
+        $sql = 'UPDATE residente SET username = ? WHERE idresidente = ?';
+        $params = array($this->username, $this->idResidente);
+        return Database::executeRow($sql, $params);
+    }
 
     //Lee un registro de la tabla
     public function readOne()
