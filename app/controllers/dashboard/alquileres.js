@@ -27,27 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Se asigna la fecha como valor máximo en el campo del formulario.
     document.getElementById('txtFecha').setAttribute('min', date);
     fillSelect(ENDPOINT_ESTADO_ALQUILER, 'cbEstadoAlquiler', null);
-
-
-  
-
-    //Verificando si existen registros
-    fetch(API_ALQUILER + 'readAll').then(request => {
-        //verificando si la petición fue correcta
-        if (request.ok) {
-            request.json().then(response => {
-                //Se verifica si la respuesta fue no fue satisfactoria de lo contrario no muestra nada
-                if (response.status) {
-                    readRows(API_ALQUILER);
-                } else {
-                    sweetAlert(4, response.exception, null);
-                }
-            })
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    }).catch(error => console.log(error));
-
+    readRows(API_ALQUILER);
     readEspacios(API_ALQUILER);
 
 })
@@ -149,30 +129,30 @@ function fillTable(dataset) {
         retrieve: true,
         searching: false,
         language:
-        {
-            "decimal": "",
-            "emptyTable": "No hay información disponible en la tabla.",
-            "info": "Mostrando _START_ de _END_ de _TOTAL_ registros.",
-            "infoEmpty": "Mostrando 0 de 0 de 0 registros",
-            "infoFiltered": "(filtered from _MAX_ total entries)",
-            "infoPostFix": "",
-            "thousands": ",",
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "loadingRecords": "Loading...",
-            "processing": "Processing...",
-            "search": "Search:",
-            "zeroRecords": "No matching records found",
-            "paginate": {
-                "first": "AAA",
-                "last": "Ultimo",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            },
-            "aria": {
-                "sortAscending": ": activate to sort column ascending",
-                "sortDescending": ": activate to sort column descending"
+            {
+                "decimal":        "",
+                "emptyTable":     "No hay información disponible en la tabla.",
+                "info":           "Mostrando _START_ de _END_ de _TOTAL_ registros.",
+                "infoEmpty":      "Mostrando 0 de 0 de 0 registros",
+                "infoFiltered":   "(filtered from _MAX_ total entries)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "Mostrar _MENU_ registros",
+                "loadingRecords": "Loading...",
+                "processing":     "Processing...",
+                "search":         "Search:",
+                "zeroRecords":    "No matching records found",
+                "paginate": {
+                    "first":      "AAA",
+                    "last":       "Ultimo",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+                "aria": {
+                    "sortAscending":  ": activate to sort column ascending",
+                    "sortDescending": ": activate to sort column descending"
+                }
             }
-        }
     });
 }
 
@@ -184,6 +164,9 @@ function readDataOnModal(id) {
     document.getElementById('salir2').className="d-none";
     document.getElementById('btnAgregar').className="d-none";
     document.getElementById('salir').className="close closeModalButton lead";
+    document.getElementById('btnActualizar').className="btn btnAgregarFormulario mr-2";
+    document.getElementById('btnAutorizar').className="btn btnAgregarFormulario mr-2";
+    document.getElementById('btnDenegar').className="btn btnAgregarFormulario mr-2";
 
 
 
@@ -261,10 +244,12 @@ document.getElementById('alquiler-form').addEventListener('submit', function (ev
 })
 
 //Eliminar registros de la tabla empleado.
-function deleteRow(id) {
+function deleteRow(id,idespacio) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idAlquiler', id);
+    data.append('idEspacio', idespacio);
+
     // Se llama a la función que elimina un registro.
     confirmDelete(API_ALQUILER, data);
 }

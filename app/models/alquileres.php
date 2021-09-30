@@ -318,11 +318,11 @@ class Alquileres extends Validator
     public function updateRow()
     {
         $sql = 'UPDATE alquiler 
-                    SET idestadoalquiler = ?, idespacio = ?, precio = ?, idusuario = ?, idresidente = ?,
+                    SET idestadoalquiler = ?, precio = ?, idusuario = ?, 
                     fecha = ?, horainicio = ?, horafin = ?
                     WHERE idalquiler = ?';
         $params = array(
-            $this->idEstadoAlquiler, $this->idEspacio, $this->precio, $_SESSION['idusuario_dashboard'], $this->idResidente,
+            $this->idEstadoAlquiler,$this->precio, $_SESSION['idusuario_dashboard'],
             $this->fecha, $this->horaInicio, $this->horaFin, $this->idAlquiler
         );
         return Database::executeRow($sql, $params);
