@@ -286,3 +286,8 @@ document.getElementById('search-form').addEventListener('submit', function (even
     //Llamamos la funcion
     searchRows2(API_VISITA, 'search-form');
 })
+
+
+$(document).ready(function(){
+    $("#txtDuiVerificar").mask("00000000-0");
+});

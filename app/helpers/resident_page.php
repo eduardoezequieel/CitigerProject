@@ -220,6 +220,7 @@
                     <script src="../../resources/js/sweetalert.min.js"></script>
                     <script type="text/javascript" src="../../app/controllers/residente/logout.js"></script>
                     <script src="../../app/helpers/components.js"></script>
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
                 </body>
                 </html> 
             ');

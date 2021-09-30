@@ -164,8 +164,5 @@ function createSesionHistory(){
 // Apartado para poner las mascaras a los imput de DUI y telefono
 $(document).ready(function(){
     $("#txtDui").mask("00000000-0");
-    $("#txtPlaca").mask("P000 000");
-    $("#dob").mask("00/00/0000");
-    $("#credit_card").mask("0000-0000-0000-xxxx");
-
+    $("#txtPlaca").mask("A000 000");
 });

@@ -124,7 +124,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
 
                             <div class="form-group">
                                 <label class="tituloCajaTextoFormulario" for="txtDescripcion">Descripción:</label>
-                                <textarea class="form-control cajaTextoFormulario2" placeholder="Escriba su descripcion..." id="txtDescripcion" name="txtDescripcion" rows="4"></textarea>
+                                <textarea class="form-control cajaTextoFormulario2" placeholder="Escriba su descripcion..." id="txtDescripcion" name="txtDescripcion" rows="4" maxlength="200"></textarea>
 
                             </div>
 

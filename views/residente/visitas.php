@@ -212,7 +212,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         </div>
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 mt-2">
                             <label class="tituloCajaTextoFormulario" for="txtObservacion">Observación:</label>
-                            <textarea onchange="checkAlfanumerico('txtObservacion')" id="txtObservacion" name="txtObservacion" rows="4" class="form-control cajaTextoModal"></textarea>
+                            <textarea onchange="checkAlfanumerico('txtObservacion')" id="txtObservacion" name="txtObservacion" rows="4" class="form-control cajaTextoModal" maxlength="200"></textarea>
 
                         </div>
                     </div>
@@ -336,7 +336,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         <div class="col-12 d-flex justify-content-center">
                             <div class="form-group">
                                 <label class="tituloCajaTextoFormulario" for="txtDuiVerificar">DUI:</label>
-                                <input type="text" onchange="checkDui('txtDuiVerificar')" class="form-control cajaTextoFormulario" id="txtDuiVerificar" name="txtDuiVerificar" placeholder="12345678-9" Required>
+                                <input type="text" onchange="checkDui('txtDuiVerificar')" class="form-control cajaTextoFormulario" id="txtDuiVerificar" name="txtDuiVerificar" placeholder="12345678-9" Required maxlength="10">
                             </div>
                         </div>
                     </div>
