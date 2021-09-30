@@ -6,7 +6,107 @@ const API_USUARIOS = '../../app/api/caseta/usuarios.php?action=';
 document.addEventListener('DOMContentLoaded', function () {
     contadorVisitas();
     createSesionHistory();
-})
+    checkIfEmailIsValidated();
+});
+
+//Se verifica si el usuario ha validado su correo.
+function checkIfEmailIsValidated() {
+    fetch(API_USUARIOS + 'checkIfEmailIsValidated', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    if (response.dataset.verificado == '0') {
+                        
+                        document.getElementById('alerta-verificacion').classList.remove('d-none');
+                    } else if (response.dataset.verificado == '1') {
+                        
+                        document.getElementById('alerta-verificacion').remove();
+                    }
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Funcion para enviar un correo electronico con el codigo de verificacion
+function sendEmailCode(){
+    fetch(API_USUARIOS + 'sendEmailCode', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+//Función para completar el autotab 
+function autotab(current, to, prev) {
+    if (current.getAttribute &&
+        current.value.length == current.getAttribute("maxlength")) {
+        to.focus();
+    } else {
+        prev.focus();
+    }
+}
+
+//Función para verificar el codigo
+document.getElementById('verificarCodigo-form').addEventListener('submit', function (event) {
+    //Se evita que se recargue la pagina
+    var uno = document.getElementById('1a').value;
+    var dos = document.getElementById('2a').value;
+    var tres = document.getElementById('3a').value;
+    var cuatro = document.getElementById('4a').value;
+    var cinco = document.getElementById('5a').value;
+    var seis = document.getElementById('6a').value;
+    document.getElementById('codigoAuth').value = uno + dos + tres + cuatro + cinco + seis;
+
+    event.preventDefault();
+    fetch(API_USUARIOS + 'verifyCodeEmail', {
+        method: 'post',
+        body: new FormData(document.getElementById('verificarCodigo-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    // Mostramos mensaje de exito
+                    closeModal('verificarCorreo');
+                    sweetAlert(1, response.message, 'dashboard.php');
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
 
 function contadorVisitas(){
     fetch(API_VISITA + 'contadorVisitas', {

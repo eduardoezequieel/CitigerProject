@@ -445,6 +445,152 @@ function fillTable4(dataset) {
     document.getElementById('dispositivo').innerHTML = content;
 }
 
+//Al hacer click en el boton que abre el modal para abrir la contraseña
+document.getElementById('btnModalContraseña').addEventListener('click',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Verificamos si el usuario tiene validado su correo
+    fetch(API_USUARIOS + 'checkIfEmailIsValidated', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    if (response.dataset.verificado == '0') {
+                        sweetAlert(2, 'Usted no ha verificado su correo electrónico.', null);
+                    } else {
+                        openModal('administrarContrasena')
+                    }
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
+//Al hacer click en el boton que abre el modal para abrir la contraseña
+document.getElementById('btnModalAdministrarAuth').addEventListener('click',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Verificamos si el usuario tiene validado su correo
+    fetch(API_USUARIOS + 'checkIfEmailIsValidated', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    if (response.dataset.verificado == '0') {
+                        sweetAlert(2, 'Usted no ha verificado su correo electrónico.', null);
+                    } else {
+                        openModal('administrarAuth')
+                    }
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
+//Al accionar el formulario email-form
+document.getElementById('email-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+     //Verificamos si el usuario tiene validado su correo
+     fetch(API_USUARIOS + 'actualizarCorreo', {
+        method: 'post',
+        body: new FormData(document.getElementById('email-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    closeModal('administrarEmail');
+                    sweetAlert(1, response.message, 'dashboard.php');
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
+//Al accionar el formulario username-form
+document.getElementById('username-form').addEventListener('submit',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+     //Verificamos si el usuario tiene validado su correo
+     fetch(API_USUARIOS + 'updateUser', {
+        method: 'post',
+        body: new FormData(document.getElementById('username-form'))
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    closeModal('administrarUsuario');
+                    sweetAlert(1, response.message, 'ajustes_cuenta.php');
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
+//Al hacer click en el boton que abre el modal para editar el usuario
+document.getElementById('btnAdministrarUsuarioModal').addEventListener('click',function(event){
+    //Evitamos recargar la pagina
+    event.preventDefault();
+    //Verificamos si el usuario tiene validado su correo
+    fetch(API_USUARIOS + 'checkIfEmailIsValidated', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    if (response.dataset.verificado == '0') {
+                        sweetAlert(2, 'Usted no ha verificado su correo electrónico.', null);
+                    } else {
+                        openModal('administrarUsuario')
+                    }
+                } else {
+                    sweetAlert(4, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+});
+
 $(document).ready(function(){
     $("#txtDUI").mask("00000000-0");
     $("#txtTelefonoFijo").mask("0000-0000");

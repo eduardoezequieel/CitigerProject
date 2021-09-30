@@ -458,6 +458,38 @@ class Usuarios extends Validator
         return Database::getRow($sql, $params);
     }
 
+    //Funcion para saber si un residente posee su correo electronico verificado
+    public function checkIfEmailIsValidated()
+    {
+        $sql = 'SELECT verificado FROM usuario WHERE idusuario = ?';
+        $params = array($this->idUsuario);
+        return Database::getRow($sql, $params);
+    }
+
+    //Funcion para cambiar el correo
+    public function changeEmail()
+    {
+        $sql = 'UPDATE usuario SET correo = ? WHERE idusuario = ?';
+        $params = array($this->correo, $this->idUsuario);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Funcion para poner como no validado un correo
+    public function emailNotValidated()
+    {
+        $sql = 'UPDATE usuario SET verificado = \'0\' WHERE idusuario = ?';
+        $params = array($this->idUsuario);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Funcion para actualizar usuario
+    public function updateUser()
+    {
+        $sql = 'UPDATE usuario SET username = ? WHERE idusuario = ?';
+        $params = array($this->username, $this->idUsuario);
+        return Database::executeRow($sql, $params);
+    }
+
     //Método para verificar el estado del usuario
     public function checkEstado()
     {

@@ -547,7 +547,7 @@ document.getElementById('email-form').addEventListener('submit',function(event){
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     closeModal('administrarEmail');
-                    sweetAlert(1, response.message, 'ajustes_cuenta.php');
+                    sweetAlert(1, response.message, 'dashboard.php');
                 } else {
                     sweetAlert(4, response.exception, null);
                 }
