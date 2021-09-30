@@ -472,3 +472,10 @@ function openReport(id) {
     });
 
 }
+
+//Aplicacion de las mascaras
+$(document).ready(function(){
+    $("#txtDuiVerificar").mask("00000000-0");
+    $("#txtTelefonoFijo").mask("0000-0000");
+    $("#txtTelefonomovil").mask("0000-0000");
+});

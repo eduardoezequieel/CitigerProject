@@ -109,10 +109,10 @@ admin_Page::sidebarTemplate('Aportaciones | Citiger');
                         <input class="d-none" type="number" id="txtId" name="txtId" />
                         <div class="col-12">
                             <label class="tituloCajaTextoFormulario" for="txtNum">Número de Casa:</label>
-                            <input onchange="checkTelefono('txtNum')" type="text" class="form-control cajaTextoModal" id="txtNum" name="txtNum" placeholder="Escriba el número de casa..." required>
+                            <input onchange="checkTelefono('txtNum')" type="text" class="form-control cajaTextoModal" id="txtNum" name="txtNum" placeholder="Escriba el número de casa..." required maxlength="3">
 
                             <label class="tituloCajaTextoFormulario" for="txtUbicacion">Ubicación:</label>
-                            <textarea onchange="checkAlfanumerico('txtUbicacion')" class="form-control cajaTextoModal" id="txtUbicacion" name="txtUbicacion" rows="3" placeholder="Escriba los detallles de la ubicación de la casa..."></textarea>
+                            <textarea onchange="checkAlfanumerico('txtUbicacion')" class="form-control cajaTextoModal" id="txtUbicacion" name="txtUbicacion" rows="3" placeholder="Escriba los detallles de la ubicación de la casa..." maxlength="200"></textarea>
                         </div>
                     </div>
 

@@ -79,10 +79,10 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                 <div class="d-flex justify-content-center col-xl-6 mb-4 col-md-12 col-sm-12 col-xs-12 marginPrimeraColumna centrarColumnas">
                                     <div class="form-group" id="ResidentesColumna1">
                                         <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
-                                        <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre" placeholder="Escriba sus nombres..." Required>
+                                        <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre" placeholder="Escriba sus nombres..." Required maxlength="30">
 
                                         <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
-                                        <input type="text" onchange="checkInputLetras('txtApellido')" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido" placeholder="Escriba sus apellidos..." Required>
+                                        <input type="text" onchange="checkInputLetras('txtApellido')" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido" placeholder="Escriba sus apellidos..." Required maxlength="30">
 
                                         <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
                                         <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
@@ -101,20 +101,20 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                                 <div class="col-6 ">
                                                     <label class="tituloCajaTextoFormulario" for="txtTelefonofijo">Teléfono
                                                         Fijo:</label>
-                                                    <input onchange="checkTelefono('txtTelefonofijo')" type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000" Required>
+                                                    <input onchange="checkTelefono('txtTelefonofijo')" type="text" class="form-control cajaTextoFormularioTelefono" id="txtTelefonofijo" name="txtTelefonofijo" placeholder="0000-0000" Required maxlength="9">
 
                                                 </div>
                                                 <div class="col-6 ">
                                                     <label class="tituloCajaTextoFormulario" for="txtTelefonomovil">Teléfono
                                                         Movil:</label>
-                                                    <input type="text" onchange="checkTelefono('txtTelefonomovil')" class="form-control cajaTextoFormularioTelefono" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="0000-0000" Required>
+                                                    <input type="text" onchange="checkTelefono('txtTelefonomovil')" class="form-control cajaTextoFormularioTelefono" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="0000-0000" Required maxlength="9">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo
                                             Electrónico:</label>
-                                        <input type="text" onchange="checkCorreo('txtCorreo')" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo" placeholder="ejemplo@mail.com" Required>
+                                        <input type="text" onchange="checkCorreo('txtCorreo')" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo" placeholder="ejemplo@mail.com" Required maxlength="50">
                                     </div>
                                 </div>
 
@@ -139,10 +139,10 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                         <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento" value="2000-01-01">
 
                                         <label class="tituloCajaTextoFormulario" for="txtUser">Nombre de Usuario:</label>
-                                        <input type="text" onchange="checkAlfanumerico('txtUser')" class="form-control cajaTextoFormulario" id="txtUser" name="txtUser" placeholder="Escriba su nombre de usuario..." Required>
+                                        <input type="text" onchange="checkAlfanumerico('txtUser')" class="form-control cajaTextoFormulario" id="txtUser" name="txtUser" placeholder="Escriba su nombre de usuario..." Required maxlength="25">
 
                                         <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                        <input type="text" onchange="checkDui('txtDUI')" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9" Required>
+                                        <input type="text" onchange="checkDui('txtDUI')" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9" Required maxlength="10">
 
 
                                     </div>

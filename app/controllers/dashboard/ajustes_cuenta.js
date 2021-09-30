@@ -445,4 +445,9 @@ function fillTable4(dataset) {
     document.getElementById('dispositivo').innerHTML = content;
 }
 
+$(document).ready(function(){
+    $("#txtDUI").mask("00000000-0");
+    $("#txtTelefonoFijo").mask("0000-0000");
+    $("#txtTelefonomovil").mask("0000-0000");
+});
 

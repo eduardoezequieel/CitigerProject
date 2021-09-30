@@ -52,17 +52,17 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Nombres:</label>
-                            <input type="text" name="txtNombre" id="txtNombre" onchange="checkInputLetras('txtNombre')" class="form-control cajaTextoFormulario widthRegister" Required>
+                            <input type="text" name="txtNombre" id="txtNombre" onchange="checkInputLetras('txtNombre')" class="form-control cajaTextoFormulario widthRegister" Required maxlength="30">
                         </div>
                     
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Apellidos:</label>
-                            <input type="text" name="txtApellido" id="txtApellido" class="form-control cajaTextoFormulario widthRegister" onchange="checkInputLetras('txtApellido')" Required>
+                            <input type="text" name="txtApellido" id="txtApellido" class="form-control cajaTextoFormulario widthRegister" onchange="checkInputLetras('txtApellido')" Required maxlength="30">
                         </div>
                     
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Usuario:</label>
-                            <input type="text" name="txtUsuario" id="txtUsuario" class="form-control cajaTextoFormulario widthRegister" onchange="checkInput('txtUsuario')" Required>
+                            <input type="text" name="txtUsuario" id="txtUsuario" class="form-control cajaTextoFormulario widthRegister" onchange="checkInput('txtUsuario')" Required maxlength="25">
                         </div>
                     
                         <div class="form-group">
@@ -75,22 +75,22 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Correo:</label>
-                            <input type="email" name="txtCorreo" id="txtCorreo" class="form-control cajaTextoFormulario widthRegister" onchange="checkCorreo('txtCorreo')" Required>
+                            <input type="email" name="txtCorreo" id="txtCorreo" class="form-control cajaTextoFormulario widthRegister" onchange="checkCorreo('txtCorreo')" Required maxlength="50">
                         </div>
                     
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Confirmar Correo:</label>
-                            <input type="text" name="txtCorreoConfirmar" id="txtCorreoConfirmar" class="form-control cajaTextoFormulario widthRegister" onchange="checkCorreo('txtCorreoConfirmar')" Required>
+                            <input type="text" name="txtCorreoConfirmar" id="txtCorreoConfirmar" class="form-control cajaTextoFormulario widthRegister" onchange="checkCorreo('txtCorreoConfirmar')" Required maxlength="50">
                         </div>
                     
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Contraseña:</label>
-                            <input type="password" name="txtContrasenia" id="txtContrasenia" class="form-control cajaTextoFormulario widthRegister" onchange="checkInput('txtContrasenia')" Required>
+                            <input type="password" name="txtContrasenia" id="txtContrasenia" class="form-control cajaTextoFormulario widthRegister" onchange="checkInput('txtContrasenia')" Required maxlength="50">
                         </div>
 
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Confirmar Contraseña:</label>
-                            <input type="password" name="txtContraseniaConfirmar" id="txtContraseniaConfirmar" class="form-control cajaTextoFormulario widthRegister" onchange="checkInput('txtContraseniaConfirmar')" Required>
+                            <input type="password" name="txtContraseniaConfirmar" id="txtContraseniaConfirmar" class="form-control cajaTextoFormulario widthRegister" onchange="checkInput('txtContraseniaConfirmar')" Required maxlength="50">
                         </div>
                     </div>
                 </div>
@@ -98,11 +98,11 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Teléfono Fijo:</label>
-                            <input type="text" name="txtFijo" id="txtFijo" class="form-control cajaTextoFormulario widthRegister mb-0" onchange="checkTelefono('txtFijo')" Required>
+                            <input type="text" name="txtFijo" id="txtFijo" class="form-control cajaTextoFormulario widthRegister mb-0" onchange="checkTelefono('txtFijo')" Required maxlength="9">
                         </div>
                         <div class="form-group">
                             <label for="" class="tituloCajaTextoFormulario">Teléfono Celular:</label>
-                            <input type="text" name="txtCelular" id="txtCelular" class="form-control cajaTextoFormulario widthRegister mb-0" onchange="checkTelefono('txtCelular')" Required>
+                            <input type="text" name="txtCelular" id="txtCelular" class="form-control cajaTextoFormulario widthRegister mb-0" onchange="checkTelefono('txtCelular')" Required maxlength="9">
                         </div>
 
                         <label for="" class="tituloCajaTextoFormulario">Género:</label>
@@ -118,7 +118,7 @@
                         </div>
                         <div class="form-group mt-3">
                             <label for="" class="tituloCajaTextoFormulario">DUI:</label>
-                            <input type="text" name="txtDui" id="txtDui" class="form-control cajaTextoFormulario widthRegister mb-0" onchange="checkDui('txtDui')" Required>
+                            <input type="text" name="txtDui" id="txtDui" class="form-control cajaTextoFormulario widthRegister mb-0" onchange="checkDui('txtDui')" Required maxlength="10">
                         </div>
                         
                     </div>
@@ -140,7 +140,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="tituloCajaTextoFormulario">Dirección:</label>
-                        <textarea class="form-control cajaTextoFormulario widthRegister heightDireccion" name="txtDireccion" id="txtDireccion" onChange="checkInput('txtDireccion')" Required></textarea>
+                        <textarea class="form-control cajaTextoFormulario widthRegister heightDireccion" name="txtDireccion" id="txtDireccion" onChange="checkInput('txtDireccion')" Required maxlength="200"></textarea>
                     </div>
                 </div>
             </div>

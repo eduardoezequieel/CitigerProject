@@ -105,23 +105,23 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                     <div class="#" id="EmpleadosColumna1">
                                         <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
                                         <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre"
-                                            placeholder="Escriba sus nombres...">
+                                            placeholder="Escriba sus nombres..." maxlength="30">
 
                                         <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
                                         <input type="text" onchange="checkInputLetras('txtApellido')" class="form-control cajaTextoFormulario" id="txtApellido" name="txtApellido"
-                                            placeholder="Escriba sus apellidos...">
+                                            placeholder="Escriba sus apellidos..." maxlength="30">
 
                                         <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                                        <input type="text" onchange="checkDui('txtDUI')" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="12345678-9">
+                                        <input type="text" onchange="checkDui('txtDUI')" class="form-control cajaTextoFormulario" id="txtDUI" name="txtDUI" placeholder="00000000-0" maxlength="10">
 
                                         <label class="tituloCajaTextoFormulario" for="txtTelefono">Teléfono:</label>
                                         <input type="text" onchange="checkTelefono('txtTelefono')" class="form-control cajaTextoFormulario" id="txtTelefono" name="txtTelefono"
-                                            placeholder="0000-0000">
+                                            placeholder="0000-0000" maxlength="10">
                                             
 
                                         <label class="tituloCajaTextoFormulario" for="txtCorreo">Correo Electrónico:</label>
                                         <input type="text" onchange="checkCorreo('txtCorreo')" class="form-control cajaTextoFormulario" id="txtCorreo" name="txtCorreo"
-                                            placeholder="ejemplo@mail.com">
+                                            placeholder="ejemplo@mail.com" maxlength="50">
 
                                         <!-- RadioButtonGroup Género -->
                                         <h1 class="tituloCajaTextoFormulario mb-2">Género</h1>
@@ -173,7 +173,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                             value="2000-01-01">
 
                                         <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
-                                        <textarea onchange="checkInput('txtDireccion')" class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="5"></textarea>
+                                        <textarea onchange="checkInput('txtDireccion')" class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="5" maxlength="200"></textarea>
                                     </div>
                                 </div>
                             </div>

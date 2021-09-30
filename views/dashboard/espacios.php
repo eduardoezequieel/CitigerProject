@@ -88,10 +88,10 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                                 <div class="form-group">
                                     <input type="number" name="idEspacio" id="idEspacio" class="d-none">
                                     <label class="tituloCajaTextoFormulario" for="txtNombre">Nombre:</label>
-                                    <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre" placeholder="Escriba nombre del espacio..." onchange="checkInput('txtNombre')" Required>
+                                    <input type="text" class="form-control cajaTextoFormulario" id="txtNombre" name="txtNombre" placeholder="Escriba nombre del espacio..." onchange="checkInput('txtNombre')" Required maxlength="30">
 
                                     <label class="tituloCajaTextoFormulario" for="txtDescripcion">Descripción:</label>
-                                    <textarea class="form-control cajaTextoFormulario" placeholder="Escriba la descripción del espacio..." id="txtDescripcion" name="txtDescripcion" rows="3" onchange="checkInput('txtDescripcion')" Required></textarea>
+                                    <textarea class="form-control cajaTextoFormulario" placeholder="Escriba la descripción del espacio..." id="txtDescripcion" name="txtDescripcion" rows="3" onchange="checkInput('txtDescripcion')" Required maxlength="200"></textarea>
 
                                     <label class="tituloCajaTextoFormulario" for="txtCapacidad">Capacidad:</label>
                                     <input type="number" class="form-control cajaTextoFormulario" id="txtCapacidad" name="txtCapacidad" placeholder="Escriba la capacidad..." min="1" step="any" onchange="checkInput('txtCapacidad')" Required>

@@ -104,3 +104,9 @@ function previewPicture(idInputExaminar, idDivFoto){
         }
     }
 }
+
+$(document).ready(function(){
+    $("#txtDui").mask("00000000-0");
+    $("#txtFijo").mask("0000-0000");
+    $("#txtCelular").mask("0000-0000");
+});

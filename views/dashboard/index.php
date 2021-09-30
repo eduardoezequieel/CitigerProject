@@ -68,14 +68,14 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                             <h1 class="tituloCajasLogin">Correo Electrónico:</h1>
                             <input type="email" autocomplete="off" class="form-control cajaTextoLogin" id="txtCorreo"
                                 name="txtCorreo" aria-describedby="emailHelp" onChange="checkCorreo('txtCorreo')"
-                                placeholder="Ingrese su correo electrónico..." Required>
+                                placeholder="Ingrese su correo electrónico..." Required maxlength="50">
                         </div>
                         <!-- Input Contraseña -->
                         <div class="form-group mb-1 animate__animated animate__bounceIn animate__slow">
                             <h1 class="tituloCajasLogin">Contraseña:</h1>
                             <input type="password" class="form-control cajaTextoLogin  mb-1" id="txtContrasenia"
                                 name="txtContrasenia" onChange="checkInput('txtContrasenia')"
-                                placeholder="Ingrese su contraseña..." Required>
+                                placeholder="Ingrese su contraseña..." Required maxlength="60">
 
                             <input id="mostrarContraseña" type="checkbox" class="checkboxCitiger"
                                 onChange="showHidePassword('mostrarContraseña', 'txtContrasenia')">

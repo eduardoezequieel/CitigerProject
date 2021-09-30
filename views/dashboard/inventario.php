@@ -117,7 +117,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                     </div>
 
                                     <label class="tituloCajaTextoFormulario" for="txtNombres">Nombres del material:</label>
-                                    <input type="text" class="form-control cajaTextoFormulario" id="txtNombres" name="txtNombres" placeholder="Escriba los nombres del material">
+                                    <input type="text" class="form-control cajaTextoFormulario" id="txtNombres" name="txtNombres" placeholder="Escriba los nombres del material" maxlength="40">
 
                                     <label class="tituloCajaTextoFormulario" for="cbMarca">Marca:</label>
                                     <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
@@ -173,7 +173,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                     </div>
 
                                     <label class="tituloCajaTextoFormulario" for="txtTamanio">Tamaño:</label>
-                                    <input type="text" class="form-control cajaTextoFormulario" id="txtTamanio" name="txtTamanio" placeholder="Escriba el tamaño">
+                                    <input type="text" class="form-control cajaTextoFormulario" id="txtTamanio" name="txtTamanio" placeholder="Escriba el tamaño" maxlength="10">
 
                                     <label class="tituloCajaTextoFormulario mt-1" for="txtCosto">Costo:</label>
                                     <input type="number" max="1000" min="1" class="form-control cajaTextoFormulario" id="txtCosto" name="txtCosto" placeholder="Ingrese el costo del material">
@@ -182,7 +182,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                     <input type="number" max="1000" min="1" class="form-control cajaTextoFormulario" id="txtCantidad" name="txtCantidad" placeholder="Ingrese el la cantidad del material">
 
                                     <label class="tituloCajaTextoFormulario" for="txtDesc">Descripción:</label>
-                                    <textarea class="form-control cajaTextoFormulario" placeholder="" id="txtDesc" name="txtDesc" rows="5"></textarea>
+                                    <textarea class="form-control cajaTextoFormulario" placeholder="" id="txtDesc" name="txtDesc" rows="5" maxlength="200"></textarea>
                                 </div>
                             </div>
                         </div>

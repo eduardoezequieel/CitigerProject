@@ -491,3 +491,4 @@ function openReport(id) {
     });
 
 }
+

@@ -157,7 +157,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                             </div>
 
                             <label class="tituloCajaTextoFormulario mt-2" for="txtPlaca">Placa:</label>
-                            <input type="text" class="form-control cajaTextoFormulario2" id="txtPlaca" name="txtPlaca" placeholder="P123 456">
+                            <input type="text" class="form-control cajaTextoFormulario2" id="txtPlaca" name="txtPlaca" placeholder="P123 456" maxlength="8">
                         </div>
                     </div>
                     <div class="row justify-content-center mt-3">

@@ -549,3 +549,9 @@ function openReport(id) {
     });
 
 }
+
+$(document).ready(function(){
+    $("#txtDUI").mask("00000000-0");
+    $("#txtTelefonofijo").mask("0000-0000");
+    $("#txtTelefonomovil").mask("0000-0000");
+});

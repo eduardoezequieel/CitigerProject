@@ -66,14 +66,14 @@
                             <h1 class="tituloCajasLogin">Correo Electrónico:</h1>
                             <input type="email" class="form-control cajaTextoLogin" id="txtCorreo" name="txtCorreo"
                                 aria-describedby="emailHelp" onChange="checkCorreo('txtCorreo')"
-                                placeholder="Ingrese su correo electrónico..." Required>
+                                placeholder="Ingrese su correo electrónico..." Required maxlength="50">
                         </div>
                         <!-- Input Contraseña -->
                         <div class="form-group mb-1 animate__animated animate__bounceIn animate__slow">
                             <h1 class="tituloCajasLogin">Contraseña:</h1>
                             <input type="password" class="form-control cajaTextoLogin  mb-1" id="txtContrasenia"
                                 name="txtContrasenia" onChange="checkInput('txtContrasenia')"
-                                placeholder="Ingrese su contraseña..." Required>
+                                placeholder="Ingrese su contraseña..." Required maxlength="60">
 
                             <input id="mostrarContraseña" type="checkbox" class="checkboxCitiger"
                                 onChange="showHidePassword('mostrarContraseña', 'txtContrasenia')">
@@ -150,7 +150,7 @@
                                         Contraseña:</label>
                                     <input autocomplete="off" onChange="checkContrasena('txtNuevaContrasena1')"
                                         type="password" class="form-control cajaTextoModal2" id="txtNuevaContrasena1"
-                                        name="txtNuevaContrasena1" placeholder="">
+                                        name="txtNuevaContrasena1" placeholder="" maxlength="60">
                                 </div>
                             </div>
                             <div
@@ -160,7 +160,7 @@
                                         Contraseña:</label>
                                     <input autocomplete="off" onChange="checkContrasena('txtConfirmarContrasena1')"
                                         type="password" class="form-control cajaTextoModal2"
-                                        id="txtConfirmarContrasena1" name="txtConfirmarContrasena1" placeholder="">
+                                        id="txtConfirmarContrasena1" name="txtConfirmarContrasena1" placeholder="" maxlength="60">
                                 </div>
                             </div>
 
@@ -172,7 +172,7 @@
                                         Actual:</label>
                                     <input autocomplete="off" onChange="checkContrasena('txtContrasenaActual1')"
                                         type="password" class="form-control cajaTextoModal2" id="txtContrasenaActual1"
-                                        name="txtContrasenaActual1" placeholder="">
+                                        name="txtContrasenaActual1" placeholder="" maxlength="60">
                                 </div>
                             </div>
                         </div>

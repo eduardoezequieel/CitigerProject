@@ -299,7 +299,7 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                         <div class="col-12 d-flex justify-content-center">
                             <div class="form-group">
                                 <label class="tituloCajaTextoFormulario" for="txtDuiVerificar">DUI:</label>
-                                <input type="text" onchange="checkDui('txtDuiVerificar')" class="form-control cajaTextoFormulario" id="txtDuiVerificar" name="txtDuiVerificar" placeholder="12345678-9" Required>
+                                <input type="text" onchange="checkDui('txtDuiVerificar')" class="form-control cajaTextoFormulario" id="txtDuiVerificar" name="txtDuiVerificar" placeholder="12345678-9" Required maxlength="10">
                             </div>
                         </div>
                     </div>
@@ -372,5 +372,5 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
 <!-- Fin del Modal -->
 <?php
 //Se imprimen los JS necesarios
-Admin_Page::footerTemplate('alquileresss.js');
+Admin_Page::footerTemplate('alquileres.js');
 ?>

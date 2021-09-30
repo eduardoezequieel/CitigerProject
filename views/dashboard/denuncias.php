@@ -150,7 +150,7 @@ admin_Page::sidebarTemplate('Denuncias | Citiger');
                     <div class="row justify-content-center">
                         <div class="col-12 d-flex flex-column justify-content-center align-items-center">
                             <h1 class="campoDato text-center mb-2">¿Por qué ha sido rechazada está denuncia?</h1>
-                            <textarea name="txtRespuesta" id="txtRespuesta" rows="8" class="form-control cajaTextoFormulario"></textarea>
+                            <textarea name="txtRespuesta" id="txtRespuesta" rows="8" class="form-control cajaTextoFormulario" maxlength="200"></textarea>
                         </div>
                     </div>
                     <!-- Botones de Acción del Formulario -->

@@ -322,3 +322,8 @@ function previewPicture(idInputExaminar, idDivFoto){
         }
     }
 }
+
+$(document).ready(function(){
+    $("#txtDUI").mask("00000000-0");
+    $("#txtTelefono").mask("0000-0000");;
+});

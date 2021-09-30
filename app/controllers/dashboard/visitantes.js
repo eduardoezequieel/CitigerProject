@@ -201,3 +201,8 @@ document.getElementById('search-form').addEventListener('submit',function(event)
     //Llamamos la funcion
     searchRows(API_VISITANTE, 'search-form');
 })
+
+
+$(document).ready(function(){
+    $("#txtDUI").mask("00000000-0");
+});

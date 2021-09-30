@@ -213,10 +213,10 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                     <div class="row">
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
                             <label class="tituloCajaTextoFormulario mt-2" for="txtNombres">Nombres:</label>
-                            <input onchange="checkInputLetras('txtNombres')" type="text" class="form-control cajaTextoModal" id="txtNombres" name="txtNombres" placeholder="">
+                            <input onchange="checkInputLetras('txtNombres')" type="text" class="form-control cajaTextoModal" id="txtNombres" name="txtNombres" placeholder="" maxlength="30">
 
                             <label class="tituloCajaTextoFormulario " for="txtApellidos">Apellidos:</label>
-                            <input onchange="checkInputLetras('txtApellidos')" type="text" class="form-control cajaTextoModal" id="txtApellidos" name="txtApellidos" placeholder="">
+                            <input onchange="checkInputLetras('txtApellidos')" type="text" class="form-control cajaTextoModal" id="txtApellidos" name="txtApellidos" placeholder="" maxlength="30">
 
                             <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
@@ -240,10 +240,10 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                                 <input type="date" class="form-control cajaTextoModal" id="txtFechaNacimiento" name="txtFechaNacimiento" placeholder="">
 
                                 <label class="tituloCajaTextoFormulario " for="txtTelefonoFijo">Teléfono Fijo:</label>
-                                <input onchange="checkTelefono('txtTelefonoFijo')" type="text" class="form-control cajaTextoModal" id="txtTelefonoFijo" name="txtTelefonoFijo" placeholder="">
+                                <input onchange="checkTelefono('txtTelefonoFijo')" type="text" class="form-control cajaTextoModal" id="txtTelefonoFijo" name="txtTelefonoFijo" placeholder="" maxlength="9">
 
                                 <label class="tituloCajaTextoFormulario" for="txtTelefonomovil">Teléfono Movil:</label>
-                                <input onchange="checkTelefono('txtTelefonomovil')" type="text" class="form-control cajaTextoModal" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="">
+                                <input onchange="checkTelefono('txtTelefonomovil')" type="text" class="form-control cajaTextoModal" id="txtTelefonomovil" name="txtTelefonomovil" placeholder="" maxlength="9">
 
                             </div>
                         </div>
@@ -251,7 +251,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                     <div class="row justify-content-center">
                         <div class="col col-xl-6 col-md-6 col-sm-12 col-xs-12 align-items-center">
                             <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
-                            <input input onchange="checkDUI('txtDUI')" type="text" class="form-control cajaTextoModal" id="txtDUI" name="txtDUI" placeholder="">
+                            <input input onchange="checkDUI('txtDUI')" type="text" class="form-control cajaTextoModal" id="txtDUI" name="txtDUI" placeholder="" maxlength="10">
                         </div>
                     </div>
 
@@ -308,13 +308,13 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
                             <div class="form-group">
                                 <label class="tituloCajaTextoFormulario" for="txtNuevaContrasena">Nueva Contraseña:</label>
-                                <input onChange="checkContrasena('txtNuevaContrasena')" type="password" class="form-control cajaTextoModal2" id="txtNuevaContrasena" name="txtNuevaContrasena" placeholder="">
+                                <input onChange="checkContrasena('txtNuevaContrasena')" type="password" class="form-control cajaTextoModal2" id="txtNuevaContrasena" name="txtNuevaContrasena" placeholder="" maxlength="60">
                             </div>
                         </div>
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex flex-column justify-content-center align-items-center">
                             <div class="form-group">
                                 <label class="tituloCajaTextoFormulario" for="txtConfirmarContrasena">Confirmar Contraseña:</label>
-                                <input onChange="checkContrasena('txtConfirmarContrasena')" type="password" class="form-control cajaTextoModal2" id="txtConfirmarContrasena" name="txtConfirmarContrasena" placeholder="">
+                                <input onChange="checkContrasena('txtConfirmarContrasena')" type="password" class="form-control cajaTextoModal2" id="txtConfirmarContrasena" name="txtConfirmarContrasena" placeholder="" maxlength="60">
                             </div>
                         </div>
                         
@@ -323,7 +323,7 @@ admin_Page::sidebarTemplate('Ajustes | Citiger');
                         <div class="col-12 d-flex flex-column justify-content-center align-items-center">
                             <div class="form-group w-xl-50 w-md-50">
                                 <label class="tituloCajaTextoFormulario" for="txtContrasenaActual">Contraseña Actual:</label>
-                                <input onChange="checkContrasena('txtContrasenaActual')" type="password" class="form-control cajaTextoModal2" id="txtContrasenaActual" name="txtContrasenaActual" placeholder="">
+                                <input onChange="checkContrasena('txtContrasenaActual')" type="password" class="form-control cajaTextoModal2" id="txtContrasenaActual" name="txtContrasenaActual" placeholder="" maxlength="60">
                             </div>
                         </div>
                     </div>

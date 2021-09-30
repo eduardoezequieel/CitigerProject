@@ -168,7 +168,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                                     <label class="tituloCajaTextoFormulario" for="txtPlacaVerificar">Placa:</label>
                                     <input type="text"
                                         class="form-control cajaTextoFormulario" id="txtPlaca"
-                                        name="txtPlaca" placeholder="P000 000" onchange="checkInput('txtPlaca')" Required>
+                                        name="txtPlaca" placeholder="P000 000" onchange="checkInput('txtPlaca')" Required maxlength="8">
                                 </div>
                             </div>
                         </div>

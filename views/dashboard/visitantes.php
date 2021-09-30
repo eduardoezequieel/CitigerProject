@@ -86,22 +86,22 @@ admin_Page::sidebarTemplate('Visitantes | Citiger');
                                     <div class="form-group">
                                         <label class="tituloCajaTextoFormulario" for="txtNombre">Nombres:</label>
                                         <input onchange="checkInputLetras('txtNombre')" type="text" class="form-control cajaTextoFormulario mb-3" id="txtNombre"
-                                            name="txtNombre" placeholder="">
+                                            name="txtNombre" placeholder="" maxlength="30">
 
                                         <label class="tituloCajaTextoFormulario" for="txtApellido">Apellidos:</label>
                                         <input onchange="checkInputLetras('txtApellido')" type="text" class="form-control cajaTextoFormulario" id="txtApellido"
-                                            name="txtApellido" placeholder="">
+                                            name="txtApellido" placeholder="" maxlength="30">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 d-flex justify-content-xl-start justify-content-md-center">
                                     <div class="form-group">
                                         <label class="tituloCajaTextoFormulario" for="txtDUI">DUI:</label>
                                         <input onchange="checkDui('txtDUI')" type="text" class="form-control cajaTextoFormulario mb-3" id="txtDUI"
-                                            name="txtDUI" placeholder="12345678-9">
+                                            name="txtDUI" placeholder="12345678-9" maxlength="10">
 
                                         <label class="tituloCajaTextoFormulario" for="txtPlaca">Placa:</label>
                                         <input type="text" class="form-control cajaTextoFormulario" id="txtPlaca"
-                                            name="txtPlaca" placeholder="P123 456">
+                                            name="txtPlaca" placeholder="P123 456" maxlength="8">
                                     </div>
                                 </div>
                             </div>
