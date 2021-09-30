@@ -26,7 +26,7 @@ class Dashboard extends Validator
     {
         $sql = 'SELECT idbitacora, usuario.foto, CONCAT(usuario.nombre,\' \', usuario.apellido) as usuario, hora, fecha, accion FROM bitacora
                     INNER JOIN usuario ON bitacora.idusuario = usuario.idusuario
-                    ORDER BY hora, fecha ASC';
+                    ORDER BY fecha desc';
         $params = null;
         return Database::getRows($sql, $params);
     }
