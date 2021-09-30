@@ -28,6 +28,37 @@
                         }
                     }
                     break;
+                    case 'readEspacios':
+                        if ($result['dataset'] = $alquiler->readEspacios()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se encontró al menos un registro';
+                        } else {
+                            if (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'No se ha encontrado ningún alquiler registrado.';
+                            }
+                        }
+                        break;
+
+                        case 'checkResidente':
+                            $_POST = $alquiler->validateForm($_POST);
+                            if ($alquiler->setDui($_POST['txtDuiVerificar'])) {
+                                if ($result['dataset'] = $alquiler->checkResidente()) {
+                                    $result['status'] = 1;
+                                    $result['message'] = 'Se ha encontrado al residente.';
+                                } else {
+                                    if (Database::getException()) {
+                                        $result['exception'] = Database::getException();
+                                    } else {
+                                        $result['exception'] = 'No existe ningún residente con este DUI.';
+                                    }
+                                }
+                            } else {
+                                $result['exception'] = 'Dui incorrecto.';
+                            }
+        
+                            break;
                 //Caso para llenar combobox de estado del alquiler
                 case 'readRentalStatus':
                     if ($result['dataset'] = $alquiler->readRentalStatus()) {
@@ -90,13 +121,27 @@
                         $result['exception'] = 'Hubo problemas al seleccionar el registro.';
                     }
                     break;
+                    case 'readOneEspacio':
+                        $_POST = $alquiler->validateForm($_POST);
+                        if ($alquiler->setIdEspacio($_POST['idEspacio'])) {
+                            if ($result['dataset'] = $alquiler->readOneEspacio()) {
+                                $result['status'] = 1;
+                            } else {
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No se ha encontrado ningún espacio registrado.';
+                                }
+                            }
+                        } else {
+                            $result['exception'] = 'Hubo problemas al seleccionar el espacio.';
+                        }
+                        break;
                 //Caso para agregar un registro
                 case 'createRow':
                     $_POST = $alquiler->validateForm($_POST);
-                    if (isset($_POST['cbEspacio'])) {
-                        if ($alquiler->setIdEspacio($_POST['cbEspacio'])) {
-                            if (isset($_POST['cbResidente'])) {
-                                if ($alquiler->setIdResidente($_POST['cbResidente'])) {
+                        if ($alquiler->setIdEspacio($_POST['idEspacio'])) {
+                                if ($alquiler->setIdResidente($_POST['idResidente'])) {
                                     if ($alquiler->setFecha($_POST['txtFecha'])) {
                                         if ($_POST['txtHoraInicio'] != $_POST['txtHoraFin'] && 
                                             $_POST['txtHoraInicio'] < $_POST['txtHoraFin']) {
@@ -133,15 +178,10 @@
                                 } else {
                                     $result['exception'] = 'El residente seleccionado no es válido.';
                                 }
-                            } else {
-                                $result['exception'] = 'Seleccione un residente.';
-                            }
                         } else {    
                             $result['exception'] = 'El espacio seleccionado no es válido.';
                         }
-                    } else {
-                        $result['exception'] =  'Seleccione un espacio.';
-                    }
+                  
                     break;
                 //Caso para actualizar un registro
                 case 'updateRow':
