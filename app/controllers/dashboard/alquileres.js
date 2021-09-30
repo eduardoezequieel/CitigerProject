@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let date = `${year}-${month}-${day}`;
     // Se asigna la fecha como valor máximo en el campo del formulario.
     document.getElementById('txtFecha').setAttribute('min', date);
+    fillSelect(ENDPOINT_ESTADO_ALQUILER, 'cbEstadoAlquiler', null);
+
 
   
 
@@ -78,9 +80,9 @@ function fillTable(dataset) {
             <th scope="row">
             <div class="row paddingBotones">
                 <div class="col-12">
-                    <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#administrarAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+                    <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#agregarAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
 
-                    <a href="#" onclick="deleteRow(${row.idalquiler})" class="btn btnTabla2 mx-2"><i
+                    <a href="#" onclick="deleteRow(${row.idalquiler},${row.idespacio})" class="btn btnTabla2 mx-2"><i
                     class="fas fa-trash"></i></a>
 
                     <a href="#" onclick="openReport(${row.idalquiler})" type="button" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Comprobante de alquiler" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
@@ -94,9 +96,9 @@ function fillTable(dataset) {
             <th scope="row">
             <div class="row paddingBotones">
                 <div class="col-12">
-                    <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#administrarAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+                    <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#agregarAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
 
-                    <a href="#" onclick="deleteRow(${row.idalquiler})" class="btn btnTabla2 mx-2"><i
+                    <a href="#" onclick="deleteRow(${row.idalquiler},${row.idespacio})" class="btn btnTabla2 mx-2"><i
                     class="fas fa-trash"></i></a>
 
 
@@ -109,9 +111,9 @@ function fillTable(dataset) {
             <th scope="row">
             <div class="row paddingBotones">
                 <div class="col-12">
-                    <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#administrarAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
+                    <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#agregarAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-edit"></i></a>
 
-                    <a href="#" onclick="deleteRow(${row.idalquiler})" class="btn btnTabla2 mx-2"><i
+                    <a href="#" onclick="deleteRow(${row.idalquiler},${row.idespacio})" class="btn btnTabla2 mx-2"><i
                     class="fas fa-trash"></i></a>
 
 
@@ -127,7 +129,7 @@ function fillTable(dataset) {
                 <div class="col-12">
                     <a href="#" onclick="readDataOnModal(${row.idalquiler}) " data-target="#verAlquiler" data-toggle="modal" class="btn btnTabla"><i class="fas fa-eye"></i></a>
 
-                    <a href="#" onclick="deleteRow(${row.idalquiler})" class="btn btnTabla2 mx-2"><i
+                    <a href="#" onclick="deleteRow(${row.idalquiler},${row.idespacio})" class="btn btnTabla2 mx-2"><i
                     class="fas fa-trash"></i></a>
 
                     <a href="#" onclick="openReport(${row.idalquiler})" type="button" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Comprobante de alquiler" class="btn btnTabla"><i class="fas fa-file-alt"></i></a>
@@ -179,6 +181,13 @@ function readDataOnModal(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idAlquiler', id);
+    document.getElementById('salir2').className="d-none";
+    document.getElementById('btnAgregar').className="d-none";
+    document.getElementById('salir').className="close closeModalButton lead";
+
+
+
+
     //Se ocultan los botones del formulario.
     
 
@@ -199,7 +208,23 @@ function readDataOnModal(id) {
                     document.getElementById('txtHoraInicio').value = response.dataset.horainicio;
                     document.getElementById('txtHoraFin').value = response.dataset.horafin;
                     document.getElementById('txtPrecio').value = response.dataset.precio;
+
+                    document.getElementById('lblResidente2').textContent = (response.dataset.residente);
+                    document.getElementById('lblEspacio2').textContent = (response.dataset.nombre);
                  
+                    if (response.dataset.idestadoalquiler == 4) {
+                        document.getElementById('btnDenegar').className="d-none";
+                        document.getElementById('btnAutorizar').className=" btn btnAgregarFormulario mr-2";
+
+
+                    }else if(response.dataset.idestadoalquiler == 2){
+
+                        document.getElementById('btnAutorizar').className="d-none";
+                        document.getElementById('btnDenegar').className=" btn btnAgregarFormulario mr-2";
+
+
+
+                    }
                    
 
                     document.getElementById('lblFecha').textContent = (response.dataset.fecha);
@@ -249,7 +274,7 @@ document.getElementById('btnDenegar').addEventListener('click', function (event)
     //Evento para evitar que recargué la pagina
     event.preventDefault();
     //Se suspende el registro seleccionado
-    suspendRow(API_ALQUILER, 'alquiler-form', 'administrarAlquiler');
+    suspendRow(API_ALQUILER, 'alquiler-form', 'agregarAlquiler');
 })
 
 //Activando el registro de la tabla
@@ -257,46 +282,9 @@ document.getElementById('btnAutorizar').addEventListener('click', function (even
     //Evento para evitar que recargué la pagina
     event.preventDefault();
     //Se suspende el registro seleccionado
-    activateRow(API_ALQUILER, 'alquiler-form', 'administrarAlquiler');
+    activateRow(API_ALQUILER, 'alquiler-form', 'agregarAlquiler');
 })
 
-//Finalizando el registro
-document.getElementById('btnFinalizar').addEventListener('click', function (event) {
-    //Evento para evitar que recargué la pagina
-    event.preventDefault();
-    swal({
-        title: 'Advertencia',
-        text: '¿Desea finalizar el registro?',
-        icon: 'warning',
-        buttons: ['No', 'Sí'],
-        closeOnClickOutside: false,
-        closeOnEsc: false
-    }).then(value => {
-        // Se verifica si fue cliqueado el botón Sí para hacer la petición de borrado, de lo contrario no se hace nada.
-        if (value) {
-            fetch(API_ALQUILER + 'finishRow', {
-                method: 'post',
-                body: new FormData(document.getElementById('alquiler-form'))
-            }).then(request => {
-                //Se la verifica si la petición fue correcta de lo contrario muestra un mensaje de error en consola
-                if (request.ok) {
-                    request.json().then(response => {
-                        //Se verifica si la respuesta fue satisfactoria, de lo contrario se muestra la excepción
-                        if (response.status) {
-                            readRows(API_ALQUILER);
-                            sweetAlert(1, response.message, closeModal('administrarAlquiler'));
-                            clearForm('alquiler-form');
-                        } else {
-                            sweetAlert(2, response.exception, null);
-                        }
-                    })
-                } else {
-                    console.log(response.status + ' ' + response.exception);
-                }
-            }).catch(error => console.log(error));
-        }
-    });
-})
 
 //Buscando registros
 document.getElementById('search-form').addEventListener('submit', function (event) {
@@ -568,9 +556,11 @@ function readOneEspacio(id) {
 
     document.getElementById('btnAgregar').className="btn btnAgregarFormulario mr-2";
     document.getElementById('btnActualizar').className="d-none";
-    document.getElementById('btnFinalizar').className="d-none";
     document.getElementById('btnAutorizar').className="d-none";
     document.getElementById('btnDenegar').className="d-none";
+    document.getElementById('salir').className="d-none";
+    document.getElementById('salir2').className="close closeModalButton lead";
+
 
     const data = new FormData();
     data.append('idEspacio', id);

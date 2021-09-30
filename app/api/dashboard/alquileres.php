@@ -36,7 +36,7 @@
                             if (Database::getException()) {
                                 $result['exception'] = Database::getException();
                             } else {
-                                $result['exception'] = 'No se ha encontrado ningún alquiler registrado.';
+                                $result['exception'] = 'No se ha encontrado ningún espacio registrado.';
                             }
                         }
                         break;

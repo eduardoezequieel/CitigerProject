@@ -211,7 +211,7 @@ class Alquileres extends Validator
     //Función para leer solo un dato de tabla
     public function readOne()
     {
-        $sql = 'SELECT idalquiler, estadoalquiler, espacio.nombre, 
+        $sql = 'SELECT idalquiler, estadoalquiler,alquiler.idestadoalquiler, espacio.nombre, 
                     alquiler.idespacio, precio, idusuario,  CONCAT(residente.apellido, \', \', residente.nombre) 
                     as residente,alquiler.idresidente, fecha, horainicio,horafin, foto
                     FROM alquiler

@@ -98,8 +98,11 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                 <h5 class="modal-title tituloModal"><span class="fas fa-info-circle mr-4 iconoModal"></span>Alquileres
                 </h5>
                 <!-- Boton para Cerrar -->
-                <button type="button" class="close closeModalButton lead" data-dismiss="modal" data-toggle="modal" data-target="#seleccionarEspacio" aria-label="Close">
+                <button type="button" class="close closeModalButton lead" data-dismiss="modal" id="salir2" name="salir2" data-toggle="modal" data-target="#seleccionarEspacio" aria-label="Close">
                     <span aria-hidden="true" class="fas fa-chevron-left"></span>
+                </button>
+                <button type="button" class="close closeModalButton lead" id="salir" name="salir" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <!-- Contenido del Modal -->
@@ -143,16 +146,18 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                         </div>
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12 mt-2 d-flex justify-content-center">
                             <div class="form-group">
-                                <h1 class="tituloDato2 text-center">Espacio:</h1>
+                                <h1 class="tituloDato2 text-center" id="tituloEspacio">Espacio:</h1>
                                 <h1 class="campoDato text-center" id="lblEspacio2">Cancha</h1>
                             </div>
+
+
                         </div>
+
                     </div>
                     <div class="row justify-content-center mt-2">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
                             <button type="submit" id="btnAgregar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-plus mr-3 tamañoIconosBotones"></span>Agregar</button>
                             <button type="submit" id="btnActualizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-edit mr-3 tamañoIconosBotones"></span>Actualizar</button>
-                            <button id="btnFinalizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check-double mr-3 tamañoIconosBotones"></span>Finalizar</button>
                             <button id="btnAutorizar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-check mr-3 tamañoIconosBotones"></span>Autorizar</button>
                             <button id="btnDenegar" class="btn btnAgregarFormulario mr-2"><span class="fas fa-ban mr-3 tamañoIconosBotones"></span>Denegar</button>
                         </div>
@@ -197,8 +202,7 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                     <!-- Botones de Acción del Formulario -->
                     <div class="row justify-content-center mt-4">
                         <div class="col-12 d-flex justify-content-center align-items-center text-center">
-                            <input type="submit" value="Generar reporte" class="btn btnAgregarFormulario mr-2">
-
+                            <button type="submit" href="#" id="btnReporte" class="btn botonesListado"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Generar reporte</button>
                         </div>
                     </div>
                 </form>
@@ -217,7 +221,7 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                 <!-- Titulo -->
                 <h5 class="modal-title tituloModal" id="exampleModalLabel"><span class="fas fa-info-circle mr-4 iconoModal"></span>Alquileres</h5>
                 <!-- Boton para Cerrar -->
-                <a type="button" class="close closeModalButton lead" data-toggle="modal" data-target="#modalReporte" data-dismiss="modal">
+                <a type="button" class="close closeModalButton lead" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </a>
             </div>
