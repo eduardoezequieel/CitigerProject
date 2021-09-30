@@ -586,3 +586,9 @@ document.getElementById('btnAdministrarUsuarioModal').addEventListener('click',f
         console.log(error);
     });
 });
+
+$(document).ready(function(){
+    $("#txtDUI").mask("00000000-0");
+    $("#txtTelefonoFijo").mask("0000-0000");
+    $("#txtTelefonomovil").mask("0000-0000");
+});
