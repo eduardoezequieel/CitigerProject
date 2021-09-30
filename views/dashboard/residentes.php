@@ -218,7 +218,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                             <thead>
                                 <!-- Columnas-->
                                 <tr>
-                                    <th scope="col">Número de Casa</th>
+                                    <th scope="col">Casa</th>
                                     <th scope="col">Dirección</th>
                                     <th scope="col"></th>
                                 </tr>

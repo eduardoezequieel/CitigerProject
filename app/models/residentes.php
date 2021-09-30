@@ -323,6 +323,17 @@ class Residentes extends Validator
         return Database::getRow($sql, $params);
     }
 
+    //Funcion para saber si un residente tiene una casa asignada al momento de iniciar sesión
+    public function checkIfResidentHasHome()
+    {
+        $sql = 'SELECT idcasa 
+                FROM residentecasa 
+                INNER JOIN residente USING (idresidente)
+                WHERE correo = ?';
+        $params = array($this->correo);
+        return Database::getRow($sql, $params);
+    }
+
     //Función para buscar
     public function searchRows($value)
     {

@@ -475,68 +475,72 @@ if (isset($_GET['action'])) {
             case 'logIn':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->checkUser($_POST['txtCorreo'])) {
-                    if ($usuarios->checkEstado()) {
-                        if ($usuarios->checkPassword($_POST['txtContrasenia'])) {
-                            $_SESSION['idresidente'] = $usuarios->getIdResidente();
-                            $_SESSION['username'] = $usuarios->getUsername();
-                            $_SESSION['foto_residente'] = $usuarios->getFoto();
-                            $_SESSION['modo_residente'] = $usuarios->getModo();
-                            $_SESSION['correo_residente'] = $usuarios->getCorreo();
-                            $_SESSION['ip_residente'] = $_POST['txtIP'];
-                            $_SESSION['region_residente'] = $_POST['txtLoc'];
-                            $_SESSION['sistema_residente'] = $_POST['txtOS'];
-                             //Se reinicia el conteo de intentos fallidos
-                             if ($usuarios->increaseIntentos(0)) {
-                                if ($result['dataset'] = $usuarios->checkLastPasswordUpdate()) {
-                                    $result['error'] = 1;
-                                    $result['message'] = 'Se ha detectado que debes actualizar
-                                                            tu contraseña por seguridad.';
-                                    $_SESSION['idresidente_tmp'] = $_SESSION['idresidente'];
-                                    unset($_SESSION['idresidente']);
-                                } else {
-                                    if ($autenticacion = $usuarios->getAuthMode()) {
-                                        if ($autenticacion['autenticacion'] == 'Si') {
-                                            $result['auth'] = 1;
-                                            $result['status'] = 1;
-                                            $_SESSION['idresidente_temp'] = $usuarios->getIdResidente();
-                                            unset($_SESSION['idresidente']);
-                                        } else {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Sesión iniciada correctamente.';
-                                        }
-                                        
+                    if ($usuarios->checkIfResidentHasHome()) {
+                        if ($usuarios->checkEstado()) {
+                            if ($usuarios->checkPassword($_POST['txtContrasenia'])) {
+                                $_SESSION['idresidente'] = $usuarios->getIdResidente();
+                                $_SESSION['username'] = $usuarios->getUsername();
+                                $_SESSION['foto_residente'] = $usuarios->getFoto();
+                                $_SESSION['modo_residente'] = $usuarios->getModo();
+                                $_SESSION['correo_residente'] = $usuarios->getCorreo();
+                                $_SESSION['ip_residente'] = $_POST['txtIP'];
+                                $_SESSION['region_residente'] = $_POST['txtLoc'];
+                                $_SESSION['sistema_residente'] = $_POST['txtOS'];
+                                 //Se reinicia el conteo de intentos fallidos
+                                 if ($usuarios->increaseIntentos(0)) {
+                                    if ($result['dataset'] = $usuarios->checkLastPasswordUpdate()) {
+                                        $result['error'] = 1;
+                                        $result['message'] = 'Se ha detectado que debes actualizar
+                                                                tu contraseña por seguridad.';
+                                        $_SESSION['idresidente_tmp'] = $_SESSION['idresidente'];
+                                        unset($_SESSION['idresidente']);
                                     } else {
-                                        if (Database::getException()) {
-                                            $result['exception'] = Database::getException();
+                                        if ($autenticacion = $usuarios->getAuthMode()) {
+                                            if ($autenticacion['autenticacion'] == 'Si') {
+                                                $result['auth'] = 1;
+                                                $result['status'] = 1;
+                                                $_SESSION['idresidente_temp'] = $usuarios->getIdResidente();
+                                                unset($_SESSION['idresidente']);
+                                            } else {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Sesión iniciada correctamente.';
+                                            }
+                                            
                                         } else {
-                                            $result['exception'] = 'El usuario no posee ninguna preferencia.';
+                                            if (Database::getException()) {
+                                                $result['exception'] = Database::getException();
+                                            } else {
+                                                $result['exception'] = 'El usuario no posee ninguna preferencia.';
+                                            }
+                                            
                                         }
-                                        
+                                    }
+                                }
+                            } else {
+                                //Se verifica los intentos que tiene guardado el usuario
+                                if ($data = $usuarios->checkIntentos()){
+                                    //Se evalúa si ya el usuario ya realizó dos intentos
+                                    if ($data['intentos'] < 2) {
+                                        //Se aumenta la cantidad de intentos
+                                        if ($usuarios->increaseIntentos($data['intentos']+1)) {
+                                            $result['exception'] = 'La contraseña ingresada es incorrecta';
+                                            $usuarios->registerActionOut('Intento Fallido','Intento Fallido N° '.$data['intentos']+1.);
+                                        }
+                                    } else {
+                                        //Se bloquea el usuario
+                                        if ($usuarios->suspend()) {
+                                            $result['exception'] = 'Has superado el máximo de intentos, el usuario se ha bloquedo
+                                                                    por 24 horas.';
+                                            $usuarios->registerActionOut('Bloqueo','Intento N° 3. Usuario bloqueado por intentos fallidos');
+                                        }
                                     }
                                 }
                             }
                         } else {
-                            //Se verifica los intentos que tiene guardado el usuario
-                            if ($data = $usuarios->checkIntentos()){
-                                //Se evalúa si ya el usuario ya realizó dos intentos
-                                if ($data['intentos'] < 2) {
-                                    //Se aumenta la cantidad de intentos
-                                    if ($usuarios->increaseIntentos($data['intentos']+1)) {
-                                        $result['exception'] = 'La contraseña ingresada es incorrecta';
-                                        $usuarios->registerActionOut('Intento Fallido','Intento Fallido N° '.$data['intentos']+1.);
-                                    }
-                                } else {
-                                    //Se bloquea el usuario
-                                    if ($usuarios->suspend()) {
-                                        $result['exception'] = 'Has superado el máximo de intentos, el usuario se ha bloquedo
-                                                                por 24 horas.';
-                                        $usuarios->registerActionOut('Bloqueo','Intento N° 3. Usuario bloqueado por intentos fallidos');
-                                    }
-                                }
-                            }
+                            $result['exception'] = 'El usuario está inactivo. Contacte con el administrador.';
                         }
                     } else {
-                        $result['exception'] = 'El usuario está inactivo. Contacte con el administrador.';
+                        $result['exception'] = 'Su cuenta no posee ningún registro de casa asignada. Contacte con el administrador.';
                     }
                 } else {
                     $result['exception'] = 'El correo ingresado es incorrecto.';
