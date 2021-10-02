@@ -317,34 +317,20 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Problemas al seleccionar el alquiler';
                 }
                 break;
-                //Caso para activar un registro
+                //Caso para finalizar un registro
             case 'finishRow':
-                $_POST = $alquiler->validateForm($_POST);
-                if ($alquiler->setIdAlquiler($_POST['idAlquiler'])) {
-                    $alquiler->setIdEstadoAlquiler(3);
-                    if ($alquiler->setIdEspacio($_POST['idEspacio'])) {
-                        if ($alquiler->changeStatus()) {
-                            $result['status'] = 1;
-                            if ($alquiler->checkSpaceStatus()) {
-                                $result['message'] = 'Se ha finalizado el alquiler correctamente.';
-                            } else {
-                                $alquiler->setIdEstadoEspacio(1);
-                                $alquiler->changeSpaceStatus();
-                                $result['message'] = 'Se ha finalizado el alquiler correctamente.';
-                                $alquiler->registerAction('Finalizar', 'El usuario finalizó un registro en la tabla de alquileres');
-                            }
-                        } else {
-                            if (Database::getException()) {
-                                $result['exception'] = Database::getException();
-                            } else {
-                                $result['exception'] = 'No se ha finalizado el alquiler correctamente.';
-                            }
-                        }
-                    } else {
-                        $result['exception'] = 'Hubo problemas al seleccionar el espacio.';
-                    }
+                if ($alquiler->finalizarAlquiler()) {
+                    $result['status'] = 1;
+                    $alquiler->activateSpaceStatus();
+                    $result['message'] = 'Se han finalizado alquileres';
+
+                   
                 } else {
-                    $result['exception'] = 'Problemas al seleccionar el alquiler.';
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No se han finalizado alquileres.';
+                    }
                 }
                 break;
                 //Caso para realizar busquedas

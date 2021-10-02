@@ -322,7 +322,7 @@ class Alquileres extends Validator
                     fecha = ?, horainicio = ?, horafin = ?
                     WHERE idalquiler = ?';
         $params = array(
-            $this->idEstadoAlquiler,$this->precio, $_SESSION['idusuario_dashboard'],
+            $this->idEstadoAlquiler, $this->precio, $_SESSION['idusuario_dashboard'],
             $this->fecha, $this->horaInicio, $this->horaFin, $this->idAlquiler
         );
         return Database::executeRow($sql, $params);
@@ -343,14 +343,6 @@ class Alquileres extends Validator
                     SET idestadoalquiler = ?
                     WHERE idalquiler = ?';
         $params = array($this->idEstadoAlquiler, $this->idAlquiler);
-        return Database::executeRow($sql, $params);
-    }
-
-    //Función para activar el estado del espacio
-    public function activateSpaceStatus()
-    {
-        $sql = 'UPDATE espacio SET idestadoespacio = 1 WHERE idespacio = ?';
-        $params = array($this->idEspacio);
         return Database::executeRow($sql, $params);
     }
 
@@ -489,6 +481,7 @@ class Alquileres extends Validator
         $sql = 'SELECT idEspacio, estadoEspacio, nombre, descripcion, capacidad, imagenprincipal
                     FROM espacio 
                     INNER JOIN estadoEspacio ON estadoEspacio.idEstadoEspacio = espacio.idEstadoEspacio
+                    where espacio.idestadoespacio=1
                     ORDER BY nombre';
         $params = null;
         return Database::getRows($sql, $params);
@@ -514,6 +507,22 @@ class Alquileres extends Validator
                 WHERE idEspacio = ?
                 ORDER BY nombre';
         $params =  array($this->idEspacio);
-        return Database::getRow($sql,$params);
+        return Database::getRow($sql, $params);
+    }
+
+    public function finalizarAlquiler()
+    {
+        $sql = 'UPDATE alquiler set idestadoalquiler=3 where fecha < current_date and idestadoalquiler=2';
+        $params =  null;
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para activar el estado del espacio
+    public function activateSpaceStatus()
+    {
+        $sql = 'UPDATE espacio set idestadoespacio=1 from alquiler where espacio.idespacio=alquiler.idespacio and alquiler.fecha < current_date
+        and alquiler.idestadoalquiler=3';
+        $params = null;
+        return Database::executeRow($sql, $params);
     }
 }

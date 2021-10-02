@@ -130,7 +130,9 @@ if (isset($_GET['action'])) {
                                 $mail->Username   = 'citigersystem@gmail.com';                     
                                 $mail->Password   = 'citiger123';                               
                                 $mail->SMTPSecure = 'tls';            
-                                $mail->Port       = 587;                                    
+                                $mail->Port       = 587;     
+                                $mail->CharSet = 'UTF-8';
+                               
                             
                                 //Receptores
                                 $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');

@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     fillSelect(ENDPOINT_ESTADO_ALQUILER, 'cbEstadoAlquiler', null);
     readRows(API_ALQUILER);
     readEspacios(API_ALQUILER);
+    finalizarAlquiler();
 
 })
 
@@ -71,7 +72,7 @@ function fillTable(dataset) {
             </div>
         </th>
             </tr> `
-        }else if (row.estadoalquiler == "Revisión") {
+        } else if (row.estadoalquiler == "Revisión") {
             content += `
             <th scope="row">
             <div class="row paddingBotones">
@@ -86,7 +87,7 @@ function fillTable(dataset) {
             </div>
         </th>
             </tr> `
-        }else if (row.estadoalquiler == "Denegado") {
+        } else if (row.estadoalquiler == "Denegado") {
             content += `
             <th scope="row">
             <div class="row paddingBotones">
@@ -129,30 +130,30 @@ function fillTable(dataset) {
         retrieve: true,
         searching: false,
         language:
-            {
-                "decimal":        "",
-                "emptyTable":     "No hay información disponible en la tabla.",
-                "info":           "Mostrando _START_ de _END_ de _TOTAL_ registros.",
-                "infoEmpty":      "Mostrando 0 de 0 de 0 registros",
-                "infoFiltered":   "(filtered from _MAX_ total entries)",
-                "infoPostFix":    "",
-                "thousands":      ",",
-                "lengthMenu":     "Mostrar _MENU_ registros",
-                "loadingRecords": "Loading...",
-                "processing":     "Processing...",
-                "search":         "Search:",
-                "zeroRecords":    "No matching records found",
-                "paginate": {
-                    "first":      "AAA",
-                    "last":       "Ultimo",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-                "aria": {
-                    "sortAscending":  ": activate to sort column ascending",
-                    "sortDescending": ": activate to sort column descending"
-                }
+        {
+            "decimal": "",
+            "emptyTable": "No hay información disponible en la tabla.",
+            "info": "Mostrando _START_ de _END_ de _TOTAL_ registros.",
+            "infoEmpty": "Mostrando 0 de 0 de 0 registros",
+            "infoFiltered": "(filtered from _MAX_ total entries)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "loadingRecords": "Loading...",
+            "processing": "Processing...",
+            "search": "Search:",
+            "zeroRecords": "No matching records found",
+            "paginate": {
+                "first": "AAA",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+            "aria": {
+                "sortAscending": ": activate to sort column ascending",
+                "sortDescending": ": activate to sort column descending"
             }
+        }
     });
 }
 
@@ -161,18 +162,18 @@ function readDataOnModal(id) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idAlquiler', id);
-    document.getElementById('salir2').className="d-none";
-    document.getElementById('btnAgregar').className="d-none";
-    document.getElementById('salir').className="close closeModalButton lead";
-    document.getElementById('btnActualizar').className="btn btnAgregarFormulario mr-2";
-    document.getElementById('btnAutorizar').className="btn btnAgregarFormulario mr-2";
-    document.getElementById('btnDenegar').className="btn btnAgregarFormulario mr-2";
+    document.getElementById('salir2').className = "d-none";
+    document.getElementById('btnAgregar').className = "d-none";
+    document.getElementById('salir').className = "close closeModalButton lead";
+    document.getElementById('btnActualizar').className = "btn btnAgregarFormulario mr-2";
+    document.getElementById('btnAutorizar').className = "btn btnAgregarFormulario mr-2";
+    document.getElementById('btnDenegar').className = "btn btnAgregarFormulario mr-2";
 
 
 
 
     //Se ocultan los botones del formulario.
-    
+
 
     fetch(API_ALQUILER + 'readOne', {
         method: 'post',
@@ -194,21 +195,21 @@ function readDataOnModal(id) {
 
                     document.getElementById('lblResidente2').textContent = (response.dataset.residente);
                     document.getElementById('lblEspacio2').textContent = (response.dataset.nombre);
-                 
+
                     if (response.dataset.idestadoalquiler == 4) {
-                        document.getElementById('btnDenegar').className="d-none";
-                        document.getElementById('btnAutorizar').className=" btn btnAgregarFormulario mr-2";
+                        document.getElementById('btnDenegar').className = "d-none";
+                        document.getElementById('btnAutorizar').className = " btn btnAgregarFormulario mr-2";
 
 
-                    }else if(response.dataset.idestadoalquiler == 2){
+                    } else if (response.dataset.idestadoalquiler == 2) {
 
-                        document.getElementById('btnAutorizar').className="d-none";
-                        document.getElementById('btnDenegar').className=" btn btnAgregarFormulario mr-2";
+                        document.getElementById('btnAutorizar').className = "d-none";
+                        document.getElementById('btnDenegar').className = " btn btnAgregarFormulario mr-2";
 
 
 
                     }
-                   
+
 
                     document.getElementById('lblFecha').textContent = (response.dataset.fecha);
                     document.getElementById('lblResidente').textContent = (response.dataset.residente);
@@ -238,13 +239,17 @@ document.getElementById('alquiler-form').addEventListener('submit', function (ev
     if (document.getElementById('btnAgregar').className != 'd-none') {
         //Agregando el registro
         saveRow(API_ALQUILER, 'createRow', 'alquiler-form', 'agregarAlquiler');
+        readEspacios(API_ALQUILER);
+
     } else {
         saveRow(API_ALQUILER, 'updateRow', 'alquiler-form', 'agregarAlquiler');
+        readEspacios(API_ALQUILER);
+
     }
 })
 
 //Eliminar registros de la tabla empleado.
-function deleteRow(id,idespacio) {
+function deleteRow(id, idespacio) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('idAlquiler', id);
@@ -252,6 +257,8 @@ function deleteRow(id,idespacio) {
 
     // Se llama a la función que elimina un registro.
     confirmDelete(API_ALQUILER, data);
+    readEspacios(API_ALQUILER);
+
 }
 
 //Suspendiendo el registro de la tabla
@@ -260,6 +267,8 @@ document.getElementById('btnDenegar').addEventListener('click', function (event)
     event.preventDefault();
     //Se suspende el registro seleccionado
     suspendRow(API_ALQUILER, 'alquiler-form', 'agregarAlquiler');
+    readEspacios(API_ALQUILER);
+
 })
 
 //Activando el registro de la tabla
@@ -268,6 +277,8 @@ document.getElementById('btnAutorizar').addEventListener('click', function (even
     event.preventDefault();
     //Se suspende el registro seleccionado
     activateRow(API_ALQUILER, 'alquiler-form', 'agregarAlquiler');
+    readEspacios(API_ALQUILER);
+
 })
 
 
@@ -305,6 +316,8 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     clearForm('alquiler-form');
     document.getElementById('idEspacio').value = 0;
     document.getElementById('txtDuiVerificar').value = '';
+    readEspacios(API_ALQUILER);
+
 
 })
 
@@ -312,6 +325,9 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
 document.getElementById('btnReiniciar').addEventListener('click', function () {
     readRows(API_ALQUILER);
     document.getElementById('search').value = '';
+    fillSelect(ENDPOINT_ESTADO_ALQUILER, 'cbEstadoAlquiler', null);
+
+
 });
 
 
@@ -417,7 +433,7 @@ function openReport(id) {
 }
 
 //Aplicacion de las mascaras
-$(document).ready(function(){
+$(document).ready(function () {
     $("#txtDuiVerificar").mask("00000000-0");
     $("#txtTelefonoFijo").mask("0000-0000");
     $("#txtTelefonomovil").mask("0000-0000");
@@ -468,7 +484,7 @@ function fillTable2(dataset) {
 
 
 //Funcion para obtener la informacion del residente
-function getResidenteData(dui){
+function getResidenteData(dui) {
     // Se define un objeto con los datos del registro seleccionado.
     const data = new FormData();
     data.append('txtDuiVerificar', dui);
@@ -485,7 +501,7 @@ function getResidenteData(dui){
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
                     document.getElementById('idResidente').value = response.dataset.idresidente;
                     document.getElementById('lblResidente2').textContent = response.dataset.nombre + ' ' + response.dataset.apellido;
-                   
+
                 } else {
                     console.log(response.exception);
                 }
@@ -498,7 +514,7 @@ function getResidenteData(dui){
     });
 }
 
-document.getElementById('verificarDui-form').addEventListener('submit',function(event){
+document.getElementById('verificarDui-form').addEventListener('submit', function (event) {
     //Evitamos recargar la pagina
     event.preventDefault();
     //fetch para verificar la informacion
@@ -537,20 +553,19 @@ document.getElementById('verificarDui-form').addEventListener('submit',function(
 
 //Carga de datos del registro seleccionado
 function readOneEspacio(id) {
-    // Se define un objeto con los datos del registro seleccionado.
-
-    document.getElementById('btnAgregar').className="btn btnAgregarFormulario mr-2";
-    document.getElementById('btnActualizar').className="d-none";
-    document.getElementById('btnAutorizar').className="d-none";
-    document.getElementById('btnDenegar').className="d-none";
-    document.getElementById('salir').className="d-none";
-    document.getElementById('salir2').className="close closeModalButton lead";
+    // Se configuran los botones dependiendo de la accion seleccionada
+    document.getElementById('btnAgregar').className = "btn btnAgregarFormulario mr-2";
+    document.getElementById('btnActualizar').className = "d-none";
+    document.getElementById('btnAutorizar').className = "d-none";
+    document.getElementById('btnDenegar').className = "d-none";
+    document.getElementById('salir').className = "d-none";
+    document.getElementById('salir2').className = "close closeModalButton lead";
 
 
     const data = new FormData();
     data.append('idEspacio', id);
     //Se ocultan los botones del formulario.
-    
+
 
     fetch(API_ALQUILER + 'readOneEspacio', {
         method: 'post',
@@ -576,4 +591,34 @@ function readOneEspacio(id) {
             console.log(request.status + ' ' + request.statusText);
         }
     }).catch(error => console.log(error));
+}
+
+
+function finalizarAlquiler() {
+
+    fetch(API_ALQUILER + 'finishRow', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    console.log(response.message);
+                    readEspacios(API_ALQUILER);
+
+                } else {
+                    sweetAlert(4, response.exception, null);
+                    readEspacios(API_ALQUILER);
+
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+
+
 }
