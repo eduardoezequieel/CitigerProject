@@ -610,6 +610,8 @@ function finalizarAlquiler() {
                 } else {
                     sweetAlert(4, response.exception, null);
                     readEspacios(API_ALQUILER);
+                    readRows(API_ALQUILER);
+
 
                 }
             });
