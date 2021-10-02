@@ -2477,6 +2477,14 @@ textarea[placeholder],
   font-size: 50px;
 }
 
+.icono11 {
+  color: #FDB85A;
+}
+
+.icono22 {
+  color: #EE786C;
+}
+
 .icono5 {
   color: var(--color-citiger) !important;
   font-size: 70px;
