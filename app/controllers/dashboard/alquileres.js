@@ -606,6 +606,8 @@ function finalizarAlquiler() {
                 if (response.status) {
                     console.log(response.message);
                     readEspacios(API_ALQUILER);
+                    readRows(API_ALQUILER);
+
 
                 } else {
                     sweetAlert(4, response.exception, null);
