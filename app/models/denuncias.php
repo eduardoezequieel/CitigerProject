@@ -310,10 +310,11 @@ class Denuncias extends Validator
     //Consultas sitio residente
     public function readAllResidente()
     {
-        $sql = 'SELECT tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha FROM denuncia
+        $sql = 'SELECT tipodenuncia.tipodenuncia,iddenuncia, estadodenuncia.estadodenuncia, fecha FROM denuncia
                     INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
                     INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
-                    WHERE idresidente = ?
+                    INNER JOIN residente on denuncia.idresidente = residente.idresidente
+                    WHERE residente.idresidente = ?
                     ORDER BY fecha ASC';
 
         $params = array($_SESSION['idresidente']);
@@ -367,5 +368,18 @@ class Denuncias extends Validator
             $this->idDenuncia
         );
         return Database::executeRow($sql, $params);
+    }
+
+    
+    public function readAllByStateResidente()
+    {
+        $sql = 'SELECT idDenuncia, CONCAT(residente.nombre,\' \',residente.apellido) AS residente, tipodenuncia.tipodenuncia, estadodenuncia.estadodenuncia, fecha
+            FROM denuncia
+            INNER JOIN residente ON denuncia.idresidente = residente.idresidente
+            INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
+            INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
+            WHERE denuncia.idEstadoDenuncia = ? and residente.idresidente=?';
+        $params = array($this->idEstadoDenuncia,$_SESSION['idresidente']);
+        return Database::getRows($sql, $params);
     }
 }

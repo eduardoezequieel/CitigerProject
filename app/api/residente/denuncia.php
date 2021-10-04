@@ -82,7 +82,7 @@ if (isset($_GET['action'])) {
                 break;
 
             case 'readAll':
-                if ($result['dataset'] = $denuncia->readAll()) {
+                if ($result['dataset'] = $denuncia->readAllResidente()) {
                     $result['status'] = 1;
                     $result['message'] = 'Se ha encontrado al menos una denuncia.';
                 } else {
@@ -153,7 +153,7 @@ if (isset($_GET['action'])) {
             case 'readAllByState':
                 $_POST = $denuncia->validateForm($_POST);
                 if ($denuncia->setIdEstadoDenuncia($_POST['idEstadoDenuncia'])) {
-                    if ($result['dataset'] = $denuncia->readAllByState()) {
+                    if ($result['dataset'] = $denuncia->readAllByStateResidente()) {
                         $result['status'] = 1;
                         $result['message'] = 'Se ha encontrado al menos una denuncia.';
                     } else {

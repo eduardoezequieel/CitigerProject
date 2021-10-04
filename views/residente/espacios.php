@@ -148,13 +148,9 @@ Admin_Page::sidebarTemplate('Espacios | Citiger');
                     </div>
                     <br>
                     <!-- Contenido del Modal -->
-                    <div class="textoModal px-3 pb-4 mt-2"> 
-                        <div class="row">
-                            <div class="col-12 d-flex">
-                                <div class="gallery" id="gallery">
-                                    
-                                </div>
-                            </div>
+                    <div class="textoModal px-3 pb-4"> 
+                        <div class="row justify-content-center animate__animated animate__backInUp" id="gallery">
+                            
 
                         </div>
                         <!-- Fin del Contenido del Modal -->

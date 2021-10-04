@@ -570,6 +570,15 @@ option[selected] {
   width: 290px !important;
 }
 
+.tarjeta2 {
+  content: "";
+  background-color: var(--color-fondo-opaco);
+  width: 280px;
+  height: 180px !important;
+  border-radius: 15px;
+  padding: 15px;
+}
+
 #tarjetaPerfil {
   background-color: var(--color-fondo-opaco) !important;
   border-radius: 20px;
@@ -1135,7 +1144,7 @@ textarea :-ms-input-placeholder {
   content: "";
   background-color: var(--color-fondo-opaco);
   width: 255px;
-  height: 198px !important;
+  height: 245px !important;
   border-radius: 15px;
   padding: 10px;
 }
