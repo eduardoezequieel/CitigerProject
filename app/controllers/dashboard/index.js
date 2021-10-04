@@ -341,7 +341,7 @@ document.getElementById('update-form').addEventListener('submit', function (even
                             if (response.status) {
                                 // En caso de iniciar sesion correctamente mostrar mensaje y redirigir al menu
                                 closeModal('cambiarContraseña');
-                                sweetAlert(1, response.message, null);
+                                sweetAlert(1, response.message, 'index.php');
 
                             } else {
                                 sweetAlert(3, response.exception, null);
