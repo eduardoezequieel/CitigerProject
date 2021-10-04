@@ -146,12 +146,16 @@ function readDataOnModal(id) {
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     // Se inicializan los campos del formulario con los datos del registro seleccionado.
+    
+
                     document.getElementById('idEspacio').value = response.dataset.idespacio;
                     document.getElementById('idEspacio3').value = response.dataset.idespacio;
-                    document.getElementById('txtNombre').value = response.dataset.nombre;
-                    document.getElementById('txtDescripcion').value = response.dataset.descripcion;
-                    document.getElementById('txtCapacidad').value = response.dataset.capacidad;
-                    document.getElementById('txtEsta').value = response.dataset.estadoespacio;
+                    document.getElementById('lblNombre').textContent = (response.dataset.nombre);
+                    document.getElementById('lblDesc').textContent = (response.dataset.descripcion);
+                    document.getElementById('lblCap').textContent = (response.dataset.capacidad);
+                    document.getElementById('lblEstado').textContent = (response.dataset.estadoespacio);
+
+
                     if (response.dataset.imagenprincipal) {
                         previewSavePicture('divFotografia1', response.dataset.imagenprincipal, 5);
                     } else {
