@@ -479,7 +479,7 @@ class Visitas extends Validator
     {
         $sql = 'SELECT CONCAT(residente.apellido, \', \', residente.nombre) as residente, fecha, 
                 CONCAT(visitante.apellido, \', \', visitante.nombre) as visitante, observacion,detallevisita.idvisita,
-                numerocasa
+                numerocasa, visitarecurrente
                 FROM detallevisita
                 INNER JOIN visitante USING(idvisitante)
                 INNER JOIN visita USING(idvisita)
@@ -496,7 +496,7 @@ class Visitas extends Validator
     {
         $sql = 'SELECT CONCAT(residente.apellido, \', \', residente.nombre) as residente, fecha, 
                 CONCAT(visitante.apellido, \', \', visitante.nombre) as visitante, observacion,detallevisita.idvisita,
-                numerocasa
+                numerocasa, visitarecurrente
                 FROM detallevisita
                 INNER JOIN visitante USING(idvisitante)
                 INNER JOIN visita USING(idvisita)
@@ -518,6 +518,17 @@ class Visitas extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    //Función para verificar la visita recurrente
+    public function updateVisitaRecurrente()
+    {
+        $sql = 'UPDATE visita 
+                SET fecha = current_date
+                WHERE idvisita = ?';
+        $params = array($this->idVisita);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Función para agarrar el ultimo id de la tabla de visitas
     public function getLastId()
     {
         $sql = 'SELECT max(idvisita) as idvisita from visita';

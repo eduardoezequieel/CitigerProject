@@ -198,6 +198,7 @@ document.getElementById('verificarPlaca-form').addEventListener('submit', functi
 //Función para llenar los datos en el modal 
 function fillInformation(dataset){
     document.getElementById('txtVisita').value = dataset.idvisita;
+    document.getElementById('txtFrecuente').value = dataset.visitarecurrente;
     document.getElementById('lblResidente').textContent = dataset.residente;
     document.getElementById('lblFecha').textContent =dataset.fecha;
     document.getElementById('lblVisitante').textContent = dataset.visitante;
@@ -226,6 +227,8 @@ document.getElementById('info-form').addEventListener('submit', function (event)
                     document.getElementById('lblVisitante').textContent = "";
                     document.getElementById('lblCasa').textContent ="";
                     document.getElementById('lblObservacion').textContent ="";
+                } else if (response.error) {
+                    sweetAlert(1,response.message,closeModal('infoVisita'))
                 } else {
                     sweetAlert(4, response.exception, null);
                 }
