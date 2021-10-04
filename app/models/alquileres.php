@@ -203,7 +203,7 @@ class Alquileres extends Validator
                     INNER JOIN estadoalquiler ON estadoalquiler.idestadoalquiler = alquiler.idestadoalquiler
                     INNER JOIN espacio ON espacio.idespacio = alquiler.idespacio
                     INNER JOIN residente ON residente.idresidente = alquiler.idresidente
-                    ORDER BY fecha';
+                    ORDER BY fecha desc';
         $params = null;
         return Database::getRows($sql, $params);
     }

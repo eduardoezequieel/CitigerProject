@@ -281,7 +281,7 @@ class Visitas extends Validator
             FROM visita 
             INNER JOIN estadovisita ON visita.idestadovisita = estadovisita.idestadovisita
             INNER JOIN residente ON visita.idresidente = residente.idresidente
-            ORDER BY fecha ASC';
+            ORDER BY fecha desc';
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -294,7 +294,7 @@ class Visitas extends Validator
             INNER JOIN estadovisita ON visita.idestadovisita = estadovisita.idestadovisita
             INNER JOIN residente ON visita.idresidente = residente.idresidente
             WHERE estadovisita.idestadovisita = ?
-            ORDER BY fecha ASC';
+            ORDER BY fecha desc';
         $params = array($this->idEstadoVisita);
         return Database::getRows($sql, $params);
     }
@@ -438,7 +438,7 @@ class Visitas extends Validator
         $sql = "SELECT d.iddetallevisita, d.idvisita, d.idvisitante, CONCAT(vi.nombre,' ',vi.apellido) as visitante, v.fecha, e.estadovisita from detallevisita d
         INNER JOIN visitante vi on d.idvisitante=vi.idvisitante
         INNER JOIN visita v on  d.idvisita=v.idvisita
-        INNER JOIN estadovisita e on v.idestadovisita=e.idestadovisita where v.idresidente=? ";
+        INNER JOIN estadovisita e on v.idestadovisita=e.idestadovisita where v.idresidente=? order by fecha desc ";
         $params = array($_SESSION['idresidente']);
         return Database::getRows($sql, $params);
     }
@@ -459,7 +459,7 @@ class Visitas extends Validator
         $sql = "SELECT d.iddetallevisita, d.idvisita, d.idvisitante, CONCAT(vi.nombre,' ',vi.apellido) as visitante, v.fecha, e.estadovisita from detallevisita d
         INNER JOIN visitante vi on d.idvisitante=vi.idvisitante
         INNER JOIN visita v on  d.idvisita=v.idvisita
-        INNER JOIN estadovisita e on v.idestadovisita=e.idestadovisita where v.idresidente=? AND  CONCAT(vi.nombre,' ',vi.apellido) ILIKE ? ";
+        INNER JOIN estadovisita e on v.idestadovisita=e.idestadovisita where v.idresidente=? AND  CONCAT(vi.nombre,' ',vi.apellido) ILIKE ?  order by fecha desc";
         $params = array($_SESSION['idresidente'], "%$value%");
         return Database::getRows($sql, $params);
     }
@@ -537,7 +537,7 @@ class Visitas extends Validator
                 INNER JOIN visita ON visita.idvisita = detallevisita.idvisita
                 INNER JOIN estadoVisita USING(idestadovisita)
                 INNER JOIN residente ON residente.idresidente = visita.idresidente
-                ORDER BY fecha ASC';
+                ORDER BY fecha desc';
         $params = null;
         return Database::getRows($sql, $params);
     }

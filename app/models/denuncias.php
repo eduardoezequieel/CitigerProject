@@ -153,7 +153,7 @@ class Denuncias extends Validator
             FROM denuncia
             INNER JOIN residente ON denuncia.idresidente = residente.idresidente
             INNER JOIN tipodenuncia ON denuncia.idtipodenuncia = tipodenuncia.idtipodenuncia
-            INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia';
+            INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia order by fecha desc';
         $params = null;
         return Database::getRows($sql, $params);
     }
@@ -315,7 +315,7 @@ class Denuncias extends Validator
                     INNER JOIN estadodenuncia ON denuncia.idestadodenuncia = estadodenuncia.idestadodenuncia
                     INNER JOIN residente on denuncia.idresidente = residente.idresidente
                     WHERE residente.idresidente = ?
-                    ORDER BY fecha ASC';
+                    ORDER BY fecha desc';
 
         $params = array($_SESSION['idresidente']);
         return Database::getRows($sql, $params);
