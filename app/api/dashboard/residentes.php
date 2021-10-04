@@ -385,11 +385,16 @@ if (isset($_GET['action'])) {
                 break;
             //Caso para leer un registro
             case 'readOne2':
-                $_SESSION['idresidente'] = $_POST['txtId'];
-                if ($_SESSION['idresidente'] != null) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = 'Factura inexistente';
+                if ($residente->setIdResidente($_POST['txtId'])) {
+                    $_SESSION['idresidente'] = $residente->getIdResidente();
+                    if ($_SESSION['idresidente'] != null) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Residente inexistente';
+                    }
+                }else{
+                    $result['exception'] = 'Residente inexistente';
+
                 }
                 break;
             //Caso para enviar un correo

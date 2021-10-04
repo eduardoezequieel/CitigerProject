@@ -323,8 +323,6 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $alquiler->activateSpaceStatus();
                     $result['message'] = 'Se han finalizado alquileres';
-
-                   
                 } else {
                     if (Database::getException()) {
                         $result['exception'] = Database::getException();
@@ -399,11 +397,15 @@ if (isset($_GET['action'])) {
                 break;
 
             case 'readOne3':
-                $_SESSION['idalquiler'] = $_POST['txtId'];
-                if ($_SESSION['idalquiler'] != null) {
-                    $result['status'] = 1;
+                if ($alquiler->setIdAlquiler($_POST['txtId'])) {
+                    $_SESSION['idalquiler'] = $alquiler->getIdAlquiler();
+                    if ($_SESSION['idalquiler'] != null) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Alquiler inexistente';
+                    }
                 } else {
-                    $result['exception'] = 'Factura inexistente';
+                    $result['exception'] = 'Alquiler inexistente';
                 }
                 break;
             default:

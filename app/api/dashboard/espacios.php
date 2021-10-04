@@ -408,11 +408,15 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne3':
-                $_SESSION['idespacio'] = $_POST['txtId'];
-                if ($_SESSION['idespacio'] != null) {
-                    $result['status'] = 1;
+                if ($espacio->setIdEspacio($_POST['txtId'])) {
+                    $_SESSION['idespacio'] = $espacio->getIdEspacio();
+                    if ($_SESSION['idespacio'] != null) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Espacio inexistente';
+                    }
                 } else {
-                    $result['exception'] = 'Factura inexistente';
+                    $result['exception'] = 'Espacio inexistente';
                 }
                 break;
                 //Caso por defecto
