@@ -27,17 +27,19 @@ if (isset($_GET['action'])) {
     $correo = new Correo;
 
     //Array para respuesta de la API
-    $result = array('status' => 0, 
-                    'recaptcha' => 0, 
-                    'error' => 0,
-                    'auth' => 0, 
-                    'message' => null, 
-                    'exception' => null);
+    $result = array(
+        'status' => 0,
+        'recaptcha' => 0,
+        'error' => 0,
+        'auth' => 0,
+        'message' => null,
+        'exception' => null
+    );
     //Verificando si hay una sesion iniciada
     if (isset($_SESSION['idresidente'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
-            //Caso para verificar si el residente posee su correo electronico verificado.
+                //Caso para verificar si el residente posee su correo electronico verificado.
             case 'checkIfEmailIsValidated':
                 if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
                     if ($result['dataset'] = $usuarios->checkIfEmailIsValidated()) {
@@ -54,7 +56,7 @@ if (isset($_GET['action'])) {
                 }
 
                 break;
-            //Enviar código de verificación para verificar correo electronico
+                //Enviar código de verificación para verificar correo electronico
             case 'sendEmailCode':
                 // Generamos el codigo de seguridad 
                 $code = rand(999999, 111111);
@@ -98,13 +100,13 @@ if (isset($_GET['action'])) {
 
                 break;
 
-            //Caso para verificar el código y poder verificar el correo electronico.
+                //Caso para verificar el código y poder verificar el correo electronico.
             case 'verifyCodeEmail':
                 $_POST = $usuarios->validateForm($_POST);
                 // Validmos el formato del mensaje que se enviara en el correo
                 if ($correo->setCodigo($_POST['codigoAuth'])) {
                     // Ejecutamos la funcion para validar el codigo de seguridad
-                    if ($correo->validarCodigoResidente('residente',$_SESSION['idresidente'])) {
+                    if ($correo->validarCodigoResidente('residente', $_SESSION['idresidente'])) {
                         $result['status'] = 1;
                         $correo->cleanCode($_SESSION['idresidente']);
                         $correo->validateResidente($_SESSION['idresidente']);
@@ -118,7 +120,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Mensaje incorrecto';
                 }
                 break;
-            //Caso para cargar los historiales de sesión fallidos de un usuario
+                //Caso para cargar los historiales de sesión fallidos de un usuario
             case 'readFailedSessions':
                 if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
                     if ($result['dataset'] = $usuarios->readFailedSessions()) {
@@ -133,9 +135,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id invalido.';
                 }
-                
+
                 break;
-            //Obtener el modo de autenticación de un usuario
+                //Obtener el modo de autenticación de un usuario
             case 'getAuthMode':
                 if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
                     if ($result['dataset'] = $usuarios->getAuthMode()) {
@@ -150,9 +152,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id incorrecto.';
                 }
-                
+
                 break;
-            //Caso para actualizar la preferencia del modo de autenticacion del usuario
+                //Caso para actualizar la preferencia del modo de autenticacion del usuario
             case 'updateAuthMode':
                 if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
                     if ($usuarios->checkPassword($_POST['txtContrasenaActualAuth'])) {
@@ -184,9 +186,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Sesión invalida.';
                 }
-                
+
                 break;
-            //Caso para actualizar el correo electronico actual
+                //Caso para actualizar el correo electronico actual
             case 'actualizarCorreo':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($_POST['txtNuevoCorreo'] == $_POST['txtConfirmarCorreo']) {
@@ -195,9 +197,14 @@ if (isset($_GET['action'])) {
                             if ($usuarios->checkPassword($_POST['txtPassword'])) {
                                 if ($usuarios->changeEmail()) {
                                     if ($usuarios->emailNotValidated()) {
-                                        $_SESSION['correo_residente'] = $usuarios->getCorreo();
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Correo actualizado correctamente. Por favor asegurate de verificarlo.';
+                                        if ($usuarios->updateAuthMode('No')) {
+
+                                            $_SESSION['correo_residente'] = $usuarios->getCorreo();
+                                            $result['status'] = 1;
+                                            $result['message'] = 'Correo actualizado correctamente. Por favor asegurate de verificarlo.';
+                                        } else {
+                                            $result['exception'] = Database::getException();
+                                        }
                                     } else {
                                         $result['exception'] = Database::getException();
                                     }
@@ -212,13 +219,13 @@ if (isset($_GET['action'])) {
                         }
                     } else {
                         $result['exception'] = 'Ingrese un correo electrónico valido.';
-                    }       
+                    }
                 } else {
                     $result['exception'] = 'Los correos electrónicos no coinciden.';
                 }
-                
+
                 break;
-            //Caso para actualizar el nombre de usuario
+                //Caso para actualizar el nombre de usuario
             case 'updateUser':
                 if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
                     if ($usuarios->checkPassword($_POST['txtPassword2'])) {
@@ -255,20 +262,20 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id incorrecto.';
                 }
-                
+
                 break;
-            //Caso para cerrar la sesión
+                //Caso para cerrar la sesión
             case 'logOut':
                 unset($_SESSION['idresidente']);
                 $result['status'] = 1;
                 $result['message'] = 'Sesión eliminada correctamente';
                 break;
-            //Redirige al dashboard
+                //Redirige al dashboard
             case 'validateSession':
                 $result['status'] = 1;
                 $result['message'] = 'Posee una sesión activa.';
                 break;
-            //Caso para setear el light mode
+                //Caso para setear el light mode
             case 'setLightMode':
                 if ($usuarios->setLightMode()) {
                     $result['status'] = 1;
@@ -278,7 +285,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrio un problema-';
                 }
                 break;
-            //Caso para setear el dark mode
+                //Caso para setear el dark mode
             case 'setDarkMode':
                 if ($usuarios->setDarkMode()) {
                     $result['status'] = 1;
@@ -288,7 +295,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrio un problema-';
                 }
                 break;
-            //Caso para leer la información del usuario logueado
+                //Caso para leer la información del usuario logueado
             case 'readProfile2':
                 if ($result['dataset'] = $usuarios->readProfile2()) {
                     $result['status'] = 1;
@@ -300,7 +307,7 @@ if (isset($_GET['action'])) {
                     }
                 }
                 break;
-            //Caso para editar información del perfil
+                //Caso para editar información del perfil
             case 'editProfile':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setDui($_POST['txtDUI'])) {
@@ -343,7 +350,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'DUI invalido';
                 }
                 break;
-            //Caso para actualizar una foto
+                //Caso para actualizar una foto
             case 'updateFoto':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setFoto($_FILES['archivo_usuario'])) {
@@ -362,18 +369,20 @@ if (isset($_GET['action'])) {
                     } else {
                         $result['exception'] = $usuarios->getImageError();
                     }
-                }else{
+                } else {
                     $result['exception'] = 'Usuario inválido';
                 }
                 break;
-            //Caso para actualizar la contraseña (Dentro del sistema)
+                //Caso para actualizar la contraseña (Dentro del sistema)
             case 'updatePassword':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setIdResidente($_SESSION['idresidente'])) {
                     if ($usuarios->checkPassword($_POST['txtContrasenaActual'])) {
                         if ($_POST['txtNuevaContrasena'] == $_POST['txtConfirmarContrasena']) {
-                            if ($_POST['txtNuevaContrasena'] != $_POST['txtContrasenaActual'] ||
-                                $_POST['txtConfirmarContrasena'] != $_POST['txtContrasenaActual']) {
+                            if (
+                                $_POST['txtNuevaContrasena'] != $_POST['txtContrasenaActual'] ||
+                                $_POST['txtConfirmarContrasena'] != $_POST['txtContrasenaActual']
+                            ) {
                                 if ($usuarios->setContrasenia($_POST['txtNuevaContrasena'])) {
                                     if ($verificacion = $usuarios->checkIfEmailIsValidated()) {
                                         if ($verificacion['verificado'] == '1') {
@@ -411,9 +420,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id incorrecto.';
                 }
-                
+
                 break;
-            //Caso para actualizar la contraseña
+                //Caso para actualizar la contraseña
             case 'changePassword':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($_POST['txtContrasena'] == $_POST['txtConfirmarContra']) {
@@ -439,39 +448,39 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Las contraseñas no coinciden.';
                 }
                 break;
-                case 'createSesionHistory':
-                    if ($usuarios->checkDevices()) {
+            case 'createSesionHistory':
+                if ($usuarios->checkDevices()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Sesión ya registrada en la base de datos.';
+                } else {
+                    if ($usuarios->historialUsuario()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Sesión ya registrada en la base de datos.';
+                        $result['message'] = 'Sesión registrada correctamente.';
                     } else {
-                        if ($usuarios->historialUsuario()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Sesión registrada correctamente.';
-                        } else {
-                            $result['exception'] = Database::getException();
-                        }
+                        $result['exception'] = Database::getException();
                     }
-                    break;
-                    case 'readDevices':
-                        // Ejecutamos la funcion del modelo
-                        if ($result['dataset'] = $usuarios->getSesionHistory()) {
-                            $result['status'] = 1;
-                        } else {
-                            // Se ejecuta si existe algun error en la base de datos 
-                            if (Database::getException()) {
-                                $result['exception'] = Database::getException();
-                            } else {
-                                $result['exception'] = 'No hay dispositivos registrados';
-                            }
-                        }
-                        break;
+                }
+                break;
+            case 'readDevices':
+                // Ejecutamos la funcion del modelo
+                if ($result['dataset'] = $usuarios->getSesionHistory()) {
+                    $result['status'] = 1;
+                } else {
+                    // Se ejecuta si existe algun error en la base de datos 
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay dispositivos registrados';
+                    }
+                }
+                break;
             default:
                 $result['exception'] = 'La acción no está disponible dentro de la sesión';
         }
     } else {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
-            //Caso para iniciar sesion
+                //Caso para iniciar sesion
             case 'logIn':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->checkUser($_POST['txtCorreo'])) {
@@ -486,8 +495,8 @@ if (isset($_GET['action'])) {
                                 $_SESSION['ip_residente'] = $_POST['txtIP'];
                                 $_SESSION['region_residente'] = $_POST['txtLoc'];
                                 $_SESSION['sistema_residente'] = $_POST['txtOS'];
-                                 //Se reinicia el conteo de intentos fallidos
-                                 if ($usuarios->increaseIntentos(0)) {
+                                //Se reinicia el conteo de intentos fallidos
+                                if ($usuarios->increaseIntentos(0)) {
                                     if ($result['dataset'] = $usuarios->checkLastPasswordUpdate()) {
                                         $result['error'] = 1;
                                         $result['message'] = 'Se ha detectado que debes actualizar
@@ -505,33 +514,31 @@ if (isset($_GET['action'])) {
                                                 $result['status'] = 1;
                                                 $result['message'] = 'Sesión iniciada correctamente.';
                                             }
-                                            
                                         } else {
                                             if (Database::getException()) {
                                                 $result['exception'] = Database::getException();
                                             } else {
                                                 $result['exception'] = 'El usuario no posee ninguna preferencia.';
                                             }
-                                            
                                         }
                                     }
                                 }
                             } else {
                                 //Se verifica los intentos que tiene guardado el usuario
-                                if ($data = $usuarios->checkIntentos()){
+                                if ($data = $usuarios->checkIntentos()) {
                                     //Se evalúa si ya el usuario ya realizó dos intentos
                                     if ($data['intentos'] < 2) {
                                         //Se aumenta la cantidad de intentos
-                                        if ($usuarios->increaseIntentos($data['intentos']+1)) {
+                                        if ($usuarios->increaseIntentos($data['intentos'] + 1)) {
                                             $result['exception'] = 'La contraseña ingresada es incorrecta';
-                                            $usuarios->registerActionOut('Intento Fallido','Intento Fallido N° '.$data['intentos']+1.);
+                                            $usuarios->registerActionOut('Intento Fallido', 'Intento Fallido N° ' . $data['intentos'] + 1.);
                                         }
                                     } else {
                                         //Se bloquea el usuario
                                         if ($usuarios->suspend()) {
                                             $result['exception'] = 'Has superado el máximo de intentos, el usuario se ha bloquedo
                                                                     por 24 horas.';
-                                            $usuarios->registerActionOut('Bloqueo','Intento N° 3. Usuario bloqueado por intentos fallidos');
+                                            $usuarios->registerActionOut('Bloqueo', 'Intento N° 3. Usuario bloqueado por intentos fallidos');
                                         }
                                     }
                                 }
@@ -546,7 +553,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'El correo ingresado es incorrecto.';
                 }
                 break;
-            //Enviar código de verificación
+                //Enviar código de verificación
             case 'sendVerificationCode':
                 // Generamos el codigo de seguridad 
                 $code = rand(999999, 111111);
@@ -589,13 +596,13 @@ if (isset($_GET['action'])) {
                 }
 
                 break;
-            //Caso para verificar el código con el factor de autenticación en dos pasos.
+                //Caso para verificar el código con el factor de autenticación en dos pasos.
             case 'verifyCodeAuth':
                 $_POST = $usuarios->validateForm($_POST);
                 // Validmos el formato del mensaje que se enviara en el correo
                 if ($correo->setCodigo($_POST['codigoAuth'])) {
                     // Ejecutamos la funcion para validar el codigo de seguridad
-                    if ($correo->validarCodigoResidente('residente',$_SESSION['idresidente_temp'])) {
+                    if ($correo->validarCodigoResidente('residente', $_SESSION['idresidente_temp'])) {
                         $_SESSION['idresidente'] = $_SESSION['idresidente_temp'];
                         unset($_SESSION['idresidente_temp']);
                         $result['status'] = 1;
@@ -610,42 +617,44 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Mensaje incorrecto';
                 }
                 break;
-            //Caso para verificar si hay usuarios que desbloquear
+                //Caso para verificar si hay usuarios que desbloquear
             case 'checkBlockUsers':
                 if ($result['dataset'] = $usuarios->checkBlockUsers()) {
                     $result['status'] = 1;
-                } 
+                }
                 break;
-            //Caso para activar los usuarios que ya cumplieron con su tiempo de penalización
+                //Caso para activar los usuarios que ya cumplieron con su tiempo de penalización
             case 'activateBlockUsers':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setIdResidente($_POST['txtId'])) {
-                    if ($usuarios->setIdBitacora($_POST['txtBitacora'])){
+                    if ($usuarios->setIdBitacora($_POST['txtBitacora'])) {
                         if ($usuarios->activate()) {
                             if ($usuarios->updateBitacoraOut('Bloqueo (Cumplido)')) {
-                                if ($usuarios->increaseIntentos(0)){
+                                if ($usuarios->increaseIntentos(0)) {
                                     $result['status'] = 1;
                                 }
                             }
                         }
-                    } 
+                    }
                 }
                 break;
-            //Caso para cambiar la contraseña
+                //Caso para cambiar la contraseña
             case 'changePassword':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($usuarios->setIdResidente($_SESSION['idresidente_tmp'])) {
                     if ($usuarios->checkPassword($_POST['txtContrasenaActual1'])) {
                         if ($_POST['txtNuevaContrasena1'] == $_POST['txtConfirmarContrasena1']) {
-                            if ($_POST['txtNuevaContrasena1'] != $_POST['txtContrasenaActual1'] ||
-                                $_POST['txtConfirmarContrasena1'] != $_POST['txtContrasenaActual1']) {
+                            if (
+                                $_POST['txtNuevaContrasena1'] != $_POST['txtContrasenaActual1'] ||
+                                $_POST['txtConfirmarContrasena1'] != $_POST['txtContrasenaActual1']
+                            ) {
                                 if ($usuarios->setContrasenia($_POST['txtNuevaContrasena1'])) {
                                     if ($usuarios->changePasswordOut()) {
                                         $usuarios->setIdBitacora($_POST['txtBitacoraPassword']);
                                         if ($usuarios->updateBitacoraOut('Cambio de clave')) {
                                             $result['status'] = 1;
                                             $result['message'] = 'Contraseña actualizada correctamente.';
-                                            $_SESSION['idresidente'] =$_SESSION['idresidente_tmp'];
+                                            $_SESSION['idresidente'] = $_SESSION['idresidente_tmp'];
                                             unset($_SESSION['idresidente_tmp']);
                                         } else {
                                             $result['exception'] = 'Hubo un error al registrar la bitacora';
@@ -669,104 +678,107 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Id incorrecto.';
                 }
                 break;
-                case 'sendMail':
+            case 'sendMail':
 
-                    $_POST = $usuarios->validateForm($_POST);
-                    // Generamos el codigo de seguridad 
-                    $code = rand(999999, 111111);
-                    if ($correo->setCorreo($_POST['txtCorreoRecu'])) {
-                        if ($correo->validarCorreo('residente')) {
-    
-                            // Ejecutamos funcion para obtener el usuario del correo ingresado\
-                            $_SESSION['mail'] = $correo->getCorreo();
-    
-                            $correo->obtenerResidente($_SESSION['mail']);
-    
-    
-                            try {
-    
-                                //Ajustes del servidor
-                                $mail->SMTPDebug = 0;
-                                $mail->isSMTP();
-                                $mail->Host       = 'smtp.gmail.com';
-                                $mail->SMTPAuth   = true;
-                                $mail->Username   = 'citigersystem@gmail.com';
-                                $mail->Password   = 'citiger123';
-                                $mail->SMTPSecure = 'tls';
-                                $mail->Port       = 587;
-                                $mail->CharSet = 'UTF-8';
-    
-    
-                                //Receptores
-                                $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
-                                $mail->addAddress($correo->getCorreo());
-    
-                                //Contenido
-                                $mail->isHTML(true);
-                                $mail->Subject = 'Recuperación de contraseña';
-                                $mail->Body    = 'Hola ' . $_SESSION['residente'] . ', hemos enviado este correo para que recuperes tu contraseña, tu código de seguridad es: <b>' . $code . '</b>';
-    
-                                if ($mail->send()) {
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Código enviado correctamente, ' . $_SESSION['residente'] . ' ';
-                                    $correo->actualizarCodigo('residente', $code);
-                                }
-                            } catch (Exception $e) {
-                                $result['exception'] = $mail->ErrorInfo;
+                $_POST = $usuarios->validateForm($_POST);
+                // Generamos el codigo de seguridad 
+                $code = rand(999999, 111111);
+                if ($correo->setCorreo($_POST['txtCorreoRecu'])) {
+                    if ($correo->validarCorreo('residente')) {
+
+                        // Ejecutamos funcion para obtener el usuario del correo ingresado\
+                        $_SESSION['mail'] = $correo->getCorreo();
+
+                        $correo->obtenerResidente($_SESSION['mail']);
+
+
+                        try {
+
+                            //Ajustes del servidor
+                            $mail->SMTPDebug = 0;
+                            $mail->isSMTP();
+                            $mail->Host       = 'smtp.gmail.com';
+                            $mail->SMTPAuth   = true;
+                            $mail->Username   = 'citigersystem@gmail.com';
+                            $mail->Password   = 'citiger123';
+                            $mail->SMTPSecure = 'tls';
+                            $mail->Port       = 587;
+                            $mail->CharSet = 'UTF-8';
+
+
+                            //Receptores
+                            $mail->setFrom('citigersystem@gmail.com', 'Citiger Support');
+                            $mail->addAddress($correo->getCorreo());
+
+                            //Contenido
+                            $mail->isHTML(true);
+                            $mail->Subject = 'Recuperación de contraseña';
+                            $mail->Body    = 'Hola ' . $_SESSION['residente'] . ', hemos enviado este correo para que recuperes tu contraseña, tu código de seguridad es: <b>' . $code . '</b>';
+
+                            if ($mail->send()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Código enviado correctamente, ' . $_SESSION['residente'] . ' ';
+                                $correo->actualizarCodigo('residente', $code);
                             }
-                        } else {
-    
-                            $result['exception'] = 'El correo ingresado no está registrado';
+                        } catch (Exception $e) {
+                            $result['exception'] = $mail->ErrorInfo;
                         }
                     } else {
-    
-                        $result['exception'] = 'Correo incorrecto';
+
+                        $result['exception'] = 'El correo ingresado no está registrado';
                     }
-    
-    
-    
-                    break;
-    
-                case 'verifyCode':
-                    $_POST = $usuarios->validateForm($_POST);
-                    // Validmos el formato del mensaje que se enviara en el correo
-                    if ($correo->setCodigo($_POST['codigo'])) {
-                        // Ejecutamos la funcion para validar el codigo de seguridad
-                        if ($correo->validarCodigoResidente('residente',$_SESSION['idresidenterecu'])) {
+                } else {
+
+                    $result['exception'] = 'Correo incorrecto';
+                }
+
+
+
+                break;
+
+            case 'verifyCode':
+                $_POST = $usuarios->validateForm($_POST);
+                // Validmos el formato del mensaje que se enviara en el correo
+                if ($correo->setCodigo($_POST['codigo'])) {
+                    // Ejecutamos la funcion para validar el codigo de seguridad
+                    if ($correo->validarCodigoResidente('residente', $_SESSION['idresidenterecu'])) {
+                        $result['status'] = 1;
+                        // Colocamos el mensaje de exito 
+                        $result['message'] = 'El código ingresado es correcto';
+                    } else {
+                        // En caso que el correo no se envie mostramos el error
+                        $result['exception'] = 'El código ingresado no es correcto';
+                    }
+                } else {
+                    $result['exception'] = 'Mensaje incorrecto';
+                }
+                break;
+
+            case 'changePass':
+                // Obtenemos el form con los inputs para obtener los datos
+                $_POST = $usuarios->validateForm($_POST);
+                if ($usuarios->setIdResidente($_SESSION['idresidenterecu'])) {
+                    if ($usuarios->setContrasenia($_POST['txtContrasenia2'])) {
+                        // Ejecutamos la funcion para actualizar al usuario
+                        if ($usuarios->changePasswordOut()) {
                             $result['status'] = 1;
-                            // Colocamos el mensaje de exito 
-                            $result['message'] = 'El código ingresado es correcto';
+                            $result['message'] = 'Clave actualizada correctamente';
+                            $data = $usuarios->getIdBitacora('Cambio de clave');
+                            $usuarios->setIdBitacora($data['idbitacora']);
+                            $usuarios->updateBitacoraOut('Cambio de clave');
+                            $correo->cleanCodeResidente($_SESSION['idresidenterecu']);
+                            unset($_SESSION['idresidenterecu']);
+                            unset($_SESSION['mail']);
                         } else {
-                            // En caso que el correo no se envie mostramos el error
-                            $result['exception'] = 'El código ingresado no es correcto';
+                            $result['exception'] = Database::getException();
                         }
                     } else {
-                        $result['exception'] = 'Mensaje incorrecto';
+                        $result['exception'] = $usuarios->getPasswordError();
                     }
-                    break;
-
-                    case 'changePass':
-                        // Obtenemos el form con los inputs para obtener los datos
-                        $_POST = $usuarios->validateForm($_POST);
-                        if ($usuarios->setIdResidente($_SESSION['idresidenterecu'])) {
-                            if ($usuarios->setContrasenia($_POST['txtContrasenia2'])) {
-                                // Ejecutamos la funcion para actualizar al usuario
-                                if ($usuarios->changePasswordOut()) {
-                                    $result['status'] = 1;
-                                    $result['message'] = 'Clave actualizada correctamente';
-                                    $correo->cleanCodeResidente($_SESSION['idresidenterecu']);
-                                    unset($_SESSION['idresidenterecu']);
-                                    unset($_SESSION['mail']);
-                                } else {
-                                    $result['exception'] = Database::getException();
-                                }
-                            } else {
-                                $result['exception'] = $usuarios->getPasswordError();
-                            }
-                        } else {
-                            $result['exception'] = 'Correo incorrecto';
-                        }
-                        break;
+                } else {
+                    $result['exception'] = 'Correo incorrecto';
+                }
+                break;
             default:
                 $result['exception'] = 'La acción no está disponible afuera de la sesión';
         }

@@ -37,7 +37,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idusuario_dashboard'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
-            //Caso para verificar si el residente posee su correo electronico verificado.
+                //Caso para verificar si el residente posee su correo electronico verificado.
             case 'checkIfEmailIsValidated':
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($result['dataset'] = $usuarios->checkIfEmailIsValidated()) {
@@ -54,7 +54,7 @@ if (isset($_GET['action'])) {
                 }
 
                 break;
-            //Enviar código de verificación para verificar correo electronico
+                //Enviar código de verificación para verificar correo electronico
             case 'sendEmailCode':
                 // Generamos el codigo de seguridad 
                 $code = rand(999999, 111111);
@@ -98,13 +98,13 @@ if (isset($_GET['action'])) {
 
                 break;
 
-            //Caso para verificar el código y poder verificar el correo electronico.
+                //Caso para verificar el código y poder verificar el correo electronico.
             case 'verifyCodeEmail':
                 $_POST = $usuarios->validateForm($_POST);
                 // Validmos el formato del mensaje que se enviara en el correo
                 if ($correo->setCodigo($_POST['codigoAuth'])) {
                     // Ejecutamos la funcion para validar el codigo de seguridad
-                    if ($correo->validarCodigo('usuario',$_SESSION['idusuario_dashboard'])) {
+                    if ($correo->validarCodigo('usuario', $_SESSION['idusuario_dashboard'])) {
                         $result['status'] = 1;
                         $correo->cleanCode($_SESSION['idusuario_dashboard']);
                         $correo->validateUsuario($_SESSION['idusuario_dashboard']);
@@ -118,7 +118,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Mensaje incorrecto';
                 }
                 break;
-            //Caso para cargar los historiales de sesión fallidos de un usuario
+                //Caso para cargar los historiales de sesión fallidos de un usuario
             case 'readFailedSessions':
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($result['dataset'] = $usuarios->readFailedSessions()) {
@@ -187,7 +187,7 @@ if (isset($_GET['action'])) {
 
                 break;
 
-            //Caso para actualizar el correo electronico actual
+                //Caso para actualizar el correo electronico actual
             case 'actualizarCorreo':
                 $_POST = $usuarios->validateForm($_POST);
                 if ($_POST['txtNuevoCorreo'] == $_POST['txtConfirmarCorreo']) {
@@ -196,9 +196,13 @@ if (isset($_GET['action'])) {
                             if ($usuarios->checkPassword($_POST['txtPassword'])) {
                                 if ($usuarios->changeEmail()) {
                                     if ($usuarios->emailNotValidated()) {
-                                        $_SESSION['correo_dashboard'] = $usuarios->getCorreo();
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Correo actualizado correctamente. Por favor asegurate de verificarlo.';
+                                        if ($usuarios->updateAuthMode('No')) {
+                                            $_SESSION['correo_dashboard'] = $usuarios->getCorreo();
+                                            $result['status'] = 1;
+                                            $result['message'] = 'Correo actualizado correctamente. Por favor asegurate de verificarlo.';
+                                        } else {
+                                            $result['exception'] = Database::getException();
+                                        }
                                     } else {
                                         $result['exception'] = Database::getException();
                                     }
@@ -213,14 +217,14 @@ if (isset($_GET['action'])) {
                         }
                     } else {
                         $result['exception'] = 'Ingrese un correo electrónico valido.';
-                    }       
+                    }
                 } else {
                     $result['exception'] = 'Los correos electrónicos no coinciden.';
                 }
-                
+
                 break;
 
-            //Caso para actualizar el nombre de usuario
+                //Caso para actualizar el nombre de usuario
             case 'updateUser':
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($usuarios->checkPassword($_POST['txtPassword2'])) {
@@ -257,7 +261,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Id incorrecto.';
                 }
-                
+
                 break;
                 //Crear nuevo tipo de usuario y asignar permisos
             case 'createType':
@@ -463,20 +467,20 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 //Caso para mostrar el dispositivo del usuario
-                case 'readDevices':
-                    // Ejecutamos la funcion del modelo
-                    if ($result['dataset'] = $usuarios->getSesionHistory()) {
-                        $result['status'] = 1;
+            case 'readDevices':
+                // Ejecutamos la funcion del modelo
+                if ($result['dataset'] = $usuarios->getSesionHistory()) {
+                    $result['status'] = 1;
+                } else {
+                    // Se ejecuta si existe algun error en la base de datos 
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
                     } else {
-                        // Se ejecuta si existe algun error en la base de datos 
-                        if (Database::getException()) {
-                            $result['exception'] = Database::getException();
-                        } else {
-                            $result['exception'] = 'No hay dispositivos registrados';
-                        }
+                        $result['exception'] = 'No hay dispositivos registrados';
                     }
-                    break;
-    
+                }
+                break;
+
 
                 //Caso para cerrar la sesión
             case 'logOut':
@@ -510,7 +514,6 @@ if (isset($_GET['action'])) {
                         $result['status'] = 1;
                         $result['message'] = 'Modo oscuro activado correctamente.';
                         $_SESSION['modo_dashboard'] = 'dark';
-
                     } else {
                         $result['exception'] = 'Ocurrio un problema-';
                     }
@@ -1097,6 +1100,9 @@ if (isset($_GET['action'])) {
                         if ($usuarios->changePassword()) {
                             $result['status'] = 1;
                             $result['message'] = 'Clave actualizada correctamente';
+                            $data = $usuarios->getIdBitacora('Cambio de clave');
+                            $usuarios->setIdBitacora($data['idbitacora']);
+                            $usuarios->updateBitacoraOut('Cambio de clave');
                             $correo->cleanCode($_SESSION['idusuario']);
                             unset($_SESSION['idusuario']);
                             unset($_SESSION['mail']);

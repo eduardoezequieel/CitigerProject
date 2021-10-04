@@ -163,7 +163,7 @@ document.getElementById('password-form').addEventListener('submit',function(even
                 // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
                 if (response.status) {
                     closeModal('administrarContrasena');
-                    sweetAlert(1, response.message, 'ajustes_cuenta');
+                    sweetAlert(1, response.message, 'ajustes_cuenta.php');
                 } else {
                     sweetAlert(2, response.exception, null);
                 }
