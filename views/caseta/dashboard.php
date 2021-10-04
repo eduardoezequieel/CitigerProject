@@ -224,6 +224,7 @@ admin_Page::sidebarTemplate('Dashboard | Citiger');
                     </div>
                     <form id="info-form" autocomplete="off">
                         <input type="number" class="form-control cajaTextoDUI d-none" id="txtVisita" name="txtVisita">
+                        <input type="text" class="form-control cajaTextoDUI d-none" id="txtFrecuente" name="txtFrecuente">
                         <div class="row mt-2">
                             <div class="col-12">
                                 <div class="form-group">

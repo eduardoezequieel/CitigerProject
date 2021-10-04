@@ -63,14 +63,27 @@
                 case 'finishVisit':
                     $_POST = $visitas->validateForm($_POST);
                     if ($visitas->setIdVisita($_POST['txtVisita'])) {
-                        if ($result['dataset'] = $visitas->updateVisita()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Se ha confirmado la visita correctamente.';
-                        } else {
-                            if (Database::getException()) {
-                                $result['exception'] = Database::getException();
+                        if ($_POST['txtFrecuente'] == 'No') {
+                            if ($result['dataset'] = $visitas->updateVisita()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Se ha confirmado la visita correctamente.';
                             } else {
-                                $result['exception'] = 'No se ha confirmado la visita correctamente.';
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No se ha confirmado la visita correctamente.';
+                                }
+                            }
+                        } else {
+                            if ($visitas->updateVisitaRecurrente()) {
+                                $result['error'] = 1;
+                                $result['message'] = 'Se ha confirmado la visita recurrente correctamente.';
+                            } else {
+                                if (Database::getException()) {
+                                    $result['exception'] = Database::getException();
+                                } else {
+                                    $result['exception'] = 'No se ha confirmado la visita recurrente correctamente.';
+                                }
                             }
                         }
                     } else {
