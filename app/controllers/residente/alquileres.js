@@ -36,7 +36,7 @@ function fillTable(dataset){
             content += `
                     <div class="animate__animated animate__bounceIn col-xl-4 col-md-4 col-sm-12 col-xs-12 mt-2 d-flex margenTarjetas justify-content-center align-items-center text-center">
                         <!-- Inicio de Tarjeta -->
-                        <div class="tarjeta">
+                        <div class="tarjeta3">
                         <!-- Fila para Imagen -->
                             <div class="row">
                                 <div class="col-12">
@@ -47,6 +47,8 @@ function fillTable(dataset){
                                 <div class="col-12 text-left">
                                     <h1 class="letraTarjetaTitulo">${row.nombre}</h1>
                                     <h1 class="letraTarjeta">Hora de inicio: <span class="letraDestacadaTarjeta">${row.horainicio}</span></h1>
+                                    <h1 class="letraTarjeta">Fecha: <span class="letraDestacadaTarjeta">${row.fecha}</span></h1>
+
                                 </div>
                             </div>
                             <!-- Fila para Boton -->
@@ -77,6 +79,8 @@ function fillTable(dataset){
                                 <div class="col-12 text-left">
                                     <h1 class="letraTarjetaTitulo">${row.nombre}</h1>
                                     <h1 class="letraTarjeta">Hora de inicio: <span class="letraDestacadaTarjeta">${row.horainicio}</span></h1>
+                                    <h1 class="letraTarjeta">Fecha: <span class="letraDestacadaTarjeta">${row.fecha}</span></h1>
+
                                 </div>
                             </div>
                             <!-- Fila para Boton -->
