@@ -123,6 +123,10 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     document.getElementById('txtCorreo').value = '';
     document.getElementById('txtUser').value = '';
     previewSavePicture('divFoto', 'default.png', 1);
+
+    //Función para limpiar la validación del lado del cliente
+    clearForm('administrarResidente-form');
+    document.getElementById('cbc1').classList.remove("success");
 });
 
 //Agregar y actualizar información

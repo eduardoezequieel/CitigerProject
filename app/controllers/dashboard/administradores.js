@@ -127,6 +127,9 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
 
     //Función para limpiar la validación del lado del cliente
     clearForm('administrarEmpleado-form');
+    document.getElementById('cbc1').classList.remove("success");
+    document.getElementById('cbc2').classList.remove("success");
+    document.getElementById('cbc3').classList.remove("success");
 });
 
 //Carga de datos del registro seleccionado

@@ -88,8 +88,8 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
                                         <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                         deseado en el combobox  -->
-                                        <div class="cbCitiger">
-                                            <select class="custom-select" id="cbGenero" name="cbGenero">
+                                        <div class="cbCitiger" id="cbc1">
+                                            <select class="custom-select" id="cbGenero" name="cbGenero" onchange="checkCb('cbc1')">
                                                 <option selected="default">Seleccionar...</option>
                                                 <option value="M">Masculino</option>
                                                 <option value="F">Femenino</option>
@@ -136,7 +136,7 @@ admin_Page::sidebarTemplate('Residentes | Citiger');
 
                                         <label class="tituloCajaTextoFormulario mt-2" for="txtFechaNacimiento">Fecha de
                                             Nacimiento:</label>
-                                        <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento" value="2000-01-01">
+                                        <input type="date" class="form-control cajaTextoFormulario" onchange="checkInput('txtFechaNacimiento')" id="txtFechaNacimiento" name="txtFechaNacimiento" value="2000-01-01">
 
                                         <label class="tituloCajaTextoFormulario" for="txtUser">Nombre de Usuario:</label>
                                         <input type="text" onchange="checkAlfanumerico('txtUser')" class="form-control cajaTextoFormulario" id="txtUser" name="txtUser" placeholder="Escriba su nombre de usuario..." Required maxlength="25">
