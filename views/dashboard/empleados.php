@@ -35,8 +35,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                     <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                     cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                     deseado en el combobox  -->
-                    <div class="cbCitigerBusqueda">
-                        <select class="custom-select" id="cbTipoEmpleado">
+                    <div class="cbCitigerBusqueda" id="cbc1">
+                        <select class="custom-select" id="cbTipoEmpleado" onchange="checkCb('cbc1')">
                             <option selected="">Seleccionar...</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -128,8 +128,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                         <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                         deseado en el combobox  -->
-                                        <div class="cbCitiger">
-                                            <select class="custom-select" id="cbGenero" name="cbGenero">
+                                        <div class="cbCitiger" id="cbc2">
+                                            <select class="custom-select" id="cbGenero" name="cbGenero" onchange="checkCb('cbc2')">
                                                 <option selected="default">Seleccionar...</option>
                                                 <option value="F">Masculino</option>
                                                 <option value="M">Femenino</option>
@@ -159,8 +159,8 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                         <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                         deseado en el combobox  -->
-                                        <div class="cbCitiger w-75">
-                                            <select class="custom-select" id="cbTipoEmpleado2" name="cbTipoEmpleado2">
+                                        <div class="cbCitiger w-75" id="cbc3">
+                                            <select class="custom-select" id="cbTipoEmpleado2" name="cbTipoEmpleado2" onchange="checkCb('cbc3')"> 
                                                 <option selected="">Seleccionar...</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
@@ -169,7 +169,7 @@ admin_Page::sidebarTemplate('Empleados | Citiger');
                                         </div>
 
                                         <label class="tituloCajaTextoFormulario mt-2" for="txtFechaNacimiento">Fecha de Nacimiento:</label>
-                                        <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento"
+                                        <input type="date" onchange="checkInput('txtFechaNacimiento')" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento"
                                             value="2000-01-01">
 
                                         <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>

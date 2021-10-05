@@ -128,6 +128,9 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('txtDireccion').value = '';
     previewSavePicture('divFoto', 'default.png', 1);
 
+    //Función para limpiar la validación del lado del cliente
+    clearForm('administrarEmpleado-form');
+
 });
 
 //Agregar y actualizar información
