@@ -95,6 +95,8 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     document.getElementById('txtApellido').value = '';
     document.getElementById('txtDUI').value = '';
     document.getElementById('txtPlaca').value = '';
+    clearForm('administrarVisitante-form');
+    document.getElementById('cbc1').classList.remove("success");
 });
 
 //Agregar y actualizar información

@@ -31,8 +31,8 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                     <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                     cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                     deseado en el combobox  -->
-                    <div class="cbCitigerBusqueda">
-                        <select class="custom-select" id="cbEstadoVisita">
+                    <div class="cbCitigerBusqueda" id="cbc1">
+                        <select class="custom-select" id="cbEstadoVisita" onchange="checkCb('cbc1')">
                             <option selected="">Seleccionar...</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -107,8 +107,8 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                                 <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                         deseado en el combobox  -->
-                                <div class="cbCitiger">
-                                    <select class="custom-select" id="cbResidente" name="cbResidente">
+                                <div class="cbCitiger" id="cbc2">
+                                    <select class="custom-select" id="cbResidente" name="cbResidente" onchange="checkCb('cbc2')">
                                         <option selected="">Seleccionar...</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -120,8 +120,8 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                                 <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                         deseado en el combobox  -->
-                                <div class="cbCitiger">
-                                    <select class="custom-select" id="cbVisitante" name="cbVisitante">
+                                <div class="cbCitiger" id="cbc3">
+                                    <select class="custom-select" id="cbVisitante" name="cbVisitante" onchange="checkCb('cbc3')">
                                         <option selected="">Seleccionar...</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -134,8 +134,8 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                                 <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                         deseado en el combobox  -->
-                                <div class="cbCitiger">
-                                    <select class="custom-select" id="cbVisitaR" name="cbVisitaR">
+                                <div class="cbCitiger" id="cbc4">
+                                    <select class="custom-select" id="cbVisitaR" name="cbVisitaR" onchange="checkCb('cbc4')">
                                         <option selected="default">Seleccionar...</option>
                                         <option value="Si">Si</option>
                                         <option value="No">No</option>
@@ -146,7 +146,7 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                         <div class="d-flex justify-content-center col-xl-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="form-group">
                                 <label class="tituloCajaTextoFormulario" for="txtFecha">Fecha:</label>
-                                <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha"
+                                <input type="date" class="form-control cajaTextoModal" onchange="checkInput('txtFecha')" id="txtFecha" name="txtFecha"
                                     placeholder="">
                                 <label class="tituloCajaTextoFormulario" for="txtObservacion">Observación:</label>
                                 <textarea id="txtObservacion" name="txtObservacion" rows="4"

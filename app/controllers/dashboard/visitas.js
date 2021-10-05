@@ -110,7 +110,11 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     document.getElementById('txtObservacion').value = '';
     fillSelect(ENDPOINT_RESIDENTE, 'cbResidente', null);
     fillSelect(ENDPOINT_VISITANTE, 'cbVisitante', null);
-
+    clearForm('administrarVisita-form');
+    document.getElementById('cbc1').classList.remove("success");
+    document.getElementById('cbc2').classList.remove("success");
+    document.getElementById('cbc3').classList.remove("success");
+    document.getElementById('cbc4').classList.remove("success");
 });
 
 //Agregar y actualizar información

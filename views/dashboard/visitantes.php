@@ -113,8 +113,8 @@ admin_Page::sidebarTemplate('Visitantes | Citiger');
                                         <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                             cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                             deseado en el combobox  -->
-                                        <div class="cbCitiger">
-                                            <select class="custom-select" id="cbGenero" name="cbGenero">
+                                        <div class="cbCitiger" id="cbc1">
+                                            <select class="custom-select" id="cbGenero" name="cbGenero" onchange="checkCb('cbc1')">
                                                 <option selected="default">Seleccionar...</option>
                                                 <option value="M">Masculino</option>
                                                 <option value="F">Femenino</option>
