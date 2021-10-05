@@ -96,6 +96,10 @@ function fillTable(dataset) {
                 }
             }
     });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
 }
 
 document.getElementById('btnReiniciar').addEventListener('click', function () {
