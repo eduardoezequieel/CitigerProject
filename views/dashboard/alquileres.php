@@ -33,8 +33,8 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                     <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                         deseado en el combobox  -->
-                    <div class="cbCitigerBusqueda">
-                        <select class="custom-select" id="cbEstadoAlquiler">
+                    <div class="cbCitigerBusqueda" id="cbc1">
+                        <select class="custom-select" id="cbEstadoAlquiler" onchange="checkCb('cbc1')">
                             <option selected="">Seleccionar...</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -115,7 +115,7 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                         <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
 
                             <label class="tituloCajaTextoFormulario mt-2" for="txtFecha">Fecha de alquiler:</label>
-                            <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha" placeholder="AAAA-MM-DD" Required>
+                            <input type="date" class="form-control cajaTextoModal" onchange="checkInput('txtFecha')" id="txtFecha" name="txtFecha" placeholder="AAAA-MM-DD" Required>
 
                             <label class="tituloCajaTextoFormulario  mt-2" for="txtPrecio">Precio:</label>
                             <input type="number" class="form-control cajaTextoModal" id="txtPrecio" name="txtPrecio" placeholder="$00.00" min="0.01" step="any" onchange="checkInput('txtPrecio')" Required>
@@ -130,9 +130,9 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
 
 
                             <label class="tituloCajaTextoFormulario mt-2" for="txtHoraInicio">Hora inicio:</label>
-                            <input type="time" class="form-control cajaTextoModal" id="txtHoraInicio" name="txtHoraInicio" min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraInicio')" Required>
+                            <input type="time" class="form-control cajaTextoModal" id="txtHoraInicio" name="txtHoraInicio" min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraInicio')" onchange="checkInputHora('txtHoraInicio','txtHoraFin')" Required>
                             <label class="tituloCajaTextoFormulario mt-2" for="txtHoraFin">Hora Fin:</label>
-                            <input type="time" class="form-control cajaTextoModal" id="txtHoraFin" name="txtHoraFin" min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraFin')" Required>
+                            <input type="time" class="form-control cajaTextoModal" id="txtHoraFin" name="txtHoraFin" min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInputHora('txtHoraInicio','txtHoraFin')" Required>
 
 
                         </div>
