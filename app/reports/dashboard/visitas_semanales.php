@@ -1,6 +1,5 @@
 <?php
 require('../../helpers/report.php');
-require('../../helpers/wordwrap.php');
 require('../../models/visitas.php');
 
 // Se instancia la clase para crear el reporte.
