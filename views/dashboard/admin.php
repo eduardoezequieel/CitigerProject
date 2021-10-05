@@ -34,8 +34,8 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                     <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                     cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                     deseado en el combobox  -->
-                    <div class="cbCitigerBusqueda">
-                        <select class="custom-select" id="cbTipoEmpleado">
+                    <div class="cbCitigerBusqueda" id="cbc1">
+                        <select class="custom-select" id="cbTipoEmpleado" onchange="checkCb('cbc1')">
                             <option selected="">Seleccionar...</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -140,8 +140,8 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                                 <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                 cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                 deseado en el combobox  -->
-                                <div class="cbCitiger">
-                                    <select class="custom-select" id="cbGenero" name="cbGenero">
+                                <div class="cbCitiger" id="cbc2">
+                                    <select class="custom-select" id="cbGenero" name="cbGenero" onchange="checkCb('cbc2')">
                                         <option selected="">Seleccionar...</option>
                                         <option value="F">Masculino</option>
                                         <option value="M">Femenino</option>
@@ -171,15 +171,15 @@ admin_Page::sidebarTemplate('Administradores | Citiger');
                                 <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                                 cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                                 deseado en el combobox  -->
-                                <div class="cbCitiger w-75">
-                                    <select class="custom-select" id="cbTipoEmpleado2" name="cbTipoEmpleado2">
+                                <div class="cbCitiger w-75" id="cbc3">
+                                    <select class="custom-select" id="cbTipoEmpleado2" name="cbTipoEmpleado2" onchange="checkCb('cbc3')">
                                         <option selected="">Seleccionar...</option>
                                     </select>
                                 </div>
 
                                 <label class="tituloCajaTextoFormulario mt-2" for="txtFechaNacimiento">Fecha de
                                     Nacimiento:</label>
-                                <input type="date" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento" placeholder="01-01-2000" Required>
+                                <input type="date" onchange="checkInput('txtFechaNacimiento')" class="form-control cajaTextoFormulario" id="txtFechaNacimiento" name="txtFechaNacimiento" placeholder="01-01-2000" Required>
 
                                 <label class="tituloCajaTextoFormulario" for="txtDireccion">Dirección:</label>
                                 <textarea onchange="checkAlfanumerico('txtDireccion')" class="form-control cajaTextoFormulario" placeholder="Escriba su dirección..." id="txtDireccion" name="txtDireccion" rows="9"Required maxlength="200" ></textarea>
