@@ -314,7 +314,6 @@ document.getElementById('filtrarEstadoAlquiler-form').addEventListener('submit',
 //Método para resetear botones
 document.getElementById('btnInsertDialog').addEventListener('click', function () {
     clearForm('alquiler-form');
-    document.getElementById('cbc1').classList.remove("success");
     document.getElementById('txtDuiVerificar').classList.remove("success");
     document.getElementById('txtDuiVerificar').classList.remove("error");
     document.getElementById('idEspacio').value = 0;

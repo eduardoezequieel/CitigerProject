@@ -33,8 +33,8 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
                     <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                         cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                         deseado en el combobox  -->
-                    <div class="cbCitigerBusqueda" id="cbc1">
-                        <select class="custom-select" id="cbEstadoAlquiler" onchange="checkCb('cbc1')">
+                    <div class="cbCitigerBusqueda">
+                        <select class="custom-select" id="cbEstadoAlquiler">
                             <option selected="">Seleccionar...</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -130,7 +130,7 @@ Admin_Page::sidebarTemplate('Alquileres | Citiger');
 
 
                             <label class="tituloCajaTextoFormulario mt-2" for="txtHoraInicio">Hora inicio:</label>
-                            <input type="time" class="form-control cajaTextoModal" id="txtHoraInicio" name="txtHoraInicio" min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraInicio')" onchange="checkInputHora('txtHoraInicio','txtHoraFin')" Required>
+                            <input type="time" class="form-control cajaTextoModal" id="txtHoraInicio" name="txtHoraInicio" min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInputHora('txtHoraInicio','txtHoraFin')" Required>
                             <label class="tituloCajaTextoFormulario mt-2" for="txtHoraFin">Hora Fin:</label>
                             <input type="time" class="form-control cajaTextoModal" id="txtHoraFin" name="txtHoraFin" min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInputHora('txtHoraInicio','txtHoraFin')" Required>
 

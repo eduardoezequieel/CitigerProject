@@ -88,12 +88,12 @@ admin_Page::sidebarTemplate('Alquileres | Citiger');
                                     <div class="col col-xl-6 col-md-6 col-sm-12 col-xs-12 align-items-center">
 
                                         <label class="tituloCajaTextoFormulario mt-2" for="txtFecha">Fecha de alquiler:</label>
-                                        <input type="date" class="form-control cajaTextoModal" id="txtFecha" name="txtFecha" placeholder="AAAA-MM-DD" Required>
+                                        <input type="date" class="form-control cajaTextoModal" onchange="checkInput('txtFecha')" id="txtFecha" name="txtFecha" placeholder="AAAA-MM-DD" Required>
 
                                         <label class="tituloCajaTextoFormulario mt-2" for="txtHoraInicio">Hora inicio:</label>
-                                        <input type="time" class="form-control cajaTextoModal" id="txtHoraInicio" name="txtHoraInicio" min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraInicio')" Required>
+                                        <input type="time" class="form-control cajaTextoModal" onchange="checkInputHora('txtHoraInicio','txtHoraFin')" id="txtHoraInicio" name="txtHoraInicio" min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraInicio')" Required>
                                         <label class="tituloCajaTextoFormulario mt-2" for="txtHoraFin">Hora Fin:</label>
-                                        <input type="time" class="form-control cajaTextoModal" id="txtHoraFin" name="txtHoraFin" min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraFin')" Required>
+                                        <input type="time" class="form-control cajaTextoModal" onchange="checkInputHora('txtHoraInicio','txtHoraFin')" id="txtHoraFin" name="txtHoraFin" min="00:00" max="23:59" placeholder="HH:MM" onchange="checkInput('txtHoraFin')" Required>
 
 
                                         <h1 class="tituloDato2 text-center mt-3" id="tituloEspacio">Espacio Seleccionado:</h1>

@@ -1304,16 +1304,18 @@ function checkInput(input) {
 
 function checkInputHora(inicio, fin) {
     //Obteniendo el valor de los input
-    var start = document.getElementById(inicio).value;
-    var end = document.getElementById(fin).value;
     var start1 = document.getElementById(inicio);
     var end1 = document.getElementById(fin);
-    if (start >= end) {
+    if (document.getElementById(inicio).value >= document.getElementById(fin).value) {
         end1.classList.remove("success");
         end1.classList.add("error");
+        start1.classList.remove("success");
+        start1.classList.add("error");
     } else {
         end1.classList.remove("error");
         end1.classList.add("success");
+        start1.classList.remove("error");
+        start1.classList.add("success");
     }
 }
 //Método para verificar telefono
