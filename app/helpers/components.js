@@ -1307,7 +1307,7 @@ function checkTelefono(input) {
         field.classList.remove("error");
         field.classList.add("success");
 
-        if (/[0-9-]+$/i.test(field.value)) {
+        if (/^([0-9]{4})+(-)+([0-9]{4})$/i.test(field.value)) {
             field.classList.remove("error");
             field.classList.add("success");
         } else {
