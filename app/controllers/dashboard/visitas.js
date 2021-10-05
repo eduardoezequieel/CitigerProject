@@ -26,6 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let date = `${year}-${month}-${day}`;
     // Se asigna la fecha como valor máximo en el campo del formulario.
     document.getElementById('txtFecha').setAttribute('min', date);
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+
 
 })
 

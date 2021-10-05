@@ -47,7 +47,15 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                     <a href="#" id="btnReiniciar" data-toggle="#" data-target="#" class="btn botonesListado"><span
                             class="fas fa-undo mr-3 tamañoIconosBotones"></span>Reiniciar</a>
                 </div>
+                
 
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="#">
+                    <a type="button" href="../../app/reports/dashboard/visitas_semanales.php" id="btnReporte" target="_blank" data-toggle="tooltip" data-target="#" data-placement="bottom" title="Reporte de visitas semanal" class="btn botonesListado"><span class="fas fa-file-alt mr-3 tamañoIconosBotones"></span>Reporte</a>
+                    </div>
+                </div>
             </div>
 
         </div><br>

@@ -450,7 +450,7 @@ class Visitas extends Validator
         INNER JOIN visitante vi on d.idvisitante=vi.idvisitante
         INNER JOIN visita v on  d.idvisita=v.idvisita
         INNER JOIN estadovisita e on v.idestadovisita=e.idestadovisita where v.idresidente=? and  d.iddetallevisita=?";
-        $params = array($_SESSION['idresidente'],$this->idVisita);
+        $params = array($_SESSION['idresidente'], $this->idVisita);
         return Database::getRow($sql, $params);
     }
 
@@ -536,7 +536,7 @@ class Visitas extends Validator
         return Database::getRow($sql, $params);
     }
 
-    
+
     //Lee todos los registros de la tabla
     public function readAllVisitas()
     {
@@ -584,9 +584,28 @@ class Visitas extends Validator
                 WHERE residente.nombre ILIKE ? OR residente.apellido ILIKE ? 
                 OR visitante.nombre ILIKE ? OR visitante.apellido ILIKE ? 
                 ORDER BY fecha';
-        $params = array("%$value%", "%$value%","%$value%","%$value%");
+        $params = array("%$value%", "%$value%", "%$value%", "%$value%");
         return Database::getRows($sql, $params);
     }
+
+    //Función para obtener la información de las visitas semanales
+    public function visitasSemanales()
+    {
+        $sql = "SELECT d.iddetallevisita, d.idvisita, d.idvisitante, CONCAT(vi.nombre,' ',vi.apellido) as visitante, v.fecha,v.visitarecurrente, e.estadovisita,
+        Concat(r.nombre,' ',r.apellido) as residente from detallevisita d
+            INNER JOIN visitante vi on d.idvisitante=vi.idvisitante
+            INNER JOIN visita v on  d.idvisita=v.idvisita
+            INNER JOIN residente r on  r.idresidente=v.idresidente
+            INNER JOIN estadovisita e on v.idestadovisita=e.idestadovisita where extract(week from v.fecha) =  extract(week from current_date) and v.idestadovisita=? order by fecha desc ";
+        $params = array($this->idEstadoVisita);
+        return Database::getRows($sql, $params);
+    }
+
+
+    public function readEstadoVisita()
+        {
+            $sql = 'SELECT idestadovisita, estadovisita from estadovisita';
+            $params = null;
+            return Database::getRows($sql, $params);
+        }
 }
-
-
