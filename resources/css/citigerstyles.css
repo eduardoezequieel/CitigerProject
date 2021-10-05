@@ -1404,6 +1404,10 @@ textarea :-ms-input-placeholder {
   width: 290px !important;
 }
 
+#selectUnidadMedida2 {
+  width: 290px !important;
+}
+
 .cajaTextoFormularioTelefono {
   background-color: var(--color-fondo) !important;
   border: 2px solid var(--bordes-inputs) !important;
@@ -2665,6 +2669,15 @@ textarea.error {
 
 textarea.success {
   border: 2px solid var(--color-verde-hover) !important;
+}
+
+div.error {
+  border: 2px dashed var(--color-rojo-hover) !important; 
+}
+
+div.success {
+  border: 2px solid var(--color-verde-hover) !important;
+  border-radius: 15px;
 }
 
 table.dataTable {

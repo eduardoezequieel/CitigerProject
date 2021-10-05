@@ -117,14 +117,14 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                     </div>
 
                                     <label class="tituloCajaTextoFormulario" for="txtNombres">Nombres del material:</label>
-                                    <input type="text" class="form-control cajaTextoFormulario" id="txtNombres" name="txtNombres" placeholder="Escriba los nombres del material" maxlength="40">
+                                    <input type="text" onchange="checkAlfanumerico('txtNombres')" class="form-control cajaTextoFormulario" id="txtNombres" name="txtNombres" placeholder="Escriba los nombres del material" maxlength="40">
 
                                     <label class="tituloCajaTextoFormulario" for="cbMarca">Marca:</label>
                                     <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                             cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                             deseado en el combobox  -->
-                                    <div class="cbCitiger mb-2">
-                                        <select class="custom-select" id="cbMarca" name="cbMarca">
+                                    <div class="cbCitiger mb-2" id="cBc" >
+                                        <select class="custom-select" id="cbMarca" name="cbMarca" onchange="checkCb('cBc')">
                                             <option selected="">Seleccionar...</option>
 
                                         </select>
@@ -133,8 +133,8 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                     <!-- Combobox, si se desea usar, copiar todo el div que incluye la clase
                             cbCitiger, para cambiarle el tamaño, crear un id en cbCitiger y usar el width
                             deseado en el combobox  -->
-                                    <div class="cbCitiger ">
-                                        <select class="custom-select" id="cbCategoria" name="cbCategoria">
+                                    <div class="cbCitiger " id="cBc2">
+                                        <select class="custom-select" id="cbCategoria" name="cbCategoria" onchange="checkCb('cBc2')">
                                             <option selected="">Seleccionar...</option>
 
                                         </select>
@@ -151,7 +151,7 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                     <h1 class="tituloCajaTextoFormulario">Tipo de unidad de medida:</h1>
 
                                     <div class="cbCitiger mb-2" id="selectUnidadMedida">
-                                        <select class="custom-select" id="cbTipo" name="cbTipo">
+                                        <select class="custom-select" id="cbTipo" name="cbTipo" onchange="checkCb('selectUnidadMedida')">
                                             <option selected="">Seleccionar...</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -163,8 +163,8 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
 
                                     <label class="tituloCajaTextoFormulario mt-2" for="cbUnidad">Unidad de medida:</label>
 
-                                    <div class="cbCitiger mb-2" id="selectUnidadMedida">
-                                        <select class="custom-select" id="cbUnidad" name="cbUnidad">
+                                    <div class="cbCitiger mb-2" id="selectUnidadMedida2">
+                                        <select class="custom-select" id="cbUnidad" name="cbUnidad" onchange="checkCb('selectUnidadMedida2')">
                                             <option selected="">Seleccionar...</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -173,16 +173,16 @@ admin_Page::sidebarTemplate('Inventario | Citiger');
                                     </div>
 
                                     <label class="tituloCajaTextoFormulario" for="txtTamanio">Tamaño:</label>
-                                    <input type="text" class="form-control cajaTextoFormulario" id="txtTamanio" name="txtTamanio" placeholder="Escriba el tamaño" maxlength="10">
+                                    <input type="number" max="1000" min="1" class="form-control cajaTextoFormulario" onchange="checkInput('txtTamanio')" id="txtTamanio" name="txtTamanio" placeholder="Escriba el tamaño" maxlength="10">
 
                                     <label class="tituloCajaTextoFormulario mt-1" for="txtCosto">Costo:</label>
-                                    <input type="number" max="1000" min="1" class="form-control cajaTextoFormulario" id="txtCosto" name="txtCosto" placeholder="Ingrese el costo del material">
+                                    <input type="number" max="1000" min="1" class="form-control cajaTextoFormulario" onchange="checkInput('txtCosto')" id="txtCosto" name="txtCosto" placeholder="Ingrese el costo del material">
 
                                     <label class="tituloCajaTextoFormulario" for="txtCantidad">Cantidad:</label>
-                                    <input type="number" max="1000" min="1" class="form-control cajaTextoFormulario" id="txtCantidad" name="txtCantidad" placeholder="Ingrese el la cantidad del material">
+                                    <input type="number" max="1000" min="1" class="form-control cajaTextoFormulario" onchange="checkInput('txtCantidad')" id="txtCantidad" name="txtCantidad" placeholder="Ingrese el la cantidad del material">
 
                                     <label class="tituloCajaTextoFormulario" for="txtDesc">Descripción:</label>
-                                    <textarea class="form-control cajaTextoFormulario" placeholder="" id="txtDesc" name="txtDesc" rows="5" maxlength="200"></textarea>
+                                    <textarea class="form-control cajaTextoFormulario" placeholder="" id="txtDesc" name="txtDesc" onchange="checkAlfanumerico('txtDesc')" rows="5" maxlength="200"></textarea>
                                 </div>
                             </div>
                         </div>

@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('cbTipo').addEventListener('change',function(){
     document.getElementById('idTipoUnidad').value = document.getElementById('cbTipo').value;
     fillSelectSpace(ENDPOINT_UNIDAD, 'cbUnidad', null);
+    document.getElementById('selectUnidadMedida2').classList.remove("success");
 })
 
 //ocultar los demas botones de acción en el formulario al presionar Agregar.
@@ -49,6 +50,8 @@ document.getElementById('btnInsertDialog').addEventListener('click', function ()
     fillSelectSpace(ENDPOINT_UNIDAD, 'cbUnidad', null);
 
     previewSavePicture('divFoto', 'default.png', 4);
+
+    clearForm('administrarMateriales-form');
 
 });
 

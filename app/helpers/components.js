@@ -1284,6 +1284,10 @@ function showHidePassword(checkbox, pass) {
     }
 }
 
+function checkCb(input) {
+    var field = document.getElementById(input);
+    field.classList.add("success");
+}
 
 function checkInput(input) {
     var field = document.getElementById(input);

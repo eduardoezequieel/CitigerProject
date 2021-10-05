@@ -124,6 +124,9 @@ document.getElementById('btnInsertDialog').addEventListener('click',function(){
     previewSavePicture('divFoto', 'default.png', 1);
 
     document.getElementById('txtDireccion').value = '';
+
+    //Función para limpiar la validación del lado del cliente
+    clearForm('administrarEmpleado-form');
 });
 
 //Carga de datos del registro seleccionado
