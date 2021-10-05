@@ -77,10 +77,11 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                                 name="txtContrasenia" onChange="checkInput('txtContrasenia')"
                                 placeholder="Ingrese su contraseña..." Required maxlength="60">
 
-                            <input id="mostrarContraseña" type="checkbox" class="checkboxCitiger"
-                                onChange="showHidePassword('mostrarContraseña', 'txtContrasenia')">
-                            <label class="checkboxLabel checkboxCitiger mt-2" for="mostrarContraseña"> Mostrar
-                                Contraseña</label>
+                            <div class="custom-control custom-switch mt-3">
+                                <input onchange="showHidePassword('cbMostrarContraseña', 'txtContrasenia')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña">
+                                <label class="p-0 custom-control-label" for="cbMostrarContraseña">Mostrar Contraseña</label>
+                            </div>
+
                         </div>
                         <!-- Botones -->
                         <div class="row justify-content-center animate__animated animate__bounceIn animate__slow">
