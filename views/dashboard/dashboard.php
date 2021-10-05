@@ -263,9 +263,9 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                     </div>
                 </div>
                 <div class="row justify-content-center align-items-center mt-4">
-                    <div class="d-flex justify-content-center align-items-center">
+                    <div class="margenGraficas d-flex justify-content-center align-items-center">
                         <!-- Grafica de aportaciones por estado por mes y año -->
-                        <div class="col-12 d-flex justify-content-center align-items-center">
+                        <div class="col-xl-3 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
                             <div class="tarjetaDashboardGrafica" id="graficaAportacionesInicio">
                                 <form method="post" class="d-none" id="aportacionesEstado-form">
                                     <input type="number" id="idmespago" name="idmespago" value="1">
@@ -282,6 +282,32 @@ Admin_Page::sidebarTemplate('Dashboard | Citiger');
                                     <i class="fas fa-sad-tear icono4"></i>
                                     <h1 id="mensaje1" class="tituloTarjetaDashboard text-center my-4">No hay aportaciones en este mes:    (</h1>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="mtResponsive col-xl-9 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
+                            <div class="tarjetaDashboardGrafica" id="contenedorTipoUsuarioPermiso">
+                                <div id="graficaTipoUsuarioPermiso">
+                                    <h1 class="tituloGrafica text-center">Top 3 Tipos de Usuarios con más Permisos</h1>
+                                    <canvas class="#" id="cnTipoUsuarioPermiso"></canvas>
+                                </div>
+                                <div id="noTipoUsuarioPermiso" class="d-none">
+                                    <i class="fas fa-sad-tear icono4"></i>
+                                    <h1 id="mensaje9" class="tituloTarjetaDashboard text-center my-4">No hay permisos :(</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <!-- Grafica de productos demandados -->
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center align-items-center">
+                        <div class="tarjetaDashboardGrafica">
+                            <div id="graficaPorcentajeTipo" class="graficasCuadradas">
+                                <canvas class="#" id="cnTipoPorcentaje"></canvas>
+                            </div>
+                            <div id="noPorcentajeTipo" class="d-none">
+                                <i class="fas fa-sad-tear icono4"></i>
+                                <h1 id="mensaje10" class="tituloTarjetaDashboard text-center my-4">No hay tipos de usuario :(</h1>
                             </div>
                         </div>
                     </div>

@@ -155,6 +155,19 @@
     #contenedorGraficaEspacio {
       width: 240px !important;
     }
+
+    #contenedorTipoUsuarioPermiso {
+      width: 300px !important;
+      height: 300px !important;
+    }
+    
+    #graficaTipoUsuarioPermiso {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 240px !important;
+    }
   
   }
 
@@ -211,6 +224,12 @@
 #ResidentesColumna1 {
   margin-top: 12px !important;
   margin-left: 50px !important;
+}
+
+#graficaTipoUsuarioPermiso {
+  width: 490px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 /*Inicio del Login*/

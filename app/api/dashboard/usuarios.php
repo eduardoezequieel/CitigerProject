@@ -37,7 +37,31 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idusuario_dashboard'])) {
         //Se compara la acción a realizar cuando la sesion está iniciada
         switch ($_GET['action']) {
-                //Caso para verificar si el residente posee su correo electronico verificado.
+            //Caso para obtener el porcentaje de usuarios de los tipos de usuario
+            case 'usersPercentage':
+                if ($result['dataset'] = $usuarios->usersPercentage()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay tipos de usuario.';
+                    }
+                }
+                break;
+            //Caso para obtener el top 3 de tipos de usuarios con mas permisos
+            case 'top3Permissions':
+                if ($result['dataset'] = $usuarios->top3Permissions()) {
+                    $result['status'] = 1;
+                } else {
+                    if (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'No hay permisos.';
+                    }
+                }
+                break;
+            //Caso para verificar si el residente posee su correo electronico verificado.
             case 'checkIfEmailIsValidated':
                 if ($usuarios->setId($_SESSION['idusuario_dashboard'])) {
                     if ($result['dataset'] = $usuarios->checkIfEmailIsValidated()) {
@@ -54,7 +78,7 @@ if (isset($_GET['action'])) {
                 }
 
                 break;
-                //Enviar código de verificación para verificar correo electronico
+            //Enviar código de verificación para verificar correo electronico
             case 'sendEmailCode':
                 // Generamos el codigo de seguridad 
                 $code = rand(999999, 111111);

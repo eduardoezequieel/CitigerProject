@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded',function(){
     createSesionHistory();
     //Función para verificar si el email ya está verificado
     checkIfEmailIsValidated();
+    
+    graficaBarrasPermisos();
+    graficaDonaTipos();
 });
 
 //Se verifica si el usuario ha validado su correo.
@@ -780,7 +783,6 @@ document.getElementById('espacioVeces-form').addEventListener('submit',function(
     });
 });
 
-
 //Genera una grafica de lineas del historial de movimientos de un productó
 function graficaLineaHistorialInventario(){
     //Se presiona el boton del formulario invisible para activar el evento submit
@@ -849,6 +851,101 @@ document.getElementById('historialInventario-form').addEventListener('submit',fu
     });
 
 });
+
+//Funcion para mostrar una grafica de barras del top 3 de tipos de usuarios con mas permisos
+function graficaBarrasPermisos(){
+    fetch(API_USUARIOS + 'top3Permissions', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    let permisos = [];
+                    let tipo = [];
+
+                    response.dataset.map(function(row){
+                        permisos.push(row.cantidadpermisos);
+                        tipo.push(row.tipousuario);
+                    });
+
+                    var modo = document.getElementById('txtModo').value;
+                    var colorFuente;
+                    var colorFondo;
+
+                    if (modo == 'light') {
+                        colorFuente = 'rgb(0,0,0)';
+                    } else if (modo == 'dark') {
+                        colorFuente = 'rgb(255,255,255)';
+                    }
+
+                    if (modo == 'light') {
+                        colorFondo = '#F1F4F9';
+                    } else if (modo == 'dark') {
+                        colorFondo = '#121212';
+                    }
+
+                    barGraph('cnTipoUsuarioPermiso', tipo, permisos, '', colorFondo, colorFuente, 'Permisos: ');
+                } else {
+                    document.getElementById('graficaTipoUsuarioPermiso').className = 'd-none';
+                    document.getElementById('noTipoUsuarioPermiso').className = 'd-flex flex-column justify-content-center align-items-center';
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+
+function graficaDonaTipos(){
+    fetch(API_USUARIOS + 'usersPercentage', {
+        method: 'get'
+    }).then(function (request) {
+        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje indicando el problema.
+        if (request.ok) {
+            request.json().then(function (response) {
+                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                if (response.status) {
+                    let porcentaje = [];
+                    let tipo = [];
+
+                    response.dataset.map(function(row){
+                        porcentaje.push(row.porcentaje);
+                        tipo.push(row.tipousuario);
+                    });
+
+                    var modo = document.getElementById('txtModo').value;
+                    var colorFuente;
+                    var colorFondo;
+
+                    if (modo == 'light') {
+                        colorFuente = 'rgb(0,0,0)';
+                    } else if (modo == 'dark') {
+                        colorFuente = 'rgb(255,255,255)';
+                    }
+
+                    if (modo == 'light') {
+                        colorFondo = '#F1F4F9';
+                    } else if (modo == 'dark') {
+                        colorFondo = '#121212';
+                    }
+
+                    pieGraph('cnTipoPorcentaje', tipo, porcentaje, 'Porcentaje de Usuarios por Tipo', colorFondo, colorFuente);
+                } else {
+                    document.getElementById('graficaPorcentajeTipo').className = 'd-none';
+                    document.getElementById('noPorcentajeTipo').className = 'd-flex flex-column justify-content-center align-items-center';
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.log(error);
+    }); 
+}
 
 //Genera una grafica de barras de las visitas de un residente
 function graficaBarrasResidente(){
@@ -1329,7 +1426,6 @@ function readBitacora(id){
         console.log(error);
     });
 }
-
 
 function createSesionHistory(){
     fetch(API_USUARIOS + 'createSesionHistory', {

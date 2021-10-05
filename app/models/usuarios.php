@@ -593,6 +593,29 @@ class Usuarios extends Validator
         }
     }
 
+    //Funcion para saber el top 3 de tipos de usuario que cuentan con mas permisos.
+    public function top3Permissions()
+    {
+        $sql = 'SELECT count(idpermisousuario) FILTER (WHERE permitido = \'1\') as cantidadPermisos, tipousuario FROM permisousuario 
+                INNER JOIN tipousuario USING (idtipousuario)
+                GROUP BY tipousuario
+                ORDER BY cantidadPermisos DESC
+                LIMIT 3';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+    //Funcion para saber el porcentaje de usuarios de los tipos de usuario
+    public function usersPercentage()
+    {
+        $sql = 'SELECT (COUNT(idusuario)*100) / (SELECT COUNT(idusuario) FROM usuario) as porcentaje, tipousuario 
+                FROM usuario 
+                INNER JOIN tipousuario USING(idtipousuario)
+                GROUP BY tipousuario';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
     //Funcion para insertar tipos de usuario
     public function addType()
     {
