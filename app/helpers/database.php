@@ -9,7 +9,7 @@ Class Database{
     private static $statement = null;
     private static $error = null;
 
-    //Método para hacer la conexión (Katherine)
+    /*Método para hacer la conexión (Katherine)
     private static function connect(){
         
         // Credenciales.
@@ -20,19 +20,19 @@ Class Database{
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
-    }
+    }*/
     //Metodo para hacer la conexión (Eduardo)
-    /*private static function connect(){
+    private static function connect(){
 
         // Credenciales.
         $server = 'localhost';
-        $database = 'citiger_db';
+        $database = 'CitigerProject';
         $username = 'postgres';
-        $password = '1234';
+        $password = 'eduardo2021';
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
-    }*/
+    }
 
     /*
     //Metodo para hacer la conexión (Samuel)
