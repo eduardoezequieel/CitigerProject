@@ -10,20 +10,20 @@ Class Database{
     private static $error = null;
 
     //Método para hacer la conexión (Katherine)
-    /*
+    
     private static function connect(){
         
         // Credenciales.
-        $server = 'localhost';
-        $database = 'citiger_db';
-        $username = 'postgres';
-        $password = '1234';
+        $server = '34.125.57.125';
+        $database = 'citiger';
+        $username = 'riv_edu10';
+        $password = '123456';
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
-    }*/
+    }
     //Metodo para hacer la conexión (Eduardo)
-    private static function connect(){
+    /*private static function connect(){
 
         // Credenciales.
         $server = 'localhost';
@@ -108,7 +108,7 @@ Class Database{
         // Establecer un error personalizado.
         switch ($code) {
             case '7':
-                self::$error = 'Existe un problema al conectar con el servidor';
+                self::$error = $message;
                 break;
             case '42703':
                 self::$error = 'Nombre de campo desconocido';

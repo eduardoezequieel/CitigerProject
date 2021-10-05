@@ -304,7 +304,11 @@ class Validator
             if (file_exists($path)) {
                 // Se verifica que el archivo sea movido al servidor.
                 if (move_uploaded_file($file['tmp_name'], $path.$name)) {
-                    return true;
+                    if (chmod($path . $name, 0.755)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 } else {
                     return false;
                 }
