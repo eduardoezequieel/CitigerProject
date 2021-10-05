@@ -524,15 +524,7 @@ function showCharts(){
             request.json().then(response => {
                 //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
                 if (response.status) {
-                    document.getElementById('data-table2').className = 'd-none'
-                    document.getElementById('titulo_tabla').className = 'd-none'
-                    //Verificando que solo el admin pueda ver la bitacora
-                    if(response.tipo == 'Administrador'){
-                        //Carga la bitacora de usuarios
-                        readRows(API_DASHBOARD);
-                        document.getElementById('titulo_tabla').className = 'row my-4'
-                        document.getElementById('data-table2').className = 'table table-borderless citigerTable'
-                    }
+                    
                     document.getElementById('tarjeta_denuncia').className = 'd-none'
                     document.getElementById('tarjeta_visita').className = 'd-none'
                     document.getElementById('tarjeta_aportacion').className = 'd-none'
@@ -603,6 +595,31 @@ function showCharts(){
                             }
                         }
                     })
+                }
+            })
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(error => console.log(error));
+}
+
+//Función para enseñar graficas y contadores
+function showBitacora(){
+    document.getElementById('data-table2').className = 'd-none'
+    document.getElementById('titulo_tabla').className = 'd-none'
+    //Verificando las credenciales del usuario
+    fetch('../../app/api/dashboard/usuarios.php?action=checkUserLoggedPermissions').then(request => {
+        //Verificando si la petición fue correcta
+        if (request.ok) {
+            request.json().then(response => {
+                //Verificando si la respuesta es satisfactoria de lo contrario se muestra la excepción
+                if (response.status) {
+                    if(response.tipo == 'Administrador'){
+                        //Carga la bitacora de usuarios
+                        readRows(API_DASHBOARD);
+                        document.getElementById('titulo_tabla').className = 'row my-4'
+                        document.getElementById('data-table2').className = 'table table-borderless citigerTable'
+                    }
                 }
             })
         } else {

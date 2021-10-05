@@ -7,7 +7,11 @@ const API_USUARIOS = '../../app/api/dashboard/usuarios.php?action=';
 document.addEventListener('DOMContentLoaded',function(){
     //Función para mostrar graficos
     showCharts();
+    //Función para mostrar la tabla de bitacora cuando el usuario es admin
+    showBitacora();
+    //Función para crear el historial de sesiones
     createSesionHistory();
+    //Función para verificar si el email ya está verificado
     checkIfEmailIsValidated();
 });
 
