@@ -553,6 +553,8 @@ function showCharts(){
                                     graficaLineaHistorialInventario(1);
                                     break;
                                 case 'Usuarios':
+                                    graficaBarrasPermisos(1);
+                                    graficaDonaTipos(1);
                                     break;
                                 case 'Visitas':
                                     document.getElementById('tarjeta_visita').className = 'col-xl-4 col-md-4 col-sm-12 col-xs-12 margenTarjetas';
@@ -585,6 +587,14 @@ function showCharts(){
                                     document.getElementById('mensaje4').textContent = 'Información no disponible.';
                                     break;
                                 case 'Usuarios':
+                                    graficaBarrasPermisos(0);
+                                    document.getElementById('graficaTipoUsuarioPermiso').className = 'd-none';
+                                    document.getElementById('noTipoUsuarioPermiso').className = 'd-flex flex-column justify-content-center align-items-center';
+                                    document.getElementById('mensaje9').textContent = 'Información no disponible.';
+                                    graficaDonaTipos(0);
+                                    document.getElementById('graficaPorcentajeTipo').className = 'd-none';
+                                    document.getElementById('noPorcentajeTipo').className = 'd-flex flex-column justify-content-center align-items-center';
+                                    document.getElementById('mensaje10').textContent = 'Información no disponible.';
                                     break;
                                 case 'Visitas':
                                     graficaLineaVisitas(0);

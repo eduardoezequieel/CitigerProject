@@ -14,8 +14,6 @@ document.addEventListener('DOMContentLoaded',function(){
     //Función para verificar si el email ya está verificado
     checkIfEmailIsValidated();
     
-    graficaBarrasPermisos();
-    graficaDonaTipos();
 });
 
 //Se verifica si el usuario ha validado su correo.
