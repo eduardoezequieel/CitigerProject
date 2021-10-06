@@ -123,9 +123,9 @@ admin_Page::sidebarTemplate('Visitas | Citiger');
                 <form method="post" id="Visitante-form" autocomplete="off">
                     <div class="row">
                         <div class="col-12">
-                            <div class="alert warningAlert alert-dismissible fade show" role="alert">
+                            <div class="animate__animated animate__fadeInDown alert yellowAlert alert-dismissible fade show" role="alert">
                                 <strong>Importante.</strong> No hemos encontrado registro con este DUI, por lo tanto, puedes registrarlo. Si crees 
-                                que se trata de un error, puedes regresar y colocarlo nuevamente.
+                                        que se trata de un error, puedes regresar y colocarlo nuevamente.</a><br>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
