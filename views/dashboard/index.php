@@ -78,8 +78,8 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
                                 placeholder="Ingrese su contraseña..." Required maxlength="60">
 
                             <div class="custom-control custom-switch mt-3">
-                                <input onchange="showHidePassword('cbMostrarContraseña', 'txtContrasenia')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña">
-                                <label class="p-0 custom-control-label" for="cbMostrarContraseña">Mostrar Contraseña</label>
+                                <input onchange="showHidePassword('cbMostrarContraseña2', 'txtContrasenia')" type="checkbox" class="p-0 custom-control-input" id="cbMostrarContraseña2">
+                                <label class="p-0 custom-control-label" for="cbMostrarContraseña2">Mostrar Contraseña</label>
                             </div>
 
                         </div>
@@ -110,7 +110,7 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
     <!-- Modal para verificar el codigo de verificación en la doble autenticación -->
     <div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" id="verificarCodigoAuth"
         tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content justify-content-center px-3 py-2">
                 <!-- Cabecera del Modal -->
                 <div class="modal-header">
@@ -188,7 +188,7 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
 
     <!-- Modal para recuperar la contraseña -->
     <div class="modal fade" id="recuperarContraseña" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
             <div class="modal-content justify-content-center px-3 py-2">
                 <!-- Cabecera del Modal -->
                 <div class="modal-header">
@@ -248,7 +248,7 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
     <!-- Modal para verificar el codigo de verificación en la recuperación de contraseña -->
     <div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" id="verificarCodigoRecuperacion"
         tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-dialog-centered">
             <div class="modal-content justify-content-center px-3 py-2">
                 <!-- Cabecera del Modal -->
                 <div class="modal-header">
@@ -406,7 +406,7 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
     <!-- Modal para Cambiar Contraseña -->
     <div class="modal fade" id="obligatorioContrasena" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content justify-content-center px-3 py-2">
                 <!-- Cabecera del Modal -->
                 <div class="modal-header">
