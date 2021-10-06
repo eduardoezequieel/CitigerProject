@@ -15,7 +15,7 @@ Class Database{
         
         // Credenciales.
         $server = 'localhost';
-        $database = 'citiger';
+        $database = 'citiger_db';
         $username = 'postgres';
         $password = 'katflowxD';
         //Crear conexión.
