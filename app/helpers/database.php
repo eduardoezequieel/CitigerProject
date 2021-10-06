@@ -14,10 +14,10 @@ Class Database{
     private static function connect(){
         
         // Credenciales.
-        $server = '34.125.57.125';
+        $server = 'localhost';
         $database = 'citiger';
-        $username = 'riv_edu10';
-        $password = '123456';
+        $username = 'postgres';
+        $password = 'katflowxD';
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
