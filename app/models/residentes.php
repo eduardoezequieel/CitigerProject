@@ -12,7 +12,7 @@ class Residentes extends Validator
     private $foto = null;
     private $correo = null;
     private $fechaNacimiento = null;
-    private $ruta = '../../../resources/img/dashboard_img/residentes_fotos/';
+    private $ruta = 'http://34.125.57.125/resources/img/dashboard_img/residentes_fotos/';
     private $username = null;
     private $contrasenia = null;
     private $idCasa = null;
