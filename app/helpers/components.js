@@ -262,19 +262,19 @@ function previewSavePicture(idDivFoto, name, foto) {
     let ruta;
     switch (foto) {
         case 1:
-            ruta = 'http://34.125.57.125/resources/img/dashboard_img/usuarios_fotos/';
+            ruta = 'http://34.125.88.216/resources/img/dashboard_img/usuarios_fotos/';
             break;
         case 2:
-            ruta = 'http://34.125.57.125/resources/img/dashboard_img/empleados_fotos/'
+            ruta = 'http://34.125.88.216/resources/img/dashboard_img/empleados_fotos/'
             break;
         case 3:
-            ruta = 'http://34.125.57.125/resources/img/dashboard_img/residentes_fotos/';
+            ruta = 'http://34.125.88.216/resources/img/dashboard_img/residentes_fotos/';
             break;
         case 4:
-            ruta = 'http://34.125.57.125/resources/img/dashboard_img/materiales_fotos/';
+            ruta = 'http://34.125.88.216/resources/img/dashboard_img/materiales_fotos/';
             break;
         case 5:
-                ruta = 'http://34.125.57.125/resources/img/dashboard_img/espacios_fotos/';
+                ruta = 'http://34.125.88.216/resources/img/dashboard_img/espacios_fotos/';
                 break;
         default:
             break;

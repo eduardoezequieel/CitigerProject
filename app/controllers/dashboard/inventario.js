@@ -231,7 +231,7 @@ function fillTable(dataset) {
                         <!-- Fila para Imagen -->
                             <div class="row">
                                 <div class="col-12">
-                                    <img src="../../resources/img/dashboard_img/materiales_fotos/${row.imagen}" alt="#" class="img-fluid fit-images fotoMaterial imagenTarjeta">
+                                    <img src="http://34.125.88.216/resources/img/dashboard_img/materiales_fotos/${row.imagen}" alt="#" class="img-fluid fit-images fotoMaterial imagenTarjeta">
                                 </div>
                             </div>
                             <!-- Fila para Información -->

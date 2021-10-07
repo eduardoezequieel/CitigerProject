@@ -60,7 +60,7 @@
                             <div id="tarjetaPerfil" class="p-3">
                                 <div class="row">
                                     <div class="col-3">
-                                        <img src="http://34.125.57.125/resources/img/dashboard_img/residentes_fotos/' . $_SESSION['foto_residente'] . '"
+                                        <img src="http://34.125.88.216/resources/img/dashboard_img/residentes_fotos/' . $_SESSION['foto_residente'] . '"
                                             id="fotoPerfil" alt="" class="rounded-circle fit-images" width="60px"
                                             height="60px"> </div>
                                     <div class="col-9">

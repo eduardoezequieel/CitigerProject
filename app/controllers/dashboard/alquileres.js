@@ -45,7 +45,7 @@ function fillTable(dataset) {
                     <th scope="row">
                         <div class="row paddingTh">
                             <div class="col-12">
-                                <img src="../../resources/img/dashboard_img/residentes_fotos/${row.foto}" alt="" class="fit-images rounded-circle" width="30px" height="30px">
+                                <img src="http://34.125.88.216/resources/img/dashboard_img/residentes_fotos/${row.foto}" alt="" class="fit-images rounded-circle" width="30px" height="30px">
                             </div>
                         </div>
                     </th>
@@ -455,7 +455,7 @@ function fillTable2(dataset) {
                                 <!-- Fila para Imagen -->
                                 <div class="row">
                                     <div class="col-12">
-                                        <img src="../../resources/img/dashboard_img/espacios_fotos/${row.imagenprincipal}" alt="#" class="img-fluid fit-images fotoEspacio imagenTarjeta">
+                                        <img src="http://34.125.88.216/resources/img/dashboard_img/espacios_fotos/${row.imagenprincipal}" alt="#" class="img-fluid fit-images fotoEspacio imagenTarjeta">
                                     </div>
                                 </div>
                                 <!-- Fila para Información -->
