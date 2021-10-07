@@ -33,7 +33,7 @@ Class Database{
         //Crear conexión.
         self::$connection = new PDO('pgsql:host='.$server.';dbname='.$database.';port=5432', $username, $password);
 
-    }
+    }   
 
     /*
     //Metodo para hacer la conexión (Samuel)
@@ -108,7 +108,7 @@ Class Database{
         // Establecer un error personalizado.
         switch ($code) {
             case '7':
-                self::$error = $message;
+                self::$error ='Hubo un problema al conectar con el servidor' ;
                 break;
             case '42703':
                 self::$error = 'Nombre de campo desconocido';

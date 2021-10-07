@@ -37,7 +37,7 @@ function fillTable(dataset){
                 <th scope="row">
                     <div class="row paddingTh">
                         <div class="col-12">
-                            <img src="../../resources/img/dashboard_img/usuarios_fotos/${row.foto}" alt="#"
+                            <img src="http://34.125.57.125/resources/img/dashboard_img/usuarios_fotos/${row.foto}" alt="#"
                                 class="rounded-circle fit-images" width="30px" height="30px">
                         </div>
                     </div>
