@@ -61,8 +61,8 @@ if ($dataCategorias = $categoria->readTipoDenuncia()) {
                 $pdf->SetTextColor(9, 9, 9);
                 // Se imprimen las celdas con los encabezados.
                 $pdf->Cell(55, 10, utf8_decode('Estado de la denuncia'), 1, 0, 'C', 1);
-                $pdf->Cell(30, 10, utf8_decode('Fecha'), 1, 0, 'C', 1);
-                $pdf->Cell(100.9, 10, utf8_decode('Descripción'), 1, 1, 'C', 1);
+                $pdf->Cell(100.9, 10, utf8_decode('Descripción'), 1, 0, 'C', 1);
+                $pdf->Cell(30, 10, utf8_decode('Fecha'), 1, 1, 'C', 1);
                 // Se establece la fuente para los datos de los productos.
                 $pdf->SetFont('Roboto-Regular', '', 11);
                 // Se recorren los registros ($dataProductos) fila por fila ($rowProducto).
@@ -70,7 +70,7 @@ if ($dataCategorias = $categoria->readTipoDenuncia()) {
                     // Se imprimen las celdas con los datos de los productos.
                     $pdf->SetTextColor(9, 9, 9);
 
-                    $cellWidth = 100;
+                    $cellWidth = 100.9;
                     $cellHeight = 10;
 
                     if ($pdf->GetStringWidth($rowProducto['descripcion']) < $cellWidth) {
@@ -102,17 +102,18 @@ if ($dataCategorias = $categoria->readTipoDenuncia()) {
 
 
                     $pdf->Cell(55, ($line * $cellHeight), utf8_decode($rowProducto['estadodenuncia']), 1, 0, 'C');
-                    $pdf->Cell(30, ($line * $cellHeight), utf8_decode($rowProducto['fecha']), 1, 0, 'C');
 
                     $xPos = $pdf->GetX();
                     $yPos = $pdf->GetY();
                     $pdf->SetFillColor(255);
 
-                    $pdf->MultiCell(100.9, $cellHeight, utf8_decode($rowProducto['descripcion']), 1, 1, 'C');
+                    $pdf->MultiCell(100.9, $cellHeight, utf8_decode($rowProducto['descripcion']), 1, 'C');
                     $pdf->SetXY($xPos + $cellWidth, $yPos);
+                    $pdf->Cell(30, ($line * $cellHeight), utf8_decode($rowProducto['fecha']), 1, 1, 'C');
+
                 }
                 if (strlen($rowProducto['descripcion']) < $cellWidth) {
-                    $pdf->Ln(15);
+                    $pdf->Ln(10);
                 } elseif (strlen($rowProducto['descripcion']) == $cellWidth) {
                     $pdf->Ln(25);
                 } 
